@@ -1,5 +1,3 @@
-package EFFECT;
-
 public class Convert extends Immediate {
 
 	public void chooseConvertion() {

@@ -1,5 +1,3 @@
-package EFFECT;
-
 public class ConvertPrivilege extends Immediate {
 
 	public void ChoosePossesion() {

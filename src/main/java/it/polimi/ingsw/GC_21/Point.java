@@ -1,5 +1,3 @@
-package GAMECOMPONENTS;
-
 public class Point extends Possesion {
 
 	private int faithPoints;

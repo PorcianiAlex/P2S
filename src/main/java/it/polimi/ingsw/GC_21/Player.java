@@ -1,5 +1,3 @@
-package PLAYER;
-
 import java.util.*;
 
 public class Player {

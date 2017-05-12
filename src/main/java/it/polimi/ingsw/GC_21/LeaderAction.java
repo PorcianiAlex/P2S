@@ -1,5 +1,3 @@
-package ACTION;
-
 public class LeaderAction extends Action {
 
 	public void discardAndGain() {

@@ -1,5 +1,3 @@
-package BOARD;
-
 public class Board {
 
 	private int attribute;

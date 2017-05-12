@@ -1,5 +1,3 @@
-package ACTION;
-
 public class TowerPlacement extends PlacementAction {
 
 	/**

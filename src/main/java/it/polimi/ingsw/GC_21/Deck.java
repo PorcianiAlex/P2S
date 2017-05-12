@@ -1,5 +1,3 @@
-package GAMECOMPONENTS;
-
 public class Deck {
 
 	public void createDeck() {

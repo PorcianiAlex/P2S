@@ -1,5 +1,3 @@
-package BOARD;
-
 public class Dice {
 
 	private String dicecolor;

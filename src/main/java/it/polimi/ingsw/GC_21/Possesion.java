@@ -1,5 +1,3 @@
-package GAMECOMPONENTS;
-
 public class Possesion {
 
 	public void add() {

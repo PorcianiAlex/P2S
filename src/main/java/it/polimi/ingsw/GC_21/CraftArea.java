@@ -1,5 +1,3 @@
-package BOARD;
-
 public class CraftArea {
 
 	private boolean covered;

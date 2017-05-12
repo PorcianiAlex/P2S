@@ -1,5 +1,3 @@
-package BOARD;
-
 public class ActionSpace {
 
 	private int requiredDice;

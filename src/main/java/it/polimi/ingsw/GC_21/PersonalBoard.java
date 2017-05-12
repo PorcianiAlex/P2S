@@ -1,6 +1,9 @@
-package PLAYER;
-
 public class PersonalBoard {
+
+	private Building[] BuildingCards;
+	private Territory[] TerritoryCards;
+	private Ventures[] VentureCards;
+	private Character[] CharacterCards;
 
 	/**
 	 * 

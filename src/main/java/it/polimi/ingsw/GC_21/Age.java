@@ -1,5 +1,3 @@
-package GAMEMANAGEMENT;
-
 public class Age {
 
 	private int number;

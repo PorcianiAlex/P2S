@@ -1,5 +1,3 @@
-package ACTION;
-
 public class PlacementAction extends Action {
 
 	private int actionValue;

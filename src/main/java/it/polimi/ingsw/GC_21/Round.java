@@ -1,5 +1,3 @@
-package GAMEMANAGEMENT;
-
 public class Round {
 
 	private int Number;

@@ -1,5 +1,3 @@
-package GAMECOMPONENTS;
-
 public class Ventures extends DevelopmentCard {
 
 	private Possesion secondReq;

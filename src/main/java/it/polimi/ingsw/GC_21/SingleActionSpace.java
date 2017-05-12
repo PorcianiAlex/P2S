@@ -1,5 +1,3 @@
-package BOARD;
-
 public class SingleActionSpace extends ActionSpace {
 
 	private boolean bonus;

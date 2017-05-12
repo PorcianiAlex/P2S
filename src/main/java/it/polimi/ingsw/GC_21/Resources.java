@@ -1,5 +1,3 @@
-package GAMECOMPONENTS;
-
 public class Resources extends Possesion {
 
 	private int coin;

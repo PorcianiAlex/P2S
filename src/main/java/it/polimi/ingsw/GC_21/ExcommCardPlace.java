@@ -1,5 +1,3 @@
-package BOARD;
-
 public class ExcommCardPlace implements CardPlace {
 
 	private int age;

@@ -1,5 +1,3 @@
-package EFFECT;
-
 public abstract class Effect {
 
 	private int ID;

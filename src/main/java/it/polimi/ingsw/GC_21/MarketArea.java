@@ -1,5 +1,3 @@
-package BOARD;
-
 import java.util.*;
 
 public class MarketArea {

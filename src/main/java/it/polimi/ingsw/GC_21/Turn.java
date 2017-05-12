@@ -1,5 +1,3 @@
-package GAMEMANAGEMENT;
-
 public class Turn {
 
 	private int timeout;

@@ -1,5 +1,3 @@
-package BOARD;
-
 public class DevCardPlace implements CardPlace {
 
 	private boolean Free;

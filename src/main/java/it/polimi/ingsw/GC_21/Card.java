@@ -1,5 +1,3 @@
-package GAMECOMPONENTS;
-
 public abstract class Card {
 
 	private String name;

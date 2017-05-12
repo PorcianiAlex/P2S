@@ -1,5 +1,3 @@
-package BOARD;
-
 public class CouncilPalace {
 
 	private Arraylist colorOrder;

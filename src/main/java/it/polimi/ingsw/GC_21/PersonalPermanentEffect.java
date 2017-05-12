@@ -1,5 +1,3 @@
-package PLAYER;
-
 public class PersonalPermanentEffect {
 
 	public void add() {

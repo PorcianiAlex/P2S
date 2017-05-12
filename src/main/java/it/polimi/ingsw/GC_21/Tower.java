@@ -1,5 +1,3 @@
-package BOARD;
-
 import java.util.*;
 
 public abstract class Tower {

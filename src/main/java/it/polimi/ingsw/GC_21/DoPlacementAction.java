@@ -1,5 +1,3 @@
-package EFFECT;
-
 public class DoPlacementAction extends Immediate {
 
 	public void activateEffect() {

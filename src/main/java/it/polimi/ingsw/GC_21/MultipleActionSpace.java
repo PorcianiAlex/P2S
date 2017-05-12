@@ -1,5 +1,3 @@
-package BOARD;
-
 public class MultipleActionSpace extends ActionSpace {
 
 	private int callMalusOnDice;
