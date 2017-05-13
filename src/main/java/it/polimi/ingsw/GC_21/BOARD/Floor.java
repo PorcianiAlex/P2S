@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
+
 public class Floor {
 
 	private int floorNumber;
@@ -10,15 +12,13 @@ public class Floor {
 	public Floor(int floorNumber) {
 		this.floorNumber = floorNumber;
 		this.singleActionSpace = new SingleActionSpace(floorNumber+(floorNumber-1), null);
-		this.devCardPlace = new DevCardPlace();
+		this.devCardPlace = new DevCardPlace(null);
 	}
 	
-	public int getNumber() {
-		return number;
+	public void setCardPlace(DevDeck devDeck) {
+		this.devCardPlace.setCard(devDeck.getSingleCard());
 	}
-	public void setNumber(int number) {
-		this.number = number;
-	}
+	
 	public SingleActionSpace getSingleActionSpace() {
 		return singleActionSpace;
 	}

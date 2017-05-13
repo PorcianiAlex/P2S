@@ -18,6 +18,30 @@ public class Dice {
 		this.value = random.nextInt(6)+1;
 	}
 	
+	public FamilyMemberColor getFamilyMemberColor() {
+		return familyMemberColor;
+	}
+
+	public void setFamilyMemberColor(FamilyMemberColor familyMemberColor) {
+		this.familyMemberColor = familyMemberColor;
+	}
+
+	public int getValue() {
+		return value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
+	}
+
+	public Random getRandom() {
+		return random;
+	}
+
+	public void setRandom(Random random) {
+		this.random = random;
+	}
+
 	public static Dice[] generateDices(){
 		Dice[] dices=new Dice[3];
 		dices[0]=new Dice(FamilyMemberColor.Black);

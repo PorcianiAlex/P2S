@@ -3,12 +3,13 @@ package it.polimi.ingsw.GC_21.BOARD;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
+import it.polimi.ingsw.GC_21.EFFECT.Immediate;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 
 public class MultipleActionSpace extends ActionSpace {
 	private ArrayList<FamilyMember> familyMember= new ArrayList<FamilyMember>();
 
-	public MultipleActionSpace(int requiredDice, Effect effect) {
+	public MultipleActionSpace(int requiredDice,Immediate effect) {
 		super(requiredDice, effect);
 	}
 

@@ -15,13 +15,16 @@ public class Board {
 	private CouncilPalace councilPalace;
 	private CraftArea[] craftAreas;
 	
-	public void generateBoard(){
+	public void generateBoard(DevDeck territoryDeck, DevDeck buildingDeck, DevDeck characterDeck, DevDeck ventureDeck){
 		dices = Dice.generateDices();
 		towers = Tower.generateTowers();
-		for (int i = 0; i < towers.length; i++) {
-			
-		};
+		towers[0].pickCards(territoryDeck);
+		towers[1].pickCards(buildingDeck);
+		towers[2].pickCards(characterDeck);
+		towers[3].pickCards(ventureDeck);
 	}
+
+
 
 	public void refreshBoard() {
 		for (int i = 0; i < towers.length; i++) {

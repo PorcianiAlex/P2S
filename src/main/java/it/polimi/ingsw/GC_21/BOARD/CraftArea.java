@@ -6,13 +6,11 @@ import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 
 public class CraftArea {
 	
-	private CraftType craftType;
-	private ActionSpace singleActionSpace;
-	private ActionSpace multipleActionSpace;
+	private final CraftType craftType;
+	private final SingleActionSpace singleActionSpace;
+	private final MultipleActionSpace multipleActionSpace;
 	
-	
-	
-	public CraftArea(CraftType craftType, Effect MalusOnCraft) {
+	public CraftArea(CraftType craftType, Immediate MalusOnCraft) {
 		super();
 		this.craftType = craftType;
 		this.singleActionSpace = new SingleActionSpace(1, null);
@@ -29,30 +27,18 @@ public class CraftArea {
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean isCovered() {
-		return covered;
-	}
-
-	public void setCovered(boolean covered) {
-		this.covered = covered;
+	public CraftType getCraftType() {
+		return craftType;
 	}
 
 	public SingleActionSpace getSingleActionSpace() {
 		return singleActionSpace;
 	}
 
-	public void setSingleActionSpace(SingleActionSpace singleActionSpace) {
-		this.singleActionSpace = singleActionSpace;
-	}
 
 	public MultipleActionSpace getMultipleActionSpace() {
 		return multipleActionSpace;
 	}
 
-	public void setMultipleActionSpace(MultipleActionSpace multipleActionSpace) {
-		this.multipleActionSpace = multipleActionSpace;
-	}
 
-	
-	
 }

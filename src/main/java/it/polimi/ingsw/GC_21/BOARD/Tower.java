@@ -3,11 +3,12 @@ package it.polimi.ingsw.GC_21.BOARD;
 import java.util.*;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.FamilyMemberColor;
 
 public class Tower {
 
-	private DevCardType devCardType;
+	private final DevCardType devCardType;
 	private Floor[] floors = new Floor[4];
 
 	public Tower(DevCardType devCardType) {
@@ -24,6 +25,12 @@ public class Tower {
 		towers[2]=new Tower(DevCardType.Character);
 		towers[3]=new Tower(DevCardType.Venture);
 		return towers;
+	}
+	
+	public void pickCards(DevDeck devDeck) {
+		for (int i = 0; i < floors.length; i++) {
+			floors[i].setCardPlace(devDeck);
+		}
 	}
 	
 	public Floor[] getFloors() {

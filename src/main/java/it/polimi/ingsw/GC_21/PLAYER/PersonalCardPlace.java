@@ -1,11 +1,16 @@
 package it.polimi.ingsw.GC_21.PLAYER;
 
 import it.polimi.ingsw.GC_21.BOARD.CardPlace;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
 
-public class PersonalCardPlace implements CardPlace{
-
+public class PersonalCardPlace extends CardPlace{
 	private String cardType;
-
+	
+	public PersonalCardPlace(Card card) {
+		super(card);
+		// TODO Auto-generated constructor stub
+	}
+	
 	public void checkActionValue() {
 		// TODO - implement PersonalCardPlace.checkActionValue
 		throw new UnsupportedOperationException();
