@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_21.PLAYER;
 
-public class PersonalCardPlace {
+import it.polimi.ingsw.GC_21.BOARD.CardPlace;
+
+public class PersonalCardPlace implements CardPlace{
 
 	private String cardType;
 

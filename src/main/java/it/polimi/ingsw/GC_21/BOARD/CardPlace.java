@@ -1,4 +1,19 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
-public interface CardPlace {
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
+
+public abstract class CardPlace {
+	
+	private Card card;
+
+	public Card getCard() {
+		return card;
+	}
+
+	public void setCard(Card card) {
+		this.card = card;
+	}
+	
+	
+	
 }
