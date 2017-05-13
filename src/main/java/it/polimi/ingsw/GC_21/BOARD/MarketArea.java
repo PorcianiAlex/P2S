@@ -5,15 +5,11 @@ import java.util.*;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 
 public class MarketArea {
-	private boolean covered;
-	private SingleActionSpace[] singleActionSpace = new SingleActionSpace[4];
+	private SingleActionSpace[] singleActionSpace;
 
-	public boolean isCovered() {
-		return covered;
-	}
 
-	public void setCovered(boolean covered) {
-		this.covered = covered;
+	public MarketArea() {
+		this.singleActionSpace = new SingleActionSpace[4];
 	}
 
 	public SingleActionSpace[] getSingleActionSpace() {

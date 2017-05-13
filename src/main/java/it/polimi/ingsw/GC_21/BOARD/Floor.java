@@ -2,9 +2,17 @@ package it.polimi.ingsw.GC_21.BOARD;
 
 public class Floor {
 
-	private int number;
+	private int floorNumber;
 	private SingleActionSpace singleActionSpace;
 	private DevCardPlace devCardPlace;
+
+	
+	public Floor(int floorNumber) {
+		this.floorNumber = floorNumber;
+		this.singleActionSpace = new SingleActionSpace(floorNumber+(floorNumber-1), null);
+		this.devCardPlace = new DevCardPlace();
+	}
+	
 	public int getNumber() {
 		return number;
 	}

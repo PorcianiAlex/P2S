@@ -1,25 +1,11 @@
 package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 
+import java.util.Collection;
+
 public class Deck {
+	private Collection<Card> cards;
 
-	public void createDeck() {
-		// TODO - implement Deck.createDeck
-		throw new UnsupportedOperationException();
+	public Deck(Collection<Card> cards) {
+		this.cards = cards;
 	}
-
-	public void shuffleDeck() {
-		// TODO - implement Deck.shuffleDeck
-		throw new UnsupportedOperationException();
-	}
-
-	public List getCards() {
-		// TODO - implement Deck.getCards
-		throw new UnsupportedOperationException();
-	}
-
-	public void placeCard() {
-		// TODO - implement Deck.placeCard
-		throw new UnsupportedOperationException();
-	}
-
 }

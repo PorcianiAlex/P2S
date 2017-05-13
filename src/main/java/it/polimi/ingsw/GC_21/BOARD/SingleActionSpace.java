@@ -1,11 +1,17 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
+import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 
 public class SingleActionSpace extends ActionSpace {
 
-	private boolean bonus;
+	private FamilyMember familyMember;
 
+	public SingleActionSpace(int requiredDice, Effect effect) {
+		super(requiredDice, effect);
+	}
+
+	
 	public void checkBusy() {
 		// TODO - implement SingleActionSpace.checkBusy
 		throw new UnsupportedOperationException();

@@ -1,4 +1,0 @@
-package it.polimi.ingsw.GC_21.BOARD;
-
-public class HarvestArea extends CraftArea {
-}

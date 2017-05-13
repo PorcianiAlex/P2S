@@ -1,14 +1,24 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
+import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.Immediate;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 
 public class CraftArea {
 	
-	private boolean covered;
-	private SingleActionSpace singleActionSpace;
-	private MultipleActionSpace multipleActionSpace;
+	private CraftType craftType;
+	private ActionSpace singleActionSpace;
+	private ActionSpace multipleActionSpace;
 	
+	
+	
+	public CraftArea(CraftType craftType, Effect MalusOnCraft) {
+		super();
+		this.craftType = craftType;
+		this.singleActionSpace = new SingleActionSpace(1, null);
+		this.multipleActionSpace = new MultipleActionSpace(1, MalusOnCraft);
+	}
+
 	public void checkFamilyMember() {
 		// TODO - implement CraftArea.checkFamilyMember
 		throw new UnsupportedOperationException();

@@ -1,13 +1,17 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
+import it.polimi.ingsw.GC_21.EFFECT.Effect;
+import it.polimi.ingsw.GC_21.EFFECT.Immediate;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 
 public class CouncilPalace {
-
-	private Arraylist colorOrder;
 	private MultipleActionSpace multipleActionSpace;
-
 	
+	public CouncilPalace(Immediate councilPalaceEffect) {
+		super();
+		this.multipleActionSpace = new MultipleActionSpace(1, councilPalaceEffect);
+	}
+
 	public MultipleActionSpace getMultipleActionSpace() {
 		return multipleActionSpace;
 	}
@@ -16,18 +20,6 @@ public class CouncilPalace {
 		this.multipleActionSpace = multipleActionSpace;
 	}
 
-	public Arraylist getColorOrder() {
-		return colorOrder;
-	}
-
-	public void setColorOrder(Arraylist colorOrder) {
-		this.colorOrder = colorOrder;
-	}
-
-	public Arraylist insertInOrder() {
-		// TODO - implement CouncilPalace.insertInOrder
-		throw new UnsupportedOperationException();
-	}
 
 	public void callImmediateEffect() {
 		// TODO - implement CouncilPalace.callImmediateEffect

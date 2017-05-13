@@ -1,13 +1,23 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
+import it.polimi.ingsw.GC_21.EFFECT.Effect;
+import it.polimi.ingsw.GC_21.EFFECT.Immediate;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class ActionSpace {
 
 	private int requiredDice;
-	private int index;
-	private FamilyMember familyMember;
+	private final Effect actionSpaceEffect;
+	
+	public ActionSpace(int requiredDice, Immediate actionSpaceEffect) {
+		this.requiredDice = requiredDice;
+		this.actionSpaceEffect = actionSpaceEffect;
+	}
+	
+	public void callEffect(){
+		actionSpaceEffect.activateEffect();
+	}
 
 	public void checkDice() {
 		// TODO - implement ActionSpace.checkDice
@@ -21,18 +31,5 @@ public class ActionSpace {
 	public void setRequiredDice(int requiredDice) {
 		this.requiredDice = requiredDice;
 	}
-
-	public int getIndex() {
-		return index;
-	}
-
-	public void setIndex(int index) {
-		this.index = index;
-	}
-
-
-
-
-	
-	
+		
 }
