@@ -20,8 +20,8 @@ public class Deck {
 	}
 	
 	public Card getSingleCard() {
-		Card copyCard=new Card();
-		copyCard=cards.get(0);
+	
+		Card copyCard=cards.get(0);
 		cards.remove(0);
 		return copyCard;
 	}

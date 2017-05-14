@@ -1,15 +1,25 @@
 package it.polimi.ingsw.GC_21.ACTION;
 
-public class TowerPlacement extends PlacementAction {
+import it.polimi.ingsw.GC_21.BOARD.Floor;
+import it.polimi.ingsw.GC_21.BOARD.Tower;
+import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
+import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-	/**
-	 * 
-	 * @param PersonalBoard
-	 * @param Card
-	 */
-	public void checkTakeabilityCard(int PersonalBoard, int Card) {
-		// TODO - implement TowerPlacement.checkTakeabilityCard
-		throw new UnsupportedOperationException();
+public class TowerPlacement extends PlacementAction {
+    
+	private Floor floorSelected;
+	private Tower towerSelected;
+	
+	
+	@Override
+	public void place() {
+		
+		super.place();
+		floorSelected.getSingleActionSpace().setFamilyMember(super.getFamilyMemberSelected());
+	}
+
+	public boolean checkTakeabilityCard(int PersonalBoard, int Card) {
+		return false;
 	}
 
 	/**
@@ -28,8 +38,7 @@ public class TowerPlacement extends PlacementAction {
 	}
 
 	public void takeCard() {
-		// TODO - implement TowerPlacement.takeCard
-		throw new UnsupportedOperationException();
+		//super.getPlayerInAction().getMyPersonalBoard()
 	}
 
 }
