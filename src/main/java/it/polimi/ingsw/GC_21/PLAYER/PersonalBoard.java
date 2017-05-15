@@ -15,7 +15,8 @@ public class PersonalBoard {
 	private ArrayList<PersonalCardPlace> ventures;
 	private ArrayList<Permanent> personalPermanetEffect;
 	private Player player;
-	private BonusTile  bonusTile; 
+	private BonusTile  bonusTile;
+	private Possession myPossession;
 
 
 	
@@ -30,7 +31,6 @@ public class PersonalBoard {
 	}
 	
 	public void addCard(Card card) {
-		
 		
 	}
 
@@ -112,6 +112,31 @@ public class PersonalBoard {
 	public void setBonusTile(BonusTile bonusTile) {
 		this.bonusTile = bonusTile;
 	}
+	
+	public ArrayList<PersonalCardPlace> getArrayCardType(DevCardType devCardType){ //get an Array with the same CardTypeof the given one 
+		if (devCardType.equals(DevCardType.Building)){
+			return buildings;
+		}
+		if (devCardType.equals(DevCardType.Character)){
+			return characters;
+		}
+		if (devCardType.equals(DevCardType.Venture)){
+			return ventures;
+		}
+		else {
+			return territories;
+		}
+		
+	}
+
+	public Possession getMyPossession() {
+		return myPossession;
+	}
+
+	public void setMyPossession(Possession myPossession) {
+		this.myPossession = myPossession;
+	}
+	
 	
 
 

@@ -16,4 +16,35 @@ public abstract class DevelopmentCard extends Card {
 	}
 
 
+	public int getAge() {
+		return age;
+	}
+
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+
+	public DevCardType getDevCardType() {
+		return devCardType;
+	}
+
+
+	public void setDevCardType(DevCardType devCardType) {
+		this.devCardType = devCardType;
+	}
+
+
+	public CardPlace getCardPlace() {
+		return cardPlace;
+	}
+
+
+	public void setCardPlace(CardPlace cardPlace) {
+		this.cardPlace = cardPlace;
+	}
+	
+
+
 }

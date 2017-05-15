@@ -6,7 +6,7 @@ import it.polimi.ingsw.GC_21.EFFECT.*;
 public  class Card {
 
 	private String name;
-	private Possesion requirements;
+	private Possession requirements;
 	private Permanent permanentEffect ;
 	private Immediate immediateEffect;
 
@@ -27,13 +27,13 @@ public  class Card {
 
 
 
-	public Possesion getRequirements() {
+	public Possession getRequirements() {
 		return requirements;
 	}
 
 
 
-	public void setRequirements(Possesion requirements) {
+	public void setRequirements(Possession requirements) {
 		this.requirements = requirements;
 	}
 
