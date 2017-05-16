@@ -12,7 +12,7 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 public class TowerPlacement extends PlacementAction {
     
 	private Floor selectedFloor;
-	private Tower selectedtower;
+	private Tower selectedTower;
 	
 	
 	@Override
@@ -29,7 +29,7 @@ public class TowerPlacement extends PlacementAction {
 		if(selectedCard.getDevCardType().equals(DevCardType.Territory) 
 		   && myPersonalBoard.getArrayCardType(selectedCard.getDevCardType()).size() > 2
 		   && !myPersonalBoard.getMyPossession().compare(myPersonalBoard.getArrayCardType(DevCardType.Territory).get(myPersonalBoard.getArrayCardType(DevCardType.Territory).size()).getPossession())){
-		    
+		    // check on MilitaryPoint Required taking a territoryCard. The requirement is saved in the correct cardPlace with the attribute Possession 
 			return false;
 		}		  
 		else
@@ -39,11 +39,11 @@ public class TowerPlacement extends PlacementAction {
 	
 	public boolean checkCardRequirements(DevelopmentCard selectedCard, PersonalBoard myPersonalBoard) {
 		
-		if (selectedCard.getDevCardType().equals(DevCardType.Venture)){
-			
-			//TODO check secondary requirement 
-		}
 		return myPersonalBoard.getMyPossession().compare(selectedCard.getRequirements());
+	}
+	
+	public boolean checkBusyTower() {
+		// TODO while cycle checking business of tower
 	}
 
 	public void payPossesion() {
