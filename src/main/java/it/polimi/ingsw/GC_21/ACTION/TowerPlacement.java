@@ -26,7 +26,11 @@ public class TowerPlacement extends PlacementAction {
 		if(myPersonalBoard.getArrayCardType(selectedCard.getDevCardType()).size() == 6){
 			return false;
 		    }
-		if(selectedCard.getDevCardType().equals(DevCardType.Territory) && myPersonalBoard.getArrayCardType(selectedCard.getDevCardType()).size() > 2){
+		if(selectedCard.getDevCardType().equals(DevCardType.Territory) 
+		   && myPersonalBoard.getArrayCardType(selectedCard.getDevCardType()).size() > 2
+		   && !myPersonalBoard.getMyPossession().compare(myPersonalBoard.getArrayCardType(DevCardType.Territory).get(myPersonalBoard.getArrayCardType(DevCardType.Territory).size()).getPossession())){
+		    
+			return false;
 		}		  
 		else
 			return true;
