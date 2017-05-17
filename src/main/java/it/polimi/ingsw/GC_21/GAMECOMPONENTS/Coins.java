@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 
 public class Coins {
-	private int Coins;
+	private int coins;
 	
 	public Coins(int coins){
 		this.coins=coins;
