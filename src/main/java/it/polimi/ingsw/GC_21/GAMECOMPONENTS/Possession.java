@@ -1,22 +1,22 @@
 package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 
 public class Possession {
-	private int coin;
-	private int wood;
-	private int stone;
-	private int servant;
-	private int faithPoints;
-	private int militaryPoints;
-	private int victoryPoints;
+	private Coins coins;
+	private Woods woods;
+	private Stones stones;
+	private Servants servants;
+	private FaithPoints faithPoints;
+	private MilitaryPoints militaryPoints;
+	private VictoryPoints victoryPoints;
 	
 	public boolean compare(Possession possession){
-		if(this.coin >= possession.coin 
-				&& this.wood >= possession.wood 
-				&& this.stone >= possession.stone
-				&& this.servant >= possession.servant 
-				&& this.faithPoints >= possession.faithPoints 
-				&& this.militaryPoints >= possession.militaryPoints
-				&& this.victoryPoints >= possession.victoryPoints){
+		if(this.coins.getCoins() >= possession.woods.getWoods()
+				&& this.woods.getWoods() >= possession.woods.getWoods()
+				&& this.stones.getStones() >= possession.stones.getStones()
+				&& this.servants.getServants() >= possession.servants.getServants()
+				&& this.faithPoints.getFaithPoints() >= possession.faithPoints.getFaithPoints()
+				&& this.militaryPoints.getMilitaryPoints() >= possession.militaryPoints.getMilitaryPoints()
+				&& this.victoryPoints.getVictoryPoints() >= possession.victoryPoints.getVictoryPoints()){
 			return true;
 		}
 		else
@@ -24,61 +24,62 @@ public class Possession {
 		
 	}
 
-	public int getCoin() {
-		return coin;
+	public Coins getCoins() {
+		return coins;
 	}
 
-	public void setCoin(int coin) {
-		this.coin = coin;
+	public void setCoins(Coins coins) {
+		this.coins = coins;
 	}
 
-	public int getWood() {
-		return wood;
+	public Woods getWoods() {
+		return woods;
 	}
 
-	public void setWood(int wood) {
-		this.wood = wood;
+	public void setWoods(Woods woods) {
+		this.woods = woods;
 	}
 
-	public int getStone() {
-		return stone;
+	public Stones getStones() {
+		return stones;
 	}
 
-	public void setStone(int stone) {
-		this.stone = stone;
+	public void setStones(Stones stones) {
+		this.stones = stones;
 	}
 
-	public int getServant() {
-		return servant;
+	public Servants getServants() {
+		return servants;
 	}
 
-	public void setServant(int servant) {
-		this.servant = servant;
+	public void setServants(Servants servants) {
+		this.servants = servants;
 	}
 
-	public int getFaithPoints() {
+	public FaithPoints getFaithPoints() {
 		return faithPoints;
 	}
 
-	public void setFaithPoints(int faithPoints) {
+	public void setFaithPoints(FaithPoints faithPoints) {
 		this.faithPoints = faithPoints;
 	}
 
-	public int getMilitaryPoints() {
+	public MilitaryPoints getMilitaryPoints() {
 		return militaryPoints;
 	}
 
-	public void setMilitaryPoints(int militaryPoints) {
+	public void setMilitaryPoints(MilitaryPoints militaryPoints) {
 		this.militaryPoints = militaryPoints;
 	}
 
-	public int getVictoryPoints() {
+	public VictoryPoints getVictoryPoints() {
 		return victoryPoints;
 	}
 
-	public void setVictoryPoints(int victoryPoints) {
+	public void setVictoryPoints(VictoryPoints victoryPoints) {
 		this.victoryPoints = victoryPoints;
 	}
+
 	
 
 }
