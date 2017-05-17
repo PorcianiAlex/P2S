@@ -1,20 +1,10 @@
 package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 
-public class Woods {
-	private int woods;
-	
-	public Woods(int woods){
-		this.woods=woods;
-	}
+public class Woods extends Item{
 
-	public int getWoods(){
-		return this.woods;
+	public Woods(int value) {
+		super(value);
+		// TODO Auto-generated constructor stub
 	}
-
-	public void setWoods(int woods) {
-		this.woods = woods;
-	}
-	
-	
 }
 

@@ -1,20 +1,10 @@
 package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 
-public class Stones {
-		private int stones;
-		
-		public Stones(int stones){
-			this.stones=stones;
-		}
+public class Stones extends Item{
 
-		public int getStones(){
-			return this.stones;
-		}
-
-		public void setStones(int stones) {
-			this.stones = stones;
-		}
-		
-		
+	public Stones(int value) {
+		super(value);
+		// TODO Auto-generated constructor stub
 	}
+}
 

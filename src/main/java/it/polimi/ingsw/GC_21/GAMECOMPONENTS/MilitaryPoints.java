@@ -1,19 +1,9 @@
 package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 
-public class MilitaryPoints {
-	private int militaryPoints;
+public class MilitaryPoints extends Item{
 
-	public MilitaryPoints(int militaryPoints) {
-		this.militaryPoints = militaryPoints;
+	public MilitaryPoints(int value) {
+		super(value);
+		// TODO Auto-generated constructor stub
 	}
-
-	public int getMilitaryPoints() {
-		return militaryPoints;
-	}
-
-	public void setMilitaryPoints(int militaryPoints) {
-		this.militaryPoints = militaryPoints;
-	}
-	
-	
 }

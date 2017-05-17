@@ -1,19 +1,9 @@
 package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 
-public class Coins {
-	private int coins;
-	
-	public Coins(int coins){
-		this.coins=coins;
-	}
+public class Coins extends Item{
 
-	public int getCoins() {
-		return coins;
+	public Coins(int value) {
+		super(value);
+		// TODO Auto-generated constructor stub
 	}
-
-	public void setCoins(int coins) {
-		this.coins = coins;
-	}
-	
-	
 }

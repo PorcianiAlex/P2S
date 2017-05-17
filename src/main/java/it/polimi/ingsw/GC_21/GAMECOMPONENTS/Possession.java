@@ -9,21 +9,44 @@ public class Possession {
 	private MilitaryPoints militaryPoints;
 	private VictoryPoints victoryPoints;
 	
+	public Possession(Coins coins, Woods woods, Stones stones, Servants servants, FaithPoints faithPoints,
+			MilitaryPoints militaryPoints, VictoryPoints victoryPoints) {
+		super();
+		this.coins = coins;
+		this.woods = woods;
+		this.stones = stones;
+		this.servants = servants;
+		this.faithPoints = faithPoints;
+		this.militaryPoints = militaryPoints;
+		this.victoryPoints = victoryPoints;
+	}
+
 	public boolean compare(Possession possession){
-		if(this.coins.getCoins() >= possession.woods.getWoods()
-				&& this.woods.getWoods() >= possession.woods.getWoods()
-				&& this.stones.getStones() >= possession.stones.getStones()
-				&& this.servants.getServants() >= possession.servants.getServants()
-				&& this.faithPoints.getFaithPoints() >= possession.faithPoints.getFaithPoints()
-				&& this.militaryPoints.getMilitaryPoints() >= possession.militaryPoints.getMilitaryPoints()
-				&& this.victoryPoints.getVictoryPoints() >= possession.victoryPoints.getVictoryPoints()){
+		if(this.coins.compare(possession.coins) &&
+				this.woods.compare(possession.woods) &&
+				this.stones.compare(possession.stones) &&
+				this.servants.compare(possession.servants) &&
+				this.faithPoints.compare(possession.faithPoints) &&
+				this.militaryPoints.compare(possession.militaryPoints) &&
+				this.victoryPoints.compare(possession.victoryPoints)){
 			return true;
 		}
 		else
 			return false;
-		
 	}
+	
+	public void add(Possession possession2){
+		this.coins.setValue(this.coins.getValue() + possession2.coins.getValue());
+		this.woods.setValue(this.woods.getValue() + possession2.woods.getValue());
+		this.stones.setValue(this.stones.getValue() + possession2.stones.getValue());
+		this.servants.setValue(this.servants.getValue() + possession2.servants.getValue());
+		this.victoryPoints.setValue(this.victoryPoints.getValue() + possession2.victoryPoints.getValue());
+		this.militaryPoints.setValue(this.militaryPoints.getValue() + possession2.militaryPoints.getValue());
+		this.faithPoints.setValue(this.faithPoints.getValue() + possession2.faithPoints.getValue());
+		}
 
+	
+	
 	public Coins getCoins() {
 		return coins;
 	}

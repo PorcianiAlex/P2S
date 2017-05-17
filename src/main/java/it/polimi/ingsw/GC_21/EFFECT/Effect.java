@@ -1,13 +1,13 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
+import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
+
 public abstract class Effect {
+	protected Possession rewards;
 
-	private int ID;
-	private EffectType effectType;
-
-	public void activateEffect() {
-		// TODO - implement Effect.activateEffect
-		throw new UnsupportedOperationException();
+	public void activateEffect(PersonalBoard personalBoard) {
+		personalBoard.setMyPossession(rewards.add(personalBoard.getMyPossession()));
 	}
 
 }
