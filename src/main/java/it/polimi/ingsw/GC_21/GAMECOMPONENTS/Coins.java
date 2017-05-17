@@ -4,6 +4,6 @@ public class Coins extends Item{
 
 	public Coins(int value) {
 		super(value);
-		// TODO Auto-generated constructor stub
+		this.resourceType = ResourceType.Coins;
 	}
 }

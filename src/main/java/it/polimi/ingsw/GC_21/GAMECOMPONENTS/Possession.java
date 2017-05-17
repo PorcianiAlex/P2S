@@ -35,6 +35,9 @@ public class Possession {
 			return false;
 	}
 	
+	
+	
+	
 	public void add(Possession possession2){
 		this.coins.setValue(this.coins.getValue() + possession2.coins.getValue());
 		this.woods.setValue(this.woods.getValue() + possession2.woods.getValue());
@@ -43,6 +46,16 @@ public class Possession {
 		this.victoryPoints.setValue(this.victoryPoints.getValue() + possession2.victoryPoints.getValue());
 		this.militaryPoints.setValue(this.militaryPoints.getValue() + possession2.militaryPoints.getValue());
 		this.faithPoints.setValue(this.faithPoints.getValue() + possession2.faithPoints.getValue());
+		}
+	
+	public void subtract(Possession possession2){
+		this.coins.setValue(this.coins.getValue() - possession2.coins.getValue());
+		this.woods.setValue(this.woods.getValue() - possession2.woods.getValue());
+		this.stones.setValue(this.stones.getValue() - possession2.stones.getValue());
+		this.servants.setValue(this.servants.getValue() - possession2.servants.getValue());
+		this.victoryPoints.setValue(this.victoryPoints.getValue() - possession2.victoryPoints.getValue());
+		this.militaryPoints.setValue(this.militaryPoints.getValue() - possession2.militaryPoints.getValue());
+		this.faithPoints.setValue(this.faithPoints.getValue() - possession2.faithPoints.getValue());
 		}
 
 	
