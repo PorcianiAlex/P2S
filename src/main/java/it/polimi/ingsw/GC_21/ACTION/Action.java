@@ -3,15 +3,13 @@ package it.polimi.ingsw.GC_21.ACTION;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public abstract class Action {
-	private Player playerInAction;
-
+	protected final Player playerInAction;
 	
 	public Action(Player playerInAction) {
-		super();
 		this.playerInAction = playerInAction;
 	}
 
-	public void Execute() {
+	public boolean Execute() {
 		// TODO - implement Action.Execute
 		throw new UnsupportedOperationException();
 	}
@@ -20,9 +18,5 @@ public abstract class Action {
 		return playerInAction;
 	}
 
-	public void setPlayerInAction(Player playerInAction) {
-		this.playerInAction = playerInAction;
-	}
-	
 
 }

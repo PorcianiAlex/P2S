@@ -3,36 +3,34 @@ package it.polimi.ingsw.GC_21.PLAYER;
 import java.util.*;
 
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
+import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
+import it.polimi.ingsw.GC_21.BOARD.ownedCards;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.Permanent;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 
 public class PersonalBoard {
-
-	private ArrayList<PersonalCardPlace> buildings;
-	private ArrayList<PersonalCardPlace> territories;
-	private ArrayList<PersonalCardPlace> characters;
-	private ArrayList<PersonalCardPlace> ventures;
+	private final OwnedCards[] myOwnedCards;
 	private ArrayList<Permanent> personalPermanetEffect;
-	private Player player;
+	private final Player player;
 	private BonusTile  bonusTile;
 	private Possession myPossession;
 
 
 	
 	public PersonalBoard(Player player, BonusTile bonusTile) {
-		this.buildings = new ArrayList<PersonalCardPlace>();
-		this.territories = new ArrayList<PersonalCardPlace>();
-		this.characters = new ArrayList<PersonalCardPlace>();
-		this.ventures = new ArrayList<PersonalCardPlace>();
+		this.myOwnedCards = new OwnedCards[4];
 		this.personalPermanetEffect = new ArrayList<Permanent>();
 		this.player = player;
 		this.bonusTile = bonusTile;
 	}
 	
-	public void addCard(Card card) {
-		
-	}
+	public void addDevCard(DevelopmentCard devCard) {
+		int i = 0;
+		while (!myOwnedCards[i].getOwnedCardsType().equals(devCard.getDevCardType()) && i < myOwnedCards.length)
+				i++;
+		}
+	 
 
 	public void payPossession(Possession possession){
 		myPossession.subtract(possession);
@@ -45,51 +43,51 @@ public class PersonalBoard {
 	
 	public void callCraftEffect(CraftType craftType, int actionValue) {
 		if(craftType.equals(CraftType.Production)) {
-			for (int i = 0; i < buildings.size(); i++) {
-				CraftCard tmp = (CraftCard) buildings.get(i).getCard();
+			for (int i = 0; i < buildings.length; i++) {
+				CraftCard tmp = (CraftCard) buildings[i].getCard();
 				if(actionValue >=  tmp.getRequiredValueForCraft()) {
-				buildings.get(i).callEffect();
+				buildings[i].callEffect();
 				}
 			}
 		} else if (craftType.equals(CraftType.Harvest)) {
-			for (int i = 0; i < territories.size(); i++) {
-				CraftCard tmp = (CraftCard) territories.get(i).getCard();
+			for (int i = 0; i < territories.length; i++) {
+				CraftCard tmp = (CraftCard) territories[i].getCard();
 				if(actionValue >=  tmp.getRequiredValueForCraft()) {
-				buildings.get(i).callEffect();
+				buildings[i].callEffect();
 				}
 			}
 		}
 	}
 
-	public ArrayList<PersonalCardPlace> getBuildings() {
+	public PersonalCardPlace[] getBuildings() {
 		return buildings;
 	}
 
-	public void setBuildings(ArrayList<PersonalCardPlace> buildings) {
+	public void setBuildings(PersonalCardPlace[] buildings) {
 		this.buildings = buildings;
 	}
 
-	public ArrayList<PersonalCardPlace> getTerritories() {
+	public PersonalCardPlace[] getTerritories() {
 		return territories;
 	}
 
-	public void setTerritories(ArrayList<PersonalCardPlace> territories) {
+	public void setTerritories(PersonalCardPlace[] territories) {
 		this.territories = territories;
 	}
 
-	public ArrayList<PersonalCardPlace> getCharacters() {
+	public PersonalCardPlace[] getCharacters() {
 		return characters;
 	}
 
-	public void setCharacters(ArrayList<PersonalCardPlace> characters) {
+	public void setCharacters(PersonalCardPlace[] characters) {
 		this.characters = characters;
 	}
 
-	public ArrayList<PersonalCardPlace> getVentures() {
+	public PersonalCardPlace[] getVentures() {
 		return ventures;
 	}
 
-	public void setVentures(ArrayList<PersonalCardPlace> ventures) {
+	public void setVentures(PersonalCardPlace[] ventures) {
 		this.ventures = ventures;
 	}
 
@@ -117,7 +115,7 @@ public class PersonalBoard {
 		this.bonusTile = bonusTile;
 	}
 	
-	public ArrayList<PersonalCardPlace> getArrayCardType(DevCardType devCardType){ //get an Array with the same CardTypeof the given one 
+	public PersonalCardPlace[] getArrayCardType(DevCardType devCardType){ //get an Array with the same CardTypeof the given one 
 		if (devCardType.equals(DevCardType.Building)){
 			return buildings;
 		}

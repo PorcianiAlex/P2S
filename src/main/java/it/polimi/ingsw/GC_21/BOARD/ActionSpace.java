@@ -15,8 +15,12 @@ public class ActionSpace {
 		this.actionSpaceEffect = actionSpaceEffect;
 	}
 	
-	public void callEffect(){
+	public void callSpaceEffect(){
 		actionSpaceEffect.activateEffect();
+	}
+	
+	public void place(FamilyMember familyMamber) {
+		
 	}
 
 	public void checkDice() {

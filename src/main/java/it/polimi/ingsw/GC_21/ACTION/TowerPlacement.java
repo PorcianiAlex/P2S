@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_21.ACTION;
 
 import it.polimi.ingsw.GC_21.BOARD.Floor;
 import it.polimi.ingsw.GC_21.BOARD.Tower;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Ventures;
@@ -18,7 +19,7 @@ public class TowerPlacement extends PlacementAction {
 	@Override
 	public void place() {
 		super.place();
-		selectedFloor.getSingleActionSpace().setFamilyMember(super.getFamilyMemberSelected());
+		selectedFloor.getSingleActionSpace().place(selectedFamilyMember);
 	}
 
 	public boolean checkTakeabilityCard(PersonalBoard myPersonalBoard, DevelopmentCard selectedCard) {
@@ -43,7 +44,7 @@ public class TowerPlacement extends PlacementAction {
 	}
 	
 	public boolean checkBusyTower() {
-		// TODO while cycle checking business of tower
+		return selectedTower.checkFamilyMemberPresence();
 	}
 
 	public void payPossesion() {
@@ -52,7 +53,8 @@ public class TowerPlacement extends PlacementAction {
 	}
 
 	public void takeCard() {
-		//super.getPlayerInAction().getMyPersonalBoard()
+		Card cardToken = selectedFloor.getDevCardPlace().getCard();
+		super.getPlayerInAction().getMyPersonalBoard(). 
 	}
 
 }

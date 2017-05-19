@@ -6,24 +6,34 @@ import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 
 public class SingleActionSpace extends ActionSpace {
 
-	private FamilyMember familyMember;
+	private FamilyMember familyMemberLocated;
 
 	public SingleActionSpace(int requiredDice, Immediate effect) {
 		super(requiredDice, effect);
 	}
 
 	
-	public void checkBusy() {
-		// TODO - implement SingleActionSpace.checkBusy
-		throw new UnsupportedOperationException();
+	public boolean checkBusySpace() {
+		if (this.familyMemberLocated != null){
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	public FamilyMember getFamilyMember() {
-		return familyMember;
+		return familyMemberLocated;
 	}
+	
+	@Override
+	public void place(FamilyMember familyMember) {
+		setFamilyMember(familyMember);
+	}
+    
 
-	public void setFamilyMember(FamilyMember familyMember) {
-		this.familyMember = familyMember;
+	public void setFamilyMember(FamilyMember familyMemberLocated) {
+		this.familyMemberLocated = familyMemberLocated;
 	}
 	
 	public void callIBonusEffect() {
