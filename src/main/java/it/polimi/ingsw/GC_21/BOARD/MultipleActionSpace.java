@@ -7,7 +7,7 @@ import it.polimi.ingsw.GC_21.EFFECT.Immediate;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 
 public class MultipleActionSpace extends ActionSpace {
-	private ArrayList<FamilyMember> familyMember= new ArrayList<FamilyMember>();
+	private ArrayList<FamilyMember> familyMembersLocated= new ArrayList<FamilyMember>();
 
 	public MultipleActionSpace(int requiredDice,Immediate effect) {
 		super(requiredDice, effect);
@@ -15,12 +15,17 @@ public class MultipleActionSpace extends ActionSpace {
 
 
 	public ArrayList<FamilyMember> getFamilyMember() {
-		return familyMember;
+		return familyMembersLocated;
+	}
+	
+	@Override
+	public void place(FamilyMember familyMamber) {
+		familyMembersLocated.add(familyMamber);
 	}
 
 
 	public void setFamilyMember(ArrayList<FamilyMember> familyMember) {
-		this.familyMember = familyMember;
+		this.familyMembersLocated = familyMember;
 	}
 
 	public void callMalusDiceEffect() {

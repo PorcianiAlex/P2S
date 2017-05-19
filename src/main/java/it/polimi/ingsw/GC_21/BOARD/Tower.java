@@ -43,9 +43,16 @@ public class Tower {
 	}
 
 
-	public void checkFamilyMember() {
-		// TODO - implement Tower.checkFamilyMember
-		throw new UnsupportedOperationException();
-	}
-
+	public boolean checkFamilyMemberPresence() {
+		for (int i = 0; i < floors.length; i++) {
+			if(floors[i].getSingleActionSpace().checkBusySpace()){
+				return true;
+			}
+			}
+		    return false;
+		}
+	
 }
+	
+	
+
