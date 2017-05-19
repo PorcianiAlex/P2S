@@ -21,7 +21,7 @@ public class ConvertPrivilege extends Immediate {
 	public void activateEffect(Player player) {
 		/* The method ask the player to choose the reward, if it's valid then 
 		he gets it, if it's not then another cycle is done*/
-		for (int i = player.getMyPersonalBoard().geprivileges.getValue(); i > 0; i--) {
+		for (int i = this.rewards.getPrivileges.getValue(); i > 0; i--) {
 			Possession tmpPossession = this.chooseReward(player);
 			if (validConversion(tmpPossession) == true ){
 				

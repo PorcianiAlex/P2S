@@ -76,6 +76,16 @@ public class Possession {
 	public void setWoods(Woods woods) {
 		this.woods = woods;
 	}
+	
+	
+
+	public Privileges getPrivileges() {
+		return privileges;
+	}
+
+	public void setPrivileges(Privileges privileges) {
+		this.privileges = privileges;
+	}
 
 	public Stones getStones() {
 		return stones;
