@@ -37,10 +37,12 @@ public class PlacementAction extends Action {
 	public boolean checkPlaceRequirement() {
 		return selectedActionSpace.getRequiredDice() <= this.actionValue;
 	}
+	
+	
 
 	public void place() {
 		selectedFamilyMember.setPlaced(true);
-		selectedActionSpace.place(selectedFamilyMember);
+		selectedActionSpace.placeFamilyMember(selectedFamilyMember);
 		
 	}
 

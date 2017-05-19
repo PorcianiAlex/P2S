@@ -16,20 +16,15 @@ public class TowerPlacement extends PlacementAction {
 	private Tower selectedTower;
 	
 	
-	@Override
-	public void place() {
-		super.place();
-		selectedFloor.getSingleActionSpace().place(selectedFamilyMember);
-	}
+	
 
-	public boolean checkTakeabilityCard(PersonalBoard myPersonalBoard, DevelopmentCard selectedCard) {
-		DevCardType tmpCardType = selectedCard.getDevCardType();
-		if(myPersonalBoard.getArrayCardType(selectedCard.getDevCardType()).size() == 6){
+	public boolean checkTakeabilityCard(PersonalBoard myPersonalBoard, DevCardType selectedCardType) {
+		if(myPersonalBoard.getOwnedCards(selectedCardType).getOwnedCardsnumber() == 6){ 
 			return false;
 		    }
-		if(selectedCard.getDevCardType().equals(DevCardType.Territory) 
-		   && myPersonalBoard.getArrayCardType(selectedCard.getDevCardType()).size() > 2
-		   && !myPersonalBoard.getMyPossession().compare(myPersonalBoard.getArrayCardType(DevCardType.Territory).get(myPersonalBoard.getArrayCardType(DevCardType.Territory).size()).getPossession())){
+		if(selectedCardType.equals(DevCardType.Territory) 
+		   && myPersonalBoard.getOwnedCards(selectedCardType).getOwnedCardsnumber() > 2
+		   && !myPersonalBoard.getMyPossession().compare(myPersonalBoard.getOwnedCards(DevCardType.Territory)[myPersonalBoard.getOwnedCards(DevCardType.Territory).getOwnedCardsnumber()].getPossession())){
 		    // check on MilitaryPoint Required taking a territoryCard. The requirement is saved in the correct cardPlace with the attribute Possession 
 			return false;
 		}		  

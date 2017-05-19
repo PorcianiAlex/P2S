@@ -26,9 +26,8 @@ public class PersonalBoard {
 	}
 	
 	public void addDevCard(DevelopmentCard devCard) {
-		int i = 0;
-		while (!myOwnedCards[i].getOwnedCardsType().equals(devCard.getDevCardType()) && i < myOwnedCards.length)
-				i++;
+		OwnedCards tmpCardType = getOwnedCards(devCard.getDevCardType());
+		tmpCardType.add(devCard);
 		}
 	 
 
@@ -58,37 +57,13 @@ public class PersonalBoard {
 			}
 		}
 	}
-
-	public PersonalCardPlace[] getBuildings() {
-		return buildings;
-	}
-
-	public void setBuildings(PersonalCardPlace[] buildings) {
-		this.buildings = buildings;
-	}
-
-	public PersonalCardPlace[] getTerritories() {
-		return territories;
-	}
-
-	public void setTerritories(PersonalCardPlace[] territories) {
-		this.territories = territories;
-	}
-
-	public PersonalCardPlace[] getCharacters() {
-		return characters;
-	}
-
-	public void setCharacters(PersonalCardPlace[] characters) {
-		this.characters = characters;
-	}
-
-	public PersonalCardPlace[] getVentures() {
-		return ventures;
-	}
-
-	public void setVentures(PersonalCardPlace[] ventures) {
-		this.ventures = ventures;
+	
+	public OwnedCards getOwnedCards(DevCardType devCardType){ //get a specific OwnedCards of the same type of the devCard 
+		int i = 0;
+		while (!myOwnedCards[i].getOwnedCardsType().equals(devCardType) && i < myOwnedCards.length){
+			i++;
+		}
+		return myOwnedCards[i];	
 	}
 
 	public ArrayList<Permanent> getPersonalPermanetEffect() {
@@ -103,9 +78,6 @@ public class PersonalBoard {
 		return player;
 	}
 
-	public void setPlayer(Player player) {
-		this.player = player;
-	}
 
 	public BonusTile getBonusTile() {
 		return bonusTile;
@@ -115,21 +87,6 @@ public class PersonalBoard {
 		this.bonusTile = bonusTile;
 	}
 	
-	public PersonalCardPlace[] getArrayCardType(DevCardType devCardType){ //get an Array with the same CardTypeof the given one 
-		if (devCardType.equals(DevCardType.Building)){
-			return buildings;
-		}
-		if (devCardType.equals(DevCardType.Character)){
-			return characters;
-		}
-		if (devCardType.equals(DevCardType.Venture)){
-			return ventures;
-		}
-		else {
-			return territories;
-		}
-		
-	}
 
 	public Possession getMyPossession() {
 		return myPossession;
