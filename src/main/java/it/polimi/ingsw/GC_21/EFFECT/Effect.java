@@ -5,7 +5,7 @@ import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public abstract class Effect {
-	protected final Possession rewards;
+	protected Possession rewards;
 	
 	public Effect(Possession rewards) {
 		this.rewards = rewards;

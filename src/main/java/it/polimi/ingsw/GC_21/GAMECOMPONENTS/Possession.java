@@ -8,10 +8,10 @@ public class Possession {
 	private FaithPoints faithPoints;
 	private MilitaryPoints militaryPoints;
 	private VictoryPoints victoryPoints;
+	private Privileges privileges;
 	
 	public Possession(Coins coins, Woods woods, Stones stones, Servants servants, FaithPoints faithPoints,
-			MilitaryPoints militaryPoints, VictoryPoints victoryPoints) {
-		super();
+			MilitaryPoints militaryPoints, VictoryPoints victoryPoints, Privileges privileges) {
 		this.coins = coins;
 		this.woods = woods;
 		this.stones = stones;
@@ -19,6 +19,7 @@ public class Possession {
 		this.faithPoints = faithPoints;
 		this.militaryPoints = militaryPoints;
 		this.victoryPoints = victoryPoints;
+		this.privileges = privileges;
 	}
 
 	public boolean compare(Possession possession){

@@ -11,7 +11,7 @@ public class Privileges extends Item {
 	
 	public Privileges(int value, Possession woodsAndStonesReward, Possession servantsReward, Possession coinsReward,
 			Possession militaryPointsReward, Possession faithPointsReward) {
-		super(value);
+		super(value,ResourceType.Privileges);
 		this.woodsAndStonesReward = woodsAndStonesReward;
 		this.servantsReward = servantsReward;
 		this.coinsReward = coinsReward;
