@@ -19,7 +19,7 @@ public class MultipleActionSpace extends ActionSpace {
 	}
 	
 	@Override
-	public void place(FamilyMember familyMamber) {
+	public void placeFamilyMember(FamilyMember familyMamber) {
 		familyMembersLocated.add(familyMamber);
 	}
 

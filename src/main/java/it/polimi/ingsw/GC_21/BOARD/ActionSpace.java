@@ -15,17 +15,11 @@ public class ActionSpace {
 		this.actionSpaceEffect = actionSpaceEffect;
 	}
 	
-	public void callSpaceEffect(){
-		actionSpaceEffect.activateEffect();
+	public void callSpaceEffect(Player playerInAction){
+		actionSpaceEffect.activateEffect(playerInAction);
 	}
 	
-	public void place(FamilyMember familyMamber) {
-		
-	}
-
-	public void checkDice() {
-		// TODO - implement ActionSpace.checkDice
-		throw new UnsupportedOperationException();
+	public void placeFamilyMember(FamilyMember familyMamber) {	
 	}
 
 	public int getRequiredDice() {

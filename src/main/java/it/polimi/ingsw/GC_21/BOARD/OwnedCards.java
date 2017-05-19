@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.CraftCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
 import it.polimi.ingsw.GC_21.PLAYER.PersonalCardPlace;
@@ -19,9 +20,18 @@ public class OwnedCards {
 	}
 
 
-	public void addCard(DevelopmentCard devCard){
+	public void add(DevelopmentCard devCard){
 		this.ownedCards[ownedCardsnumber].setCard(devCard);
 		ownedCardsnumber++;
+	}
+	
+	public void callSelectedCraftEffect() {
+		for (int i = 0; i < ownedCardsnumber; i++) {
+			CraftCard tmpCard = (CraftCard) ownedCards[i].getCard();
+			if(actionValue >=  tmpCard.getRequiredValueForCraft()) {
+			buildings[i].callEffect();
+			}
+		
 	}
 
 
