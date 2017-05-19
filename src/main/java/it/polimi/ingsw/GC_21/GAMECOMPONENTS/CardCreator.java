@@ -4,6 +4,8 @@ import org.json.simple.*;
 import org.json.simple.parser.*;
 import org.omg.CORBA.PRIVATE_MEMBER;
 
+import it.polimi.ingsw.GC_21.EFFECT.Immediate;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -26,6 +28,7 @@ public class CardCreator {
 	                JSONObject jsonLineItem = (JSONObject) o;
 	               //set from json
 	                Card cardcreating = new Card((String) jsonLineItem.get("name"));
+	                
 	                JSONArray reqarray= (JSONArray) card.get("Req");
 	                Coins coins = new Coins((int) reqarray.get(0));
 	                Woods woods = new Woods((int) reqarray.get(1));
@@ -38,10 +41,14 @@ public class CardCreator {
 	               
 	                
 	                Possession Req = new Possession(coins, woods, stones, servants, faithPoints, militaryPoints, victoryPoints, privileges);
-	                cardcreating.setRequirements(Req);      	        	
+	                cardcreating.setRequirements(Req);  
+	                
+	                
 	            	
 	            	//test
 	            	System.out.println(cardcreating.getName());
+	            	System.out.println(cardcreating.getRequirements().getCoins().value);
+	            	System.out.println(cardcreating.getRequirements().getWoods().value);
 	            }
 	        }
 	            

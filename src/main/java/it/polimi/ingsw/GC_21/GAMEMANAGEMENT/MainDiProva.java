@@ -10,6 +10,7 @@ public class MainDiProva {
 		
 		CardCreator cardCreator = new CardCreator();
 		cardCreator.create();
+		
 	}
 	
 	
