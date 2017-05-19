@@ -57,8 +57,65 @@ public class Possession {
 		this.victoryPoints.setValue(this.victoryPoints.getValue() - possession2.victoryPoints.getValue());
 		this.militaryPoints.setValue(this.militaryPoints.getValue() - possession2.militaryPoints.getValue());
 		this.faithPoints.setValue(this.faithPoints.getValue() - possession2.faithPoints.getValue());
+		//TO DO: set all negative values to 0;
 		}
-
+	
+	public Item getRequestedItem(ResourceType resourceType){
+		if (resourceType.equals(ResourceType.Coins)){
+			return coins;
+		}
+		if (resourceType.equals(ResourceType.Servants)){
+			return servants;
+		}
+		if (resourceType.equals(ResourceType.Woods)){
+			return woods;
+		}
+		if (resourceType.equals(ResourceType.Stones)){
+			return stones;
+		}
+		if (resourceType.equals(ResourceType.MilitaryPoints)){
+			return militaryPoints;
+		}
+		if (resourceType.equals(ResourceType.VictoryPoints)){
+			return victoryPoints;
+		}
+		if (resourceType.equals(ResourceType.FaithPoints)){
+			return faithPoints;
+		}
+		else {
+			return privileges;
+		}
+		
+	}
+	
+	public void addItemToPossession(Item item){
+		if (item instanceof Coins || item.resourceType.equals(ResourceType.Coins)){
+			this.coins.addItems(item);
+		}
+		if (item instanceof Servants || item.resourceType.equals(ResourceType.Servants)){
+			this.servants.addItems(item);
+		}
+		if (item instanceof Woods || item.resourceType.equals(ResourceType.Woods)){
+			this.woods.addItems(item);
+		}
+		if (item instanceof Stones || item.resourceType.equals(ResourceType.Stones)){
+			this.stones.addItems(item);
+		}
+		if (item instanceof MilitaryPoints || item.resourceType.equals(ResourceType.MilitaryPoints)){
+			this.militaryPoints.addItems(item);
+		}
+		
+		if (item instanceof VictoryPoints || item.resourceType.equals(ResourceType.VictoryPoints)){
+			this.victoryPoints.addItems(item);
+		}
+		
+		if (item instanceof FaithPoints || item.resourceType.equals(ResourceType.FaithPoints)){
+			this.faithPoints.addItems(item);
+		}
+		if (item instanceof Privileges || item.resourceType.equals(ResourceType.Privileges)){
+			this.privileges.addItems(item);
+		}
+	}
 	
 	
 	public Coins getCoins() {
