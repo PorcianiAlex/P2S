@@ -32,6 +32,10 @@ public class PersonalBoard {
 		}
 	 
 
+	public void payPossession(Possession possession){
+		myPossession.subtract(possession);
+	}
+	
 	public Effect checkEffect(String CardType) {
 		// TODO - implement PersonalBoard.checkEffect
 		throw new UnsupportedOperationException();

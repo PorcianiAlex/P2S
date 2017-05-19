@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Player {
 
-	Collection<FamilyMember> have;
+	ArrayList<FamilyMember> Family;
 	private String name;
 	private String playerColor;
 	private PersonalBoard myPersonalBoard;
@@ -19,12 +19,12 @@ public class Player {
 		throw new UnsupportedOperationException();
 	}
 
-	public Collection<FamilyMember> getHave() {
-		return have;
+	public ArrayList<FamilyMember> getFamily() {
+		return Family;
 	}
 
-	public void setHave(Collection<FamilyMember> have) {
-		this.have = have;
+	public void setFamily(ArrayList<FamilyMember> Family) {
+		this.Family = Family;
 	}
 
 	public String getName() {
