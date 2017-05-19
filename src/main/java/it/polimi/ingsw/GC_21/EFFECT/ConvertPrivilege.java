@@ -1,9 +1,5 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
-import java.awt.HeadlessException;
-import java.io.DataInput;
-import java.io.DataInputStream;
-import java.io.InputStream;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
@@ -24,6 +20,11 @@ public class ConvertPrivilege extends Immediate {
 	
 	public ConvertPrivilege(Possession rewards) {
 		super(rewards);
+		this.woodsAndStonesReward = new Possession(0, 1, 1, 0, 0, 0, 0, 0);
+		this.servantsReward = new Possession(0,0,0,2,0,0,0,0);
+		this.coinsReward = new Possession(2, 0, 0, 0, 0, 0, 0, 0);
+		this.militaryPointsReward = new Possession(0, 0, 0, 0, 0, 2, 0, 0);
+		this.faithPointsReward = new Possession(0, 0, 0, 0, 1, 0, 0, 0);
 	}
 
 	@Override
@@ -34,8 +35,7 @@ public class ConvertPrivilege extends Immediate {
 			Possession tmpPossession = this.chooseReward();
 			if (validConversion(tmpPossession) == true ){
 				this.rewards.add(tmpPossession);
-				setEarnedReward(tmpPossession);
-				//TODO: se prendo una possession devo settare il rispettivo boolean a true e poi devo gestire il controllo!!
+				setEarnedReward(tmpPossession);			
 			}
 			else {
 				i++;
@@ -49,7 +49,7 @@ public class ConvertPrivilege extends Immediate {
 	
 	public Possession chooseReward(){
 		Scanner in = new Scanner(System.in);
-		System.out.println("Choose your reward! Type:");
+		System.out.println("Choose your reward!Type:");
 		System.out.println("1 -> 1x Woods 1x Stones");
 		System.out.println("2 -> 2x Servants");
 		System.out.println("3 -> 2x Coins");		
@@ -74,12 +74,45 @@ public class ConvertPrivilege extends Immediate {
 	}
 	
 	public void setEarnedReward(Possession reward) {
-		
-		
+		if (reward.equals(this.woodsAndStonesReward)){
+			this.woodsAndStonesEarned=true;
+		}
+		if (reward.equals(this.coinsReward)){
+			this.coinsEarned=true;
+		}
+		if (reward.equals(this.faithPointsReward)){
+			this.faithPointsEarned=true;
+		}
+		if (reward.equals(this.militaryPointsReward)){
+			this.militaryPointsEarned=true;
+		}
+		if (reward.equals(this.servantsReward)){
+			this.servantsEarned=true;
+		}
 	}
 	
-	public boolean validConversion(Possession possession){
-		
+	public boolean validConversion(Possession reward){
+		if (reward.equals(this.woodsAndStonesReward) && this.woodsAndStonesEarned==true){
+			System.out.println("You've already choosen this reward! Try again!");
+			return false;
+		}
+		if (reward.equals(this.coinsReward) && this.coinsEarned==true){
+			System.out.println("You've already choosen this reward! Try again!");
+			return false;
+		}
+		if (reward.equals(this.servantsReward) && this.servantsEarned==true){
+			System.out.println("You've already choosen this reward! Try again!");
+			return false;
+		}
+		if (reward.equals(this.militaryPointsReward) && this.militaryPointsEarned==true){
+			System.out.println("You've already choosen this reward! Try again!");
+			return false;
+		}
+		if (reward.equals(this.faithPointsReward) && this.faithPointsEarned==true){
+			System.out.println("You've already choosen this reward! Try again!");
+			return false;
+		}
+		return true;
 	}
 
 }

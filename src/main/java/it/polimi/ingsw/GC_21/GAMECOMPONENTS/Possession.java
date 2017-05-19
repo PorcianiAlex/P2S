@@ -10,16 +10,16 @@ public class Possession {
 	private VictoryPoints victoryPoints;
 	private Privileges privileges;
 	
-	public Possession(Coins coins, Woods woods, Stones stones, Servants servants, FaithPoints faithPoints,
-			MilitaryPoints militaryPoints, VictoryPoints victoryPoints, Privileges privileges) {
-		this.coins = coins;
-		this.woods = woods;
-		this.stones = stones;
-		this.servants = servants;
-		this.faithPoints = faithPoints;
-		this.militaryPoints = militaryPoints;
-		this.victoryPoints = victoryPoints;
-		this.privileges = privileges;
+	public Possession(int coins, int woods, int stones, int servants, int faithPoints,
+			int militaryPoints, int victoryPoints, int privileges) {
+		this.coins = new Coins(coins);
+		this.woods = new Woods(woods);
+		this.stones = new Stones(stones);
+		this.servants = new Servants(servants);
+		this.faithPoints = new FaithPoints(faithPoints);
+		this.militaryPoints = new MilitaryPoints(militaryPoints);
+		this.victoryPoints = new VictoryPoints(victoryPoints);
+		this.privileges = new Privileges(privileges);
 	}
 
 	public boolean compare(Possession possession){
