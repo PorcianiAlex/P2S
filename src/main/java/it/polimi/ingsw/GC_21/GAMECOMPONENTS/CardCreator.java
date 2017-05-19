@@ -13,7 +13,7 @@ import java.util.Iterator;
 public class CardCreator {
 
 		
-	 public static void main(String[] args) {
+	 public void create() {
 
 	        JSONParser parser = new JSONParser();
 
@@ -24,10 +24,24 @@ public class CardCreator {
 	            JSONArray cardarray= (JSONArray) card.get("Card");
 	            for (Object o : cardarray) {
 	                JSONObject jsonLineItem = (JSONObject) o;
-	                String name = (String) jsonLineItem.get("name");
-	              	            	 
-	            	Card cardcreating = new Card(name);	            	
-	            	 System.out.println(cardcreating.getName());
+	               //set from json
+	                Card cardcreating = new Card((String) jsonLineItem.get("name"));
+	                JSONArray reqarray= (JSONArray) card.get("Req");
+	                Coins coins = new Coins((int) reqarray.get(0));
+	                Woods woods = new Woods((int) reqarray.get(1));
+	                Stones stones = new Stones((int) reqarray.get(2));
+	                Servants servants = new Servants((int) reqarray.get(3));
+	                FaithPoints faithPoints = new FaithPoints((int) reqarray.get(4));
+	                VictoryPoints victoryPoints = new VictoryPoints((int) reqarray.get(5));
+	                MilitaryPoints militaryPoints = new MilitaryPoints((int) reqarray.get(6));
+	                Privileges privileges = new Privileges((int) reqarray.get(7));
+	               
+	                
+	                Possession Req = new Possession(coins, woods, stones, servants, faithPoints, militaryPoints, victoryPoints, privileges);
+	                cardcreating.setRequirements(Req);      	        	
+	            	
+	            	//test
+	            	System.out.println(cardcreating.getName());
 	            }
 	        }
 	            
