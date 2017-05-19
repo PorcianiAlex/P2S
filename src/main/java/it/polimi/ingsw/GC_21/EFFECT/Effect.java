@@ -12,7 +12,12 @@ public abstract class Effect {
 	}
 
 	public void activateEffect(Player player) {
+		if (rewards.getPrivileges().getValue()!=0){
+			ConvertPrivilege convertPrivilege = new ConvertPrivilege(rewards);
+			convertPrivilege.activateEffect(player);
+		}
 		this.earnRewards(player, rewards);
+
 	}
 	
 	public void payAndEarn(Player player, Possession rewards, Possession payment){

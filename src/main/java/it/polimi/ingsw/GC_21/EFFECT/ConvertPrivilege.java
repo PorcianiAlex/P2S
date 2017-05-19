@@ -41,7 +41,6 @@ public class ConvertPrivilege extends Immediate {
 				i++;
 			}
 			}
-			super.activateEffect(player);
 	}
 	
 
