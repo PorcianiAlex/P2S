@@ -28,8 +28,8 @@ public class CardCreator {
 	               //set from json
 	                Card cardcreating = new Card((String) jsonLineItem.get("name"));
 	                
-	                JSONArray reqarray= (JSONArray) card.get("Req");
-	                
+	                JSONArray reqarray= (JSONArray) jsonLineItem.get("Req");
+	               reqarray.
 	                
 	                Possession Req = new Possession((int) reqarray.get(0),(int) reqarray.get(1),(int) reqarray.get(2),
 	                		(int) reqarray.get(3),(int) reqarray.get(4),(int) reqarray.get(5),(int) reqarray.get(6),
