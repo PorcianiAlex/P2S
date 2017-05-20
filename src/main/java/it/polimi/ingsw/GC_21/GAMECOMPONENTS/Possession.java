@@ -36,8 +36,36 @@ public class Possession {
 			return false;
 	}
 	
-	
-	
+	//Return TRUE if I have enough of that item
+	public boolean compareItemToPossession(Item item){
+		if (item instanceof Coins){
+			return (this.coins.getValue()>=item.getValue());
+		}
+		if (item instanceof Servants){
+			return (this.servants.getValue()>=item.getValue());
+		}
+		if (item instanceof Woods){
+			return (this.woods.getValue()>=item.getValue());		
+		}
+		if (item instanceof Stones){
+			return (this.stones.getValue()>=stones.getValue());
+		}
+		if (item instanceof MilitaryPoints){
+			return (this.militaryPoints.getValue()>=item.getValue());
+		}
+		if (item instanceof FaithPoints){
+			return (this.faithPoints.getValue()>=item.getValue());		
+		}
+		if (item instanceof VictoryPoints){
+			return (this.victoryPoints.getValue()>=item.getValue());		
+		}
+		if (item instanceof Privileges){
+			return (this.privileges.getValue()>=item.getValue());		
+		}
+		else{
+			return false;
+		}
+	}
 	
 	public void add(Possession possession2){
 		this.coins.setValue(this.coins.getValue() + possession2.coins.getValue());
@@ -89,30 +117,30 @@ public class Possession {
 	}
 	
 	public void addItemToPossession(Item item){
-		if (item instanceof Coins || item.resourceType.equals(ResourceType.Coins)){
+		if (item instanceof Coins){
 			this.coins.addItems(item);
 		}
-		if (item instanceof Servants || item.resourceType.equals(ResourceType.Servants)){
+		if (item instanceof Servants){
 			this.servants.addItems(item);
 		}
-		if (item instanceof Woods || item.resourceType.equals(ResourceType.Woods)){
+		if (item instanceof Woods){
 			this.woods.addItems(item);
 		}
-		if (item instanceof Stones || item.resourceType.equals(ResourceType.Stones)){
+		if (item instanceof Stones){
 			this.stones.addItems(item);
 		}
-		if (item instanceof MilitaryPoints || item.resourceType.equals(ResourceType.MilitaryPoints)){
+		if (item instanceof MilitaryPoints){
 			this.militaryPoints.addItems(item);
 		}
 		
-		if (item instanceof VictoryPoints || item.resourceType.equals(ResourceType.VictoryPoints)){
+		if (item instanceof VictoryPoints){
 			this.victoryPoints.addItems(item);
 		}
 		
-		if (item instanceof FaithPoints || item.resourceType.equals(ResourceType.FaithPoints)){
+		if (item instanceof FaithPoints){
 			this.faithPoints.addItems(item);
 		}
-		if (item instanceof Privileges || item.resourceType.equals(ResourceType.Privileges)){
+		if (item instanceof Privileges){
 			this.privileges.addItems(item);
 		}
 	}

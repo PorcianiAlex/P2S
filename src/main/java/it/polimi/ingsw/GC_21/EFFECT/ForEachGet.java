@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 import javax.annotation.Resource;
 import javax.jws.soap.SOAPBinding;
 
@@ -45,7 +46,7 @@ public class ForEachGet extends Immediate{
 			int playerCardNumber = player.getMyPersonalBoard().getOwnedCards(forEachCard).getOwnedCardsnumber();
 			int cardMultiplier = playerCardNumber/forEachCardIndex;
 			Possession rewards = new Possession(0,0,0,0,0,0,0,0);
-			Item rewardItem = new Item(cardMultiplier * GettingIndex , resourceYouGet);
+			Item rewardItem = Item.factoryItem(cardMultiplier * GettingIndex, resourceYouGet);
 			rewards.addItemToPossession(rewardItem);
 			earnRewards(player, rewards);
 		}
@@ -53,7 +54,7 @@ public class ForEachGet extends Immediate{
 			int playerResourceNumber = player.getMyPersonalBoard().getMyPossession().getRequestedItem(forEachResource).getValue();
 			int resourceMultiplier = playerResourceNumber/forEachResourceIndex;
 			Possession rewards = new Possession(0,0,0,0,0,0,0,0);
-			Item rewardItem = new Item(resourceMultiplier * GettingIndex, resourceYouGet);
+			Item rewardItem = Item.factoryItem(resourceMultiplier * GettingIndex, resourceYouGet);
 			rewards.addItemToPossession(rewardItem);
 			earnRewards(player, rewards);
 		}

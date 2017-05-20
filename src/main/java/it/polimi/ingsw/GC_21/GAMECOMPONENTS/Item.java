@@ -4,9 +4,36 @@ public class Item {
 	protected final ResourceType resourceType;
 	protected int value;
 	
-	public Item(int value, ResourceType resourceType) {
+	protected Item(int value, ResourceType resourceType) {
 		this.value = value;
 		this.resourceType = resourceType;
+	}
+	
+	public static Item factoryItem(int value, ResourceType resourceType){
+		if (resourceType.equals(ResourceType.Coins)){
+			return new Coins(value);
+		}
+		if (resourceType.equals(ResourceType.Servants)){
+			return new Servants(value);
+		}
+		if (resourceType.equals(ResourceType.MilitaryPoints)){
+			return new MilitaryPoints(value);
+		}
+		if (resourceType.equals(ResourceType.Woods)){
+			return new Woods(value);
+		}
+		if (resourceType.equals(ResourceType.Stones)){
+			return new Stones(value);
+		}
+		if (resourceType.equals(ResourceType.FaithPoints)){
+			return new FaithPoints(value);
+		}
+		if (resourceType.equals(ResourceType.VictoryPoints)){
+			return new VictoryPoints(value);
+		}
+		else{
+			return new Privileges(value);
+		}
 	}
 	
 	public int getValue() {
