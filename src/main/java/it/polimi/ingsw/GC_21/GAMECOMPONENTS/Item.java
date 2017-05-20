@@ -4,7 +4,7 @@ public class Item {
 	protected final ResourceType resourceType;
 	protected int value;
 	
-	private Item(int value, ResourceType resourceType) {
+	protected Item(int value, ResourceType resourceType) {
 		this.value = value;
 		this.resourceType = resourceType;
 	}

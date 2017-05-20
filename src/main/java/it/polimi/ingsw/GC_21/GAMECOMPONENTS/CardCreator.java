@@ -29,27 +29,21 @@ public class CardCreator {
 	                Card cardcreating = new Card((String) jsonLineItem.get("name"));
 	                
 	                JSONArray reqarray= (JSONArray) jsonLineItem.get("Req");
-	               reqarray.
 	                
-	                Possession Req = new Possession((int) reqarray.get(0),(int) reqarray.get(1),(int) reqarray.get(2),
-	                		(int) reqarray.get(3),(int) reqarray.get(4),(int) reqarray.get(5),(int) reqarray.get(6),
-	                		(int) reqarray.get(7));
+	             	               
+	                Possession Req = new Possession(Integer.parseInt(reqarray.get(0).toString()),Integer.parseInt(reqarray.get(1).toString()),
+	                		Integer.parseInt(reqarray.get(2).toString()), Integer.parseInt(reqarray.get(3).toString()),
+	                		Integer.parseInt(reqarray.get(4).toString()), Integer.parseInt(reqarray.get(5).toString()), 
+	                	    Integer.parseInt(reqarray.get(6).toString()),Integer.parseInt(reqarray.get(7).toString()));
 	                cardcreating.setRequirements(Req);  
 	                
-	                JSONArray immarray= (JSONArray) card.get("Imm");
-	                
-	                /*Coins coins2 = new Coins((int) immarray.get(1));
-	                Woods woods2 = new Woods((int) immarray.get(1));
-	                Stones stones2 = new Stones((int) immarray.get(2));
-	                Servants servants2 = new Servants((int) immarray.get(3));
-	                FaithPoints faithPoints2 = new FaithPoints((int) immarray.get(4));
-	                VictoryPoints victoryPoints2 = new VictoryPoints((int) immarray.get(5));
-	                MilitaryPoints militaryPoints2 = new MilitaryPoints((int) immarray.get(6));
-	                Privileges privileges2 = new Privileges((int) immarray.get(7));*/
-	               
-	                Possession Imm = new Possession((int) immarray.get(0),(int) immarray.get(1),(int) immarray.get(2),
-	                		(int) immarray.get(3),(int) immarray.get(4),(int) immarray.get(5),(int) immarray.get(6),
-	                		(int) immarray.get(7));           
+	                JSONArray immarray= (JSONArray) jsonLineItem.get("Imm");
+	                             	               
+	                Possession Imm = new Possession(Integer.parseInt(immarray.get(0).toString()),Integer.parseInt(immarray.get(1).toString()),
+	                		Integer.parseInt(immarray.get(2).toString()), Integer.parseInt(immarray.get(3).toString()),
+	                		Integer.parseInt(immarray.get(4).toString()), Integer.parseInt(immarray.get(5).toString()), 
+	                	    Integer.parseInt(immarray.get(6).toString()),Integer.parseInt(immarray.get(7).toString()));
+	                cardcreating.setRequirements(Req);
 	               Immediate immediate = new Immediate(Imm);
 	               cardcreating.setImmediateEffect(immediate);
 					
