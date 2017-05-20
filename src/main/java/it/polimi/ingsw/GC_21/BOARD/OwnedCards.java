@@ -25,14 +25,6 @@ public class OwnedCards {
 		ownedCardsnumber++;
 	}
 	
-	public void callSelectedCraftEffect() {
-		for (int i = 0; i < ownedCardsnumber; i++) {
-			CraftCard tmpCard = (CraftCard) ownedCards[i].getCard();
-			if(actionValue >=  tmpCard.getRequiredValueForCraft()) {
-			buildings[i].callEffect();
-			}
-		
-	}
 
 
 	public PersonalCardPlace[] getMyOwnedCards() {
