@@ -30,13 +30,13 @@ public class TowerPlacement extends PlacementAction {
 		
 	}
 	
-	@Override
+	/*@Override
 	public boolean checkPlaceRequirement() {
 		DevelopmentCard floorDevCard = (DevelopmentCard)selectedFloor.getDevCardPlace().getCard();
 		return super.checkPlaceRequirement() &&
 				checkTakeabilityCard(playerInAction.getMyPersonalBoard(), floorDevCard.getDevCardType()) &&
 				checkCardRequirements(floorDevCard, playerInAction.getMyPersonalBoard(), discount, overcharge);
-	}
+	}*/
 
 
 	public boolean checkTakeabilityCard(PersonalBoard myPersonalBoard, DevCardType selectedCardType) {

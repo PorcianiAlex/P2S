@@ -44,6 +44,13 @@ public class DevelopmentCard extends Card {
 	public void setCardPlace(CardPlace cardPlace) {
 		this.cardPlace = cardPlace;
 	}
+
+
+	@Override
+	public String toString() {
+		super.toString();
+		return "DevelopmentCard [age=" + age + ", devCardType=" + devCardType + "]";
+	}
 	
 
 

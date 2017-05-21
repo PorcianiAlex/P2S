@@ -212,6 +212,14 @@ public class Possession {
 		this.victoryPoints = victoryPoints;
 	}
 
+	@Override
+	public String toString() {
+		return "[Coins: " + coins.toString() + ", Woods: " + woods.toString() + ", Stones: " + stones.toString() + ", Servants: " + servants.toString()
+				+ ", Faith Points: " + faithPoints.toString() + ", Military Points: " + militaryPoints.toString()
+				+ ", Victory Points:" + victoryPoints.toString() + ", Privileges: " + privileges.toString();
+	}
+	
+
 	
 
 }

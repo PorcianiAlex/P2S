@@ -1,12 +1,16 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
+import java.nio.channels.NonWritableChannelException;
 import java.util.Scanner;
+
+import javax.sound.midi.Soundbank;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Privileges;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class ConvertPrivilege extends Immediate {
+	private Privileges privileges;
 	private boolean coinsEarned;
 	private boolean woodsAndStonesEarned;
 	private boolean servantsEarned;
@@ -18,8 +22,9 @@ public class ConvertPrivilege extends Immediate {
 	private final Possession militaryPointsReward;
 	private final Possession faithPointsReward;
 	
-	public ConvertPrivilege(Possession rewards) {
+	public ConvertPrivilege(Possession rewards, Privileges privileges) {
 		super(rewards);
+		this.privileges = privileges;
 		this.woodsAndStonesReward = new Possession(0, 1, 1, 0, 0, 0, 0, 0);
 		this.servantsReward = new Possession(0,0,0,2,0,0,0,0);
 		this.coinsReward = new Possession(2, 0, 0, 0, 0, 0, 0, 0);
@@ -31,16 +36,17 @@ public class ConvertPrivilege extends Immediate {
 	public void activateEffect(Player player) {
 		/* The method ask the player to choose the reward, if it's valid then 
 		he gets it, if it's not then another cycle is done*/
-		for (int i = this.rewards.getPrivileges().getValue(); i > 0; i--) {
+		for (int i = this.privileges.getValue(); i > 0; i--) {
 			Possession tmpPossession = this.chooseReward();
 			if (validConversion(tmpPossession) == true ){
 				this.rewards.add(tmpPossession);
-				setEarnedReward(tmpPossession);			
+				setEarnedReward(tmpPossession);	
 			}
 			else {
 				i++;
 			}
 			}
+	
 	}
 	
 
@@ -112,6 +118,18 @@ public class ConvertPrivilege extends Immediate {
 			return false;
 		}
 		return true;
+	}
+	
+	@Override
+	public String toString() {
+		return "This effect gives the following reward=" + rewards.toString() + ". Now you have:" + privileges.getValue() + " privileges. Convert them!]";
+	}
+	
+	public static void main(String[] args) {
+		Possession rewards = new Possession(0, 0, 0, 0, 0, 11, 1, 1);
+		Privileges privileges = new Privileges(3);
+		ConvertPrivilege convertPrivilege = new ConvertPrivilege(rewards, privileges);
+		System.out.println(convertPrivilege.toString());
 	}
 
 }

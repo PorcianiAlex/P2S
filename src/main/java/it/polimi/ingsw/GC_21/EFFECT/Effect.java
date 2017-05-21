@@ -1,10 +1,12 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
+import java.awt.image.AreaAveragingScaleFilter;
+
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public abstract class Effect {
+public  class Effect {
 	protected Possession rewards;
 	
 	public Effect(Possession rewards) {
@@ -31,5 +33,16 @@ public abstract class Effect {
 	
 	public Possession getRewards() {
 		return rewards;
+	}
+
+	@Override
+	public String toString() {
+		return "This effect gives the following reward=" + rewards.toString() + "]";
+	}
+	
+	public static void main(String[] args) {
+		Possession aaa = new Possession(3, 2, 1, 22, 2, 1, 1, 1);
+		Effect aaas = new Effect(aaa);
+		System.out.println(aaas.toString());
 	}
 }
