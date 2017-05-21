@@ -16,11 +16,9 @@ public class CardCreator {
 
 public void cardCreate() {
 	
-	JSONParser parser = new JSONParser();
-
      try {
-
-         Object obj = parser.parse(new FileReader("C:\\Users\\Alex\\Desktop\\provajs.json"));
+    	 JSONParser parser = new JSONParser();
+         Object obj = parser.parse(new FileReader("C:\\Users\\Alex\\workspace\\prova-finale-template\\provajs.json"));
          JSONObject card = (JSONObject) obj;
          JSONArray cardarray= (JSONArray) card.get("Card");
        
@@ -31,17 +29,16 @@ public void cardCreate() {
             	
             	 DevelopmentCard devCardCreating = new DevelopmentCard((String) jsonLineItem.get("name"));
             	 devCardCreating.setAge(Integer.parseInt(jsonLineItem.get("age").toString()));
-          	    // devCardCreating.setDevCardType(DevCardType.(jsonLineItem.get("DevType").toString()));
-            	 
-            	 System.out.println(devCardCreating.getAge());
+          	     devCardCreating.setDevCardType(DevCardType.valueOf(jsonLineItem.get("DevType").toString()));
+            	 System.out.println(devCardCreating.getDevCardType());
           	     this.create(devCardCreating, jsonLineItem);             
              }
-             if("Ex".equals((String) jsonLineItem.get("type"))) {
+             else if("Ex".equals((String) jsonLineItem.get("type"))) {
             	 ExcommunicationCard excommunicationCard = new ExcommunicationCard((String) jsonLineItem.get("name"));
             	 excommunicationCard.setAge(Integer.parseInt(jsonLineItem.get("age").toString()));
             	 this.create(excommunicationCard, jsonLineItem); 
              }
-             if("Lead".equals((String) jsonLineItem.get("type"))) {
+             else if("Lead".equals((String) jsonLineItem.get("type"))) {
             	 LeaderCard leaderCard = new LeaderCard((String) jsonLineItem.get("name"));
             	 leaderCard.setDescription((String) jsonLineItem.get("desc"));
             	 this.create(leaderCard, jsonLineItem);
@@ -62,7 +59,7 @@ public void cardCreate() {
     
 	}	
 	
-	 public void create(Card cardcreating, JSONObject jsonLineItem) {
+				public void create(Card cardcreating, JSONObject jsonLineItem) {
 
 	        	                
 	                JSONArray reqarray= (JSONArray) jsonLineItem.get("Req");
@@ -83,16 +80,7 @@ public void cardCreate() {
 	               Immediate immediate = new Immediate(Imm);
 	               cardcreating.setImmediateEffect(immediate);
 	             
-						                            	
-	            	//test
-	            	System.out.println(cardcreating.getName());
-	            	System.out.println(cardcreating.getRequirements().getCoins().value);
-	            	System.out.println(cardcreating.getRequirements().getWoods().value);
-	            	System.out.println(cardcreating.getImmediateEffect().getRewards().getCoins().value);
 	            }
-	                 
-        	        
-	        
-	   
+
 	
 }

@@ -1,17 +1,16 @@
 package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 
 
-import it.polimi.ingsw.GC_21.EFFECT.Immediate;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.CardCreator;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.CardCreator;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
+import it.polimi.ingsw.GC_21.EFFECT.*;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
+
 
 public class MainDiProva {
 
 	public static void main(String[] args) {
 		
-		CardCreator devCardCreator = new CardCreator();
-		devCardCreator.cardCreate();
+		CardCreator cardCreator = new CardCreator();
+		cardCreator.cardCreate();
 		
 	
 	}
