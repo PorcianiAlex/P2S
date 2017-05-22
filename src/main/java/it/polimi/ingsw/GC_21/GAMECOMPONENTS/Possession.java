@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 
+import it.polimi.ingsw.GC_21.PLAYER.Player;
+
 public class Possession {
 	private Coins coins;
 	private Woods woods;
@@ -8,10 +10,9 @@ public class Possession {
 	private FaithPoints faithPoints;
 	private MilitaryPoints militaryPoints;
 	private VictoryPoints victoryPoints;
-	private Privileges privileges;
 	
 	public Possession(int coins, int woods, int stones, int servants, int faithPoints,
-			int militaryPoints, int victoryPoints, int privileges) {
+			int militaryPoints, int victoryPoints) {
 		this.coins = new Coins(coins);
 		this.woods = new Woods(woods);
 		this.stones = new Stones(stones);
@@ -19,7 +20,6 @@ public class Possession {
 		this.faithPoints = new FaithPoints(faithPoints);
 		this.militaryPoints = new MilitaryPoints(militaryPoints);
 		this.victoryPoints = new VictoryPoints(victoryPoints);
-		this.privileges = new Privileges(privileges);
 	}
 
 	public boolean compare(Possession possession){
@@ -58,9 +58,6 @@ public class Possession {
 		}
 		if (item instanceof VictoryPoints){
 			return (this.victoryPoints.getValue()>=item.getValue());		
-		}
-		if (item instanceof Privileges){
-			return (this.privileges.getValue()>=item.getValue());		
 		}
 		else{
 			return false;
@@ -111,7 +108,7 @@ public class Possession {
 			return faithPoints;
 		}
 		else {
-			return privileges;
+			return null;
 		}
 		
 	}
@@ -140,9 +137,6 @@ public class Possession {
 		if (item instanceof FaithPoints){
 			this.faithPoints.addItems(item);
 		}
-		if (item instanceof Privileges){
-			this.privileges.addItems(item);
-		}
 	}
 	
 	
@@ -162,16 +156,6 @@ public class Possession {
 		this.woods = woods;
 	}
 	
-	
-
-	public Privileges getPrivileges() {
-		return privileges;
-	}
-
-	public void setPrivileges(Privileges privileges) {
-		this.privileges = privileges;
-	}
-
 	public Stones getStones() {
 		return stones;
 	}
@@ -211,12 +195,16 @@ public class Possession {
 	public void setVictoryPoints(VictoryPoints victoryPoints) {
 		this.victoryPoints = victoryPoints;
 	}
+	
+	public boolean checkRequirements(Player player){
+		return player.getMyPersonalBoard().getMyPossession().compare(this);
+	}
 
 	@Override
 	public String toString() {
 		return "[Coins: " + coins.toString() + ", Woods: " + woods.toString() + ", Stones: " + stones.toString() + ", Servants: " + servants.toString()
 				+ ", Faith Points: " + faithPoints.toString() + ", Military Points: " + militaryPoints.toString()
-				+ ", Victory Points:" + victoryPoints.toString() + ", Privileges: " + privileges.toString();
+				+ ", Victory Points:" + victoryPoints.toString() +"]";
 	}
 	
 

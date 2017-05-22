@@ -37,4 +37,10 @@ public class DoPlacementAction extends Immediate {
 		placementActionWithNoFamilyMember.Execute();
 	}
 	
+	public static void main(String[] args) {
+		DoPlacementAction doPlacementAction = new DoPlacementAction(new Possession(1, 1, 1, 1, 1, 1, 1), 1, DevCardType.Venture, new Possession(0, 0, 0, 0, 0, 0, 0));
+		Player aaa = new Player("aAA", "AAA");
+		doPlacementAction.activateEffect(aaa);
+	}
+	
 }

@@ -8,7 +8,7 @@ public class DevelopmentCard extends Card {
 	private int age;
 	private DevCardType devCardType;
 	private CardPlace cardPlace;
-	
+
 	
 	public DevelopmentCard(String name) {
 		super(name);

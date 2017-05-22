@@ -12,17 +12,16 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 public class PersonalBoard {
 	private final OwnedCards[] myOwnedCards;
 	private ArrayList<Permanent> personalPermanetEffect;
-	private final Player player;
-	private BonusTile  bonusTile;
+	private final Possession craftMinimumReward;
 	private Possession myPossession;
 
 
 	
-	public PersonalBoard(Player player, BonusTile bonusTile) {
+	public PersonalBoard() {
 		this.myOwnedCards = new OwnedCards[4];
 		this.personalPermanetEffect = new ArrayList<Permanent>();
-		this.player = player;
-		this.bonusTile = bonusTile;
+		this.myPossession = new Possession(0, 0, 0, 0, 0, 0, 0);
+		this.craftMinimumReward = new Possession(1,1,1,1,1,1,1);
 	}
 	
 	public void addDevCard(DevelopmentCard devCard) {
@@ -74,26 +73,17 @@ public class PersonalBoard {
 		this.personalPermanetEffect = personalPermanetEffect;
 	}
 
-	public Player getPlayer() {
-		return player;
-	}
-
-
-	public BonusTile getBonusTile() {
-		return bonusTile;
-	}
-
-	public void setBonusTile(BonusTile bonusTile) {
-		this.bonusTile = bonusTile;
-	}
-	
-
 	public Possession getMyPossession() {
 		return myPossession;
 	}
 
 	public void setMyPossession(Possession myPossession) {
 		this.myPossession = myPossession;
+	}
+
+	@Override
+	public String toString() {
+		return "PersonalBoard [myPossession=" + myPossession.toString() + "]";
 	}
 	
 	

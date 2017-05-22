@@ -2,6 +2,8 @@ package it.polimi.ingsw.GC_21.EFFECT;
 
 import java.awt.image.AreaAveragingScaleFilter;
 
+import javax.sound.midi.Soundbank;
+
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
@@ -14,12 +16,7 @@ public  class Effect {
 	}
 
 	public void activateEffect(Player player) {
-		if (rewards.getPrivileges().getValue()!=0){
-			ConvertPrivilege convertPrivilege = new ConvertPrivilege(rewards);
-			convertPrivilege.activateEffect(player);
-		}
 		this.earnRewards(player, rewards);
-
 	}
 	
 	public void payAndEarn(Player player, Possession rewards, Possession payment){
@@ -41,8 +38,12 @@ public  class Effect {
 	}
 	
 	public static void main(String[] args) {
-		Possession aaa = new Possession(3, 2, 1, 22, 2, 1, 1, 1);
+		Possession aaa = new Possession(3, 2, 1, 22, 2, 1, 1);
 		Effect aaas = new Effect(aaa);
 		System.out.println(aaas.toString());
+		Player provaPlayer = new Player("Prova", "Red");
+		System.out.println(provaPlayer.toString());
+		aaas.activateEffect(provaPlayer);
+		System.out.println(provaPlayer.getMyPersonalBoard().getMyPossession().toString());
 	}
 }

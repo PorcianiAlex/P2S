@@ -25,11 +25,11 @@ public class ConvertPrivilege extends Immediate {
 	public ConvertPrivilege(Possession rewards, Privileges privileges) {
 		super(rewards);
 		this.privileges = privileges;
-		this.woodsAndStonesReward = new Possession(0, 1, 1, 0, 0, 0, 0, 0);
-		this.servantsReward = new Possession(0,0,0,2,0,0,0,0);
-		this.coinsReward = new Possession(2, 0, 0, 0, 0, 0, 0, 0);
-		this.militaryPointsReward = new Possession(0, 0, 0, 0, 0, 2, 0, 0);
-		this.faithPointsReward = new Possession(0, 0, 0, 0, 1, 0, 0, 0);
+		this.woodsAndStonesReward = new Possession(0, 1, 1, 0, 0, 0, 0);
+		this.servantsReward = new Possession(0,0,0,2,0,0,0);
+		this.coinsReward = new Possession(2, 0, 0, 0, 0, 0, 0);
+		this.militaryPointsReward = new Possession(0, 0, 0, 0, 0, 2, 0);
+		this.faithPointsReward = new Possession(0, 0, 0, 0, 1, 0, 0);
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class ConvertPrivilege extends Immediate {
 				i++;
 			}
 			}
-	
+		super.activateEffect(player);
 	}
 	
 
@@ -126,10 +126,14 @@ public class ConvertPrivilege extends Immediate {
 	}
 	
 	public static void main(String[] args) {
-		Possession rewards = new Possession(0, 0, 0, 0, 0, 11, 1, 1);
+		Possession rewards = new Possession(0, 0, 0, 0, 0, 11, 1);
 		Privileges privileges = new Privileges(3);
 		ConvertPrivilege convertPrivilege = new ConvertPrivilege(rewards, privileges);
 		System.out.println(convertPrivilege.toString());
+		Player player = new Player("AA", "AAA");
+		System.out.println(player.getMyPersonalBoard().getMyPossession().toString());
+		convertPrivilege.activateEffect(player);
+		System.out.println(player.getMyPersonalBoard().getMyPossession().toString());
 	}
 
 }
