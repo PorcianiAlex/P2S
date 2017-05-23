@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
+import java.awt.Choice;
+import java.util.Scanner;
+
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Item;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
@@ -23,16 +26,23 @@ public class Convert extends Immediate {
 		super.activateEffect(player);
 		if (toPay2!=null && toTake2!=null){
 			if (this.chooseConversion(player)==true){
-				payAndEarn(player, toTake1, toPay1);
-			}
-			else{
-				if (this.chooseConversion(player)==true){
-					payAndEarn(player, toTake2, toPay2);
+				if (toPay1.checkRequirements(player)==true)
+					payAndEarn(player, toTake1, toPay1);
+				else{
+					System.out.println("You don't have enough resources to convert!");
 				}
 			}
-		}
+			else{
+					payAndEarn(player, toTake2, toPay2);
+				}
+				}
 		else{
-			payAndEarn(player, toTake1, toPay1);
+			if (toPay1.checkRequirements(player)==true)
+				payAndEarn(player, toTake1, toPay1);
+			else{
+				System.out.println("You don't have enough resources to convert!");
+				return;
+			}
 		}
 	}
 
@@ -57,24 +67,44 @@ public class Convert extends Immediate {
 
 
 	public boolean chooseConversion(Player player) {
-		return true;
+		Scanner in = new Scanner(System.in);
+		System.out.println("Choose your conversion! Type 1 for Conversion 1, type 2 for Conversion 2!");
+		int choice = in.nextInt();
+		if (choice == 1) { return true; }
+		if (choice == 0) { return false; }
+		else {
+			System.out.println("Invalid input, try again!");
+			return chooseConversion(player);
+		}
+		
 	}
 
 	@Override
 	public String toString() {
+		if (toPay2!=null && toTake2!=null){
 		{
 		return "This effect gives the following reward=" + rewards.toString() + "]"+
-		"It converts " + toPay1.toString() + "into " + toTake1.toString() + "or " + toPay2.toString() + "into " + toTake2.toString();}
-	}
+		" It converts " + toPay1.toString() + " into " + toTake1.toString() + " or " + toPay2.toString() + " into " + toTake2.toString();}
+		}
+		else {
+			return "This effect gives the following reward=" + rewards.toString() + "]" + 
+					"It converts " + toPay1.toString() + " into" + toTake1.toString();
+		}
+		
+		}
 	
 	public static void main(String[] args) {
-		Possession toPay1 = new Possession(0, 0, 0, 0, 1, 1, 2, 2);
-		Possession toTake1 = new Possession(0, 2, 2, 0, 1, 1, 2, 2);
-		Possession toPay2 = new Possession(0, 0, 0, 0, 1, 1, 2, 2);
-		Possession toTake2 = new Possession(0,11, 0, 0, 1, 1, 2, 2);
-		Possession rewards = new Possession(0, 0, 0, 0, 0, 0, 0, 0);
-		Convert convert = new Convert(rewards, toPay1, toTake1, toPay2, toTake2);
-		System.out.println(convert.toString());
+		Possession toPay1 = new Possession(0, 0, 0, 0, 1, 1, 20);
+		Possession toTake1 = new Possession(0, 2, 2, 0, 1, 1, 2);
+		Possession toPay2 = new Possession(0, 0, 0, 0, 1, 1, 2);
+		Possession toTake2 = new Possession(0,11, 0, 0, 1, 1, 2);
+		Possession rewards = new Possession(0, 33, 0, 0, 0, 0, 0);
+		Convert convert = new Convert(rewards, toPay1, toTake1, null, null);
+		Player prova = new Player("PROVA", "AAA");
+		prova.getMyPersonalBoard().getMyPossession().add(new Possession(222, 111, 22, 44, 224, 3121, 122));
+		System.out.println(prova.getMyPersonalBoard().getMyPossession().toString());
+		convert.activateEffect(prova);
+		System.out.println(prova.getMyPersonalBoard().getMyPossession().toString());
 	}
 
 	

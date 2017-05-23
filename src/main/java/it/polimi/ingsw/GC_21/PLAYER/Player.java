@@ -2,12 +2,23 @@ package it.polimi.ingsw.GC_21.PLAYER;
 
 import java.util.*;
 
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
+
 public class Player {
 
-	ArrayList<FamilyMember> Family;
+	ArrayList<FamilyMember> family;
 	private String name;
 	private String playerColor;
 	private PersonalBoard myPersonalBoard;
+	
+	
+	public Player(String name, String playerColor) {
+		super();
+		this.family = new ArrayList<FamilyMember>();
+		this.name = name;
+		this.playerColor = playerColor;
+		this.myPersonalBoard = new PersonalBoard();
+	}
 
 	public void chooseAction() {
 		// TODO - implement Player.chooseAction
@@ -20,11 +31,11 @@ public class Player {
 	}
 
 	public ArrayList<FamilyMember> getFamily() {
-		return Family;
+		return family;
 	}
 
 	public void setFamily(ArrayList<FamilyMember> Family) {
-		this.Family = Family;
+		this.family = Family;
 	}
 
 	public String getName() {
@@ -50,6 +61,12 @@ public class Player {
 	public void setMyPersonalBoard(PersonalBoard myPersonalBoard) {
 		this.myPersonalBoard = myPersonalBoard;
 	}
+
+	@Override
+	public String toString() {
+		return "Player [name=" + name + ", playerColor=" + playerColor + "]";
+	}
+	
 	
 
 }

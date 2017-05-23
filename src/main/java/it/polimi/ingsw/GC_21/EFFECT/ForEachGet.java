@@ -36,6 +36,17 @@ public class ForEachGet extends Immediate{
 		CardConversion = cardConversion;
 	}
 
+	public ForEachGet(Possession rewards, ResourceType forEachResource,
+			int forEachResourceIndex, ResourceType resourceYouGet, int gettingIndex, boolean cardConversion) {
+		super(rewards);
+		this.forEachCard = null;
+		this.forEachCardIndex = 0;
+		this.forEachResource = forEachResource;
+		this.forEachResourceIndex = forEachResourceIndex;
+		this.resourceYouGet = resourceYouGet;
+		GettingIndex = gettingIndex;
+		CardConversion = cardConversion;
+	}
 
 
 	@Override
@@ -45,7 +56,7 @@ public class ForEachGet extends Immediate{
 		if (CardConversion == true){
 			int playerCardNumber = player.getMyPersonalBoard().getOwnedCards(forEachCard).getOwnedCardsnumber();
 			int cardMultiplier = playerCardNumber/forEachCardIndex;
-			Possession rewards = new Possession(0,0,0,0,0,0,0,0);
+			Possession rewards = new Possession(0,0,0,0,0,0,0);
 			Item rewardItem = Item.factoryItem(cardMultiplier * GettingIndex, resourceYouGet);
 			rewards.addItemToPossession(rewardItem);
 			earnRewards(player, rewards);
@@ -53,7 +64,7 @@ public class ForEachGet extends Immediate{
 		else{
 			int playerResourceNumber = player.getMyPersonalBoard().getMyPossession().getRequestedItem(forEachResource).getValue();
 			int resourceMultiplier = playerResourceNumber/forEachResourceIndex;
-			Possession rewards = new Possession(0,0,0,0,0,0,0,0);
+			Possession rewards = new Possession(0,0,0,0,0,0,0);
 			Item rewardItem = Item.factoryItem(resourceMultiplier * GettingIndex, resourceYouGet);
 			rewards.addItemToPossession(rewardItem);
 			earnRewards(player, rewards);
@@ -61,6 +72,14 @@ public class ForEachGet extends Immediate{
 		
 	}
 	
-	
+	public static void main(String[] args) {
+		Player aaa = new Player("AA", "AAA");
+		Possession aaas = new Possession(100, 111, 111, 212, 321, 2121, 444);
+		aaa.getMyPersonalBoard().getMyPossession().add(aaas);
+		Possession rewards = new Possession(0, 0, 0, 0, 0, 0, 0);
+		ForEachGet forEachGet = new ForEachGet(rewards, ResourceType.Woods, 2, ResourceType.Coins, 1, false);
+		forEachGet.activateEffect(aaa);
+		System.out.println(aaa.getMyPersonalBoard().getMyPossession().toString());
+	}
 
 }
