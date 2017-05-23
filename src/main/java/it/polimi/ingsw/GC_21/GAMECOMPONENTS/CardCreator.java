@@ -30,8 +30,7 @@ public void cardCreate() {
             	 DevelopmentCard devCardCreating = new DevelopmentCard((String) jsonLineItem.get("name"));
             	 devCardCreating.setAge(Integer.parseInt(jsonLineItem.get("age").toString()));
           	     devCardCreating.setDevCardType(DevCardType.valueOf(jsonLineItem.get("DevType").toString()));
-            	 System.out.println(devCardCreating.getDevCardType());
-          	     this.create(devCardCreating, jsonLineItem);             
+            	 this.create(devCardCreating, jsonLineItem);             
              }
              else if("Ex".equals((String) jsonLineItem.get("type"))) {
             	 ExcommunicationCard excommunicationCard = new ExcommunicationCard((String) jsonLineItem.get("name"));
@@ -67,7 +66,7 @@ public void cardCreate() {
 	                Possession Req = new Possession(Integer.parseInt(reqarray.get(0).toString()),Integer.parseInt(reqarray.get(1).toString()),
 	                		Integer.parseInt(reqarray.get(2).toString()), Integer.parseInt(reqarray.get(3).toString()),
 	                		Integer.parseInt(reqarray.get(4).toString()), Integer.parseInt(reqarray.get(5).toString()), 
-	                	    Integer.parseInt(reqarray.get(6).toString()),Integer.parseInt(reqarray.get(7).toString()));
+	                	    Integer.parseInt(reqarray.get(6).toString()));
 	                cardcreating.setRequirements(Req);  
 	                
 	                JSONArray immarray= (JSONArray) jsonLineItem.get("Imm");
@@ -75,7 +74,7 @@ public void cardCreate() {
 	                Possession Imm = new Possession(Integer.parseInt(immarray.get(0).toString()),Integer.parseInt(immarray.get(1).toString()),
 	                		Integer.parseInt(immarray.get(2).toString()), Integer.parseInt(immarray.get(3).toString()),
 	                		Integer.parseInt(immarray.get(4).toString()), Integer.parseInt(immarray.get(5).toString()), 
-	                	    Integer.parseInt(immarray.get(6).toString()),Integer.parseInt(immarray.get(7).toString()));
+	                	    Integer.parseInt(immarray.get(6).toString()));
 	                cardcreating.setRequirements(Req);
 	               Immediate immediate = new Immediate(Imm);
 	               cardcreating.setImmediateEffect(immediate);
