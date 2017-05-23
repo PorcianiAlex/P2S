@@ -30,7 +30,7 @@ public class TowerPlacement extends PlacementAction {
 		
 	}
 	
-	/*@Override
+	@Override
 	public boolean checkPlaceRequirement() {
 		DevelopmentCard floorDevCard = (DevelopmentCard)selectedFloor.getDevCardPlace().getCard();
 		return super.checkPlaceRequirement() &&

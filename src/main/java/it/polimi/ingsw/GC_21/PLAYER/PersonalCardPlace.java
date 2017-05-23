@@ -17,10 +17,6 @@ public PersonalCardPlace(DevelopmentCard card, Possession possession) {
 		
 	}
 
-public void callEffect() {
-	
-	this.getCard().callEffect(EffectType.Permanent);
-}
 
 	public void addCard() {
 		// TODO - implement PersonalCardPlace.addCard

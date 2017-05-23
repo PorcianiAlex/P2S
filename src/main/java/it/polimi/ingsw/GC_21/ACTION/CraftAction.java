@@ -9,7 +9,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class CraftAction extends CraftPlacement{
+public class CraftAction{
 
 	public CraftAction(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember, CraftArea craftArea,
 			Servants servantsToConvert, CraftType craftType, MultipleActionSpace multipleActionSpace) {

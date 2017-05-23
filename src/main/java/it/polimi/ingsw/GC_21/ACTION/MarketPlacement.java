@@ -20,7 +20,7 @@ public class MarketPlacement extends PlacementAction {
 	public boolean checkPlaceRequirement() {
 		SingleActionSpace cell = (SingleActionSpace) selectedActionSpace;
 		return super.checkPlaceRequirement() &&
-			   !cell.checkBusySpace();
+			   !cell.isBusy();
 			   
 	}
 }

@@ -45,7 +45,7 @@ public class Tower {
 
 	public boolean checkFamilyMemberPresence() {
 		for (int i = 0; i < floors.length; i++) {
-			if(floors[i].getSingleActionSpace().checkBusySpace()){
+			if(floors[i].getSingleActionSpace().isBusy()){
 				return true;
 			}
 			}

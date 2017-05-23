@@ -4,7 +4,6 @@ import java.util.*;
 
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
-import it.polimi.ingsw.GC_21.BOARD.ownedCards;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.EffectType;
 import it.polimi.ingsw.GC_21.EFFECT.Permanent;
@@ -15,14 +14,16 @@ public class PersonalBoard {
 	private ArrayList<Permanent> personalPermanetEffect;
 	private final Possession craftMinimumReward;
 	private Possession myPossession;
+	private Player player;
 
 
 	
-	public PersonalBoard() {
+	public PersonalBoard(Player player) {
 		this.myOwnedCards = new OwnedCards[4];
 		this.personalPermanetEffect = new ArrayList<Permanent>();
 		this.myPossession = new Possession(0, 0, 0, 0, 0, 0, 0);
 		this.craftMinimumReward = new Possession(1,1,1,1,1,1,1);
+		this.player = player;
 	}
 	
 	public void addDevCard(DevelopmentCard devCard) {
@@ -46,7 +47,7 @@ public class PersonalBoard {
 			for (int i = 0; i < ownedBuildingCardsCards.getOwnedCardsnumber(); i++) {
 				CraftCard tmp = (CraftCard) ownedBuildingCardsCards.getMyOwnedCards()[i].getCard();
 				if(actionValue >=  tmp.getRequiredValueForCraft()) {
-				tmp.callEffect(EffectType.Permanent);;
+				tmp.callEffect(EffectType.Permanent, player);;
 				}
 			}
 		} else if (craftType.equals(CraftType.Harvest)) {
@@ -54,7 +55,7 @@ public class PersonalBoard {
 			for (int i = 0; i < ownedTerritoryCards.getOwnedCardsnumber(); i++) {
 				CraftCard tmp = (CraftCard) ownedTerritoryCards.getMyOwnedCards()[i].getCard();
 				if(actionValue >=  tmp.getRequiredValueForCraft()) {
-				tmp.callEffect(EffectType.Permanent);;
+				tmp.callEffect(EffectType.Permanent, player);;
 				}
 			}
 		}

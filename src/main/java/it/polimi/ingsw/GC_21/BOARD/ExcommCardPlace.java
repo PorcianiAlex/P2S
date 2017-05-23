@@ -1,6 +1,13 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
-public class ExcommCardPlace implements CardPlace {
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
+
+public class ExcommCardPlace extends CardPlace {
+
+	public ExcommCardPlace(Card card) {
+		super(card);
+		// TODO Auto-generated constructor stub
+	}
 
 	private int age;
 

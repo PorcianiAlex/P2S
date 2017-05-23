@@ -33,7 +33,7 @@ public class DoPlacementAction extends Immediate {
 	@Override
 	public void activateEffect(Player player) {
 		super.activateEffect(player);
-		PlacementActionWithNoFamilyMember placementActionWithNoFamilyMember = new PlacementActionWithNoFamilyMember(player, actionValue, null, null, devCardType, discount);
+		PlacementActionWithNoFamilyMember placementActionWithNoFamilyMember = new PlacementActionWithNoFamilyMember(player, actionValue, null, null, null, null, devCardType, discount);
 		placementActionWithNoFamilyMember.Execute();
 	}
 	
