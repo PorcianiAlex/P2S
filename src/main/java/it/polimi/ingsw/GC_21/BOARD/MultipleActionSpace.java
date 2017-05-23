@@ -12,6 +12,17 @@ public class MultipleActionSpace extends ActionSpace {
 	public MultipleActionSpace(int requiredDice,Immediate effect) {
 		super(requiredDice, effect);
 	}
+	
+	public boolean checkColorPresence(String color) {
+		int i = 0;
+		while (i < familyMembersLocated.size()) {
+		      if (familyMembersLocated.get(i).getColor().equals(color)) {
+			      return true;
+		      }
+			i++;
+		}
+		return false;
+	}
 
 
 	public ArrayList<FamilyMember> getFamilyMember() {

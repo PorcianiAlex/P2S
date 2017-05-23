@@ -17,9 +17,10 @@ public class CraftArea {
 		this.multipleActionSpace = new MultipleActionSpace(1, MalusOnCraft);
 	}
 
-	public void checkFamilyMember() {
-		// TODO - implement CraftArea.checkFamilyMember
-		throw new UnsupportedOperationException();
+	public boolean checkFamilyMemberColor(String color) {
+		return singleActionSpace.getFamilyMember().getColor().equals(color) || 
+			multipleActionSpace.checkColorPresence(color);
+		
 	}
 
 	public void callBoardCraftEffect() {

@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_21.ACTION;
 import org.omg.PortableServer.Servant;
 
 import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
@@ -12,7 +13,9 @@ public class PlacementAction extends Action {
 	protected int actionValue;
 	protected final FamilyMember selectedFamilyMember;
 	protected final ActionSpace selectedActionSpace;
-	private final Servants servantsToConvert;
+	protected final Servants servantsToConvert;
+	protected Possession discount;
+	protected Possession overcharge;
 	
 	public PlacementAction(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember, ActionSpace selectedActionSpace, Servants servantsToConvert) {
 		super(playerInAction);
@@ -23,13 +26,15 @@ public class PlacementAction extends Action {
 	}
 	
 	@Override
-	public boolean Execute() {
+	public void Execute() {
 		convertServant(servantsToConvert);
 	    place();
-			return true;
+	    selectedActionSpace.callSpaceEffect(playerInAction);
 		}
+	
 	public boolean checkPlaceRequirement(){
-		return checkDiceRequirement();
+		return checkDiceRequirement() &&
+			!checkBusyActionSpace();
 	}
 
 
@@ -37,7 +42,10 @@ public class PlacementAction extends Action {
 		this.actionValue += servants.getValue();
 	}
 	
-	
+	public boolean checkBusyActionSpace() {
+		return selectedActionSpace.isBusy();
+		
+	}
 
 	public boolean checkDiceRequirement() {
 		return selectedActionSpace.getRequiredDice() <= this.actionValue;

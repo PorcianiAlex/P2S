@@ -13,24 +13,28 @@ public class SingleActionSpace extends ActionSpace {
 	}
 
 	
-	public boolean checkBusySpace() {
-		if (this.familyMemberLocated != null){
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
+	
 
-	public FamilyMember getFamilyMember() {
-		return familyMemberLocated;
-	}
 	
 	@Override
 	public void placeFamilyMember(FamilyMember familyMember) {
-		setFamilyMember(familyMember);
+		if (this.familyMemberLocated != null){
+			setFamilyMember(familyMember);
+			setBusy(true);
+		}
+		
 	}
     
+
+	public FamilyMember getFamilyMemberLocated() {
+		return familyMemberLocated;
+	}
+
+
+	public void setFamilyMemberLocated(FamilyMember familyMemberLocated) {
+		this.familyMemberLocated = familyMemberLocated;
+	}
+
 
 	public void setFamilyMember(FamilyMember familyMemberLocated) {
 		this.familyMemberLocated = familyMemberLocated;
@@ -41,4 +45,7 @@ public class SingleActionSpace extends ActionSpace {
 		throw new UnsupportedOperationException();
 	}
 
+	public FamilyMember getFamilyMember() {
+		return familyMemberLocated;
+	}
 }

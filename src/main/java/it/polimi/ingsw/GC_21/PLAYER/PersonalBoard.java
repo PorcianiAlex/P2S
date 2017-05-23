@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
 import it.polimi.ingsw.GC_21.BOARD.ownedCards;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
+import it.polimi.ingsw.GC_21.EFFECT.EffectType;
 import it.polimi.ingsw.GC_21.EFFECT.Permanent;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 
@@ -40,19 +41,21 @@ public class PersonalBoard {
 		throw new UnsupportedOperationException();
 	}
 	
-	public void callCraftEffect(CraftType craftType, int actionValue) {
+	public void checkCraftEffect(CraftType craftType, int actionValue) {
 		if(craftType.equals(CraftType.Production)) {
-			for (int i = 0; i < buildings.length; i++) {
-				CraftCard tmp = (CraftCard) buildings[i].getCard();
+			OwnedCards ownedBuildingCardsCards = getOwnedCards(DevCardType.Building);
+			for (int i = 0; i < ownedBuildingCardsCards.getOwnedCardsnumber(); i++) {
+				CraftCard tmp = (CraftCard) ownedBuildingCardsCards.getMyOwnedCards()[i].getCard();
 				if(actionValue >=  tmp.getRequiredValueForCraft()) {
-				buildings[i].callEffect();
+				tmp.callEffect(EffectType.Permanent);;
 				}
 			}
 		} else if (craftType.equals(CraftType.Harvest)) {
-			for (int i = 0; i < territories.length; i++) {
-				CraftCard tmp = (CraftCard) territories[i].getCard();
+			OwnedCards ownedTerritoryCards = getOwnedCards(DevCardType.Territory);
+			for (int i = 0; i < ownedTerritoryCards.getOwnedCardsnumber(); i++) {
+				CraftCard tmp = (CraftCard) ownedTerritoryCards.getMyOwnedCards()[i].getCard();
 				if(actionValue >=  tmp.getRequiredValueForCraft()) {
-				buildings[i].callEffect();
+				tmp.callEffect(EffectType.Permanent);;
 				}
 			}
 		}

@@ -9,9 +9,8 @@ public abstract class Action {
 		this.playerInAction = playerInAction;
 	}
 
-	public boolean Execute() {
-		// TODO - implement Action.Execute
-		throw new UnsupportedOperationException();
+	public void Execute() {
+		
 	}
 
 	public Player getPlayerInAction() {

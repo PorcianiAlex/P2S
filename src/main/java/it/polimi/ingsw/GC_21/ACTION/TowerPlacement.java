@@ -36,7 +36,17 @@ public class TowerPlacement extends PlacementAction {
 		return super.checkPlaceRequirement() &&
 				checkTakeabilityCard(playerInAction.getMyPersonalBoard(), floorDevCard.getDevCardType()) &&
 				checkCardRequirements(floorDevCard, playerInAction.getMyPersonalBoard(), discount, overcharge);
-	}*/
+		//TODO influences of effects
+	}
+	
+	@Override
+	public void Execute() {
+		// TODO Auto-generated method stub
+		 super.Execute();
+		 selectedFloor.getSingleActionSpace().callIBonusEffect();
+		 pay(selectedFloor.getDevCardPlace().getCard().getRequirements(), discount, overcharge);
+		 //TODO influences of effects
+	}
 
 
 	public boolean checkTakeabilityCard(PersonalBoard myPersonalBoard, DevCardType selectedCardType) {
@@ -66,10 +76,10 @@ public class TowerPlacement extends PlacementAction {
 		return selectedTower.checkFamilyMemberPresence();
 	}
 
-	public void payPossesion(Possession payment, Possession discount, Possession overcharge) {
+	public void pay(Possession payment, Possession discount, Possession overcharge) {
 		payment.add(overcharge);
 		payment.subtract(discount);//real payment
-		playerInAction.getMyPersonalBoard().getMyPossession().subtract(payment);
+		playerInAction.getMyPersonalBoard().payPossession(payment);
 	}
 
 	public void takeCard() {
