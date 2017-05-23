@@ -29,7 +29,8 @@ public class CardCreator {
            	 DevelopmentCard devCardCreating = new DevelopmentCard((String) jsonLineItem.get("name"));
            	 devCardCreating.setAge(age);
          	 devCardCreating.setDevCardType(devCardType);
-           	 this.create(devCardCreating, jsonLineItem);
+         	 this.addImm(devCardCreating, jsonLineItem);
+           	 this.addReq(devCardCreating, jsonLineItem);
            	 cards.add(devCardCreating);            	 
             }
 	     }
@@ -53,8 +54,7 @@ public class CardCreator {
 	    	if(Integer.parseInt(jsonLineItem.get("age").toString())==age){              	
            	 ExcommunicationCard excommunicationCard = new ExcommunicationCard((String) jsonLineItem.get("name"));
            	 excommunicationCard.setAge(age);
-         	 this.create(excommunicationCard, jsonLineItem);
-           	 cards.add(excommunicationCard);            	 
+         	 cards.add(excommunicationCard);            	 
             }
 	     }
 		} catch (FileNotFoundException e) {
@@ -75,7 +75,8 @@ public class CardCreator {
 	    for (Object o : cardarray) {
            	JSONObject jsonLineItem = (JSONObject) o;     
     	     LeaderCard leaderCard = new LeaderCard((String) jsonLineItem.get("name"));
-           	 this.create(leaderCard, jsonLineItem);
+           	 this.addImm(leaderCard, jsonLineItem);
+           	 this.addReq(leaderCard, jsonLineItem);
            	 cards.add(leaderCard);            	 
             }
 	     
@@ -90,7 +91,7 @@ public class CardCreator {
 	}
 	
 
-	public void create(Card cardcreating, JSONObject jsonLineItem) {
+	public void addImm(Card cardcreating, JSONObject jsonLineItem) {
 
 	        	                
 	                JSONArray reqarray= (JSONArray) jsonLineItem.get("Req");
@@ -100,17 +101,19 @@ public class CardCreator {
 	                		Integer.parseInt(reqarray.get(4).toString()), Integer.parseInt(reqarray.get(5).toString()), 
 	                	    Integer.parseInt(reqarray.get(6).toString()));
 	                cardcreating.setRequirements(Req);  
-	                
-	                JSONArray immarray= (JSONArray) jsonLineItem.get("Imm");
-	                             	               
-	                Possession Imm = new Possession(Integer.parseInt(immarray.get(0).toString()),Integer.parseInt(immarray.get(1).toString()),
-	                		Integer.parseInt(immarray.get(2).toString()), Integer.parseInt(immarray.get(3).toString()),
-	                		Integer.parseInt(immarray.get(4).toString()), Integer.parseInt(immarray.get(5).toString()), 
-	                	    Integer.parseInt(immarray.get(6).toString()));
-	                cardcreating.setRequirements(Req);
-	               Immediate immediate = new Immediate(Imm);
-	               cardcreating.setImmediateEffect(immediate);
+	       
 	             
+	}
+	
+	public void addReq(Card cardcreating, JSONObject jsonLineItem) {
+        
+        JSONArray reqarray= (JSONArray) jsonLineItem.get("Req");
+        	             	               
+        Possession Req = new Possession(Integer.parseInt(reqarray.get(0).toString()),Integer.parseInt(reqarray.get(1).toString()),
+        		Integer.parseInt(reqarray.get(2).toString()), Integer.parseInt(reqarray.get(3).toString()),
+        		Integer.parseInt(reqarray.get(4).toString()), Integer.parseInt(reqarray.get(5).toString()), 
+        	    Integer.parseInt(reqarray.get(6).toString()));
+        cardcreating.setRequirements(Req);  
 	}
 
 	
