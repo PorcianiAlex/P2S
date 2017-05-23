@@ -33,15 +33,6 @@ public class Tower {
 		}
 	}
 	
-	public Floor[] getFloors() {
-		return floors;
-	}
-
-
-	public void setFloors(Floor[] floors) {
-		this.floors = floors;
-	}
-
 
 	public boolean checkFamilyMemberPresence() {
 		for (int i = 0; i < floors.length; i++) {
@@ -59,6 +50,20 @@ public class Tower {
 			}
 		    return false;
 		}
+
+	public Floor[] getFloors() {
+		return floors;
+	}
+
+
+	public void setFloors(Floor[] floors) {
+		this.floors = floors;
+	}
+	
+	
+	public DevCardType getDevCardType() {
+		return devCardType;
+	}
 
 	@Override
 	public String toString() {

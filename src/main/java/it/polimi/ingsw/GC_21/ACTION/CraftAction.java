@@ -10,7 +10,7 @@ import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class CraftAction extends Action{
-	private CraftType craftType;
+	private final CraftType craftType;
 	private int actionValue;
 
 	public CraftAction(Player playerInAction, CraftType craftType, int actionValue) {

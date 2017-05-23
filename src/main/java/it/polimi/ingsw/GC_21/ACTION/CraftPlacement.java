@@ -10,8 +10,8 @@ import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class CraftPlacement extends PlacementAction {
-	CraftType craftType;
-	CraftArea craftArea;
+	private final CraftType craftType;
+	private final CraftArea craftArea;
 	
 
 	public CraftPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember,

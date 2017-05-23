@@ -1,8 +1,10 @@
 package it.polimi.ingsw.GC_21.ACTION;
 
 import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
+import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.BOARD.Floor;
 import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
+import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Tower;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
@@ -22,13 +24,26 @@ public class TowerPlacement extends PlacementAction {
 	
 	
 	
-	public TowerPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember,
-			 Floor selectedFloor, Tower selectedTower, Servants servantsToConvert) {
-		super(playerInAction, actionValue, selectedFamilyMember, selectedFloor.getSingleActionSpace(), servantsToConvert);
-		this.selectedFloor = selectedFloor;
+	private TowerPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember, 
+	     Servants servantsToConvert, Board board, Tower selectedTower, Floor selectedFloor) {
+		super(playerInAction, actionValue, selectedFamilyMember, s ,servantsToConvert, board);
 		this.selectedTower = selectedTower;
+		this.selectedFloor = selectedFloor;
+		
+		
 		
 	}
+	
+	public static TowerPlacement factoryTowerPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember, 
+		    DevCardType towerType, int floorNumber, Servants servantsToConvert, Board board){
+		Tower selectedTower = board.getSpecificTower(towerType);
+		Floor selectedFloor = selectedTower.getFloors()[floorNumber];
+		SingleActionSpace selectedTowerActionSpace = selectedFloor.getSingleActionSpace();
+		TowerPlacement towerPlacement = new TowerPlacement(playerInAction, actionValue, selectedFamilyMember, servantsToConvert, board, selectedTower, selectedFloor)
+		
+	}
+	
+	
 	
 	@Override
 	public boolean checkPlaceRequirement() {
