@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
@@ -13,8 +14,24 @@ public class Board {
 	private Tower[] towers;
 	private MarketArea marketArea;
 	private CouncilPalace councilPalace;
-	private CraftArea[] craftAreas;
+	private CraftArea productionArea;
+	private CraftArea harvestArea;
 	
+	
+	
+	public Board() {
+		super();
+		this.dices = new Dice[3];
+		this.towers = Tower.factoryTowers(); 
+		this.marketArea = new MarketArea();
+		this.councilPalace = new CouncilPalace();
+		/*
+		 CONSTRUCT CRAFT AREAS
+		 */
+	}
+
+
+
 	public void generateBoard(DevDeck territoryDeck, DevDeck buildingDeck, DevDeck characterDeck, DevDeck ventureDeck){
 		dices = Dice.generateDices();
 		towers = Tower.generateTowers();
@@ -57,6 +74,21 @@ public class Board {
 		}
 		
 	
+	}
+
+	public void printBoard(){
+		System.out.println(dices.toString());
+		System.out.println(towers[0].toString());
+		System.out.println(towers[1].toString());
+		System.out.println(towers[2].toString());
+		System.out.println(towers[3].toString());
+		System.out.println(marketArea.toString());
+		System.out.println(councilPalace.toString());
+	}
+	
+	public static void main(String[] args) {
+		Board aaa = new Board();
+		aaa.printBoard();
 	}
 
 	

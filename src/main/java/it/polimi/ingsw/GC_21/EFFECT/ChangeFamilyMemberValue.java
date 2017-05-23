@@ -13,10 +13,7 @@ public class ChangeFamilyMemberValue extends Immediate {
 		this.newFamilyMemberValue = newFamilyMemberValue;
 	}
 	
-	@Override
-	public void activateEffect(Player player) {
-		super.activateEffect(player);
-	}
+	
 	
 	public FamilyMember chooseFamilyMember(Player player){
 		int i=0;

@@ -7,9 +7,9 @@ import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 public class CouncilPalace {
 	private MultipleActionSpace multipleActionSpace;
 	
-	public CouncilPalace(Immediate councilPalaceEffect) {
+	public CouncilPalace() {
+		//TODO: CREATE THE RIGHT COUNCIL PALACE!!!
 		super();
-		this.multipleActionSpace = new MultipleActionSpace(1, councilPalaceEffect);
 	}
 
 	public MultipleActionSpace getMultipleActionSpace() {

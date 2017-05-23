@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 
 import java.util.*;
 
+import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.EFFECT.*;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
@@ -65,12 +66,12 @@ public  class Card {
 
 
 
-	public void callEffect(EffectType effectType, Player player) {
+	public void callEffect(EffectType effectType, Player player, Action action) {
 		if(effectType.equals("Immediate")) {
-			immediateEffect.activateEffect(player);
+			immediateEffect.activateEffect(player, action);
 		}
 		else {
-			permanentEffect.activateEffect(player);
+			permanentEffect.activateEffect(player, action);
 		}
 	}
 

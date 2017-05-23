@@ -9,7 +9,10 @@ public class ActionSpace {
 
 	protected int requiredDice;
 	protected final Effect actionSpaceEffect;
+<<<<<<< Updated upstream
 	protected boolean Busy;
+=======
+>>>>>>> Stashed changes
 	
 	public ActionSpace(int requiredDice, Immediate actionSpaceEffect) {
 		this.requiredDice = requiredDice;
@@ -21,6 +24,7 @@ public class ActionSpace {
 	public void callSpaceEffect(Player playerInAction){
 		actionSpaceEffect.activateEffect(playerInAction);
 	}
+	
 	
 	public void placeFamilyMember(FamilyMember familyMamber) {	
 	}
