@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
+import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.ACTION.CraftAction;
 import it.polimi.ingsw.GC_21.ACTION.PlacementActionWithNoFamilyMember;
 import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
@@ -31,8 +32,8 @@ public class DoPlacementAction extends Immediate {
 	}
 	
 	@Override
-	public void activateEffect(Player player) {
-		super.activateEffect(player);
+	public void activateEffect(Player player, Action action) {
+		super.activateEffect(player, action);
 		PlacementActionWithNoFamilyMember placementActionWithNoFamilyMember = new PlacementActionWithNoFamilyMember(player, actionValue, null, null, null, null, devCardType, discount);
 		placementActionWithNoFamilyMember.Execute();
 	}
@@ -40,7 +41,6 @@ public class DoPlacementAction extends Immediate {
 	public static void main(String[] args) {
 		DoPlacementAction doPlacementAction = new DoPlacementAction(new Possession(1, 1, 1, 1, 1, 1, 1), 1, DevCardType.Venture, new Possession(0, 0, 0, 0, 0, 0, 0));
 		Player aaa = new Player("aAA", "AAA");
-		doPlacementAction.activateEffect(aaa);
 	}
 	
 }

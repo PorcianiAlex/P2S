@@ -31,6 +31,11 @@ public class Floor {
 	public void setDevCardPlace(DevCardPlace devCardPlace) {
 		this.devCardPlace = devCardPlace;
 	}
+
+	@Override
+	public String toString() {
+		return "Floor [floorNumber=" + floorNumber + "]";
+	}
 	
 	
 

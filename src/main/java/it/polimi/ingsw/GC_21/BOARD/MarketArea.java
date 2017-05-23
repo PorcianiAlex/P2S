@@ -8,7 +8,9 @@ public class MarketArea {
 	private SingleActionSpace[] singleActionSpace;
 
 
-	public MarketArea() {
+	public MarketArea(){
+		//TODO: CREATE THE RIGHT MARKET AREA!!!
+
 		this.singleActionSpace = new SingleActionSpace[4];
 	}
 
