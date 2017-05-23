@@ -26,17 +26,22 @@ public class CraftPlacement extends PlacementAction {
 		this.craftType = craftType;
 	}
 
-    public void callCraftEffect(CraftType craftType, ActionSpace actionSpace) {
-		playerInAction.getMyPersonalBoard().checkCraftEffect(craftType, actionValue);
-	}
-    
-    @Override
+	@Override
     public boolean checkPlaceRequirement() {
-    	// TODO Auto-generated method stub
     	return super.checkPlaceRequirement() &&
     			craftArea.checkFamilyMemberColor(selectedFamilyMember.getColor());
     	
     }
+	
+	@Override
+	public void Execute() {	
+		super.Execute();
+		CraftAction craftAction = new CraftAction(playerInAction, craftType, actionValue);
+	}
+	
+	
+    
+    
     
     
 }
