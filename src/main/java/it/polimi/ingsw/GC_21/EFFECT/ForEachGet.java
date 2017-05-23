@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
+import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 import javax.annotation.Resource;
 import javax.jws.soap.SOAPBinding;
@@ -51,8 +52,8 @@ public class ForEachGet extends Immediate{
 
 	@Override
 	/* It creates a possession through the bonus of the card and then the player gets it*/
-	public void activateEffect(Player player) {
-		super.activateEffect(player);
+	public void activateEffect(Player player, Action action) {
+		super.activateEffect(player, action);
 		if (CardConversion == true){
 			int playerCardNumber = player.getMyPersonalBoard().getOwnedCards(forEachCard).getOwnedCardsnumber();
 			int cardMultiplier = playerCardNumber/forEachCardIndex;
@@ -78,7 +79,6 @@ public class ForEachGet extends Immediate{
 		aaa.getMyPersonalBoard().getMyPossession().add(aaas);
 		Possession rewards = new Possession(0, 0, 0, 0, 0, 0, 0);
 		ForEachGet forEachGet = new ForEachGet(rewards, ResourceType.Woods, 2, ResourceType.Coins, 1, false);
-		forEachGet.activateEffect(aaa);
 		System.out.println(aaa.getMyPersonalBoard().getMyPossession().toString());
 	}
 

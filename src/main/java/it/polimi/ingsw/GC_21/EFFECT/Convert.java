@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_21.EFFECT;
 import java.awt.Choice;
 import java.util.Scanner;
 
+import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Item;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
@@ -22,8 +23,8 @@ public class Convert extends Immediate {
 	}
 
 	@Override
-	public void activateEffect(Player player){
-		super.activateEffect(player);
+	public void activateEffect(Player player,Action action){
+		super.activateEffect(player, action);
 		if (toPay2!=null && toTake2!=null){
 			if (this.chooseConversion(player)==true){
 				if (toPay1.checkRequirements(player)==true)
@@ -103,7 +104,6 @@ public class Convert extends Immediate {
 		Player prova = new Player("PROVA", "AAA");
 		prova.getMyPersonalBoard().getMyPossession().add(new Possession(222, 111, 22, 44, 224, 3121, 122));
 		System.out.println(prova.getMyPersonalBoard().getMyPossession().toString());
-		convert.activateEffect(prova);
 		System.out.println(prova.getMyPersonalBoard().getMyPossession().toString());
 	}
 

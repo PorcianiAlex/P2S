@@ -11,14 +11,14 @@ public class Tower {
 	private final DevCardType devCardType;
 	private Floor[] floors = new Floor[4];
 
-	public Tower(DevCardType devCardType) {
+	private Tower(DevCardType devCardType) {
 		this.devCardType = devCardType;
 		for (int i = 0; i < floors.length; i++) {
 			floors[i]=new Floor(i+1);
 		}
 	}
 
-	public static Tower[] generateTowers(){
+	public static Tower[] factoryTowers(){
 		Tower[] towers=new Tower[4];
 		towers[0]=new Tower(DevCardType.Building);
 		towers[1]=new Tower(DevCardType.Territory);
@@ -59,6 +59,16 @@ public class Tower {
 			}
 		    return false;
 		}
+
+	@Override
+	public String toString() {
+		return "Tower [devCardType=" + devCardType + ", floors=" + Arrays.toString(floors) + "]";
+	}
+	
+	public static void main(String[] args) {
+		Tower aa = new Tower(DevCardType.Building);
+		System.out.println(aa.toString());
+	}
 	
 }
 	
