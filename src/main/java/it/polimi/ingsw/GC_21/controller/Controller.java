@@ -18,6 +18,16 @@ public class Controller {
 	}
 
 
+	public Game getModelGame() {
+		return modelGame;
+	}
+
+
+	public void setModelGame(Game modelGame) {
+		this.modelGame = modelGame;
+	}
+
+
 	public void updateModel(Action action) {
 		action.Execute();
 	}

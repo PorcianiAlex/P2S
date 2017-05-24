@@ -60,7 +60,7 @@ public class RemoteView {
 		case "3": selectedTower = DevCardType.Building;
 		case "4": selectedTower = DevCardType.Venture;
 		break;
-		default:
+		default: selectedTower = DevCardType.Building;
 		break;
 		}	
 		System.out.println("Select Floor [1-4]:");
@@ -70,7 +70,7 @@ public class RemoteView {
 		case "3": floor = 3;
 		case "4": floor = 4;
 		break;
-		default:
+		default: floor = 1;
 		break;
 		}	
 		System.out.println("Select Family Member [N-O-W-B]:");
@@ -80,13 +80,13 @@ public class RemoteView {
 		case "W": familyMemberColor = FamilyMemberColor.White;
 		case "B": familyMemberColor = FamilyMemberColor.Black;
 		break;
-		default:
+		default: familyMemberColor = FamilyMemberColor.Neutral;
 		break;
 		}	
 		System.out.println("How many servants do you want to convert?:");
 		int servants = scanner.nextInt();	
 		
-		//TowerPlacement towerPlacement = new ;
+		TowerPlacement towerPlacement = TowerPlacement.factoryTowerPlacement(player, familyMemberColor, selectedTower, floor, servants, controller.getModelGame().getBoard());
 		//controller.setAction(towerPlacement);
 	
 	}
