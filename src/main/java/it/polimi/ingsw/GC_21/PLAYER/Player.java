@@ -7,7 +7,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 
 public class Player {
 
-	ArrayList<FamilyMember> family;
+	private FamilyMember[] familyMembers;
 	private String name;
 	private Color playerColor;
 	private PersonalBoard myPersonalBoard;
@@ -15,7 +15,7 @@ public class Player {
 	
 	public Player(String name, Color playerColor) {
 		super();
-		this.family = new ArrayList<FamilyMember>();
+		this.familyMembers = new FamilyMember[4];
 		this.name = name;
 		this.playerColor = playerColor;
 		this.myPersonalBoard = new PersonalBoard(this);
@@ -29,14 +29,6 @@ public class Player {
 	public void chooseBonusTile() {
 		// TODO - implement Player.chooseBonusTile
 		throw new UnsupportedOperationException();
-	}
-
-	public ArrayList<FamilyMember> getFamily() {
-		return family;
-	}
-
-	public void setFamily(ArrayList<FamilyMember> Family) {
-		this.family = Family;
 	}
 
 	public String getName() {
@@ -61,6 +53,28 @@ public class Player {
 
 	public void setMyPersonalBoard(PersonalBoard myPersonalBoard) {
 		this.myPersonalBoard = myPersonalBoard;
+	}
+	
+
+	
+	
+	public FamilyMember getSpecificFamilyMember(FamilyMemberColor familyMemberColor) {
+		for (int i = 0; i < familyMembers.length; i++) {
+			if (familyMembers[i].getFamilyMemberColor().equals(familyMemberColor)) {
+				return familyMembers[i];
+			}
+		}
+		return null;
+	}
+
+	
+
+	public FamilyMember[] getFamilyMembers() {
+		return familyMembers;
+	}
+
+	public void setFamilyMembers(FamilyMember[] familyMembers) {
+		this.familyMembers = familyMembers;
 	}
 
 	@Override

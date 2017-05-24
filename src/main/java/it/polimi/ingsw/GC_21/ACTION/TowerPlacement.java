@@ -1,8 +1,11 @@
 package it.polimi.ingsw.GC_21.ACTION;
 
 import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
+import it.polimi.ingsw.GC_21.BOARD.Board;
+import it.polimi.ingsw.GC_21.BOARD.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.BOARD.Floor;
 import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
+import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Tower;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
@@ -20,12 +23,25 @@ public class TowerPlacement extends PlacementAction {
 	private final Tower selectedTower;
 
 	public TowerPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember,
-			 Floor selectedFloor, Tower selectedTower, Servants servantsToConvert) {
-		super(playerInAction, actionValue, selectedFamilyMember, selectedFloor.getSingleActionSpace(), servantsToConvert);
+			 Floor selectedFloor, Tower selectedTower, Servants servantsToConvert, Board board) {
+		super(playerInAction, actionValue, selectedFamilyMember, selectedFloor.getSingleActionSpace(), servantsToConvert, board);
 		this.selectedFloor = selectedFloor;
 		this.selectedTower = selectedTower;
-		
 	}
+	
+	public static TowerPlacement factoryTowerPlacement(Player playerInAction, FamilyMemberColor selectedFamilyMemberColor, 
+		    DevCardType towerType, int floorNumber, int servantsNumber, Board board){
+		Tower selectedTower = board.getSpecificTower(towerType);
+		Floor selectedFloor = selectedTower.getFloors()[floorNumber];
+		SingleActionSpace selectedTowerActionSpace = selectedFloor.getSingleActionSpace();
+		FamilyMember selectedFamilyMember = playerInAction.getSpecificFamilyMember(selectedFamilyMemberColor);
+		int actionValue = selectedFamilyMember.getDiceAssociated().getValue();
+		Servants servantsToConvert = new Servants(servantsNumber);
+		TowerPlacement towerPlacement = new TowerPlacement(playerInAction, actionValue , selectedFamilyMember, selectedFloor, selectedTower, servantsToConvert, board);
+		return towerPlacement;
+	}
+	
+	
 	
 	@Override
 	public boolean checkPlaceRequirement() {

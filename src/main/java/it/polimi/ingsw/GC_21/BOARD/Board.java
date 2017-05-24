@@ -73,6 +73,89 @@ public class Board {
 		
 	
 	}
+	
+	
+
+	public Dice[] getDices() {
+		return dices;
+	}
+
+
+
+	public void setDices(Dice[] dices) {
+		this.dices = dices;
+	}
+
+
+
+	public Tower[] getTowers() {
+		return towers;
+	}
+	
+	public Tower getSpecificTower(DevCardType towerType) {
+		for (int i = 0; i < towers.length; i++) {
+			if (towers[i].getDevCardType().equals(towerType)) {
+				return towers[i];
+			}
+		}
+		return null;
+	}
+
+
+
+	public void setTowers(Tower[] towers) {
+		this.towers = towers;
+	}
+
+
+
+	public MarketArea getMarketArea() {
+		return marketArea;
+	}
+
+
+
+	public void setMarketArea(MarketArea marketArea) {
+		this.marketArea = marketArea;
+	}
+
+
+
+	public CouncilPalace getCouncilPalace() {
+		return councilPalace;
+	}
+
+
+
+	public void setCouncilPalace(CouncilPalace councilPalace) {
+		this.councilPalace = councilPalace;
+	}
+
+
+
+	public CraftArea getProductionArea() {
+		return productionArea;
+	}
+
+
+
+	public void setProductionArea(CraftArea productionArea) {
+		this.productionArea = productionArea;
+	}
+
+
+
+	public CraftArea getHarvestArea() {
+		return harvestArea;
+	}
+
+
+
+	public void setHarvestArea(CraftArea harvestArea) {
+		this.harvestArea = harvestArea;
+	}
+
+
 
 	public void printBoard(){
 		System.out.println(dices[0].toString());

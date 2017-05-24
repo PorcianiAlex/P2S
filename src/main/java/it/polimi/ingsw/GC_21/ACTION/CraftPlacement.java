@@ -10,8 +10,8 @@ import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class CraftPlacement extends PlacementAction {
-	CraftType craftType;
-	CraftArea craftArea;
+	private final CraftType craftType;
+	private final CraftArea craftArea;
 	
 
 	public CraftPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember,
@@ -24,6 +24,12 @@ public class CraftPlacement extends PlacementAction {
 			CraftArea craftArea, Servants servantsToConvert, CraftType craftType, MultipleActionSpace multipleActionSpace) {
 		super(playerInAction, actionValue, selectedFamilyMember, multipleActionSpace, servantsToConvert);
 		this.craftType = craftType;
+	}
+	
+	public static CraftPlacement factoryCraftPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember,
+			CraftArea craftArea, Servants servantsToConvert, CraftType craftType, MultipleActionSpace multipleActionSpace) {
+		
+		
 	}
 
 	@Override

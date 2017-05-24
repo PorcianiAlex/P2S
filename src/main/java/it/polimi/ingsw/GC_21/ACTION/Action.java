@@ -16,5 +16,4 @@ public abstract class Action {
 		return playerInAction;
 	}
 
-
 }

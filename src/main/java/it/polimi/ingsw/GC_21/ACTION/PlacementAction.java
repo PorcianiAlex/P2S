@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_21.ACTION;
 import org.omg.PortableServer.Servant;
 
 import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
+import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
@@ -12,17 +13,19 @@ public class PlacementAction extends Action {
 
 	protected int actionValue;
 	protected final FamilyMember selectedFamilyMember;
-	protected final ActionSpace selectedActionSpace;
+	protected  ActionSpace selectedActionSpace;
 	protected final Servants servantsToConvert;
 	protected Possession discount;
 	protected Possession overcharge;
+	protected final Board board;
 	
-	public PlacementAction(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember, ActionSpace selectedActionSpace, Servants servantsToConvert) {
+	public PlacementAction(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember, ActionSpace selectedActionSpace, Servants servantsToConvert, Board board) {
 		super(playerInAction);
 		this.actionValue = actionValue;
 		this.selectedFamilyMember = selectedFamilyMember;
 		this.selectedActionSpace = selectedActionSpace;
 		this.servantsToConvert = servantsToConvert;
+		this.board = board;
 	}
 	
 	@Override
