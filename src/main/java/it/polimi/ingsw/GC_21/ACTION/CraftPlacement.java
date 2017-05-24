@@ -1,8 +1,10 @@
 package it.polimi.ingsw.GC_21.ACTION;
 
 import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
+import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.BOARD.CraftArea;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
+import it.polimi.ingsw.GC_21.BOARD.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.BOARD.MultipleActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
@@ -14,20 +16,20 @@ public class CraftPlacement extends PlacementAction {
 	private final CraftArea craftArea;
 	
 
-	public CraftPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember,
-			CraftArea craftArea, Servants servantsToConvert, CraftType craftType, SingleActionSpace singleActionSpace) {
-		super(playerInAction, actionValue, selectedFamilyMember, singleActionSpace, servantsToConvert);
+	public CraftPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember, Servants servantsToConvert, CraftType craftType, ActionSpace selectedActionSpace, Board board) {
+		super(playerInAction, actionValue, selectedFamilyMember, selectedActionSpace, servantsToConvert, board);
 		this.craftType = craftType;
+		this.craftArea = board.getHarvestArea();
 	}
-	
-	public CraftPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember,
-			CraftArea craftArea, Servants servantsToConvert, CraftType craftType, MultipleActionSpace multipleActionSpace) {
-		super(playerInAction, actionValue, selectedFamilyMember, multipleActionSpace, servantsToConvert);
-		this.craftType = craftType;
-	}
-	
-	public static CraftPlacement factoryCraftPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember,
-			CraftArea craftArea, Servants servantsToConvert, CraftType craftType, MultipleActionSpace multipleActionSpace) {
+	//TODO to correct
+	public static CraftPlacement factoryCraftPlacement(Player playerInAction, FamilyMemberColor familyMemberColor,
+			Board board, int servantsNumber, CraftType craftType, String spaceType) {
+		FamilyMember selectedFamilyMember = playerInAction.getSpecificFamilyMember(familyMemberColor);
+		int actionValue = selectedFamilyMember.getDiceAssociated().getValue();
+		Servants servantsToConvert = new Servants(servantsNumber);
+		ActionSpace selectedActionSpace = board.getHarvestArea().getMultipleActionSpace();
+		CraftPlacement craftPlacement = new CraftPlacement(playerInAction, actionValue, selectedFamilyMember, servantsToConvert, craftType, selectedActionSpace, board);
+		return craftPlacement;
 		
 		
 	}

@@ -32,11 +32,11 @@ public class ConvertPrivilege extends Immediate {
 		this.faithPointsReward = new Possession(0, 0, 0, 0, 1, 0, 0);
 	}
 
-	@Override
+	/*@Override
 	public void activateEffect(Player player) {
 		/* The method ask the player to choose the reward, if it's valid then 
 		he gets it, if it's not then another cycle is done*/
-		for (int i = this.privileges.getValue(); i > 0; i--) {
+		/*for (int i = this.privileges.getValue(); i > 0; i--) {
 			Possession tmpPossession = this.chooseReward();
 			if (validConversion(tmpPossession) == true ){
 				this.rewards.add(tmpPossession);
@@ -47,8 +47,7 @@ public class ConvertPrivilege extends Immediate {
 			}
 			}
 		super.activateEffect(player);
-	}
-	
+	}*/
 
 	
 	
@@ -132,7 +131,7 @@ public class ConvertPrivilege extends Immediate {
 		System.out.println(convertPrivilege.toString());
 		Player player = new Player("AA", "AAA");
 		System.out.println(player.getMyPersonalBoard().getMyPossession().toString());
-		convertPrivilege.activateEffect(player);
+		convertPrivilege.activateEffect(player, null);
 		System.out.println(player.getMyPersonalBoard().getMyPossession().toString());
 	}
 

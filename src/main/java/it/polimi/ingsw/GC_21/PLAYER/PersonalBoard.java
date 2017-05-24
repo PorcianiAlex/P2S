@@ -47,7 +47,7 @@ public class PersonalBoard {
 			for (int i = 0; i < ownedBuildingCardsCards.getOwnedCardsnumber(); i++) {
 				CraftCard tmp = (CraftCard) ownedBuildingCardsCards.getMyOwnedCards()[i].getCard();
 				if(actionValue >=  tmp.getRequiredValueForCraft()) {
-				tmp.callEffect(EffectType.Permanent, player);;
+				tmp.callEffect(EffectType.Permanent, player, null);;
 				}
 			}
 		} else if (craftType.equals(CraftType.Harvest)) {
@@ -55,7 +55,7 @@ public class PersonalBoard {
 			for (int i = 0; i < ownedTerritoryCards.getOwnedCardsnumber(); i++) {
 				CraftCard tmp = (CraftCard) ownedTerritoryCards.getMyOwnedCards()[i].getCard();
 				if(actionValue >=  tmp.getRequiredValueForCraft()) {
-				tmp.callEffect(EffectType.Permanent, player);;
+				tmp.callEffect(EffectType.Permanent, player, null);;//NOT NULL
 				}
 			}
 		}

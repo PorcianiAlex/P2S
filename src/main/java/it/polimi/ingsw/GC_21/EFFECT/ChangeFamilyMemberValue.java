@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.FamilyMemberColor;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
@@ -15,7 +15,7 @@ public class ChangeFamilyMemberValue extends Immediate {
 
 	public FamilyMember chooseFamilyMember(Player player){
 		int i=0;
-		return player.getFamily().get(i);
+		return player.getFamilyMembers()[i];
 	}
 	
 }

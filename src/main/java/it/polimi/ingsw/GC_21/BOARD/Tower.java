@@ -4,7 +4,7 @@ import java.util.*;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.FamilyMemberColor;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 
 public class Tower {
 

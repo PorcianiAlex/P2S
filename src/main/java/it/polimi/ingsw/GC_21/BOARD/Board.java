@@ -6,7 +6,7 @@ import java.util.Arrays;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.FamilyMemberColor;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 
 public class Board {
@@ -41,7 +41,7 @@ public class Board {
 
 
 
-	public void refreshBoard() {
+	/*public void refreshBoard() {
 		for (int i = 0; i < towers.length; i++) {
 			for (int j = 0; j < towers[i].getFloors().length; j++) {
 				towers[i].getFloors()[j].getSingleActionSpace().setFamilyMember(null);;
@@ -72,7 +72,7 @@ public class Board {
 		}
 		
 	
-	}
+	}*/
 	
 	
 
