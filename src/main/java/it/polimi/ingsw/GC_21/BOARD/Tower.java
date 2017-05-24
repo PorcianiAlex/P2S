@@ -29,9 +29,11 @@ public class Tower {
 	
 	public void pickCards(DevDeck devDeck) {
 		for (int i = 0; i < floors.length; i++) {
-			floors[i].setCardPlace(devDeck);
+			floors[i].getDevCardPlace().setCard(devDeck.getSingleCard());;
 		}
 	}
+	
+
 	
 
 	public boolean checkFamilyMemberPresence() {

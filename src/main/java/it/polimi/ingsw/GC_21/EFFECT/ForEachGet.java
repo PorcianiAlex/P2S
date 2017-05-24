@@ -73,13 +73,5 @@ public class ForEachGet extends Immediate{
 		
 	}
 	
-	public static void main(String[] args) {
-		Player aaa = new Player("AA", "AAA");
-		Possession aaas = new Possession(100, 111, 111, 212, 321, 2121, 444);
-		aaa.getMyPersonalBoard().getMyPossession().add(aaas);
-		Possession rewards = new Possession(0, 0, 0, 0, 0, 0, 0);
-		ForEachGet forEachGet = new ForEachGet(rewards, ResourceType.Woods, 2, ResourceType.Coins, 1, false);
-		System.out.println(aaa.getMyPersonalBoard().getMyPossession().toString());
-	}
-
+	
 }

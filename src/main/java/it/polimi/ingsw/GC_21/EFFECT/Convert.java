@@ -101,10 +101,7 @@ public class Convert extends Immediate {
 		Possession toTake2 = new Possession(0,11, 0, 0, 1, 1, 2);
 		Possession rewards = new Possession(0, 33, 0, 0, 0, 0, 0);
 		Convert convert = new Convert(rewards, toPay1, toTake1, null, null);
-		Player prova = new Player("PROVA", "AAA");
-		prova.getMyPersonalBoard().getMyPossession().add(new Possession(222, 111, 22, 44, 224, 3121, 122));
-		System.out.println(prova.getMyPersonalBoard().getMyPossession().toString());
-		System.out.println(prova.getMyPersonalBoard().getMyPossession().toString());
+
 	}
 
 	

@@ -22,7 +22,7 @@ public class TowerPlacement extends PlacementAction {
 	private final Floor selectedFloor;
 	private final Tower selectedTower;
 
-	private TowerPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember,
+	protected TowerPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember,
 			 Floor selectedFloor, Tower selectedTower, Servants servantsToConvert, Board board) {
 		super(playerInAction, actionValue, selectedFamilyMember, selectedFloor.getSingleActionSpace(), servantsToConvert, board);
 		this.selectedFloor = selectedFloor;

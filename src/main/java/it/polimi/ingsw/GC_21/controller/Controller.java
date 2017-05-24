@@ -28,8 +28,10 @@ public class Controller {
 	}
 
 
-	public void updateModel(Action action) {
+	public boolean updateModel(Action action) {
 		action.Execute();
+		return true;
+		//TO DO: EXECUTE MUST RETURN A BOOLEAN, SO THAT THE CONTROLLER KNOWS IF IT WENT WELL OR NOT.
 	}
 	
 }

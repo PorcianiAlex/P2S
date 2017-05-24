@@ -13,16 +13,24 @@ public class PlacementActionWithNoFamilyMember extends TowerPlacement {
 	private final DevCardType devCardType;
 	private final Possession discount;
 	
-	public PlacementActionWithNoFamilyMember(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember,
+	/*public PlacementActionWithNoFamilyMember(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember,
 			Floor selectedFloor, Tower selectedTower, Servants servantsToConvert, DevCardType devCardType,
 			Possession discount) {
 		super(playerInAction, actionValue, selectedFamilyMember, selectedFloor, selectedTower, servantsToConvert);
 		this.devCardType = devCardType;
 		this.discount = discount;
-	}
+	}*/
+	
+
 	public int getActionValue() {
 		return actionValue;
 	}
+	public PlacementActionWithNoFamilyMember() {
+		super(null, 0, null, null, null, null, null);
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 	public ActionSpace getSelectedActionSpace() {
 		return selectedActionSpace;
 	}

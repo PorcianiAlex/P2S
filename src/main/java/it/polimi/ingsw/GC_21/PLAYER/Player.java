@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_21.PLAYER;
 import java.util.*;
 
 import it.polimi.ingsw.GC_21.BOARD.Color;
+import it.polimi.ingsw.GC_21.BOARD.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 
 public class Player {

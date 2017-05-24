@@ -4,6 +4,7 @@ public class Age {
 
 	private int number;
 	private int excommTreshold;
+	private Round currentRound;
 
 	public void checkExcomm() {
 		// TODO - implement Age.checkExcomm

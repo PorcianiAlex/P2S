@@ -45,12 +45,5 @@ public  class Effect {
 		return "This effect gives the following reward=" + rewards.toString() + "]";
 	}
 	
-	public static void main(String[] args) {
-		Possession aaa = new Possession(3, 2, 1, 22, 2, 1, 1);
-		Effect aaas = new Effect(aaa);
-		System.out.println(aaas.toString());
-		Player provaPlayer = new Player("Prova", "Red");
-		System.out.println(provaPlayer.toString());
-		System.out.println(provaPlayer.getMyPersonalBoard().getMyPossession().toString());
-	}
+	
 }

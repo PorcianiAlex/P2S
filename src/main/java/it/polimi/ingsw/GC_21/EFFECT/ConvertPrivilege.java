@@ -129,10 +129,7 @@ public class ConvertPrivilege extends Immediate {
 		Privileges privileges = new Privileges(3);
 		ConvertPrivilege convertPrivilege = new ConvertPrivilege(rewards, privileges);
 		System.out.println(convertPrivilege.toString());
-		Player player = new Player("AA", "AAA");
-		System.out.println(player.getMyPersonalBoard().getMyPossession().toString());
-		convertPrivilege.activateEffect(player, null);
-		System.out.println(player.getMyPersonalBoard().getMyPossession().toString());
+		
 	}
 
 }
