@@ -34,7 +34,7 @@ public class Floor {
 
 	@Override
 	public String toString() {
-		return "Floor [floorNumber=" + floorNumber + "]";
+		return "[floorNumber=" + floorNumber + singleActionSpace.toString() + devCardPlace.toString() + "]";
 	}
 	
 	

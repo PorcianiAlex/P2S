@@ -32,7 +32,7 @@ public class PlacementAction extends Action {
 	public void Execute() {
 		convertServant(servantsToConvert);
 	    place();
-	    selectedActionSpace.callSpaceEffect(playerInAction);
+	    selectedActionSpace.callSpaceEffect(playerInAction, this);
 		}
 	
 	public boolean checkPlaceRequirement(){

@@ -19,9 +19,8 @@ public class CraftAction extends Action{
 		this.actionValue = actionValue;
 	}
 
-	public void executeCraft() {
+	public void Execute() {
 		playerInAction.getMyPersonalBoard().checkCraftEffect(craftType, actionValue);
 	}
-	
 	
 }

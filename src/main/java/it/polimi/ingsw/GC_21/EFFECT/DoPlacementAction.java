@@ -2,29 +2,32 @@ package it.polimi.ingsw.GC_21.EFFECT;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.ACTION.CraftAction;
+import it.polimi.ingsw.GC_21.ACTION.PlacementAction;
 import it.polimi.ingsw.GC_21.ACTION.PlacementActionWithNoFamilyMember;
 import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
+import it.polimi.ingsw.GC_21.BOARD.Tower;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class DoPlacementAction extends Immediate {
-	public final int actionValue;
-	public final DevCardType devCardType;
-	public final Possession discount;
+	private final int actionValueInfluencer;
+	private final int actionValueBonus;
+	private final DevCardType devCardType;
+	private final Possession discount;	
 	
-	
-	public DoPlacementAction(Possession rewards, int actionValue, DevCardType devCardType, Possession discount) {
+	public DoPlacementAction(Possession rewards, int actionValueInfluencer, int actionValueBonus, DevCardType devCardType, Possession discount) {
 		super(rewards);
-		this.actionValue = actionValue;
+		this.actionValueInfluencer = actionValueInfluencer;
+		this.actionValueBonus = actionValueBonus;
 		this.devCardType = devCardType;
 		this.discount = discount;
 	}
 
-	public int getActionValue() {
-		return actionValue;
+	public int getActionValueInfluencer() {
+		return actionValueInfluencer;
 	}
 	
 	public DevCardType getDevCardType() {
@@ -32,15 +35,17 @@ public class DoPlacementAction extends Immediate {
 	}
 	
 	@Override
-	public void activateEffect(Player player, Action action) {
-		super.activateEffect(player, action);
-		PlacementActionWithNoFamilyMember placementActionWithNoFamilyMember = new PlacementActionWithNoFamilyMember(player, actionValue, null, null, null, null, devCardType, discount);
-		placementActionWithNoFamilyMember.Execute();
+	public void activateEffect(Player player, Action placementAction) {
+		super.activateEffect(player, placementAction);
+		PlacementAction placementAction2 = (PlacementAction) placementAction;
+		if (actionValueInfluencer==0){
+			PlacementActionWithNoFamilyMember placementActionWithNoFamilyMember = new PlacementActionWithNoFamilyMember(player, placementAction2.getActionValue() + actionValueBonus, null, null, null, null, devCardType, discount);
+		}
+		else {
+			PlacementActionWithNoFamilyMember placementActionWithNoFamilyMember = new PlacementActionWithNoFamilyMember(player, actionValueInfluencer + actionValueBonus, null, null, null, null, devCardType, discount);
+
+		}
 	}
 	
-	public static void main(String[] args) {
-		DoPlacementAction doPlacementAction = new DoPlacementAction(new Possession(1, 1, 1, 1, 1, 1, 1), 1, DevCardType.Venture, new Possession(0, 0, 0, 0, 0, 0, 0));
-		Player aaa = new Player("aAA", "AAA");
-	}
-	
+
 }

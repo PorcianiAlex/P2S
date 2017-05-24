@@ -2,21 +2,19 @@ package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 public class Deck {
-	private ArrayList<Card> cards;
-	private int deckIndex=0;
-
-	public Deck(ArrayList<Card> cards) {
-		this.cards = cards;
-	}
-
+	protected ArrayList<Card> cards;
+	protected CardType cardType;
+    protected CardCreator cardCreator;
+	
 	public ArrayList<Card> getCards() {
 		return cards;
 	}
-
-	public void setCards(ArrayList<Card> cards) {
-		this.cards = cards;
+		
+	public void shuffle() {
+		Collections.shuffle(cards);
 	}
 	
 	public Card getSingleCard() {

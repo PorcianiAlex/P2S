@@ -44,10 +44,4 @@ public class CraftPlacement extends PlacementAction {
 		super.Execute();
 		CraftAction craftAction = new CraftAction(playerInAction, craftType, actionValue);
 	}
-	
-	
-    
-    
-    
-    
 }

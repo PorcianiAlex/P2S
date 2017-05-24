@@ -1,8 +1,17 @@
 {
-	"Card" : [
-	{"type":"Dev", "DevType":"Building" "name":"Alex", "age":"3", "Req":[2,0,2,1,0,0,7], "Imm":[2,0,2,1,0,0,7] },
-        {"type":"Dev", "DevType":"Building" "name":"Alex", "age":"3", "Req":[2,0,2,1,0,0,7], "Imm":[2,0,2,1,0,0,7] },
-        {"type":"Ex",  "name":"Alex", "age":"2", "Req":[2,0,2,1,0,0,7], "Imm":[2,0,2,1,0,0,7] },
-        {"type":"Lead", "name":"Ax",  "Req":[2,0,2,1,0,0,7], "Imm":[2,0,2,1,0,0,7], "desc":"descrizione" },
+	"DevCard" : [
+	{"DevType":"Building" "name":"Dev1", "age":"3", "Req":[2,0,2,1,0,0,7], "Imm":[2,0,2,1,0,0,7], "SecTow":"Ventures", "secActionValue":"5" },
+	{"DevType":"Building" "name":"Dev2", "age":"3", "Req":[2,0,2,1,0,0,7], "Imm":[2,0,2,1,0,0,7], "CraftType":"Harvest", "CraftValue":"3" }
 	]
+	
+	"ExCard" : [
+	{"name":"ex1", "age":"3" },
+	{"name":"ex1", "age":"3" }
+	]
+
+	"LeadCard" : [
+	{"name":"Lead1", "Req":[2,0,2,1,0,0,7], "Imm":[2,0,2,1,0,0,7] },
+	{"name":"Lead2", "Req":[2,0,2,1,0,0,7], "Imm":[2,0,2,1,0,0,7] }
+	]
+       
 }
