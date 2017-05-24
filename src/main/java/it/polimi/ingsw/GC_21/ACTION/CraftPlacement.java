@@ -25,6 +25,12 @@ public class CraftPlacement extends PlacementAction {
 		super(playerInAction, actionValue, selectedFamilyMember, multipleActionSpace, servantsToConvert);
 		this.craftType = craftType;
 	}
+	
+	public static CraftPlacement factoryCraftPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember,
+			CraftArea craftArea, Servants servantsToConvert, CraftType craftType, MultipleActionSpace multipleActionSpace) {
+		
+		
+	}
 
 	@Override
     public boolean checkPlaceRequirement() {

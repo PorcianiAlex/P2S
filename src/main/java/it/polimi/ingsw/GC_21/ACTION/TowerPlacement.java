@@ -25,13 +25,11 @@ public class TowerPlacement extends PlacementAction {
 	
 	
 	private TowerPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember, 
-	     Servants servantsToConvert, Board board, Tower selectedTower, Floor selectedFloor) {
-		super(playerInAction, actionValue, selectedFamilyMember, s ,servantsToConvert, board);
+	           Servants servantsToConvert, Board board, Tower selectedTower, Floor selectedFloor, 
+	           SingleActionSpace selectedTowerActionSpace) {
+		super(playerInAction, actionValue, selectedFamilyMember, selectedTowerActionSpace, servantsToConvert, board);
 		this.selectedTower = selectedTower;
 		this.selectedFloor = selectedFloor;
-		
-		
-		
 	}
 	
 	public static TowerPlacement factoryTowerPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember, 
@@ -39,8 +37,9 @@ public class TowerPlacement extends PlacementAction {
 		Tower selectedTower = board.getSpecificTower(towerType);
 		Floor selectedFloor = selectedTower.getFloors()[floorNumber];
 		SingleActionSpace selectedTowerActionSpace = selectedFloor.getSingleActionSpace();
-		TowerPlacement towerPlacement = new TowerPlacement(playerInAction, actionValue, selectedFamilyMember, servantsToConvert, board, selectedTower, selectedFloor)
-		
+		TowerPlacement towerPlacement = new TowerPlacement(playerInAction, actionValue, selectedFamilyMember, servantsToConvert,
+				board, selectedTower, selectedFloor, selectedTowerActionSpace);
+		return towerPlacement;
 	}
 	
 	
