@@ -12,9 +12,7 @@ public class ChangeFamilyMemberValue extends Immediate {
 		super(rewards);
 		this.newFamilyMemberValue = newFamilyMemberValue;
 	}
-	
-	
-	
+
 	public FamilyMember chooseFamilyMember(Player player){
 		int i=0;
 		return player.getFamily().get(i);

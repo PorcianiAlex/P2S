@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
+import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.Immediate;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
@@ -8,21 +9,30 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 public class ActionSpace {
 
 	protected int requiredDice;
-	protected final Effect actionSpaceEffect;
-<<<<<<< Updated upstream
+	protected Effect actionSpaceEffect;
 	protected boolean Busy;
-=======
->>>>>>> Stashed changes
-	
+
 	public ActionSpace(int requiredDice, Immediate actionSpaceEffect) {
 		this.requiredDice = requiredDice;
 		this.actionSpaceEffect = actionSpaceEffect;
 		this.Busy = false;
 	}
 	
+	
+	public void setActionSpaceEffect(Effect actionSpaceEffect) {
+		this.actionSpaceEffect = actionSpaceEffect;
+	}
 
-	public void callSpaceEffect(Player playerInAction){
-		actionSpaceEffect.activateEffect(playerInAction);
+
+
+	@Override
+	public String toString() {
+		return  " requiredDice=" + requiredDice + ", Busy=" + Busy + "]";
+	}
+
+
+	public void callSpaceEffect(Player playerInAction, Action action){
+		actionSpaceEffect.activateEffect(playerInAction, action);
 	}
 	
 	

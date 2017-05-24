@@ -78,8 +78,7 @@ public  class Card {
 
 	@Override
 	public String toString() {
-		return "Card [name=" + name + ", requirements=" + requirements + ", permanentEffect=" + permanentEffect
-				+ ", immediateEffect=" + immediateEffect + "]";
+		return "Card [name=" + name + "]";
 	}
 
 	

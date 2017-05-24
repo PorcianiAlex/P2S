@@ -1,15 +1,18 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
+import it.polimi.ingsw.GC_21.EFFECT.Convert;
+import it.polimi.ingsw.GC_21.EFFECT.ConvertPrivilege;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.Immediate;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Privileges;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 
 public class CouncilPalace {
 	private MultipleActionSpace multipleActionSpace;
 	
 	public CouncilPalace() {
-		//TODO: CREATE THE RIGHT COUNCIL PALACE!!!
-		super();
+		multipleActionSpace = new MultipleActionSpace(1, new ConvertPrivilege(new Possession(1, 0, 0, 0, 0, 0, 0), new Privileges(1)));
 	}
 
 	public MultipleActionSpace getMultipleActionSpace() {
@@ -25,5 +28,17 @@ public class CouncilPalace {
 		// TODO - implement CouncilPalace.callImmediateEffect
 		throw new UnsupportedOperationException();
 	}
+
+	public CouncilPalace(MultipleActionSpace multipleActionSpace) {
+		super();
+		this.multipleActionSpace = multipleActionSpace;
+	}
+
+	@Override
+	public String toString() {
+		return "CouncilPalace:[" + multipleActionSpace + "]";
+	}
+	
+	
 
 }

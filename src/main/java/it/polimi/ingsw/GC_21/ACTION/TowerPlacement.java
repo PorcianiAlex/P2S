@@ -16,12 +16,9 @@ import it.polimi.ingsw.GC_21.PLAYER.PersonalCardPlace;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class TowerPlacement extends PlacementAction {
-    
 	private final Floor selectedFloor;
 	private final Tower selectedTower;
-	
-	
-	
+
 	public TowerPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember,
 			 Floor selectedFloor, Tower selectedTower, Servants servantsToConvert) {
 		super(playerInAction, actionValue, selectedFamilyMember, selectedFloor.getSingleActionSpace(), servantsToConvert);

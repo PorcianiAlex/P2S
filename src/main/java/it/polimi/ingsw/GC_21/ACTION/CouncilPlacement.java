@@ -12,4 +12,7 @@ public class CouncilPlacement extends PlacementAction {
 			CouncilPalace councilPalace, Servants servantsToConvert) {
 		super(playerInAction, actionValue, selectedFamilyMember, councilPalace.getMultipleActionSpace(), servantsToConvert);
 	}
+	
+	
+	
 }

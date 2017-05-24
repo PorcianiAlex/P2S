@@ -23,6 +23,9 @@ public class Possession {
 	}
 
 	public boolean compare(Possession possession){
+		if (possession == null){
+			return true;
+		}
 		if(this.coins.compare(possession.coins) &&
 				this.woods.compare(possession.woods) &&
 				this.stones.compare(possession.stones) &&
@@ -38,6 +41,9 @@ public class Possession {
 	
 	//Return TRUE if I have enough of that item
 	public boolean compareItemToPossession(Item item){
+		if (item == null){
+			return true;
+		}
 		if (item instanceof Coins){
 			return (this.coins.getValue()>=item.getValue());
 		}
@@ -65,6 +71,9 @@ public class Possession {
 	}
 	
 	public void add(Possession possession2){
+		if (possession2 == null){
+			return;
+		}
 		this.coins.setValue(this.coins.getValue() + possession2.coins.getValue());
 		this.woods.setValue(this.woods.getValue() + possession2.woods.getValue());
 		this.stones.setValue(this.stones.getValue() + possession2.stones.getValue());
@@ -75,6 +84,9 @@ public class Possession {
 		}
 	
 	public void subtract(Possession possession2){
+		if (possession2 == null){
+			return;
+		}
 		this.coins.setValue(this.coins.getValue() - possession2.coins.getValue());
 		this.woods.setValue(this.woods.getValue() - possession2.woods.getValue());
 		this.stones.setValue(this.stones.getValue() - possession2.stones.getValue());
@@ -114,6 +126,9 @@ public class Possession {
 	}
 	
 	public void addItemToPossession(Item item){
+		if (item == null){
+			return;
+		}
 		if (item instanceof Coins){
 			this.coins.addItems(item);
 		}

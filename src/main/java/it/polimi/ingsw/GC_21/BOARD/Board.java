@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.FamilyMemberColor;
+import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 
 public class Board {
 
@@ -17,11 +18,9 @@ public class Board {
 	private CraftArea productionArea;
 	private CraftArea harvestArea;
 	
-	
-	
 	public Board() {
 		super();
-		this.dices = new Dice[3];
+		this.dices = Dice.factoryDices();
 		this.towers = Tower.factoryTowers(); 
 		this.marketArea = new MarketArea();
 		this.councilPalace = new CouncilPalace();
@@ -33,8 +32,7 @@ public class Board {
 
 
 	public void generateBoard(DevDeck territoryDeck, DevDeck buildingDeck, DevDeck characterDeck, DevDeck ventureDeck){
-		dices = Dice.generateDices();
-		towers = Tower.generateTowers();
+		dices = Dice.factoryDices();
 		towers[0].pickCards(territoryDeck);
 		towers[1].pickCards(buildingDeck);
 		towers[2].pickCards(characterDeck);
@@ -77,7 +75,9 @@ public class Board {
 	}
 
 	public void printBoard(){
-		System.out.println(dices.toString());
+		System.out.println(dices[0].toString());
+		System.out.println(dices[1].toString());
+		System.out.println(dices[2].toString());
 		System.out.println(towers[0].toString());
 		System.out.println(towers[1].toString());
 		System.out.println(towers[2].toString());
@@ -85,10 +85,13 @@ public class Board {
 		System.out.println(marketArea.toString());
 		System.out.println(councilPalace.toString());
 	}
-	
+
+
+
 	public static void main(String[] args) {
 		Board aaa = new Board();
 		aaa.printBoard();
+		
 	}
 
 	

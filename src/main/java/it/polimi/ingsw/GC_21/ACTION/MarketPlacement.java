@@ -21,6 +21,5 @@ public class MarketPlacement extends PlacementAction {
 		SingleActionSpace cell = (SingleActionSpace) selectedActionSpace;
 		return super.checkPlaceRequirement() &&
 			   !cell.isBusy();
-			   
 	}
 }

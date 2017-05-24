@@ -10,9 +10,8 @@ public abstract class Action {
 	}
 
 	public void Execute() {
-		
 	}
-
+	
 	public Player getPlayerInAction() {
 		return playerInAction;
 	}
