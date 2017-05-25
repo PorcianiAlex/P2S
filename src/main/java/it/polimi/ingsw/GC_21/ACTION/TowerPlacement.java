@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_21.ACTION;
 
 import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Board;
-import it.polimi.ingsw.GC_21.BOARD.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.BOARD.Floor;
 import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
 import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
@@ -14,6 +13,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Ventures;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
+import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
 import it.polimi.ingsw.GC_21.PLAYER.PersonalCardPlace;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
@@ -23,8 +23,8 @@ public class TowerPlacement extends PlacementAction {
 	private final Tower selectedTower;
 
 	protected TowerPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember,
-			 Floor selectedFloor, Tower selectedTower, Servants servantsToConvert, Board board) {
-		super(playerInAction, actionValue, selectedFamilyMember, selectedFloor.getSingleActionSpace(), servantsToConvert, board);
+			 Floor selectedFloor, Tower selectedTower, SingleActionSpace selectedActionSpace, Servants servantsToConvert, Board board) {
+		super(playerInAction, actionValue, selectedFamilyMember, selectedActionSpace, servantsToConvert, board);
 		this.selectedFloor = selectedFloor;
 		this.selectedTower = selectedTower;
 	}
@@ -33,12 +33,17 @@ public class TowerPlacement extends PlacementAction {
 		    DevCardType towerType, int floorNumber, int servantsNumber, Board board){
 		Tower selectedTower = board.getSpecificTower(towerType);
 		Floor selectedFloor = selectedTower.getFloors()[floorNumber];
-		SingleActionSpace selectedTowerActionSpace = selectedFloor.getSingleActionSpace();
+		SingleActionSpace selectedActionSpace = selectedFloor.getSingleActionSpace();
 		FamilyMember selectedFamilyMember = playerInAction.getSpecificFamilyMember(selectedFamilyMemberColor);
 		int actionValue = selectedFamilyMember.getDiceAssociated().getValue();
 		Servants servantsToConvert = new Servants(servantsNumber);
-		TowerPlacement towerPlacement = new TowerPlacement(playerInAction, actionValue , selectedFamilyMember, selectedFloor, selectedTower, servantsToConvert, board);
+		TowerPlacement towerPlacement = new TowerPlacement(playerInAction, actionValue , selectedFamilyMember, selectedFloor, selectedTower, selectedActionSpace, servantsToConvert, board);
 		return towerPlacement;
+	}
+	
+	public static TowerPlacement factoryTowerPlacementWithNoFamilyMember(Player playerInAction, DevCardType towerType, int floorNumber, Board board) {
+		return factoryTowerPlacement(playerInAction, null, towerType, floorNumber, 0, board);
+		
 	}
 	
 	
@@ -56,7 +61,6 @@ public class TowerPlacement extends PlacementAction {
 	public void Execute() {
 		// TODO Auto-generated method stub
 		 super.Execute();
-		 selectedFloor.getSingleActionSpace().callIBonusEffect();
 		 pay(selectedFloor.getDevCardPlace().getCard().getRequirements(), discount, overcharge);
 		 //TODO influences of effects
 	}

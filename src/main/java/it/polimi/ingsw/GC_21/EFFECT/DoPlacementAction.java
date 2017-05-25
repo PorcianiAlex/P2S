@@ -1,9 +1,8 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
-import it.polimi.ingsw.GC_21.ACTION.Action;
+import it.polimi.ingsw.GC_21.ACTION.*;
 import it.polimi.ingsw.GC_21.ACTION.CraftAction;
 import it.polimi.ingsw.GC_21.ACTION.PlacementAction;
-import it.polimi.ingsw.GC_21.ACTION.PlacementActionWithNoFamilyMember;
 import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.BOARD.Tower;
@@ -34,7 +33,7 @@ public class DoPlacementAction extends Immediate {
 		return devCardType;
 	}
 	
-	@Override
+	/*@Override
 	public void activateEffect(Player player, Action placementAction) {
 		super.activateEffect(player, placementAction);
 		PlacementAction placementAction2 = (PlacementAction) placementAction;
@@ -44,8 +43,8 @@ public class DoPlacementAction extends Immediate {
 		else {
 			PlacementActionWithNoFamilyMember placementActionWithNoFamilyMember = new PlacementActionWithNoFamilyMember(player, actionValueInfluencer + actionValueBonus, null, null, null, null, devCardType, discount);
 
-		}
-	}
+		}//TODO recall the controller to decide the parameter to pass to the factoryTowerPlacement
+	}*/
 	
 
 }

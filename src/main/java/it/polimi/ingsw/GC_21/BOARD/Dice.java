@@ -2,6 +2,8 @@ package it.polimi.ingsw.GC_21.BOARD;
 
 import java.util.Random;
 
+import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
+
 public class Dice {
 
 	private FamilyMemberColor familyMemberColor;

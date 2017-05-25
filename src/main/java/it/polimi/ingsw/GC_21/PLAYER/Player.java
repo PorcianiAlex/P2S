@@ -3,7 +3,6 @@ package it.polimi.ingsw.GC_21.PLAYER;
 import java.util.*;
 
 import it.polimi.ingsw.GC_21.BOARD.Color;
-import it.polimi.ingsw.GC_21.BOARD.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 
 public class Player {
@@ -66,7 +65,7 @@ public class Player {
 			}
 		}
 		return null;
-	}
+	}//if you pass null to the method it returns null as the family member doesn't exist 
 
 	
 
