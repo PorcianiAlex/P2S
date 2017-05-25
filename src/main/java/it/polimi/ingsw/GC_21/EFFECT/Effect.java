@@ -1,30 +1,35 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
-import java.nio.channels.NonWritableChannelException;
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.Scanner;
 
 import javax.sound.midi.Soundbank;
 
+import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Privileges;
+import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class ConvertPrivilege extends Immediate {
-	private Privileges privileges;
-	private boolean coinsEarned;
-	private boolean woodsAndStonesEarned;
-	private boolean servantsEarned;
-	private boolean militaryPointsEarned;
-	private boolean faithPointsEarned;
-	private final Possession woodsAndStonesReward;
-	private final Possession servantsReward;
-	private final Possession coinsReward;
-	private final Possession militaryPointsReward;
-	private final Possession faithPointsReward;
+public  class Effect {
+	protected Possession rewards;
+	protected Privileges privileges;
+	protected boolean coinsEarned;
+	protected boolean woodsAndStonesEarned;
+	protected boolean servantsEarned;
+	protected boolean militaryPointsEarned;
+	protected boolean faithPointsEarned;
+	protected final Possession woodsAndStonesReward;
+	protected final Possession servantsReward;
+	protected final Possession coinsReward;
+	protected final Possession militaryPointsReward;
+	protected final Possession faithPointsReward;
 	
-	public ConvertPrivilege(Possession rewards, Privileges privileges) {
-		super(rewards);
-		this.privileges = privileges;
+	//TO DO: IMPLEMENT INFLUENCE ON ACTION; THE ACTIVATE MUST TAKE THE ACTION IN INPUT TOO!!
+	
+	public Effect(Possession rewards, int privileges) {
+		this.rewards = rewards;
+		this.privileges = new Privileges(privileges);
 		this.woodsAndStonesReward = new Possession(0, 1, 1, 0, 0, 0, 0);
 		this.servantsReward = new Possession(0,0,0,2,0,0,0);
 		this.coinsReward = new Possession(2, 0, 0, 0, 0, 0, 0);
@@ -32,25 +37,23 @@ public class ConvertPrivilege extends Immediate {
 		this.faithPointsReward = new Possession(0, 0, 0, 0, 1, 0, 0);
 	}
 
-	/*@Override
-	public void activateEffect(Player player) {
-		/* The method ask the player to choose the reward, if it's valid then 
-		he gets it, if it's not then another cycle is done*/
-		/*for (int i = this.privileges.getValue(); i > 0; i--) {
-			Possession tmpPossession = this.chooseReward();
-			if (validConversion(tmpPossession) == true ){
-				this.rewards.add(tmpPossession);
-				setEarnedReward(tmpPossession);	
-			}
-			else {
-				i++;
-			}
-			}
-		super.activateEffect(player);
-	}*/
 
 	
-	
+	public void activateEffect(Player player, Action action) {
+		if (privileges.getValue()!=0){
+			for (int i = this.privileges.getValue(); i > 0; i--) {
+				Possession tmpPossession = this.chooseReward();
+				if (validConversion(tmpPossession) == true ){
+					this.rewards.add(tmpPossession);
+					setEarnedReward(tmpPossession);	
+				}
+				else {
+					i++;
+				}
+				}
+		}
+		this.earnRewards(player, rewards);
+	}
 	public Possession chooseReward(){
 		Scanner in = new Scanner(System.in);
 		System.out.println("Choose your reward!Type:");
@@ -119,17 +122,23 @@ public class ConvertPrivilege extends Immediate {
 		return true;
 	}
 	
-	@Override
-	public String toString() {
-		return "This effect gives the following reward=" + rewards.toString() + ". Now you have:" + privileges.getValue() + " privileges. Convert them!]";
+	public void payAndEarn(Player player, Possession rewards, Possession payment){
+		player.getMyPersonalBoard().payPossession(payment);
+		earnRewards(player, rewards);
 	}
 	
-	public static void main(String[] args) {
-		Possession rewards = new Possession(0, 0, 0, 0, 0, 11, 1);
-		Privileges privileges = new Privileges(3);
-		ConvertPrivilege convertPrivilege = new ConvertPrivilege(rewards, privileges);
-		System.out.println(convertPrivilege.toString());
-		
+	public void earnRewards(Player player, Possession rewards){
+		player.getMyPersonalBoard().getMyPossession().add(rewards);
+	}
+	
+	public Possession getRewards() {
+		return rewards;
 	}
 
+	@Override
+	public String toString() {
+		return "This effect gives the following reward=" + rewards.toString() + "]";
+	}
+	
+	
 }
