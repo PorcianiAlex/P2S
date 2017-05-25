@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_21.BOARD;
+package it.polimi.ingsw.GC_21.PLAYER;
 
 public enum FamilyMemberColor {
 Black, Orange, White, Neutral;

@@ -11,9 +11,9 @@ import it.polimi.ingsw.GC_21.ACTION.CraftAction;
 import it.polimi.ingsw.GC_21.ACTION.MarketPlacement;
 import it.polimi.ingsw.GC_21.ACTION.TowerPlacement;
 import it.polimi.ingsw.GC_21.BOARD.Color;
-import it.polimi.ingsw.GC_21.BOARD.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
+import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.controller.Controller;
 

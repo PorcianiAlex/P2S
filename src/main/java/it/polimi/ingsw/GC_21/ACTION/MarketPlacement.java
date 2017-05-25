@@ -2,11 +2,11 @@ package it.polimi.ingsw.GC_21.ACTION;
 
 import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Board;
-import it.polimi.ingsw.GC_21.BOARD.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.BOARD.MarketArea;
 import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
+import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class MarketPlacement extends PlacementAction {

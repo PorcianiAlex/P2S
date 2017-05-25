@@ -4,11 +4,11 @@ import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.BOARD.CraftArea;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
-import it.polimi.ingsw.GC_21.BOARD.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.BOARD.MultipleActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
+import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class CraftPlacement extends PlacementAction {
@@ -21,7 +21,7 @@ public class CraftPlacement extends PlacementAction {
 		this.craftType = craftType;
 		this.craftArea = board.getHarvestArea();
 	}
-	//TODO to correct
+	
 	public static CraftPlacement factoryCraftPlacement(Player playerInAction, FamilyMemberColor familyMemberColor,
 			Board board, int servantsNumber, CraftType craftType, String spaceType) {
 		FamilyMember selectedFamilyMember = playerInAction.getSpecificFamilyMember(familyMemberColor);
@@ -45,5 +45,6 @@ public class CraftPlacement extends PlacementAction {
 	public void Execute() {	
 		super.Execute();
 		CraftAction craftAction = new CraftAction(playerInAction, craftType, actionValue);
+		craftAction.Execute();
 	}
 }
