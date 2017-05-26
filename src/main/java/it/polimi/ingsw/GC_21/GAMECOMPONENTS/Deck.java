@@ -9,6 +9,12 @@ public class Deck {
 	protected CardType cardType;
     protected CardCreator cardCreator;
 	
+	
+    
+    public Deck() {
+    	cardCreator = new CardCreator();
+    }
+
 	public ArrayList<Card> getCards() {
 		return cards;
 	}

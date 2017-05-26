@@ -31,7 +31,7 @@ public class Game {
 	}
 	
 	public void executeGame() {
-		for (int i = 0; i < 3; i++) {
+		for (int i = 1; i < 4; i++) {
 			currentAge = new Age(i, this);
 			currentAge.executeAge();
 		}

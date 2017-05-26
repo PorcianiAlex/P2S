@@ -18,6 +18,7 @@ public class Turn {
 	public void executeView() {
 		for (int i = 0; i < game.getController().getRemoteViews().size(); i++) {
 			game.getController().getRemoteViews().get(i).input();
+			//e qui si blocca, giustamente dai!
 		}
 	}
 

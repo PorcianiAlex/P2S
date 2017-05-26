@@ -26,7 +26,7 @@ public class Age {
 	}
 	
 	public void executeAge() {
-		for (int i = 0; i < 2; i++) {
+		for (int i = 1; i < 3; i++) {
 			Round currentRound = new Round(i, game);
 			currentRound.executeRound();
 		}
@@ -38,6 +38,10 @@ public class Age {
 		territoryDeck = new DevDeck(DevCardType.Territory, ageNumber);
 		characterDeck = new DevDeck(DevCardType.Character, ageNumber);
 		ventureDeck = new DevDeck(DevCardType.Venture, ageNumber);
+		buildingDeck.shuffle();
+		territoryDeck.shuffle();
+		characterDeck.shuffle();
+		ventureDeck.shuffle();
 	}
 
 	public void checkExcomm() {

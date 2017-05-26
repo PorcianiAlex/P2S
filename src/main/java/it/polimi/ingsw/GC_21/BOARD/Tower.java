@@ -29,7 +29,7 @@ public class Tower {
 	
 	public void pickCards(DevDeck devDeck) {
 		for (int i = 0; i < floors.length; i++) {
-			floors[i].getDevCardPlace().setCard(devDeck.getSingleCard());;
+			floors[i].getDevCardPlace().setCard(devDeck.getSingleCard());
 		}
 	}
 	
@@ -70,11 +70,6 @@ public class Tower {
 	@Override
 	public String toString() {
 		return "Tower [devCardType=" + devCardType + ", floors=" + Arrays.toString(floors) + "]";
-	}
-	
-	public static void main(String[] args) {
-		Tower aa = new Tower(DevCardType.Building);
-		System.out.println(aa.toString());
 	}
 	
 }
