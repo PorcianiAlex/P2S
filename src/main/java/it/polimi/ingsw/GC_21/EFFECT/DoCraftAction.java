@@ -14,8 +14,8 @@ public class DoCraftAction extends Immediate {
 	protected int actionValueInfluencer;
 	protected int actionValueBonus;
 	
-	public DoCraftAction(Possession rewards, CraftType craftType, int actionValueInfluencer, int actionValueBonus) {
-		super(rewards);
+	public DoCraftAction(Possession rewards, CraftType craftType, int actionValueInfluencer, int actionValueBonus, int privileges) {
+		super(rewards, privileges);
 		this.craftType = craftType;
 		this.actionValueInfluencer = actionValueInfluencer;
 		this.actionValueBonus = actionValueBonus;

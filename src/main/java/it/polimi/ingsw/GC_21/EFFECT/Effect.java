@@ -1,14 +1,9 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
-import java.awt.image.AreaAveragingScaleFilter;
 import java.util.Scanner;
 
-import javax.sound.midi.Soundbank;
-
 import it.polimi.ingsw.GC_21.ACTION.Action;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Privileges;
-import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public  class Effect {

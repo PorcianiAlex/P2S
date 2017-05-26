@@ -8,8 +8,8 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 public class ChangeFamilyMemberValue extends Immediate {
 	private final int newFamilyMemberValue;
 
-	public ChangeFamilyMemberValue(Possession rewards, int newFamilyMemberValue) {
-		super(rewards);
+	public ChangeFamilyMemberValue(Possession rewards, int newFamilyMemberValue, int privileges) {
+		super(rewards, privileges);
 		this.newFamilyMemberValue = newFamilyMemberValue;
 	}
 

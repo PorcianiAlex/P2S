@@ -17,8 +17,8 @@ public class DoPlacementAction extends Immediate {
 	private final DevCardType devCardType;
 	private final Possession discount;	
 	
-	public DoPlacementAction(Possession rewards, int actionValueInfluencer, int actionValueBonus, DevCardType devCardType, Possession discount) {
-		super(rewards);
+	public DoPlacementAction(Possession rewards, int privileges, int actionValueInfluencer, int actionValueBonus, DevCardType devCardType, Possession discount) {
+		super(rewards, privileges);
 		this.actionValueInfluencer = actionValueInfluencer;
 		this.actionValueBonus = actionValueBonus;
 		this.devCardType = devCardType;

@@ -2,6 +2,9 @@ package it.polimi.ingsw.GC_21.EFFECT;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
+
+import java.util.IntSummaryStatistics;
+
 import javax.annotation.Resource;
 import javax.jws.soap.SOAPBinding;
 
@@ -25,9 +28,9 @@ public class ForEachGet extends Immediate{
 	
 	/*This effect is supposed to convert card OR resource, not both.
 	So one of forEachCard and forEachResource MUST be set to NULL*/
-	public ForEachGet(Possession rewards, DevCardType forEachCard, int forEachCardIndex, ResourceType forEachResource,
+	public ForEachGet(Possession rewards, int privileges, DevCardType forEachCard, int forEachCardIndex, ResourceType forEachResource,
 			int forEachResourceIndex, ResourceType resourceYouGet, int gettingIndex, boolean cardConversion) {
-		super(rewards);
+		super(rewards, privileges);
 		this.forEachCard = forEachCard;
 		this.forEachCardIndex = forEachCardIndex;
 		this.forEachResource = forEachResource;
@@ -37,17 +40,6 @@ public class ForEachGet extends Immediate{
 		CardConversion = cardConversion;
 	}
 
-	public ForEachGet(Possession rewards, ResourceType forEachResource,
-			int forEachResourceIndex, ResourceType resourceYouGet, int gettingIndex, boolean cardConversion) {
-		super(rewards);
-		this.forEachCard = null;
-		this.forEachCardIndex = 0;
-		this.forEachResource = forEachResource;
-		this.forEachResourceIndex = forEachResourceIndex;
-		this.resourceYouGet = resourceYouGet;
-		GettingIndex = gettingIndex;
-		CardConversion = cardConversion;
-	}
 
 
 	@Override

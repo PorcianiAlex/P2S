@@ -9,7 +9,7 @@ import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 public class MultipleActionSpace extends ActionSpace {
 	private ArrayList<FamilyMember> familyMembersLocated= new ArrayList<FamilyMember>();
 
-	public MultipleActionSpace(int requiredDice,Immediate effect) {
+	public MultipleActionSpace(int requiredDice,Effect effect) {
 		super(requiredDice, effect);
 	}
 	

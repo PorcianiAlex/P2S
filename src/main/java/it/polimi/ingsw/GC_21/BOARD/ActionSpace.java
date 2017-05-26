@@ -12,7 +12,7 @@ public class ActionSpace {
 	protected Effect actionSpaceEffect;
 	protected boolean Busy;
 
-	public ActionSpace(int requiredDice, Immediate actionSpaceEffect) {
+	public ActionSpace(int requiredDice, Effect actionSpaceEffect) {
 		this.requiredDice = requiredDice;
 		this.actionSpaceEffect = actionSpaceEffect;
 		this.Busy = false;

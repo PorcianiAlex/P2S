@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_21.EFFECT;
 
 import java.awt.Choice;
 import java.util.Scanner;
+import java.util.function.IntPredicate;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Item;
@@ -14,8 +15,8 @@ public class Convert extends Immediate {
 	private final Possession toPay2;
 	private final Possession toTake2;
 	
-	public Convert(Possession rewards, Possession toPay1, Possession toTake1, Possession toPay2, Possession toTake2) {
-		super(rewards);
+	public Convert(Possession rewards, Possession toPay1, Possession toTake1, Possession toPay2, Possession toTake2, int privileges) {
+		super(rewards, privileges);
 		this.toPay1 = toPay1;
 		this.toTake1 = toTake1;
 		this.toPay2 = toPay2;
@@ -94,16 +95,5 @@ public class Convert extends Immediate {
 		
 		}
 	
-	public static void main(String[] args) {
-		Possession toPay1 = new Possession(0, 0, 0, 0, 1, 1, 20);
-		Possession toTake1 = new Possession(0, 2, 2, 0, 1, 1, 2);
-		Possession toPay2 = new Possession(0, 0, 0, 0, 1, 1, 2);
-		Possession toTake2 = new Possession(0,11, 0, 0, 1, 1, 2);
-		Possession rewards = new Possession(0, 33, 0, 0, 0, 0, 0);
-		Convert convert = new Convert(rewards, toPay1, toTake1, null, null);
 
-	}
-
-	
-	
 }

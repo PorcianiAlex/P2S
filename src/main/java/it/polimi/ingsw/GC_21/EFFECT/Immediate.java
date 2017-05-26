@@ -4,8 +4,8 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 
 public class Immediate extends Effect {
 
-	public Immediate(Possession rewards) {
-		super(rewards);
+	public Immediate(Possession rewards, int privileges) {
+		super(rewards, privileges);
 	}
 	
 }
