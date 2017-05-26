@@ -29,7 +29,7 @@ public class ForEachGet extends Immediate{
 	/*This effect is supposed to convert card OR resource, not both.
 	So one of forEachCard and forEachResource MUST be set to NULL*/
 	public ForEachGet(Possession rewards, int privileges, DevCardType forEachCard, int forEachCardIndex, ResourceType forEachResource,
-			int forEachResourceIndex, ResourceType resourceYouGet, int gettingIndex, boolean cardConversion) {
+			int forEachResourceIndex, ResourceType resourceYouGet, int gettingIndex, boolean cardConversion) throws IllegalArgumentException {
 		super(rewards, privileges);
 		this.forEachCard = forEachCard;
 		this.forEachCardIndex = forEachCardIndex;
@@ -38,6 +38,9 @@ public class ForEachGet extends Immediate{
 		this.resourceYouGet = resourceYouGet;
 		GettingIndex = gettingIndex;
 		CardConversion = cardConversion;
+		if (forEachCard!=null & forEachResource!=null){
+			throw new IllegalArgumentException("Cannot instantiate this effect!");
+		}
 	}
 
 
@@ -52,7 +55,6 @@ public class ForEachGet extends Immediate{
 			Possession rewards = new Possession(0,0,0,0,0,0,0);
 			Item rewardItem = Item.factoryItem(cardMultiplier * GettingIndex, resourceYouGet);
 			rewards.addItemToPossession(rewardItem);
-			earnRewards(player, rewards);
 		}
 		else{
 			int playerResourceNumber = player.getMyPersonalBoard().getMyPossession().getRequestedItem(forEachResource).getValue();

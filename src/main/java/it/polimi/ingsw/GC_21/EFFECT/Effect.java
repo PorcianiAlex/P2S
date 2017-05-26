@@ -24,6 +24,9 @@ public  class Effect {
 	
 	public Effect(Possession rewards, int privileges) {
 		this.rewards = rewards;
+		if (rewards == null){
+			this.rewards = new Possession(0, 0, 0, 0, 0, 0, 0);
+		}
 		this.privileges = new Privileges(privileges);
 		this.woodsAndStonesReward = new Possession(0, 1, 1, 0, 0, 0, 0);
 		this.servantsReward = new Possession(0,0,0,2,0,0,0);
