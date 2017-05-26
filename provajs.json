@@ -1,6 +1,6 @@
 {
 	"DevCard" : [
-	{"DevType":"Building" "name":"Dev1", "age":"3", "Req":[2,0,2,1,0,0,7], "Imm":[2,0,2,1,0,0,7], "SecTow":"Ventures", "secActionValue":"5" },
+	{"DevType":"Building" "name":"Dev1", "age":"3", "Req":[2,0,2,1,0,0,7], "Imm":[2,0,2,1,0,0,7], "EffType":"ForEachGet", "ForEachCard":"null", "ForEachCardIndex":"0", "ForEachResource":"null", "ForEachResourceIndex":"0", "resourceYouGet":"null", "gettingIndex":"0", "cardConversion":"false" },
 	{"DevType":"Building" "name":"Dev2", "age":"3", "Req":[2,0,2,1,0,0,7], "Imm":[2,0,2,1,0,0,7], "CraftType":"Harvest", "CraftValue":"3" }
 	]
 	

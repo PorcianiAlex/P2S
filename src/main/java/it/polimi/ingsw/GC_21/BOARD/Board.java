@@ -31,8 +31,7 @@ public class Board {
 
 
 
-	public void generateBoard(DevDeck territoryDeck, DevDeck buildingDeck, DevDeck characterDeck, DevDeck ventureDeck){
-		dices = Dice.factoryDices();
+	public void placeCardOnBoard(DevDeck territoryDeck, DevDeck buildingDeck, DevDeck characterDeck, DevDeck ventureDeck){
 		towers[0].pickCards(territoryDeck);
 		towers[1].pickCards(buildingDeck);
 		towers[2].pickCards(characterDeck);

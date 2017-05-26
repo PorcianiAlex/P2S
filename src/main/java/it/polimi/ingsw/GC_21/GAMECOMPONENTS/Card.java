@@ -13,6 +13,7 @@ public  class Card {
 	private Permanent permanentEffect ;
 	private Immediate immediateEffect;
 
+
 	public Card(String name) {
 		this.name=name;
 	}

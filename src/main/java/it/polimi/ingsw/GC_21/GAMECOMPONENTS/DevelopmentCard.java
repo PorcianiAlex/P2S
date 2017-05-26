@@ -7,7 +7,6 @@ public class DevelopmentCard extends Card {
 	
 	private int age;
 	private DevCardType devCardType;
-	private CardPlace cardPlace;
 
 	
 	public DevelopmentCard(String name) {
@@ -35,15 +34,6 @@ public class DevelopmentCard extends Card {
 		this.devCardType = devCardType;
 	}
 
-
-	public CardPlace getCardPlace() {
-		return cardPlace;
-	}
-
-
-	public void setCardPlace(CardPlace cardPlace) {
-		this.cardPlace = cardPlace;
-	}
 
 
 	@Override
