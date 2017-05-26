@@ -4,10 +4,13 @@ import java.awt.Choice;
 import java.util.Scanner;
 import java.util.function.IntPredicate;
 
+import org.junit.internal.Throwables;
+
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Item;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
+
 
 public class Convert extends Immediate {
 	private final Possession toPay1;
@@ -21,6 +24,7 @@ public class Convert extends Immediate {
 		this.toTake1 = toTake1;
 		this.toPay2 = toPay2;
 		this.toTake2 = toTake2;
+		
 	}
 
 	@Override
@@ -70,10 +74,10 @@ public class Convert extends Immediate {
 
 	public boolean chooseConversion(Player player) {
 		Scanner in = new Scanner(System.in);
-		System.out.println("Choose your conversion! Type 1 for Conversion 1, type 2 for Conversion 2!");
+		System.out.println("Choose your conversion! Type 0 for Conversion 1, type 1 for Conversion 2!");
 		int choice = in.nextInt();
-		if (choice == 1) { return true; }
-		if (choice == 0) { return false; }
+		if (choice == 0) { return true; }
+		if (choice == 1) { return false; }
 		else {
 			System.out.println("Invalid input, try again!");
 			return chooseConversion(player);

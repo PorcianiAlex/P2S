@@ -12,7 +12,7 @@ public class Possession {
 	private VictoryPoints victoryPoints;
 	
 	public Possession(int coins, int woods, int stones, int servants, int faithPoints,
-			int militaryPoints, int victoryPoints) {
+			int militaryPoints, int victoryPoints) throws IllegalArgumentException {
 		this.coins = new Coins(coins);
 		this.woods = new Woods(woods);
 		this.stones = new Stones(stones);
@@ -20,7 +20,26 @@ public class Possession {
 		this.faithPoints = new FaithPoints(faithPoints);
 		this.militaryPoints = new MilitaryPoints(militaryPoints);
 		this.victoryPoints = new VictoryPoints(victoryPoints);
+		if(coins<0 || woods <0 || stones <0 || servants <0 || faithPoints <0 || militaryPoints <0 || victoryPoints<0){
+			throw new IllegalArgumentException("Cannot instantiate this Possession!");
+
+		}
 	}
+	
+	
+	public boolean equals(Possession possession2) {
+		if (this.coins.equals(possession2.coins) &&
+			this.woods.equals(possession2.woods) &&
+			this.stones.equals(possession2.stones) &&
+			this.servants.equals(possession2.servants) &&
+			this.faithPoints.equals(possession2.faithPoints) &&
+			this.militaryPoints.equals(possession2.militaryPoints) &&
+			this.victoryPoints.equals(possession2.victoryPoints)){
+			return true;
+		}
+		return false;
+	}
+
 
 	public boolean compare(Possession possession){
 		if (possession == null){
@@ -83,6 +102,29 @@ public class Possession {
 		this.faithPoints.setValue(this.faithPoints.getValue() + possession2.faithPoints.getValue());
 		}
 	
+	public void setNegativesToZero(){
+		if (coins.getValue()<0){
+			coins.setValue(0);
+		}if (woods.getValue()<0){
+			woods.setValue(0);
+		}
+		if (stones.getValue()<0){
+			stones.setValue(0);
+		}if (servants.getValue()<0){
+			servants.setValue(0);
+		}
+		if (victoryPoints.getValue()<0){
+			victoryPoints.setValue(0);
+		}
+		if (militaryPoints.getValue()<0){
+			militaryPoints.setValue(0);
+		}
+		if (faithPoints.getValue()<0){
+			faithPoints.setValue(0);
+		}
+		
+	}
+	
 	public void subtract(Possession possession2){
 		if (possession2 == null){
 			return;
@@ -94,7 +136,7 @@ public class Possession {
 		this.victoryPoints.setValue(this.victoryPoints.getValue() - possession2.victoryPoints.getValue());
 		this.militaryPoints.setValue(this.militaryPoints.getValue() - possession2.militaryPoints.getValue());
 		this.faithPoints.setValue(this.faithPoints.getValue() - possession2.faithPoints.getValue());
-		//TO DO: set all negative values to 0;
+		this.setNegativesToZero();
 		}
 	
 	public Item getRequestedItem(ResourceType resourceType){
