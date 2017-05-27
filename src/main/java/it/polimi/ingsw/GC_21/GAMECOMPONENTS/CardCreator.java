@@ -34,6 +34,7 @@ public class CardCreator {
            	JSONObject jsonLineItem = (JSONObject) o;       
 	    	if(Integer.parseInt(jsonLineItem.get("age").toString())==age && devCardType.equals(DevCardType.valueOf(jsonLineItem.get("DevType").toString()))){              	
            	 DevelopmentCard devCardCreating = new DevelopmentCard((String) jsonLineItem.get("name"));
+           	 devCardCreating.setCraftValue(Integer.parseInt(jsonLineItem.get("craftValue").toString()));
            	 devCardCreating.setAge(age);
          	 devCardCreating.setDevCardType(devCardType);
          	 this.addImm(devCardCreating, jsonLineItem);
