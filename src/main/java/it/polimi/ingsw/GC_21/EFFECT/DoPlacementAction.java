@@ -42,18 +42,18 @@ public class DoPlacementAction extends Immediate {
 		super.activateEffect(player, placementAction);
 		PlacementAction placementAction2 = (PlacementAction) placementAction;
 		int floor = player.getMyView().selectFloor();
-		Board board = player.getMyView().getController().getModelGame().getBoard();
-		SingleActionSpace selectedActionSpace = player.getMyView().getController().getModelGame().getBoard().getSpecificTower(devCardType).getFloors()[floor].getSingleActionSpace();
+		Board board = player.getGame().getBoard();
+		SingleActionSpace selectedActionSpace = player.getGame().getBoard().getSpecificTower(devCardType).getFloors()[floor].getSingleActionSpace();
 		int servantsToConvert = player.getMyView().chooseHowManyServants();
 		if (actionValueInfluencer==0){
 			int newActionValue = placementAction2.getActionValue() + actionValueBonus;
 			PlacementAction rewardAction = new PlacementAction(player, newActionValue, null, selectedActionSpace, null, board);
-			player.getMyView().getController().updateModel(rewardAction);
+			player.getGame().getController().update(rewardAction);
 		}
 		else  {
 			int newActionValue = actionValueInfluencer + actionValueBonus;
 			PlacementAction rewardAction = new PlacementAction(player, newActionValue, null, selectedActionSpace, null, board);
-			player.getMyView().getController().updateModel(rewardAction);
+			player.getGame().getController().update(rewardAction);
 
 		}
 	}

@@ -90,6 +90,15 @@ public class Player {
 		this.familyMembers = familyMembers;
 	}
 
+	
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
 	@Override
 	public String toString() {
 		return "Player [name=" + name + ", playerColor=" + playerColor + "]";
