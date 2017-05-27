@@ -159,13 +159,26 @@ public class CardCreator {
 		                		Integer.parseInt(discountArray.get(4).toString()), Integer.parseInt(discountArray.get(5).toString()), 
 		                	    Integer.parseInt(discountArray.get(6).toString()));
 						
-						DoPlacementAction doPlacementAction = new DoPlacementAction(Rew, privileges, Integer.parseInt(jsonLineItem.get("ActionValueInf").toString()), Integer.parseInt(jsonLineItem.get("ActionValueBonus").toString()), DevCardType.valueOf(jsonLineItem.get("DevCardType").toString()), discount);
+						DoPlacementAction doPlacementAction;
+						if("null".equals(jsonLineItem.get("DevCardType").toString())) {
+							doPlacementAction = new DoPlacementAction(Rew, privileges, Integer.parseInt(jsonLineItem.get("ActionValueInf").toString()), Integer.parseInt(jsonLineItem.get("ActionValueBonus").toString()), null, discount);
+						}
+						doPlacementAction = new DoPlacementAction(Rew, privileges, Integer.parseInt(jsonLineItem.get("ActionValueInf").toString()), Integer.parseInt(jsonLineItem.get("ActionValueBonus").toString()), DevCardType.valueOf(jsonLineItem.get("DevCardType").toString()), discount);
 						cardcreating.setImmediateEffect(doPlacementAction);
 						break;
 					
 					case "forEachGet": 
+						ForEachGet forEachGet;
 						
-						ForEachGet forEachGet = new ForEachGet(Rew, privileges, DevCardType.valueOf(jsonLineItem.get("ForEachCard").toString()), Integer.parseInt(jsonLineItem.get("ForEachCardIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ForEachResource").toString()), Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ResourceYouGet").toString()), Integer.parseInt(jsonLineItem.get("GettingIndex").toString()), Boolean.valueOf(jsonLineItem.get("CardConversion").toString()));
+						if("null".equals((jsonLineItem.get("ForEachCard").toString()))){
+							 forEachGet = new ForEachGet(Rew, privileges, null, Integer.parseInt(jsonLineItem.get("ForEachCardIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ForEachResource").toString()), Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ResourceYouGet").toString()), Integer.parseInt(jsonLineItem.get("GettingIndex").toString()), Boolean.valueOf(jsonLineItem.get("CardConversion").toString()));
+						}
+						else if ("null".equals((jsonLineItem.get("ForEachResource").toString()))) {
+							 forEachGet = new ForEachGet(Rew, privileges, DevCardType.valueOf(jsonLineItem.get("ForEachCard").toString()), Integer.parseInt(jsonLineItem.get("ForEachCardIndex").toString()), null, Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ResourceYouGet").toString()), Integer.parseInt(jsonLineItem.get("GettingIndex").toString()), Boolean.valueOf(jsonLineItem.get("CardConversion").toString()));
+
+						}
+						else {  forEachGet = new ForEachGet(Rew, privileges, DevCardType.valueOf(jsonLineItem.get("ForEachCard").toString()), Integer.parseInt(jsonLineItem.get("ForEachCardIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ForEachResource").toString()), Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ResourceYouGet").toString()), Integer.parseInt(jsonLineItem.get("GettingIndex").toString()), Boolean.valueOf(jsonLineItem.get("CardConversion").toString()));
+						} 
 						cardcreating.setImmediateEffect(forEachGet);
 						break;
 					
