@@ -50,6 +50,15 @@ public class FamilyMember {
 	public void setFamilyMemberColor(FamilyMemberColor familyMemberColor) {
 		this.familyMemberColor = familyMemberColor;
 	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+	
 	
 	
 

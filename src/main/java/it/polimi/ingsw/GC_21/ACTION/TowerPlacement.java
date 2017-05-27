@@ -34,7 +34,7 @@ public class TowerPlacement extends PlacementAction {
 	public static TowerPlacement factoryTowerPlacement(Player playerInAction, FamilyMemberColor selectedFamilyMemberColor, 
 		    DevCardType towerType, int floorNumber, int servantsNumber, Board board){
 		Tower selectedTower = board.getSpecificTower(towerType);
-		Floor selectedFloor = selectedTower.getFloors()[floorNumber];
+		Floor selectedFloor = selectedTower.getFloors()[floorNumber-1];
 		SingleActionSpace selectedActionSpace = selectedFloor.getSingleActionSpace();
 		FamilyMember selectedFamilyMember = playerInAction.getSpecificFamilyMember(selectedFamilyMemberColor);
 		int actionValue = selectedFamilyMember.getDiceAssociated().getValue();

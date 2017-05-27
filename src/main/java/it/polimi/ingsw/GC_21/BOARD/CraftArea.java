@@ -17,7 +17,7 @@ public class CraftArea {
 		this.multipleActionSpace = new MultipleActionSpace(1, MalusOnCraft);
 	}
 
-	public boolean checkFamilyMemberColor(String color) {
+	public boolean checkFamilyMemberColor(Color color) {
 		return singleActionSpace.getFamilyMember().getColor().equals(color) || 
 			multipleActionSpace.checkColorPresence(color);
 		
