@@ -32,7 +32,9 @@ public class ActionSpace {
 
 
 	public void callSpaceEffect(Player playerInAction, Action action){
-		actionSpaceEffect.activateEffect(playerInAction, action);
+		if (actionSpaceEffect!=null) {
+			actionSpaceEffect.activateEffect(playerInAction, action);
+		}
 	}
 	
 	

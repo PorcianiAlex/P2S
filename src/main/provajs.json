@@ -1,14 +1,25 @@
 {
 	"DevCard" : [
-	
+	{"DevType":"Character" "name":"Condottiero", "age":"1", "Req":[2,0,0,0,0,0,0], "Imm":[0,0,0,0,0,3,0], "Priv":"0" "EffType":"justImm"},
+	{"DevType":"Character" "name":"Artigiano", "age":"1", "Req":[3,0,0,0,0,0,0], "Imm":[0,0,0,0,0,0,0], "Priv":"0" "EffType":"justImm"},
+	{"DevType":"Character" "name":"Cavaliere", "age":"1", "Req":[2,0,0,0,0,0,0], "Imm":[0,0,0,0,0,0,0], "Priv":"1" "EffType":"justImm"},
+	{"DevType":"Character" "name":"Dama", "age":"1", "Req":[4,0,0,0,0,0,0], "Imm":[0,0,0,0,0,0,0], "Priv":"0" "EffType":"justImm"},
 	{"DevType":"Character" "name":"Costruttore", "age":"1", "Req":[4,0,0,0,0,0,0], "Imm":[0,0,0,0,0,0,0], "Priv":"0" "EffType":"justImm"},
 	{"DevType":"Character" "name":"Badessa", "age":"1", "Req":[3,0,0,0,0,0,0], "Imm":[0,0,0,0,1,0,0], "Priv":"0" "EffType":"doPlacementAction", "Discount":[0,0,0,0,0,0,0], "ActionValueInf":"4", "ActionValueBonus":"0", "DevCardType":"null" },
 	{"DevType":"Character" "name":"Predicatore", "age":"1", "Req":[2,0,0,0,0,0,0], "Imm":[0,0,0,0,4,0,0], "Priv":"0" "EffType":"justImm"},
 	{"DevType":"Character" "name":"Contadino", "age":"1", "Req":[3,0,0,0,0,0,0], "Imm":[0,0,0,0,0,0,0], "Priv":"0" "EffType":"justImm"},
-	{"DevType":"Venture" "name":"SostegnoAlVescovo", "age":"1", "Req":[0,0,0,0,0,4,0], "SecReq":[2,1,1,0,0,0,0], "Imm":[0,0,0,0,3,0,0], "Priv":"0" "EffType":"justImm"},
+	{"DevType":"Venture" "name":"InggaggiareReclute", "age":"1", "Req":[4,0,0,0,0,0,0], "SecReq":[0,0,0,0,0,0,0], "Imm":[0,0,0,0,0,5,0], "Priv":"0" "EffType":"justImm"},
+	{"DevType":"Venture" "name":"OspitareMendicanti", "age":"1", "Req":[0,3,0,0,0,0,0], "SecReq":[0,0,0,0,0,0,0], "Imm":[0,0,0,4,0,0,0], "Priv":"0" "EffType":"justImm"},
+	{"DevType":"Venture" "name":"CombattereEresie", "age":"1", "Req":[0,0,0,0,0,5,0], "SecReq":[0,0,0,0,0,0,0], "Imm":[0,0,0,0,2,0,0], "Priv":"0" "EffType":"justImm"},
+	{"DevType":"Venture" "name":"CampagnaMilitare", "age":"1", "Req":[0,0,0,0,0,3,0], "SecReq":[0,0,0,0,0,0,0], "Imm":[3,0,0,0,0,0,0], "Priv":"0" "EffType":"justImm"},
+	{"DevType":"Venture" "name":"SostegnoAlVescovo", "age":"1", "Req":[0,0,0,0,0,4,0], "SecReq":[0,0,0,0,0,0,0], "Imm":[0,0,0,0,3,0,0], "Priv":"0" "EffType":"justImm"},
 	{"DevType":"Venture" "name":"InnalzareUnaStatua", "age":"1", "Req":[0,2,2,0,0,0,0], "SecReq":[0,0,0,0,0,0,0], "Imm":[0,0,0,0,0,0,0], "Priv":"2" "EffType":"justImm"},
 	{"DevType":"Venture" "name":"CostruireLeMura", "age":"1", "Req":[0,0,3,0,0,0,0], "SecReq":[0,0,0,0,0,0,0], "Imm":[0,0,0,0,0,2,0], "Priv":"1" "EffType":"justImm"},
 	{"DevType":"Venture" "name":"RiparareLaChiesa", "age":"1", "Req":[1,1,1,0,0,0,0], "SecReq":[0,0,0,0,0,0,0], "Imm":[0,0,0,0,1,0,0], "Priv":"0" "EffType":"justImm"},
+	{"DevType":"Building" "name":"Esattoria", "age":"1","craftValue":"5", "Req":[0,3,1,0,0,0,0], "Imm":[0,0,0,0,0,0,5], "Priv":"0" "EffType":"justImm"},
+	{"DevType":"Building" "name":"Zecca", "age":"1","craftValue":"5", "Req":[0,1,3,0,0,0,0], "Imm":[0,0,0,0,0,0,5], "Priv":"0" "EffType":"justImm"},
+	{"DevType":"Building" "name":"Falegnameria", "age":"1","craftValue":"4", "Req":[1,2,0,0,0,0,0], "Imm":[0,0,0,0,0,0,3], "Priv":"0" "EffType":"justImm"},
+	{"DevType":"Building" "name":"Residenza", "age":"1","craftValue":"1", "Req":[0,0,2,0,0,0,0], "Imm":[0,0,0,0,0,0,1], "Priv":"0" "EffType":"justImm"},
 	{"DevType":"Building" "name":"Teatro", "age":"1","craftValue":"6", "Req":[2,2,0,0,0,0,0], "Imm":[0,0,0,0,0,0,6], "Priv":"0" "EffType":"justImm"},
 	{"DevType":"Building" "name":"Cappella", "age":"1","craftValue":"2", "Req":[0,2,0,0,0,0,0], "Imm":[0,0,0,0,6,0,0], "Priv":"0" "EffType":"justImm"},
 	{"DevType":"Building" "name":"ArcoDiTrionfo", "age":"1","craftValue":"6", "Req":[2,0,2,0,0,0,0], "Imm":[0,0,0,0,0,0,6], "Priv":"0" "EffType":"justImm"},
@@ -17,6 +28,10 @@
 	{"DevType":"Territory" "name":"Monastero", "age":"1","craftValue":"6", "Req":[0,0,0,0,0,0,0], "Imm":[0,0,0,1,0,2,0], "Priv":"0" "EffType":"justImm"},
 	{"DevType":"Territory" "name":"Citta", "age":"1","craftValue":"6", "Req":[0,0,0,0,0,0,0], "Imm":[3,0,0,0,0,0,0], "Priv":"0" "EffType":"justImm"},
 	{"DevType":"Territory" "name":"AvampostoCommerciale", "age":"1","craftValue":"5", "Req":[0,0,0,0,0,0,0], "Imm":[0,0,0,0,0,0,0], "Priv":"0" "EffType":"justImm"}
+	{"DevType":"Territory" "name":"Foresta", "age":"1","craftValue":"5", "Req":[0,0,0,0,0,0,0], "Imm":[0,1,0,0,0,0,0], "Priv":"0" "EffType":"justImm"},
+	{"DevType":"Territory" "name":"CavadiGhiaia", "age":"1","craftValue":"4", "Req":[0,0,0,0,0,0,0], "Imm":[0,0,2,0,0,0,0], "Priv":"0" "EffType":"justImm"},
+	{"DevType":"Territory" "name":"Borgo", "age":"1","craftValue":"3", "Req":[0,0,0,0,0,0,0], "Imm":[0,0,0,0,0,0,0], "Priv":"0" "EffType":"justImm"},
+	{"DevType":"Territory" "name":"Bosco", "age":"1","craftValue":"2", "Req":[0,0,0,0,0,0,0], "Imm":[0,1,0,0,0,0,0], "Priv":"0" "EffType":"justImm"}
 	]
 	
 	"ExCard" : [

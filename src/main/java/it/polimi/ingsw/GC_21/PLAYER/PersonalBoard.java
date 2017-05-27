@@ -19,7 +19,7 @@ public class PersonalBoard {
 
 	
 	public PersonalBoard(Player player) {
-		this.myOwnedCards = new OwnedCards[4];
+		this.myOwnedCards = OwnedCards.factoryOwnedCards();
 		this.personalPermanetEffect = new ArrayList<Permanent>();
 		this.myPossession = new Possession(0, 0, 0, 0, 0, 0, 0);
 		this.craftMinimumReward = new Possession(1,1,1,1,1,1,1);

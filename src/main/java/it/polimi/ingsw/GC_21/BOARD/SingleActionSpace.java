@@ -18,7 +18,7 @@ public class SingleActionSpace extends ActionSpace {
 	
 	@Override
 	public void placeFamilyMember(FamilyMember familyMember) {
-		if (this.familyMemberLocated != null){
+		if (this.familyMemberLocated == null){
 			setFamilyMember(familyMember);
 			setBusy(true);
 		}

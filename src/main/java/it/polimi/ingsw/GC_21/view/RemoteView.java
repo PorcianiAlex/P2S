@@ -142,6 +142,8 @@ public class RemoteView implements ViewObserver {
 		Scanner scanner = new Scanner(System.in);
 		int servantsToConvert = scanner.nextInt();
 		MarketPlacement marketPlacement = MarketPlacement.factoryMarketPlacement(player, this.chooseFamilyMember(), servantsToConvert, this.chooseHowManyServants(), game.getBoard());
+		boolean result = myObserver.update(marketPlacement);
+
 	}
 	
 	public FamilyMemberColor chooseFamilyMember(){
@@ -177,7 +179,9 @@ public class RemoteView implements ViewObserver {
 	
 	public void councilPlacementCreator() {
 		CouncilPlacement councilPlacement = CouncilPlacement.factoryCouncilPlacement(player, this.chooseFamilyMember(), game.getBoard(), this.chooseHowManyServants());	
-		}
+		boolean result = myObserver.update(councilPlacement);
+
+	}
 
 
 	@Override
