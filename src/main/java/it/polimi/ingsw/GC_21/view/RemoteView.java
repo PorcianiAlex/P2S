@@ -19,6 +19,22 @@ import it.polimi.ingsw.GC_21.controller.Controller;
 
 public class RemoteView {
   
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+
+	public Controller getController() {
+		return controller;
+	}
+
+	public void setController(Controller controller) {
+		this.controller = controller;
+	}
+
 	private Player player;
 	private Controller controller;
 	
@@ -49,37 +65,37 @@ public class RemoteView {
 		
 	}
 	
+	public DevCardType selectTower(){
+		System.out.println("Select Tower [1-4]:");
+		Scanner scanner = new Scanner(System.in);
+		switch (scanner.nextInt()) {
+		case 1: return DevCardType.Territory;
+		case 2: return DevCardType.Character;
+		case 3: return DevCardType.Building;
+		case 4: return DevCardType.Venture;
+		default: return DevCardType.Building;
+		}	
+	}
+	
+	public int selectFloor(){
+		System.out.println("Select Floor [1-4]:");
+		Scanner scanner = new Scanner(System.in);
+		if (scanner.nextInt()<=4 && scanner.nextInt()>=1){
+			int floor = scanner.nextInt();
+			return floor;
+		}
+		else {
+			System.out.println("Invalid floor choice, try again!");
+			return this.selectFloor();
+		}
+	}
+	
 	public void towerPlacementCreator() {
 		DevCardType selectedTower;
 		int floor;
 		FamilyMemberColor familyMemberColor;
-		System.out.println("Select Tower [1-4]:");
-		Scanner scanner = new Scanner(System.in);
-		switch (scanner.nextInt()) {
-		case 1: selectedTower = DevCardType.Territory;
-		break;
-		case 2: selectedTower = DevCardType.Character;
-		break;
-		case 3: selectedTower = DevCardType.Building;
-		break;
-		case 4: selectedTower = DevCardType.Venture;
-		break;
-		default: selectedTower = DevCardType.Building;
-		break;
-		}	
-		System.out.println("Select Floor [1-4]:");
-		switch (scanner.nextInt()) {
-		case 1: floor = 1;
-		break;
-		case 2: floor = 2;
-		break;
-		case 3: floor = 3;
-		break;
-		case 4: floor = 4;
-		break;
-		default: floor = 1;
-		break;
-		}		
+		selectedTower = this.selectTower();
+		floor = this.selectFloor();	
 		TowerPlacement towerPlacement = TowerPlacement.factoryTowerPlacement(player, this.chooseFamilyMember(), selectedTower, floor, this.chooseHowManyServants(), controller.getModelGame().getBoard());
 		boolean result = controller.updateModel(towerPlacement);
 		if (result==false){
@@ -116,9 +132,22 @@ public class RemoteView {
 	}
 	
 	public int chooseHowManyServants(){
+		int playerServant = player.getMyPersonalBoard().getMyPossession().getServants().getValue();
+		if (playerServant == 0){
+			System.out.println("You don't have servant to convert!");
+			return 0;
+		}
 		System.out.println("How many servants do you want to convert?:");
 		Scanner scanner = new Scanner(System.in);
-		return scanner.nextInt();	
+		int servantsToConvert = scanner.nextInt();
+		if (servantsToConvert > playerServant){
+			System.out.println("You don't have enough servant to convert, try again!");
+			return this.chooseHowManyServants();
+		}
+		else {
+			System.out.println("You are going to convert" + servantsToConvert + "servants");
+			return servantsToConvert;
+		}
 	}
 	
 	public void councilPlacementCreator() {

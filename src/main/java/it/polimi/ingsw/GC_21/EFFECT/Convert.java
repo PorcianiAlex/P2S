@@ -13,10 +13,10 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 
 public class Convert extends Immediate {
-	private final Possession toPay1;
-	private final Possession toTake1;
-	private final Possession toPay2;
-	private final Possession toTake2;
+	private Possession toPay1;
+	private Possession toTake1;
+	private Possession toPay2;
+	private Possession toTake2;
 	
 	public Convert(Possession rewards, Possession toPay1, Possession toTake1, Possession toPay2, Possession toTake2, int privileges) {
 		super(rewards, privileges);
@@ -24,7 +24,12 @@ public class Convert extends Immediate {
 		this.toTake1 = toTake1;
 		this.toPay2 = toPay2;
 		this.toTake2 = toTake2;
-		
+		if (this.toPay2.equals(new Possession())){
+			this.toPay2=null;
+		}
+		if (this.toTake2.equals(new Possession())){
+			this.toTake2=null;
+		}
 	}
 
 	@Override

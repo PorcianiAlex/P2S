@@ -7,7 +7,6 @@ public class DevelopmentCard extends Card {
 	
 	private int age;
 	private DevCardType devCardType;
-	private int craftValue;
 
 	
 	public DevelopmentCard(String name) {
@@ -23,16 +22,6 @@ public class DevelopmentCard extends Card {
 
 	public void setAge(int age) {
 		this.age = age;
-	}
-
-
-	public int getCraftValue() {
-		return craftValue;
-	}
-
-
-	public void setCraftValue(int craftValue) {
-		this.craftValue = craftValue;
 	}
 
 
