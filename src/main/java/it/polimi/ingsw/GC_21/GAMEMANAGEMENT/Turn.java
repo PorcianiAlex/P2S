@@ -18,8 +18,10 @@ public class Turn {
 	
 	public void executeView() {
 		for (int i = 0; i < game.getPlayers().size(); i++) {
-			game.getController().getRemoteViews().get(i).input();
-			//e qui si blocca, giustamente dai!
+			RemoteView view = (RemoteView) game.getViewObserver();
+			System.out.println(game.getBoard().toString());
+			view.input();
+			System.out.println(game.getBoard().toString());
 		}
 	}
 

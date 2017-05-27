@@ -20,6 +20,7 @@ public class Controller implements MyObserver{
 
 	public Controller(Game modelGame) {
 		this.modelGame = modelGame;
+		this.remoteViews = new ArrayList<RemoteView>();
 	}
 
 	

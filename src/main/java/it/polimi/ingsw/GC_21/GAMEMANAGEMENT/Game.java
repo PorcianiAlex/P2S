@@ -12,10 +12,11 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.UTILITIES.MyObserver;
+import it.polimi.ingsw.GC_21.UTILITIES.ViewObserver;
 import it.polimi.ingsw.GC_21.controller.Controller;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
-public class Game extends Observable{
+public class Game {
 	
 	private Controller controller;
 	private static int currentNumberOfGame = 0; 
@@ -24,18 +25,15 @@ public class Game extends Observable{
 	private Board board;
 	private ArrayList<Player> players;
 	private Age currentAge;
-	private ArrayList<MyObserver> observers;
+	private ViewObserver viewObserver;
 	
 
-	public Game(int numberOfPlayers, ArrayList<Player> players) {
+	public Game() {
 		this.id = currentNumberOfGame + 1;
 		currentNumberOfGame++;
-		this.numberOfPlayers = numberOfPlayers;
-		this.board = new Board();
-		this.players = players;	
-		this.controller = new Controller(this); //TODO observer pattern
-		executeGame();
-	}
+		this.board = new Board();	
+		this.players = new ArrayList<Player>();
+		}
 	
 	public void executeGame() {
 		for (int i = 1; i < 4; i++) {
@@ -54,13 +52,6 @@ public class Game extends Observable{
 		this.id = id;
 	}
 
-	public int getNumberOfPlayers() {
-		return numberOfPlayers;
-	}
-
-	public void setNumberOfPlayers(int numberOfPlayers) {
-		this.numberOfPlayers = numberOfPlayers;
-	}
 
 	public Board getBoard() {
 		return board;
@@ -68,6 +59,18 @@ public class Game extends Observable{
 
 	public void setBoard(Board board) {
 		this.board = board;
+	}
+
+	public ViewObserver getViewObserver() {
+		return viewObserver;
+	}
+
+	public void setMyObserver(ViewObserver viewObserver) {
+		this.viewObserver = viewObserver;
+	}
+
+	public void setPlayers(ArrayList<Player> players) {
+		this.players = players;
 	}
 
 	public Controller getController() {
@@ -90,8 +93,8 @@ public class Game extends Observable{
 		return players;
 	}
 
-	public void setPlayers(ArrayList<Player> players) {
-		this.players = players;
+	public void addPlayers(Player player) {
+		this.players.add(player);
 	}
 
 	public Age getCurrentAge() {
@@ -102,12 +105,9 @@ public class Game extends Observable{
 		this.currentAge = currentAge;
 	}
 	
-	public void attach(MyObserver myObserver) {
-		observers.add(myObserver);
-	}
 	
-	public void detach(MyObserver myObserver) {
-		observers.remove(myObserver);
+	public void setViewObserver(ViewObserver view) {
+		this.viewObserver = view;
 	}
 	
 	

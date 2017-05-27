@@ -14,37 +14,58 @@ import it.polimi.ingsw.GC_21.ACTION.MarketPlacement;
 import it.polimi.ingsw.GC_21.ACTION.TowerPlacement;
 import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
+import it.polimi.ingsw.GC_21.UTILITIES.MyObserver;
+import it.polimi.ingsw.GC_21.UTILITIES.ViewObserver;
 import it.polimi.ingsw.GC_21.controller.Controller;
 
-public class RemoteView extends Observable implements Observer {
+public class RemoteView implements ViewObserver {
   
-	public Player getPlayer() {
-		return player;
-	}
-
-	public void setPlayer(Player player) {
-		this.player = player;
-	}
-
-	public Controller getController() {
-		return controller;
-	}
-
-	public void setController(Controller controller) {
-		this.controller = controller;
-	}
-
+	private Game game;
 	private Player player;
-	private Controller controller;
+	private MyObserver myObserver;
+
 	
-	public RemoteView(Player player, Controller controller) {
-		this.player = player;
-		this.controller = controller;
+	public RemoteView(Game game) {
+		this.game = game;
+		player = this.createPlayer();
+		game.addPlayers(player);
+		game.setViewObserver(this);
 	}
 
+	private Player createPlayer() {
+		System.out.println("Choose your name");
+		Scanner scanner = new Scanner(System.in);
+		String name = scanner.nextLine();
+		Color color;
+		System.out.println("Choose your color: "
+				+ "\n 1: BLUE"
+				+ "\n 2: RED"
+				+ "\n 3: YELLOW"
+				+ "\n 4: GREEN");
+		switch (scanner.nextLine()) {
+		case "1": color=Color.Blue;
+		break;
+		case "2": color=Color.Red;
+		break;
+		case "3": color=Color.Yellow;
+		break;
+		case "4": color=Color.Green;
+		break;
+		default: color=Color.Blue;
+			break;
+		}	
+		return new Player(name, color, game);
+		
+	}
+
+	public void setMyObserver(MyObserver myObserver) {
+		this.myObserver = myObserver;
+	}
+	
 	public void input() {
 		System.out.println("Choose your action: "
 				+ "\n 1: tower placement"
@@ -52,16 +73,17 @@ public class RemoteView extends Observable implements Observer {
 				+ "\n 3: market placement "
 				+ "\n 4: council placement");
 		Scanner scanner = new Scanner(System.in);
-		switch (scanner.nextLine()) {
-		case "1": this.towerPlacementCreator();
+		int choice = scanner.nextInt();
+		switch (choice) {
+		case 1: this.towerPlacementCreator();
 		break;
-		case "2": this.craftActionCreator();
+		case 2: this.craftActionCreator();
 		break;
-		case "3": this.marketPlacementCreator();
+		case 3: this.marketPlacementCreator();
 		break;
-		case "4": this.councilPlacementCreator();
+		case 4: this.councilPlacementCreator();
 		break;
-		default:
+		default: this.towerPlacementCreator();
 			break;
 		}		
 		
@@ -70,7 +92,8 @@ public class RemoteView extends Observable implements Observer {
 	public DevCardType selectTower(){
 		System.out.println("Select Tower [1-4]:");
 		Scanner scanner = new Scanner(System.in);
-		switch (scanner.nextInt()) {
+		int choice = scanner.nextInt();
+		switch (choice) {
 		case 1: return DevCardType.Territory;
 		case 2: return DevCardType.Character;
 		case 3: return DevCardType.Building;
@@ -82,9 +105,9 @@ public class RemoteView extends Observable implements Observer {
 	public int selectFloor(){
 		System.out.println("Select Floor [1-4]:");
 		Scanner scanner = new Scanner(System.in);
-		if (scanner.nextInt()<=4 && scanner.nextInt()>=1){
-			int floor = scanner.nextInt();
-			return floor;
+		int choice = scanner.nextInt();
+		if (choice <=4 && choice >=1){
+			return choice;
 		}
 		else {
 			System.out.println("Invalid floor choice, try again!");
@@ -98,8 +121,8 @@ public class RemoteView extends Observable implements Observer {
 		FamilyMemberColor familyMemberColor;
 		selectedTower = this.selectTower();
 		floor = this.selectFloor();	
-		TowerPlacement towerPlacement = TowerPlacement.factoryTowerPlacement(player, this.chooseFamilyMember(), selectedTower, floor, this.chooseHowManyServants(), controller.getModelGame().getBoard());
-		boolean result = controller.update(towerPlacement);
+		TowerPlacement towerPlacement = TowerPlacement.factoryTowerPlacement(player, this.chooseFamilyMember(), selectedTower, floor, this.chooseHowManyServants(), game.getBoard());
+		boolean result = myObserver.update(towerPlacement);
 		if (result==false){
 			System.out.println("Oh bischero! Something went wrong! Try again!");
 			this.input();
@@ -118,7 +141,7 @@ public class RemoteView extends Observable implements Observer {
 		System.out.println("Which reward do you want? \n [2x Coins (1) - 2x Servants (2) - 3x Military Points + 2x Coins (3) - 2x Privileges (4)");
 		Scanner scanner = new Scanner(System.in);
 		int servantsToConvert = scanner.nextInt();
-		MarketPlacement marketPlacement = MarketPlacement.factoryMarketPlacement(player, this.chooseFamilyMember(), servantsToConvert, this.chooseHowManyServants(), controller.getModelGame().getBoard());
+		MarketPlacement marketPlacement = MarketPlacement.factoryMarketPlacement(player, this.chooseFamilyMember(), servantsToConvert, this.chooseHowManyServants(), game.getBoard());
 	}
 	
 	public FamilyMemberColor chooseFamilyMember(){
@@ -153,11 +176,15 @@ public class RemoteView extends Observable implements Observer {
 	}
 	
 	public void councilPlacementCreator() {
-		CouncilPlacement councilPlacement = CouncilPlacement.factoryCouncilPlacement(player, this.chooseFamilyMember(), controller.getModelGame().getBoard(), this.chooseHowManyServants());	}
+		CouncilPlacement councilPlacement = CouncilPlacement.factoryCouncilPlacement(player, this.chooseFamilyMember(), game.getBoard(), this.chooseHowManyServants());	
+		}
+
 
 	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+	public void updateView() {
+		System.out.println(this.game.getBoard().toString());
 		
 	}
+
+	
 }

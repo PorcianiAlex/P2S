@@ -16,6 +16,12 @@ public class Dice {
 		this.value = random.nextInt(6)+1;
 	}
 	
+	public Dice() {
+		this.familyMemberColor = familyMemberColor.Neutral;
+		this.value = 0;
+	}
+	
+	
 	
 	public FamilyMemberColor getFamilyMemberColor() {
 		return familyMemberColor;

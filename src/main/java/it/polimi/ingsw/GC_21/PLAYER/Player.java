@@ -4,6 +4,7 @@ import java.util.*;
 
 import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
 public class Player {
@@ -13,7 +14,7 @@ public class Player {
 	private Color playerColor;
 	private PersonalBoard myPersonalBoard;
 	private RemoteView myView;
-	
+	private Game game;
 	
 	public RemoteView getMyView() {
 		return myView;
@@ -23,19 +24,12 @@ public class Player {
 		this.myView = myView;
 	}
 
-	public Player(String name, Color playerColor, RemoteView myView) {
-		super();
-		this.familyMembers = new FamilyMember[4];
-		this.name = name;
-		this.playerColor = playerColor;
-		this.myView=myView;
-		this.myPersonalBoard = new PersonalBoard(this);
-	}
 	
-	public Player(String name, Color playerColor) {
+	public Player(String name, Color playerColor, Game game) {
 		super();
-		this.familyMembers = new FamilyMember[4];
+		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), this.playerColor);
 		this.name = name;
+		this.game = game;
 		this.playerColor = playerColor;
 		this.myPersonalBoard = new PersonalBoard(this);
 	}

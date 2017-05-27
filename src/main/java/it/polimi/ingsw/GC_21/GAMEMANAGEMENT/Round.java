@@ -21,7 +21,7 @@ public class Round {
 		}
 	
 	public void executeRound() {
-		for (int i = 1; i < game.getNumberOfPlayers(); i++) {
+		for (int i = 0; i < game.getPlayers().size(); i++) {
 			currentTurn = new Turn(i, game);
 			currentTurn.executeView();
 		}
