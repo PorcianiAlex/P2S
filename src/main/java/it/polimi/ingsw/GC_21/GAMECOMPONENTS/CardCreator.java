@@ -76,7 +76,7 @@ public class CardCreator {
 	
 	public ArrayList<Card> LeadCardsCreate() {
 		try {
-		Object obj = parser.parse(new FileReader("C:\\Users\\Alex\\workspace\\prova-finale-template\\provajs.json"));
+		Object obj = parser.parse(new FileReader("src\\main\\resources\\provajs.json"));
 	    JSONObject card = (JSONObject) obj;
 	    JSONArray cardarray= (JSONArray) card.get("LeadCard");
 	    for (Object o : cardarray) {
