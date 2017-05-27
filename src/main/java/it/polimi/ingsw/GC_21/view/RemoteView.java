@@ -132,9 +132,22 @@ public class RemoteView {
 	}
 	
 	public int chooseHowManyServants(){
+		int playerServant = player.getMyPersonalBoard().getMyPossession().getServants().getValue();
+		if (playerServant == 0){
+			System.out.println("You don't have servant to convert!");
+			return 0;
+		}
 		System.out.println("How many servants do you want to convert?:");
 		Scanner scanner = new Scanner(System.in);
-		return scanner.nextInt();	
+		int servantsToConvert = scanner.nextInt();
+		if (servantsToConvert > playerServant){
+			System.out.println("You don't have enough servant to convert, try again!");
+			return this.chooseHowManyServants();
+		}
+		else {
+			System.out.println("You are going to convert" + servantsToConvert + "servants");
+			return servantsToConvert;
+		}
 	}
 	
 	public void councilPlacementCreator() {
