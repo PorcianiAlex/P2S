@@ -33,8 +33,17 @@ public class CardCreator {
 	    for (Object o : cardarray) {
            	JSONObject jsonLineItem = (JSONObject) o;       
 	    	if(Integer.parseInt(jsonLineItem.get("age").toString())==age && devCardType.equals(DevCardType.valueOf(jsonLineItem.get("DevType").toString()))){              	
-           	 DevelopmentCard devCardCreating = new DevelopmentCard((String) jsonLineItem.get("name"));
-           	 devCardCreating.setCraftValue(Integer.parseInt(jsonLineItem.get("craftValue").toString()));
+           	DevelopmentCard devCardCreating;
+	    	if (devCardType.equals(DevCardType.Venture)) {
+				devCardCreating = new Ventures((String) jsonLineItem.get("name"));
+				this.addSecondReq((Ventures) devCardCreating, jsonLineItem);
+			}
+	    	if (devCardType.equals(DevCardType.Building) || devCardType.equals(DevCardType.Territory)) {
+				devCardCreating = new CraftCard((String) jsonLineItem.get("name"));
+				((CraftCard) devCardCreating).setRequiredValueForCraft(Integer.parseInt(jsonLineItem.get("craftValue").toString()));
+			}
+           	else {devCardCreating = new DevelopmentCard((String) jsonLineItem.get("name"));}
+           	
            	 devCardCreating.setAge(age);
          	 devCardCreating.setDevCardType(devCardType);
          	 this.addImm(devCardCreating, jsonLineItem);
@@ -52,6 +61,8 @@ public class CardCreator {
 		return cards;
 	}
 	
+
+
 	public ArrayList<Card> ExCardsCreate(int age) {
 		try {
 		Object obj = parser.parse(new FileReader("C:\\Users\\Alex\\workspace\\prova-finale-template\\provajs.json"));
@@ -204,6 +215,18 @@ public class CardCreator {
         		Integer.parseInt(reqarray.get(4).toString()), Integer.parseInt(reqarray.get(5).toString()), 
         	    Integer.parseInt(reqarray.get(6).toString()));
         cardcreating.setRequirements(Req);  
+	}
+	
+	private void addSecondReq(Ventures cardcreating, JSONObject jsonLineItem) {
+		 
+		JSONArray reqarray= (JSONArray) jsonLineItem.get("SecReq");
+          
+	        Possession Req = new Possession(Integer.parseInt(reqarray.get(0).toString()),Integer.parseInt(reqarray.get(1).toString()),
+	        		Integer.parseInt(reqarray.get(2).toString()), Integer.parseInt(reqarray.get(3).toString()),
+	        		Integer.parseInt(reqarray.get(4).toString()), Integer.parseInt(reqarray.get(5).toString()), 
+	        	    Integer.parseInt(reqarray.get(6).toString()));
+	        cardcreating.setSecondRequirement(Req);  
+		
 	}
 
 	
