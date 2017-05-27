@@ -170,11 +170,5 @@ public class Board {
 
 
 
-	public static void main(String[] args) {
-		Board aaa = new Board();
-		aaa.printBoard();
-		
-	}
-
 	
 }

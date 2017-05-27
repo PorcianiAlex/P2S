@@ -53,7 +53,9 @@ public class TowerPlacement extends PlacementAction {
 	@Override
 	public boolean checkPlaceRequirement() {
 		if (super.checkPlaceRequirement()) {
+			if(selectedActionSpace.getActionSpaceEffect()!=null) {
 			discount.add(selectedActionSpace.getActionSpaceEffect().getRewards());//if the Space requirement is satisfied I can use the eventual SpaceBonus to get the card
+			}
 			return checkTakeabilityCard(playerInAction.getMyPersonalBoard(), selectedCard.getDevCardType()) &&
 					checkCardRequirements(playerInAction.getMyPersonalBoard());
 		}

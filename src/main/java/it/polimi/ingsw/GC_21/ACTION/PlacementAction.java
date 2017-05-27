@@ -26,6 +26,8 @@ public class PlacementAction extends Action {
 		this.selectedActionSpace = selectedActionSpace;
 		this.servantsToConvert = servantsToConvert;
 		this.board = board;
+		this.discount = new Possession();
+		this.overcharge = new Possession();
 	}
 	
 	@Override

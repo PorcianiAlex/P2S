@@ -19,9 +19,9 @@ public class Turn {
 	public void executeView() {
 		for (int i = 0; i < game.getPlayers().size(); i++) {
 			RemoteView view = (RemoteView) game.getViewObserver();
-			System.out.println(game.getBoard().toString());
+			game.getBoard().printBoard();
 			view.input();
-			System.out.println(game.getBoard().toString());
+			game.getBoard().printBoard();
 		}
 	}
 
