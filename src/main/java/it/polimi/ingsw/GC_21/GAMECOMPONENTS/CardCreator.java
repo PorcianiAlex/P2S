@@ -27,7 +27,7 @@ public class CardCreator {
 	public ArrayList<Card> devCardsCreate(DevCardType devCardType, int age) {
 		cards = new ArrayList<Card>();
 		try {
-		Object obj = parser.parse(new FileReader("C:\\Users\\Alex\\workspace\\prova-finale-template\\provajs.json"));
+		Object obj = parser.parse(new FileReader("...\\src\\provajs.json"));
 	    JSONObject card = (JSONObject) obj;
 	    JSONArray cardarray= (JSONArray) card.get("DevCard");
 	    for (Object o : cardarray) {

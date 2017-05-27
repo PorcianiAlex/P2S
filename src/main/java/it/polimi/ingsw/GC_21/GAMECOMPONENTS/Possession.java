@@ -11,6 +11,16 @@ public class Possession {
 	private MilitaryPoints militaryPoints;
 	private VictoryPoints victoryPoints;
 	
+	public Possession() {
+		this.coins = new Coins(0);
+		this.woods = new Woods(0);
+		this.stones = new Stones(0);
+		this.servants = new Servants(0);
+		this.faithPoints = new FaithPoints(0);
+		this.militaryPoints = new MilitaryPoints(0);
+		this.victoryPoints = new VictoryPoints(0);
+		}
+	
 	public Possession(int coins, int woods, int stones, int servants, int faithPoints,
 			int militaryPoints, int victoryPoints) throws IllegalArgumentException {
 		this.coins = new Coins(coins);
@@ -22,7 +32,6 @@ public class Possession {
 		this.victoryPoints = new VictoryPoints(victoryPoints);
 		if(coins<0 || woods <0 || stones <0 || servants <0 || faithPoints <0 || militaryPoints <0 || victoryPoints<0){
 			throw new IllegalArgumentException("Cannot instantiate this Possession!");
-
 		}
 	}
 	

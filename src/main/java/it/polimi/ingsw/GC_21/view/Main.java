@@ -14,8 +14,7 @@ import it.polimi.ingsw.GC_21.controller.Controller;
 
 public class Main {
 
-	public static void main(String[] args) {
-				
+	public static void main(String[] args) {		
 		Player player = new Player("Alex", Color.Blue);
 		Player player2 = new Player("Santa", Color.Yellow);
 		Player player3 = new Player("Paty", Color.Red);

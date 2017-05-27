@@ -47,13 +47,14 @@ public class EffectTest {
 		Possession rewards = new Possession(1, 1, 1, 1, 1, 1, 1);
 		testPlayer2.getMyPersonalBoard().getMyPossession().add(rewards);
 		testPlayer2.getMyPersonalBoard().getMyPossession().add(new Possession(2, 1, 1, 2, 1, 2, 0));
-		Effect testEffect = new Effect(rewards, 6);
+		Effect testEffect = new Effect(rewards, 5);
 		testEffect.activateEffect(testPlayer, new CraftAction(testPlayer, CraftType.Harvest, 2));
 		assertTrue(testPlayer.getMyPersonalBoard().getMyPossession().equals(testPlayer2.getMyPersonalBoard().getMyPossession()));
 	}
 	
 	@Test
 	public void testActivateEffect0privileges() {
+		System.out.println("NO PRIVILEGES!");
 		Player testPlayer = new Player("Test", Color.Blue);
 		Player testPlayer2 = new Player("Test2", Color.Red);
 		Possession rewards = new Possession(1, 1, 1, 1, 1, 1, 1);
