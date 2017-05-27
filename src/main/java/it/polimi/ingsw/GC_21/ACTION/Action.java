@@ -11,7 +11,10 @@ public abstract class Action {
 
 	public void Execute() {
 	}
-	
+    
+	public boolean checkAction() {
+		return true;
+	}
 	public Player getPlayerInAction() {
 		return playerInAction;
 	}
