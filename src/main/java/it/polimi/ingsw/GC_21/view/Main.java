@@ -25,6 +25,7 @@ public class Main {
 		Game game = new Game(players.size(), players);
 		
 		RemoteView remoteView =new RemoteView(player, game.getController());
+		game.getController().addRemoteView(remoteView);
 		
 		
 	}

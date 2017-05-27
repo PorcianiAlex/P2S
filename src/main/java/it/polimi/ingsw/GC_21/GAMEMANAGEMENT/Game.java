@@ -1,14 +1,21 @@
 package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+
+import org.junit.experimental.theories.Theories;
+
+import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
+import it.polimi.ingsw.GC_21.UTILITIES.MyObserver;
 import it.polimi.ingsw.GC_21.controller.Controller;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
-public class Game {
+public class Game extends Observable{
 	
 	private Controller controller;
 	private static int currentNumberOfGame = 0; 
@@ -17,10 +24,10 @@ public class Game {
 	private Board board;
 	private ArrayList<Player> players;
 	private Age currentAge;
-		
+	private ArrayList<MyObserver> observers;
+	
 
 	public Game(int numberOfPlayers, ArrayList<Player> players) {
-		super();
 		this.id = currentNumberOfGame + 1;
 		currentNumberOfGame++;
 		this.numberOfPlayers = numberOfPlayers;
@@ -95,7 +102,13 @@ public class Game {
 		this.currentAge = currentAge;
 	}
 	
-
+	public void attach(MyObserver myObserver) {
+		observers.add(myObserver);
+	}
+	
+	public void detach(MyObserver myObserver) {
+		observers.remove(myObserver);
+	}
 	
 	
 }

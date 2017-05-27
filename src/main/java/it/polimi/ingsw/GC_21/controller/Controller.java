@@ -1,14 +1,17 @@
 package it.polimi.ingsw.GC_21.controller;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.text.View;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
+import it.polimi.ingsw.GC_21.UTILITIES.MyObserver;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
-public class Controller {
+public class Controller implements MyObserver{
 
 
 	private Game modelGame;
@@ -43,10 +46,14 @@ public class Controller {
 	}
 
 
-	public boolean updateModel(Action action) {
-		action.Execute();
-		return true;
-		//TO DO: EXECUTE MUST RETURN A BOOLEAN, SO THAT THE CONTROLLER KNOWS IF IT WENT WELL OR NOT.
+
+	@Override
+	public boolean update(Action action) {
+		if (action.checkAction()) {
+			action.Execute();
+			return true;
+		}
+		return false;
 	}
 	
 }

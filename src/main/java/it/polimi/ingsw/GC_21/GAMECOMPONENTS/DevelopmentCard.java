@@ -38,8 +38,7 @@ public class DevelopmentCard extends Card {
 
 	@Override
 	public String toString() {
-		super.toString();
-		return "DevelopmentCard [age=" + age + ", devCardType=" + devCardType + "]";
+		return "DevelopmentCard [name=" + this.getName() + "age=" + age + ", devCardType=" + devCardType + "]";
 	}
 	
 

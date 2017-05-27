@@ -13,10 +13,11 @@ public class Turn {
 
 	public Turn(int turnNumber, Game game) {
 		this.turnNumber = turnNumber;
+		this.game =game;
 	}
 	
 	public void executeView() {
-		for (int i = 0; i < game.getController().getRemoteViews().size(); i++) {
+		for (int i = 0; i < game.getPlayers().size(); i++) {
 			game.getController().getRemoteViews().get(i).input();
 			//e qui si blocca, giustamente dai!
 		}

@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_21.view;
 
 import java.util.Scanner;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle.Control;
 
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
@@ -17,7 +19,7 @@ import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.controller.Controller;
 
-public class RemoteView {
+public class RemoteView extends Observable implements Observer {
   
 	public Player getPlayer() {
 		return player;
@@ -97,7 +99,7 @@ public class RemoteView {
 		selectedTower = this.selectTower();
 		floor = this.selectFloor();	
 		TowerPlacement towerPlacement = TowerPlacement.factoryTowerPlacement(player, this.chooseFamilyMember(), selectedTower, floor, this.chooseHowManyServants(), controller.getModelGame().getBoard());
-		boolean result = controller.updateModel(towerPlacement);
+		boolean result = controller.update(towerPlacement);
 		if (result==false){
 			System.out.println("Oh bischero! Something went wrong! Try again!");
 			this.input();
@@ -152,4 +154,10 @@ public class RemoteView {
 	
 	public void councilPlacementCreator() {
 		CouncilPlacement councilPlacement = CouncilPlacement.factoryCouncilPlacement(player, this.chooseFamilyMember(), controller.getModelGame().getBoard(), this.chooseHowManyServants());	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
+	}
 }
