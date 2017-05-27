@@ -35,6 +35,11 @@ public class PlacementAction extends Action {
 	    selectedActionSpace.callSpaceEffect(playerInAction, this);
 		}
 	
+	@Override
+	public boolean checkAction() {
+		return checkPlaceRequirement();
+	}
+	
 	public boolean checkPlaceRequirement(){
 		return checkDiceRequirement() &&
 			!checkBusyActionSpace();

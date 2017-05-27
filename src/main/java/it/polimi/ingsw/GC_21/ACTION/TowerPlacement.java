@@ -21,12 +21,14 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 public class TowerPlacement extends PlacementAction {
 	private final Floor selectedFloor;
 	private final Tower selectedTower;
+	private final DevelopmentCard selectedCard;
 
 	protected TowerPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember,
 			 Floor selectedFloor, Tower selectedTower, SingleActionSpace selectedActionSpace, Servants servantsToConvert, Board board) {
 		super(playerInAction, actionValue, selectedFamilyMember, selectedActionSpace, servantsToConvert, board);
 		this.selectedFloor = selectedFloor;
 		this.selectedTower = selectedTower;
+		this.selectedCard = (DevelopmentCard) selectedFloor.getDevCardPlace().getCard();
 	}
 	
 	public static TowerPlacement factoryTowerPlacement(Player playerInAction, FamilyMemberColor selectedFamilyMemberColor, 
@@ -50,19 +52,20 @@ public class TowerPlacement extends PlacementAction {
 	
 	@Override
 	public boolean checkPlaceRequirement() {
-		DevelopmentCard floorDevCard = (DevelopmentCard)selectedFloor.getDevCardPlace().getCard();
-		return super.checkPlaceRequirement() &&
-				checkTakeabilityCard(playerInAction.getMyPersonalBoard(), floorDevCard.getDevCardType()) &&
-				checkCardRequirements(floorDevCard, playerInAction.getMyPersonalBoard(), discount, overcharge);
-		//TODO influences of effects
+		if (super.checkPlaceRequirement()) {
+			discount.add(selectedActionSpace.getActionSpaceEffect().getRewards());//if the Space requirement is satisfied I can use the eventual SpaceBonus to get the card
+			return checkTakeabilityCard(playerInAction.getMyPersonalBoard(), selectedCard.getDevCardType()) &&
+					checkCardRequirements(playerInAction.getMyPersonalBoard());
+		}
+		return false;
+				
 	}
 	
 	@Override
 	public void Execute() {
-		// TODO Auto-generated method stub
 		 super.Execute();
-		 pay(selectedFloor.getDevCardPlace().getCard().getRequirements(), discount, overcharge);
-		 //TODO influences of effects
+		 pay(selectedCard.getRequirements());
+		 takeCard();
 	}
 
 
@@ -82,7 +85,7 @@ public class TowerPlacement extends PlacementAction {
 	}
 
 	
-	public boolean checkCardRequirements(DevelopmentCard selectedCard, PersonalBoard myPersonalBoard, Possession discount, Possession overcharge) {
+	public boolean checkCardRequirements(PersonalBoard myPersonalBoard) {
 		Possession cost = selectedCard.getRequirements();
 		cost.add(overcharge);
 		cost.subtract(discount);
@@ -93,15 +96,14 @@ public class TowerPlacement extends PlacementAction {
 		return selectedTower.checkFamilyMemberPresence();
 	}
 
-	public void pay(Possession payment, Possession discount, Possession overcharge) {
+	public void pay(Possession payment) {
 		payment.add(overcharge);
 		payment.subtract(discount);//real payment
 		playerInAction.getMyPersonalBoard().payPossession(payment);
 	}
 
 	public void takeCard() {
-		DevelopmentCard takenCard = (DevelopmentCard) selectedFloor.getDevCardPlace().getCard();
-		playerInAction.getMyPersonalBoard().addDevCard(takenCard); 
+		playerInAction.getMyPersonalBoard().addDevCard(selectedCard); 
 	}
 
 }
