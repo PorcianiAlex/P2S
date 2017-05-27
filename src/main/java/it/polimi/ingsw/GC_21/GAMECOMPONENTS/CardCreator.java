@@ -27,7 +27,7 @@ public class CardCreator {
 	public ArrayList<Card> devCardsCreate(DevCardType devCardType, int age) {
 		cards = new ArrayList<Card>();
 		try {
-		Object obj = parser.parse(new FileReader("...\\src\\provajs.json"));
+		Object obj = parser.parse(new FileReader("src\\main\\provajs.json"));
 	    JSONObject card = (JSONObject) obj;
 	    JSONArray cardarray= (JSONArray) card.get("DevCard");
 	    for (Object o : cardarray) {
@@ -65,7 +65,7 @@ public class CardCreator {
 
 	public ArrayList<Card> ExCardsCreate(int age) {
 		try {
-		Object obj = parser.parse(new FileReader("C:\\Users\\Alex\\workspace\\prova-finale-template\\provajs.json"));
+		Object obj = parser.parse(new FileReader("src\\main\\provajs.json"));
 	    JSONObject card = (JSONObject) obj;
 	    JSONArray cardarray= (JSONArray) card.get("ExCard");
 	    for (Object o : cardarray) {
@@ -88,7 +88,7 @@ public class CardCreator {
 	
 	public ArrayList<Card> LeadCardsCreate() {
 		try {
-		Object obj = parser.parse(new FileReader("src\\main\\resources\\provajs.json"));
+		Object obj = parser.parse(new FileReader("src\\main\\provajs.json"));
 	    JSONObject card = (JSONObject) obj;
 	    JSONArray cardarray= (JSONArray) card.get("LeadCard");
 	    for (Object o : cardarray) {
