@@ -175,7 +175,7 @@ public class CardCreator {
 						if("null".equals(jsonLineItem.get("DevCardType").toString())) {
 							doPlacementAction = new DoPlacementAction(Rew, privileges, Integer.parseInt(jsonLineItem.get("ActionValueInf").toString()), Integer.parseInt(jsonLineItem.get("ActionValueBonus").toString()), null, discount);
 						}
-						doPlacementAction = new DoPlacementAction(Rew, privileges, Integer.parseInt(jsonLineItem.get("ActionValueInf").toString()), Integer.parseInt(jsonLineItem.get("ActionValueBonus").toString()), DevCardType.valueOf(jsonLineItem.get("DevCardType").toString()), discount);
+						else {doPlacementAction = new DoPlacementAction(Rew, privileges, Integer.parseInt(jsonLineItem.get("ActionValueInf").toString()), Integer.parseInt(jsonLineItem.get("ActionValueBonus").toString()), DevCardType.valueOf(jsonLineItem.get("DevCardType").toString()), discount);}
 						cardcreating.setImmediateEffect(doPlacementAction);
 						break;
 					
