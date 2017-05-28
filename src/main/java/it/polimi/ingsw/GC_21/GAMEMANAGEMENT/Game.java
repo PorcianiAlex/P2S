@@ -12,7 +12,7 @@ import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.UTILITIES.MyObserver;
+import it.polimi.ingsw.GC_21.UTILITIES.ViewObserver;
 import it.polimi.ingsw.GC_21.UTILITIES.ModelObserver;
 import it.polimi.ingsw.GC_21.controller.Controller;
 import it.polimi.ingsw.GC_21.view.RemoteView;

@@ -12,10 +12,10 @@ import it.polimi.ingsw.GC_21.ACTION.PlacementAction;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforePlacement;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
-import it.polimi.ingsw.GC_21.UTILITIES.MyObserver;
+import it.polimi.ingsw.GC_21.UTILITIES.ViewObserver;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
-public class Controller implements MyObserver{
+public class Controller implements ViewObserver{
 
 
 	private Game modelGame;
