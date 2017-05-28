@@ -195,7 +195,7 @@ public class RemoteView implements ModelObserver {
 
 	@Override
 	public void updateView() {
-		System.out.println(this.game.getBoard().toString());
+		this.game.getBoard().printBoard();
 		
 	}
 

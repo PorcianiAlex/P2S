@@ -226,6 +226,7 @@ public class CardCreator {
 	        		Integer.parseInt(reqarray.get(4).toString()), Integer.parseInt(reqarray.get(5).toString()), 
 	        	    Integer.parseInt(reqarray.get(6).toString()));
 	        cardcreating.setSecondRequirement(Req);  
+	        cardcreating.setFinalVictoryPoints(Integer.parseInt(jsonLineItem.get("VicPoint").toString()));
 		
 	}
 

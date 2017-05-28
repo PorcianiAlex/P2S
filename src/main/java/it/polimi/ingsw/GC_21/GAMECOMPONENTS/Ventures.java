@@ -10,10 +10,8 @@ public class Ventures extends DevelopmentCard {
 	private VictoryPoints finalVictoryPoints;
 
 	
-	public Ventures(String name, Possession secondRequirement, int finalVictoryPoints) {
+	public Ventures(String name) {
 		super(name);
-		this.secondRequirement = secondRequirement;
-		this.finalVictoryPoints = new VictoryPoints(finalVictoryPoints);
 	}
 
 
@@ -37,6 +35,18 @@ public class Ventures extends DevelopmentCard {
 	public void setSecondRequirement(Possession secondRequirement) {
 		this.secondRequirement = secondRequirement;
 	}
+
+
+	public VictoryPoints getFinalVictoryPoints() {
+		return finalVictoryPoints;
+	}
+
+
+	public void setFinalVictoryPoints(int finalVictoryPoints) {
+		this.finalVictoryPoints = new VictoryPoints(finalVictoryPoints);
+	}
+	
+	
 	
 
 }

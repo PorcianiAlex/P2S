@@ -26,9 +26,6 @@ public class Main {
 		controller.addRemoteView(remoteView1);
 		controller.addRemoteView(remoteView2);
 		
-		game.addModelOserver(remoteView1);
-		game.addModelOserver(remoteView1);
-		
 		game.executeGame();
 
 		

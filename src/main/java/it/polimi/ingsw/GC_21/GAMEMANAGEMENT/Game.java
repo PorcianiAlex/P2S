@@ -63,7 +63,7 @@ public class Game {
 		this.board = board;
 	}
 
-	public ArrayList<ModelObserver> getViewObservers() {
+	public ArrayList<ModelObserver> getModelObservers() {
 		return modelObservers;
 	}
 
@@ -125,6 +125,13 @@ public class Game {
 			}
 		}
 		return true;
+	}
+
+	public void notifyModelObservers() {
+		for (int i = 0; i < modelObservers.size(); i++) {
+			modelObservers.get(i).updateView();
+		}
+		
 	}
 	
 

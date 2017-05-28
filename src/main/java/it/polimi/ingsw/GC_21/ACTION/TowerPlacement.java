@@ -117,7 +117,8 @@ public class TowerPlacement extends PlacementAction {
 	}
 
 	public void takeCard() {
-		playerInAction.getMyPersonalBoard().addDevCard(selectedCard); 
+		playerInAction.getMyPersonalBoard().addDevCard(selectedCard);
+		selectedFloor.getDevCardPlace().setCard(null);
 	}
 
 }
