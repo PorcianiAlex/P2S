@@ -43,7 +43,7 @@ public class PersonalBoard {
 		throw new UnsupportedOperationException();
 	}
 	
-	public void checkCraftEffect(CraftType craftType, int actionValue) {
+	public void activateCraft(CraftType craftType, int actionValue) {
 		if(craftType.equals(CraftType.Production)) {
 			OwnedCards ownedBuildingCardsCards = getOwnedCards(DevCardType.Building);
 			for (int i = 0; i < ownedBuildingCardsCards.getOwnedCardsnumber(); i++) {

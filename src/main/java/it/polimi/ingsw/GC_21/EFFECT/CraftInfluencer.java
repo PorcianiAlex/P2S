@@ -8,7 +8,7 @@ import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class CraftInfluencer implements ToCallBeforeCraft {
+public class CraftInfluencer extends Effect implements ToCallBeforeCraft {
 	private CraftType craftType;
 	private int craftBonus;
 	

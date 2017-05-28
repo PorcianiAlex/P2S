@@ -22,7 +22,7 @@ public class CraftAction extends Action{
 	
 	@Override
 	public void Execute() {
-		playerInAction.getMyPersonalBoard().checkCraftEffect(craftType, actionValue);
+		playerInAction.getMyPersonalBoard().activateCraft(craftType, actionValue);
 	}
 
 
