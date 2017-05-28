@@ -14,7 +14,7 @@ public class MarketPlacement extends PlacementAction {
 
 	private MarketPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember,  Servants servantsToConvert, SingleActionSpace selectedActionSpace, Board board) {
 		super(playerInAction, actionValue, selectedFamilyMember, selectedActionSpace, servantsToConvert, board); 
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	public static MarketPlacement factoryMarketPlacement(Player playerInAction, FamilyMemberColor familyMemberColor, 
@@ -22,15 +22,10 @@ public class MarketPlacement extends PlacementAction {
 		FamilyMember selectedFamilyMember = playerInAction.getSpecificFamilyMember(familyMemberColor);
 		Servants servantsToConvert = new Servants(servantsNumber);
 		int actionValue = selectedFamilyMember.getDiceAssociated().getValue();
-		SingleActionSpace selectedActionSpace = board.getMarketArea().getSingleActionSpace()[position];
+		SingleActionSpace selectedActionSpace = board.getMarketArea().getSingleActionSpace()[position-1];
 		MarketPlacement marketPlacement = new MarketPlacement(playerInAction, actionValue, selectedFamilyMember, servantsToConvert, selectedActionSpace, board);
 		return marketPlacement;
 	}
 	
-	@Override
-	public boolean checkPlaceRequirement() {
-		SingleActionSpace cell = (SingleActionSpace) selectedActionSpace;
-		return super.checkPlaceRequirement() &&
-			   !cell.isBusy();
-	}
+	
 }

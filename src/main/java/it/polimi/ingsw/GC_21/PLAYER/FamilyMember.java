@@ -3,10 +3,10 @@ package it.polimi.ingsw.GC_21.PLAYER;
 import it.polimi.ingsw.GC_21.BOARD.*;
 
 public class FamilyMember {
-	protected Color color;
-	protected Boolean placed = false;
+	protected final Color color;
+	protected Boolean placed;
 	protected Dice diceAssociated;
-	protected FamilyMemberColor familyMemberColor;
+	protected final FamilyMemberColor familyMemberColor;
 	
 	
 	public FamilyMember(Dice dice, Color color) {
@@ -19,7 +19,8 @@ public class FamilyMember {
 	public FamilyMember() {
 		this.diceAssociated = new Dice();
 		this.placed = false;
-		this.familyMemberColor = familyMemberColor.Neutral;
+		this.familyMemberColor = FamilyMemberColor.Neutral;
+		this.color = Color.Neutral;
 	}
 	
 	public static FamilyMember[] factoryFamilyMembers(Dice[] dices, Color color){
@@ -32,32 +33,31 @@ public class FamilyMember {
 	}
 	
 	
-	public Boolean getPlaced() {
+	public Boolean isPlaced() {
 		return placed;
 	}
+	
 	public void setPlaced(Boolean placed) {
 		this.placed = placed;
 	}
+	
 	public Dice getDiceAssociated() {
 		return diceAssociated;
 	}
+	
 	public void setDiceAssociated(Dice diceAssociated) {
 		this.diceAssociated = diceAssociated;
 	}
+	
 	public FamilyMemberColor getFamilyMemberColor() {
 		return familyMemberColor;
 	}
-	public void setFamilyMemberColor(FamilyMemberColor familyMemberColor) {
-		this.familyMemberColor = familyMemberColor;
-	}
-
+	
 	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(Color color) {
-		this.color = color;
-	}
+	
 	
 	
 	

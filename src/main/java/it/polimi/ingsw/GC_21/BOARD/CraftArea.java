@@ -17,16 +17,18 @@ public class CraftArea {
 		this.multipleActionSpace = new MultipleActionSpace(1, MalusOnCraft);
 	}
 
-	public boolean checkFamilyMemberColor(Color color) {
-		return singleActionSpace.getFamilyMember().getColor().equals(color) || 
-			multipleActionSpace.checkColorPresence(color);
+	public boolean checkFamilyMemberColor(Color color) {//return true if there is a family member with the indicated color in the singleActionSpace or in the multiple
+		if (color.equals(Color.Neutral)) {//if the Family Member is Neutral the check is not important 
+			return false;
+		}
+		else {
+			return singleActionSpace.getFamilyMember().getColor().equals(color) || 
+					multipleActionSpace.checkColorPresence(color);
+		}
+		
 		
 	}
 
-	public void callBoardCraftEffect() {
-		// TODO - implement CraftArea.callBoardCraftEffect
-		throw new UnsupportedOperationException();
-	}
 
 	public CraftType getCraftType() {
 		return craftType;

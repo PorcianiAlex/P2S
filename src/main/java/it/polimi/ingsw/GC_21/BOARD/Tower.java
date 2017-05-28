@@ -44,7 +44,8 @@ public class Tower {
 			}
 		    return false;
 		}
-	public boolean checkFamilyMemberColorPresence(String color) {
+	
+	public boolean checkFamilyMemberColorPresence(Color color) {
 		for (int i = 0; i < floors.length; i++) {
 			if(floors[i].getSingleActionSpace().getFamilyMember().getColor().equals(color)){
 				return true;

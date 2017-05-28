@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
 import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Tower;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Coins;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
@@ -56,6 +57,10 @@ public class TowerPlacement extends PlacementAction {
 			if(selectedActionSpace.getActionSpaceEffect()!=null) {
 			discount.add(selectedActionSpace.getActionSpaceEffect().getRewards());//if the Space requirement is satisfied I can use the eventual SpaceBonus to get the card
 			}
+		    if (checkBusyTower()) {
+		    	Coins moneyToPay = new Coins(3);
+				overcharge.add(moneyToPay);
+			}
 			return checkTakeabilityCard(playerInAction.getMyPersonalBoard(), selectedCard.getDevCardType()) &&
 					checkCardRequirements(playerInAction.getMyPersonalBoard());
 		}
@@ -68,6 +73,14 @@ public class TowerPlacement extends PlacementAction {
 		 super.Execute();
 		 pay(selectedCard.getRequirements());
 		 takeCard();
+	}
+	
+	@Override
+	public boolean checkOtherFamilyMember() {
+		if (selectedFamilyMember != null) {
+			return selectedTower.checkFamilyMemberColorPresence(selectedFamilyMember.getColor());	
+		}
+		return false;
 	}
 
 

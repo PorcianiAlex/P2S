@@ -44,7 +44,14 @@ public class PlacementAction extends Action {
 	
 	public boolean checkPlaceRequirement(){
 		return checkDiceRequirement() &&
-			!checkBusyActionSpace();
+			   !checkBusyActionSpace() &&
+			   !checkBusyFamiliyMember() &&
+			   !checkOtherFamilyMember();
+			   
+	}
+	
+	public boolean checkOtherFamilyMember() {
+		return false;
 	}
 
 
@@ -52,6 +59,9 @@ public class PlacementAction extends Action {
 		this.actionValue += servants.getValue();
 	}
 	
+	public boolean checkBusyFamiliyMember() {
+		return selectedFamilyMember.isPlaced();
+	}
 	public boolean checkBusyActionSpace() {
 		return selectedActionSpace.isBusy();
 		

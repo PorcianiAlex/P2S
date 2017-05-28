@@ -36,12 +36,11 @@ public class CraftPlacement extends PlacementAction {
 		return craftPlacement;
 	}
 
+	
 	@Override
-    public boolean checkPlaceRequirement() {
-    	return super.checkPlaceRequirement() &&
-    			craftArea.checkFamilyMemberColor(selectedFamilyMember.getColor());
-    	
-    }
+	public boolean checkOtherFamilyMember() {
+		return craftArea.checkFamilyMemberColor(selectedFamilyMember.getColor());
+	}
 	
 	@Override
 	public void Execute() {	
