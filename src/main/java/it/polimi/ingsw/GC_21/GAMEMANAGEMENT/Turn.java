@@ -18,11 +18,23 @@ public class Turn {
 	
 	public void executeView() {
 		for (int i = 0; i < game.getPlayers().size(); i++) {
-			RemoteView view = (RemoteView) game.getViewObserver();
-			game.getBoard().printBoard();
+			
+			System.out.println("Age: "+ game.getCurrentAge().getAgeNumber() + "\nRound: " + game.getCurrentAge().getCurrentRound().getRoundNumber() 
+					+"\nTurn: "+turnNumber +"\nTurn of player :"+ game.getPlayers().get(i).getName() +" color: " +game.getPlayers().get(i).getPlayerColor().toString());
+			
+			RemoteView view = (RemoteView) game.getViewObservers().get(i);
+			game.getBoard().printBoard(); System.out.println("\n \n \n");
 			view.input();
-			game.getBoard().printBoard();
+			
 		}
+	}
+
+	public int getTurnNumber() {
+		return turnNumber;
+	}
+
+	public void setTurnNumber(int turnNumber) {
+		this.turnNumber = turnNumber;
 	}
 
 	

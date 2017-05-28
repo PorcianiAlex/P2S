@@ -22,7 +22,7 @@ public class MarketPlacement extends PlacementAction {
 		FamilyMember selectedFamilyMember = playerInAction.getSpecificFamilyMember(familyMemberColor);
 		Servants servantsToConvert = new Servants(servantsNumber);
 		int actionValue = selectedFamilyMember.getDiceAssociated().getValue();
-		SingleActionSpace selectedActionSpace = board.getMarketArea().getSingleActionSpace()[position-1];
+		SingleActionSpace selectedActionSpace = board.getMarketArea().getSingleActionSpace()[position];
 		MarketPlacement marketPlacement = new MarketPlacement(playerInAction, actionValue, selectedFamilyMember, servantsToConvert, selectedActionSpace, board);
 		return marketPlacement;
 	}

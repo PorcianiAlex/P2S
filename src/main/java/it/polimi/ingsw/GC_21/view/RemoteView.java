@@ -19,10 +19,10 @@ import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.UTILITIES.MyObserver;
-import it.polimi.ingsw.GC_21.UTILITIES.ViewObserver;
+import it.polimi.ingsw.GC_21.UTILITIES.ModelObserver;
 import it.polimi.ingsw.GC_21.controller.Controller;
 
-public class RemoteView implements ViewObserver {
+public class RemoteView implements ModelObserver {
   
 	private Game game;
 	private Player player;
@@ -33,14 +33,21 @@ public class RemoteView implements ViewObserver {
 		this.game = game;
 		player = this.createPlayer();
 		game.addPlayers(player);
-		game.setViewObserver(this);
+		game.addModelOserver(this);
 	}
 
 	private Player createPlayer() {
-		System.out.println("Choose your name");
 		Scanner scanner = new Scanner(System.in);
-		String name = scanner.nextLine();
-		Color color;
+		String name = new String();
+		Color color = null;
+		Boolean ok = new Boolean(false);
+		while(!ok) { //if name is already in use, retry!
+		System.out.println("Choose your name");
+		name = scanner.nextLine();
+		ok = game.checkName(name);
+		}
+		ok = false;
+		while(!ok) {
 		System.out.println("Choose your color: "
 				+ "\n 1: BLUE"
 				+ "\n 2: RED"
@@ -58,6 +65,8 @@ public class RemoteView implements ViewObserver {
 		default: color=Color.Blue;
 			break;
 		}	
+		ok = game.checkColor(color);
+	}	
 		return new Player(name, color, game);
 		
 	}

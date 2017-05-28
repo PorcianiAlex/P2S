@@ -15,7 +15,7 @@ public class Age {
 	DevDeck characterDeck;
 	DevDeck ventureDeck;
 	private Game game;
-	private Round round;
+	private Round currentRound;
 	
 	
 	public Age(int ageNumber, Game game) {
@@ -27,7 +27,7 @@ public class Age {
 	
 	public void executeAge() {
 		for (int i = 1; i < 3; i++) {
-			Round currentRound = new Round(i, game);
+			currentRound = new Round(i, game);
 			currentRound.executeRound();
 		}
 		
@@ -59,4 +59,23 @@ public class Age {
 		throw new UnsupportedOperationException();
 	}
 
+
+
+	public Round getCurrentRound() {
+		return currentRound;
+	}
+
+	public void setCurrentRound(Round currentRound) {
+		this.currentRound = currentRound;
+	}
+
+	public int getAgeNumber() {
+		return ageNumber;
+	}
+
+	public void setAgeNumber(int ageNumber) {
+		this.ageNumber = ageNumber;
+	}
+
+	
 }

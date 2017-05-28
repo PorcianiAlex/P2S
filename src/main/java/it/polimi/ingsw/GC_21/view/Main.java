@@ -17,11 +17,20 @@ public class Main {
 	public static void main(String[] args) {		
 		Game game = new Game();
 		Controller controller = new Controller(game);
-		RemoteView remoteView = new RemoteView(game);
-		remoteView.setMyObserver(controller);
-		controller.addRemoteView(remoteView);
-		game.setViewObserver(remoteView);
+		RemoteView remoteView1 = new RemoteView(game);
+		RemoteView remoteView2 = new RemoteView(game);
+		
+		remoteView1.setMyObserver(controller);
+		remoteView2.setMyObserver(controller);
+		
+		controller.addRemoteView(remoteView1);
+		controller.addRemoteView(remoteView2);
+		
+		game.addModelOserver(remoteView1);
+		game.addModelOserver(remoteView1);
+		
 		game.executeGame();
+
 		
 	}
 }
