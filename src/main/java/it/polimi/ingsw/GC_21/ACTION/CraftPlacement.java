@@ -1,11 +1,15 @@
 package it.polimi.ingsw.GC_21.ACTION;
 
+import java.util.ArrayList;
+
 import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.BOARD.CraftArea;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.BOARD.MultipleActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
+import it.polimi.ingsw.GC_21.EFFECT.Effect;
+import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforeCraft;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
@@ -30,8 +34,6 @@ public class CraftPlacement extends PlacementAction {
 		ActionSpace selectedActionSpace = board.getHarvestArea().getMultipleActionSpace();
 		CraftPlacement craftPlacement = new CraftPlacement(playerInAction, actionValue, selectedFamilyMember, servantsToConvert, craftType, selectedActionSpace, board);
 		return craftPlacement;
-		
-		
 	}
 
 	@Override
@@ -45,6 +47,11 @@ public class CraftPlacement extends PlacementAction {
 	public void Execute() {	
 		super.Execute();
 		CraftAction craftAction = new CraftAction(playerInAction, craftType, actionValue);
+		int indexOfToCallBeforeCraftArray = this.playerInAction.getMyPersonalBoard().getToCallBeforeCraftEffects().size();
+		ArrayList<ToCallBeforeCraft> effectsOnTheGo = this.playerInAction.getMyPersonalBoard().getToCallBeforeCraftEffects();
+		for (int i = 0; i < indexOfToCallBeforeCraftArray; i++) {
+			((Effect) effectsOnTheGo.get(indexOfToCallBeforeCraftArray)).activateEffect(playerInAction, craftAction);
+		}
 		craftAction.Execute();
 	}
 }

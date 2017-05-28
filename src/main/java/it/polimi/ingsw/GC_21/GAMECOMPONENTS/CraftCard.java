@@ -18,7 +18,6 @@ public class CraftCard extends DevelopmentCard{
 	
 	public CraftCard(String name) {
 		super(name);
-		// TODO Auto-generated constructor stub
 	}
 
 }
