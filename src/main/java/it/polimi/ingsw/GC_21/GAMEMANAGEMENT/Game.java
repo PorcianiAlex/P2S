@@ -8,11 +8,12 @@ import org.junit.experimental.theories.Theories;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.BOARD.Board;
+import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.UTILITIES.MyObserver;
-import it.polimi.ingsw.GC_21.UTILITIES.ViewObserver;
+import it.polimi.ingsw.GC_21.UTILITIES.ModelObserver;
 import it.polimi.ingsw.GC_21.controller.Controller;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
@@ -25,12 +26,13 @@ public class Game {
 	private Board board;
 	private ArrayList<Player> players;
 	private Age currentAge;
-	private ViewObserver viewObserver;
+	private ArrayList<ModelObserver> modelObservers;
 	
 
 	public Game() {
 		this.id = currentNumberOfGame + 1;
 		currentNumberOfGame++;
+		this.modelObservers = new ArrayList<ModelObserver>();
 		this.board = new Board();	
 		this.players = new ArrayList<Player>();
 		}
@@ -61,12 +63,12 @@ public class Game {
 		this.board = board;
 	}
 
-	public ViewObserver getViewObserver() {
-		return viewObserver;
+	public ArrayList<ModelObserver> getViewObservers() {
+		return modelObservers;
 	}
 
-	public void setMyObserver(ViewObserver viewObserver) {
-		this.viewObserver = viewObserver;
+	public void addModelOserver(ModelObserver modelObserver) {
+		this.modelObservers.add(modelObserver);
 	}
 
 	public void setPlayers(ArrayList<Player> players) {
@@ -104,11 +106,27 @@ public class Game {
 	public void setCurrentAge(Age currentAge) {
 		this.currentAge = currentAge;
 	}
-	
-	
-	public void setViewObserver(ViewObserver view) {
-		this.viewObserver = view;
+
+	public boolean checkName(String name) {
+		for (int i = 0; i < players.size(); i++) {
+			if(name.equals(players.get(i).getName())){
+				System.out.println("Oh bischero! This name is already in use, choose another one, please!");
+				return false;
+			}
+		}
+		return true;
 	}
 	
+	public boolean checkColor(Color color) {
+		for (int i = 0; i < players.size(); i++) {
+			if(color.equals(players.get(i).getPlayerColor())){
+				System.out.println("Oh grullo! This color is already in use, choose another one, please!");
+				return false;
+			}
+		}
+		return true;
+	}
+	
+
 	
 }

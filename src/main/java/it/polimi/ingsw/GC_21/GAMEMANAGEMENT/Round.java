@@ -21,7 +21,7 @@ public class Round {
 		}
 	
 	public void executeRound() {
-		for (int i = 0; i < game.getPlayers().size(); i++) {
+		for (int i = 1; i <5 ; i++) {
 			currentTurn = new Turn(i, game);
 			currentTurn.executeView();
 		}
@@ -36,5 +36,22 @@ public class Round {
 	
 	}
 
+	public int getRoundNumber() {
+		return roundNumber;
+	}
+
+	public void setRoundNumber(int roundNumber) {
+		this.roundNumber = roundNumber;
+	}
+
+	public Turn getCurrentTurn() {
+		return currentTurn;
+	}
+
+	public void setCurrentTurn(Turn currentTurn) {
+		this.currentTurn = currentTurn;
+	}
+
+	
 	
 }
