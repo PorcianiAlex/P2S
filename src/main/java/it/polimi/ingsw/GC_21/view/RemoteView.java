@@ -18,7 +18,7 @@ import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.UTILITIES.MyObserver;
+import it.polimi.ingsw.GC_21.UTILITIES.ViewObserver;
 import it.polimi.ingsw.GC_21.UTILITIES.ModelObserver;
 import it.polimi.ingsw.GC_21.controller.Controller;
 
@@ -26,7 +26,7 @@ public class RemoteView implements ModelObserver {
   
 	private Game game;
 	private Player player;
-	private MyObserver myObserver;
+	private ViewObserver myObserver;
 
 	
 	public RemoteView(Game game) {
@@ -71,7 +71,7 @@ public class RemoteView implements ModelObserver {
 		
 	}
 
-	public void setMyObserver(MyObserver myObserver) {
+	public void setMyObserver(ViewObserver myObserver) {
 		this.myObserver = myObserver;
 	}
 	

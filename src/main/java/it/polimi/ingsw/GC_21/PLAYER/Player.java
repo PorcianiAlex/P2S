@@ -30,6 +30,7 @@ public class Player {
 		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), playerColor);
 		this.name = name;
 		this.game = game;
+		this.game.addPlayers(this);
 		this.playerColor = playerColor;
 		this.myPersonalBoard = new PersonalBoard(this);
 		this.myPersonalBoard.getMyPossession().add(new Possession(5, 5, 5, 5, 5, 5, 5));

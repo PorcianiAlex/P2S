@@ -55,6 +55,7 @@ public class ForEachGet extends Immediate implements ToCallDuringCraft{
 			Possession rewards = new Possession(0,0,0,0,0,0,0);
 			Item rewardItem = Item.factoryItem(cardMultiplier * GettingIndex, resourceYouGet);
 			rewards.addItemToPossession(rewardItem);
+			earnRewards(player, rewards);
 		}
 		else{
 			int playerResourceNumber = player.getMyPersonalBoard().getMyPossession().getRequestedItem(forEachResource).getValue();
