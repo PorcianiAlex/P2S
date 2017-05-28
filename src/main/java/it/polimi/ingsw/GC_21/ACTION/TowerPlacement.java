@@ -98,6 +98,18 @@ public class TowerPlacement extends PlacementAction {
 		return selectedTower.checkFamilyMemberPresence();
 	}
 
+	public Floor getSelectedFloor() {
+		return selectedFloor;
+	}
+
+	public Tower getSelectedTower() {
+		return selectedTower;
+	}
+
+	public DevelopmentCard getSelectedCard() {
+		return selectedCard;
+	}
+
 	public void pay(Possession payment) {
 		payment.add(overcharge);
 		payment.subtract(discount);//real payment

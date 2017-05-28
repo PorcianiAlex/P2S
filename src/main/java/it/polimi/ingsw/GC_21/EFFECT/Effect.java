@@ -6,7 +6,7 @@ import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public  class Effect {
+public  class Effect implements ToCallDuringCraft{
 	protected Possession rewards;
 	protected Privileges privileges;
 	protected boolean coinsEarned;
@@ -22,6 +22,7 @@ public  class Effect {
 	
 	//TO DO: IMPLEMENT INFLUENCE ON ACTION; THE ACTIVATE MUST TAKE THE ACTION IN INPUT TOO!!
 	
+	
 	public Effect(Possession rewards, int privileges) {
 		this.rewards = rewards;
 		if (rewards == null){
@@ -35,7 +36,16 @@ public  class Effect {
 		this.faithPointsReward = new Possession(0, 0, 0, 0, 1, 0, 0);
 	}
 
-
+	public Effect(){
+		this.rewards = new Possession();
+		this.privileges = new Privileges(0);
+		this.woodsAndStonesReward = new Possession(0, 1, 1, 0, 0, 0, 0);
+		this.servantsReward = new Possession(0,0,0,2,0,0,0);
+		this.coinsReward = new Possession(2, 0, 0, 0, 0, 0, 0);
+		this.militaryPointsReward = new Possession(0, 0, 0, 0, 0, 2, 0);
+		this.faithPointsReward = new Possession(0, 0, 0, 0, 1, 0, 0);
+	}
+	
 	
 	public void activateEffect(Player player, Action action) {
 		if (privileges.getValue()!=0){

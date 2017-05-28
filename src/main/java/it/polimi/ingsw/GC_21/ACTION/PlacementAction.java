@@ -69,6 +69,34 @@ public class PlacementAction extends Action {
 		
 	}
 
+	public Possession getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Possession discount) {
+		this.discount = discount;
+	}
+
+	public Possession getOvercharge() {
+		return overcharge;
+	}
+
+	public void setOvercharge(Possession overcharge) {
+		this.overcharge = overcharge;
+	}
+
+	public Servants getServantsToConvert() {
+		return servantsToConvert;
+	}
+
+	public Board getBoard() {
+		return board;
+	}
+
+	public void setSelectedActionSpace(ActionSpace selectedActionSpace) {
+		this.selectedActionSpace = selectedActionSpace;
+	}
+
 	public int getActionValue() {
 		return actionValue;
 	}

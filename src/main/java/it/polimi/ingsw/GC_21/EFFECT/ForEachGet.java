@@ -16,7 +16,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ResourceType;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class ForEachGet extends Immediate{
+public class ForEachGet extends Immediate implements ToCallDuringCraft{
 	private final DevCardType forEachCard;
 	private final int forEachCardIndex;
 	private final ResourceType forEachResource;

@@ -1,29 +1,31 @@
 package it.polimi.ingsw.GC_21.PLAYER;
 
+import java.lang.reflect.Array;
 import java.util.*;
-
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.EffectType;
-import it.polimi.ingsw.GC_21.EFFECT.Permanent;
+import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforeCraft;
+import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforePlacement;
+import it.polimi.ingsw.GC_21.EFFECT.ToCallDuringCraft;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 
 public class PersonalBoard {
 	private final OwnedCards[] myOwnedCards;
-	private ArrayList<Permanent> personalPermanetEffect;
 	private final Possession craftMinimumReward;
 	private Possession myPossession;
 	private Player player;
-
-
+	private ArrayList<ToCallBeforeCraft> toCallBeforeCraftEffects;
+	private ArrayList<ToCallBeforePlacement> toCallBeforePlacementEffects;
 	
 	public PersonalBoard(Player player) {
 		this.myOwnedCards = OwnedCards.factoryOwnedCards();
-		this.personalPermanetEffect = new ArrayList<Permanent>();
 		this.myPossession = new Possession(0, 0, 0, 0, 0, 0, 0);
 		this.craftMinimumReward = new Possession(1,1,1,1,1,1,1);
 		this.player = player;
+		this.toCallBeforeCraftEffects= new ArrayList<ToCallBeforeCraft>();
+		this.toCallBeforePlacementEffects = new ArrayList<ToCallBeforePlacement>();
 	}
 	
 	public void addDevCard(DevelopmentCard devCard) {
@@ -69,12 +71,37 @@ public class PersonalBoard {
 		return myOwnedCards[i];	
 	}
 
-	public ArrayList<Permanent> getPersonalPermanetEffect() {
-		return personalPermanetEffect;
+
+	public Player getPlayer() {
+		return player;
 	}
 
-	public void setPersonalPermanetEffect(ArrayList<Permanent> personalPermanetEffect) {
-		this.personalPermanetEffect = personalPermanetEffect;
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+
+	public ArrayList<ToCallBeforeCraft> getToCallBeforeCraftEffects() {
+		return toCallBeforeCraftEffects;
+	}
+
+	public void setToCallBeforeCraftEffects(ArrayList<ToCallBeforeCraft> toCallBeforeCraftEffects) {
+		this.toCallBeforeCraftEffects = toCallBeforeCraftEffects;
+	}
+
+	public ArrayList<ToCallBeforePlacement> getToCallBeforePlacementEffects() {
+		return toCallBeforePlacementEffects;
+	}
+
+	public void setToCallBeforePlacementEffects(ArrayList<ToCallBeforePlacement> toCallBeforePlacementEffects) {
+		this.toCallBeforePlacementEffects = toCallBeforePlacementEffects;
+	}
+
+	public OwnedCards[] getMyOwnedCards() {
+		return myOwnedCards;
+	}
+
+	public Possession getCraftMinimumReward() {
+		return craftMinimumReward;
 	}
 
 	public Possession getMyPossession() {

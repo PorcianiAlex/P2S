@@ -3,10 +3,14 @@ package it.polimi.ingsw.GC_21.controller;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.PrimitiveIterator.OfDouble;
 
 import javax.swing.text.View;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
+import it.polimi.ingsw.GC_21.ACTION.PlacementAction;
+import it.polimi.ingsw.GC_21.EFFECT.Effect;
+import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforePlacement;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.UTILITIES.MyObserver;
 import it.polimi.ingsw.GC_21.view.RemoteView;
@@ -50,6 +54,13 @@ public class Controller implements MyObserver{
 
 	@Override
 	public boolean update(Action action) {
+		if (action instanceof PlacementAction){
+			int indexOfToCallBeforePlacementArray = action.getPlayerInAction().getMyPersonalBoard().getToCallBeforePlacementEffects().size();
+			ArrayList<ToCallBeforePlacement> effectsOnTheGo = action.getPlayerInAction().getMyPersonalBoard().getToCallBeforePlacementEffects();
+			for (int i = 0; i < indexOfToCallBeforePlacementArray; i++) {
+				((Effect) effectsOnTheGo.get(indexOfToCallBeforePlacementArray)).activateEffect(action.getPlayerInAction(), action);
+			}
+		}
 		if (action.checkAction()) {
 			action.Execute();
 			return true;

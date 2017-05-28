@@ -10,9 +10,8 @@ public  class Card {
 
 	private String name;
 	private Possession requirements;
-	private Permanent permanentEffect ;
 	private Immediate immediateEffect;
-
+	private Effect secondaryEffect;
 
 	public Card(String name) {
 		this.name=name;
@@ -43,16 +42,14 @@ public  class Card {
 
 
 
-	public Permanent getPermanentEffect() {
-		return permanentEffect;
+
+	public Card(String name, Possession requirements, Immediate immediateEffect, Effect secondaryEffect) {
+		super();
+		this.name = name;
+		this.requirements = requirements;
+		this.immediateEffect = immediateEffect;
+		this.secondaryEffect = secondaryEffect;
 	}
-
-
-
-	public void setPermanentEffect(Permanent permanentEffect) {
-		this.permanentEffect = permanentEffect;
-	}
-
 
 
 	public Immediate getImmediateEffect() {

@@ -7,11 +7,16 @@ import javax.management.modelmbean.RequiredModelMBean;
 public class Ventures extends DevelopmentCard {
 	
 	private Possession secondRequirement;
+	private VictoryPoints finalVictoryPoints;
 
-	public Ventures(String name) {
+	
+	public Ventures(String name, Possession secondRequirement, int finalVictoryPoints) {
 		super(name);
-		// TODO Auto-generated constructor stub
+		this.secondRequirement = secondRequirement;
+		this.finalVictoryPoints = new VictoryPoints(finalVictoryPoints);
 	}
+
+
 	@Override 
 	public Possession getRequirements() {
 		boolean choice = chooseReq();

@@ -12,7 +12,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 
-public class Convert extends Immediate {
+public class Convert extends Immediate implements ToCallDuringCraft{
 	private Possession toPay1;
 	private Possession toTake1;
 	private Possession toPay2;

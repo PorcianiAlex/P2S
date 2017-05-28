@@ -1,11 +1,33 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
+
+import it.polimi.ingsw.GC_21.ACTION.Action;
+import it.polimi.ingsw.GC_21.ACTION.PlacementAction;
+import it.polimi.ingsw.GC_21.ACTION.TowerPlacement;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
+import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class PlacementInfluencer extends Permanent {
-
-	public PlacementInfluencer(Possession rewards) {
-		super(rewards,0);
-		// TODO Auto-generated constructor stub
+public class PlacementInfluencer extends Effect implements ToCallBeforePlacement{
+	private int actionValueBonus;
+	private DevCardType TowerEffected;
+	private Possession discount;
+	
+	public PlacementInfluencer(int actionValueBonus, DevCardType towerEffected,
+			Possession discount) {
+		super();
+		this.actionValueBonus = actionValueBonus;
+		TowerEffected = towerEffected;
+		this.discount = discount;
 	}
+	
+	@Override
+	public void activateEffect(Player player, Action action) {
+		if (action instanceof TowerPlacement && ((TowerPlacement) action).getSelectedTower().getDevCardType().equals(this.TowerEffected)){
+			int newActionValue = this.actionValueBonus + ((PlacementAction) action).getActionValue();
+			((PlacementAction) action).setActionValue(newActionValue);
+			((PlacementAction) action).setDiscount(this.discount);
+		}
+	}
+	
 }
