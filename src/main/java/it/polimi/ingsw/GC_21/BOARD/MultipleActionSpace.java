@@ -7,25 +7,16 @@ import it.polimi.ingsw.GC_21.EFFECT.Immediate;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 
 public class MultipleActionSpace extends ActionSpace {
-	private ArrayList<FamilyMember> familyMembersLocated= new ArrayList<FamilyMember>();
+	private ArrayList<FamilyMember> familyMembersLocated = new ArrayList<FamilyMember>();
 
-	public MultipleActionSpace(int requiredDice,Effect effect) {
+	public MultipleActionSpace(int requiredDice, Effect effect) {
 		super(requiredDice, effect);
 	}
 	
-	public boolean checkColorPresence(Color color) {
-		int i = 0;
-		while (i < familyMembersLocated.size()) {
-		      if (familyMembersLocated.get(i).getColor().equals(color)) {
-			      return true;
-		      }
-			i++;
-		}
-		return false;
-	}
+	
 
 
-	public ArrayList<FamilyMember> getFamilyMember() {
+	public ArrayList<FamilyMember> getFamilyMembers() {
 		return familyMembersLocated;
 	}
 	
@@ -35,7 +26,7 @@ public class MultipleActionSpace extends ActionSpace {
 	}
 
 
-	public void setFamilyMember(ArrayList<FamilyMember> familyMember) {
+	public void setFamilyMembers(ArrayList<FamilyMember> familyMember) {
 		this.familyMembersLocated = familyMember;
 	}
 

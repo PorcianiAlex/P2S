@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
+import java.util.ArrayList;
+
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.Immediate;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
@@ -23,10 +25,22 @@ public class CraftArea {
 		}
 		else {
 			return singleActionSpace.getFamilyMember().getColor().equals(color) || 
-					multipleActionSpace.checkColorPresence(color);
+					checkColorPresenceOnMultipleSpace(color);
 		}
 		
 		
+	}
+	
+	public boolean checkColorPresenceOnMultipleSpace(Color color) {
+		int i = 0;
+		ArrayList<FamilyMember> familyMembersLocated = multipleActionSpace.getFamilyMembers(); 
+		while (i < familyMembersLocated.size()) {
+		      if (familyMembersLocated.get(i).getColor().equals(color)) {
+			      return true;
+		      }
+			i++;
+		}
+		return false;
 	}
 
 
