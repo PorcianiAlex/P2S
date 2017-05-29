@@ -32,8 +32,7 @@ public class RemoteView implements ModelObserver {
 	public RemoteView(Game game) {
 		this.game = game;
 		player = this.createPlayer();
-		game.addPlayers(player);
-		game.addModelOserver(this);
+		game.addModelOserver(this);		
 	}
 
 	private Player createPlayer() {

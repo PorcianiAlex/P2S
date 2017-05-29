@@ -48,13 +48,16 @@ public class Tower {
 	public boolean checkFamilyMemberColorPresence(Color color) {
 		
 		for (int i = 0; i < floors.length; i++) {
-			if(floors[i].getSingleActionSpace().getFamilyMember().getColor().equals(color)){
+			if(floors[i].getSingleActionSpace().isBusy()){
+			 if(floors[i].getSingleActionSpace().getFamilyMember().getColor().equals(color)){
 				return true;
 			 }
 			}
+		}
 		    return false; 
 		}
 
+	
 	public Floor[] getFloors() {
 		return floors;
 	}

@@ -24,7 +24,7 @@ public class Turn {
 					+"\nTurn: "+turnNumber +"\nTurn of player :"+ game.getPlayers().get(i).getName() +" color: " +game.getPlayers().get(i).getPlayerColor().toString()
 					+"\n Your resources: " + game.getPlayers().get(i).getMyPersonalBoard().getMyPossession().toString() + 
 					"\n" );
-			
+					
 			RemoteView view = (RemoteView) game.getModelObservers().get(i);
 			game.notifyModelObservers(); 
 			System.out.println("\n \n \n");
