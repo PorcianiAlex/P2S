@@ -58,7 +58,7 @@ public class TowerPlacement extends PlacementAction {
 			discount.add(selectedActionSpace.getActionSpaceEffect().getRewards());//if the Space requirement is satisfied I can use the eventual SpaceBonus to get the card
 			}
 		    if (checkBusyTower()) {
-		    	Possession moneyToPay = new Possession(3, 0, 0, 0, 0, 0, 0);//needed addCoin to Possesion
+		    	Possession moneyToPay = new Possession(3, 0, 0, 0, 0, 0, 0);//needed addCoin to Possession
 				overcharge.add(moneyToPay);
 			}
 			return checkTakeabilityCard(playerInAction.getMyPersonalBoard(), selectedCard.getDevCardType()) &&
