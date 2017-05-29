@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.swing.text.View;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
-import it.polimi.ingsw.GC_21.VIEW.RemoteView;
+import it.polimi.ingsw.GC_21.view.RemoteView;
 
 public class Turn {
 

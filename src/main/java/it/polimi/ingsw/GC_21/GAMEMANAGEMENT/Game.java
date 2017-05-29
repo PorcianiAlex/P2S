@@ -14,8 +14,8 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.UTILITIES.ViewObserver;
 import it.polimi.ingsw.GC_21.UTILITIES.ModelObserver;
-import it.polimi.ingsw.GC_21.CONTROLLER.Controller;
-import it.polimi.ingsw.GC_21.VIEW.RemoteView;
+import it.polimi.ingsw.GC_21.controller.Controller;
+import it.polimi.ingsw.GC_21.view.RemoteView;
 
 public class Game {
 	
