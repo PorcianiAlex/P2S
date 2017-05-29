@@ -35,6 +35,11 @@ public class CraftPlacement extends PlacementAction {
 		CraftPlacement craftPlacement = new CraftPlacement(playerInAction, actionValue, selectedFamilyMember, servantsToConvert, craftType, selectedActionSpace, board);
 		return craftPlacement;
 	}
+	
+	@Override
+	public boolean checkAction() {
+		return super.checkAction();
+	}
 
 	
 	@Override

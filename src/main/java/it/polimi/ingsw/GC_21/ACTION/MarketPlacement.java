@@ -27,5 +27,15 @@ public class MarketPlacement extends PlacementAction {
 		return marketPlacement;
 	}
 	
+	@Override
+	public void Execute() {
+		super.Execute();
+	}
 	
+	@Override
+	public boolean checkAction() {
+		return super.checkAction();
+	}
+	
+
 }

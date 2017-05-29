@@ -26,4 +26,16 @@ public class CouncilPlacement extends PlacementAction {
 	        CouncilPlacement councilPlacement = new CouncilPlacement(playerInAction, actionValue, selectedFamilyMember, selectedActionSpace, servantsToConvert, board);
 	        return councilPlacement;
 	}
+	
+	@Override
+	public void Execute() {
+		super.Execute();
+	}
+	
+	@Override
+	public boolean checkAction() {
+		return super.checkAction();
+	}
+	
+	
 }
