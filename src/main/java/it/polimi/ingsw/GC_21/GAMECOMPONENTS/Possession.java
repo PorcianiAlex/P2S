@@ -205,7 +205,34 @@ public class Possession {
 		}
 	}
 	
-	
+	public void subtractItemToPossession(Item item){
+		if (item == null){
+			return;
+		}
+		if (item instanceof Coins){
+			this.coins.subtractItems(item);
+		}
+		if (item instanceof Servants){
+			this.servants.subtractItems(item);
+		}
+		if (item instanceof Woods){
+			this.woods.subtractItems(item);
+		}
+		if (item instanceof Stones){
+			this.stones.subtractItems(item);
+		}
+		if (item instanceof MilitaryPoints){
+			this.militaryPoints.subtractItems(item);
+		}
+		
+		if (item instanceof VictoryPoints){
+			this.victoryPoints.subtractItems(item);
+		}
+		
+		if (item instanceof FaithPoints){
+			this.faithPoints.subtractItems(item);
+		}
+	}
 	public Coins getCoins() {
 		return coins;
 	}

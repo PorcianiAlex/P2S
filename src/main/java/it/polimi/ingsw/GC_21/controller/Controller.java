@@ -1,8 +1,7 @@
 package it.polimi.ingsw.GC_21.controller;
 
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+
 import java.util.PrimitiveIterator.OfDouble;
 
 import javax.swing.text.View;
@@ -12,34 +11,21 @@ import it.polimi.ingsw.GC_21.ACTION.PlacementAction;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforePlacement;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
-import it.polimi.ingsw.GC_21.UTILITIES.ViewObserver;
+import it.polimi.ingsw.GC_21.UTILITIES.P2SObserver;
+
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
-public class Controller implements ViewObserver{
+public class Controller implements P2SObserver<Action>{
 
 
 	private Game modelGame;
-	private ArrayList<RemoteView> remoteViews;
+
 	
 
 	public Controller(Game modelGame) {
 		this.modelGame = modelGame;
-		this.remoteViews = new ArrayList<RemoteView>();
+		
 	}
-
-	
-
-	public ArrayList<RemoteView> getRemoteViews() {
-		return remoteViews;
-	}
-
-
-
-	public void addRemoteView(RemoteView remoteView) {
-		remoteViews.add(remoteView);
-	}
-
-
 
 	public Game getModelGame() {
 		return modelGame;
@@ -49,7 +35,8 @@ public class Controller implements ViewObserver{
 	public void setModelGame(Game modelGame) {
 		this.modelGame = modelGame;
 	}
-
+	
+	
 
 
 	@Override
@@ -67,5 +54,20 @@ public class Controller implements ViewObserver{
 		}
 		return false;
 	}
+
+	
+	@Override
+	public boolean update() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void update(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	
 }

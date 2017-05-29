@@ -1,8 +1,9 @@
 package it.polimi.ingsw.GC_21.view;
 
 import java.util.Scanner;
-import java.util.Observable;
-import java.util.Observer;
+
+
+
 import java.util.ResourceBundle.Control;
 
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
@@ -18,21 +19,22 @@ import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.UTILITIES.ViewObserver;
+import it.polimi.ingsw.GC_21.UTILITIES.Observable;
+import it.polimi.ingsw.GC_21.UTILITIES.P2SObserver;
 import it.polimi.ingsw.GC_21.UTILITIES.ModelObserver;
 import it.polimi.ingsw.GC_21.controller.Controller;
 
-public class RemoteView implements ModelObserver {
+public class RemoteView extends Observable<Action> implements P2SObserver {
   
 	private Game game;
 	private Player player;
-	private ViewObserver myObserver;
+	
 
 	
 	public RemoteView(Game game) {
 		this.game = game;
 		player = this.createPlayer();
-		game.addModelOserver(this);		
+		game.attach(this);		
 	}
 
 	private Player createPlayer() {
@@ -66,13 +68,10 @@ public class RemoteView implements ModelObserver {
 		}	
 		ok = game.checkColor(color);
 	}	
-		return new Player(name, color, game);
+		return new Player(name, color, game, this);
 		
 	}
 
-	public void setMyObserver(ViewObserver myObserver) {
-		this.myObserver = myObserver;
-	}
 	
 	public void input() {
 		System.out.println("Choose your action: "
@@ -130,7 +129,7 @@ public class RemoteView implements ModelObserver {
 		selectedTower = this.selectTower();
 		floor = this.selectFloor();	
 		TowerPlacement towerPlacement = TowerPlacement.factoryTowerPlacement(player, this.chooseFamilyMember(), selectedTower, floor, this.chooseHowManyServants(), game.getBoard());
-		boolean result = myObserver.update(towerPlacement);
+		boolean result = this.notifyObservers(towerPlacement);
 		if (result==false){
 			System.out.println("Oh bischero! Something went wrong! Try again!");
 			this.input();
@@ -150,7 +149,7 @@ public class RemoteView implements ModelObserver {
 		Scanner scanner = new Scanner(System.in);
 		int servantsToConvert = scanner.nextInt();
 		MarketPlacement marketPlacement = MarketPlacement.factoryMarketPlacement(player, this.chooseFamilyMember(), servantsToConvert, this.chooseHowManyServants(), game.getBoard());
-		boolean result = myObserver.update(marketPlacement);
+		boolean result = this.notifyObservers(marketPlacement);
 
 	}
 	
@@ -187,15 +186,28 @@ public class RemoteView implements ModelObserver {
 	
 	public void councilPlacementCreator() {
 		CouncilPlacement councilPlacement = CouncilPlacement.factoryCouncilPlacement(player, this.chooseFamilyMember(), game.getBoard(), this.chooseHowManyServants());	
-		boolean result = myObserver.update(councilPlacement);
+		boolean result = this.notifyObservers(councilPlacement);
 
 	}
+	
+	@Override
+	public void update(String string) {
+		System.out.println(string);
+		
+	}
 
+	
 
 	@Override
-	public void updateView() {
+	public boolean update(Object change) {
+		return false;
+	}
+
+	@Override
+	public boolean update() {
 		this.game.getBoard().printBoard();
-		
+		this.input();
+		return true;
 	}
 
 	

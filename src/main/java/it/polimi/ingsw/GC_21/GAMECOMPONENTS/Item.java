@@ -48,6 +48,10 @@ public class Item {
 		this.value = item.value + this.value;
 	}
 	
+	public void subtractItems(Item item) {
+		this.value = this.value - item.value ;
+	}
+	
 	public boolean equals(Item item){
 		if ((this.value == item.value) && this.resourceType.equals(item.resourceType)){
 			return true;

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.text.View;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
+import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
 public class Turn {
@@ -24,12 +25,9 @@ public class Turn {
 					+"\nTurn: "+turnNumber +"\nTurn of player :"+ game.getPlayers().get(i).getName() +" color: " +game.getPlayers().get(i).getPlayerColor().toString()
 					+"\n Your resources: " + game.getPlayers().get(i).getMyPersonalBoard().getMyPossession().toString() + 
 					"\n" );
-					
-			RemoteView view = (RemoteView) game.getModelObservers().get(i);
-			game.notifyModelObservers(); 
+			game.notifyObservers(game.getPlayers().get(i).getMyView());		
+			game.notifyObservers(game.getBoard().toString()); 
 			System.out.println("\n \n \n");
-			view.input();
-			
 		}
 	}
 

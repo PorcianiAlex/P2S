@@ -56,7 +56,8 @@ public class PlacementAction extends Action {
 
 
 	public void convertServant(Servants servants) {
-		this.actionValue += servants.getValue();
+		this.actionValue = this.actionValue + servants.getValue();
+		playerInAction.getMyPersonalBoard().getMyPossession().subtractItemToPossession(servants);
 	}
 	
 	public boolean checkBusyFamiliyMember() {
@@ -68,7 +69,7 @@ public class PlacementAction extends Action {
 	}
 
 	public boolean checkDiceRequirement() {
-		return selectedActionSpace.getRequiredDice() <= this.actionValue;
+		return selectedActionSpace.getRequiredDice() <= this.actionValue + servantsToConvert.getValue();
 	}
 	
 	

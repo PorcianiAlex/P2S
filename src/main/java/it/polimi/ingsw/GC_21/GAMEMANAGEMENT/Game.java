@@ -1,8 +1,7 @@
 package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+
 
 import org.junit.experimental.theories.Theories;
 
@@ -12,12 +11,12 @@ import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.UTILITIES.ViewObserver;
-import it.polimi.ingsw.GC_21.UTILITIES.ModelObserver;
+
+import it.polimi.ingsw.GC_21.UTILITIES.Observable;
 import it.polimi.ingsw.GC_21.controller.Controller;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
-public class Game {
+public class Game extends Observable {
 	
 	private Controller controller;
 	private static int currentNumberOfGame = 0; 
@@ -26,13 +25,12 @@ public class Game {
 	private Board board;
 	private ArrayList<Player> players;
 	private Age currentAge;
-	private ArrayList<ModelObserver> modelObservers;
+	
 	
 
 	public Game() {
 		this.id = currentNumberOfGame + 1;
 		currentNumberOfGame++;
-		this.modelObservers = new ArrayList<ModelObserver>();
 		this.board = new Board();	
 		this.players = new ArrayList<Player>();
 		}
@@ -63,13 +61,6 @@ public class Game {
 		this.board = board;
 	}
 
-	public ArrayList<ModelObserver> getModelObservers() {
-		return modelObservers;
-	}
-
-	public void addModelOserver(ModelObserver modelObserver) {
-		this.modelObservers.add(modelObserver);
-	}
 
 	public void setPlayers(ArrayList<Player> players) {
 		this.players = players;
@@ -127,12 +118,7 @@ public class Game {
 		return true;
 	}
 
-	public void notifyModelObservers() {
-		for (int i = 0; i < modelObservers.size(); i++) {
-			modelObservers.get(i).updateView();
-		}
-		
-	}
+	
 	
 
 	

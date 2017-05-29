@@ -16,15 +16,14 @@ public class Main {
 
 	public static void main(String[] args) {		
 		Game game = new Game();
-		Controller controller = new Controller(game);
 		RemoteView remoteView1 = new RemoteView(game);
 		RemoteView remoteView2 = new RemoteView(game);
+		Controller controller = new Controller(game);
+		remoteView1.attach(controller);
+		remoteView2.attach(controller);
 		
-		remoteView1.setMyObserver(controller);
-		remoteView2.setMyObserver(controller);
 		
-		controller.addRemoteView(remoteView1);
-		controller.addRemoteView(remoteView2);
+		
 		
 		game.executeGame();
 

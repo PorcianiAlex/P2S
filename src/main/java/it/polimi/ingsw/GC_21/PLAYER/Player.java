@@ -2,6 +2,8 @@ package it.polimi.ingsw.GC_21.PLAYER;
 
 import java.util.*;
 
+import javax.swing.text.View;
+
 import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
@@ -25,8 +27,8 @@ public class Player {
 	}
 
 	
-	public Player(String name, Color playerColor, Game game) {
-		super();
+	public Player(String name, Color playerColor, Game game, RemoteView myView) {
+		this.myView = myView;
 		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), playerColor);
 		this.name = name;
 		this.game = game;
