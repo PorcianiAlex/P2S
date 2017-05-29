@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_21.view;
+package it.polimi.ingsw.GC_21.VIEW;
 
 import java.util.Scanner;
 import java.util.Observable;
@@ -20,7 +20,7 @@ import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.UTILITIES.ViewObserver;
 import it.polimi.ingsw.GC_21.UTILITIES.ModelObserver;
-import it.polimi.ingsw.GC_21.controller.Controller;
+import it.polimi.ingsw.GC_21.CONTROLLER.Controller;
 
 public class RemoteView implements ModelObserver {
   
@@ -41,9 +41,9 @@ public class RemoteView implements ModelObserver {
 		Color color = null;
 		Boolean ok = new Boolean(false);
 		while(!ok) { //if name is already in use, retry!
-		System.out.println("Choose your name");
-		name = scanner.nextLine();
-		ok = game.checkName(name);
+			System.out.println("Choose your name");
+			name = scanner.nextLine();
+			ok = game.checkName(name);
 		}
 		ok = false;
 		while(!ok) {

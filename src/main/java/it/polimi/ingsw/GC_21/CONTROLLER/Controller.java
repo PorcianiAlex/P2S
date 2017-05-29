@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_21.controller;
+package it.polimi.ingsw.GC_21.CONTROLLER;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -13,7 +13,7 @@ import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforePlacement;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.UTILITIES.ViewObserver;
-import it.polimi.ingsw.GC_21.view.RemoteView;
+import it.polimi.ingsw.GC_21.VIEW.RemoteView;
 
 public class Controller implements ViewObserver{
 

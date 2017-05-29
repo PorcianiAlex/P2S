@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_21.view;
+package it.polimi.ingsw.GC_21.VIEW;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.controller.Controller;
+import it.polimi.ingsw.GC_21.CONTROLLER.Controller;
 
 public class Main {
 
