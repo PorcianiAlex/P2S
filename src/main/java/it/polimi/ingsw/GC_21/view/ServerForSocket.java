@@ -15,8 +15,8 @@ public class ServerForSocket {
 
     private int port;
     private ServerSocket serverSocket;
-    private static final int maxClientsCount = 1;
-    private static final RemoteView[] threads = new RemoteView[maxClientsCount];
+    private static final int maxClientsCount = 4;
+    private static final ArrayList<RemoteView> threads = new ArrayList<RemoteView>();
     private PrintStream out=null;
     private Scanner in = null;
     private Game game;
@@ -43,23 +43,34 @@ public class ServerForSocket {
        }
         System.out.println("Server ready!");
      
-        while(true){
+    
            try{
-                Socket socket = serverSocket.accept(); //il server trova un client e crea la Socket
-               Thread.sleep(10000);
-                for (int i = 0; i < threads.length; i++) {
-					threads[i] =new RemoteView(socket, threads, out, in, game);
-					threads[i].attach(controller);
-					executor.submit(threads[i]); //passo il socket al generatore di thread che gestiscono le socket dei client
+        	 
+        	         	   
+        	   while (true) {
+        		  Socket socket = serverSocket.accept();
+        		  RemoteView remoteView = new RemoteView(socket, threads, out, in, game);
+        		  threads.add(remoteView);
+        		  remoteView.attach(controller);
+        		  executor.submit(remoteView);
+        		  if (threads.size() == 2) {
+					break;
 				}
-               
-                // game.executeGame();
-                
+  					
+				
+			} 
+				
+			   Thread.sleep(10000);      	               
+                            
            } catch (IOException | InterruptedException e){
-                break;
+                System.out.println("error");
            }
-       }
-        executor.shutdown();
+       
+      
+           
+        game.executeGame();
+        
+        
     }
 
 

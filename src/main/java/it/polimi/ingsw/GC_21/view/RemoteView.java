@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Scanner;
-
-
-
+import java.util.ArrayList;
 import java.util.ResourceBundle.Control;
 
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
@@ -33,21 +31,21 @@ public class RemoteView extends Observable<Action> implements P2SObserver, Runna
 	private Player player;
 	
 	    private Socket socket;
-	    private RemoteView[] threads;
+	    private ArrayList<RemoteView> threads;
 	    private int  maxClientsCount;
 	    private PrintStream out;
 	    private Scanner in;
 	
 
 	
-	public RemoteView(Socket socket, RemoteView[] threads, PrintStream out, Scanner in, Game game) {
+	public RemoteView(Socket socket, ArrayList<RemoteView> threads, PrintStream out, Scanner in, Game game) {
 		this.game = game;
 				
 		this.socket = socket;
         this.threads = threads;
         this.out=out;
         this.in=in;
-        maxClientsCount = threads.length;
+        maxClientsCount = threads.size();
 	}
 	
 	@Override
@@ -57,18 +55,9 @@ public class RemoteView extends Observable<Action> implements P2SObserver, Runna
             out = new PrintStream(socket.getOutputStream()); // Canale in uscita della socket (in del client)
             
             player = this.createPlayer();
-    		game.attach(this);	
+    		game.attach(this);
 
-            while (true) {
-                String messaggio = in.nextLine();
-                if (messaggio.equals("quit")) {
-                    break;
-                } 
-            }
-
-            in.close();
-            out.close();
-            socket.close();
+        
         } catch (IOException e) {
             System.err.println(e.getMessage());
 
@@ -111,21 +100,21 @@ public Player createPlayer() {
 
 	
 	public void input() {
-		System.out.println("Choose your action: "
+		out.println("Choose your action: "
 				+ "\n 1: tower placement"
 				+ "\n 2: craft placement "
 				+ "\n 3: market placement "
 				+ "\n 4: council placement");
-		Scanner scanner = new Scanner(System.in);
-		int choice = scanner.nextInt();
+		out.flush();
+		String choice = in.nextLine();
 		switch (choice) {
-		case 1: this.towerPlacementCreator();
+		case "1": this.towerPlacementCreator();
 		break;
-		case 2: this.craftActionCreator();
+		case "2": this.craftActionCreator();
 		break;
-		case 3: this.marketPlacementCreator();
+		case "3": this.marketPlacementCreator();
 		break;
-		case 4: this.councilPlacementCreator();
+		case "4": this.councilPlacementCreator();
 		break;
 		default: this.towerPlacementCreator();
 			break;
@@ -134,9 +123,9 @@ public Player createPlayer() {
 	}
 	
 	public DevCardType selectTower(){
-		System.out.println("Select Tower [1-4]:");
-		Scanner scanner = new Scanner(System.in);
-		int choice = scanner.nextInt();
+		out.println("Select Tower [1-4]:");
+		out.flush();
+		int choice = in.nextInt();
 		switch (choice) {
 		case 1: return DevCardType.Territory;
 		case 2: return DevCardType.Character;
@@ -147,14 +136,15 @@ public Player createPlayer() {
 	}
 	
 	public int selectFloor(){
-		System.out.println("Select Floor [1-4]:");
-		Scanner scanner = new Scanner(System.in);
-		int choice = scanner.nextInt();
+		out.println("Select Floor [1-4]:");
+		out.flush();
+		int choice = in.nextInt();
 		if (choice <=4 && choice >=1){
 			return choice;
 		}
 		else {
-			System.out.println("Invalid floor choice, try again!");
+			out.println("Invalid floor choice, try again!");
+			out.flush();
 			return this.selectFloor();
 		}
 	}
@@ -168,11 +158,12 @@ public Player createPlayer() {
 		TowerPlacement towerPlacement = TowerPlacement.factoryTowerPlacement(player, this.chooseFamilyMember(), selectedTower, floor, this.chooseHowManyServants(), game.getBoard());
 		boolean result = this.notifyObservers(towerPlacement);
 		if (result==false){
-			System.out.println("Oh bischero! Something went wrong! Try again!");
+			out.println("Oh bischero! Something went wrong! Try again!");
+			out.flush();
 			this.input();
 			return;
 		}
-		System.out.println("Everything went fine!");
+		out.println("Everything went fine!");
 		return;
 	}
 	

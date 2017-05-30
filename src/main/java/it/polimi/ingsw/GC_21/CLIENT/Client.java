@@ -9,6 +9,7 @@ import java.util.*;
 public class Client {
     private String ip;
     private int port;
+    private Thread inputThread;
 
     public Client(String ip, int port){
     this.ip=ip;
@@ -21,18 +22,17 @@ public class Client {
         Scanner in = new Scanner(socketclient.getInputStream()); //arriva dal server
         PrintWriter out = new PrintWriter(socketclient.getOutputStream()); //invia al server
         Scanner tastiera = new Scanner(System.in);
-
+        this.inputThread = new InputThread(out, in);
+        inputThread.start();
+        System.out.println("Sono qui!");
     try {
         while (true){
-            
-            String messaggioricevuto = in.nextLine(); //arriva dal socket server
-            System.out.println(messaggioricevuto);
+     
             String stringa = tastiera.nextLine();
             out.println(stringa);                       // mando al socket
             out.flush();
-            if (messaggioricevuto.equals("addio")){
-                out.println("sei uscito");
-                break;
+            if (stringa == "sara mazzoleni ti amo") {
+            	break;
             }
         }
 
@@ -48,6 +48,24 @@ public class Client {
         }
 
     }
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
+	public int getPort() {
+		return port;
+	}
+
+	public void setPort(int port) {
+		this.port = port;
+	}
+
+
 
 
 
