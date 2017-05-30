@@ -1,9 +1,10 @@
 package it.polimi.ingsw.GC_21.view;
 
+import java.io.IOException;
+import java.io.PrintStream;
+import java.net.Socket;
 import java.util.Scanner;
-
-
-
+import java.util.ArrayList;
 import java.util.ResourceBundle.Control;
 
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
@@ -24,37 +25,61 @@ import it.polimi.ingsw.GC_21.UTILITIES.P2SObserver;
 import it.polimi.ingsw.GC_21.UTILITIES.ModelObserver;
 import it.polimi.ingsw.GC_21.controller.Controller;
 
-public class RemoteView extends Observable<Action> implements P2SObserver {
+public class RemoteView extends Observable<Action> implements P2SObserver, Runnable {
   
 	private Game game;
 	private Player player;
 	
+	    private Socket socket;
+	    private ArrayList<RemoteView> threads;
+	    private int  maxClientsCount;
+	    private PrintStream out;
+	    private Scanner in;
+	
 
 	
-	public RemoteView(Game game) {
+	public RemoteView(Socket socket, ArrayList<RemoteView> threads, PrintStream out, Scanner in, Game game) {
 		this.game = game;
-		player = this.createPlayer();
-		game.attach(this);		
+				
+		this.socket = socket;
+        this.threads = threads;
+        this.out=out;
+        this.in=in;
+        maxClientsCount = threads.size();
 	}
+	
+	@Override
+    public void run() {
+        try {
+            in = new Scanner(socket.getInputStream());// Canale in ingresso della socket (out del client)
+            out = new PrintStream(socket.getOutputStream()); // Canale in uscita della socket (in del client)
+            
+            player = this.createPlayer();
+    		game.attach(this);
 
-	private Player createPlayer() {
-		Scanner scanner = new Scanner(System.in);
+        
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+
+        }
+    }
+
+public Player createPlayer() {
+		
 		String name = new String();
 		Color color = null;
 		Boolean ok = new Boolean(false);
 		while(!ok) { //if name is already in use, retry!
-		System.out.println("Choose your name");
-		name = scanner.nextLine();
+		out.println("Choose your name");
+		out.flush();
+		name = in.nextLine();
 		ok = game.checkName(name);
 		}
 		ok = false;
 		while(!ok) {
-		System.out.println("Choose your color: "
-				+ "\n 1: BLUE"
-				+ "\n 2: RED"
-				+ "\n 3: YELLOW"
-				+ "\n 4: GREEN");
-		switch (scanner.nextLine()) {
+		out.println("Choose your color: \n 1: BLUE \n 2: RED \n 3: YELLOW \n 4: GREEN");
+		out.flush();
+		switch (in.nextLine()) {
 		case "1": color=Color.Blue;
 		break;
 		case "2": color=Color.Red;
@@ -69,26 +94,27 @@ public class RemoteView extends Observable<Action> implements P2SObserver {
 		ok = game.checkColor(color);
 	}	
 		return new Player(name, color, game, this);
-		
+				
 	}
+
 
 	
 	public void input() {
-		System.out.println("Choose your action: "
+		out.println("Choose your action: "
 				+ "\n 1: tower placement"
 				+ "\n 2: craft placement "
 				+ "\n 3: market placement "
 				+ "\n 4: council placement");
-		Scanner scanner = new Scanner(System.in);
-		int choice = scanner.nextInt();
+		out.flush();
+		String choice = in.nextLine();
 		switch (choice) {
-		case 1: this.towerPlacementCreator();
+		case "1": this.towerPlacementCreator();
 		break;
-		case 2: this.craftActionCreator();
+		case "2": this.craftActionCreator();
 		break;
-		case 3: this.marketPlacementCreator();
+		case "3": this.marketPlacementCreator();
 		break;
-		case 4: this.councilPlacementCreator();
+		case "4": this.councilPlacementCreator();
 		break;
 		default: this.towerPlacementCreator();
 			break;
@@ -97,9 +123,9 @@ public class RemoteView extends Observable<Action> implements P2SObserver {
 	}
 	
 	public DevCardType selectTower(){
-		System.out.println("Select Tower [1-4]:");
-		Scanner scanner = new Scanner(System.in);
-		int choice = scanner.nextInt();
+		out.println("Select Tower [1-4]:");
+		out.flush();
+		int choice = in.nextInt();
 		switch (choice) {
 		case 1: return DevCardType.Territory;
 		case 2: return DevCardType.Character;
@@ -110,14 +136,15 @@ public class RemoteView extends Observable<Action> implements P2SObserver {
 	}
 	
 	public int selectFloor(){
-		System.out.println("Select Floor [1-4]:");
-		Scanner scanner = new Scanner(System.in);
-		int choice = scanner.nextInt();
+		out.println("Select Floor [1-4]:");
+		out.flush();
+		int choice = in.nextInt();
 		if (choice <=4 && choice >=1){
 			return choice;
 		}
 		else {
-			System.out.println("Invalid floor choice, try again!");
+			out.println("Invalid floor choice, try again!");
+			out.flush();
 			return this.selectFloor();
 		}
 	}
@@ -131,11 +158,12 @@ public class RemoteView extends Observable<Action> implements P2SObserver {
 		TowerPlacement towerPlacement = TowerPlacement.factoryTowerPlacement(player, this.chooseFamilyMember(), selectedTower, floor, this.chooseHowManyServants(), game.getBoard());
 		boolean result = this.notifyObservers(towerPlacement);
 		if (result==false){
-			System.out.println("Oh bischero! Something went wrong! Try again!");
+			out.println("Oh bischero! Something went wrong! Try again!");
+			out.flush();
 			this.input();
 			return;
 		}
-		System.out.println("Everything went fine!");
+		out.println("Everything went fine!");
 		return;
 	}
 	
@@ -154,9 +182,10 @@ public class RemoteView extends Observable<Action> implements P2SObserver {
 	}
 	
 	public FamilyMemberColor chooseFamilyMember(){
-		System.out.println("Select Family Member [N-O-W-B]:");
-		Scanner scanner = new Scanner(System.in);
-		switch (scanner.nextLine()) {
+		out.println("Select Family Member [N-O-W-B]:");
+		out.flush();
+		String choice = in.nextLine();
+		switch (choice) {
 		case "N": return FamilyMemberColor.Neutral;
 		case "O": return FamilyMemberColor.Orange;
 		case "W": return FamilyMemberColor.White;
@@ -168,18 +197,21 @@ public class RemoteView extends Observable<Action> implements P2SObserver {
 	public int chooseHowManyServants(){
 		int playerServant = player.getMyPersonalBoard().getMyPossession().getServants().getValue();
 		if (playerServant == 0){
-			System.out.println("You don't have servant to convert!");
+			out.println("You don't have servant to convert!");
+			out.flush();
 			return 0;
 		}
-		System.out.println("How many servants do you want to convert?:");
-		Scanner scanner = new Scanner(System.in);
-		int servantsToConvert = scanner.nextInt();
+		out.println("How many servants do you want to convert?:");
+		out.flush();
+		int servantsToConvert = in.nextInt();
 		if (servantsToConvert > playerServant){
-			System.out.println("You don't have enough servant to convert, try again!");
+			out.println("You don't have enough servant to convert, try again!");
+			out.flush();
 			return this.chooseHowManyServants();
 		}
 		else {
-			System.out.println("You are going to convert" + servantsToConvert + "servants");
+			out.println("You are going to convert" + servantsToConvert + "servants");
+			out.flush();
 			return servantsToConvert;
 		}
 	}
@@ -192,8 +224,7 @@ public class RemoteView extends Observable<Action> implements P2SObserver {
 	
 	@Override
 	public void update(String string) {
-		System.out.println(string);
-		
+		out.println(string);
 	}
 
 	
