@@ -9,7 +9,8 @@ public class MainClient {
 
     	try {
 			String ip = InetAddress.getLocalHost().getHostAddress();
-			Client client1 =new Client(ip, 6621);
+			System.out.println(ip);
+			Client client1 =new Client(ip, 6620);
 			client1.startClient();
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
