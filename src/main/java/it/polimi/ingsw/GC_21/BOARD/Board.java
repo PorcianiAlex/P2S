@@ -24,8 +24,10 @@ public class Board {
 		this.towers = Tower.factoryTowers(); 
 		this.marketArea = new MarketArea();
 		this.councilPalace = new CouncilPalace();
+		this.productionArea = new CraftArea(CraftType.Production, null);
+		this.harvestArea = new CraftArea(CraftType.Harvest, null);
 		/*
-		 CONSTRUCT CRAFT AREAS
+		 CONSTRUCT CRAFT AREAS: needs malus on Action vaLUE
 		 */
 	}
 
@@ -128,6 +130,18 @@ public class Board {
 
 	public void setCouncilPalace(CouncilPalace councilPalace) {
 		this.councilPalace = councilPalace;
+	}
+	
+	public CraftArea getSpecificCraftArea(CraftType craftType) {
+		if (craftType.equals(CraftType.Harvest)) {
+			return getHarvestArea();
+		}
+		else if (craftType.equals(CraftType.Production)) {
+			return getProductionArea();
+		}
+		else {
+			return null;
+		}
 	}
 
 

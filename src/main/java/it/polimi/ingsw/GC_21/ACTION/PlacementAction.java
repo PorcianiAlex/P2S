@@ -56,7 +56,7 @@ public class PlacementAction extends Action {
 
 
 	public void convertServant(Servants servants) {
-		this.actionValue = this.actionValue + servants.getValue();
+		this.actionValue += servants.getValue();
 		playerInAction.getMyPersonalBoard().getMyPossession().subtractItemToPossession(servants);
 	}
 	

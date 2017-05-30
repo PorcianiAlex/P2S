@@ -47,6 +47,16 @@ public class CraftArea {
 	public CraftType getCraftType() {
 		return craftType;
 	}
+	
+	public ActionSpace selectActionSpace(String string) {
+		if (string.equals("Single")) {
+			return getSingleActionSpace();
+		}
+		else if (string.equals("Multiple")) {
+			return getMultipleActionSpace();
+		}
+		return null;
+	}
 
 	public SingleActionSpace getSingleActionSpace() {
 		return singleActionSpace;

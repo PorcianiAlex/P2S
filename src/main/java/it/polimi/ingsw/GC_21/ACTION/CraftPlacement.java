@@ -16,14 +16,12 @@ import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class CraftPlacement extends PlacementAction {
-	private final CraftType craftType;
 	private final CraftArea craftArea;
 	
 
-	public CraftPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember, Servants servantsToConvert, CraftType craftType, ActionSpace selectedActionSpace, Board board) {
+	public CraftPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember, Servants servantsToConvert, CraftArea craftArea, ActionSpace selectedActionSpace, Board board) {
 		super(playerInAction, actionValue, selectedFamilyMember, selectedActionSpace, servantsToConvert, board);
-		this.craftType = craftType;
-		this.craftArea = board.getHarvestArea();
+		this.craftArea = craftArea;
 	}
 	
 	public static CraftPlacement factoryCraftPlacement(Player playerInAction, FamilyMemberColor familyMemberColor,
@@ -31,14 +29,21 @@ public class CraftPlacement extends PlacementAction {
 		FamilyMember selectedFamilyMember = playerInAction.getSpecificFamilyMember(familyMemberColor);
 		int actionValue = selectedFamilyMember.getDiceAssociated().getValue();
 		Servants servantsToConvert = new Servants(servantsNumber);
-		ActionSpace selectedActionSpace = board.getHarvestArea().getMultipleActionSpace();
-		CraftPlacement craftPlacement = new CraftPlacement(playerInAction, actionValue, selectedFamilyMember, servantsToConvert, craftType, selectedActionSpace, board);
+		CraftArea craftArea = board.getSpecificCraftArea(craftType);
+		ActionSpace selectedActionSpace = craftArea.selectActionSpace(spaceType);
+		CraftPlacement craftPlacement = new CraftPlacement(playerInAction, actionValue, selectedFamilyMember, servantsToConvert, craftArea, selectedActionSpace, board);
 		return craftPlacement;
 	}
 	
 	@Override
 	public boolean checkAction() {
 		return super.checkAction();
+	}
+	
+	@Override
+	public boolean checkPlaceRequirement() {
+		// TODO Auto-generated method stub
+		return super.checkPlaceRequirement();
 	}
 
 	
@@ -50,7 +55,7 @@ public class CraftPlacement extends PlacementAction {
 	@Override
 	public void Execute() {	
 		super.Execute();
-		CraftAction craftAction = new CraftAction(playerInAction, craftType, actionValue);
+		CraftAction craftAction = new CraftAction(playerInAction, craftArea.getCraftType(), actionValue);
 		int indexOfToCallBeforeCraftArray = this.playerInAction.getMyPersonalBoard().getToCallBeforeCraftEffects().size();
 		ArrayList<ToCallBeforeCraft> effectsOnTheGo = this.playerInAction.getMyPersonalBoard().getToCallBeforeCraftEffects();
 		for (int i = 0; i < indexOfToCallBeforeCraftArray; i++) {
