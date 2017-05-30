@@ -169,18 +169,11 @@ public class Board {
 	}
 
 
-
-	public void printBoard(){
-		System.out.println(dices[0].toString());
-		System.out.println(dices[1].toString());
-		System.out.println(dices[2].toString());
-		System.out.println(towers[0].toString());
-		System.out.println(towers[1].toString());
-		System.out.println(towers[2].toString());
-		System.out.println(towers[3].toString());
-		System.out.println(marketArea.toString());
-		System.out.println(councilPalace.toString());
+	public String toString() {
+		return dices[0].toString() + " \n " + dices[1].toString() + " \n " + dices[2].toString() + " \n " + towers[0].toString() + " \n " + towers[1].toString() + " \n " + 
+				towers[3].toString() + " \n " + towers[3].toString() + " \n " + marketArea.toString();
 	}
+
 
 
 
