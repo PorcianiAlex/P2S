@@ -155,7 +155,9 @@ public Player createPlayer() {
 		FamilyMemberColor familyMemberColor;
 		selectedTower = this.selectTower();
 		floor = this.selectFloor();	
-		TowerPlacement towerPlacement = TowerPlacement.factoryTowerPlacement(player, this.chooseFamilyMember(), selectedTower, floor, this.chooseHowManyServants(), game.getBoard());
+		familyMemberColor = this.chooseFamilyMember();
+		int servants = this.chooseHowManyServants();
+		TowerPlacement towerPlacement = TowerPlacement.factoryTowerPlacement(player, familyMemberColor, selectedTower, floor, servants, game.getBoard());
 		boolean result = this.notifyObservers(towerPlacement);
 		if (result==false){
 			out.println("Oh bischero! Something went wrong! Try again!");
@@ -173,7 +175,7 @@ public Player createPlayer() {
 	}
 	
 	public void marketPlacementCreator() {
-		System.out.println("Which reward do you want? \n [2x Coins (1) - 2x Servants (2) - 3x Military Points + 2x Coins (3) - 2x Privileges (4)");
+		out.println("Which reward do you want? \n [2x Coins (1) - 2x Servants (2) - 3x Military Points + 2x Coins (3) - 2x Privileges (4)");
 		Scanner scanner = new Scanner(System.in);
 		int servantsToConvert = scanner.nextInt();
 		MarketPlacement marketPlacement = MarketPlacement.factoryMarketPlacement(player, this.chooseFamilyMember(), servantsToConvert, this.chooseHowManyServants(), game.getBoard());
@@ -182,14 +184,14 @@ public Player createPlayer() {
 	}
 	
 	public FamilyMemberColor chooseFamilyMember(){
-		out.println("Select Family Member [N-O-W-B]:");
+		out.println("Select Family Member [(1) N - (2) O - (3) W - (4) B]:");
 		out.flush();
-		String choice = in.nextLine();
+		int choice = in.nextInt();
 		switch (choice) {
-		case "N": return FamilyMemberColor.Neutral;
-		case "O": return FamilyMemberColor.Orange;
-		case "W": return FamilyMemberColor.White;
-		case "B": return FamilyMemberColor.Black;
+		case 1: return FamilyMemberColor.Neutral;
+		case 2: return FamilyMemberColor.Orange;
+		case 3: return FamilyMemberColor.White;
+		case 4: return FamilyMemberColor.Black;
 		default: return FamilyMemberColor.Neutral;
 		}
 	}
@@ -210,7 +212,7 @@ public Player createPlayer() {
 			return this.chooseHowManyServants();
 		}
 		else {
-			out.println("You are going to convert" + servantsToConvert + "servants");
+			out.println("You are going to convert " + servantsToConvert + " servants");
 			out.flush();
 			return servantsToConvert;
 		}
@@ -236,7 +238,7 @@ public Player createPlayer() {
 
 	@Override
 	public boolean update() {
-		this.game.getBoard().printBoard();
+		out.println(game.getBoard().toString());
 		this.input();
 		return true;
 	}
