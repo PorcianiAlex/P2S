@@ -28,6 +28,10 @@ public abstract class Observable<C> {
 	public void notifyObservers(RemoteView view) {	
 			view.update();
 	}
+	
+	public void notifyMyObserver(RemoteView view, String string) {	
+		view.update(string);
+}
 
 	
 	public void notifyObservers(String string) {	

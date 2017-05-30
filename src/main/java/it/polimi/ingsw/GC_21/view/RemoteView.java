@@ -182,9 +182,10 @@ public Player createPlayer() {
 	}
 	
 	public FamilyMemberColor chooseFamilyMember(){
-		System.out.println("Select Family Member [N-O-W-B]:");
-		Scanner scanner = new Scanner(System.in);
-		switch (scanner.nextLine()) {
+		out.println("Select Family Member [N-O-W-B]:");
+		out.flush();
+		String choice = in.nextLine();
+		switch (choice) {
 		case "N": return FamilyMemberColor.Neutral;
 		case "O": return FamilyMemberColor.Orange;
 		case "W": return FamilyMemberColor.White;
@@ -196,18 +197,21 @@ public Player createPlayer() {
 	public int chooseHowManyServants(){
 		int playerServant = player.getMyPersonalBoard().getMyPossession().getServants().getValue();
 		if (playerServant == 0){
-			System.out.println("You don't have servant to convert!");
+			out.println("You don't have servant to convert!");
+			out.flush();
 			return 0;
 		}
-		System.out.println("How many servants do you want to convert?:");
-		Scanner scanner = new Scanner(System.in);
-		int servantsToConvert = scanner.nextInt();
+		out.println("How many servants do you want to convert?:");
+		out.flush();
+		int servantsToConvert = in.nextInt();
 		if (servantsToConvert > playerServant){
-			System.out.println("You don't have enough servant to convert, try again!");
+			out.println("You don't have enough servant to convert, try again!");
+			out.flush();
 			return this.chooseHowManyServants();
 		}
 		else {
-			System.out.println("You are going to convert" + servantsToConvert + "servants");
+			out.println("You are going to convert" + servantsToConvert + "servants");
+			out.flush();
 			return servantsToConvert;
 		}
 	}
@@ -220,8 +224,7 @@ public Player createPlayer() {
 	
 	@Override
 	public void update(String string) {
-		System.out.println(string);
-		
+		out.println(string);
 	}
 
 	
