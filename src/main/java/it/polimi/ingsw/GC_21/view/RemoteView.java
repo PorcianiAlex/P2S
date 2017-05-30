@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_21.view;
 
+import java.io.IOException;
+import java.io.PrintStream;
+import java.net.Socket;
 import java.util.Scanner;
 
 
@@ -24,37 +27,70 @@ import it.polimi.ingsw.GC_21.UTILITIES.P2SObserver;
 import it.polimi.ingsw.GC_21.UTILITIES.ModelObserver;
 import it.polimi.ingsw.GC_21.controller.Controller;
 
-public class RemoteView extends Observable<Action> implements P2SObserver {
+public class RemoteView extends Observable<Action> implements P2SObserver, Runnable {
   
 	private Game game;
 	private Player player;
 	
+	    private Socket socket;
+	    private RemoteView[] threads;
+	    private int  maxClientsCount;
+	    private PrintStream out;
+	    private Scanner in;
+	
 
 	
-	public RemoteView(Game game) {
+	public RemoteView(Socket socket, RemoteView[] threads, PrintStream out, Scanner in, Game game) {
 		this.game = game;
-		player = this.createPlayer();
-		game.attach(this);		
+				
+		this.socket = socket;
+        this.threads = threads;
+        this.out=out;
+        this.in=in;
+        maxClientsCount = threads.length;
 	}
+	
+	@Override
+    public void run() {
+        try {
+            in = new Scanner(socket.getInputStream());// Canale in ingresso della socket (out del client)
+            out = new PrintStream(socket.getOutputStream()); // Canale in uscita della socket (in del client)
+            
+            player = this.createPlayer();
+    		game.attach(this);	
 
-	private Player createPlayer() {
-		Scanner scanner = new Scanner(System.in);
+            while (true) {
+                String messaggio = in.nextLine();
+                if (messaggio.equals("quit")) {
+                    break;
+                } 
+            }
+
+            in.close();
+            out.close();
+            socket.close();
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+
+        }
+    }
+
+public Player createPlayer() {
+		
 		String name = new String();
 		Color color = null;
 		Boolean ok = new Boolean(false);
 		while(!ok) { //if name is already in use, retry!
-		System.out.println("Choose your name");
-		name = scanner.nextLine();
+		out.println("Choose your name");
+		out.flush();
+		name = in.nextLine();
 		ok = game.checkName(name);
 		}
 		ok = false;
 		while(!ok) {
-		System.out.println("Choose your color: "
-				+ "\n 1: BLUE"
-				+ "\n 2: RED"
-				+ "\n 3: YELLOW"
-				+ "\n 4: GREEN");
-		switch (scanner.nextLine()) {
+		out.println("Choose your color: \n 1: BLUE \n 2: RED \n 3: YELLOW \n 4: GREEN");
+		out.flush();
+		switch (in.nextLine()) {
 		case "1": color=Color.Blue;
 		break;
 		case "2": color=Color.Red;
@@ -69,8 +105,9 @@ public class RemoteView extends Observable<Action> implements P2SObserver {
 		ok = game.checkColor(color);
 	}	
 		return new Player(name, color, game, this);
-		
+				
 	}
+
 
 	
 	public void input() {

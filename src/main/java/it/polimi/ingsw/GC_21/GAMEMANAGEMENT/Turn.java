@@ -26,7 +26,6 @@ public class Turn {
 					+"\n Your resources: " + game.getPlayers().get(i).getMyPersonalBoard().getMyPossession().toString() + 
 					"\n" );
 			game.notifyObservers(game.getPlayers().get(i).getMyView());		
-			game.notifyObservers(game.getBoard().toString()); 
 			System.out.println("\n \n \n");
 		}
 	}

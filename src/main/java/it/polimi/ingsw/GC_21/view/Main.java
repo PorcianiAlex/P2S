@@ -15,18 +15,10 @@ import it.polimi.ingsw.GC_21.controller.Controller;
 public class Main {
 
 	public static void main(String[] args) {		
-		Game game = new Game();
-		RemoteView remoteView1 = new RemoteView(game);
-		RemoteView remoteView2 = new RemoteView(game);
-		Controller controller = new Controller(game);
-		remoteView1.attach(controller);
-		remoteView2.attach(controller);
+	
+		ServerForSocket server1 = new ServerForSocket(6621);
+        server1.startServer();
 		
-		
-		
-		
-		game.executeGame();
-
 		
 	}
 }
