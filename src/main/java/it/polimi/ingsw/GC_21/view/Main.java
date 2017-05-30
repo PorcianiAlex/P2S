@@ -16,7 +16,7 @@ public class Main {
 
 	public static void main(String[] args) {		
 	
-		ServerForSocket server1 = new ServerForSocket(6621);
+		ServerForSocket server1 = new ServerForSocket(6620);
         server1.startServer();
 		
 		
