@@ -29,8 +29,8 @@
 	{"DevType":"Territory" "name":"Citta", "age":"1","craftValue":"6", "Req":[0,0,0,0,0,0,0], "Imm":[3,0,0,0,0,0,0], "Priv":"0" "EffType":"justImm"},
 	{"DevType":"Territory" "name":"AvampostoCommerciale", "age":"1","craftValue":"5", "Req":[0,0,0,0,0,0,0], "Imm":[0,0,0,0,0,0,0], "Priv":"0" "EffType":"justImm"}
 	{"DevType":"Territory" "name":"Foresta", "age":"1","craftValue":"5", "Req":[0,0,0,0,0,0,0], "Imm":[0,1,0,0,0,0,0], "Priv":"0" "EffType":"justImm"},
-	{"DevType":"Territory" "name":"CavadiGhiaia", "age":"1","craftValue":"4", "Req":[0,0,0,0,0,0,0], "Imm":[0,0,2,0,0,0,0], "Priv":"0" "EffType":"justImm"},
-	{"DevType":"Territory" "name":"Borgo", "age":"1","craftValue":"3", "Req":[0,0,0,0,0,0,0], "Imm":[0,0,0,0,0,0,0], "Priv":"0" "EffType":"justImm"},
+	{"DevType":"Territory" "name":"CavadiGhiaia", "age":"1","craftValue":"4", "Req":[0,0,0,0,0,0,0], "Imm":[0,0,2,0,0,0,0], "Priv":"0" "EffType":"doPlacementAction", "Discount":[2,0,2,1,0,0,7], "ActionValueInf":"3", "ActionValueBonus":"2", "DevCardType":"Building" },
+	{"DevType":"Territory" "name":"Borgo", "age":"1","craftValue":"3", "Req":[0,0,0,0,0,0,0], "Imm":[0,0,0,0,0,0,0], "Priv":"0" "EffType":"doPlacementAction", "Discount":[2,0,2,1,0,0,7], "ActionValueInf":"5", "ActionValueBonus":"3", "DevCardType":"Building" },
 	{"DevType":"Territory" "name":"Bosco", "age":"1","craftValue":"2", "Req":[0,0,0,0,0,0,0], "Imm":[0,1,0,0,0,0,0], "Priv":"0" "EffType":"justImm"}
 	]
 	
