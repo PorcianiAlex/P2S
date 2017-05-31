@@ -18,13 +18,13 @@ public class Client {
 
     public void startClient() throws IOException {
         Socket socketclient = new Socket(ip,port);
-        System.out.println("Sono dentro la chat!");
+        System.out.println("Sono dentro il gioco!");
         Scanner in = new Scanner(socketclient.getInputStream()); //arriva dal server
         PrintWriter out = new PrintWriter(socketclient.getOutputStream()); //invia al server
         Scanner tastiera = new Scanner(System.in);
         this.inputThread = new InputThread(out, in);
         inputThread.start();
-        System.out.println("Sono qui!");
+ 
     try {
         while (true){
      

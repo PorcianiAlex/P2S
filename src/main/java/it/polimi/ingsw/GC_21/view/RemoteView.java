@@ -73,7 +73,7 @@ public Player createPlayer() {
 		out.println("Choose your name");
 		out.flush();
 		name = in.nextLine();
-		ok = game.checkName(name);
+		ok = this.checkName(name);
 		}
 		ok = false;
 		while(!ok) {
@@ -91,7 +91,7 @@ public Player createPlayer() {
 		default: color=Color.Blue;
 			break;
 		}	
-		ok = game.checkColor(color);
+		ok = this.checkColor(color);
 	}	
 		return new Player(name, color, game, this);
 				
@@ -243,5 +243,26 @@ public Player createPlayer() {
 		return true;
 	}
 
+	public boolean checkName(String name) {
+		for (int i = 0; i < game.getPlayers().size(); i++) {
+			if(name.equals(game.getPlayers().get(i).getName())){
+				out.println("Oh bischero! This name is already in use, choose another one, please!");
+				out.flush();
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public boolean checkColor(Color color) {
+		for (int i = 0; i < game.getPlayers().size(); i++) {
+			if(color.equals(game.getPlayers().get(i).getPlayerColor())){
+				out.println("Oh grullo! This color is already in use, choose another one, please!");
+				out.flush();
+				return false;
+			}
+		}
+		return true;
+	}
 	
 }
