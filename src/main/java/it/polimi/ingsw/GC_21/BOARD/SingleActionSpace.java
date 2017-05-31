@@ -49,4 +49,20 @@ public class SingleActionSpace extends ActionSpace {
 	public FamilyMember getFamilyMember() {
 		return familyMemberLocated;
 	}
+
+
+
+
+
+	@Override
+	public String toString() {
+		if (familyMemberLocated!=null){
+			return "[familyMember=" + familyMemberLocated.getColor().toString() + "//" + familyMemberLocated.getFamilyMemberColor().toString() + "]";
+		}
+		else {
+			return "[familyMember=" + "//" + "]";
+		}
+	}
+	
+	
 }

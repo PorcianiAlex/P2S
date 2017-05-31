@@ -20,9 +20,9 @@ public class CouncilPlacement extends PlacementAction {
 			Board board, int servantsNumber) {
 	        CouncilPalace selectedCouncilPalace = board.getCouncilPalace();
 	        FamilyMember selectedFamilyMember = playerInAction.getSpecificFamilyMember(familyMemberColor);
-	        int actionValue = selectedFamilyMember.getDiceAssociated().getValue();
+	        int actionValue = selectedFamilyMember.getAssociatedDice().getValue();
 	        Servants servantsToConvert = new Servants(servantsNumber);
-	        MultipleActionSpace selectedActionSpace = board.getCouncilPalace().getMultipleActionSpace();
+	        MultipleActionSpace selectedActionSpace = selectedCouncilPalace.getMultipleActionSpace();
 	        CouncilPlacement councilPlacement = new CouncilPlacement(playerInAction, actionValue, selectedFamilyMember, selectedActionSpace, servantsToConvert, board);
 	        return councilPlacement;
 	}

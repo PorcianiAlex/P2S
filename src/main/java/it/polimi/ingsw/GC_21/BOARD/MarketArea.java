@@ -15,9 +15,9 @@ public class MarketArea {
 
 	public MarketArea(){
 		this.singleActionSpace = new SingleActionSpace[4];
-		singleActionSpace[0] = new SingleActionSpace(1, new Immediate(new Possession(5, 0, 0, 0, 0, 0, 0),0));
+		singleActionSpace[0] = new SingleActionSpace(1, new Immediate(new Possession(2, 0, 0, 0, 0, 0, 0),0));
 		singleActionSpace[1] = new SingleActionSpace(1, new Immediate(new Possession(0, 0, 0, 5, 0, 0, 0),0));
-		singleActionSpace[2] = new SingleActionSpace(1, new Immediate(new Possession(2, 0, 0, 0, 3, 0, 0),0));
+		singleActionSpace[2] = new SingleActionSpace(1, new Immediate(new Possession(2, 0, 0, 0, 0, 3, 0),0));
 		singleActionSpace[3] = new SingleActionSpace(1, new Immediate(null, (2)));
 	}
 

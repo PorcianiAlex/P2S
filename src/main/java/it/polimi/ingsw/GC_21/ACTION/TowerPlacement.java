@@ -38,7 +38,7 @@ public class TowerPlacement extends PlacementAction {
 		Floor selectedFloor = selectedTower.getFloors()[floorNumber-1];
 		SingleActionSpace selectedActionSpace = selectedFloor.getSingleActionSpace();
 		FamilyMember selectedFamilyMember = playerInAction.getSpecificFamilyMember(selectedFamilyMemberColor);
-		int actionValue = selectedFamilyMember.getDiceAssociated().getValue();
+		int actionValue = selectedFamilyMember.getAssociatedDice().getValue();
 		Servants servantsToConvert = new Servants(servantsNumber);
 		TowerPlacement towerPlacement = new TowerPlacement(playerInAction, actionValue , selectedFamilyMember, selectedFloor, selectedTower, selectedActionSpace, servantsToConvert, board);
 		return towerPlacement;
@@ -78,7 +78,7 @@ public class TowerPlacement extends PlacementAction {
 	@Override
 	public boolean checkOtherFamilyMember() {
 		if (selectedFamilyMember != null) {
-			return selectedTower.checkFamilyMemberColorPresence(selectedFamilyMember.getColor());	
+			return selectedTower.checkFamilyMemberColorPresence(selectedFamilyMember.getPlayerColor());	
 		}
 		return false;
 	}
