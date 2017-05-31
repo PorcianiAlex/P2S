@@ -21,16 +21,10 @@ public class CraftArea {
 	}
 
 	public boolean checkFamilyMemberColor(Color color) {//return true if there is a family member with the indicated color in the singleActionSpace or in the multiple
-		if (color.equals(Color.Neutral)) {//if the Family Member is Neutral the check is not important 
-			return false;
-		}
-		else if (singleActionSpace.getFamilyMember()!=null){
-			return singleActionSpace.getFamilyMember().getColor().equals(color) || 
+		
+		
+			return singleActionSpace.getFamilyMember().getPlayerColor().equals(color) || 
 					checkColorPresenceOnMultipleSpace(color);
-		}
-		else {
-			return true;
-		}
 		
 	}
 	
@@ -38,7 +32,7 @@ public class CraftArea {
 		int i = 0;
 		ArrayList<FamilyMember> familyMembersLocated = multipleActionSpace.getFamilyMembers(); 
 		while (i < familyMembersLocated.size()) {
-		      if (familyMembersLocated.get(i).getColor().equals(color)) {
+		      if (familyMembersLocated.get(i).getPlayerColor().equals(color)) {
 			      return true;
 		      }
 			i++;

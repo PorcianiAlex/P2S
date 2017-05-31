@@ -29,7 +29,7 @@ public class CraftPlacement extends PlacementAction {
 	public static CraftPlacement factoryCraftPlacement(Player playerInAction, FamilyMemberColor familyMemberColor,
 			Board board, int servantsNumber, CraftType craftType, int spaceType) {
 		FamilyMember selectedFamilyMember = playerInAction.getSpecificFamilyMember(familyMemberColor);
-		int actionValue = selectedFamilyMember.getDiceAssociated().getValue();
+		int actionValue = selectedFamilyMember.getAssociatedDice().getValue();
 		Servants servantsToConvert = new Servants(servantsNumber);
 		CraftArea craftArea = board.getSpecificCraftArea(craftType);
 		ActionSpace selectedActionSpace = craftArea.selectActionSpace(spaceType);
@@ -51,7 +51,13 @@ public class CraftPlacement extends PlacementAction {
 	
 	@Override
 	public boolean checkOtherFamilyMember() {
-		return craftArea.checkFamilyMemberColor(selectedFamilyMember.getColor());
+		if (selectedFamilyMember.getFamilyMemberColor().equals(FamilyMemberColor.Neutral)) {
+			return false;
+		}
+		else {
+			return craftArea.checkFamilyMemberColor(selectedFamilyMember.getPlayerColor());
+		}
+		
 	}
 	
 	@Override

@@ -6,31 +6,37 @@ import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 
 public class Dice {
 
-	private FamilyMemberColor familyMemberColor;
+	private final FamilyMemberColor diceColor;
 	private int value;
 	private Random random;
 	
 	private Dice(FamilyMemberColor familyMemberColor) {
-		this.familyMemberColor = familyMemberColor;
+		this.diceColor = familyMemberColor;
 		random=new Random();
 		this.value = random.nextInt(6)+1;
 	}
 	
 	public Dice() {
-		this.familyMemberColor = familyMemberColor.Neutral;
+		this.diceColor = FamilyMemberColor.Neutral;
 		this.value = 0;
 	}
 	
+	public static Dice[] factoryDices(){
+		Dice[] dices=new Dice[3];
+		dices[0]=new Dice(FamilyMemberColor.Black);
+		dices[1]=new Dice(FamilyMemberColor.White);
+		dices[2]=new Dice(FamilyMemberColor.Orange);
+		return dices;
+	}
 	
 	
-	public FamilyMemberColor getFamilyMemberColor() {
-		return familyMemberColor;
+	
+	
+	public FamilyMemberColor getdicerColor() {
+		return diceColor;
 	}
 
-	public void setFamilyMemberColor(FamilyMemberColor familyMemberColor) {
-		this.familyMemberColor = familyMemberColor;
-	}
-
+	
 	public int getValue() {
 		return value;
 	}
@@ -47,17 +53,10 @@ public class Dice {
 		this.random = random;
 	}
 
-	public static Dice[] factoryDices(){
-		Dice[] dices=new Dice[3];
-		dices[0]=new Dice(FamilyMemberColor.Black);
-		dices[1]=new Dice(FamilyMemberColor.White);
-		dices[2]=new Dice(FamilyMemberColor.Orange);
-		return dices;
-	}
 
 	@Override
 	public String toString() {
-		return "Dice [Color=" + familyMemberColor.toString() + ", " + value + "]";
+		return "Dice [familyMemberColor=" + diceColor.toString() + ", value=" + value + "]";
 	}
 	
 }

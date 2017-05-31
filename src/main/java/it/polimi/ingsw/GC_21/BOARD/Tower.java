@@ -49,7 +49,7 @@ public class Tower {
 		
 		for (int i = 0; i < floors.length; i++) {
 			if(floors[i].getSingleActionSpace().isBusy()){
-			 if(floors[i].getSingleActionSpace().getFamilyMember().getColor().equals(color)){
+			 if(floors[i].getSingleActionSpace().getFamilyMember().getPlayerColor().equals(color)){
 				return true;
 			 }
 			}

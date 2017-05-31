@@ -1,7 +1,9 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
+
 import java.util.ArrayList;
 
+import it.polimi.ingsw.GC_21.*;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.Immediate;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
@@ -25,15 +27,15 @@ public class CouncilPalace {
 	}
 	
 	public Color[] getTurnOrder() {
-		ArrayList<FamilyMember> playersColorInCounciList = getMultipleActionSpace().getFamilyMembers();
+		ArrayList<FamilyMember> familyMembers = getMultipleActionSpace().getFamilyMembers();
 		Color[] turnOrder = new Color[4];
 		int j = 0;
-		for (int i = 0; i < playersColorInCounciList.size(); i++) {
-			if (playersColorInCounciList.get(i) != null) {
-				Color color = playersColorInCounciList.get(i).getColor();
-				for (int k = i; k < playersColorInCounciList.size(); k++) {
-					if (playersColorInCounciList.get(k).equals(color)) {
-						playersColorInCounciList.set(k, null);
+		for (int i = 0; i < familyMembers.size(); i++) {
+			if (familyMembers.get(i) != null) {
+				Color color = familyMembers.get(i).getPlayerColor();
+				for (int k = i; k < familyMembers.size(); k++) {
+					if (familyMembers.get(k).equals(color)) {
+						familyMembers.set(k, null);
 					}
 				}
 				turnOrder[j] = color;
