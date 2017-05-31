@@ -109,7 +109,7 @@ public Player createPlayer() {
 				+ "\n 4: council placement"
 				+ "\n 5: craft placement");
 		out.flush();
-		String choice = in.nextLine();
+		String choice = in.next();
 		switch (choice) {
 		case "1": this.towerPlacementCreator();
 		break;
@@ -205,19 +205,22 @@ public Player createPlayer() {
 		int servantsToConvert = this.chooseHowManyServants();
 		FamilyMemberColor selectedFamilyMember = this.chooseFamilyMember();
 		MarketPlacement marketPlacement = MarketPlacement.factoryMarketPlacement(player, selectedFamilyMember, AreaToPlace, servantsToConvert, game.getBoard());
+		out.flush();
+		int servantsToConvert = in.nextInt();
+		MarketPlacement marketPlacement = MarketPlacement.factoryMarketPlacement(player, this.chooseFamilyMember(), servantsToConvert, this.chooseHowManyServants(), game.getBoard());
 		boolean result = this.notifyObservers(marketPlacement);
 
 	}
 	
 	public FamilyMemberColor chooseFamilyMember(){
-		out.println("Select Family Member [(1) N - (2) O - (3) W - (4) B]:");
+		out.println("Select Family Member [ N - O - W - B]:");
 		out.flush();
-		int choice = in.nextInt();
+		String choice = in.next();
 		switch (choice) {
-		case 1: return FamilyMemberColor.Neutral;
-		case 2: return FamilyMemberColor.Orange;
-		case 3: return FamilyMemberColor.White;
-		case 4: return FamilyMemberColor.Black;
+		case "1": return FamilyMemberColor.Neutral;
+		case "2": return FamilyMemberColor.Orange;
+		case "3": return FamilyMemberColor.White;
+		case "4": return FamilyMemberColor.Black;
 		default: return FamilyMemberColor.Neutral;
 		}
 	}
