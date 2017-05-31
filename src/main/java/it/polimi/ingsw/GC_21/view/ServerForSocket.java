@@ -49,18 +49,19 @@ public class ServerForSocket {
         	         	   
         	   while (true) {
         		  Socket socket = serverSocket.accept();
+  
         		  RemoteView remoteView = new RemoteView(socket, threads, out, in, game);
         		  threads.add(remoteView);
         		  remoteView.attach(controller);
         		  executor.submit(remoteView);
-        		  if (threads.size() == 2) {
+        		  if (threads.size() == 1) {
 					break;
 				}
   					
 				
 			} 
 				
-			   Thread.sleep(10000);      	               
+			   Thread.sleep(5000);      	               
                             
            } catch (IOException | InterruptedException e){
                 System.out.println("error");

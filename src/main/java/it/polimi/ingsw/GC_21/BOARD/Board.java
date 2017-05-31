@@ -24,11 +24,8 @@ public class Board {
 		this.towers = Tower.factoryTowers(); 
 		this.marketArea = new MarketArea();
 		this.councilPalace = new CouncilPalace();
-		this.productionArea = new CraftArea(CraftType.Production, null);
-		this.harvestArea = new CraftArea(CraftType.Harvest, null);
-		/*
-		 CONSTRUCT CRAFT AREAS: needs malus on Action vaLUE
-		 */
+		this.productionArea = new CraftArea(CraftType.Production);
+		this.harvestArea = new CraftArea(CraftType.Harvest);
 	}
 
 
@@ -171,7 +168,7 @@ public class Board {
 
 	public String toString() {
 		return dices[0].toString() + " \n " + dices[1].toString() + " \n " + dices[2].toString() + " \n " + towers[0].toString() + " \n " + towers[1].toString() + " \n " + 
-				towers[3].toString() + " \n " + towers[3].toString() + " \n " + marketArea.toString();
+				towers[3].toString() + " \n " + towers[3].toString() + " \n " + marketArea.toString() +" \n " + productionArea.toString() + " \n " + harvestArea.toString();
 	}
 
 

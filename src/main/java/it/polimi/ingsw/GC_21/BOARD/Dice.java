@@ -57,7 +57,7 @@ public class Dice {
 
 	@Override
 	public String toString() {
-		return "Dice [familyMemberColor=" + familyMemberColor.toString() + ", value=" + value + "]";
+		return "Dice [Color=" + familyMemberColor.toString() + ", " + value + "]";
 	}
 	
 }

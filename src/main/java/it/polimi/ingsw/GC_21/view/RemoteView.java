@@ -12,9 +12,11 @@ import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.ACTION.CouncilPlacement;
 import it.polimi.ingsw.GC_21.ACTION.CraftAction;
+import it.polimi.ingsw.GC_21.ACTION.CraftPlacement;
 import it.polimi.ingsw.GC_21.ACTION.MarketPlacement;
 import it.polimi.ingsw.GC_21.ACTION.TowerPlacement;
 import it.polimi.ingsw.GC_21.BOARD.Color;
+import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
@@ -104,7 +106,8 @@ public Player createPlayer() {
 				+ "\n 1: tower placement"
 				+ "\n 2: craft placement "
 				+ "\n 3: market placement "
-				+ "\n 4: council placement");
+				+ "\n 4: council placement"
+				+ "\n 5: craft placement");
 		out.flush();
 		String choice = in.nextLine();
 		switch (choice) {
@@ -116,12 +119,34 @@ public Player createPlayer() {
 		break;
 		case "4": this.councilPlacementCreator();
 		break;
+		case "5": this.craftPlacementCreator();
+		break;
 		default: this.towerPlacementCreator();
 			break;
 		}		
 		
 	}
 	
+	public void craftPlacementCreator() {
+		CraftType craftType = selectCraftType();
+		out.println("Where do you want to place your Family Member? Be careful, my dear bischero: \n if you choose the "
+				+ "multiple action space you will get a malus on your craft! \n (1) Single Action Space - (2) Multiple Action Space");
+		int spaceType = in.nextInt();
+		int servantsToConvert = this.chooseHowManyServants();
+		FamilyMemberColor selectedFamilyMember = this.chooseFamilyMember();
+		CraftPlacement craftPlacement = CraftPlacement.factoryCraftPlacement(player, selectedFamilyMember, game.getBoard(), servantsToConvert, craftType, spaceType);
+		boolean result = this.notifyObservers(craftPlacement);
+	}
+	
+	public CraftType selectCraftType(){
+		out.println("Which kind of craft do you want to execute? (1) Production - (2) Harvest");
+		int craftType = in.nextInt();
+		switch (craftType){
+			case 1: return CraftType.Production;
+			case 2: return CraftType.Harvest;
+			default: return CraftType.Production;
+		}
+	}
 	public DevCardType selectTower(){
 		out.println("Select Tower [1-4]:");
 		out.flush();
@@ -176,9 +201,10 @@ public Player createPlayer() {
 	
 	public void marketPlacementCreator() {
 		out.println("Which reward do you want? \n [2x Coins (1) - 2x Servants (2) - 3x Military Points + 2x Coins (3) - 2x Privileges (4)");
-		Scanner scanner = new Scanner(System.in);
-		int servantsToConvert = scanner.nextInt();
-		MarketPlacement marketPlacement = MarketPlacement.factoryMarketPlacement(player, this.chooseFamilyMember(), servantsToConvert, this.chooseHowManyServants(), game.getBoard());
+		int AreaToPlace = in.nextInt();
+		int servantsToConvert = this.chooseHowManyServants();
+		FamilyMemberColor selectedFamilyMember = this.chooseFamilyMember();
+		MarketPlacement marketPlacement = MarketPlacement.factoryMarketPlacement(player, selectedFamilyMember, AreaToPlace, servantsToConvert, game.getBoard());
 		boolean result = this.notifyObservers(marketPlacement);
 
 	}

@@ -10,12 +10,12 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class CraftInfluencer extends Effect implements ToCallBeforeCraft {
 	private CraftType craftType;
-	private int craftBonus;
+	private int craftInfluencer;
 	
-	public CraftInfluencer(CraftType craftType, int craftBonus) {
+	public CraftInfluencer(CraftType craftType, int craftInfluencer) {
 		super();
 		this.craftType = craftType;
-		this.craftBonus = craftBonus;
+		this.craftInfluencer = craftInfluencer;
 	}
 	
 	
@@ -29,18 +29,18 @@ public class CraftInfluencer extends Effect implements ToCallBeforeCraft {
 	}
 
 	public int getCraftBonus() {
-		return craftBonus;
+		return craftInfluencer;
 	}
 
 
 	public void setCraftBonus(int craftBonus) {
-		this.craftBonus = craftBonus;
+		this.craftInfluencer = craftBonus;
 	}
 
 	@Override
 	public void activateEffect(Player player, Action action) {
 		if (action instanceof CraftAction && ((CraftAction) action).getCraftType().equals(this.craftType)){
-			int newActionValue = this.craftBonus + ((CraftAction) action).getActionValue();
+			int newActionValue = this.craftInfluencer + ((CraftAction) action).getActionValue();
 			((CraftAction) action).setActionValue(newActionValue);
 		}
 	}

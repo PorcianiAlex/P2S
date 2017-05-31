@@ -2,6 +2,8 @@ package it.polimi.ingsw.GC_21.ACTION;
 
 import java.util.ArrayList;
 
+import javax.management.InstanceAlreadyExistsException;
+
 import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.BOARD.CraftArea;
@@ -25,7 +27,7 @@ public class CraftPlacement extends PlacementAction {
 	}
 	
 	public static CraftPlacement factoryCraftPlacement(Player playerInAction, FamilyMemberColor familyMemberColor,
-			Board board, int servantsNumber, CraftType craftType, String spaceType) {
+			Board board, int servantsNumber, CraftType craftType, int spaceType) {
 		FamilyMember selectedFamilyMember = playerInAction.getSpecificFamilyMember(familyMemberColor);
 		int actionValue = selectedFamilyMember.getDiceAssociated().getValue();
 		Servants servantsToConvert = new Servants(servantsNumber);
@@ -55,6 +57,9 @@ public class CraftPlacement extends PlacementAction {
 	@Override
 	public void Execute() {	
 		super.Execute();
+		if (this.selectedActionSpace.getActionSpaceEffect()!=null){
+			this.selectedActionSpace.callSpaceEffect(playerInAction, this);
+		}
 		CraftAction craftAction = new CraftAction(playerInAction, craftArea.getCraftType(), actionValue);
 		int indexOfToCallBeforeCraftArray = this.playerInAction.getMyPersonalBoard().getToCallBeforeCraftEffects().size();
 		ArrayList<ToCallBeforeCraft> effectsOnTheGo = this.playerInAction.getMyPersonalBoard().getToCallBeforeCraftEffects();

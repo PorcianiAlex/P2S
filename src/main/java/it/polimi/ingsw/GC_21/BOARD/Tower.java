@@ -20,8 +20,8 @@ public class Tower {
 
 	public static Tower[] factoryTowers(){
 		Tower[] towers=new Tower[4];
-		towers[0]=new Tower(DevCardType.Building);
-		towers[1]=new Tower(DevCardType.Territory);
+		towers[0]=new Tower(DevCardType.Territory);
+		towers[1]=new Tower(DevCardType.Building);
 		towers[2]=new Tower(DevCardType.Character);
 		towers[3]=new Tower(DevCardType.Venture);
 		return towers;
@@ -74,7 +74,7 @@ public class Tower {
 
 	@Override
 	public String toString() {
-		return "Tower [devCardType=" + devCardType + ", floors=" + Arrays.toString(floors) + "]";
+		return "Tower [" + devCardType + ", floors=" + Arrays.toString(floors) + "]";
 	}
 	
 }
