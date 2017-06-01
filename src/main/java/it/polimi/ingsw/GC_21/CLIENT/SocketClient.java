@@ -2,16 +2,19 @@ package it.polimi.ingsw.GC_21.CLIENT;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.net.*;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 import java.util.*;
 
-public class Client {
+public class SocketClient {
     private String ip;
     private int port;
     private Thread inputThread;
 
-    public Client(String ip, int port){
+    public SocketClient(String ip, int port) throws RemoteException{
     this.ip=ip;
     this.port=port;
     }
@@ -27,7 +30,7 @@ public class Client {
  
     try {
         while (true){
-     
+        	
             String stringa = tastiera.nextLine();
             out.println(stringa);                       // mando al socket
             out.flush();
