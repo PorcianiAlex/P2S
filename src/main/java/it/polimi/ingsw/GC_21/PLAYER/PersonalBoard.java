@@ -35,21 +35,19 @@ public class PersonalBoard {
 	 
 
 	public void payPossession(Possession possession){
-		myPossession.subtract(possession);
+		if (possession!= null){
+			myPossession.subtract(possession);
+		}
 	}
-	
-	public Effect checkEffect(String CardType) {
-		// TODO - implement PersonalBoard.checkEffect
-		throw new UnsupportedOperationException();
-	}
-	
+
 	public void activateCraft(CraftType craftType, int actionValue) {
 		if(craftType.equals(CraftType.Production)) {
 			OwnedCards ownedBuildingCardsCards = getOwnedCards(DevCardType.Building);
 			for (int i = 0; i < ownedBuildingCardsCards.getOwnedCardsnumber(); i++) {
 				CraftCard tmp = (CraftCard) ownedBuildingCardsCards.getMyOwnedCards()[i].getCard();
+				System.out.println(tmp.toString());
 				if(actionValue >=  tmp.getRequiredValueForCraft()) {
-				tmp.callEffect(EffectType.Permanent, player, null);;
+					tmp.callCraftEffect(player);
 				}
 			}
 		} else if (craftType.equals(CraftType.Harvest)) {
@@ -57,7 +55,7 @@ public class PersonalBoard {
 			for (int i = 0; i < ownedTerritoryCards.getOwnedCardsnumber(); i++) {
 				CraftCard tmp = (CraftCard) ownedTerritoryCards.getMyOwnedCards()[i].getCard();
 				if(actionValue >=  tmp.getRequiredValueForCraft()) {
-				tmp.callEffect(EffectType.Permanent, player, null);;//NOT NULL
+					tmp.callCraftEffect(player);
 				}
 			}
 		}
