@@ -57,7 +57,7 @@ public class SingleActionSpace extends ActionSpace {
 	@Override
 	public String toString() {
 		if (familyMemberLocated!=null){
-			return "[familyMember=" + familyMemberLocated.getColor().toString() + "//" + familyMemberLocated.getFamilyMemberColor().toString() + "]";
+			return "[familyMember=" + familyMemberLocated.getPlayerColor().toString() + "//" + familyMemberLocated.getFamilyMemberColor().toString() + "]";
 		}
 		else {
 			return "[familyMember=" + "//" + "]";

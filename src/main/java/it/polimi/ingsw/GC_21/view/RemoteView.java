@@ -201,13 +201,11 @@ public Player createPlayer() {
 	
 	public void marketPlacementCreator() {
 		out.println("Which reward do you want? \n [2x Coins (1) - 2x Servants (2) - 3x Military Points + 2x Coins (3) - 2x Privileges (4)");
+		out.flush();
 		int AreaToPlace = in.nextInt();
 		int servantsToConvert = this.chooseHowManyServants();
 		FamilyMemberColor selectedFamilyMember = this.chooseFamilyMember();
 		MarketPlacement marketPlacement = MarketPlacement.factoryMarketPlacement(player, selectedFamilyMember, AreaToPlace, servantsToConvert, game.getBoard());
-		out.flush();
-		int servantsToConvert = in.nextInt();
-		MarketPlacement marketPlacement = MarketPlacement.factoryMarketPlacement(player, this.chooseFamilyMember(), servantsToConvert, this.chooseHowManyServants(), game.getBoard());
 		boolean result = this.notifyObservers(marketPlacement);
 
 	}

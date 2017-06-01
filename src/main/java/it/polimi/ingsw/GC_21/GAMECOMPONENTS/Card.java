@@ -51,7 +51,7 @@ public  class Card {
 	
 	
 	public void callEffect(EffectType effectType, Player player, Action action) {
-		if(effectType.equals("Immediate")) {
+		if(effectType.equals(EffectType.Immediate)) {
 			immediateEffect.activateEffect(player, action);
 		}
 	}

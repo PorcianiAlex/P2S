@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_21.BOARD.Floor;
 import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
 import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Tower;
+import it.polimi.ingsw.GC_21.EFFECT.EffectType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Coins;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
@@ -72,6 +73,7 @@ public class TowerPlacement extends PlacementAction {
 	public void Execute() {
 		 super.Execute();
 		 pay(selectedCard.getRequirements());
+		 callCardEffect();
 		 takeCard();
 	}
 	
@@ -123,12 +125,17 @@ public class TowerPlacement extends PlacementAction {
 		return selectedCard;
 	}
 
+	
 	public void pay(Possession payment) {
 		payment.add(overcharge);
 		payment.subtract(discount);//real payment
 		playerInAction.getMyPersonalBoard().payPossession(payment);
 	}
 
+	public void callCardEffect(){
+		selectedCard.callEffect(EffectType.Immediate, playerInAction, this);
+	}
+	
 	public void takeCard() {
 		playerInAction.getMyPersonalBoard().addDevCard(selectedCard);
 		selectedFloor.getDevCardPlace().setCard(null);
