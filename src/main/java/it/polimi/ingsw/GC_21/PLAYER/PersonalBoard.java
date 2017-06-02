@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_21.EFFECT.EffectType;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforeCraft;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforePlacement;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallDuringCraft;
+import it.polimi.ingsw.GC_21.EFFECT.ToCallWhenEarning;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 
 public class PersonalBoard {
@@ -18,7 +19,16 @@ public class PersonalBoard {
 	private Player player;
 	private ArrayList<ToCallBeforeCraft> toCallBeforeCraftEffects;
 	private ArrayList<ToCallBeforePlacement> toCallBeforePlacementEffects;
+	private ArrayList<ToCallWhenEarning> toCallWhenEarningEffects;
 	
+	public ArrayList<ToCallWhenEarning> getToCallWhenEarningEffects() {
+		return toCallWhenEarningEffects;
+	}
+
+	public void setToCallWhenEarningEffects(ArrayList<ToCallWhenEarning> toCallWhenEarningEffects) {
+		this.toCallWhenEarningEffects = toCallWhenEarningEffects;
+	}
+
 	public PersonalBoard(Player player) {
 		this.myOwnedCards = OwnedCards.factoryOwnedCards();
 		this.myPossession = new Possession(0, 0, 0, 0, 0, 0, 0);

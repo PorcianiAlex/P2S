@@ -136,6 +136,7 @@ public  class Effect implements ToCallDuringCraft{
 	}
 	
 	public void earnRewards(Player player, Possession rewards){
+		//TO DO CALL BEFORE EARNING EFFECTS!
 		player.getMyPersonalBoard().getMyPossession().add(rewards);
 	}
 	
