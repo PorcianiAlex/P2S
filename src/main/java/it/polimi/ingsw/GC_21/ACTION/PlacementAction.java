@@ -42,7 +42,7 @@ public class PlacementAction extends Action {
 	    selectedActionSpace.callSpaceEffect(playerInAction, this);
 		}
 	
-	private void callBeforePlacementEffects() {
+	public void callBeforePlacementEffects() {
 		if (!playerInAction.getMyPersonalBoard().getToCallBeforePlacementEffects().isEmpty()){
 			int size = playerInAction.getMyPersonalBoard().getToCallBeforePlacementEffects().size();
 			ArrayList<ToCallBeforePlacement> effects = playerInAction.getMyPersonalBoard().getToCallBeforePlacementEffects();

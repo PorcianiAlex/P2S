@@ -7,8 +7,10 @@ import org.junit.Test;
 import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.EFFECT.Convert;
+import it.polimi.ingsw.GC_21.EFFECT.CraftInfluencer;
 import it.polimi.ingsw.GC_21.EFFECT.ForEachGet;
 import it.polimi.ingsw.GC_21.EFFECT.Immediate;
+import it.polimi.ingsw.GC_21.EFFECT.PlacementInfluencer;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.CraftCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
@@ -16,8 +18,34 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.PossesionCreator;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ResourceType;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
+import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class PersonalBoardTest {
+	
+	@Test
+	public void testAddPermanent(){
+		Game game = new Game();
+		Player testPlayer = new Player("aaa", Color.Blue, game);
+		PlacementInfluencer test = new PlacementInfluencer(1, DevCardType.Building, new Possession());
+		PlacementInfluencer test2 = new PlacementInfluencer(1, DevCardType.Building, new Possession());
+		CraftInfluencer test3 = new CraftInfluencer(CraftType.Harvest, 3);
+		testPlayer.getMyPersonalBoard().addPermanentEffect(test);
+		testPlayer.getMyPersonalBoard().addPermanentEffect(test2);
+		testPlayer.getMyPersonalBoard().addPermanentEffect(test3);
+		assertTrue(2==testPlayer.getMyPersonalBoard().getToCallBeforePlacementEffects().size());
+		assertTrue(1==testPlayer.getMyPersonalBoard().getToCallBeforeCraftEffects().size());
+	}
+	
+	@Test
+	public void testAddPermanent2(){
+		Game game = new Game();
+		Player testPlayer = new Player("aaa", Color.Blue, game);
+		PlacementInfluencer test = new PlacementInfluencer(1, DevCardType.Building, new Possession());
+		PlacementInfluencer test2 = new PlacementInfluencer(1, DevCardType.Building, new Possession());
+		testPlayer.getMyPersonalBoard().addPermanentEffect(test);
+		testPlayer.getMyPersonalBoard().addPermanentEffect(test2);
+		assertTrue(2==testPlayer.getMyPersonalBoard().getToCallBeforePlacementEffects().size());
+	}
 
 	@Test
 	public void testAddDevCard() {

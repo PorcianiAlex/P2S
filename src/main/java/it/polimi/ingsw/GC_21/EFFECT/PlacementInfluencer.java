@@ -26,7 +26,7 @@ public class PlacementInfluencer extends Effect implements ToCallBeforePlacement
 		if (action instanceof TowerPlacement && ((TowerPlacement) action).getSelectedTower().getDevCardType().equals(this.TowerEffected)){
 			int newActionValue = this.actionValueBonus + ((PlacementAction) action).getActionValue();
 			((PlacementAction) action).setActionValue(newActionValue);
-			((PlacementAction) action).setDiscount(this.discount);
+			((PlacementAction) action).getDiscount().add(discount);
 		}
 	}
 	

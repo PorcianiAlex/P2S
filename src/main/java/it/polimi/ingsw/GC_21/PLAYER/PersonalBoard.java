@@ -34,6 +34,15 @@ public class PersonalBoard {
 		}
 	 
 
+	public void addPermanentEffect(Effect effect){
+		if (effect instanceof ToCallBeforeCraft){
+			toCallBeforeCraftEffects.add((ToCallBeforeCraft) effect);
+		}
+		else if (effect instanceof ToCallBeforePlacement){
+			toCallBeforePlacementEffects.add((ToCallBeforePlacement)effect);
+		}
+	}
+	
 	public void payPossession(Possession possession){
 		if (possession!= null){
 			myPossession.subtract(possession);

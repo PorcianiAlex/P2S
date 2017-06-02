@@ -42,6 +42,54 @@ public class RemoteView extends Observable<Action> implements P2SObserver, Runna
 	
 
 	
+	public Game getGame() {
+			return game;
+		}
+
+		public void setGame(Game game) {
+			this.game = game;
+		}
+
+		public Player getPlayer() {
+			return player;
+		}
+
+		public void setPlayer(Player player) {
+			this.player = player;
+		}
+
+		public Socket getSocket() {
+			return socket;
+		}
+
+		public void setSocket(Socket socket) {
+			this.socket = socket;
+		}
+
+		public ArrayList<RemoteView> getThreads() {
+			return threads;
+		}
+
+		public void setThreads(ArrayList<RemoteView> threads) {
+			this.threads = threads;
+		}
+
+		public ConnectionType getConnectionType() {
+			return connectionType;
+		}
+
+		public void setConnectionType(ConnectionType connectionType) {
+			this.connectionType = connectionType;
+		}
+
+		public Adapter getAdapter() {
+			return adapter;
+		}
+
+		public void setAdapter(Adapter adapter) {
+			this.adapter = adapter;
+		}
+
 	public RemoteView(Socket socket, ArrayList<RemoteView> threads, Game game) throws IOException {
 		this.game = game;
 		this.socket = socket;

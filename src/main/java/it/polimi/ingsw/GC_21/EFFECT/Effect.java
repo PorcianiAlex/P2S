@@ -50,7 +50,7 @@ public  class Effect implements ToCallDuringCraft{
 	public void activateEffect(Player player, Action action) {
 		if (privileges.getValue()!=0){
 			for (int i = this.privileges.getValue(); i > 0; i--) {
-				Possession tmpPossession = this.chooseReward();
+				Possession tmpPossession = this.chooseReward(player);
 				if (validConversion(tmpPossession) == true ){
 					this.rewards.add(tmpPossession);
 					setEarnedReward(tmpPossession);	
@@ -62,7 +62,7 @@ public  class Effect implements ToCallDuringCraft{
 		}
 		this.earnRewards(player, rewards);
 	}
-	public Possession chooseReward(){
+	public Possession chooseReward(Player player){
 		Scanner in = new Scanner(System.in);
 		System.out.println("Choose your reward!Type:");
 		System.out.println("1 -> 1x Woods 1x Stones");

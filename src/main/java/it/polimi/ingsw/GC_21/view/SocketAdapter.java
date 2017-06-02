@@ -11,6 +11,30 @@ public class SocketAdapter implements Adapter{
 	private Scanner in;
 	private PrintStream out;
         
+	public Socket getSocket() {
+		return socket;
+	}
+
+	public void setSocket(Socket socket) {
+		this.socket = socket;
+	}
+
+	public Scanner getIn() {
+		return in;
+	}
+
+	public void setIn(Scanner in) {
+		this.in = in;
+	}
+
+	public PrintStream getOut() {
+		return out;
+	}
+
+	public void setOut(PrintStream out) {
+		this.out = out;
+	}
+
 	public SocketAdapter(Socket socket) throws IOException {
 		super();
 		this.socket = socket;
