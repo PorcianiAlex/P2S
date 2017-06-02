@@ -4,6 +4,7 @@ import java.util.*;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
+import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 
 public class Tower {
@@ -45,11 +46,10 @@ public class Tower {
 		    return false;
 		}
 	
-	public boolean checkFamilyMemberColorPresence(Color color) {
-		
+	public boolean checkTowerFamilyMemberPlayer(Player player) {	
 		for (int i = 0; i < floors.length; i++) {
 			if(floors[i].getSingleActionSpace().isBusy()){
-			 if(floors[i].getSingleActionSpace().getFamilyMember().getPlayerColor().equals(color)){
+			 if(floors[i].getSingleActionSpace().getFamilyMember().getOwnerPlayer().equals(player)){
 				return true;
 			 }
 			}
