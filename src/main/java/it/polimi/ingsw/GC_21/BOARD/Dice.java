@@ -32,7 +32,7 @@ public class Dice {
 	
 	
 	
-	public FamilyMemberColor getdicerColor() {
+	public FamilyMemberColor getdiceColor() {
 		return diceColor;
 	}
 

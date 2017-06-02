@@ -44,7 +44,6 @@ public class CraftPlacement extends PlacementAction {
 	
 	@Override
 	public boolean checkPlaceRequirement() {
-		// TODO Auto-generated method stub
 		return super.checkPlaceRequirement();
 	}
 
@@ -55,7 +54,7 @@ public class CraftPlacement extends PlacementAction {
 			return false;
 		}
 		else {
-			return craftArea.checkFamilyMemberColor(selectedFamilyMember.getPlayerColor());
+			return craftArea.checkCraftFamilyMemberPlayer(playerInAction);
 		}
 		
 	}
@@ -63,9 +62,6 @@ public class CraftPlacement extends PlacementAction {
 	@Override
 	public void Execute() {	
 		super.Execute();
-		if (this.selectedActionSpace.getActionSpaceEffect()!=null){
-			this.selectedActionSpace.callSpaceEffect(playerInAction, this);
-		}
 		CraftAction craftAction = new CraftAction(playerInAction, craftArea.getCraftType(), actionValue);
 		int indexOfToCallBeforeCraftArray = this.playerInAction.getMyPersonalBoard().getToCallBeforeCraftEffects().size();
 		ArrayList<ToCallBeforeCraft> effectsOnTheGo = this.playerInAction.getMyPersonalBoard().getToCallBeforeCraftEffects();

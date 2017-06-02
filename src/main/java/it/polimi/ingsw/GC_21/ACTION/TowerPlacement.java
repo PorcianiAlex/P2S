@@ -80,7 +80,7 @@ public class TowerPlacement extends PlacementAction {
 	@Override
 	public boolean checkOtherFamilyMember() {
 		if (selectedFamilyMember != null) {
-			return selectedTower.checkFamilyMemberColorPresence(selectedFamilyMember.getPlayerColor());	
+			return selectedTower.checkTowerFamilyMemberPlayer(selectedFamilyMember.getOwnerPlayer());	
 		}
 		return false;
 	}

@@ -3,32 +3,32 @@ package it.polimi.ingsw.GC_21.PLAYER;
 import it.polimi.ingsw.GC_21.BOARD.*;
 
 public class FamilyMember {
-	protected final Color playerColor;
+	protected final Player ownerPlayer;
 	protected Boolean placed;
 	protected Dice associatedDice;
 	protected final FamilyMemberColor familyMemberColor;
 	
 	
-	public FamilyMember(Dice dice, Color color) {
+	public FamilyMember(Dice dice, Player player) {
 		this.associatedDice = dice;
 		this.placed = false;
-		this.familyMemberColor = dice.getdicerColor();
-		this.playerColor = color;
+		this.familyMemberColor = dice.getdiceColor();
+		this.ownerPlayer = player;
 	}
 	
-	public FamilyMember(Color color) {
+	public FamilyMember(Player player) {
 		this.associatedDice = new Dice();
 		this.placed = false;
 		this.familyMemberColor = FamilyMemberColor.Neutral;
-		this.playerColor = color;
+		this.ownerPlayer = player;
 	}
 	
-	public static FamilyMember[] factoryFamilyMembers(Dice[] dices, Color color){
+	public static FamilyMember[] factoryFamilyMembers(Dice[] dices, Player player){
 		FamilyMember[] familyMembers = new FamilyMember[4];
 		for (int i = 0; i < familyMembers.length - 1; i++) {
-			familyMembers[i]=new FamilyMember(dices[i], color);
+			familyMembers[i]=new FamilyMember(dices[i], player);
 		}
-		familyMembers[3] = new FamilyMember(color);
+		familyMembers[3] = new FamilyMember(player);
 		return familyMembers;
 	}
 	
@@ -59,9 +59,10 @@ public class FamilyMember {
 		return placed;
 	}
 
-	public Color getPlayerColor() {
-		return playerColor;
+	public Player getOwnerPlayer() {
+		return ownerPlayer;
 	}
+
 	
 	
 	

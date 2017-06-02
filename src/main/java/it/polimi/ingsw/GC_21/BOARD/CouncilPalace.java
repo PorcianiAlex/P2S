@@ -26,19 +26,19 @@ public class CouncilPalace {
 		this.multipleActionSpace = multipleActionSpace;
 	}
 	
-	public Color[] getTurnOrder() {
+	public Player[] getTurnOrder() {
 		ArrayList<FamilyMember> familyMembers = getMultipleActionSpace().getFamilyMembers();
-		Color[] turnOrder = new Color[4];
+		Player[] turnOrder = new Player[4];
 		int j = 0;
 		for (int i = 0; i < familyMembers.size(); i++) {
 			if (familyMembers.get(i) != null) {
-				Color color = familyMembers.get(i).getPlayerColor();
-				for (int k = i; k < familyMembers.size(); k++) {
-					if (familyMembers.get(k).equals(color)) {
+				Player player = familyMembers.get(i).getOwnerPlayer();
+				for (int k = i; k < familyMembers.size(); k++) {//set to null all family members of the same player taken for the first time (cycle with i)
+					if (familyMembers.get(k).equals(player)) {
 						familyMembers.set(k, null);
 					}
 				}
-				turnOrder[j] = color;
+				turnOrder[j] = player;
 			}
 		}
 		return turnOrder;
