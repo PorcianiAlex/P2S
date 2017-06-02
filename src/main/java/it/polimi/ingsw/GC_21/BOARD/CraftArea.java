@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_21.EFFECT.CraftInfluencer;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.Immediate;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
+import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class CraftArea {
 	
@@ -20,19 +21,16 @@ public class CraftArea {
 		this.multipleActionSpace = new MultipleActionSpace(1, new CraftInfluencer(craftType, -3));
 	}
 
-	public boolean checkFamilyMemberColor(Color color) {//return true if there is a family member with the indicated color in the singleActionSpace or in the multiple
-		
-		
-			return singleActionSpace.getFamilyMember().getPlayerColor().equals(color) || 
-					checkColorPresenceOnMultipleSpace(color);
-		
+	public boolean checkCraftFamilyMemberPlayer(Player player) {//return true if there is a family member with the indicated color in the singleActionSpace or in the multiple
+			return singleActionSpace.getFamilyMember().getOwnerPlayer().equals(player) || 
+					checkPlayerPresenceOnMultipleSpace(player);	
 	}
 	
-	public boolean checkColorPresenceOnMultipleSpace(Color color) {
+	public boolean checkPlayerPresenceOnMultipleSpace(Player player) {
 		int i = 0;
 		ArrayList<FamilyMember> familyMembersLocated = multipleActionSpace.getFamilyMembers(); 
 		while (i < familyMembersLocated.size()) {
-		      if (familyMembersLocated.get(i).getPlayerColor().equals(color)) {
+		      if (familyMembersLocated.get(i).getOwnerPlayer().equals(player)) {
 			      return true;
 		      }
 			i++;
@@ -45,15 +43,7 @@ public class CraftArea {
 		return craftType;
 	}
 	
-	public ActionSpace selectActionSpace(int selectedActionSpace) {
-		if (selectedActionSpace==1) {
-			return getSingleActionSpace();
-		}
-		else if (selectedActionSpace==2) {
-			return getMultipleActionSpace();
-		}
-		return null;
-	}
+	
 
 	public SingleActionSpace getSingleActionSpace() {
 		return singleActionSpace;
@@ -62,6 +52,16 @@ public class CraftArea {
 
 	public MultipleActionSpace getMultipleActionSpace() {
 		return multipleActionSpace;
+	}
+	
+	public ActionSpace selectActionSpace(int selectedActionSpace) {
+		if (selectedActionSpace == 1) {
+			return getSingleActionSpace();
+		}
+		else if (selectedActionSpace == 2) {
+			return getMultipleActionSpace();
+		}
+		return null;
 	}
 
 	@Override

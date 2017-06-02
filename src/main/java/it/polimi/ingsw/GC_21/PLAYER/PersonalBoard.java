@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_21.EFFECT.EffectType;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforeCraft;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforePlacement;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallDuringCraft;
+import it.polimi.ingsw.GC_21.EFFECT.ToCallWhenEarning;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 
 public class PersonalBoard {
@@ -18,7 +19,16 @@ public class PersonalBoard {
 	private Player player;
 	private ArrayList<ToCallBeforeCraft> toCallBeforeCraftEffects;
 	private ArrayList<ToCallBeforePlacement> toCallBeforePlacementEffects;
+	private ArrayList<ToCallWhenEarning> toCallWhenEarningEffects;
 	
+	public ArrayList<ToCallWhenEarning> getToCallWhenEarningEffects() {
+		return toCallWhenEarningEffects;
+	}
+
+	public void setToCallWhenEarningEffects(ArrayList<ToCallWhenEarning> toCallWhenEarningEffects) {
+		this.toCallWhenEarningEffects = toCallWhenEarningEffects;
+	}
+
 	public PersonalBoard(Player player) {
 		this.myOwnedCards = OwnedCards.factoryOwnedCards();
 		this.myPossession = new Possession(0, 0, 0, 0, 0, 0, 0);
@@ -34,22 +44,29 @@ public class PersonalBoard {
 		}
 	 
 
+	public void addPermanentEffect(Effect effect){
+		if (effect instanceof ToCallBeforeCraft){
+			toCallBeforeCraftEffects.add((ToCallBeforeCraft) effect);
+		}
+		else if (effect instanceof ToCallBeforePlacement){
+			toCallBeforePlacementEffects.add((ToCallBeforePlacement)effect);
+		}
+	}
+	
 	public void payPossession(Possession possession){
-		myPossession.subtract(possession);
+		if (possession!= null){
+			myPossession.subtract(possession);
+		}
 	}
-	
-	public Effect checkEffect(String CardType) {
-		// TODO - implement PersonalBoard.checkEffect
-		throw new UnsupportedOperationException();
-	}
-	
+
 	public void activateCraft(CraftType craftType, int actionValue) {
 		if(craftType.equals(CraftType.Production)) {
 			OwnedCards ownedBuildingCardsCards = getOwnedCards(DevCardType.Building);
 			for (int i = 0; i < ownedBuildingCardsCards.getOwnedCardsnumber(); i++) {
 				CraftCard tmp = (CraftCard) ownedBuildingCardsCards.getMyOwnedCards()[i].getCard();
+				System.out.println(tmp.toString());
 				if(actionValue >=  tmp.getRequiredValueForCraft()) {
-				tmp.callEffect(EffectType.Permanent, player, null);;
+					tmp.callCraftEffect(player);
 				}
 			}
 		} else if (craftType.equals(CraftType.Harvest)) {
@@ -57,7 +74,7 @@ public class PersonalBoard {
 			for (int i = 0; i < ownedTerritoryCards.getOwnedCardsnumber(); i++) {
 				CraftCard tmp = (CraftCard) ownedTerritoryCards.getMyOwnedCards()[i].getCard();
 				if(actionValue >=  tmp.getRequiredValueForCraft()) {
-				tmp.callEffect(EffectType.Permanent, player, null);;//NOT NULL
+					tmp.callCraftEffect(player);
 				}
 			}
 		}

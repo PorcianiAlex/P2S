@@ -29,7 +29,18 @@ public class Player {
 	
 	public Player(String name, Color playerColor, Game game, RemoteView myView) {
 		this.myView = myView;
-		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), playerColor);
+		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), this);
+		this.name = name;
+		this.game = game;
+		this.game.addPlayers(this);
+		this.playerColor = playerColor;
+		this.myPersonalBoard = new PersonalBoard(this);
+		this.myPersonalBoard.getMyPossession().add(new Possession(5, 5, 5, 5, 5, 5, 5));
+	}
+	
+	public Player(String name, Color playerColor, Game game) {
+		this.myView = myView;
+		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), this);
 		this.name = name;
 		this.game = game;
 		this.game.addPlayers(this);

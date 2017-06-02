@@ -1,9 +1,13 @@
 package it.polimi.ingsw.GC_21.ACTION;
 
+import java.util.ArrayList;
+import java.util.PrimitiveIterator.OfDouble;
+
 import org.omg.PortableServer.Servant;
 
 import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Board;
+import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforePlacement;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
@@ -32,17 +36,29 @@ public class PlacementAction extends Action {
 	
 	@Override
 	public void Execute() {
+		callBeforePlacementEffects();
 		convertServant(servantsToConvert);
 	    place();
 	    selectedActionSpace.callSpaceEffect(playerInAction, this);
 		}
 	
+	public void callBeforePlacementEffects() {
+		if (!playerInAction.getMyPersonalBoard().getToCallBeforePlacementEffects().isEmpty()){
+			int size = playerInAction.getMyPersonalBoard().getToCallBeforePlacementEffects().size();
+			ArrayList<ToCallBeforePlacement> effects = playerInAction.getMyPersonalBoard().getToCallBeforePlacementEffects();
+			for (int i = 0; i < size; i++) {
+				effects.get(i).activateEffect(playerInAction, this);
+			}
+		}
+	}
+
 	@Override
 	public boolean checkAction() {
 		return checkPlaceRequirement();
 	}
 	
 	public boolean checkPlaceRequirement(){
+		System.out.println("Check Dice Requirement: " + checkDiceRequirement() + "/nFamily Member placed: " + selectedFamilyMember.isPlaced() + "/nAction Space Busy: " + selectedActionSpace.isBusy());
 		return checkDiceRequirement() &&
 			   !checkBusyActionSpace() &&
 			   !checkBusyFamiliyMember() &&
@@ -58,6 +74,7 @@ public class PlacementAction extends Action {
 	public void convertServant(Servants servants) {
 		this.actionValue += servants.getValue();
 		playerInAction.getMyPersonalBoard().getMyPossession().subtractItemToPossession(servants);
+		System.out.println("Action Value: " + actionValue);
 	}
 	
 	public boolean checkBusyFamiliyMember() {
@@ -65,18 +82,23 @@ public class PlacementAction extends Action {
 	}
 	public boolean checkBusyActionSpace() {
 		return selectedActionSpace.isBusy();
-		
 	}
 
 	public boolean checkDiceRequirement() {
-		return selectedActionSpace.getRequiredDice() <= this.actionValue + servantsToConvert.getValue();
+		System.out.println("Required Dice: " + selectedActionSpace.getRequiredDice() + "Action value: " + actionValue + "Servants: " + servantsToConvert);
+		return selectedActionSpace.getRequiredDice() <= (this.actionValue + servantsToConvert.getValue());
 	}
 	
 	
 
 	public void place() {
-		selectedFamilyMember.setPlaced(true);
-		selectedActionSpace.placeFamilyMember(selectedFamilyMember);
+		if (selectedFamilyMember != null){
+			selectedActionSpace.placeFamilyMember(selectedFamilyMember);
+			selectedFamilyMember.setPlaced(true);
+			
+		}
+		
+		
 		
 	}
 
