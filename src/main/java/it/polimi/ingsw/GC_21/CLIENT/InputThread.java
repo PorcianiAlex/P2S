@@ -2,6 +2,8 @@ package it.polimi.ingsw.GC_21.CLIENT;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+import javax.print.MultiDocPrintService;
+
 public class InputThread extends Thread {
 	private PrintWriter out;
 	private Scanner in;
@@ -18,6 +20,9 @@ public class InputThread extends Thread {
 		while(true) {
 			String messaggioricevuto = in.nextLine(); //arriva dal socket server
             System.out.println(messaggioricevuto);
+            if (messaggioricevuto.equals("music")) {
+				Music.start();
+			}
             if (messaggioricevuto.equals("addio")){
                 out.println("sei uscito");
                 break;

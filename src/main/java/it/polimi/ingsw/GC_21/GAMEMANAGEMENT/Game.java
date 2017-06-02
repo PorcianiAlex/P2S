@@ -98,6 +98,10 @@ public class Game extends Observable {
 		this.currentAge = currentAge;
 	}
 
+	public String toString() {
+		String string = new String("game: " + id + " players: " + players.size() + " host: " + players.get(0).getName() + "\n");
+		return string;
+	}
 	
 	
 }

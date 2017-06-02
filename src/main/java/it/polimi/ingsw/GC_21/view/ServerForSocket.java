@@ -15,6 +15,8 @@ import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClientInterface;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.controller.Controller;
+import it.polimi.ingsw.GC_21.controller.ControlloreManager;
+
 import java.rmi.*;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -24,11 +26,8 @@ public class ServerForSocket extends UnicastRemoteObject implements ServerInterf
 
     private int port;
     private ServerSocket serverSocket;
-    private static final int maxClientsCount = 4;
-    private static final ArrayList<RemoteView> threads = new ArrayList<RemoteView>();
-    private Game game;
-    private Controller controller;
     private ExecutorService executor;
+    private ControlloreManager controlloreManager;
 
     public  ServerForSocket(int port) throws RemoteException{
         this.port=port;
@@ -41,16 +40,11 @@ public class ServerForSocket extends UnicastRemoteObject implements ServerInterf
 				
     }
     
-
-
-
     public void startServer() {
-
-    	this.game = new Game();
-		this.controller = new Controller(game);
+    	
+    	controlloreManager = new ControlloreManager();
     	
        executor =  Executors.newCachedThreadPool();
-           
        
        ServerSocket serverSocket;
        try{
@@ -71,37 +65,27 @@ public class ServerForSocket extends UnicastRemoteObject implements ServerInterf
            try{
         	 
         	   //da sistemare!!
-        	  while(threads.size()<2){       	         	   
+        	  while(true){       	         	   
         	           		   		          		   
         		  Socket socket = serverSocket.accept();
-          		  RemoteView remoteView = new RemoteView(socket, threads, game);
-        		  threads.add(remoteView);
-        		  remoteView.attach(controller);
-        		  executor.submit(remoteView);
-        		  
-        	   
+          		  RemoteView remoteView = new RemoteView(socket, controlloreManager);
+        		  executor.submit(remoteView);        		  
+        	   if(serverSocket.isClosed()) {break;}
         		 
 			} 
-				
-			   Thread.sleep(5000);      	               
-                            
-           } catch (IOException | InterruptedException e){
+				                            
+           } catch (IOException e){
                 System.out.println("error");
            }
        
-      
-           
-        game.executeGame();
-        
+              
         
     }
     
     
     public synchronized void join(RmiClientInterface rmiClient) throws RemoteException {
     	 
-    	  RemoteView remoteView = new RemoteView(threads, game, rmiClient);
-		  threads.add(remoteView);
-		  remoteView.attach(controller);
+    	  RemoteView remoteView = new RemoteView(rmiClient, controlloreManager);
 		  executor.submit(remoteView);
     }
     

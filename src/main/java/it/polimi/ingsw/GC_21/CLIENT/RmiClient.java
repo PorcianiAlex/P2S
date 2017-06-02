@@ -21,7 +21,11 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 	}
 
 	public void clientReceive(String string) {
+		if ("music".equals(string)) {
+			Music.start();
+		} 
 		System.out.println(string);
+		
 	}
 	
 	public String sendToServer() throws RemoteException {
