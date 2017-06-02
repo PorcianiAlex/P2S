@@ -37,6 +37,17 @@ public class Player {
 		this.myPersonalBoard = new PersonalBoard(this);
 		this.myPersonalBoard.getMyPossession().add(new Possession(5, 5, 5, 5, 5, 5, 5));
 	}
+	
+	public Player(String name, Color playerColor, Game game) {
+		this.myView = myView;
+		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), playerColor);
+		this.name = name;
+		this.game = game;
+		this.game.addPlayers(this);
+		this.playerColor = playerColor;
+		this.myPersonalBoard = new PersonalBoard(this);
+		this.myPersonalBoard.getMyPossession().add(new Possession(5, 5, 5, 5, 5, 5, 5));
+	}
 
 	public void chooseAction() {
 		// TODO - implement Player.chooseAction

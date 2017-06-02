@@ -19,5 +19,6 @@ public class CraftCard extends DevelopmentCard{
 	public CraftCard(String name) {
 		super(name);
 	}
+	
 
 }

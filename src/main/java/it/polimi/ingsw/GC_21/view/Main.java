@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_21.view;
 
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.ArrayList;
 
 import javax.swing.text.View;
@@ -14,11 +17,11 @@ import it.polimi.ingsw.GC_21.controller.Controller;
 
 public class Main {
 
-	public static void main(String[] args) {		
+	public static void main(String[] args) throws RemoteException {		
 	
+		//Server Socket start!
 		ServerForSocket server1 = new ServerForSocket(6620);
         server1.startServer();
-		
-		
+
 	}
 }

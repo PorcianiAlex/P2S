@@ -2,32 +2,35 @@ package it.polimi.ingsw.GC_21.CLIENT;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.net.*;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 import java.util.*;
 
-public class Client {
+public class SocketClient {
     private String ip;
     private int port;
     private Thread inputThread;
 
-    public Client(String ip, int port){
+    public SocketClient(String ip, int port) throws RemoteException{
     this.ip=ip;
     this.port=port;
     }
 
     public void startClient() throws IOException {
         Socket socketclient = new Socket(ip,port);
-        System.out.println("Sono dentro la chat!");
+        System.out.println("Sono dentro il gioco!");
         Scanner in = new Scanner(socketclient.getInputStream()); //arriva dal server
         PrintWriter out = new PrintWriter(socketclient.getOutputStream()); //invia al server
         Scanner tastiera = new Scanner(System.in);
         this.inputThread = new InputThread(out, in);
         inputThread.start();
-        System.out.println("Sono qui!");
+ 
     try {
         while (true){
-     
+        	
             String stringa = tastiera.nextLine();
             out.println(stringa);                       // mando al socket
             out.flush();

@@ -7,7 +7,7 @@ import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.EFFECT.*;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public  class Card {
+public class Card {
 
 	private String name;
 	private Possession requirements;
@@ -43,15 +43,15 @@ public  class Card {
 
 
 
-	public void callCraftEffect(Player player, Action action){
+	public void callCraftEffect(Player player){
 		if (secondaryEffect instanceof ToCallDuringCraft){
-			secondaryEffect.activateEffect(player, action);
+			secondaryEffect.activateEffect(player, null);
 		}
 	}
 	
 	
 	public void callEffect(EffectType effectType, Player player, Action action) {
-		if(effectType.equals("Immediate")) {
+		if(effectType.equals(EffectType.Immediate)) {
 			immediateEffect.activateEffect(player, action);
 		}
 	}
@@ -62,6 +62,16 @@ public  class Card {
 		return immediateEffect;
 	}
 
+
+
+	public Effect getSecondaryEffect() {
+		return secondaryEffect;
+	}
+
+
+	public void setSecondaryEffect(Effect secondaryEffect) {
+		this.secondaryEffect = secondaryEffect;
+	}
 
 
 	public void setImmediateEffect(Immediate immediateEffect) {

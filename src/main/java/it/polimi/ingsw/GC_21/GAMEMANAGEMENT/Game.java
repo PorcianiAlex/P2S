@@ -98,28 +98,6 @@ public class Game extends Observable {
 		this.currentAge = currentAge;
 	}
 
-	public boolean checkName(String name) {
-		for (int i = 0; i < players.size(); i++) {
-			if(name.equals(players.get(i).getName())){
-				System.out.println("Oh bischero! This name is already in use, choose another one, please!");
-				return false;
-			}
-		}
-		return true;
-	}
 	
-	public boolean checkColor(Color color) {
-		for (int i = 0; i < players.size(); i++) {
-			if(color.equals(players.get(i).getPlayerColor())){
-				System.out.println("Oh grullo! This color is already in use, choose another one, please!");
-				return false;
-			}
-		}
-		return true;
-	}
-
-	
-	
-
 	
 }
