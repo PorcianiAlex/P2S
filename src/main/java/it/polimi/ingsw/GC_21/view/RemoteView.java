@@ -29,43 +29,69 @@ import it.polimi.ingsw.GC_21.UTILITIES.Observable;
 import it.polimi.ingsw.GC_21.UTILITIES.P2SObserver;
 import it.polimi.ingsw.GC_21.UTILITIES.ModelObserver;
 import it.polimi.ingsw.GC_21.controller.Controller;
+import it.polimi.ingsw.GC_21.controller.ControlloreManager;
 
 public class RemoteView extends Observable<Action> implements P2SObserver, Runnable {
   
 		private Game game;
 		private Player player;
-	
-	    private Socket socket;
-	    private ArrayList<RemoteView> threads;
+		private Socket socket;
 	    private ConnectionType connectionType;
 	    private Adapter adapter;
+	    private ControlloreManager controlloreManager;
 	
 
 	
-	public RemoteView(Socket socket, ArrayList<RemoteView> threads, Game game) throws IOException {
-		this.game = game;
+	public RemoteView(Socket socket, ControlloreManager controlloreManager) throws IOException {
 		this.socket = socket;
-        this.threads = threads;
         this.connectionType = ConnectionType.Socket;
         this.adapter = new SocketAdapter(socket);
+        this.controlloreManager = controlloreManager;
         
        }
 	
-	public RemoteView(ArrayList<RemoteView> threads, Game game, RmiClientInterface rmiClient) {
-		this.game = game;
-		this.threads = threads;
+	public RemoteView(RmiClientInterface rmiClient, ControlloreManager controlloreManager) {
         this.connectionType = ConnectionType.Rmi;
         this.adapter = new RmiAdapter(rmiClient);
+        this.controlloreManager = controlloreManager;
        	}
 
 	@Override
     public void run() {
-                   
-            player = this.createPlayer();
+        
+		adapter.out("Hi, welcome to our Lobby!"
+				+ "\n press 'C' to create a game or enter the number of the match you want to join:"
+				+ "\n" + controlloreManager.getGames().toString() );
+		String choice = adapter.in();
+		if(choice.equals("C")) {
+			game = controlloreManager.addController();
+		    player = this.createPlayer();
     		game.attach(this);
-
+    		adapter.out("music");
+    		this.letStart();
+		}
+		else { 
+			game = controlloreManager.getControllers().get(Integer.parseInt(choice)-1).getModelGame();
+			player = this.createPlayer();
+    		game.attach(this);
+    		adapter.out("music");
+    		for (int i = 0; i < game.getPlayers().size(); i++) {
+				game.getPlayers().get(i).getMyView().adapter.out(player.getName()+" join the match!");
+			}
+    		
+    		adapter.out("Waiting for the 'start' by the game host");
+		} 	
+	
       
     }
+
+private void letStart() {
+		adapter.out("Write 'start' when you want to start the game! \nYou must to be 2 at least");
+		String string = adapter.in();
+		if(string.equals("start") && game.getPlayers().size()>1 || game.getPlayers().size()==4 ) {
+			game.executeGame();
+		} else { letStart(); }
+	}
 
 public Player createPlayer() {
 		

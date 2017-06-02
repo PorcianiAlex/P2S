@@ -37,6 +37,7 @@ public class SocketClient {
             if (stringa == "sara mazzoleni ti amo") {
             	break;
             }
+            
         }
 
         }
