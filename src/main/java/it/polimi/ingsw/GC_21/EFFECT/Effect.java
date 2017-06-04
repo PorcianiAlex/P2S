@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
@@ -19,9 +20,6 @@ public  class Effect implements ToCallDuringCraft{
 	protected final Possession coinsReward;
 	protected final Possession militaryPointsReward;
 	protected final Possession faithPointsReward;
-	
-	//TO DO: IMPLEMENT INFLUENCE ON ACTION; THE ACTIVATE MUST TAKE THE ACTION IN INPUT TOO!!
-	
 	
 	public Effect(Possession rewards, int privileges) {
 		this.rewards = rewards;
@@ -51,7 +49,7 @@ public  class Effect implements ToCallDuringCraft{
 		if (privileges.getValue()!=0){
 			for (int i = this.privileges.getValue(); i > 0; i--) {
 				Possession tmpPossession = this.chooseReward(player);
-				if (validConversion(tmpPossession) == true ){
+				if (validConversion(tmpPossession, player) == true ){
 					this.rewards.add(tmpPossession);
 					setEarnedReward(tmpPossession);	
 				}
@@ -60,31 +58,26 @@ public  class Effect implements ToCallDuringCraft{
 				}
 				}
 		}
+		this.callWhenEarningEffects(player, action);
 		this.earnRewards(player, rewards);
 	}
 	public Possession chooseReward(Player player){
-		Scanner in = new Scanner(System.in);
-		System.out.println("Choose your reward!Type:");
-		System.out.println("1 -> 1x Woods 1x Stones");
-		System.out.println("2 -> 2x Servants");
-		System.out.println("3 -> 2x Coins");		
-		System.out.println("4 -> 2x Military Points");
-		System.out.println("5 -> 1x Faith Points");
-		int choice = in.nextInt();
+		player.printOnPlayer("Choose your reward! Type: /n 1 -> 1x Woods 1 x Stones /n 2 -> 2x Servants /n 3 -> 2x Coins /n 4 -> 2x Military Points 5 -> 1x Faith Points");
+		String choice = player.getMyView().getAdapter().in();
 		switch(choice){
-		case 1: choice = 1;
+		case "1": 
 		return this.woodsAndStonesReward;
-		case 2: choice = 2;
+		case "2": 
 		return this.servantsReward;
-		case 3: choice = 3;
+		case "3": 
 		return this.coinsReward;
-		case 4: choice = 4;
+		case "4":
 		return this.militaryPointsReward;
-		case 5: choice = 5;
+		case "5": 
 		return this.faithPointsReward;
 		default: 
-			System.out.println("Invalid choice! Try again!");
-			return chooseReward();
+			player.getMyView().getAdapter().out("Invalid choice, try again!");
+ 			return chooseReward(player);
 		}
 	}
 	
@@ -106,25 +99,25 @@ public  class Effect implements ToCallDuringCraft{
 		}
 	}
 	
-	public boolean validConversion(Possession reward){
+	public boolean validConversion(Possession reward, Player player){
 		if (reward.equals(this.woodsAndStonesReward) && this.woodsAndStonesEarned==true){
-			System.out.println("You've already choosen this reward! Try again!");
+			player.printOnPlayer("You've already chosen this reward! Try again!");
 			return false;
 		}
 		if (reward.equals(this.coinsReward) && this.coinsEarned==true){
-			System.out.println("You've already choosen this reward! Try again!");
+			player.printOnPlayer("You've already chosen this reward! Try again!");
 			return false;
 		}
 		if (reward.equals(this.servantsReward) && this.servantsEarned==true){
-			System.out.println("You've already choosen this reward! Try again!");
+			player.printOnPlayer("You've already chosen this reward! Try again!");
 			return false;
 		}
 		if (reward.equals(this.militaryPointsReward) && this.militaryPointsEarned==true){
-			System.out.println("You've already choosen this reward! Try again!");
+			player.printOnPlayer("You've already chosen this reward! Try again!");
 			return false;
 		}
 		if (reward.equals(this.faithPointsReward) && this.faithPointsEarned==true){
-			System.out.println("You've already choosen this reward! Try again!");
+			player.printOnPlayer("You've already chosen this reward! Try again!");
 			return false;
 		}
 		return true;
@@ -135,8 +128,16 @@ public  class Effect implements ToCallDuringCraft{
 		earnRewards(player, rewards);
 	}
 	
+	public void callWhenEarningEffects(Player player, Action action){
+		if (!player.getMyPersonalBoard().getToCallWhenEarningEffects().isEmpty()){
+			ArrayList<ToCallWhenEarning> effectsOnTheGo = player.getMyPersonalBoard().getToCallWhenEarningEffects();
+			for (int i = 0; i < effectsOnTheGo.size(); i++) {
+				((Effect) effectsOnTheGo.get(i)).activateEffect(player, action);
+			}
+		}
+	}
+	
 	public void earnRewards(Player player, Possession rewards){
-		//TO DO CALL BEFORE EARNING EFFECTS!
 		player.getMyPersonalBoard().getMyPossession().add(rewards);
 	}
 	

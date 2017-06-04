@@ -4,6 +4,5 @@ import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public interface ToCallBeforePlacement {
-	public void activateEffect(Player player, Action action);
 
 }

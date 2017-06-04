@@ -10,20 +10,20 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class PlacementInfluencer extends Effect implements ToCallBeforePlacement{
 	private int actionValueBonus;
-	private DevCardType TowerEffected;
+	private DevCardType towerEffected;
 	private Possession discount;
 	
 	public PlacementInfluencer(int actionValueBonus, DevCardType towerEffected,
 			Possession discount) {
 		super();
 		this.actionValueBonus = actionValueBonus;
-		TowerEffected = towerEffected;
+		towerEffected = towerEffected;
 		this.discount = discount;
 	}
 	
 	@Override
 	public void activateEffect(Player player, Action action) {
-		if (action instanceof TowerPlacement && ((TowerPlacement) action).getSelectedTower().getDevCardType().equals(this.TowerEffected)){
+		if (action instanceof TowerPlacement && ((TowerPlacement) action).getSelectedTower().getDevCardType().equals(this.towerEffected)){
 			int newActionValue = this.actionValueBonus + ((PlacementAction) action).getActionValue();
 			((PlacementAction) action).setActionValue(newActionValue);
 			((PlacementAction) action).getDiscount().add(discount);

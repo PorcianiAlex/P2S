@@ -5,6 +5,5 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public interface ToCallBeforeCraft {
 	
-	public void activateEffect(Player player, Action action);
 
 }

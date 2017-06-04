@@ -36,6 +36,8 @@ public class PersonalBoard {
 		this.player = player;
 		this.toCallBeforeCraftEffects= new ArrayList<ToCallBeforeCraft>();
 		this.toCallBeforePlacementEffects = new ArrayList<ToCallBeforePlacement>();
+		this.toCallWhenEarningEffects = new ArrayList<ToCallWhenEarning>();
+
 	}
 	
 	public void addDevCard(DevelopmentCard devCard) {

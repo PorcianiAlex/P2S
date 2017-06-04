@@ -50,6 +50,11 @@ public class Player {
 		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), this);
 	}
 
+	public void printOnPlayer(String string){
+		this.myView.getAdapter().out(string);
+
+	}
+	
 	public void chooseAction() {
 		// TODO - implement Player.chooseAction
 		throw new UnsupportedOperationException();
