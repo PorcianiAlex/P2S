@@ -36,9 +36,10 @@ public class RemoteView extends Observable<Action> implements P2SObserver, Runna
     private Game game; 
     private Player player; 
     private Socket socket; 
-      private ConnectionType connectionType; 
-      private Adapter adapter; 
-      private ControlloreManager controlloreManager; 
+    private ConnectionType connectionType; 
+    private Adapter adapter; 
+    private ControlloreManager controlloreManager; 
+    private String username;
    
  
    
@@ -106,13 +107,16 @@ public RemoteView(RmiClientInterface rmiClient, ControlloreManager controlloreMa
  
   @Override 
     public void run() { 
-         
-    adapter.out("Hi, welcome to our Lobby!" 
+    
+	 this.chooseUsername(); 
+	 controlloreManager.addRemoteView(this);
+	  
+    adapter.out("Hi "+ username +", welcome to our Lobby!" 
         + "\nPress 'C' to create a game or enter the number of the match you want to join:" 
         + "\n" + controlloreManager.getGames().toString() ); 
     String choice = adapter.in(); 
     if(choice.equals("C")) { 
-      game = controlloreManager.addController(); 
+        game = controlloreManager.addController(); 
         player = this.createPlayer(); 
         game.attach(this); 
         adapter.out("music"); 
@@ -133,6 +137,15 @@ public RemoteView(RmiClientInterface rmiClient, ControlloreManager controlloreMa
        
     } 
  
+private void chooseUsername() {
+	Boolean ok = new Boolean(false); 
+	while(!ok) {
+	adapter.out("Choose your nickname to enter the lobby:");
+	username = adapter.in();
+	ok = this.checkName(username);
+	}
+}
+
 private void letStart() { 
     adapter.out("Write 'start' when you want to start the game! \nYou must be 2 at least"); 
     String string = adapter.in(); 
@@ -142,16 +155,9 @@ private void letStart() {
   } 
  
 public Player createPlayer() { 
-     
-    String name = new String(); 
+      
     Color color = null; 
-    Boolean ok = new Boolean(false); 
-    while(!ok) { //if name is already in use, retry! 
-    adapter.out("Choose your name"); 
-    name = adapter.in(); 
-    ok = this.checkName(name); 
-    } 
-    ok = false; 
+    Boolean ok = new Boolean(false);  
     while(!ok) { 
     adapter.out("Choose your color: \n 1: BLUE \n 2: RED \n 3: YELLOW \n 4: GREEN"); 
     String choice = adapter.in(); 
@@ -169,7 +175,7 @@ public Player createPlayer() {
     }   
     ok = this.checkColor(color); 
   }   
-    return new Player(name, color, game, this); 
+    return new Player(username, color, game, this); 
          
   } 
  
@@ -338,16 +344,25 @@ public Player createPlayer() {
   } 
  
   public boolean checkName(String name) { 
-    for (int i = 0; i < game.getPlayers().size(); i++) { 
-      if(name.equals(game.getPlayers().get(i).getName())){ 
-        adapter.out("Oh bischero! This name is already in use, choose another one, please!"); 
-        return false; 
-      } 
-    } 
+	  for (int i = 0; i < controlloreManager.getRemoteViews().size(); i++) 
+				   if(name.equals(controlloreManager.getRemoteViews().get(i).getUsername())){ 
+					   adapter.out("This nickname is already in use, choose another one, please!"); 
+					   return false; 
+				   }
+			    
+	   
     return true; 
   } 
    
-  public boolean checkColor(Color color) { 
+  public String getUsername() {
+	return username;
+}
+
+public void setUsername(String username) {
+	this.username = username;
+}
+
+public boolean checkColor(Color color) { 
     for (int i = 0; i < game.getPlayers().size(); i++) { 
       if(color.equals(game.getPlayers().get(i).getPlayerColor())){ 
         adapter.out("Oh grullo! This color is already in use, choose another one, please!"); 
