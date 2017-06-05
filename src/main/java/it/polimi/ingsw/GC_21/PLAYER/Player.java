@@ -122,7 +122,7 @@ public class Player {
 
 	@Override
 	public String toString() {
-		return "Player [name=" + name + ", playerColor=" + playerColor + "]";
+		return "Player [Name=" + name + ", playerColor=" + playerColor + "]";
 	}
 	
 	

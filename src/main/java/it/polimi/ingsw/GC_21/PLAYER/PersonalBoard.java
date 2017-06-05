@@ -16,7 +16,7 @@ public class PersonalBoard {
 	private final OwnedCards[] myOwnedCards;
 	private final Possession craftMinimumReward;
 	private Possession myPossession;
-	private Player player;
+	private final Player player;
 	private ArrayList<ToCallBeforeCraft> toCallBeforeCraftEffects;
 	private ArrayList<ToCallBeforePlacement> toCallBeforePlacementEffects;
 	private ArrayList<ToCallWhenEarning> toCallWhenEarningEffects;
@@ -41,7 +41,7 @@ public class PersonalBoard {
 	}
 	
 	public void addDevCard(DevelopmentCard devCard) {
-		OwnedCards tmpCardType = getOwnedCards(devCard.getDevCardType());
+		OwnedCards tmpCardType = getSpecificOwnedCards(devCard.getDevCardType());
 		tmpCardType.add(devCard);
 		}
 	 
@@ -63,7 +63,7 @@ public class PersonalBoard {
 
 	public void activateCraft(CraftType craftType, int actionValue) {
 		if(craftType.equals(CraftType.Production)) {
-			OwnedCards ownedBuildingCardsCards = getOwnedCards(DevCardType.Building);
+			OwnedCards ownedBuildingCardsCards = getSpecificOwnedCards(DevCardType.Building);
 			for (int i = 0; i < ownedBuildingCardsCards.getOwnedCardsnumber(); i++) {
 				CraftCard tmp = (CraftCard) ownedBuildingCardsCards.getMyOwnedCards()[i].getCard();
 				System.out.println(tmp.toString());
@@ -72,7 +72,7 @@ public class PersonalBoard {
 				}
 			}
 		} else if (craftType.equals(CraftType.Harvest)) {
-			OwnedCards ownedTerritoryCards = getOwnedCards(DevCardType.Territory);
+			OwnedCards ownedTerritoryCards = getSpecificOwnedCards(DevCardType.Territory);
 			for (int i = 0; i < ownedTerritoryCards.getOwnedCardsnumber(); i++) {
 				CraftCard tmp = (CraftCard) ownedTerritoryCards.getMyOwnedCards()[i].getCard();
 				if(actionValue >=  tmp.getRequiredValueForCraft()) {
@@ -82,7 +82,7 @@ public class PersonalBoard {
 		}
 	}
 	
-	public OwnedCards getOwnedCards(DevCardType devCardType){ //get a specific OwnedCards of the same type of the devCard 
+	public OwnedCards getSpecificOwnedCards(DevCardType devCardType){ //get a specific OwnedCards of the same type of the devCard 
 		int i = 0;
 		while (!myOwnedCards[i].getOwnedCardsType().equals(devCardType) && i < myOwnedCards.length){
 			i++;
@@ -95,9 +95,6 @@ public class PersonalBoard {
 		return player;
 	}
 
-	public void setPlayer(Player player) {
-		this.player = player;
-	}
 
 	public ArrayList<ToCallBeforeCraft> getToCallBeforeCraftEffects() {
 		return toCallBeforeCraftEffects;
@@ -133,7 +130,11 @@ public class PersonalBoard {
 
 	@Override
 	public String toString() {
-		return "PersonalBoard [myPossession=" + myPossession.toString() + "]";
+		String myOwnedCardString = "";
+		for (int i = 0; i < myOwnedCards.length; i++) {
+			myOwnedCardString = myOwnedCardString + myOwnedCards[i].toString() + "\n";
+		}
+		return player.getName() + " PersonalBoard \n{myPossession=" + myPossession.toString() + "\nmyOwnedCards: \n" + myOwnedCardString + "}";
 	}
 	
 	

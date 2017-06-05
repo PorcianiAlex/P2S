@@ -60,7 +60,7 @@ public class PersonalBoardTest {
 		Game game = new Game();
 		Player testPlayer = new Player("ale", Color.Blue, game);
 		testPlayer.getMyPersonalBoard().addDevCard(testDevCard);
-		assertTrue(testPlayer.getMyPersonalBoard().getOwnedCards(DevCardType.Building).getMyOwnedCards()[0].getCard().getName().equals(testDevCard.getName()));
+		assertTrue(testPlayer.getMyPersonalBoard().getSpecificOwnedCards(DevCardType.Building).getMyOwnedCards()[0].getCard().getName().equals(testDevCard.getName()));
 	}
 
 	@Test

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_21.PLAYER;
 
+import java.lang.reflect.Member;
+
 import it.polimi.ingsw.GC_21.BOARD.*;
 
 public class FamilyMember {
@@ -64,7 +66,10 @@ public class FamilyMember {
 	}
 
 	
-	
+	@Override
+	public String toString() {
+		return familyMemberColor + "family Member=[  Member Value=" + associatedDice.getValue()  + ", Placed=" + placed + " ]";
+	}
 	
 	
 	

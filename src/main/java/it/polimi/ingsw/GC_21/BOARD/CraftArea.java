@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_21.EFFECT.CraftInfluencer;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.Immediate;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
+import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class CraftArea {
@@ -22,19 +23,26 @@ public class CraftArea {
 	}
 
 	public boolean checkCraftFamilyMemberPlayer(Player player) {//return true if there is a family member with the indicated color in the singleActionSpace or in the multiple
-			return singleActionSpace.getFamilyMember().getOwnerPlayer().equals(player) || 
-					checkPlayerPresenceOnMultipleSpace(player);	
+		boolean checkSingle = false;
+		if (singleActionSpace.Busy && !singleActionSpace.getFamilyMemberLocated().getFamilyMemberColor().equals(FamilyMemberColor.Neutral)){
+				 checkSingle = singleActionSpace.getFamilyMemberLocated().getOwnerPlayer().equals(player);
+		}	
+		  
+		return checkSingle || checkPlayerPresenceOnMultipleSpace(player);	
 	}
 	
 	public boolean checkPlayerPresenceOnMultipleSpace(Player player) {
 		int i = 0;
-		ArrayList<FamilyMember> familyMembersLocated = multipleActionSpace.getFamilyMembers(); 
-		while (i < familyMembersLocated.size()) {
-		      if (familyMembersLocated.get(i).getOwnerPlayer().equals(player)) {
-			      return true;
-		      }
-			i++;
+		ArrayList<FamilyMember> familyMembersLocated = multipleActionSpace.getFamilyMembers();
+		if (familyMembersLocated != null) {
+			while (i < familyMembersLocated.size()) {
+			      if (!familyMembersLocated.get(i).getFamilyMemberColor().equals(FamilyMemberColor.Neutral) && familyMembersLocated.get(i).getOwnerPlayer().equals(player)) {
+				      return true;
+			      }
+				i++;
+			}
 		}
+		
 		return false;
 	}
 
