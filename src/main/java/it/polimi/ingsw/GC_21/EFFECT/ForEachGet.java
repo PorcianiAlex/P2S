@@ -63,6 +63,7 @@ public class ForEachGet extends Immediate implements ToCallDuringCraft{
 			Possession rewards = new Possession(0,0,0,0,0,0,0);
 			Item rewardItem = Item.factoryItem(resourceMultiplier * GettingIndex, resourceYouGet);
 			rewards.addItemToPossession(rewardItem);
+			callWhenEarningEffects(player, action);
 			earnRewards(player, rewards);
 		}
 		

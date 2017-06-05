@@ -6,12 +6,16 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
 import it.polimi.ingsw.GC_21.PLAYER.PersonalCardPlace;
 
 public class OwnedCards {
-	private final PersonalCardPlace[] ownedCards;
+	private PersonalCardPlace[] ownedCards;
 	private final DevCardType ownedCardsType;
 	private final int DIMENSION;
 	private int ownedCardsnumber;
 	
 	
+	public void setOwnedCards(PersonalCardPlace[] ownedCards) {
+		this.ownedCards = ownedCards;
+	}
+
 	public OwnedCards(DevCardType ownedCardsType, int dimension) {
 		this.ownedCardsType = ownedCardsType;
 		this.DIMENSION = dimension;

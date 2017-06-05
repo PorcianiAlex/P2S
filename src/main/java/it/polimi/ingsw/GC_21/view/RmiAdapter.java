@@ -24,6 +24,14 @@ public class RmiAdapter implements Adapter{
 		}
 	}
 
+	public RmiClientInterface getRmiClient() {
+		return rmiClient;
+	}
+
+	public void setRmiClient(RmiClientInterface rmiClient) {
+		this.rmiClient = rmiClient;
+	}
+
 	@Override
 	public void out(String string) {
 		try {

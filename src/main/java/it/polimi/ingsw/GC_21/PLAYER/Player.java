@@ -47,8 +47,14 @@ public class Player {
 		this.playerColor = playerColor;
 		this.myPersonalBoard = new PersonalBoard(this);
 		this.myPersonalBoard.getMyPossession().add(new Possession(5, 5, 5, 5, 5, 5, 5));
+		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), this);
 	}
 
+	public void printOnPlayer(String string){
+		this.myView.getAdapter().out(string);
+
+	}
+	
 	public void chooseAction() {
 		// TODO - implement Player.chooseAction
 		throw new UnsupportedOperationException();

@@ -1,13 +1,10 @@
 package it.polimi.ingsw.GC_21.ACTION;
 
 import java.util.ArrayList;
-import java.util.PrimitiveIterator.OfDouble;
-
-import org.omg.PortableServer.Servant;
 
 import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Board;
-import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforePlacement;
+import it.polimi.ingsw.GC_21.EFFECT.*;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
@@ -42,12 +39,12 @@ public class PlacementAction extends Action {
 	    selectedActionSpace.callSpaceEffect(playerInAction, this);
 		}
 	
-	private void callBeforePlacementEffects() {
+	public void callBeforePlacementEffects() {
 		if (!playerInAction.getMyPersonalBoard().getToCallBeforePlacementEffects().isEmpty()){
 			int size = playerInAction.getMyPersonalBoard().getToCallBeforePlacementEffects().size();
-			ArrayList<ToCallBeforePlacement> effects = playerInAction.getMyPersonalBoard().getToCallBeforePlacementEffects();
+			ArrayList<ToCallBeforePlacement> effectsOnTheGo = playerInAction.getMyPersonalBoard().getToCallBeforePlacementEffects();
 			for (int i = 0; i < size; i++) {
-				effects.get(i).activateEffect(playerInAction, this);
+				((Effect) effectsOnTheGo.get(i)).activateEffect(playerInAction, this);
 			}
 		}
 	}

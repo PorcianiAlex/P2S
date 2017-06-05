@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_21.BOARD.Floor;
 import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
 import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Tower;
+import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.EffectType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Coins;
@@ -79,9 +80,17 @@ public class TowerPlacement extends PlacementAction {
 		 super.Execute();
 		 pay();
 		 callCardEffect();
+		 earnPermanentEffect(selectedCard);
 		 takeCard();
 	}
 	
+	public void earnPermanentEffect(DevelopmentCard selectedCard) {
+		Effect permanentEffectToGet = selectedCard.getSecondaryEffect();
+		if (permanentEffectToGet!=null){
+			playerInAction.getMyPersonalBoard().addPermanentEffect(permanentEffectToGet);
+		}
+	}
+
 	@Override
 	public boolean checkOtherFamilyMember() {
 		if (selectedFamilyMember != null && !selectedFamilyMember.getFamilyMemberColor().equals(FamilyMemberColor.Neutral)) {

@@ -13,9 +13,6 @@ public class SingleActionSpace extends ActionSpace {
 	}
 
 	
-	
-
-	
 	@Override
 	public void placeFamilyMember(FamilyMember familyMember) {
 			setFamilyMemberLocated(familyMember);
