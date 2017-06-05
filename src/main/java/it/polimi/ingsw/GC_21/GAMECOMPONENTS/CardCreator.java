@@ -13,10 +13,12 @@ import org.json.simple.parser.ParseException;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.EFFECT.Convert;
+import it.polimi.ingsw.GC_21.EFFECT.CraftInfluencer;
 import it.polimi.ingsw.GC_21.EFFECT.DoCraftAction;
 import it.polimi.ingsw.GC_21.EFFECT.DoPlacementAction;
 import it.polimi.ingsw.GC_21.EFFECT.ForEachGet;
 import it.polimi.ingsw.GC_21.EFFECT.Immediate;
+import it.polimi.ingsw.GC_21.EFFECT.PlacementInfluencer;
 
 public class CardCreator {
 	
@@ -47,6 +49,7 @@ public class CardCreator {
            	 devCardCreating.setAge(age);
          	 devCardCreating.setDevCardType(devCardType);
          	 this.addImm(devCardCreating, jsonLineItem);
+         	 this.AddSecEff(devCardCreating, jsonLineItem);
            	 this.addReq(devCardCreating, jsonLineItem);
            	 cards.add(devCardCreating);
             }
@@ -198,12 +201,41 @@ public class CardCreator {
 					         cardcreating.setImmediateEffect(immediate);
 						break;
 						
+						
+						
 					}
 	                
-	                
-	                
-	       
-	             
+	               
+	            	             
+	}
+	
+	public void AddSecEff(Card cardcreating, JSONObject jsonLineItem) {
+		
+        switch ((String) jsonLineItem.get("SecEffType")) {
+		case "cartInfluencer":  			
+			CraftInfluencer craftInfluencer = new CraftInfluencer(CraftType.valueOf(jsonLineItem.get("CraftType").toString()), Integer.parseInt(jsonLineItem.get("CraftInfluencer").toString()));
+			cardcreating.setSecondaryEffect(craftInfluencer);
+			break;
+			
+		case "PlacementInfluencer"	:
+			
+			JSONArray discountArray= (JSONArray) jsonLineItem.get("Discount");
+			Possession discount = new Possession(Integer.parseInt(discountArray.get(0).toString()),Integer.parseInt(discountArray.get(1).toString()),
+            		Integer.parseInt(discountArray.get(2).toString()), Integer.parseInt(discountArray.get(3).toString()),
+            		Integer.parseInt(discountArray.get(4).toString()), Integer.parseInt(discountArray.get(5).toString()), 
+            	    Integer.parseInt(discountArray.get(6).toString()));
+			
+			if("null".equals((jsonLineItem.get("TowerEffected").toString()))){
+				PlacementInfluencer placementInfluencer = new PlacementInfluencer( Integer.parseInt(jsonLineItem.get("ActionValueBonus").toString()), null, discount);
+				cardcreating.setSecondaryEffect(placementInfluencer);
+				
+			} else {
+				PlacementInfluencer placementInfluencer = new PlacementInfluencer( Integer.parseInt(jsonLineItem.get("ActionValueBonus").toString()), DevCardType.valueOf(jsonLineItem.get("TowerEffected").toString()), discount);
+				cardcreating.setSecondaryEffect(placementInfluencer);
+			}
+		case "No" :
+			break;
+        }
 	}
 	
 	public void addReq(Card cardcreating, JSONObject jsonLineItem) {
@@ -220,7 +252,7 @@ public class CardCreator {
 	private void addSecondReq(Ventures cardcreating, JSONObject jsonLineItem) {
 		 
 		JSONArray reqarray= (JSONArray) jsonLineItem.get("SecReq");
-          
+        
 	        Possession Req = new Possession(Integer.parseInt(reqarray.get(0).toString()),Integer.parseInt(reqarray.get(1).toString()),
 	        		Integer.parseInt(reqarray.get(2).toString()), Integer.parseInt(reqarray.get(3).toString()),
 	        		Integer.parseInt(reqarray.get(4).toString()), Integer.parseInt(reqarray.get(5).toString()), 

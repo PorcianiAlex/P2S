@@ -108,7 +108,7 @@ public RemoteView(RmiClientInterface rmiClient, ControlloreManager controlloreMa
     public void run() { 
          
     adapter.out("Hi, welcome to our Lobby!" 
-        + "\n press 'C' to create a game or enter the number of the match you want to join:" 
+        + "\nPress 'C' to create a game or enter the number of the match you want to join:" 
         + "\n" + controlloreManager.getGames().toString() ); 
     String choice = adapter.in(); 
     if(choice.equals("C")) { 
@@ -124,7 +124,7 @@ public RemoteView(RmiClientInterface rmiClient, ControlloreManager controlloreMa
         game.attach(this); 
         adapter.out("music"); 
         for (int i = 0; i < game.getPlayers().size(); i++) { 
-        game.getPlayers().get(i).getMyView().adapter.out(player.getName()+" join the match!"); 
+        game.getPlayers().get(i).getMyView().adapter.out(player.getName()+" join the match! \nActual number of player: " + game.getPlayers().size()); 
       } 
          
         adapter.out("Waiting for the 'start' by the game host"); 
@@ -134,7 +134,7 @@ public RemoteView(RmiClientInterface rmiClient, ControlloreManager controlloreMa
     } 
  
 private void letStart() { 
-    adapter.out("Write 'start' when you want to start the game! \nYou must to be 2 at least"); 
+    adapter.out("Write 'start' when you want to start the game! \nYou must be 2 at least"); 
     String string = adapter.in(); 
     if(string.equals("start") && game.getPlayers().size()>1 || game.getPlayers().size()==4 ) { 
       game.executeGame(); 
