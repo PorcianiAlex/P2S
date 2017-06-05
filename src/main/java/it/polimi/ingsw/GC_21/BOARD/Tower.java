@@ -4,6 +4,8 @@ import java.util.*;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
+import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
+import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 
@@ -49,7 +51,8 @@ public class Tower {
 	public boolean checkTowerFamilyMemberPlayer(Player player) {	
 		for (int i = 0; i < floors.length; i++) {
 			if(floors[i].getSingleActionSpace().isBusy()){
-			 if(floors[i].getSingleActionSpace().getFamilyMember().getOwnerPlayer().equals(player)){
+				FamilyMember familyMemberInFloor = floors[i].getSingleActionSpace().getFamilyMemberLocated();
+			 if(!familyMemberInFloor.getFamilyMemberColor().equals(FamilyMemberColor.Neutral) && familyMemberInFloor.getOwnerPlayer().equals(player)){
 				return true;
 			 }
 			}

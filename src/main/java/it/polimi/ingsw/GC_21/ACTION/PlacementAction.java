@@ -58,7 +58,6 @@ public class PlacementAction extends Action {
 	}
 	
 	public boolean checkPlaceRequirement(){
-		System.out.println("Check Dice Requirement: " + checkDiceRequirement() + "/nFamily Member placed: " + selectedFamilyMember.isPlaced() + "/nAction Space Busy: " + selectedActionSpace.isBusy());
 		return checkDiceRequirement() &&
 			   !checkBusyActionSpace() &&
 			   !checkBusyFamiliyMember() &&
@@ -74,7 +73,6 @@ public class PlacementAction extends Action {
 	public void convertServant(Servants servants) {
 		this.actionValue += servants.getValue();
 		playerInAction.getMyPersonalBoard().getMyPossession().subtractItemToPossession(servants);
-		System.out.println("Action Value: " + actionValue);
 	}
 	
 	public boolean checkBusyFamiliyMember() {
@@ -85,7 +83,6 @@ public class PlacementAction extends Action {
 	}
 
 	public boolean checkDiceRequirement() {
-		System.out.println("Required Dice: " + selectedActionSpace.getRequiredDice() + "Action value: " + actionValue + "Servants: " + servantsToConvert);
 		return selectedActionSpace.getRequiredDice() <= (this.actionValue + servantsToConvert.getValue());
 	}
 	
@@ -147,5 +144,21 @@ public class PlacementAction extends Action {
 		return selectedActionSpace;
 	}
 	
+	@Override
+	public String toString() {
+		String string = "null";
+		if (selectedActionSpace.getActionSpaceEffect() != null) {
+			string = selectedActionSpace.getActionSpaceEffect().getRewards().toString();
+		}
+		return  "PLACEMENT " + super.toString() + "\n{" + selectedFamilyMember.toString() + "\nAction Value=" + actionValue +
+				"\nSpace Effect=" + string + "\nDiscount=" + discount.toString() + "\nOvercharge=" + overcharge.toString();
+	}
+	
+	@Override
+	public String checkToString() {
+		return  "Check Dice Requirement=" + checkDiceRequirement() + "\nCheck Not Busy Family Member=" + !checkBusyFamiliyMember() + 
+				"\nCheck Not Busy Action Space=" + !checkBusyActionSpace() + "\nCheck Not Other My Family Member=" + !checkOtherFamilyMember();
+				
+	}
 
 }

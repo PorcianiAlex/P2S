@@ -55,7 +55,7 @@ public class MainClient {
      }
     
     public static void factoryRmi() throws RemoteException, NotBoundException {
-    	Registry reg = LocateRegistry.getRegistry(8080);
+    	Registry reg = LocateRegistry.getRegistry(8000);
         ServerInterface srv = (ServerInterface) reg.lookup("server");          
     	RmiClient client2 = new RmiClient();
         srv.join(client2);

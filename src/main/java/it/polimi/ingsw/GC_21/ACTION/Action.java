@@ -19,5 +19,14 @@ public abstract class Action {
 	public Player getPlayerInAction() {
 		return playerInAction;
 	}
+	
+	@Override
+	public String toString() {
+		return "ACTION\n" + playerInAction.toString() + "\n" + playerInAction.getMyPersonalBoard().toString();
+	}
+	
+	public String checkToString() {
+		return "Check Action=[ " + checkAction() + " ]:";
+	}
 
 }

@@ -9,8 +9,8 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class Card {
 
-	private String name;
-	private Possession requirements;
+	protected final String name;
+	protected Possession requirements;
 	private Immediate immediateEffect;
 	private Effect secondaryEffect;
 
@@ -25,10 +25,7 @@ public class Card {
 
 
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
+	
 
 
 	public Possession getRequirements() {

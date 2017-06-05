@@ -1,18 +1,23 @@
 package it.polimi.ingsw.GC_21.ACTION;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.management.InstanceAlreadyExistsException;
 
 import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Board;
+import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.BOARD.CraftArea;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.BOARD.MultipleActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforeCraft;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
@@ -70,4 +75,60 @@ public class CraftPlacement extends PlacementAction {
 		}
 		craftAction.Execute();
 	}
+	
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+	
+	@Override
+	public String checkToString() {
+		return super.checkToString();
+	}
+	
+	public static void main(String[] args) {
+		Scanner tastiera = new Scanner(System.in);
+		Game game = new Game();	
+		Board board = game.getBoard();
+		Player playerInAction = new Player("Santa", Color.Blue, game);
+		Player playerInAction2 = new Player("Alex", Color.Green, game);
+		FamilyMemberColor selectedFamilyMemberColor = FamilyMemberColor.Orange;
+		FamilyMemberColor selectedFamilyMemberColor2 = FamilyMemberColor.Black;
+		System.out.println("Insert Servants");
+		int servantsNumber = tastiera.nextInt();
+		System.out.println("Insert Space");
+		int spaceType = tastiera.nextInt();
+		System.out.println("Insert Servants");
+		int servantsNumber2 = tastiera.nextInt();
+		System.out.println("Insert Space");
+		int spaceType2 = tastiera.nextInt();
+		DevCardType towerType = DevCardType.Building;
+		DevDeck towerTypeDeck  = new DevDeck(towerType, 1);
+		board.getSpecificTower(towerType).pickCards(towerTypeDeck);
+		TowerPlacement towerPlacement = TowerPlacement.factoryTowerPlacement(playerInAction, selectedFamilyMemberColor2, DevCardType.Building, 1, 1, board);
+		if (towerPlacement.checkAction()) {
+			towerPlacement.Execute();
+		}
+		System.out.println();
+		CraftPlacement craftPlacement = factoryCraftPlacement(playerInAction, selectedFamilyMemberColor, board, servantsNumber, CraftType.Harvest, spaceType);
+		CraftPlacement craftPlacement2 = factoryCraftPlacement(playerInAction2, selectedFamilyMemberColor2, board, servantsNumber2, CraftType.Production, spaceType2);
+		boolean checkAction = craftPlacement.checkAction();
+		System.out.println("Before:\n" + craftPlacement.toString());
+		System.out.println("Check Action [ " + checkAction + " ]");
+		System.out.println(craftPlacement.checkToString());
+		if (checkAction) {
+			craftPlacement.Execute();
+		}
+		System.out.println("After:\n" + craftPlacement.toString());
+		boolean checkAction2 = craftPlacement2.checkAction();
+		System.out.println("Before:\n" + craftPlacement2.toString());
+		System.out.println("Check Action [ " + checkAction2 + " ]");
+		System.out.println(craftPlacement2.checkToString());
+		if (checkAction2) {
+			craftPlacement2.Execute();
+		}
+		System.out.println("After:\n" + craftPlacement2.toString());
+		System.out.println(board.toString());
+	}
+
 }

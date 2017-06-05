@@ -18,7 +18,7 @@ public class SingleActionSpace extends ActionSpace {
 	
 	@Override
 	public void placeFamilyMember(FamilyMember familyMember) {
-			setFamilyMember(familyMember);
+			setFamilyMemberLocated(familyMember);
 			setBusy(true);
 	}
     
@@ -33,14 +33,6 @@ public class SingleActionSpace extends ActionSpace {
 	}
 
 
-	public void setFamilyMember(FamilyMember familyMemberLocated) {
-		this.familyMemberLocated = familyMemberLocated;
-	}
-	
-	
-	public FamilyMember getFamilyMember() {
-		return familyMemberLocated;
-	}
 
 
 
@@ -49,7 +41,7 @@ public class SingleActionSpace extends ActionSpace {
 	@Override
 	public String toString() {
 		if (familyMemberLocated!=null){
-			return "[familyMember=" + familyMemberLocated.getPlayerColor().toString() + "//" + familyMemberLocated.getFamilyMemberColor().toString() + "]";
+			return "[familyMember=" + familyMemberLocated.getOwnerPlayer().toString() + "//" + familyMemberLocated.getFamilyMemberColor().toString() + "]";
 		}
 		else {
 			return "[familyMember=" + "//" + "]";

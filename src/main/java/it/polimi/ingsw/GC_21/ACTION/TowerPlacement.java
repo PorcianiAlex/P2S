@@ -1,7 +1,10 @@
 package it.polimi.ingsw.GC_21.ACTION;
 
+import java.util.Scanner;
+
 import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Board;
+import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.BOARD.Floor;
 import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
 import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
@@ -10,10 +13,12 @@ import it.polimi.ingsw.GC_21.EFFECT.EffectType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Coins;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Ventures;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
@@ -56,7 +61,7 @@ public class TowerPlacement extends PlacementAction {
 	public boolean checkPlaceRequirement() {
 		if (super.checkPlaceRequirement()) {
 			if(selectedActionSpace.getActionSpaceEffect()!=null) {
-			discount.add(selectedActionSpace.getActionSpaceEffect().getRewards());//if the Space requirement is satisfied I can use the eventual SpaceBonus to get the card
+				discount.add(selectedActionSpace.getActionSpaceEffect().getRewards());//if the Space requirement is satisfied I can use the eventual SpaceBonus to get the card
 			}
 		    if (checkBusyTower()) {
 		    	Coins moneyToPay = new Coins(3);
@@ -72,14 +77,14 @@ public class TowerPlacement extends PlacementAction {
 	@Override
 	public void Execute() {
 		 super.Execute();
-		 pay(selectedCard.getRequirements());
+		 pay();
 		 callCardEffect();
 		 takeCard();
 	}
 	
 	@Override
 	public boolean checkOtherFamilyMember() {
-		if (selectedFamilyMember != null) {
+		if (selectedFamilyMember != null && !selectedFamilyMember.getFamilyMemberColor().equals(FamilyMemberColor.Neutral)) {
 			return selectedTower.checkTowerFamilyMemberPlayer(selectedFamilyMember.getOwnerPlayer());	
 		}
 		return false;
@@ -87,10 +92,10 @@ public class TowerPlacement extends PlacementAction {
 
 
 	public boolean checkTakeabilityCard(PersonalBoard myPersonalBoard, DevCardType selectedCardType) {
-		if(myPersonalBoard.getOwnedCards(selectedCardType).getOwnedCardsnumber() == 6){ 
+		if(myPersonalBoard.getSpecificOwnedCards(selectedCardType).getOwnedCardsnumber() == 6){ 
 			return false;
 		    }
-		OwnedCards ownedTerritoryCards = myPersonalBoard.getOwnedCards(DevCardType.Territory);
+		OwnedCards ownedTerritoryCards = myPersonalBoard.getSpecificOwnedCards(DevCardType.Territory);
 		if(selectedCardType.equals(DevCardType.Territory) 
 		   && ownedTerritoryCards.getOwnedCardsnumber() > 2
 		   && !myPersonalBoard.getMyPossession().compare(ownedTerritoryCards.getOwnedCards()[ownedTerritoryCards.getOwnedCardsnumber()].getPossession())){
@@ -103,7 +108,8 @@ public class TowerPlacement extends PlacementAction {
 
 	
 	public boolean checkCardRequirements(PersonalBoard myPersonalBoard) {
-		Possession cost = selectedCard.getRequirements();
+		Possession cost = new Possession();
+		cost.add(selectedCard.getRequirements());
 		cost.add(overcharge);
 		cost.subtract(discount);
 		return myPersonalBoard.getMyPossession().compare(cost);
@@ -126,7 +132,9 @@ public class TowerPlacement extends PlacementAction {
 	}
 
 	
-	public void pay(Possession payment) {
+	public void pay() {
+		Possession payment = new Possession();
+		payment.add(selectedCard.getRequirements());
 		payment.add(overcharge);
 		payment.subtract(discount);//real payment
 		playerInAction.getMyPersonalBoard().payPossession(payment);
@@ -140,5 +148,62 @@ public class TowerPlacement extends PlacementAction {
 		playerInAction.getMyPersonalBoard().addDevCard(selectedCard);
 		selectedFloor.getDevCardPlace().setCard(null);
 	}
+	
+	@Override
+	public String toString() {
+		return "TOWER " + super.toString() + "\nSelected Floor=" + selectedFloor.toString() + "\nTaken Card " + selectedCard.toString() + "\nCard Requirement=" + 
+				selectedCard.getRequirements().toString() + "\nCard Immediate Effect=" + selectedCard.getImmediateEffect().getRewards().toString() + "}";
+				
+				
+	}
+	
+	@Override
+	public String checkToString() {
+		return super.checkToString() + "\nCheck Not Busy Tower=" + !checkBusyTower() + "\nCheck Card Takeability=" + 
+				checkTakeabilityCard(playerInAction.getMyPersonalBoard(), selectedCard.getDevCardType()) +
+				"\nCheck Card Requirement=" + checkCardRequirements(playerInAction.getMyPersonalBoard());
+	}
+	
+	public static void main(String[] args) {
+		Scanner tastiera = new Scanner(System.in);
+		Game game = new Game();	
+		Board board = game.getBoard();
+		Player playerInAction = new Player("Santa", Color.Blue, game);
+		Player playerInAction2 = new Player("Alex", Color.Green, game);
+		FamilyMemberColor selectedFamilyMemberColor = FamilyMemberColor.Neutral;
+		FamilyMemberColor selectedFamilyMemberColor2 = FamilyMemberColor.Black;
+		DevCardType towerType = DevCardType.Building;
+		DevDeck towerTypeDeck  = new DevDeck(towerType, 1);
+		board.getSpecificTower(towerType).pickCards(towerTypeDeck);
+		System.out.println("Insert Floor");
+		int floorNumber = tastiera.nextInt();
+		System.out.println("Insert Servants");
+		int servantsNumber = tastiera.nextInt();
+		System.out.println("Insert Floor");
+		int floorNumber2 = tastiera.nextInt();
+		System.out.println("Insert Servants");
+		int servantsNumber2 = tastiera.nextInt();
+		TowerPlacement towerPlacement = factoryTowerPlacement(playerInAction, selectedFamilyMemberColor, towerType, floorNumber, servantsNumber, board);
+		TowerPlacement towerPlacement2 = factoryTowerPlacement(playerInAction, selectedFamilyMemberColor2, towerType, floorNumber2, servantsNumber2, board);
+		boolean checkAction = towerPlacement.checkAction();
+		System.out.println("Before:\n" + towerPlacement.toString());
+		System.out.println("Check Action [ " + checkAction + " ]");
+		System.out.println(towerPlacement.checkToString());
+		if (checkAction) {
+			towerPlacement.Execute();
+		}
+		System.out.println("After:\n" + towerPlacement.toString());
+		boolean checkAction2 = towerPlacement2.checkAction();
+		System.out.println("Before:\n" + towerPlacement2.toString());
+		System.out.println("Check Action [ " + checkAction + " ]");
+		System.out.println(towerPlacement2.checkToString());
+		if (checkAction2) {
+			towerPlacement2.Execute();
+		}
+		System.out.println("After:\n" + towerPlacement2.toString());
+		System.out.println(board.toString());
+
+	}
+	
 
 }

@@ -50,7 +50,7 @@ public class ForEachGet extends Immediate implements ToCallDuringCraft{
 	public void activateEffect(Player player, Action action) {
 		super.activateEffect(player, action);
 		if (CardConversion == true){
-			int playerCardNumber = player.getMyPersonalBoard().getOwnedCards(forEachCard).getOwnedCardsnumber();
+			int playerCardNumber = player.getMyPersonalBoard().getSpecificOwnedCards(forEachCard).getOwnedCardsnumber();
 			int cardMultiplier = playerCardNumber/forEachCardIndex;
 			Possession rewards = new Possession(0,0,0,0,0,0,0);
 			Item rewardItem = Item.factoryItem(cardMultiplier * GettingIndex, resourceYouGet);

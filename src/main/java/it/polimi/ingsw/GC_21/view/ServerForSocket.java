@@ -51,8 +51,8 @@ public class ServerForSocket extends UnicastRemoteObject implements ServerInterf
            serverSocket = new ServerSocket(port);
            System.out.println("Server Socket ready...");
        
-           LocateRegistry.createRegistry(8080);
-           Registry reg = LocateRegistry.getRegistry(8080);
+           LocateRegistry.createRegistry(8000);
+           Registry reg = LocateRegistry.getRegistry(8000);
            reg.rebind("server", this);
            System.out.println("Server RMI up and running...");
        } catch (IOException e){

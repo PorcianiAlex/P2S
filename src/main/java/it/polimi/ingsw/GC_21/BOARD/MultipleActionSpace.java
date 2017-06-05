@@ -34,5 +34,19 @@ public class MultipleActionSpace extends ActionSpace {
 		// TODO - implement MultipleActionSpace.callMalusDiceEffect
 		throw new UnsupportedOperationException();
 	}
+	
+	@Override
+	public String toString() {
+		if (familyMembersLocated!=null){
+			String string = "[familyMembers=";
+			for (int i = 0; i < familyMembersLocated.size(); i++) {
+				string = string  + " {" + familyMembersLocated.get(i).getOwnerPlayer().toString() + "//" + familyMembersLocated.get(i).getFamilyMemberColor().toString() + " }";
+			}
+			return string + "]";
+		}
+		else {
+			return "[familyMembers=" + "//" + "]";
+		}
+	}
 
 }

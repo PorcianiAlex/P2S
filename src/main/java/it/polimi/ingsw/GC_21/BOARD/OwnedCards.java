@@ -72,6 +72,16 @@ public class OwnedCards {
 	public int getDIMENSION() {
 		return DIMENSION;
 	}
+	
+	@Override
+	public String toString() {
+		String ownedCardString = "";
+		for (int i = 0; i < ownedCardsnumber; i++) {
+			ownedCardString = ownedCardString + ownedCards[i].getCard().toString() + " ";
+		}
+		return ownedCardString;
+	}
+	
 
 
 }

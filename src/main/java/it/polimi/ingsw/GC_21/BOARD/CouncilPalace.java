@@ -49,7 +49,7 @@ public class CouncilPalace {
 	
 	@Override
 	public String toString() {
-		return "CouncilPalace:[" + multipleActionSpace + "]";
+		return "CouncilPalace:[" + multipleActionSpace.toString() + "]";
 	}
 	
 	
