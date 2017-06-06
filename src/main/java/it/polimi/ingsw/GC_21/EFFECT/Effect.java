@@ -50,7 +50,7 @@ public  class Effect implements ToCallDuringCraft{
 			for (int i = this.privileges.getValue(); i > 0; i--) {
 				Possession tmpPossession = this.chooseReward(player);
 				if (validConversion(tmpPossession, player) == true ){
-					this.rewards.add(tmpPossession);
+					this.earnRewards(player, tmpPossession);
 					setEarnedReward(tmpPossession);	
 				}
 				else {
@@ -59,8 +59,18 @@ public  class Effect implements ToCallDuringCraft{
 				}
 		}
 		this.callWhenEarningEffects(player, action);
+		this.resetEarnedReward();
 		this.earnRewards(player, rewards);
 	}
+	
+	public void resetEarnedReward() {
+		this.coinsEarned=false;
+		this.woodsAndStonesEarned=false;
+		this.servantsEarned=false;
+		this.militaryPointsEarned=false;
+		this.faithPointsEarned=false;
+	}
+
 	public Possession chooseReward(Player player){
 		player.printOnPlayer("Choose your reward! Type: /n 1 -> 1x Woods 1 x Stones /n 2 -> 2x Servants /n 3 -> 2x Coins /n 4 -> 2x Military Points 5 -> 1x Faith Points");
 		String choice = player.getMyView().getAdapter().in();
@@ -76,7 +86,7 @@ public  class Effect implements ToCallDuringCraft{
 		case "5": 
 		return this.faithPointsReward;
 		default: 
-			player.getMyView().getAdapter().out("Invalid choice, try again!");
+			player.printOnPlayer("Invalid choice, try again!");
  			return chooseReward(player);
 		}
 	}
