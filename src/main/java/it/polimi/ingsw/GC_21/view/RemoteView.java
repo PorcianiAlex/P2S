@@ -1,12 +1,15 @@
 package it.polimi.ingsw.GC_21.view; 
  
+import java.awt.Insets;
+import java.io.FileNotFoundException;
 import java.io.IOException; 
 import java.io.PrintStream; 
 import java.net.Socket; 
 import java.util.Scanner; 
 import java.util.ArrayList; 
-import java.util.ResourceBundle.Control; 
- 
+import java.util.ResourceBundle.Control;
+
+import org.json.simple.parser.ParseException;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION; 
 import org.omg.PortableServer.AdapterActivator; 
  
@@ -108,7 +111,11 @@ public RemoteView(RmiClientInterface rmiClient, ControlloreManager controlloreMa
   @Override 
     public void run() { 
     
-	 this.chooseUsername(); 
+	 try {
+		this.chooseUsername();
+	} catch (IOException | ParseException e) {
+		e.printStackTrace();
+	} 
 	 controlloreManager.addRemoteView(this);
 	  
     adapter.out("Hi "+ username +", welcome to our Lobby!" 
@@ -118,7 +125,8 @@ public RemoteView(RmiClientInterface rmiClient, ControlloreManager controlloreMa
     if(choice.equals("C")) { 
         game = controlloreManager.addController(); 
         player = this.createPlayer(); 
-        game.attach(this); 
+        game.attach(this);
+        attach(game.getController());
         adapter.out("music"); 
         this.letStart(); 
     } 
@@ -126,6 +134,7 @@ public RemoteView(RmiClientInterface rmiClient, ControlloreManager controlloreMa
       game = controlloreManager.getControllers().get(Integer.parseInt(choice)-1).getModelGame(); 
       player = this.createPlayer(); 
         game.attach(this); 
+        attach(game.getController());
         adapter.out("music"); 
         for (int i = 0; i < game.getPlayers().size(); i++) { 
         game.getPlayers().get(i).getMyView().adapter.out(player.getName()+" join the match! \nActual number of player: " + game.getPlayers().size()); 
@@ -137,13 +146,37 @@ public RemoteView(RmiClientInterface rmiClient, ControlloreManager controlloreMa
        
     } 
  
-private void chooseUsername() {
+private void chooseUsername() throws FileNotFoundException, IOException, ParseException {
 	Boolean ok = new Boolean(false); 
-	while(!ok) {
-	adapter.out("Choose your nickname to enter the lobby:");
+	adapter.out("Hi, do you want to Register (1) or Login (2) ?");
+	Boolean insert = new Boolean(true);
+    String choice = adapter.in(); 
+    switch (choice) { 
+    case "1": insert = true; 
+    break; 
+    case "2": insert =false;; 
+    break;
+    default : chooseUsername();
+    break;
+    }
+	adapter.out("Enter your username: ");
 	username = adapter.in();
-	ok = this.checkName(username);
+	adapter.out("Enter your password: ");
+	String psw = adapter.in();
+	ok = controlloreManager.Login(username, psw, insert);
+	if(ok == false && insert == true) {
+		adapter.out("username already in use");
 	}
+	if(ok == false && insert == false) {
+		adapter.out("theese username and password doesn't exist!");
+	}
+	if(!this.checkLoggedUsers(username) && insert==false) {
+		chooseUsername();
+	}
+	if (ok == false) {
+		chooseUsername();
+	}
+	
 }
 
 private void letStart() { 
@@ -187,18 +220,16 @@ public Player createPlayer() {
         + "\n 2: craft placement " 
         + "\n 3: market placement " 
         + "\n 4: council placement" 
-        + "\n 5: craft placement"); 
+        ); 
     String choice = adapter.in(); 
     switch (choice) { 
     case "1": this.towerPlacementCreator(); 
     break; 
-    case "2": this.craftActionCreator(); 
+    case "2": this.craftPlacementCreator(); 
     break; 
     case "3": this.marketPlacementCreator(); 
     break; 
     case "4": this.councilPlacementCreator(); 
-    break; 
-    case "5": this.craftPlacementCreator(); 
     break; 
     default: this.towerPlacementCreator(); 
       break; 
@@ -214,7 +245,7 @@ public Player createPlayer() {
     int servantsToConvert = this.chooseHowManyServants(); 
     FamilyMemberColor selectedFamilyMember = this.chooseFamilyMember(); 
     CraftPlacement craftPlacement = CraftPlacement.factoryCraftPlacement(player, selectedFamilyMember, game.getBoard(), servantsToConvert, craftType, Integer.parseInt(spaceType)); 
-    boolean result = this.notifyObservers(craftPlacement); 
+    this.response(craftPlacement);
   } 
    
   public CraftType selectCraftType(){ 
@@ -231,8 +262,8 @@ public Player createPlayer() {
     String choice = adapter.in(); 
     switch (choice) { 
     case "1": return DevCardType.Territory; 
-    case "2": return DevCardType.Character; 
-    case "3": return DevCardType.Building; 
+    case "2": return DevCardType.Building; 
+    case "3": return DevCardType.Character; 
     case "4": return DevCardType.Venture; 
     default: return DevCardType.Building; 
     }   
@@ -260,21 +291,21 @@ public Player createPlayer() {
     familyMemberColor = this.chooseFamilyMember(); 
     int servants = this.chooseHowManyServants(); 
     TowerPlacement towerPlacement = TowerPlacement.factoryTowerPlacement(player, familyMemberColor, selectedTower, floor, servants, game.getBoard()); 
-    boolean result = this.notifyObservers(towerPlacement); 
-    if (result==false){ 
-      adapter.out("Oh bischero! Something went wrong! Try again!"); 
-      this.input(); 
-      return; 
-    } 
-    adapter.out("Everything went fine!"); 
-    return; 
+   this.response(towerPlacement);
   } 
    
-  public void craftActionCreator() { 
-    CraftAction craftAction; 
-    //controller.setAction(towerPlacement); 
-  } 
-   
+  public void response(Action action) {
+	  boolean result = this.notifyObservers(action); 
+	    if (result==false){ 
+	      adapter.out("Oh bischero! Something went wrong! Try again!"); 
+	      this.input(); 
+	      return; 
+	    } 
+	    adapter.out("Everything went fine!"); 
+	    return; 
+}
+  
+
   public void marketPlacementCreator() { 
     adapter.out("Which reward do you want? \n [2x Coins (1) - 2x Servants (2) - 3x Military Points + 2x Coins (3) - 2x Privileges (4)"); 
     String Areastring = adapter.in(); 
@@ -283,7 +314,7 @@ public Player createPlayer() {
     FamilyMemberColor selectedFamilyMember = this.chooseFamilyMember(); 
     MarketPlacement marketPlacement = MarketPlacement.factoryMarketPlacement(player, selectedFamilyMember, AreaToPlace, servantsToConvert, game.getBoard()); 
      
-    boolean result = this.notifyObservers(marketPlacement); 
+    this.response(marketPlacement);
  
   } 
    
@@ -291,10 +322,10 @@ public Player createPlayer() {
     adapter.out("Select Family Member [ N - O - W - B]:"); 
     String choice = adapter.in(); 
     switch (choice) { 
-    case "1": return FamilyMemberColor.Neutral; 
-    case "2": return FamilyMemberColor.Orange; 
-    case "3": return FamilyMemberColor.White; 
-    case "4": return FamilyMemberColor.Black; 
+    case "N": return FamilyMemberColor.Neutral; 
+    case "O": return FamilyMemberColor.Orange; 
+    case "W": return FamilyMemberColor.White; 
+    case "B": return FamilyMemberColor.Black; 
     default: return FamilyMemberColor.Neutral; 
     } 
   } 
@@ -320,7 +351,7 @@ public Player createPlayer() {
    
   public void councilPlacementCreator() { 
     CouncilPlacement councilPlacement = CouncilPlacement.factoryCouncilPlacement(player, this.chooseFamilyMember(), game.getBoard(), this.chooseHowManyServants());   
-    boolean result = this.notifyObservers(councilPlacement); 
+    this.response(councilPlacement); 
  
   } 
    
@@ -338,29 +369,12 @@ public Player createPlayer() {
  
   @Override 
   public boolean update() { 
-    adapter.out(game.getBoard().toString()); 
+	  adapter.out("\n Your resources: " + player.getMyPersonalBoard().toString() + 			  
+				"\n" + game.getBoard().toString()); 
     this.input(); 
     return true; 
   } 
  
-  public boolean checkName(String name) { 
-	  for (int i = 0; i < controlloreManager.getRemoteViews().size(); i++) 
-				   if(name.equals(controlloreManager.getRemoteViews().get(i).getUsername())){ 
-					   adapter.out("This nickname is already in use, choose another one, please!"); 
-					   return false; 
-				   }
-			    
-	   
-    return true; 
-  } 
-   
-  public String getUsername() {
-	return username;
-}
-
-public void setUsername(String username) {
-	this.username = username;
-}
 
 public boolean checkColor(Color color) { 
     for (int i = 0; i < game.getPlayers().size(); i++) { 
@@ -371,4 +385,23 @@ public boolean checkColor(Color color) {
     } 
     return true; 
   } 
+
+public boolean checkLoggedUsers(String name) { 
+    for (int i = 0; i < controlloreManager.getRemoteViews().size(); i++) { 
+      if(name.equals(controlloreManager.getRemoteViews().get(i).getUsername())){ 
+        adapter.out("Oh grullo! tu sei già loggato!"); 
+        return false; 
+      } 
+    } 
+    return true; 
+  }
+
+public String getUsername() {
+	return username;
+}
+
+public void setUsername(String username) {
+	this.username = username;
+} 
+
 }

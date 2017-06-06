@@ -17,7 +17,7 @@ public class PlacementInfluencer extends Effect implements ToCallBeforePlacement
 			Possession discount) {
 		super();
 		this.actionValueBonus = actionValueBonus;
-		towerEffected = towerEffected;
+		this.towerEffected = towerEffected;
 		this.discount = discount;
 	}
 	

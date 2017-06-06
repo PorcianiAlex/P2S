@@ -45,11 +45,15 @@ public class Controller implements P2SObserver<Action>{
 			int indexOfToCallBeforePlacementArray = action.getPlayerInAction().getMyPersonalBoard().getToCallBeforePlacementEffects().size();
 			ArrayList<ToCallBeforePlacement> effectsOnTheGo = action.getPlayerInAction().getMyPersonalBoard().getToCallBeforePlacementEffects();
 			for (int i = 0; i < indexOfToCallBeforePlacementArray; i++) {
-				((Effect) effectsOnTheGo.get(indexOfToCallBeforePlacementArray)).activateEffect(action.getPlayerInAction(), action);
+				((Effect) effectsOnTheGo.get(i)).activateEffect(action.getPlayerInAction(), action);
 			}
 		}
-		if (action.checkAction()) {
+		boolean checkAction = action.checkAction();
+		System.out.println(checkAction);
+		System.out.println(action.checkToString());
+		if (checkAction) {
 			action.Execute();
+			System.out.println(action.toString());
 			return true;
 		}
 		return false;

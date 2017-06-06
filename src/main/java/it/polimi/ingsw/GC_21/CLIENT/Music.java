@@ -17,7 +17,7 @@ public class Music {
 
 	        try
 	        {
-	            InputStream test = new FileInputStream("src\\main\\Song1.wav");
+	            InputStream test = new FileInputStream("Song1.wav");
 	            BGM = new AudioStream(test);
 	            AudioPlayer.player.start(BGM);
 	            //MD = BGM.getData();
