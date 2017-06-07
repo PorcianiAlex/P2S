@@ -76,6 +76,7 @@ public class CardCreator {
 	    	if(Integer.parseInt(jsonLineItem.get("age").toString())==age){              	
            	 ExcommunicationCard excommunicationCard = new ExcommunicationCard((String) jsonLineItem.get("name"));
            	 excommunicationCard.setAge(age);
+           	 this.AddSecEff(excommunicationCard, jsonLineItem);
          	 cards.add(excommunicationCard);            	 
             }
 	     }

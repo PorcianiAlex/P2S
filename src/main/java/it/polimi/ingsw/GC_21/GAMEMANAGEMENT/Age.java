@@ -9,28 +9,28 @@ import it.polimi.ingsw.GC_21.view.RemoteView;
 public class Age {
 
 	private int ageNumber;
-	private int excommTreshold;
-	DevDeck buildingDeck ;
+ 	DevDeck buildingDeck ;
 	DevDeck territoryDeck;
 	DevDeck characterDeck;
 	DevDeck ventureDeck;
 	private Game game;
 	private Round currentRound;
+	private ExcommHandler excommHandler;
 	
 	
 	public Age(int ageNumber, Game game) {
 		this.ageNumber = ageNumber;
-		this.excommTreshold = ageNumber+2;
 		this.game = game;
-		this.CreateDeck();			
+		this.CreateDeck();	
+		this.excommHandler = game.getExcommHandler();
 	}
 	
 	public void executeAge() {
 		for (int i = 1; i < 3; i++) {
 			currentRound = new Round(i, game);
 			currentRound.executeRound();
+			excommHandler.executeExcomm(ageNumber);
 		}
-		
 	}
 
 	public void CreateDeck() {
@@ -43,23 +43,6 @@ public class Age {
 		characterDeck.shuffle();
 		ventureDeck.shuffle();
 	}
-
-	public void checkExcomm() {
-		// TODO - implement Age.checkExcomm
-		throw new UnsupportedOperationException();
-	}
-
-	public void askExcomm() {
-		// TODO - implement Age.askExcomm
-		throw new UnsupportedOperationException();
-	}
-
-	public void callImmediateEffect() {
-		// TODO - implement Age.callImmediateEffect
-		throw new UnsupportedOperationException();
-	}
-
-
 
 	public Round getCurrentRound() {
 		return currentRound;

@@ -49,8 +49,6 @@ public class Controller implements P2SObserver<Action>{
 			}
 		}
 		boolean checkAction = action.checkAction();
-		System.out.println(checkAction);
-		System.out.println(action.checkToString());
 		if (checkAction) {
 			action.Execute();
 			System.out.println(action.toString());
@@ -68,6 +66,12 @@ public class Controller implements P2SObserver<Action>{
 
 	@Override
 	public void update(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateExcomm() {
 		// TODO Auto-generated method stub
 		
 	}

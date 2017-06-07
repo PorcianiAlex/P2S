@@ -16,7 +16,8 @@ import org.omg.PortableServer.AdapterActivator;
 import it.polimi.ingsw.GC_21.ACTION.Action; 
 import it.polimi.ingsw.GC_21.ACTION.CouncilPlacement; 
 import it.polimi.ingsw.GC_21.ACTION.CraftAction; 
-import it.polimi.ingsw.GC_21.ACTION.CraftPlacement; 
+import it.polimi.ingsw.GC_21.ACTION.CraftPlacement;
+import it.polimi.ingsw.GC_21.ACTION.ExcommAction;
 import it.polimi.ingsw.GC_21.ACTION.MarketPlacement; 
 import it.polimi.ingsw.GC_21.ACTION.TowerPlacement; 
 import it.polimi.ingsw.GC_21.BOARD.Color; 
@@ -319,7 +320,7 @@ public Player createPlayer() {
   } 
    
   public FamilyMemberColor chooseFamilyMember(){ 
-    adapter.out("Select Family Member [ N - O - W - B]:"); 
+    adapter.out("Select Family Member [ N - O - W - B ]:"); 
     String choice = adapter.in(); 
     switch (choice) { 
     case "N": return FamilyMemberColor.Neutral; 
@@ -402,6 +403,19 @@ public String getUsername() {
 
 public void setUsername(String username) {
 	this.username = username;
+}
+
+@Override
+public void updateExcomm() {
+	adapter.out("Bergoglio wants to know if you have been a great guy recently! \n"
+			+ "Be careful: if you disappoint him you will get a permanent malus!!!" + 
+			"\nDo you want to be excommunicated? Y - N");
+	String choiche = adapter.in();
+	switch (choiche) {
+	case "Y" : this.notifyObservers(new ExcommAction(player, game, true));
+	case "N" :	this.notifyObservers(new ExcommAction(player, game, false));
+	default: this.notifyObservers(new ExcommAction(player, game, false));
+	}
 } 
 
 }

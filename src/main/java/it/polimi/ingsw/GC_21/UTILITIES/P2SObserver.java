@@ -8,5 +8,6 @@ public interface P2SObserver<C> {
 	public  boolean update(C change);
 	public void update(String string);
 	public boolean update();
+	public void updateExcomm();
 		
 }

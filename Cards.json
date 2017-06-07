@@ -50,8 +50,9 @@
 	]
 	
 	"ExCard" : [
-	{"name":"ex1", "age":"3" },
-	{"name":"ex1", "age":"3" }
+	{"name":"ex1", "age":"1", "SecEffType":"PlacementInfluencer", "TowerEffected":"Venture", "ActionValueBonus":"5", "Discount":[2,0,2,1,0,0,7]},
+	{"name":"ex2", "age":"2", "SecEffType":"PlacementInfluencer", "TowerEffected":"Territory", "ActionValueBonus":"5", "Discount":[2,0,2,1,0,0,7]},
+	{"name":"ex3", "age":"3" , "SecEffType":"cartInfluencer", "CraftType":"Harvest", "CraftInfluencer":"3"}
 	]
 
 	"LeadCard" : [

@@ -33,6 +33,12 @@ public abstract class Observable<C> {
 		view.update(string);
 }
 
+	public void notifyExcomm() {	
+		for (P2SObserver<C> o : this.observers) {
+			o.updateExcomm();
+		}
+	}
+	
 	
 	public void notifyObservers(String string) {	
 		for (P2SObserver<C> o : this.observers) {

@@ -24,10 +24,6 @@ public class Card {
 	}
 
 
-
-	
-
-
 	public Possession getRequirements() {
 		return requirements;
 	}

@@ -25,14 +25,34 @@ public class Game extends Observable {
 	private Board board;
 	private ArrayList<Player> players;
 	private Age currentAge;
+	private ExcommHandler excommHandler;
 	
 	
+	
+	
+
+	public int getNumberOfPlayers() {
+		return numberOfPlayers;
+	}
+
+	public void setNumberOfPlayers(int numberOfPlayers) {
+		this.numberOfPlayers = numberOfPlayers;
+	}
+
+	public ExcommHandler getExcommHandler() {
+		return excommHandler;
+	}
+
+	public void setExcommHandler(ExcommHandler excommHandler) {
+		this.excommHandler = excommHandler;
+	}
 
 	public Game() {
 		this.id = currentNumberOfGame + 1;
 		currentNumberOfGame++;
 		this.board = new Board();	
 		this.players = new ArrayList<Player>();
+		this.excommHandler = new ExcommHandler(this);
 		}
 	
 	public void executeGame() {
