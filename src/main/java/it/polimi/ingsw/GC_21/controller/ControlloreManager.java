@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
@@ -22,7 +23,8 @@ public class ControlloreManager {
 	private ArrayList<Controller> controllers;
 	private ArrayList<RemoteView> remoteViews;
 	private ArrayList<Game> games;
-	
+	private JSONParser parser = new JSONParser();
+
 	
 	public ControlloreManager() {
 		controllers = new ArrayList<Controller>();
@@ -56,37 +58,45 @@ public class ControlloreManager {
 	}
 	
 	public boolean Login(String user, String psw, Boolean insert) throws FileNotFoundException, IOException, ParseException {
-		JSONParser parser = new JSONParser();
+		
 		Object obj = parser.parse(new FileReader("Users.json"));
 	    JSONObject users = (JSONObject) obj;
-	    JSONArray usersarray= (JSONArray) users.get("Users");
-	    for (Object o : usersarray) {
+	    JSONArray usersarray= (JSONArray) users.get("users");
+	    	for (Object o : usersarray) {
            	JSONObject jsonLineItem = (JSONObject) o;       
 	    	if(user.equals(jsonLineItem.get("name").toString())){              	
-	    		if (psw.equals(jsonLineItem.get("psw").toString())) {
+	    		if (psw.equals(jsonLineItem.get("psw").toString()) && !insert) {
 	    			return true;
 	    		} else {
 					return false;
 				}
+	    	 }
 	    	}
-	    }
-	    if (insert) {
-	    	 JSONObject jsonObj = (JSONObject) obj;
-	    	  jsonObj.put("name", user);
-	    	  jsonObj.put("psw", psw);
+		if(insert) {
+	    	
+			 JSONObject objec = new JSONObject();
+		     			
+			  JSONObject jsonObj = new JSONObject();
+	    	  jsonObj.put("name", user.toString());
+	    	  jsonObj.put("psw", psw.toString());
 	    	  usersarray.add(jsonObj);
-	    	  
-	    	  try  {
-	    		  
-	    		  File file = new File("Users.json");
-	    		  FileWriter filewriter = new FileWriter(file);
-	              filewriter.write(usersarray.toJSONString(usersarray));
+	    	 		       
+		      objec.put("users", usersarray);
+
+	    	   File file = new File("Users.json");
+	    	   file.createNewFile();
+	    	   FileWriter filewriter = new FileWriter(file);
+	    	   
+	    	   
+	    	   try	{
+	    		  filewriter.write(objec.toJSONString());
 	              filewriter.flush();
 	              filewriter.close();
 
 	          } catch (IOException e) {
 	              e.printStackTrace();
 	          }
+	    	
 	    	  
 	    	return true;
 	    
