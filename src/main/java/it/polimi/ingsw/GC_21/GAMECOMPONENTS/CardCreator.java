@@ -67,11 +67,12 @@ public class CardCreator {
 
 
 	public ArrayList<Card> ExCardsCreate(int age) {
+		cards = new ArrayList<Card>();
 		try {
 		Object obj = parser.parse(new FileReader("cards.json"));
 	    JSONObject card = (JSONObject) obj;
-	    JSONArray cardarray= (JSONArray) card.get("ExCard");
-	    for (Object o : cardarray) {
+	    JSONArray excardarray= (JSONArray) card.get("ExCard");
+	    for (Object o : excardarray) {
            	JSONObject jsonLineItem = (JSONObject) o;       
 	    	if(Integer.parseInt(jsonLineItem.get("age").toString())==age){              	
            	 ExcommunicationCard excommunicationCard = new ExcommunicationCard((String) jsonLineItem.get("name"));
@@ -91,6 +92,7 @@ public class CardCreator {
 	}
 	
 	public ArrayList<Card> LeadCardsCreate() {
+		cards = new ArrayList<Card>();
 		try {
 		Object obj = parser.parse(new FileReader("cards.json"));
 	    JSONObject card = (JSONObject) obj;

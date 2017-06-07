@@ -11,9 +11,11 @@ public class ExcommHandler {
 	private Game game;
 	
 	public ExcommHandler(Game game) {
+		excommunicationCards = new ExcommunicationCard[3];
+		excommThresholds = new int[3];
 		for (int i = 1; i <= 3; i++) {
 			ExDeck exDeck = new ExDeck(i);
-		    excommunicationCards[i] = (ExcommunicationCard) exDeck.getCards().get(0);
+		    excommunicationCards[i-1] = (ExcommunicationCard) exDeck.getCards().get(0);
 		}
 		excommThresholds[0]=3;
 		excommThresholds[1]=4;
