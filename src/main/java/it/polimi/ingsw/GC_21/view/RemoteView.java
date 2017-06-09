@@ -25,7 +25,9 @@ import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClient; 
 import it.polimi.ingsw.GC_21.CLIENT.RmiClientInterface; 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType; 
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game; 
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.LoginMessage;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Message;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember; 
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor; 
 import it.polimi.ingsw.GC_21.PLAYER.Player; 
@@ -33,7 +35,7 @@ import it.polimi.ingsw.GC_21.UTILITIES.Observable;
 import it.polimi.ingsw.GC_21.UTILITIES.P2SObserver; 
 import it.polimi.ingsw.GC_21.UTILITIES.ModelObserver; 
 import it.polimi.ingsw.GC_21.controller.Controller; 
-import it.polimi.ingsw.GC_21.controller.ControlloreManager; 
+import it.polimi.ingsw.GC_21.controller.ControllerManager; 
  
 public class RemoteView extends Observable<Action> implements P2SObserver, Runnable { 
    
@@ -42,115 +44,47 @@ public class RemoteView extends Observable<Action> implements P2SObserver, Runna
     private Socket socket; 
     private ConnectionType connectionType; 
     private Adapter adapter; 
-    private ControlloreManager controlloreManager; 
     private String username;
    
  
-   
-  public RemoteView(Socket socket, ControlloreManager controlloreManager) throws IOException { 
+  //in the declaration of remote View we create the controller passing the controller manager
+  public RemoteView(Socket socket, ControllerManager controllerManager) throws IOException { 
     this.socket = socket; 
         this.connectionType = ConnectionType.Socket; 
         this.adapter = new SocketAdapter(socket); 
-        this.controlloreManager = controlloreManager; 
+        Controller controller = new Controller(this, controllerManager);
          
        } 
    
-  public Game getGame() {
-	return game;
-}
-
-public void setGame(Game game) {
-	this.game = game;
-}
-
-public Player getPlayer() {
-	return player;
-}
-
-public void setPlayer(Player player) {
-	this.player = player;
-}
-
-public Socket getSocket() {
-	return socket;
-}
-
-public void setSocket(Socket socket) {
-	this.socket = socket;
-}
-
-public ConnectionType getConnectionType() {
-	return connectionType;
-}
-
-public void setConnectionType(ConnectionType connectionType) {
-	this.connectionType = connectionType;
-}
-
-public Adapter getAdapter() {
-	return adapter;
-}
-
-public void setAdapter(Adapter adapter) {
-	this.adapter = adapter;
-}
-
-public ControlloreManager getControlloreManager() {
-	return controlloreManager;
-}
-
-public void setControlloreManager(ControlloreManager controlloreManager) {
-	this.controlloreManager = controlloreManager;
-}
-
-public RemoteView(RmiClientInterface rmiClient, ControlloreManager controlloreManager) { 
+ 
+public RemoteView(RmiClientInterface rmiClient, ControllerManager controllerManager) { 
         this.connectionType = ConnectionType.Rmi; 
         this.adapter = new RmiAdapter(rmiClient); 
-        this.controlloreManager = controlloreManager; 
+        Controller controller = new Controller(this, controllerManager);
          } 
  
   @Override 
     public void run() { 
-    
 	 try {
 		this.chooseUsername();
+		notifyInit();
 	} catch (IOException | ParseException e) {
 		e.printStackTrace();
 	} 
-	 controlloreManager.addRemoteView(this);
-	  
-    adapter.out("Hi "+ username +", welcome to our Lobby!" 
-        + "\nPress 'C' to create a game or enter the number of the match you want to join:" 
-        + "\n" + controlloreManager.getGames().toString() ); 
-    String choice = adapter.in(); 
-    if(choice.equals("C")) { 
-        game = controlloreManager.addController(); 
-        player = this.createPlayer(); 
-        game.attach(this);
-        attach(game.getController());
-        adapter.out("music"); 
-        this.letStart(); 
     } 
-    else {  
-      game = controlloreManager.getControllers().get(Integer.parseInt(choice)-1).getModelGame(); 
-      player = this.createPlayer(); 
-        game.attach(this); 
-        attach(game.getController());
-        adapter.out("music"); 
-        for (int i = 0; i < game.getPlayers().size(); i++) { 
-        game.getPlayers().get(i).getMyView().adapter.out(player.getName()+" join the match! \nActual number of player: " + game.getPlayers().size()); 
-      } 
-         
-        adapter.out("Waiting for the 'start' by the game host"); 
-    }    
-   
-       
-    } 
+  
+  public void chooseGame(ControllerManager controllerManager) {
+	  adapter.out("Hi "+ username +", welcome to our Lobby!" 
+		        + "\nPress 'C' to create a game or enter the number of the match you want to join:" 
+		        + "\n" + controllerManager.getGames().toString() ); 
+		    String choice = adapter.in(); 
+		    notifyControllerManager(choice);
+}
  
-private void chooseUsername() throws FileNotFoundException, IOException, ParseException {
-	Boolean ok = new Boolean(false); 
+public void chooseUsername() throws FileNotFoundException, IOException, ParseException {
+	
 	adapter.out("Hi, do you want to Register (1) or Login (2) ?");
-	Boolean insert = new Boolean(true);
+	boolean insert = true;
     String choice = adapter.in(); 
     switch (choice) { 
     case "1": insert = true; 
@@ -164,32 +98,16 @@ private void chooseUsername() throws FileNotFoundException, IOException, ParseEx
 	username = adapter.in();
 	adapter.out("Enter your password: ");
 	String psw = adapter.in();
-	ok = controlloreManager.Login(username, psw, insert);
-	if(ok == false && insert == true) {
-		adapter.out("username already in use");
-	}
-	if(ok == false && insert == false) {
-		adapter.out("theese username and password doesn't exist!");
-	}
-	if(!this.checkLoggedUsers(username) && insert==false) {
-		chooseUsername();
-	}
-	if (ok == false) {
-		chooseUsername();
-	}
+	LoginMessage loginMessage = new LoginMessage(username, psw, insert);
+	notifyMessage(loginMessage);
 	
 }
 
-private void letStart() { 
-    adapter.out("Write 'start' when you want to start the game! \nYou must be 2 at least"); 
-    String string = adapter.in(); 
-    if(string.equals("start") && game.getPlayers().size()>1 || game.getPlayers().size()==4 ) { 
-      game.executeGame(); 
-    } else { letStart(); } 
-  } 
+
  
-public Player createPlayer() { 
-      
+public void createPlayer() { 
+	game.attach(this);
+	adapter.out("music");
     Color color = null; 
     Boolean ok = new Boolean(false);  
     while(!ok) { 
@@ -209,7 +127,7 @@ public Player createPlayer() {
     }   
     ok = this.checkColor(color); 
   }   
-    return new Player(username, color, game, this); 
+    player =  new Player(username, color, game); 
          
   } 
  
@@ -369,11 +287,10 @@ public Player createPlayer() {
   } 
  
   @Override 
-  public boolean update() { 
+  public void updateTurn() { 
 	  adapter.out("\n Your resources: " + player.getMyPersonalBoard().toString() + 			  
 				"\n" + game.getBoard().toString()); 
     this.input(); 
-    return true; 
   } 
  
 
@@ -387,15 +304,7 @@ public boolean checkColor(Color color) {
     return true; 
   } 
 
-public boolean checkLoggedUsers(String name) { 
-    for (int i = 0; i < controlloreManager.getRemoteViews().size(); i++) { 
-      if(name.equals(controlloreManager.getRemoteViews().get(i).getUsername())){ 
-        adapter.out("Oh grullo! tu sei già loggato!"); 
-        return false; 
-      } 
-    } 
-    return true; 
-  }
+
 
 public String getUsername() {
 	return username;
@@ -404,6 +313,50 @@ public String getUsername() {
 public void setUsername(String username) {
 	this.username = username;
 }
+
+
+public Game getGame() {
+	return game;
+}
+
+public void setGame(Game game) {
+	this.game = game;
+}
+
+public Player getPlayer() {
+	return player;
+}
+
+public void setPlayer(Player player) {
+	this.player = player;
+}
+
+public Socket getSocket() {
+	return socket;
+}
+
+public void setSocket(Socket socket) {
+	this.socket = socket;
+}
+
+public ConnectionType getConnectionType() {
+	return connectionType;
+}
+
+public void setConnectionType(ConnectionType connectionType) {
+	this.connectionType = connectionType;
+}
+
+public Adapter getAdapter() {
+	return adapter;
+}
+
+public void setAdapter(Adapter adapter) {
+	this.adapter = adapter;
+}
+
+
+
 
 @Override
 public void updateExcomm() {
@@ -416,6 +369,27 @@ public void updateExcomm() {
 	case "N" :	this.notifyObservers(new ExcommAction(player, game, false));
 	default: this.notifyObservers(new ExcommAction(player, game, false));
 	}
+}
+
+
+@Override
+public void updateControllerManager(String string) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+@Override
+public void updateMessage(Message message) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+@Override
+public void updateInit() {
+	// TODO Auto-generated method stub
+	
 } 
 
 }

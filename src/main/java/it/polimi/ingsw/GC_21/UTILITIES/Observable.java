@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_21.UTILITIES;
 
 import java.awt.List;
+
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Message;
 import it.polimi.ingsw.GC_21.UTILITIES.*;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
@@ -25,13 +27,15 @@ public abstract class Observable<C> {
 		this.observers.remove(o);
 	}
 
-	public void notifyObservers(RemoteView view) {	
-			view.update();
-	}
 	
-	public void notifyMyObserver(RemoteView view, String string) {	
-		view.update(string);
-}
+	
+	
+	
+	public void notifyTurn() {	
+		for (P2SObserver<C> o : this.observers) {
+			o.updateTurn();
+		}
+	}
 
 	public void notifyExcomm() {	
 		for (P2SObserver<C> o : this.observers) {
@@ -40,9 +44,21 @@ public abstract class Observable<C> {
 	}
 	
 	
-	public void notifyObservers(String string) {	
+	public void notifyString(String string) {	
 		for (P2SObserver<C> o : this.observers) {
 			o.update(string);
+		}
+	}
+	
+	public void notifyControllerManager(String string) {	
+		for (P2SObserver<C> o : this.observers) {
+			o.updateControllerManager(string);
+		}
+	}
+	
+	public void notifyMessage(Message message) {	
+		for (P2SObserver<C> o : this.observers) {
+			o.updateMessage(message);
 		}
 	}
 
@@ -55,6 +71,12 @@ public abstract class Observable<C> {
 		}
 		return true;
 
+	}
+	
+	public void notifyInit() {
+		for (P2SObserver<C> o : this.observers) {
+			o.updateInit();
+		}
 	}
 
 }

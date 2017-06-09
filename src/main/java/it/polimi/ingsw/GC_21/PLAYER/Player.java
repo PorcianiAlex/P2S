@@ -15,31 +15,13 @@ public class Player {
 	private String name;
 	private Color playerColor;
 	private PersonalBoard myPersonalBoard;
-	private RemoteView myView;
 	private Game game;
 	
-	public RemoteView getMyView() {
-		return myView;
-	}
-
-	public void setMyView(RemoteView myView) {
-		this.myView = myView;
-	}
-
 	
-	public Player(String name, Color playerColor, Game game, RemoteView myView) {
-		this.myView = myView;
-		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), this);
-		this.name = name;
-		this.game = game;
-		this.game.addPlayers(this);
-		this.playerColor = playerColor;
-		this.myPersonalBoard = new PersonalBoard(this);
-		this.myPersonalBoard.getMyPossession().add(new Possession(5, 5, 5, 5, 5, 5, 5));
-	}
+	
+	
 	
 	public Player(String name, Color playerColor, Game game) {
-		this.myView = myView;
 		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), this);
 		this.name = name;
 		this.game = game;
@@ -50,20 +32,12 @@ public class Player {
 		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), this);
 	}
 
-	public void printOnPlayer(String string){
+	/*public void printOnPlayer(String string){
 		this.myView.getAdapter().out(string);
 
-	}
+	}*/
 	
-	public void chooseAction() {
-		// TODO - implement Player.chooseAction
-		throw new UnsupportedOperationException();
-	}
-
-	public void chooseBonusTile() {
-		// TODO - implement Player.chooseBonusTile
-		throw new UnsupportedOperationException();
-	}
+	
 
 	public String getName() {
 		return name;
@@ -99,7 +73,7 @@ public class Player {
 			}
 		}
 		return null;
-	}//if you pass null to the method it returns null as the family member doesn't exist 
+	}
 
 	
 
