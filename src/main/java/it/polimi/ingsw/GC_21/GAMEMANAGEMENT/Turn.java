@@ -23,9 +23,13 @@ public class Turn {
 			System.out.println(game.getPlayers().size());
 			game.notifyObservers("Age: "+ game.getCurrentAge().getAgeNumber() + "\nRound: " + game.getCurrentAge().getCurrentRound().getRoundNumber() 
 					+"\nTurn: "+turnNumber +"\nTurn of player :"+ game.getPlayers().get(i).getName() +" color: " +game.getPlayers().get(i).getPlayerColor().toString() );
-			game.notifyObservers(game.getPlayers().get(i).getMyView());		
-			System.out.println("\n \n \n");
+					
+			
 		}
+		
+		game.notifyTurn();
+		System.out.println("\n \n \n");
+		
 	}
 
 	public int getTurnNumber() {

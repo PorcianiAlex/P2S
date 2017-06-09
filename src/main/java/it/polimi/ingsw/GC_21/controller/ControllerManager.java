@@ -18,7 +18,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
-public class ControlloreManager {
+public class ControllerManager {
 
 	private ArrayList<Controller> controllers;
 	private ArrayList<RemoteView> remoteViews;
@@ -26,7 +26,7 @@ public class ControlloreManager {
 	private JSONParser parser = new JSONParser();
 
 	
-	public ControlloreManager() {
+	public ControllerManager() {
 		controllers = new ArrayList<Controller>();
 		games = new ArrayList<Game>();
 		remoteViews = new ArrayList<RemoteView>();
@@ -35,10 +35,8 @@ public class ControlloreManager {
 	public ArrayList<Controller> getControllers() {
 		return controllers;
 	}
-	public Game addController() {
+	public Game createGame(Controller controller) {
 		Game game = new Game();
-		Controller controller = new Controller(game);
-		game.setController(controller);
 		controllers.add(controller);
 		addGame(game);
 		return game;

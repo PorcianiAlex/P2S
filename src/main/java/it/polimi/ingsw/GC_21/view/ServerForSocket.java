@@ -15,7 +15,7 @@ import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClientInterface;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.controller.Controller;
-import it.polimi.ingsw.GC_21.controller.ControlloreManager;
+import it.polimi.ingsw.GC_21.controller.ControllerManager;
 
 import java.rmi.*;
 import java.rmi.registry.LocateRegistry;
@@ -27,7 +27,7 @@ public class ServerForSocket extends UnicastRemoteObject implements ServerInterf
     private int port;
     private ServerSocket serverSocket;
     private ExecutorService executor;
-    private ControlloreManager controlloreManager;
+    private ControllerManager controlloreManager;
 
     public  ServerForSocket(int port) throws RemoteException{
         this.port=port;
@@ -42,7 +42,7 @@ public class ServerForSocket extends UnicastRemoteObject implements ServerInterf
     
     public void startServer() {
     	
-    	controlloreManager = new ControlloreManager();
+    	controlloreManager = new ControllerManager();
     	
        executor =  Executors.newCachedThreadPool();
        
@@ -84,7 +84,6 @@ public class ServerForSocket extends UnicastRemoteObject implements ServerInterf
     
     
     public synchronized void join(RmiClientInterface rmiClient) throws RemoteException {
-    	 
     	  RemoteView remoteView = new RemoteView(rmiClient, controlloreManager);
 		  executor.submit(remoteView);
     }
