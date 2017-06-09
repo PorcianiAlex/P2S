@@ -53,6 +53,7 @@ public class RemoteView extends Observable<Action> implements P2SObserver, Runna
         this.connectionType = ConnectionType.Socket; 
         this.adapter = new SocketAdapter(socket); 
         Controller controller = new Controller(this, controllerManager);
+        
          
        } 
    
@@ -61,11 +62,13 @@ public RemoteView(RmiClientInterface rmiClient, ControllerManager controllerMana
         this.connectionType = ConnectionType.Rmi; 
         this.adapter = new RmiAdapter(rmiClient); 
         Controller controller = new Controller(this, controllerManager);
+       
          } 
  
   @Override 
     public void run() { 
 	 try {
+		adapter.out("Run Forrest, Run");
 		this.chooseUsername();
 		notifyInit();
 	} catch (IOException | ParseException e) {
@@ -105,7 +108,8 @@ public void chooseUsername() throws FileNotFoundException, IOException, ParseExc
 
 
  
-public void createPlayer() { 
+public void createPlayer(Game game) {
+	this.game = game;
 	game.attach(this);
 	adapter.out("music");
     Color color = null; 

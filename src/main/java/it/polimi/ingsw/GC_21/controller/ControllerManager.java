@@ -35,9 +35,8 @@ public class ControllerManager {
 	public ArrayList<Controller> getControllers() {
 		return controllers;
 	}
-	public Game createGame() {
+	public Game createGame(Controller controller) {
 		Game game = new Game();
-		Controller controller = new Controller(game);
 		controllers.add(controller);
 		addGame(game);
 		return game;

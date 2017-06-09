@@ -33,6 +33,7 @@ public class Controller implements P2SObserver<Action>{
 	public Controller (RemoteView remoteView, ControllerManager controllerManager) {
 		this.remoteView = remoteView;
 		this.controllerManager = controllerManager;
+		remoteView.attach(this);
 	}
 
 	public Game getModelGame() {
@@ -92,14 +93,17 @@ public class Controller implements P2SObserver<Action>{
 	@Override
 	public void updateControllerManager(String choice) {
 		controllerManager.addRemoteView(remoteView);
-		if(choice.equals("C")) { 
-	        modelGame = controllerManager.createGame();         
-	        remoteView.createPlayer(); 
+		if(choice.equals("C")) {
+			remoteView.getAdapter().out("HERE");
+	        modelGame = controllerManager.createGame(this);
+			remoteView.getAdapter().out("Game Created");
+	        remoteView.createPlayer(modelGame); 
+			remoteView.getAdapter().out("Player Created");
 	        letStart(); 
 	    } 
 	    else {  
 	      modelGame = controllerManager.getControllers().get(Integer.parseInt(choice)-1).getModelGame(); //take the selected game
-	       remoteView.createPlayer(); 
+	       remoteView.createPlayer(modelGame); 
 	       modelGame.notifyString(remoteView.getPlayer().getName()+" joins the match! \nActual number of player: " + modelGame.getPlayers().size());
 	        
 	         
