@@ -14,6 +14,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Item;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ResourceType;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class ForEachGet extends Immediate implements ToCallDuringCraft{
@@ -28,9 +29,9 @@ public class ForEachGet extends Immediate implements ToCallDuringCraft{
 	
 	/*This effect is supposed to convert card OR resource, not both.
 	So one of forEachCard and forEachResource MUST be set to NULL*/
-	public ForEachGet(Possession rewards, int privileges, DevCardType forEachCard, int forEachCardIndex, ResourceType forEachResource,
+	public ForEachGet(Game game, Possession rewards, int privileges, DevCardType forEachCard, int forEachCardIndex, ResourceType forEachResource,
 			int forEachResourceIndex, ResourceType resourceYouGet, int gettingIndex, boolean cardConversion) throws IllegalArgumentException {
-		super(rewards, privileges);
+		super(rewards, privileges, game);
 		this.forEachCard = forEachCard;
 		this.forEachCardIndex = forEachCardIndex;
 		this.forEachResource = forEachResource;

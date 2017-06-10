@@ -4,15 +4,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
+
 public class Deck {
+	private Game game;
 	protected ArrayList<Card> cards;
 	protected CardType cardType;
     protected CardCreator cardCreator;
 	
 	
     
-    public Deck() {
-    	cardCreator = new CardCreator();
+    public Deck(Game game) {
+    	this.game=game;
+    	cardCreator = new CardCreator(game);
     }
 
 	public ArrayList<Card> getCards() {

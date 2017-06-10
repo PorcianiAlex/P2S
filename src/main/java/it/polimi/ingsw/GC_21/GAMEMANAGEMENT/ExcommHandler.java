@@ -14,7 +14,7 @@ public class ExcommHandler {
 		excommunicationCards = new ExcommunicationCard[3];
 		excommThresholds = new int[3];
 		for (int i = 1; i <= 3; i++) {
-			ExDeck exDeck = new ExDeck(i);
+			ExDeck exDeck = new ExDeck(game, i);
 		    excommunicationCards[i-1] = (ExcommunicationCard) exDeck.getCards().get(0);
 		}
 		excommThresholds[0]=3;

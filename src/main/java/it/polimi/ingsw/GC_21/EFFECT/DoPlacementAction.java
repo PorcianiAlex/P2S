@@ -13,17 +13,18 @@ import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Tower;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class DoPlacementAction extends Immediate {
+public class DoTakeCardAction extends Immediate {
 	private final int actionValueInfluencer;
 	private final int actionValueBonus;
 	private final DevCardType devCardType;
 	private final Possession discount;	
 	
-	public DoPlacementAction(Possession rewards, int privileges, int actionValueInfluencer, int actionValueBonus, DevCardType devCardType, Possession discount) {
-		super(rewards, privileges);
+	public DoTakeCardAction(Game game, Possession rewards, int privileges, int actionValueInfluencer, int actionValueBonus, DevCardType devCardType, Possession discount) {
+		super(rewards, privileges, game);
 		this.actionValueInfluencer = actionValueInfluencer;
 		this.actionValueBonus = actionValueBonus;
 		this.devCardType = devCardType;
@@ -39,7 +40,7 @@ public class DoPlacementAction extends Immediate {
 	}
 	
 	public void activateEffect(Player player, Action placementAction) {
-		super.activateEffect(player, placementAction);
+		/*super.activateEffect(player, placementAction);
 		PlacementAction placementAction2 = (PlacementAction) placementAction;
 		int floor = player.getMyView().selectFloor();
 		Board board = player.getGame().getBoard();
@@ -55,7 +56,7 @@ public class DoPlacementAction extends Immediate {
 			PlacementAction rewardAction = new PlacementAction(player, newActionValue, null, selectedActionSpace, null, board);
 			player.getGame().getController().update(rewardAction);
 
-		}
+		}*/
 	}
 	
 

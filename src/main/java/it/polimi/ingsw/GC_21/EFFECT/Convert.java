@@ -9,6 +9,7 @@ import org.junit.internal.Throwables;
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Item;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 
@@ -18,8 +19,8 @@ public class Convert extends Immediate implements ToCallDuringCraft{
 	private Possession toPay2;
 	private Possession toTake2;
 	
-	public Convert(Possession rewards, Possession toPay1, Possession toTake1, Possession toPay2, Possession toTake2, int privileges) {
-		super(rewards, privileges);
+	public Convert(Game game, Possession rewards, Possession toPay1, Possession toTake1, Possession toPay2, Possession toTake2, int privileges) {
+		super(rewards, privileges, game);
 		this.toPay1 = toPay1;
 		this.toTake1 = toTake1;
 		this.toPay2 = toPay2;

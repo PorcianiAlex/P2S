@@ -16,7 +16,7 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class ForEachGetTest {
 	
-	@Test
+	/*@Test
 	public void testActivateEffectEachBuildingFiveWood1Privilege() {
 	System.out.println("---NEW TEST---");
 	System.out.println("---CHOOSE COINS---");
@@ -133,7 +133,7 @@ public class ForEachGetTest {
 		System.out.println(testPlayer.getMyPersonalBoard().getMyPossession().toString());
 		System.out.println(testPlayer2.getMyPersonalBoard().getMyPossession().toString());
 		assertTrue(testPlayer2.getMyPersonalBoard().getMyPossession().equals(testPlayer.getMyPersonalBoard().getMyPossession()));
-	}
+	}*/
 	
 	
 }

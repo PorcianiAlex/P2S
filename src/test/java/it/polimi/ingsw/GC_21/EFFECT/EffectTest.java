@@ -13,7 +13,7 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class EffectTest {
 
-	@Test
+	/*@Test
 	public void testActivateEffect1privileges() {
 		System.out.println("CHOOSE PRIVILEGE CONVERSION 1");
 		Game testGame = new Game();
@@ -68,4 +68,5 @@ public class EffectTest {
 		testEffect.activateEffect(testPlayer, new CraftAction(testPlayer, CraftType.Harvest, 2));
 		assertTrue(testPlayer.getMyPersonalBoard().getMyPossession().equals(testPlayer2.getMyPersonalBoard().getMyPossession()));
 	}
+	*/
 }

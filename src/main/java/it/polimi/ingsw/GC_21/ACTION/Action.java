@@ -1,9 +1,11 @@
 package it.polimi.ingsw.GC_21.ACTION;
 
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public abstract class Action {
 	protected final Player playerInAction;
+	protected Game game;
 	
 	public Action(Player playerInAction) {
 		this.playerInAction = playerInAction;

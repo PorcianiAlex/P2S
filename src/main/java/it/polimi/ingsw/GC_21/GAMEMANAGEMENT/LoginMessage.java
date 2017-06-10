@@ -18,7 +18,7 @@ public class LoginMessage extends Message{
 	}
 
 	@Override
-	public void convert()  {
+	public boolean convert()  {
 		boolean ok = false;
 		try {
 			ok = controller.getControllerManager().Login(username, password, insert);
@@ -38,7 +38,7 @@ public class LoginMessage extends Message{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		return true;
 		
 	}
 		

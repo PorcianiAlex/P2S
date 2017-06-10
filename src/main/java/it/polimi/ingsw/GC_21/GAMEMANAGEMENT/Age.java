@@ -7,7 +7,6 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
 public class Age {
-
 	private int ageNumber;
  	DevDeck buildingDeck ;
 	DevDeck territoryDeck;
@@ -34,10 +33,10 @@ public class Age {
 	}
 
 	public void CreateDeck() {
-		buildingDeck = new DevDeck(DevCardType.Building, ageNumber);
-		territoryDeck = new DevDeck(DevCardType.Territory, ageNumber);
-		characterDeck = new DevDeck(DevCardType.Character, ageNumber);
-		ventureDeck = new DevDeck(DevCardType.Venture, ageNumber);
+		buildingDeck = new DevDeck(game, DevCardType.Building, ageNumber);
+		territoryDeck = new DevDeck(game, DevCardType.Territory, ageNumber);
+		characterDeck = new DevDeck(game, DevCardType.Character, ageNumber);
+		ventureDeck = new DevDeck(game, DevCardType.Venture, ageNumber);
 		buildingDeck.shuffle();
 		territoryDeck.shuffle();
 		characterDeck.shuffle();

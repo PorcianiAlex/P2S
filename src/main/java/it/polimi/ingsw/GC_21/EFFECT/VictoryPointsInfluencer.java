@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Item;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ResourceType;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class VictoryPointsInfluencer extends Effect implements ToCallAfterFinalCount{
@@ -14,11 +15,12 @@ public class VictoryPointsInfluencer extends Effect implements ToCallAfterFinalC
 	private final int losingIndex;
 	private boolean eachResource;
 	
-	public VictoryPointsInfluencer(ResourceType forEachResource, int forEachResourceIndex, int losingIndex, boolean eachResource) {
+	public VictoryPointsInfluencer(Game game, ResourceType forEachResource, int forEachResourceIndex, int losingIndex, boolean eachResource) {
 		this.forEachResource = forEachResource;
 		this.forEachResourceIndex = forEachResourceIndex;
 		this.losingIndex = losingIndex;
 		this.eachResource = eachResource;
+		this.game=game;
 	}
 
 	@Override

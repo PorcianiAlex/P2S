@@ -6,11 +6,12 @@ import java.util.Arrays;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 
 public class Board {
-
+	private Game game;
 	private Dice[] dices;
 	private Tower[] towers;
 	private MarketArea marketArea;
@@ -18,14 +19,14 @@ public class Board {
 	private CraftArea productionArea;
 	private CraftArea harvestArea;
 	
-	public Board() {
-		super();
+	public Board(Game game) {
 		this.dices = Dice.factoryDices();
-		this.towers = Tower.factoryTowers(); 
-		this.marketArea = new MarketArea();
-		this.councilPalace = new CouncilPalace();
-		this.productionArea = new CraftArea(CraftType.Production);
-		this.harvestArea = new CraftArea(CraftType.Harvest);
+		this.game=game;
+		this.towers = Tower.factoryTowers(game); 
+		this.marketArea = new MarketArea(game);
+		this.councilPalace = new CouncilPalace(game);
+		this.productionArea = new CraftArea(CraftType.Production, game);
+		this.harvestArea = new CraftArea( CraftType.Harvest, game);
 	}
 
 

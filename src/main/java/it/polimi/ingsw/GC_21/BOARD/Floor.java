@@ -1,17 +1,19 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 
 public class Floor {
-
+	private Game game;
 	private int floorNumber;
 	private SingleActionSpace singleActionSpace;
 	private DevCardPlace devCardPlace;
 
 	
-	public Floor(int floorNumber) {
+	public Floor(int floorNumber,	Game game) {
+		this.game = game;
 		this.floorNumber = floorNumber;
-		this.singleActionSpace = new SingleActionSpace(floorNumber+(floorNumber-1), null);
+		this.singleActionSpace = new SingleActionSpace(floorNumber+(floorNumber-1), null, game);
 		this.devCardPlace = new DevCardPlace(null);
 	}
 	

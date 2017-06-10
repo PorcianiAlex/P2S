@@ -133,9 +133,9 @@ public class Controller implements P2SObserver<Action>{
 	}
 
 	@Override
-	public void updateMessage(Message message) {
+	public boolean updateMessage(Message message) {
 		message.setController(this);
-		message.convert();
+		return message.convert();
 		
 	}
 

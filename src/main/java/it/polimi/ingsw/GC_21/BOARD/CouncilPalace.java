@@ -8,14 +8,17 @@ import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.Immediate;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Privileges;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class CouncilPalace {
 	private MultipleActionSpace multipleActionSpace;
+	private Game game;
 	
-	public CouncilPalace() {
-		multipleActionSpace = new MultipleActionSpace(1, new Effect(new Possession(1, 0, 0, 0, 0, 0, 0), 1));
+	public CouncilPalace(Game game) {
+		multipleActionSpace = new MultipleActionSpace(1, new Effect(new Possession(1, 0, 0, 0, 0, 0, 0), 1, game), game);
+		this.game=game;
 	}
 
 	public MultipleActionSpace getMultipleActionSpace() {

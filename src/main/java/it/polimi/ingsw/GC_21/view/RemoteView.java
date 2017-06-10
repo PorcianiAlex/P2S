@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle.Control;
 
 import org.json.simple.parser.ParseException;
+import org.omg.CORBA.Current;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION; 
 import org.omg.PortableServer.AdapterActivator; 
  
@@ -32,12 +33,12 @@ import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor; 
 import it.polimi.ingsw.GC_21.PLAYER.Player; 
 import it.polimi.ingsw.GC_21.UTILITIES.Observable; 
-import it.polimi.ingsw.GC_21.UTILITIES.P2SObserver; 
-import it.polimi.ingsw.GC_21.UTILITIES.ModelObserver; 
+import it.polimi.ingsw.GC_21.UTILITIES.P2SObserver;
+import it.polimi.ingsw.GC_21.UTILITIES.CurrentObserver;
 import it.polimi.ingsw.GC_21.controller.Controller; 
 import it.polimi.ingsw.GC_21.controller.ControllerManager; 
  
-public class RemoteView extends Observable<Action> implements P2SObserver, Runnable { 
+public class RemoteView extends Observable<Action> implements P2SObserver, CurrentObserver, Runnable { 
    
     private Game game; 
     private Player player; 
@@ -89,6 +90,7 @@ public void chooseUsername() throws FileNotFoundException, IOException, ParseExc
 	adapter.out("Enter your password: ");
 	String psw = adapter.in();
 	LoginMessage loginMessage = new LoginMessage(username, psw, insert);
+	System.out.println("sto accà, sto x entrare nella notifylogin");
 	notifyMessage(loginMessage);
 	
 }
@@ -125,6 +127,7 @@ public void createPlayer(Game game) {
  
    
   public void input() { 
+	game.attachCurrent(this);
     adapter.out("Choose your action: " 
         + "\n 1: tower placement" 
         + "\n 2: craft placement " 
@@ -355,9 +358,8 @@ public void updateControllerManager(String string) {
 
 
 @Override
-public void updateMessage(Message message) {
-	// TODO Auto-generated method stub
-	
+public boolean updateMessage(Message message) {
+	return true;	
 }
 
 
@@ -365,6 +367,12 @@ public void updateMessage(Message message) {
 public void updateInit() {
 	// TODO Auto-generated method stub
 	
+}
+
+
+@Override
+public void updateCurrent(InputFromView inputFromView) {
+	inputFromView.execute(this);
 } 
 
 }

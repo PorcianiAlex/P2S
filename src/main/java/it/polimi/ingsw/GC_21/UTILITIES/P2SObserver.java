@@ -9,7 +9,7 @@ public interface P2SObserver<C> {
 	public  boolean update(C change);
 	public void updateControllerManager(String string);
 	public void update(String string);
-	public void updateMessage(Message message);
+	public boolean updateMessage(Message message);
 	public void updateTurn();
 	public void updateInit();
 	public void updateExcomm();

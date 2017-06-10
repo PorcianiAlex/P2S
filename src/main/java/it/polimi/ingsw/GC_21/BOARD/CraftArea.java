@@ -5,21 +5,22 @@ import java.util.ArrayList;
 import it.polimi.ingsw.GC_21.EFFECT.CraftInfluencer;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.Immediate;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class CraftArea {
-	
+	private Game game;
 	private final CraftType craftType;
 	private final SingleActionSpace singleActionSpace;
 	private final MultipleActionSpace multipleActionSpace;
 	
-	public CraftArea(CraftType craftType) {
-		super();
+	public CraftArea(CraftType craftType, Game game) {
+		this.game = game;
 		this.craftType = craftType;
-		this.singleActionSpace = new SingleActionSpace(1, null);
-		this.multipleActionSpace = new MultipleActionSpace(1, new CraftInfluencer(craftType, -3));
+		this.singleActionSpace = new SingleActionSpace(1, null, game);
+		this.multipleActionSpace = new MultipleActionSpace(1, new CraftInfluencer(craftType, -3, game), game);
 	}
 
 	public boolean checkCraftFamilyMemberPlayer(Player player) {//return true if there is a family member with the indicated color in the singleActionSpace or in the multiple

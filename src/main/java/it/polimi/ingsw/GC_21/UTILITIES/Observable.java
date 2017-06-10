@@ -4,6 +4,7 @@ import java.awt.List;
 
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Message;
 import it.polimi.ingsw.GC_21.UTILITIES.*;
+import it.polimi.ingsw.GC_21.view.InputFromView;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
 import java.util.*;
@@ -13,6 +14,16 @@ import javax.sound.sampled.LineListener;
 
 public abstract class Observable<C> {
 	private ArrayList<P2SObserver<C>> observers;
+	private CurrentObserver currentObserver;
+	
+	public void attachCurrent(CurrentObserver currentObserver){
+		this.currentObserver=currentObserver;
+	}
+	
+
+	public void detachCurrent(){
+		this.currentObserver=null;
+	}
 	
 	public Observable() {
 
@@ -28,12 +39,15 @@ public abstract class Observable<C> {
 	}
 
 	
-	
+	public void notifyCurrent(InputFromView inputFromView){
+		this.currentObserver.updateCurrent(inputFromView);
+	}
 	
 	
 	public void notifyTurn() {	
 		for (P2SObserver<C> o : this.observers) {
 			o.updateTurn();
+			detachCurrent();
 		}
 	}
 
@@ -56,10 +70,12 @@ public abstract class Observable<C> {
 		}
 	}
 	
-	public void notifyMessage(Message message) {	
+	public boolean notifyMessage(Message message) {	
+		boolean response=false;
 		for (P2SObserver<C> o : this.observers) {
-			o.updateMessage(message);
+			response = o.updateMessage(message);
 		}
+		return response;
 	}
 
 	public boolean notifyObservers(C c) {

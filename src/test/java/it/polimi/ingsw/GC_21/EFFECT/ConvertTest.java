@@ -17,7 +17,7 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class ConvertTest {
 
-	@Test 
+	/*@Test 
 	public void testActivateEffectRewardsNoPrivilegesChoice1() {
 		System.out.println("Type 0!!!");
 		Possession rewards = new Possession(1, 1, 1, 1, 1, 1, 1);
@@ -105,5 +105,6 @@ public class ConvertTest {
 		System.out.println(testPlayer2.getMyPersonalBoard().getMyPossession().toString());
 		System.out.println(testPlayer2.getMyPersonalBoard().getMyPossession().equals(testPlayer.getMyPersonalBoard().getMyPossession()));
 		assertTrue(testPlayer2.getMyPersonalBoard().getMyPossession().equals(testPlayer.getMyPersonalBoard().getMyPossession()));
-	}
+	}*/
+	
 }

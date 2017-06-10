@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_21.ACTION.CraftPlacement;
 import it.polimi.ingsw.GC_21.ACTION.PlacementAction;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
@@ -14,8 +15,8 @@ public class DoCraftAction extends Immediate {
 	protected int actionValueInfluencer;
 	protected int actionValueBonus;
 	
-	public DoCraftAction(Possession rewards, CraftType craftType, int actionValueInfluencer, int actionValueBonus, int privileges) {
-		super(rewards, privileges);
+	public DoCraftAction(Game game, Possession rewards, CraftType craftType, int actionValueInfluencer, int actionValueBonus, int privileges) {
+		super(rewards, privileges, game);
 		this.craftType = craftType;
 		this.actionValueInfluencer = actionValueInfluencer;
 		this.actionValueBonus = actionValueBonus;

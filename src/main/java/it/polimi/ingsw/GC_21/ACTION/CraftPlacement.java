@@ -86,7 +86,7 @@ public class CraftPlacement extends PlacementAction {
 		return super.checkToString();
 	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		Scanner tastiera = new Scanner(System.in);
 		Game game = new Game();	
 		Board board = game.getBoard();
@@ -103,7 +103,7 @@ public class CraftPlacement extends PlacementAction {
 		System.out.println("Insert Space");
 		int spaceType2 = tastiera.nextInt();
 		DevCardType towerType = DevCardType.Building;
-		DevDeck towerTypeDeck  = new DevDeck(towerType, 1);
+		DevDeck towerTypeDeck  = new DevDeck(game, towerType, 1);
 		board.getSpecificTower(towerType).pickCards(towerTypeDeck);
 		TowerPlacement towerPlacement = TowerPlacement.factoryTowerPlacement(playerInAction, selectedFamilyMemberColor2, DevCardType.Building, 1, 1, board);
 		if (towerPlacement.checkAction()) {
@@ -130,5 +130,5 @@ public class CraftPlacement extends PlacementAction {
 		System.out.println("After:\n" + craftPlacement2.toString());
 		System.out.println(board.toString());
 	}
-
+*/
 }
