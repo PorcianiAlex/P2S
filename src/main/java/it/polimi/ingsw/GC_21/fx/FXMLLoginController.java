@@ -22,12 +22,15 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
  
 public class FXMLLoginController {
+	
+	private static RmiClient client2;
+	private static SocketClientGUI client1;
 	 
 	public static void factorySocket() {
 		    try {
 					String ip = InetAddress.getLocalHost().getHostAddress();
 					System.out.println(ip);
-					SocketClient client1 = new SocketClient(ip, 6620);
+					client1 = new SocketClientGUI(ip, 6620);
 					client1.startClient();
 				} catch (UnknownHostException e) {
 					e.printStackTrace();
@@ -41,7 +44,7 @@ public class FXMLLoginController {
 		    public static void factoryRmi() throws RemoteException, NotBoundException {
 		    	Registry reg = LocateRegistry.getRegistry(8000);
 		        ServerInterface srv = (ServerInterface) reg.lookup("server");          
-		    	RmiClient client2 = new RmiClient();
+		    	client2 = new RmiClient();
 		        srv.join(client2);
 			}
 	
@@ -49,10 +52,11 @@ public class FXMLLoginController {
 	@FXML private javafx.scene.control.TextField user;
 	@FXML private javafx.scene.control.TextField passwordField;
     
-
 	
     @FXML protected void handleSignInAction(ActionEvent event) throws Exception {
     	String username = user.getText();
+    	factoryRmi();
+    	client1.send(user.getText());
     	actiontarget.setText(username);
     	Stage stage = (Stage) actiontarget.getScene().getWindow();
         FXMLLobby fxmlLobby = new FXMLLobby();
