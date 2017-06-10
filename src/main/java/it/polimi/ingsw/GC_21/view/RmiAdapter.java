@@ -17,6 +17,7 @@ public class RmiAdapter implements Adapter{
 	@Override
 	public String in() {
 		try {
+			System.out.println("rmi adapter");
 			return rmiClient.sendToServer();
 		} catch (RemoteException e) {
 			e.printStackTrace();

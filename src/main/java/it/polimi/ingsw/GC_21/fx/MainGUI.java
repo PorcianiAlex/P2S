@@ -21,25 +21,4 @@ public class MainGUI {
 
 	}
 	
-	public static void factorySocket() {
-	    try {
-				String ip = InetAddress.getLocalHost().getHostAddress();
-				System.out.println(ip);
-				SocketClient client1 = new SocketClient(ip, 6620);
-				client1.startClient();
-			} catch (UnknownHostException e) {
-				e.printStackTrace();
-			} catch (IOException e2) {
-	            System.out.println("errore");
-	        }
-	    	        
-
-	     }
-	    
-	    public static void factoryRmi() throws RemoteException, NotBoundException {
-	    	Registry reg = LocateRegistry.getRegistry(8000);
-	        ServerInterface srv = (ServerInterface) reg.lookup("server");          
-	    	RmiClient client2 = new RmiClient();
-	        srv.join(client2);
-		}
 }

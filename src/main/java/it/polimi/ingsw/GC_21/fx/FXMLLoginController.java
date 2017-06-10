@@ -21,32 +21,8 @@ import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
  
-public class FXMLLoginController {
+public class FXMLLoginController extends MetaController {
 	
-	private static RmiClient client2;
-	private static SocketClientGUI client1;
-	 
-	public static void factorySocket() {
-		    try {
-					String ip = InetAddress.getLocalHost().getHostAddress();
-					System.out.println(ip);
-					client1 = new SocketClientGUI(ip, 6620);
-					client1.startClient();
-				} catch (UnknownHostException e) {
-					e.printStackTrace();
-				} catch (IOException e2) {
-		            System.out.println("errore");
-		        }
-		    	        
-
-		     }
-		    
-		    public static void factoryRmi() throws RemoteException, NotBoundException {
-		    	Registry reg = LocateRegistry.getRegistry(8000);
-		        ServerInterface srv = (ServerInterface) reg.lookup("server");          
-		    	client2 = new RmiClient();
-		        srv.join(client2);
-			}
 	
 	@FXML private Text actiontarget;
 	@FXML private javafx.scene.control.TextField user;
@@ -54,10 +30,7 @@ public class FXMLLoginController {
     
 	
     @FXML protected void handleSignInAction(ActionEvent event) throws Exception {
-    	String username = user.getText();
-    	factoryRmi();
-    	client1.send(user.getText());
-    	actiontarget.setText(username);
+    	this.connect();
     	Stage stage = (Stage) actiontarget.getScene().getWindow();
         FXMLLobby fxmlLobby = new FXMLLobby();
         //fxmlLobby.start(stage);
@@ -72,10 +45,19 @@ public class FXMLLoginController {
     }
     
     
-    protected void connect(ActionEvent event) {
+    protected void connect() throws RemoteException, NotBoundException {
        //apre la connessione scelta
     	//testa il login o reg 
     	//se tutto va a buon fine apre la nuova scena
+    	factoryRmi();
+    	
+    	client.sendGUI("2");
+    	
+    	String username = user.getText();
+    	String pass = passwordField.getText();
+    	
+    	client.sendGUI(username);
+    	client.sendGUI(pass);
     }
     
     

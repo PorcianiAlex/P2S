@@ -41,29 +41,16 @@ public class RemoteView extends Observable<Action> implements P2SObserver, Runna
    
     private Game game; 
     private Player player; 
-    private Socket socket; 
-    private ConnectionType connectionType; 
     private Adapter adapter; 
     private String username;
    
  
   //in the declaration of remote View we create the controller passing the controller manager
-  public RemoteView(Socket socket, ControllerManager controllerManager) throws IOException { 
-    this.socket = socket; 
-        this.connectionType = ConnectionType.Socket; 
-        this.adapter = new SocketAdapter(socket); 
-        Controller controller = new Controller(this, controllerManager);
-        
-         
-       } 
-   
- 
-public RemoteView(RmiClientInterface rmiClient, ControllerManager controllerManager) { 
-        this.connectionType = ConnectionType.Rmi; 
-        this.adapter = new RmiAdapter(rmiClient); 
-        Controller controller = new Controller(this, controllerManager);
-       
+  public RemoteView(Adapter adapter, ControllerManager controllerManager) throws IOException { 
+        this.adapter = adapter; 
+        Controller controller = new Controller(this, controllerManager);      
          } 
+
  
   @Override 
     public void run() { 
@@ -333,22 +320,6 @@ public Player getPlayer() {
 
 public void setPlayer(Player player) {
 	this.player = player;
-}
-
-public Socket getSocket() {
-	return socket;
-}
-
-public void setSocket(Socket socket) {
-	this.socket = socket;
-}
-
-public ConnectionType getConnectionType() {
-	return connectionType;
-}
-
-public void setConnectionType(ConnectionType connectionType) {
-	this.connectionType = connectionType;
 }
 
 public Adapter getAdapter() {

@@ -68,7 +68,8 @@ public class ServerForSocket extends UnicastRemoteObject implements ServerInterf
         	  while(true){       	         	   
         	           		   		          		   
         		  Socket socket = serverSocket.accept();
-          		  RemoteView remoteView = new RemoteView(socket, controlloreManager);
+        		  SocketAdapter socketAdapter = new SocketAdapter(socket);
+          		  RemoteView remoteView = new RemoteView(socketAdapter, controlloreManager);
         		  executor.submit(remoteView);        		  
         	   if(serverSocket.isClosed()) {break;}
         		 
@@ -83,9 +84,16 @@ public class ServerForSocket extends UnicastRemoteObject implements ServerInterf
     }
     
     
-    public synchronized void join(RmiClientInterface rmiClient) throws RemoteException {
-    	  RemoteView remoteView = new RemoteView(rmiClient, controlloreManager);
-		  executor.submit(remoteView);
+    public synchronized void join(RmiClientInterface rmiClient) {
+    	RmiAdapter rmiAdapter = new RmiAdapter(rmiClient);
+    	RemoteView remoteView;
+		try {
+			remoteView = new RemoteView(rmiAdapter, controlloreManager);
+			executor.submit(remoteView);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
     }
     
     public synchronized String serverReceive(String string) throws RemoteException{

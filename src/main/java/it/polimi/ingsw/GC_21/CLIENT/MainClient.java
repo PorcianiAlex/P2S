@@ -13,6 +13,7 @@ import java.util.Scanner;
 import org.junit.experimental.theories.Theories;
 import org.omg.CORBA.PUBLIC_MEMBER;
 
+import it.polimi.ingsw.GC_21.fx.ViewType;
 import it.polimi.ingsw.GC_21.view.ServerForSocket;
 import it.polimi.ingsw.GC_21.view.ServerInterface;
 
@@ -43,7 +44,7 @@ public class MainClient {
     try {
 			String ip = InetAddress.getLocalHost().getHostAddress();
 			System.out.println(ip);
-			SocketClient client1 = new SocketClient(ip, 6620);
+			SocketClientCLI client1 = new SocketClientCLI(ip, 6620);
 			client1.startClient();
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
@@ -56,8 +57,8 @@ public class MainClient {
     
     public static void factoryRmi() throws RemoteException, NotBoundException {
     	Registry reg = LocateRegistry.getRegistry(8000);
-        ServerInterface srv = (ServerInterface) reg.lookup("server");          
-    	RmiClient client2 = new RmiClient();
+        ServerInterface srv = (ServerInterface) reg.lookup("server"); 
+    	RmiClient client2 = new RmiClient(ViewType.CLI);
         srv.join(client2);
 	}
     

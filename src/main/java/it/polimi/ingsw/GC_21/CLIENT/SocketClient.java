@@ -9,49 +9,32 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 import java.util.*;
 
-public class SocketClient {
-    private String ip;
-    private int port;
-    private Thread inputThread;
+public class SocketClient implements Connections {
+    protected String ip;
+    protected int port;
+    protected Thread inputThread;
+    protected PrintWriter out;
+    protected Scanner in;
+    protected Socket socketclient;
 
-    public SocketClient(String ip, int port) throws RemoteException{
+    public SocketClient(String ip, int port) throws UnknownHostException, IOException{
     this.ip=ip;
     this.port=port;
+    socketclient = new Socket(ip,port);
     }
 
     public void startClient() throws IOException {
          
-        Socket socketclient = new Socket(ip,port);
+        
         System.out.println("Sono dentro il gioco!");
-        Scanner in = new Scanner(socketclient.getInputStream()); //arriva dal server
-        PrintWriter out = new PrintWriter(socketclient.getOutputStream()); //invia al server
-        Scanner tastiera = new Scanner(System.in);
+        in = new Scanner(socketclient.getInputStream()); //arriva dal server
+        out = new PrintWriter(socketclient.getOutputStream()); //invia al server
+       
         this.inputThread = new InputThread(out, in);
-        try { 
-        	inputThread.start();
- 
-  
-        while (true){
-        	
-            String stringa = tastiera.nextLine();
-            out.println(stringa);                       // mando al socket
-            out.flush();
-            if (stringa == "quit") {
-            	break;
-            }
-            
-        }
+      
+        inputThread.start();
 
-        }
-    catch (NoSuchElementException e3){
-        System.out.println("Server out");
-        }
-  
-        in.close();
-        out.close();
-        tastiera.close();
-        socketclient.close();       
-
+       
     }
 
 	public String getIp() {
@@ -70,6 +53,10 @@ public class SocketClient {
 		this.port = port;
 	}
 
+	public void sendGUI(String stringa) {
+		out.println(stringa);
+		out.flush();
+	}
 
 
 
