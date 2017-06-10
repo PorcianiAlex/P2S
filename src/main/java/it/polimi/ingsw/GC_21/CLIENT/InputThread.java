@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_21.CLIENT;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-import javax.print.MultiDocPrintService;
 
 public class InputThread extends Thread {
 	private PrintWriter out;

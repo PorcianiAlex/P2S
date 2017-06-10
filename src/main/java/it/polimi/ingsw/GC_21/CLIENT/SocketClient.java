@@ -20,21 +20,23 @@ public class SocketClient {
     }
 
     public void startClient() throws IOException {
+         
         Socket socketclient = new Socket(ip,port);
         System.out.println("Sono dentro il gioco!");
         Scanner in = new Scanner(socketclient.getInputStream()); //arriva dal server
         PrintWriter out = new PrintWriter(socketclient.getOutputStream()); //invia al server
         Scanner tastiera = new Scanner(System.in);
         this.inputThread = new InputThread(out, in);
-        inputThread.start();
+        try { 
+        	inputThread.start();
  
-    try {
+  
         while (true){
         	
             String stringa = tastiera.nextLine();
             out.println(stringa);                       // mando al socket
             out.flush();
-            if (stringa == "sara mazzoleni ti amo") {
+            if (stringa == "quit") {
             	break;
             }
             
@@ -42,14 +44,13 @@ public class SocketClient {
 
         }
     catch (NoSuchElementException e3){
-        System.out.println("L'altro ha chiuso la connesione");
+        System.out.println("Server out");
         }
-    finally {
+  
         in.close();
         out.close();
         tastiera.close();
-        socketclient.close();
-        }
+        socketclient.close();       
 
     }
 

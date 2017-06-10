@@ -16,7 +16,7 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 
 	
 	
-	protected RmiClient() throws RemoteException {
+	public RmiClient() throws RemoteException {
 		super();
 	}
 
