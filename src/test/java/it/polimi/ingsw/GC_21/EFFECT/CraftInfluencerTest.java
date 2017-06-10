@@ -12,7 +12,7 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class CraftInfluencerTest {
 
-	@Test
+	/*@Test
 	public void testActivateEffectProductionFalse() {
 		CraftInfluencer testCraftInfluencer = new CraftInfluencer(CraftType.Production, 2);
 		Player testPlayer = new Player("ale", Color.Blue, new Game());
@@ -44,5 +44,6 @@ public class CraftInfluencerTest {
 		int expected = 5;
 		assertTrue(actual==expected);
 	}
+	*/
 
 }

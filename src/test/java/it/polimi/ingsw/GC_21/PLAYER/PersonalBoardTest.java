@@ -22,7 +22,7 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class PersonalBoardTest {
 	
-	@Test
+	/*@Test
 	public void testAddPermanent(){
 		Game game = new Game();
 		Player testPlayer = new Player("aaa", Color.Blue, game);
@@ -233,5 +233,5 @@ public class PersonalBoardTest {
 		assertTrue(expected.equals(actual));
 
 	}
-
+*/
 }

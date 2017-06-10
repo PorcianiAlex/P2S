@@ -30,7 +30,6 @@ public class MainClient {
 		}
 
 		break;
-
 	case "2" : factorySocket();
 	
 	default: ; factorySocket();

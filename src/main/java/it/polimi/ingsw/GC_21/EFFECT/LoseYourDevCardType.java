@@ -2,12 +2,14 @@ package it.polimi.ingsw.GC_21.EFFECT;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class LoseYourDevCardType extends Effect implements ToCallBeforeFinalCount{
 	DevCardType cardsToLose;
 
-	public LoseYourDevCardType(DevCardType cardsToLose) {
+	public LoseYourDevCardType(DevCardType cardsToLose, Game game) {
+		this.game=game;
 		this.cardsToLose = cardsToLose;
 	}
 

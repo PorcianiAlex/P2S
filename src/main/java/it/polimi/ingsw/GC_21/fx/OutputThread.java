@@ -20,7 +20,7 @@ public class OutputThread extends Thread {
 	@Override
 	public void run() {
 		while(true) {
-			out.println(x);
+			out.println();
 			out.flush();
 		}
 	}

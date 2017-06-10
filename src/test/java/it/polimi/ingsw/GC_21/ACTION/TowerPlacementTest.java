@@ -19,7 +19,7 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class TowerPlacementTest {
 
-	@Test
+	/*@Test
 	public void testEarnPermanentEffectNull() {
 		Game game = new Game();
 		Player testPlayer = new Player("aaa", Color.Blue, game);
@@ -80,5 +80,6 @@ public class TowerPlacementTest {
 		Effect actual = ((Effect) testPlayer.getMyPersonalBoard().getToCallBeforePlacementEffects().get(0));
 		assertTrue(actual.equals(expected));
 	}
+	*/
 
 }

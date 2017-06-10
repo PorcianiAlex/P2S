@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_21.BOARD.Floor;
 import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
 import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Tower;
+import it.polimi.ingsw.GC_21.EFFECT.DoTakeCardAction;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.EffectType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
@@ -26,7 +27,7 @@ import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
 import it.polimi.ingsw.GC_21.PLAYER.PersonalCardPlace;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class TowerPlacement extends PlacementAction {
+public class TowerPlacement extends TakeCardAction {
 	private final Floor selectedFloor;
 	private final Tower selectedTower;
 	private final DevelopmentCard selectedCard;

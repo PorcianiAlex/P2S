@@ -22,7 +22,7 @@ import it.polimi.ingsw.GC_21.view.RemoteView;
 
 public class EarningInfluencerTest {
 
-	@Test
+	/*@Test
 	public void testActivateEffectWithTowerPlacementAndFloorGivesBonus() {
 		Game testGame = new Game();
 		Player testPlayer = new Player("Test", Color.Blue, testGame);
@@ -72,6 +72,6 @@ public class EarningInfluencerTest {
 		Possession actual = testAction.getSelectedActionSpace().getActionSpaceEffect().getRewards();
 		Possession expected = new Possession(1, 0, 0, 0, 0, 0, 0);
 		assertTrue(actual.equals(expected));
-	}
+	}*/
 
 }
