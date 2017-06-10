@@ -50,7 +50,7 @@ public class Game extends Observable {
 	public Game() {
 		this.id = currentNumberOfGame + 1;
 		currentNumberOfGame++;
-		this.board = new Board();	
+		this.board = new Board(this);	
 		this.players = new ArrayList<Player>();
 		this.excommHandler = new ExcommHandler(this);
 		}

@@ -4,29 +4,31 @@ import java.util.*;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 
 public class Tower {
-
+	private Game game;
 	private final DevCardType devCardType;
 	private Floor[] floors = new Floor[4];
 
-	private Tower(DevCardType devCardType) {
+	private Tower(DevCardType devCardType, Game game) {
 		this.devCardType = devCardType;
+		this.game=game;
 		for (int i = 0; i < floors.length; i++) {
-			floors[i]=new Floor(i+1);
+			floors[i]=new Floor(i+1, game);
 		}
 	}
 
-	public static Tower[] factoryTowers(){
+	public static Tower[] factoryTowers(Game game){
 		Tower[] towers=new Tower[4];
-		towers[0]=new Tower(DevCardType.Territory);
-		towers[1]=new Tower(DevCardType.Building);
-		towers[2]=new Tower(DevCardType.Character);
-		towers[3]=new Tower(DevCardType.Venture);
+		towers[0]=new Tower(DevCardType.Territory, game);
+		towers[1]=new Tower(DevCardType.Building, game);
+		towers[2]=new Tower(DevCardType.Character, game);
+		towers[3]=new Tower(DevCardType.Venture, game);
 		return towers;
 	}
 	

@@ -11,6 +11,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.EFFECT.Convert;
 import it.polimi.ingsw.GC_21.EFFECT.CraftInfluencer;
@@ -21,11 +22,16 @@ import it.polimi.ingsw.GC_21.EFFECT.Immediate;
 import it.polimi.ingsw.GC_21.EFFECT.PlacementInfluencer;
 
 public class CardCreator {
-	
+	private Game game;
 	private ArrayList<Card> cards;
 	private JSONParser parser = new JSONParser();
    
-	
+	public CardCreator(Game game) {
+		this.game = game;
+	}
+
+
+
 	public ArrayList<Card> devCardsCreate(DevCardType devCardType, int age) {
 		cards = new ArrayList<Card>();
 		try {
@@ -159,12 +165,12 @@ public class CardCreator {
 				                		Integer.parseInt(toPay2array.get(4).toString()), Integer.parseInt(toPay2array.get(5).toString()), 
 				                	    Integer.parseInt(toPay2array.get(6).toString()));
 						
-									Convert convert = new Convert(Rew, toPay1, toTake1, toPay2, toTake2, privileges);
+									Convert convert = new Convert(game, Rew, toPay1, toTake1, toPay2, toTake2, privileges);
 									cardcreating.setImmediateEffect(convert);
 						break;
 					case "doCraftAction": 
 						
-						DoCraftAction doCraftAction = new DoCraftAction(Rew, CraftType.valueOf(jsonLineItem.get("CraftType").toString()), Integer.parseInt(jsonLineItem.get("ActionValueInf").toString()), Integer.parseInt(jsonLineItem.get("ActionValueBonus").toString()), privileges);
+						DoCraftAction doCraftAction = new DoCraftAction(game, Rew, CraftType.valueOf(jsonLineItem.get("CraftType").toString()), Integer.parseInt(jsonLineItem.get("ActionValueInf").toString()), Integer.parseInt(jsonLineItem.get("ActionValueBonus").toString()), privileges);
 						cardcreating.setImmediateEffect(doCraftAction);
 						
 						break;
@@ -179,9 +185,9 @@ public class CardCreator {
 						
 						DoPlacementAction doPlacementAction;
 						if("null".equals(jsonLineItem.get("DevCardType").toString())) {
-							doPlacementAction = new DoPlacementAction(Rew, privileges, Integer.parseInt(jsonLineItem.get("ActionValueInf").toString()), Integer.parseInt(jsonLineItem.get("ActionValueBonus").toString()), null, discount);
+							doPlacementAction = new DoPlacementAction(game, Rew, privileges, Integer.parseInt(jsonLineItem.get("ActionValueInf").toString()), Integer.parseInt(jsonLineItem.get("ActionValueBonus").toString()), null, discount);
 						}
-						else {doPlacementAction = new DoPlacementAction(Rew, privileges, Integer.parseInt(jsonLineItem.get("ActionValueInf").toString()), Integer.parseInt(jsonLineItem.get("ActionValueBonus").toString()), DevCardType.valueOf(jsonLineItem.get("DevCardType").toString()), discount);}
+						else {doPlacementAction = new DoPlacementAction(game, Rew, privileges, Integer.parseInt(jsonLineItem.get("ActionValueInf").toString()), Integer.parseInt(jsonLineItem.get("ActionValueBonus").toString()), DevCardType.valueOf(jsonLineItem.get("DevCardType").toString()), discount);}
 						cardcreating.setImmediateEffect(doPlacementAction);
 						break;
 					
@@ -189,18 +195,18 @@ public class CardCreator {
 						ForEachGet forEachGet;
 						
 						if("null".equals((jsonLineItem.get("ForEachCard").toString()))){
-							 forEachGet = new ForEachGet(Rew, privileges, null, Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ForEachResource").toString()), Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ResourceYouGet").toString()), Integer.parseInt(jsonLineItem.get("GettingIndex").toString()), false);
+							 forEachGet = new ForEachGet(game, Rew, privileges, null, Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ForEachResource").toString()), Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ResourceYouGet").toString()), Integer.parseInt(jsonLineItem.get("GettingIndex").toString()), false);
 						}
 						else if ("null".equals((jsonLineItem.get("ForEachResource").toString()))) {
-							 forEachGet = new ForEachGet(Rew, privileges, DevCardType.valueOf(jsonLineItem.get("ForEachCard").toString()), Integer.parseInt(jsonLineItem.get("ForEachCardIndex").toString()), null, Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ResourceYouGet").toString()), Integer.parseInt(jsonLineItem.get("GettingIndex").toString()), true);
+							 forEachGet = new ForEachGet(game, Rew, privileges, DevCardType.valueOf(jsonLineItem.get("ForEachCard").toString()), Integer.parseInt(jsonLineItem.get("ForEachCardIndex").toString()), null, Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ResourceYouGet").toString()), Integer.parseInt(jsonLineItem.get("GettingIndex").toString()), true);
 
 						}
-						else {  forEachGet = new ForEachGet(Rew, privileges, DevCardType.valueOf(jsonLineItem.get("ForEachCard").toString()), Integer.parseInt(jsonLineItem.get("ForEachCardIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ForEachResource").toString()), Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ResourceYouGet").toString()), Integer.parseInt(jsonLineItem.get("GettingIndex").toString()), false);
+						else {  forEachGet = new ForEachGet(game, Rew, privileges, DevCardType.valueOf(jsonLineItem.get("ForEachCard").toString()), Integer.parseInt(jsonLineItem.get("ForEachCardIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ForEachResource").toString()), Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ResourceYouGet").toString()), Integer.parseInt(jsonLineItem.get("GettingIndex").toString()), false);
 						} 
 						cardcreating.setImmediateEffect(forEachGet);
 						break;
 					
-					default: Immediate immediate = new Immediate(Rew, privileges);
+					default: Immediate immediate = new Immediate(Rew, privileges, game);
 					         cardcreating.setImmediateEffect(immediate);
 						break;
 						
@@ -216,7 +222,7 @@ public class CardCreator {
 		
         switch ((String) jsonLineItem.get("SecEffType")) {
 		case "cartInfluencer":  			
-			CraftInfluencer craftInfluencer = new CraftInfluencer(CraftType.valueOf(jsonLineItem.get("CraftType").toString()), Integer.parseInt(jsonLineItem.get("CraftInfluencer").toString()));
+			CraftInfluencer craftInfluencer = new CraftInfluencer(CraftType.valueOf(jsonLineItem.get("CraftType").toString()), Integer.parseInt(jsonLineItem.get("CraftInfluencer").toString()), game);
 			cardcreating.setSecondaryEffect(craftInfluencer);
 			break;
 			

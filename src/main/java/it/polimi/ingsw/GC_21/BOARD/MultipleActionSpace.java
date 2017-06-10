@@ -4,17 +4,15 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.Immediate;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 
 public class MultipleActionSpace extends ActionSpace {
 	private ArrayList<FamilyMember> familyMembersLocated = new ArrayList<FamilyMember>();
 
-	public MultipleActionSpace(int requiredDice, Effect effect) {
-		super(requiredDice, effect);
+	public MultipleActionSpace(int requiredDice, Effect effect, Game game) {
+		super(requiredDice, effect, game);
 	}
-	
-	
-
 
 	public ArrayList<FamilyMember> getFamilyMembers() {
 		return familyMembersLocated;
@@ -30,10 +28,6 @@ public class MultipleActionSpace extends ActionSpace {
 		this.familyMembersLocated = familyMember;
 	}
 
-	public void callMalusDiceEffect() {
-		// TODO - implement MultipleActionSpace.callMalusDiceEffect
-		throw new UnsupportedOperationException();
-	}
 	
 	@Override
 	public String toString() {

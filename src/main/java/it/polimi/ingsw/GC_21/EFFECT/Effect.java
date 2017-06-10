@@ -3,134 +3,99 @@ package it.polimi.ingsw.GC_21.EFFECT;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.omg.CORBA.BooleanSeqHelper;
+
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
+import it.polimi.ingsw.GC_21.view.PrivilegeInput;
 
 public  class Effect implements ToCallDuringCraft{
+	protected Game game; 
 	protected Possession rewards;
 	protected Privileges privileges;
-	protected boolean coinsEarned;
-	protected boolean woodsAndStonesEarned;
-	protected boolean servantsEarned;
-	protected boolean militaryPointsEarned;
-	protected boolean faithPointsEarned;
-	protected final Possession woodsAndStonesReward;
-	protected final Possession servantsReward;
-	protected final Possession coinsReward;
-	protected final Possession militaryPointsReward;
-	protected final Possession faithPointsReward;
-	
-	public Effect(Possession rewards, int privileges) {
+	protected ArrayList<Possession> earnedRewards;
+
+	public Effect(Possession rewards, int privileges, Game game) {
+		this.game=game;
 		this.rewards = rewards;
 		if (rewards == null){
-			this.rewards = new Possession(0, 0, 0, 0, 0, 0, 0);
+			this.rewards = new Possession();
 		}
+		this.earnedRewards = new ArrayList<Possession>();
 		this.privileges = new Privileges(privileges);
-		this.woodsAndStonesReward = new Possession(0, 1, 1, 0, 0, 0, 0);
-		this.servantsReward = new Possession(0,0,0,2,0,0,0);
-		this.coinsReward = new Possession(2, 0, 0, 0, 0, 0, 0);
-		this.militaryPointsReward = new Possession(0, 0, 0, 0, 0, 2, 0);
-		this.faithPointsReward = new Possession(0, 0, 0, 0, 1, 0, 0);
 	}
+	
+	public Effect(Possession rewards, int privileges, Game game, ArrayList<Possession> earnedRewards) {
+		this.game=game;
+		this.rewards = rewards;
+		if (rewards == null){
+			this.rewards = new Possession();
+		}
+		this.earnedRewards = earnedRewards;
+		this.privileges = new Privileges(privileges);
+	}
+
 
 	public Effect(){
 		this.rewards = new Possession();
 		this.privileges = new Privileges(0);
-		this.woodsAndStonesReward = new Possession(0, 1, 1, 0, 0, 0, 0);
-		this.servantsReward = new Possession(0,0,0,2,0,0,0);
-		this.coinsReward = new Possession(2, 0, 0, 0, 0, 0, 0);
-		this.militaryPointsReward = new Possession(0, 0, 0, 0, 0, 2, 0);
-		this.faithPointsReward = new Possession(0, 0, 0, 0, 1, 0, 0);
+		this.earnedRewards = new ArrayList<Possession>();
 	}
 	
 	
 	public void activateEffect(Player player, Action action) {
 		if (privileges.getValue()!=0){
-			for (int i = this.privileges.getValue(); i > 0; i--) {
-				Possession tmpPossession = this.chooseReward(player);
-				if (validConversion(tmpPossession, player) == true ){
-					this.earnRewards(player, tmpPossession);
-					setEarnedReward(tmpPossession);	
+				PrivilegeInput privilegeInput = new PrivilegeInput(rewards, privileges.getValue(), earnedRewards);
+				game.notifyCurrent(privilegeInput);
 				}
-				else {
-					i++;
-				}
-				}
+		else{
+			this.callWhenEarningEffects(player, action);
+			this.earnByPrivilege(player);
+			this.earnRewards(player, rewards);
 		}
-		this.callWhenEarningEffects(player, action);
-		this.resetEarnedReward();
-		this.earnRewards(player, rewards);
-	}
-	
-	public void resetEarnedReward() {
-		this.coinsEarned=false;
-		this.woodsAndStonesEarned=false;
-		this.servantsEarned=false;
-		this.militaryPointsEarned=false;
-		this.faithPointsEarned=false;
 	}
 
-	public Possession chooseReward(Player player){
-		player.printOnPlayer("Choose your reward! Type: /n 1 -> 1x Woods 1 x Stones /n 2 -> 2x Servants /n 3 -> 2x Coins /n 4 -> 2x Military Points 5 -> 1x Faith Points");
-		String choice = player.getMyView().getAdapter().in();
-		switch(choice){
-		case "1": 
-		return this.woodsAndStonesReward;
-		case "2": 
-		return this.servantsReward;
-		case "3": 
-		return this.coinsReward;
-		case "4":
-		return this.militaryPointsReward;
-		case "5": 
-		return this.faithPointsReward;
-		default: 
-			player.printOnPlayer("Invalid choice, try again!");
- 			return chooseReward(player);
-		}
+	
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
+	public Privileges getPrivileges() {
+		return privileges;
+	}
+
+	public void setPrivileges(Privileges privileges) {
+		this.privileges = privileges;
+	}
+
+	public ArrayList<Possession> getEarnedRewards() {
+		return earnedRewards;
+	}
+
+	public void setEarnedRewards(ArrayList<Possession> earnedRewards) {
+		this.earnedRewards = earnedRewards;
+	}
+
+	public void setRewards(Possession rewards) {
+		this.rewards = rewards;
+	}
+
+	public void earnByPrivilege(Player player) {
+		if (!earnedRewards.isEmpty())
+			for (int i = 0; i < earnedRewards.size(); i++) {
+				Possession toEarnByPrivilege = earnedRewards.get(i);
+				this.earnRewards(player, toEarnByPrivilege);
+			}
 	}
 	
 	public void setEarnedReward(Possession reward) {
-		if (reward.equals(this.woodsAndStonesReward)){
-			this.woodsAndStonesEarned=true;
-		}
-		if (reward.equals(this.coinsReward)){
-			this.coinsEarned=true;
-		}
-		if (reward.equals(this.faithPointsReward)){
-			this.faithPointsEarned=true;
-		}
-		if (reward.equals(this.militaryPointsReward)){
-			this.militaryPointsEarned=true;
-		}
-		if (reward.equals(this.servantsReward)){
-			this.servantsEarned=true;
-		}
-	}
-	
-	public boolean validConversion(Possession reward, Player player){
-		if (reward.equals(this.woodsAndStonesReward) && this.woodsAndStonesEarned==true){
-			player.printOnPlayer("You've already chosen this reward! Try again!");
-			return false;
-		}
-		if (reward.equals(this.coinsReward) && this.coinsEarned==true){
-			player.printOnPlayer("You've already chosen this reward! Try again!");
-			return false;
-		}
-		if (reward.equals(this.servantsReward) && this.servantsEarned==true){
-			player.printOnPlayer("You've already chosen this reward! Try again!");
-			return false;
-		}
-		if (reward.equals(this.militaryPointsReward) && this.militaryPointsEarned==true){
-			player.printOnPlayer("You've already chosen this reward! Try again!");
-			return false;
-		}
-		if (reward.equals(this.faithPointsReward) && this.faithPointsEarned==true){
-			player.printOnPlayer("You've already chosen this reward! Try again!");
-			return false;
-		}
-		return true;
+		earnedRewards.add(reward);
 	}
 	
 	public void payAndEarn(Player player, Possession rewards, Possession payment){

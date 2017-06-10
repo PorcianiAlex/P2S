@@ -11,8 +11,8 @@ public abstract class Message
 {
 	protected Controller controller; 
 	
-	public void convert() {
-		
+	public boolean convert() {
+		return true;
 	}
 	public void callModel(){
 		

@@ -173,7 +173,7 @@ public class TowerPlacement extends PlacementAction {
 				"\nCheck Card Requirement=" + checkCardRequirements(playerInAction.getMyPersonalBoard());
 	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		Scanner tastiera = new Scanner(System.in);
 		Game game = new Game();	
 		Board board = game.getBoard();
@@ -213,6 +213,6 @@ public class TowerPlacement extends PlacementAction {
 		System.out.println(board.toString());
 
 	}
-	
+	*/
 
 }
