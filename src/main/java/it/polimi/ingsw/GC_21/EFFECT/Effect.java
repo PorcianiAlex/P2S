@@ -54,7 +54,11 @@ public  class Effect implements ToCallDuringCraft{
 			this.callWhenEarningEffects(player, action);
 			this.earnByPrivilege(player);
 			this.earnRewards(player, rewards);
+			if (!rewards.equals(new Possession())){
+				game.notifyCurrentString("Oh ragazzotto! Here's a little cantuccino for you:\n" + rewards.toString());
+			}
 		}
+		
 	}
 
 	
