@@ -227,10 +227,7 @@ public boolean checkColor(Color color) {
 		}
 	}
 	
-	@Override
-	public void updateCurrent(InputFromView inputFromView) {
-		inputFromView.execute(this);
-	} 
+	
 	
 
 
