@@ -31,7 +31,7 @@ public class Convert extends Immediate implements ToCallDuringCraft{
 	@Override
 	public void activateEffect(Player player,Action action){
 		super.activateEffect(player, action);
-		if (toPay2!=null && toTake2!=null){
+		if (!(toPay2.equals(new Possession()) && toTake2.equals(new Possession()))){
 			ConvertInput convertInput = new ConvertInput(toPay1, toTake1, toPay2, toTake2);
 			game.notifyCurrent(convertInput);
 		}

@@ -17,7 +17,7 @@ public class ConversionMessage extends Message {
 	
 	@Override
 	public boolean convert() {
-		Convert convert = new Convert(controller.getModelGame(), new Possession(), toPay, toTake, null, null, 0);
+		Convert convert = new Convert(controller.getModelGame(), new Possession(), toPay, toTake, new Possession(), new Possession(), 0);
 		convert.activateEffect(controller.getRemoteView().getPlayer(), null);
 		return true;
 	}
