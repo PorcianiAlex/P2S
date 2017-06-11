@@ -14,18 +14,9 @@ public abstract class Message
 	public boolean convert() {
 		return true;
 	}
-	public void callModel(){
-		
-	}
-	public void callView(){
-		
-	}
-	public Controller getController() {
-		return controller;
-	}
+
 	public void setController(Controller controller) {
 		this.controller = controller;
 	}
-	
 
 }

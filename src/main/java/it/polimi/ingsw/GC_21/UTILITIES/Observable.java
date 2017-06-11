@@ -39,6 +39,10 @@ public abstract class Observable<C> {
 	}
 
 	
+	public void notifyCurrentString(String comunication){
+		this.currentObserver.updateString(comunication);
+	}
+	
 	public void notifyCurrent(InputFromView inputFromView){
 		this.currentObserver.updateCurrent(inputFromView);
 	}

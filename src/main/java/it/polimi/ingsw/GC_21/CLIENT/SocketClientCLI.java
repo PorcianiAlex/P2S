@@ -6,10 +6,12 @@ import java.rmi.RemoteException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import it.polimi.ingsw.GC_21.fx.ViewType;
+
 public class SocketClientCLI extends SocketClient{
 
 	public SocketClientCLI(String ip, int port) throws UnknownHostException, IOException {
-		super(ip, port);
+		super(ip, port, ViewType.CLI);
 	}
 	
 	@Override

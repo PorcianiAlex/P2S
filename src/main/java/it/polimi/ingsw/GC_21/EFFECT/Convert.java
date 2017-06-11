@@ -11,6 +11,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Item;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
+import it.polimi.ingsw.GC_21.view.ConvertInput;
 
 
 public class Convert extends Immediate implements ToCallDuringCraft{
@@ -25,34 +26,20 @@ public class Convert extends Immediate implements ToCallDuringCraft{
 		this.toTake1 = toTake1;
 		this.toPay2 = toPay2;
 		this.toTake2 = toTake2;
-		if (this.toPay2.equals(new Possession())){
-			this.toPay2=null;
-		}
-		if (this.toTake2.equals(new Possession())){
-			this.toTake2=null;
-		}
 	}
 
 	@Override
 	public void activateEffect(Player player,Action action){
 		super.activateEffect(player, action);
-		if (toPay2!=null && toTake2!=null){
-			if (this.chooseConversion(player)==true){
-				if (toPay1.checkRequirements(player)==true)
-					payAndEarn(player, toTake1, toPay1);
-				else{
-					System.out.println("You don't have enough resources to convert!");
-				}
-			}
-			else{
-					payAndEarn(player, toTake2, toPay2);
-				}
-				}
+		if (!(toPay2.equals(new Possession()) && toTake2.equals(new Possession()))){
+			ConvertInput convertInput = new ConvertInput(toPay1, toTake1, toPay2, toTake2);
+			game.notifyCurrent(convertInput);
+		}
 		else{
 			if (toPay1.checkRequirements(player)==true)
 				payAndEarn(player, toTake1, toPay1);
 			else{
-				System.out.println("You don't have enough resources to convert!");
+				game.notifyString("You don't have enough resources to convert!");
 				return;
 			}
 		}

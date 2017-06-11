@@ -18,6 +18,7 @@ import it.polimi.ingsw.GC_21.EFFECT.CraftInfluencer;
 import it.polimi.ingsw.GC_21.EFFECT.DoCraftAction;
 import it.polimi.ingsw.GC_21.EFFECT.DoTakeCardAction;
 import it.polimi.ingsw.GC_21.EFFECT.EarningInfluencer;
+import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.ForEachGet;
 import it.polimi.ingsw.GC_21.EFFECT.Immediate;
 import it.polimi.ingsw.GC_21.EFFECT.LoseYourDevCardType;
@@ -222,6 +223,48 @@ public class CardCreator {
 	public void AddSecEff(Card cardcreating, JSONObject jsonLineItem) {
 		
         switch ((String) jsonLineItem.get("SecEffType")) {
+        case "justImm":    
+    	    JSONArray rewarray= (JSONArray) jsonLineItem.get("Rew");
+
+            Possession Rew = new Possession(Integer.parseInt(rewarray.get(0).toString()),Integer.parseInt(rewarray.get(1).toString()),
+            		Integer.parseInt(rewarray.get(2).toString()), Integer.parseInt(rewarray.get(3).toString()),
+            		Integer.parseInt(rewarray.get(4).toString()), Integer.parseInt(rewarray.get(5).toString()), 
+            	    Integer.parseInt(rewarray.get(6).toString()));
+            Effect effect = new Effect(Rew, 0, game);
+            cardcreating.setSecondaryEffect(effect);
+        	
+        case "convert":  
+			 JSONArray toTake1array= (JSONArray) jsonLineItem.get("toTake1");
+             
+               Possession toTake1 = new Possession(Integer.parseInt(toTake1array.get(0).toString()),Integer.parseInt(toTake1array.get(1).toString()),
+               		Integer.parseInt(toTake1array.get(2).toString()), Integer.parseInt(toTake1array.get(3).toString()),
+               		Integer.parseInt(toTake1array.get(4).toString()), Integer.parseInt(toTake1array.get(5).toString()), 
+               	    Integer.parseInt(toTake1array.get(6).toString()));
+               
+			JSONArray toTake2array= (JSONArray) jsonLineItem.get("toTake2");
+             
+               Possession toTake2 = new Possession(Integer.parseInt(toTake2array.get(0).toString()),Integer.parseInt(toTake2array.get(1).toString()),
+               		Integer.parseInt(toTake2array.get(2).toString()), Integer.parseInt(toTake2array.get(3).toString()),
+               		Integer.parseInt(toTake2array.get(4).toString()), Integer.parseInt(toTake2array.get(5).toString()), 
+               	    Integer.parseInt(toTake2array.get(6).toString()));
+				
+				JSONArray topay1array= (JSONArray) jsonLineItem.get("toPay1");
+        
+				Possession toPay1 = new Possession(Integer.parseInt(topay1array.get(0).toString()),Integer.parseInt(topay1array.get(1).toString()),
+							Integer.parseInt(topay1array.get(2).toString()), Integer.parseInt(topay1array.get(3).toString()),
+							Integer.parseInt(topay1array.get(4).toString()), Integer.parseInt(topay1array.get(5).toString()), 
+							Integer.parseInt(topay1array.get(6).toString()));
+				
+				 JSONArray toPay2array= (JSONArray) jsonLineItem.get("toPay2");
+	               
+	                Possession toPay2 = new Possession(Integer.parseInt(toPay2array.get(0).toString()),Integer.parseInt(toPay2array.get(1).toString()),
+	                		Integer.parseInt(toPay2array.get(2).toString()), Integer.parseInt(toPay2array.get(3).toString()),
+	                		Integer.parseInt(toPay2array.get(4).toString()), Integer.parseInt(toPay2array.get(5).toString()), 
+	                	    Integer.parseInt(toPay2array.get(6).toString()));
+			
+						Convert convert = new Convert(game, new Possession(), toPay1, toTake1, toPay2, toTake2, 0);
+						cardcreating.setSecondaryEffect(convert);
+			break;
         case "VictoryPointsInfluencer":
         	if ("false".equals((jsonLineItem.get("eachResource").toString()))){
         		VictoryPointsInfluencer victoryPointsInfluencer = new VictoryPointsInfluencer(game, ResourceType.valueOf((jsonLineItem.get("forEachResource").toString())), Integer.parseInt((jsonLineItem.get("forEachResourceIndex").toString())), Integer.parseInt((jsonLineItem.get("losingIndex").toString())), false);
