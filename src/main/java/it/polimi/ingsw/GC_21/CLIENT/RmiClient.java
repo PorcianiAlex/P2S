@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.fx.ViewType;
-import it.polimi.ingsw.GC_21.view.ServerForSocket;
+import it.polimi.ingsw.GC_21.view.Server;
 import it.polimi.ingsw.GC_21.view.ServerInterface;
 
 

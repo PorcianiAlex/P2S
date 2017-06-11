@@ -22,20 +22,20 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class ServerForSocket extends UnicastRemoteObject implements ServerInterface, Serializable {
+public class Server extends UnicastRemoteObject implements ServerInterface, Serializable {
 
     private int port;
     private ServerSocket serverSocket;
     private ExecutorService executor;
     private ControllerManager controlloreManager;
 
-    public  ServerForSocket(int port) throws RemoteException{
+    public  Server(int port) throws RemoteException{
         this.port=port;
         
 				
     }
     
-    public  ServerForSocket() throws RemoteException{
+    public  Server() throws RemoteException{
         
 				
     }

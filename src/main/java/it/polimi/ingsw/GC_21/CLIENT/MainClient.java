@@ -14,7 +14,7 @@ import org.junit.experimental.theories.Theories;
 import org.omg.CORBA.PUBLIC_MEMBER;
 
 import it.polimi.ingsw.GC_21.fx.ViewType;
-import it.polimi.ingsw.GC_21.view.ServerForSocket;
+import it.polimi.ingsw.GC_21.view.Server;
 import it.polimi.ingsw.GC_21.view.ServerInterface;
 
 public class MainClient {
@@ -42,7 +42,6 @@ public class MainClient {
     public static void factorySocket() {
     try {
 			String ip = InetAddress.getLocalHost().getHostAddress();
-			System.out.println(ip);
 			SocketClientCLI client1 = new SocketClientCLI(ip, 6620);
 			client1.startClient();
 		} catch (UnknownHostException e) {

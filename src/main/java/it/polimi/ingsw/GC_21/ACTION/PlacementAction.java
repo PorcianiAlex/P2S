@@ -31,6 +31,19 @@ public class PlacementAction extends Action {
 		this.overcharge = new Possession();
 	}
 	
+	public PlacementAction(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember, ActionSpace selectedActionSpace, Possession discount, Possession overcharge, Servants servantsToConvert, Board board) {
+		super(playerInAction);
+		this.actionValue = actionValue;
+		this.selectedFamilyMember = selectedFamilyMember;
+		this.selectedActionSpace = selectedActionSpace;
+		this.servantsToConvert = servantsToConvert;
+		this.board = board;
+		this.discount = discount;
+		this.overcharge = overcharge;
+	}
+	
+	
+	
 	@Override
 	public void Execute() {
 		callBeforePlacementEffects();
@@ -57,7 +70,7 @@ public class PlacementAction extends Action {
 	public boolean checkPlaceRequirement(){
 		return checkDiceRequirement() &&
 			   !checkBusyActionSpace() &&
-			   !checkBusyFamiliyMember() &&
+			   !checkBusyFamilyMember() &&
 			   !checkOtherFamilyMember();
 			   
 	}
@@ -68,18 +81,25 @@ public class PlacementAction extends Action {
 
 
 	public void convertServant(Servants servants) {
-		this.actionValue += servants.getValue();
-		playerInAction.getMyPersonalBoard().getMyPossession().subtractItemToPossession(servants);
+		if (servants != null) {
+			this.actionValue += servants.getValue();
+			playerInAction.getMyPersonalBoard().getMyPossession().subtractItemToPossession(servants);
+		}
+		
 	}
 	
-	public boolean checkBusyFamiliyMember() {
-		return selectedFamilyMember.isPlaced();
+	public boolean checkBusyFamilyMember() {
+		if (selectedFamilyMember!=null){
+			return selectedFamilyMember.isPlaced();
+		}
+		return false;
 	}
 	public boolean checkBusyActionSpace() {
 		return selectedActionSpace.isBusy();
 	}
 
 	public boolean checkDiceRequirement() {
+		
 		return selectedActionSpace.getRequiredDice() <= (this.actionValue + servantsToConvert.getValue());
 	}
 	
@@ -153,7 +173,7 @@ public class PlacementAction extends Action {
 	
 	@Override
 	public String checkToString() {
-		return  "Check Dice Requirement=" + checkDiceRequirement() + "\nCheck Not Busy Family Member=" + !checkBusyFamiliyMember() + 
+		return  "Check Dice Requirement=" + checkDiceRequirement() + "\nCheck Not Busy Family Member=" + !checkBusyFamilyMember() + 
 				"\nCheck Not Busy Action Space=" + !checkBusyActionSpace() + "\nCheck Not Other My Family Member=" + !checkOtherFamilyMember();
 				
 	}
