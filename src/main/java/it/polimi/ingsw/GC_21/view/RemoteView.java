@@ -56,7 +56,6 @@ public class RemoteView extends Observable<Action> implements P2SObserver, Curre
   @Override 
     public void run() { 
 	 try {
-		adapter.out("Run Forrest, Run");
 		this.chooseUsername();
 		notifyInit();
 	} catch (IOException | ParseException e) {
@@ -65,9 +64,9 @@ public class RemoteView extends Observable<Action> implements P2SObserver, Curre
     } 
   
   public void chooseGame(ControllerManager controllerManager) {
-	  adapter.out("Hi "+ username +", welcome to our Lobby!" 
-		        + "\nPress 'C' to create a game or enter the number of the match you want to join:" 
-		        + "\n" + controllerManager.getGames().toString() ); 
+	  adapter.out("Hi "+ username +", welcome to our Lobby!");
+	  adapter.out("\nPress 'C' to create a game or enter the number of the match you want to join:");
+	  adapter.out("\n" + controllerManager.getGames().toString() ); 
 		    String choice = adapter.in(); 
 		    notifyControllerManager(choice);
 }
@@ -90,7 +89,6 @@ public void chooseUsername() throws FileNotFoundException, IOException, ParseExc
 	adapter.out("Enter your password: ");
 	String psw = adapter.in();
 	LoginMessage loginMessage = new LoginMessage(username, psw, insert);
-	System.out.println("sto accà, sto x entrare nella notifylogin");
 	notifyMessage(loginMessage);
 	
 }

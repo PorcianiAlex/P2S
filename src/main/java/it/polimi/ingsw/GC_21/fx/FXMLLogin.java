@@ -12,7 +12,7 @@ public class FXMLLogin extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("fxml_example.fxml"));
         
-        stage.setTitle("FXML Welcome");
+        stage.setTitle("Welcome to Lorenzo");
         stage.setScene(new Scene(root, 530, 375));
         stage.show();
     }

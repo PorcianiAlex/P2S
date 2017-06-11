@@ -3,6 +3,7 @@
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.net.URL?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -10,29 +11,31 @@
 
 <GridPane id="grid" prefHeight="536.0000558593674" prefWidth="776.9999000000025" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.ingsw.GC_21.fx.FXMLLobbyController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="70.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" minWidth="10.0" prefWidth="139.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="366.0" minWidth="10.0" prefWidth="219.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="75.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="112.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" minWidth="10.0" prefWidth="237.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="366.0" minWidth="10.0" prefWidth="125.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="227.0" minWidth="10.0" prefWidth="203.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="76.0" minHeight="0.0" prefHeight="21.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="207.0" minHeight="10.0" prefHeight="207.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="92.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES" />
   </rowConstraints>
   <stylesheets>
     <URL value="@style.css" />
   </stylesheets>
-  <HBox prefHeight="54.0" prefWidth="303.0" spacing="10.0" styleClass="bottom-right" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5">
-    <Text fx:id="actiontarget" />
-  </HBox>
   <Text id="welcome-text" text="Match Lobby" GridPane.columnIndex="1" GridPane.rowIndex="0" />
   <Label text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-  <TextField prefWidth="222.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-  <Button text="Create new Game" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-  <Button  text="Join" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+  <Button onAction="#Create" text="Create new Game" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+  <HBox id="Hbox" prefHeight="54.0" prefWidth="303.0" spacing="10.0" styleClass="bottom-right" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+    <Text fx:id="actiontarget" scaleX="1.0E8" scaleY="1.0" x="40.0">
+      <HBox.margin>
+        <Insets bottom="200.0" right="400.0" />
+      </HBox.margin>
+    </Text>
+  </HBox>
+  <TextField fx:id="numberofmatch" prefWidth="92.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+  <Button onAction="#Join" text="Join" GridPane.columnIndex="3" GridPane.rowIndex="3" />
 </GridPane>

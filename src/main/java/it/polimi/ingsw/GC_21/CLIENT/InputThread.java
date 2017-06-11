@@ -2,15 +2,18 @@ package it.polimi.ingsw.GC_21.CLIENT;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+import it.polimi.ingsw.GC_21.fx.ViewType;
+
 
 public class InputThread extends Thread {
 	private PrintWriter out;
 	private Scanner in;
+	private SocketClient socketClient;
 	
-	
-	public InputThread(PrintWriter out, Scanner in) {
+	public InputThread(PrintWriter out, Scanner in, SocketClient socketClient) {
 		this.out = out;
 		this.in = in;
+		this.socketClient = socketClient;
 	}
 
 
@@ -18,15 +21,20 @@ public class InputThread extends Thread {
 	public void run() {
 		while(true) {
 			String messaggioricevuto = in.nextLine(); //arriva dal socket server
-            System.out.println(messaggioricevuto);
-            if (messaggioricevuto.equals("music")) {
+			if (messaggioricevuto.equals("music")) {
 				Music.start();
 			}
             if (messaggioricevuto.equals("addio")){
                 out.println("sei uscito");
                 break;
             }
+			if(socketClient.getView() == ViewType.GUI){
+				socketClient.setMessForGui(messaggioricevuto);
+			} else {
+            System.out.println(messaggioricevuto);
+            
+		}
+	
 		}
 	}
-
 }

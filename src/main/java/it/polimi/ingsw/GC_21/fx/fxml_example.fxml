@@ -39,10 +39,10 @@
   <Label text="User Name:" textAlignment="LEFT" GridPane.columnIndex="2" GridPane.rowIndex="1" />
   <Label text="Password:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
   <Text id="welcome-text" text="Welcome to Lorenzo il Magnifico" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-  <RadioButton mnemonicParsing="false" selected="false" text="RMI" GridPane.columnIndex="3" GridPane.rowIndex="4">
+  <RadioButton mnemonicParsing="false" fx:id="RMI" selected="false" text="RMI" GridPane.columnIndex="3" GridPane.rowIndex="4">
     <toggleGroup>
       <ToggleGroup fx:id="connect" />
     </toggleGroup>
   </RadioButton>
-  <RadioButton mnemonicParsing="false" text="Socket" toggleGroup="$connect" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+  <RadioButton mnemonicParsing="false" fx:id="SOCKET" text="Socket" toggleGroup="$connect" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
 </GridPane>

@@ -23,7 +23,7 @@ public class LoginMessage extends Message{
 		try {
 			ok = controller.getControllerManager().Login(username, password, insert);
 			if(ok == false && insert == true) {
-				controller.getRemoteView().getAdapter().out("these username and password doesn't exist!");
+				controller.getRemoteView().getAdapter().out("this username already exists!");
 			}
 			if(ok == false && insert == false) {
 				controller.getRemoteView().getAdapter().out("these username and password doesn't exist!");
@@ -35,7 +35,6 @@ public class LoginMessage extends Message{
 				controller.getRemoteView().chooseUsername();
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return true;

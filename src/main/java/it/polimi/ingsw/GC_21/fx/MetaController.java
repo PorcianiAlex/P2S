@@ -22,7 +22,7 @@ public class MetaController {
 	public static void factorySocket() {
 	    try {
 				String ip = InetAddress.getLocalHost().getHostAddress();
-				client1 = new SocketClient(ip, 6620);
+				client1 = new SocketClient(ip, 6620, ViewType.GUI);
 				client1.startClient();
 				client = client1;
 			} catch (UnknownHostException e) {
@@ -40,6 +40,11 @@ public class MetaController {
 	    	client2 = new RmiClient(ViewType.GUI);
 	        srv.join(client2);
 	        client = client2;
+		}
+
+
+		public String getMessagefromserver() {
+			return client.getMessage();
 		}
 	
 }

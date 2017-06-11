@@ -12,9 +12,9 @@ public class FXMLLobby extends Application {
 	
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("fxml_Lobby.fxml"));
-        
-        stage.setTitle("FXML Lobby");
+      
+    	Parent root = FXMLLoader.load(getClass().getResource("fxml_Lobby.fxml"));
+        stage.setTitle("Lorenzo's Lobby");
         stage.setScene(new Scene(root, 530, 375));
         stage.show();
     }
