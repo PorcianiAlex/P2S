@@ -371,6 +371,12 @@ public void updateInit() {
 @Override
 public void updateCurrent(InputFromView inputFromView) {
 	inputFromView.execute(this);
+}
+
+
+@Override
+public void updateString(String comunication) {
+	adapter.out(comunication);
 } 
 
 }

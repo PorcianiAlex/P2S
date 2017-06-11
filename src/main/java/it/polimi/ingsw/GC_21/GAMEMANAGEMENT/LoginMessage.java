@@ -52,17 +52,7 @@ public class LoginMessage extends Message{
 	  }
 
 
-	@Override
-	public void callModel() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void callView() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 
 }

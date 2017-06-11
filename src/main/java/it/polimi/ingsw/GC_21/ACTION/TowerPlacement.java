@@ -27,7 +27,7 @@ import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
 import it.polimi.ingsw.GC_21.PLAYER.PersonalCardPlace;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class TowerPlacement extends TakeCardAction {
+public class TowerPlacement extends PlacementAction {
 	private final Floor selectedFloor;
 	private final Tower selectedTower;
 	private final DevelopmentCard selectedCard;
@@ -35,6 +35,14 @@ public class TowerPlacement extends TakeCardAction {
 	protected TowerPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember,
 			 Floor selectedFloor, Tower selectedTower, SingleActionSpace selectedActionSpace, Servants servantsToConvert, Board board) {
 		super(playerInAction, actionValue, selectedFamilyMember, selectedActionSpace, servantsToConvert, board);
+		this.selectedFloor = selectedFloor;
+		this.selectedTower = selectedTower;
+		this.selectedCard = (DevelopmentCard) selectedFloor.getDevCardPlace().getCard();
+	}
+	
+	protected TowerPlacement(Player playerInAction, int actionValue, FamilyMember selectedFamilyMember,
+			 Floor selectedFloor, Tower selectedTower, SingleActionSpace selectedActionSpace, Servants servantsToConvert, Possession discount, Possession overcharge, Board board) {
+		super(playerInAction, actionValue, selectedFamilyMember, selectedActionSpace, discount, overcharge, servantsToConvert, board);
 		this.selectedFloor = selectedFloor;
 		this.selectedTower = selectedTower;
 		this.selectedCard = (DevelopmentCard) selectedFloor.getDevCardPlace().getCard();
@@ -52,9 +60,12 @@ public class TowerPlacement extends TakeCardAction {
 		return towerPlacement;
 	}
 	
-	public static TowerPlacement factoryTowerPlacementWithNoFamilyMember(Player playerInAction, DevCardType towerType, int floorNumber, Board board) {
-		return factoryTowerPlacement(playerInAction, null, towerType, floorNumber, 0, board);
-		
+	public static TowerPlacement factoryTakeCard(Player playerInAction, DevCardType towerType, int floorNumber, int actionValue, Possession discount, Possession overcharge, Board board) {
+		Tower selectedTower = board.getSpecificTower(towerType);
+		Floor selectedFloor = selectedTower.getFloors()[floorNumber-1];
+		SingleActionSpace selectedActionSpace = selectedFloor.getSingleActionSpace();
+		TowerPlacement towerPlacement = new TowerPlacement(playerInAction, actionValue, null, selectedFloor, selectedTower, selectedActionSpace, new Servants(0), discount, overcharge, board);
+		return towerPlacement;
 	}
 	
 	
@@ -102,27 +113,33 @@ public class TowerPlacement extends TakeCardAction {
 
 
 	public boolean checkTakeabilityCard(PersonalBoard myPersonalBoard, DevCardType selectedCardType) {
-		if(myPersonalBoard.getSpecificOwnedCards(selectedCardType).getOwnedCardsnumber() == 6){ 
-			return false;
+		if (selectedCard!=null){
+			if(myPersonalBoard.getSpecificOwnedCards(selectedCardType).getOwnedCardsnumber() == 6){ 
+				return false;
 		    }
-		OwnedCards ownedTerritoryCards = myPersonalBoard.getSpecificOwnedCards(DevCardType.Territory);
-		if(selectedCardType.equals(DevCardType.Territory) 
-		   && ownedTerritoryCards.getOwnedCardsnumber() > 2
-		   && !myPersonalBoard.getMyPossession().compare(ownedTerritoryCards.getOwnedCards()[ownedTerritoryCards.getOwnedCardsnumber()].getPossession())){
-		    // check on MilitaryPoint Required taking a territoryCard. The requirement is saved in the correct personalCardPlace with the attribute Possession 
-			return false;
-		}		  
-		else
-			return true;
+			OwnedCards ownedTerritoryCards = myPersonalBoard.getSpecificOwnedCards(DevCardType.Territory);
+			if(selectedCardType.equals(DevCardType.Territory) 
+					&& ownedTerritoryCards.getOwnedCardsnumber() > 2
+					&& !myPersonalBoard.getMyPossession().compare(ownedTerritoryCards.getOwnedCards()[ownedTerritoryCards.getOwnedCardsnumber()].getPossession())){
+				// check on MilitaryPoint Required taking a territoryCard. The requirement is saved in the correct personalCardPlace with the attribute Possession 
+				return false;
+			}		  
+			else
+				return true;
+			}
+		return true;
 	}
 
 	
 	public boolean checkCardRequirements(PersonalBoard myPersonalBoard) {
-		Possession cost = new Possession();
-		cost.add(selectedCard.getRequirements());
-		cost.add(overcharge);
-		cost.subtract(discount);
-		return myPersonalBoard.getMyPossession().compare(cost);
+		if (selectedCard!=null){
+			Possession cost = new Possession();
+			cost.add(selectedCard.getRequirements());
+			cost.add(overcharge);
+			cost.subtract(discount);
+			return myPersonalBoard.getMyPossession().compare(cost);
+		}
+		return true;
 	}
 	
 	public boolean checkBusyTower() {
@@ -143,20 +160,26 @@ public class TowerPlacement extends TakeCardAction {
 
 	
 	public void pay() {
-		Possession payment = new Possession();
-		payment.add(selectedCard.getRequirements());
-		payment.add(overcharge);
-		payment.subtract(discount);//real payment
-		playerInAction.getMyPersonalBoard().payPossession(payment);
+		if (selectedCard!=null){
+			Possession payment = new Possession();
+			payment.add(selectedCard.getRequirements());
+			payment.add(overcharge);
+			payment.subtract(discount);//real payment
+			playerInAction.getMyPersonalBoard().payPossession(payment);
+		}
 	}
 
 	public void callCardEffect(){
-		selectedCard.callEffect(EffectType.Immediate, playerInAction, this);
+		if (selectedCard!=null){
+			selectedCard.callEffect(EffectType.Immediate, playerInAction, this);
+		}
 	}
 	
 	public void takeCard() {
-		playerInAction.getMyPersonalBoard().addDevCard(selectedCard);
-		selectedFloor.getDevCardPlace().setCard(null);
+		if (selectedCard!=null){
+			playerInAction.getMyPersonalBoard().addDevCard(selectedCard);
+			selectedFloor.getDevCardPlace().setCard(null);
+		}
 	}
 	
 	@Override

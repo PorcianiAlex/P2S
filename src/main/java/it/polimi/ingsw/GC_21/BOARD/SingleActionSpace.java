@@ -31,11 +31,6 @@ public class SingleActionSpace extends ActionSpace {
 	}
 
 
-
-
-
-
-
 	@Override
 	public String toString() {
 		if (familyMemberLocated!=null){
