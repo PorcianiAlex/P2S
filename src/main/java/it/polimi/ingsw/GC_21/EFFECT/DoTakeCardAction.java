@@ -16,7 +16,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.view.PlacementInput;
+import it.polimi.ingsw.GC_21.view.TakeCardInput;
 
 public class DoTakeCardAction extends Immediate {
 	private final int actionValueInfluencer;
@@ -41,7 +41,7 @@ public class DoTakeCardAction extends Immediate {
 	@Override
 	public void activateEffect(Player player, Action placementAction) {
 		super.activateEffect(player, placementAction);
-		PlacementInput placementInput = new PlacementInput(devCardType, actionValueInfluencer, discount);
+		TakeCardInput placementInput = new TakeCardInput(devCardType, actionValueInfluencer, discount);
 		game.notifyCurrent(placementInput);
 	}
 	

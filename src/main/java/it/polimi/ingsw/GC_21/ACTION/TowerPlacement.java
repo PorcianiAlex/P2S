@@ -97,9 +97,11 @@ public class TowerPlacement extends PlacementAction {
 	}
 	
 	public void earnPermanentEffect(DevelopmentCard selectedCard) {
-		Effect permanentEffectToGet = selectedCard.getSecondaryEffect();
-		if (permanentEffectToGet!=null){
-			playerInAction.getMyPersonalBoard().addPermanentEffect(permanentEffectToGet);
+		if (selectedCard != null) {
+			Effect permanentEffectToGet = selectedCard.getSecondaryEffect();
+			if (permanentEffectToGet!=null){
+				playerInAction.getMyPersonalBoard().addPermanentEffect(permanentEffectToGet);
+			}
 		}
 	}
 

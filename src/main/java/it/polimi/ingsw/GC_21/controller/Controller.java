@@ -94,20 +94,15 @@ public class Controller implements P2SObserver<Action>{
 	public void updateControllerManager(String choice) {
 		controllerManager.addRemoteView(remoteView);
 		if(choice.equals("C")) {
-			remoteView.getAdapter().out("HERE");
 	        modelGame = controllerManager.createGame(this);
-			remoteView.getAdapter().out("Game Created");
 	        remoteView.createPlayer(modelGame); 
-			remoteView.getAdapter().out("Player Created");
 	        letStart(); 
 	    } 
 	    else {  
 	      modelGame = controllerManager.getControllers().get(Integer.parseInt(choice)-1).getModelGame(); //take the selected game
-	       remoteView.createPlayer(modelGame); 
-	       modelGame.notifyString(remoteView.getPlayer().getName()+" joins the match! \nActual number of player: " + modelGame.getPlayers().size());
-	        
-	         
-	        remoteView.getAdapter().out("Waiting for the 'start' by the game host"); 
+	      remoteView.createPlayer(modelGame); 
+	      modelGame.notifyString(remoteView.getPlayer().getName()+" joins the match! \nActual number of player: " + modelGame.getPlayers().size());
+	      remoteView.getAdapter().out("Waiting for the 'start' by the game host"); 
 	    }    
 		
 	}
@@ -115,7 +110,7 @@ public class Controller implements P2SObserver<Action>{
 	public void letStart() { 
 	    remoteView.getAdapter().out("Write 'start' when you want to start the game! \nYou must be 2 at least"); 
 	    String string = remoteView.getAdapter().in(); 
-	    if(string.equals("start") /*&& modelGame.getPlayers().size()>1 || modelGame.getPlayers().size()==4*/ ) { 
+	    if(string.equals("start") && modelGame.getPlayers().size()>1 || modelGame.getPlayers().size()==4 ) { 
 	      modelGame.executeGame(); 
 	    } else { letStart(); } 
 	  } 

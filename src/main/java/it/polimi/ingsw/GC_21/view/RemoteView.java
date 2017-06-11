@@ -56,7 +56,6 @@ public class RemoteView extends Observable<Action> implements P2SObserver, Curre
   @Override 
     public void run() { 
 	 try {
-		adapter.out("Run Forrest, Run");
 		this.chooseUsername();
 		notifyInit();
 	} catch (IOException | ParseException e) {
@@ -123,6 +122,16 @@ public void createPlayer(Game game) {
     player =  new Player(username, color, game); 
          
   } 
+
+public boolean checkColor(Color color) { 
+    for (int i = 0; i < game.getPlayers().size(); i++) { 
+      if(color.equals(game.getPlayers().get(i).getPlayerColor())){ 
+        adapter.out("Oh grullo! This color is already in use, choose another one, please!"); 
+        return false; 
+      } 
+    } 
+    return true; 
+  } 
  
  
    
@@ -136,77 +145,25 @@ public void createPlayer(Game game) {
         ); 
     String choice = adapter.in(); 
     switch (choice) { 
-    case "1": this.towerPlacementCreator(); 
-    break; 
-    case "2": this.craftPlacementCreator(); 
-    break; 
-    case "3": this.marketPlacementCreator(); 
-    break; 
-    case "4": this.councilPlacementCreator(); 
-    break; 
-    default: this.towerPlacementCreator(); 
-      break; 
+    case "1": TowerPlacementInput towerPlacementInput = new TowerPlacementInput();
+    	towerPlacementInput.execute(this); 
+    	break; 
+    case "2": CraftPlacementInput craftPlacementInput = new CraftPlacementInput();
+		craftPlacementInput.execute(this);
+		break; 
+    case "3": MarketPlacementInput marketPlacementInput = new MarketPlacementInput();
+     	marketPlacementInput.execute(this);
+     	break; 
+    case "4": CouncilPlacementInput councilPlacementInput = new CouncilPlacementInput();
+    	councilPlacementInput.execute(this); 
+    	break; 
+    default: adapter.out("Invalid Input");
+    	input(); 
+    	break; 
     }     
      
   } 
-   
-  public void craftPlacementCreator() { 
-    CraftType craftType = selectCraftType(); 
-    adapter.out("Where do you want to place your Family Member? Be careful, my dear bischero: \n if you choose the " 
-        + "multiple action space you will get a malus on your craft! \n (1) Single Action Space - (2) Multiple Action Space"); 
-    String spaceType = adapter.in(); 
-    int servantsToConvert = this.chooseHowManyServants(); 
-    FamilyMemberColor selectedFamilyMember = this.chooseFamilyMember(); 
-    CraftPlacement craftPlacement = CraftPlacement.factoryCraftPlacement(player, selectedFamilyMember, game.getBoard(), servantsToConvert, craftType, Integer.parseInt(spaceType)); 
-    this.response(craftPlacement);
-  } 
-   
-  public CraftType selectCraftType(){ 
-    adapter.out("Which kind of craft do you want to execute? (1) Production - (2) Harvest"); 
-    String craftType = adapter.in(); 
-    switch (craftType){ 
-      case "1": return CraftType.Production; 
-      case "2": return CraftType.Harvest; 
-      default: return CraftType.Production; 
-    } 
-  } 
-  public DevCardType selectTower(){ 
-    adapter.out("Select Tower [1-4]:"); 
-    String choice = adapter.in(); 
-    switch (choice) { 
-    case "1": return DevCardType.Territory; 
-    case "2": return DevCardType.Building; 
-    case "3": return DevCardType.Character; 
-    case "4": return DevCardType.Venture; 
-    default: return DevCardType.Building; 
-    }   
-  } 
-   
-  public int selectFloor(){ 
-    adapter.out("Select Floor [1-4]:"); 
-    String choicestring = adapter.in(); 
-    int choice = Integer.parseInt(choicestring); 
-    if (choice <=4 && choice >=1){ 
-      return choice; 
-    } 
-    else { 
-      adapter.out("Invalid floor choice, try again!"); 
-      return this.selectFloor(); 
-    } 
-  } 
-   
-  public void towerPlacementCreator() { 
-    DevCardType selectedTower; 
-    int floor; 
-    FamilyMemberColor familyMemberColor; 
-    selectedTower = this.selectTower(); 
-    floor = this.selectFloor();   
-    familyMemberColor = this.chooseFamilyMember(); 
-    int servants = this.chooseHowManyServants(); 
-    TowerPlacement towerPlacement = TowerPlacement.factoryTowerPlacement(player, familyMemberColor, selectedTower, floor, servants, game.getBoard()); 
-   this.response(towerPlacement);
-  } 
-   
+ 
   public void response(Action action) {
 	  boolean result = this.notifyObservers(action); 
 	    if (result==false){ 
@@ -218,56 +175,66 @@ public void createPlayer(Game game) {
 	    return; 
 }
   
+  public String getUsername() {
+		return username;
+	}
 
-  public void marketPlacementCreator() { 
-    adapter.out("Which reward do you want? \n [2x Coins (1) - 2x Servants (2) - 3x Military Points + 2x Coins (3) - 2x Privileges (4)"); 
-    String Areastring = adapter.in(); 
-    int AreaToPlace = Integer.parseInt(Areastring); 
-    int servantsToConvert = this.chooseHowManyServants(); 
-    FamilyMemberColor selectedFamilyMember = this.chooseFamilyMember(); 
-    MarketPlacement marketPlacement = MarketPlacement.factoryMarketPlacement(player, selectedFamilyMember, AreaToPlace, servantsToConvert, game.getBoard()); 
-     
-    this.response(marketPlacement);
- 
-  } 
-   
-  public FamilyMemberColor chooseFamilyMember(){ 
-    adapter.out("Select Family Member [ N - O - W - B ]:"); 
-    String choice = adapter.in(); 
-    switch (choice) { 
-    case "N": return FamilyMemberColor.Neutral; 
-    case "O": return FamilyMemberColor.Orange; 
-    case "W": return FamilyMemberColor.White; 
-    case "B": return FamilyMemberColor.Black; 
-    default: return FamilyMemberColor.Neutral; 
-    } 
-  } 
-   
-  public int chooseHowManyServants(){ 
-    int playerServant = player.getMyPersonalBoard().getMyPossession().getServants().getValue(); 
-    if (playerServant == 0){ 
-      adapter.out("You don't have servant to convert!"); 
-      return 0; 
-    } 
-    adapter.out("How many servants do you want to convert?:"); 
-    String servstring = adapter.in(); 
-    int servantsToConvert = Integer.parseInt(servstring); 
-    if (servantsToConvert > playerServant){ 
-      adapter.out("You don't have enough servant to convert, try again!"); 
-      return this.chooseHowManyServants(); 
-    } 
-    else { 
-      adapter.out("You are going to convert " + servantsToConvert + " servants"); 
-      return servantsToConvert; 
-    } 
-  } 
-   
-  public void councilPlacementCreator() { 
-    CouncilPlacement councilPlacement = CouncilPlacement.factoryCouncilPlacement(player, this.chooseFamilyMember(), game.getBoard(), this.chooseHowManyServants());   
-    this.response(councilPlacement); 
- 
-  } 
-   
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+
+	public Adapter getAdapter() {
+		return adapter;
+	}
+
+	public void setAdapter(Adapter adapter) {
+		this.adapter = adapter;
+	}
+
+	@Override 
+	public void updateTurn() { 
+		adapter.out("\n Your resources: " + player.getMyPersonalBoard().toString() + 			  
+					"\n" + game.getBoard().toString()); 
+		this.input(); 
+	  } 
+	
+	@Override
+	public void updateExcomm() {
+		adapter.out("Bergoglio wants to know if you have been a great guy recently! \n"
+			+ "Be careful: if you disappoint him you will get a permanent malus!!!" + 
+			"\nDo you want to be excommunicated? Y - N");
+		String choiche = adapter.in();
+		switch (choiche) {
+		case "Y" : this.notifyObservers(new ExcommAction(player, game, true));
+		case "N" :	this.notifyObservers(new ExcommAction(player, game, false));
+		default: this.notifyObservers(new ExcommAction(player, game, false));
+		}
+	}
+	
+	@Override
+	public void updateCurrent(InputFromView inputFromView) {
+		inputFromView.execute(this);
+	} 
+	
+
+
   @Override 
   public void update(String string) { 
     adapter.out(string); 
@@ -279,76 +246,6 @@ public void createPlayer(Game game) {
   public boolean update(Object change) { 
     return false; 
   } 
- 
-  @Override 
-  public void updateTurn() { 
-	  adapter.out("\n Your resources: " + player.getMyPersonalBoard().toString() + 			  
-				"\n" + game.getBoard().toString()); 
-    this.input(); 
-  } 
- 
-
-public boolean checkColor(Color color) { 
-    for (int i = 0; i < game.getPlayers().size(); i++) { 
-      if(color.equals(game.getPlayers().get(i).getPlayerColor())){ 
-        adapter.out("Oh grullo! This color is already in use, choose another one, please!"); 
-        return false; 
-      } 
-    } 
-    return true; 
-  } 
-
-
-
-public String getUsername() {
-	return username;
-}
-
-public void setUsername(String username) {
-	this.username = username;
-}
-
-
-public Game getGame() {
-	return game;
-}
-
-public void setGame(Game game) {
-	this.game = game;
-}
-
-public Player getPlayer() {
-	return player;
-}
-
-public void setPlayer(Player player) {
-	this.player = player;
-}
-
-public Adapter getAdapter() {
-	return adapter;
-}
-
-public void setAdapter(Adapter adapter) {
-	this.adapter = adapter;
-}
-
-
-
-
-@Override
-public void updateExcomm() {
-	adapter.out("Bergoglio wants to know if you have been a great guy recently! \n"
-			+ "Be careful: if you disappoint him you will get a permanent malus!!!" + 
-			"\nDo you want to be excommunicated? Y - N");
-	String choiche = adapter.in();
-	switch (choiche) {
-	case "Y" : this.notifyObservers(new ExcommAction(player, game, true));
-	case "N" :	this.notifyObservers(new ExcommAction(player, game, false));
-	default: this.notifyObservers(new ExcommAction(player, game, false));
-	}
-}
-
 
 @Override
 public void updateControllerManager(String string) {
@@ -370,9 +267,6 @@ public void updateInit() {
 }
 
 
-@Override
-public void updateCurrent(InputFromView inputFromView) {
-	inputFromView.execute(this);
-} 
+
 
 }
