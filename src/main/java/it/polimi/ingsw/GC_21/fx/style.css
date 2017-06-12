@@ -7,7 +7,7 @@ The style definition consists of the name of the property
 }
 
 #welcome-text {
-   -fx-font-size: 18px;
+   -fx-font-size: 24px;
    -fx-font-family: "Arial";
    -fx-fill: black;
    

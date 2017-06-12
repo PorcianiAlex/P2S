@@ -89,7 +89,7 @@ public class FXMLLoginController extends MetaController {
     		}
     	}
     	
-    	Stage stage = (Stage) actiontarget.getScene().getWindow();
+    	Stage stage = (Stage) user.getScene().getWindow();
         FXMLLobby fxmlLobby = new FXMLLobby();
         try {
 			fxmlLobby.start(stage);

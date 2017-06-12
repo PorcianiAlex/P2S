@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Text?>
+
+<GridPane id="grid" prefHeight="536.0000558593674" prefWidth="776.9999000000025" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.ingsw.GC_21.fx.FXMLColorController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.0" minWidth="10.0" prefWidth="132.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" minWidth="10.0" prefWidth="176.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="366.0" minWidth="10.0" prefWidth="173.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="227.0" minWidth="10.0" prefWidth="196.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="102.0" minHeight="10.0" prefHeight="101.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="147.0" minHeight="0.0" prefHeight="108.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="207.0" minHeight="10.0" prefHeight="107.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="142.0" minHeight="10.0" prefHeight="140.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+  <stylesheets>
+    <URL value="@style.css" />
+  </stylesheets>
+  <Text id="welcometext" fx:id="welcometext" text="Choose your color:" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+  <Button id="bluebox" mnemonicParsing="false" onAction="#Blue" prefHeight="61.0" prefWidth="128.0" text="Blue" textFill="#0066ff" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+  <Button mnemonicParsing="false" onAction="#Red" prefHeight="57.0001220703125" prefWidth="130.0" text="Red" textFill="RED" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+  <Button mnemonicParsing="false" onAction="#Yellow" prefHeight="58.0" prefWidth="123.9998779296875" text="Yellow" textFill="#fff500" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+  <Button mnemonicParsing="false" onAction="#Green" prefHeight="54.0" prefWidth="123.0" text="Green" textFill="#009918" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+  <Text fx:id="texttarget" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="3">
+    <GridPane.margin>
+      <Insets bottom="100.0" />
+    </GridPane.margin>
+  </Text>
+  <Button mnemonicParsing="false" onAction="#Ready" text="Ready!" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
+</GridPane>

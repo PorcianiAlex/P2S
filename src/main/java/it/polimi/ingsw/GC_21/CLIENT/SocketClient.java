@@ -20,6 +20,7 @@ public class SocketClient implements Connections {
     protected Socket socketclient;
     protected ViewType view;
 	protected Stack<String> stackforclient;
+	protected Object LOCK = new Object();
 
     public SocketClient(String ip, int port, ViewType viewType) throws UnknownHostException, IOException{
     this.ip=ip;
@@ -61,17 +62,30 @@ public class SocketClient implements Connections {
 
 	public void sendGUI(String stringa) {
 		out.println(stringa);
+		System.out.println(stringa);
 		out.flush();
 	}
 
 	public void setMessForGui(String mess) {
-		stackforclient.push(mess);
+		synchronized (LOCK) {
+			stackforclient.push(mess);
+		LOCK.notifyAll();
+		}
+		
 	}
 	
 	@Override
 	public String getMessage() {
 		while(stackforclient.isEmpty()) {
+		try { synchronized (LOCK) {
+			LOCK.wait();
 		}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		}
+		
+			
 		return stackforclient.pop();
 	}
 
