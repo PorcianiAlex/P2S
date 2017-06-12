@@ -103,12 +103,11 @@ public class Controller implements P2SObserver<Action>{
 	      remoteView.createPlayer(modelGame); 
 	      modelGame.notifyString(remoteView.getPlayer().getName()+" joins the match! \nActual number of player: " + modelGame.getPlayers().size());
 	      remoteView.getAdapter().out("Waiting for the 'start' by the game host"); 
-	    }    
-		
+	    }    		
 	}
 	
 	public void letStart() { 
-	    remoteView.getAdapter().out("Write 'start' when you want to start the game! \nYou must be 2 at least"); 
+	    remoteView.getAdapterView().send("Write 'start' when you want to start the game! \nYou must be 2 at least"); 
 	    String string = remoteView.getAdapter().in(); 
 	    if(string.equals("start") && modelGame.getPlayers().size()>1 || modelGame.getPlayers().size()==4 ) { 
 	      modelGame.executeGame(); 
