@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClientInterface;
 
-public class RmiAdapter implements Adapter{
+public class RmiAdapter implements AdapterConnection{
 
 	private RmiClientInterface rmiClient; 
 	

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -16,9 +17,8 @@ import it.polimi.ingsw.GC_21.UTILITIES.Observable;
 import it.polimi.ingsw.GC_21.controller.Controller;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
-public class Game extends Observable {
+public class Game extends Observable implements Serializable {
 	
-	private Controller controller;
 	private static int currentNumberOfGame = 0; 
 	private int id;
 	private int numberOfPlayers;
@@ -84,14 +84,6 @@ public class Game extends Observable {
 
 	public void setPlayers(ArrayList<Player> players) {
 		this.players = players;
-	}
-
-	public Controller getController() {
-		return controller;
-	}
-
-	public void setController(Controller controller) {
-		this.controller = controller;
 	}
 
 	public static int getCurrentNumberOfGame() {

@@ -66,7 +66,7 @@ public class FXMLLoginController extends MetaController {
 		}
     	String username = user.getText();
     	String pass = passwordField.getText();
-    	
+    	client.sendGUI("GUI");
     	client.sendGUI(inorup);
     	client.sendGUI(username);
     	client.sendGUI(pass);
