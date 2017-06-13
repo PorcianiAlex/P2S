@@ -15,30 +15,30 @@ public class PlacementInput extends InputFromView{
 	 public int chooseHowManyServants(RemoteView remoteView){ 
 		    int playerServant = remoteView.getPlayer().getMyPersonalBoard().getMyPossession().getServants().getValue(); 
 		    if (playerServant == 0){ 
-		      adapter.out("You don't have servant to convert!"); 
+		      adapterConnection.out("You don't have servant to convert!"); 
 		      return 0; 
 		    } 
-		    adapter.out("How many servants do you want to convert?:"); 
-		    String servstring = adapter.in(); 
+		    adapterConnection.out("How many servants do you want to convert?:"); 
+		    String servstring = adapterConnection.in(); 
 		    int servantsToConvert = Integer.parseInt(servstring); 
 		    if (servantsToConvert > playerServant){ 
-		      adapter.out("You don't have enough servant to convert, try again!"); 
+		      adapterConnection.out("You don't have enough servant to convert, try again!"); 
 		      return this.chooseHowManyServants(remoteView); 
 		    }
 		    else { 
-		      adapter.out("You are going to convert " + servantsToConvert + " servants"); 
+		      adapterConnection.out("You are going to convert " + servantsToConvert + " servants"); 
 		      return servantsToConvert; 
 		    } 
 		  } 
 	 public FamilyMemberColor chooseFamilyMember(){ 
-		    adapter.out("Select Family Member [ N - O - W - B ]:"); 
-		    String choice = adapter.in(); 
+		    adapterConnection.out("Select Family Member [ N - O - W - B ]:"); 
+		    String choice = adapterConnection.in(); 
 		    switch (choice) { 
 		    case "N": return FamilyMemberColor.Neutral; 
 		    case "O": return FamilyMemberColor.Orange; 
 		    case "W": return FamilyMemberColor.White; 
-		    case "B": return FamilyMemberColor.Black;
-		    default: adapter.out("Invalid family member choice, try again!"); 
+		    case "B": return FamilyMemberColor.Black; 
+		    default: adapterConnection.out("Invalid floor choice, try again!"); 
 		      return this.chooseFamilyMember(); 
 		    } 
 		  } 

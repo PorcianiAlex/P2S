@@ -12,6 +12,7 @@ public class AdapterCLI implements AdapterView{
 
 	@Override
 	public void send(String string) {
+		System.out.println(string);
 		adapterConnection.out(string);
 	}
 

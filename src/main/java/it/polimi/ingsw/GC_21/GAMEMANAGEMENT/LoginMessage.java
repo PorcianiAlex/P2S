@@ -29,10 +29,14 @@ public class LoginMessage extends Message{
 				controller.getRemoteView().getAdapter().out("these username and password doesn't exist!");
 			}
 			if(!checkLoggedUsers(username) && insert==false) {
-				controller.getRemoteView().chooseUsername();
+				CheckLoginMessage checkLoginMessage = new CheckLoginMessage(false, "Oh grullo! tu sei già loggato!");
+				controller.getRemoteView().getAdapter().sendObject(checkLoginMessage);
+				controller.getRemoteView().inputLogin();
 			}
 			if (ok == false) {
-				controller.getRemoteView().chooseUsername();
+				CheckLoginMessage checkLoginMessage = new CheckLoginMessage(false, "Login Error");
+				controller.getRemoteView().getAdapter().sendObject(checkLoginMessage);
+				controller.getRemoteView().inputLogin();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

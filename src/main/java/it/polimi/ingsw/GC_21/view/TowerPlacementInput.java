@@ -22,28 +22,28 @@ public class TowerPlacementInput extends PlacementInput {
 	}
  
 	 public DevCardType selectTower(){ 
-		    adapter.out("Select Tower [1-4]:"); 
-		    String choice = adapter.in(); 
+		    adapterConnection.out("Select Tower [1-4]:"); 
+		    String choice = adapterConnection.in(); 
 		    switch (choice) { 
 		    case "1": return DevCardType.Territory; 
 		    case "2": return DevCardType.Building; 
 		    case "3": return DevCardType.Character; 
 		    case "4": return DevCardType.Venture; 
-		    default: adapter.out("Invalid tower choice, try again!"); 
+		    default: adapterConnection.out("Invalid floor choice, try again!"); 
 		      return this.selectTower();  
 		    }   
 	 } 
 		   
 	 
 	 public int selectFloor(){ 
-		    adapter.out("Select Floor [1-4]:"); 
-		    String choicestring = adapter.in(); 
+		    adapterConnection.out("Select Floor [1-4]:"); 
+		    String choicestring = adapterConnection.in(); 
 		    int choice = Integer.parseInt(choicestring); 
 		    if (choice <=4 && choice >=1){ 
 		      return choice; 
 		    } 
 		    else { 
-		      adapter.out("Invalid floor choice, try again!"); 
+		      adapterConnection.out("Invalid floor choice, try again!"); 
 		      return this.selectFloor(); 
 		    } 
 		  } 
