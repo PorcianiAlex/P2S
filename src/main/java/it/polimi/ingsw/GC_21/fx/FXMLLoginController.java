@@ -16,6 +16,9 @@ import org.omg.PortableInterceptor.USER_EXCEPTION;
 
 import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
 import it.polimi.ingsw.GC_21.CLIENT.SocketClient;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.CheckLoginMessage;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Message;
+import it.polimi.ingsw.GC_21.view.LoginInput;
 import it.polimi.ingsw.GC_21.view.ServerInterface;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -41,16 +44,16 @@ public class FXMLLoginController extends MetaController {
     
 	
     @FXML protected void handleSignInAction(ActionEvent event) throws Exception {
-    	this.connect("2");
+    	this.connect(false);
     }
     
     @FXML protected void handleSignUpAction(ActionEvent event) throws Exception {
-    	this.connect("1");
+    	this.connect(true);
     	
     }
     
     
-    protected void connect(String inorup) throws RemoteException, NotBoundException {
+    protected void connect(boolean insert) throws RemoteException, NotBoundException {
        //apre la connessione scelta
     	//testa il login / reg 
   
@@ -70,17 +73,19 @@ public class FXMLLoginController extends MetaController {
        	
     	// crea e manda loginInput con username, pass, inorup
     	
+    	LoginInput loginInput = new LoginInput(username, pass, insert);
+    	client2.setInputToSend(loginInput);
+    	CheckLoginMessage inputmessage = (CheckLoginMessage) client2.getReceivedMessage();
     	
-    		/* if(messaggio = FAIL)) {
+    		 if(!inputmessage.isResult()) {
     			Alert alert = new Alert(AlertType.ERROR);
     			alert.setTitle("Login Error");
-    			alert.setHeaderText(arrivingmess);
+    			alert.setHeaderText(inputmessage.getString());
     			alert.setContentText("Ooops, there was an error!");
     			alert.showAndWait();
     			return;
     		}
-    		if(messaggio = OK) {
-    	*/
+    		 else {
     	Stage stage = (Stage) welcometext.getScene().getWindow();
         FXMLLobby fxmlLobby = new FXMLLobby();
         try {
@@ -90,6 +95,6 @@ public class FXMLLoginController extends MetaController {
 		}
     
     }
-    
+    }
 
 }

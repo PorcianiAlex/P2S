@@ -38,9 +38,12 @@ public class LoginMessage extends Message{
 				controller.getRemoteView().getAdapter().sendObject(checkLoginMessage);
 				controller.getRemoteView().inputLogin();
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		CheckLoginMessage checkLoginMessage = new CheckLoginMessage(true, "Login ok");
+		controller.getRemoteView().getAdapter().sendObject(checkLoginMessage);
 		return true;
 		
 	}

@@ -30,6 +30,7 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 	
 	public Message getReceivedMessage() {
 		while (receivedMessage == null) {
+			System.out.println("getrecmsg");
 		}
 		return receivedMessage;
 	}
@@ -115,7 +116,8 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 
 	@Override
 	public InputFromView sendObjectToServer() throws RemoteException {
-		while (inputToSend == null) {			
+		while (inputToSend == null) {		
+			System.out.println("sendobjtosrv");
 		}
 		return inputToSend;
 	}
