@@ -17,13 +17,13 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ResourceType;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class ForEachGet extends Immediate implements ToCallDuringCraft{
+public class ForEachGet extends Effect implements ToCallDuringCraft{
 	private final DevCardType forEachCard;
 	private final int forEachCardIndex;
 	private final ResourceType forEachResource;
 	private final int forEachResourceIndex;
 	private final ResourceType resourceYouGet;
-	private final int GettingIndex;
+	private final int gettingIndex;
 	private final boolean CardConversion; //If TRUE, the effect converts cards, otherwise Items
 	
 	
@@ -37,9 +37,9 @@ public class ForEachGet extends Immediate implements ToCallDuringCraft{
 		this.forEachResource = forEachResource;
 		this.forEachResourceIndex = forEachResourceIndex;
 		this.resourceYouGet = resourceYouGet;
-		GettingIndex = gettingIndex;
+		this.gettingIndex = gettingIndex;
 		CardConversion = cardConversion;
-		if (forEachCard!=null & forEachResource!=null){
+		if (forEachCard!=null && forEachResource!=null){
 			throw new IllegalArgumentException("Cannot instantiate this effect!");
 		}
 	}
@@ -50,21 +50,24 @@ public class ForEachGet extends Immediate implements ToCallDuringCraft{
 	/* It creates a possession through the bonus of the card and then the player gets it*/
 	public void activateEffect(Player player, Action action) {
 		super.activateEffect(player, action);
-		if (CardConversion == true){
+		if (CardConversion){
 			int playerCardNumber = player.getMyPersonalBoard().getSpecificOwnedCards(forEachCard).getOwnedCardsnumber();
 			int cardMultiplier = playerCardNumber/forEachCardIndex;
 			Possession rewards = new Possession(0,0,0,0,0,0,0);
-			Item rewardItem = Item.factoryItem(cardMultiplier * GettingIndex, resourceYouGet);
+			Item rewardItem = Item.factoryItem(cardMultiplier * gettingIndex, resourceYouGet);
 			rewards.addItemToPossession(rewardItem);
+			callWhenEarningEffects(player, action);
+			game.notifyCurrentString("You will get " + gettingIndex + "x" + resourceYouGet + "for each" + forEachResourceIndex + " " + forEachResource);
 			earnRewards(player, rewards);
 		}
 		else{
 			int playerResourceNumber = player.getMyPersonalBoard().getMyPossession().getRequestedItem(forEachResource).getValue();
 			int resourceMultiplier = playerResourceNumber/forEachResourceIndex;
 			Possession rewards = new Possession(0,0,0,0,0,0,0);
-			Item rewardItem = Item.factoryItem(resourceMultiplier * GettingIndex, resourceYouGet);
+			Item rewardItem = Item.factoryItem(resourceMultiplier * gettingIndex, resourceYouGet);
 			rewards.addItemToPossession(rewardItem);
 			callWhenEarningEffects(player, action);
+			game.notifyCurrentString("You will get " + gettingIndex + "x" + resourceYouGet + "for each" + forEachCardIndex + " " + forEachCard);
 			earnRewards(player, rewards);
 		}
 		

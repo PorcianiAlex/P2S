@@ -3,11 +3,8 @@ package it.polimi.ingsw.GC_21.BOARD;
 
 import java.util.ArrayList;
 
-import it.polimi.ingsw.GC_21.*;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
-import it.polimi.ingsw.GC_21.EFFECT.Immediate;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Privileges;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.Player;

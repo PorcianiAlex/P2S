@@ -9,7 +9,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ResourceType;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class VictoryPointsInfluencer extends Effect implements ToCallAfterFinalCount{
+public class VictoryPointsInfluencer extends Effect implements ToCallAfterFinalCount, Permanent{
 	private final ResourceType forEachResource;
 	private final int forEachResourceIndex;
 	private final int losingIndex;
@@ -25,15 +25,17 @@ public class VictoryPointsInfluencer extends Effect implements ToCallAfterFinalC
 
 	@Override
 	public void activateEffect(Player player, Action action) {
-		if (eachResource==false){
+		if (!eachResource){
 			int playerResourceNumber = player.getMyPersonalBoard().getMyPossession().getRequestedItem(forEachResource).getValue();
 			int resourceMultiplier = playerResourceNumber/forEachResourceIndex;
 			Possession malus = new Possession(0,0,0,0,0,0,0);
 			Item victoryPointsToLose = Item.factoryItem(resourceMultiplier, ResourceType.VictoryPoints);
 			malus.addItemToPossession(victoryPointsToLose);
+			game.notifyCurrentString("You will lose " + losingIndex +" Victory Points for each " + forEachResourceIndex + " " + forEachResource + "you have!");
 			player.getMyPersonalBoard().payPossession(malus);
 		}
 		else{
+			game.notifyCurrentString("You will lose " + losingIndex + " Victory Points, for every Coins, Stones, Woods or Servants!");
 			int servantsNumber = player.getMyPersonalBoard().getMyPossession().getServants().getValue();
 			int coinsNumber = player.getMyPersonalBoard().getMyPossession().getCoins().getValue();
 			int woodsNumber = player.getMyPersonalBoard().getMyPossession().getWoods().getValue();

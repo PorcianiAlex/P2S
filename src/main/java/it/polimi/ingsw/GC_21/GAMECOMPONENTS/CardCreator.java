@@ -1,9 +1,12 @@
 package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.print.DocFlavor.URL;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -20,7 +23,6 @@ import it.polimi.ingsw.GC_21.EFFECT.DoTakeCardAction;
 import it.polimi.ingsw.GC_21.EFFECT.EarningInfluencer;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.ForEachGet;
-import it.polimi.ingsw.GC_21.EFFECT.Immediate;
 import it.polimi.ingsw.GC_21.EFFECT.LoseYourDevCardType;
 import it.polimi.ingsw.GC_21.EFFECT.PlacementInfluencer;
 import it.polimi.ingsw.GC_21.EFFECT.VictoryPointsInfluencer;
@@ -37,7 +39,9 @@ public class CardCreator {
 	public ArrayList<Card> devCardsCreate(DevCardType devCardType, int age) {
 		cards = new ArrayList<Card>();
 		try {
-		Object obj = parser.parse(new FileReader("cards.json"));
+		java.net.URL path = CardCreator.class.getResource("DevCards.json");
+		FileReader file = new FileReader(path.getPath());
+		Object obj = parser.parse(file);
 	    JSONObject card = (JSONObject) obj;
 	    JSONArray cardarray= (JSONArray) card.get("DevCard");
 	    for (Object o : cardarray) {
@@ -60,15 +64,12 @@ public class CardCreator {
          	 this.AddSecEff(devCardCreating, jsonLineItem);
            	 this.addReq(devCardCreating, jsonLineItem);
            	 cards.add(devCardCreating);
+           	 System.out.println("card created " + devCardCreating.getName());
             }
 	     }
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        } 
 		return cards;
 	}
 	
@@ -77,29 +78,28 @@ public class CardCreator {
 	public ArrayList<Card> ExCardsCreate(int age) {
 		cards = new ArrayList<Card>();
 		try {
-		Object obj = parser.parse(new FileReader("cards.json"));
+		java.net.URL path = CardCreator.class.getResource("ExCards.json");
+		System.out.println(path.getPath());
+		FileReader file = new FileReader(path.getPath());
+		Object obj = parser.parse(file);
 	    JSONObject card = (JSONObject) obj;
-	    JSONArray excardarray= (JSONArray) card.get("ExCard");
+	    JSONArray excardarray= (JSONArray) card.get("ExcommCard");
 	    for (Object o : excardarray) {
            	JSONObject jsonLineItem = (JSONObject) o;       
 	    	if(Integer.parseInt(jsonLineItem.get("age").toString())==age){              	
            	 ExcommunicationCard excommunicationCard = new ExcommunicationCard((String) jsonLineItem.get("name"));
            	 excommunicationCard.setAge(age);
            	 this.AddSecEff(excommunicationCard, jsonLineItem);
-         	 cards.add(excommunicationCard);            	 
+         	 cards.add(excommunicationCard);  
             }
 	     }
-		} catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
+		} catch (Exception e) {
             e.printStackTrace();
         }
 		return cards;
 	}
 	
-	public ArrayList<Card> LeadCardsCreate() {
+	/*public ArrayList<Card> LeadCardsCreate() {
 		cards = new ArrayList<Card>();
 		try {
 		Object obj = parser.parse(new FileReader("cards.json"));
@@ -113,15 +113,11 @@ public class CardCreator {
            	 cards.add(leaderCard);            	 
             }
 	     
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        } 
 		return cards;
-	}
+	}*/
 	
 
 	public void addImm(Card cardcreating, JSONObject jsonLineItem) {
@@ -208,7 +204,7 @@ public class CardCreator {
 						cardcreating.setImmediateEffect(forEachGet);
 						break;
 					
-					default: Immediate immediate = new Immediate(Rew, privileges, game);
+					default: Effect immediate = new Effect(Rew, privileges, game);
 					         cardcreating.setImmediateEffect(immediate);
 						break;
 						
@@ -274,16 +270,20 @@ public class CardCreator {
         		VictoryPointsInfluencer victoryPointsInfluencer = new VictoryPointsInfluencer(game, ResourceType.valueOf((jsonLineItem.get("forEachResource").toString())), Integer.parseInt((jsonLineItem.get("forEachResourceIndex").toString())), Integer.parseInt((jsonLineItem.get("losingIndex").toString())), true);
         		cardcreating.setSecondaryEffect(victoryPointsInfluencer);
         	}
+        	break;
         case "LoseYourDevCardType":  			
 			LoseYourDevCardType loseYourDevCardType = new LoseYourDevCardType(DevCardType.valueOf((jsonLineItem.get("DevCardType").toString())),game);
 			cardcreating.setSecondaryEffect(loseYourDevCardType);
 			break;
-		case "CraftInfluencer":  			
-			CraftInfluencer craftInfluencer = new CraftInfluencer(CraftType.valueOf(jsonLineItem.get("CraftType").toString()), Integer.parseInt(jsonLineItem.get("CraftInfluencer").toString()), game);
+		case "CraftInfluencer":
+			CraftType craftType = CraftType.valueOf(jsonLineItem.get("CraftType").toString());
+			int influencerOfCraft = Integer.parseInt(jsonLineItem.get("Influencer").toString());
+			CraftInfluencer craftInfluencer = new CraftInfluencer(craftType, influencerOfCraft, game);
 			cardcreating.setSecondaryEffect(craftInfluencer);
 			break;
 		case "EarningInfluencer":
-			JSONArray influencerArray= (JSONArray) jsonLineItem.get("EarningInfluencer");
+			JSONArray influencerArray= (JSONArray) jsonLineItem.get("Influencer");
+			
 			Possession influencer = new Possession(Integer.parseInt(influencerArray.get(0).toString()),Integer.parseInt(influencerArray.get(1).toString()),
             		Integer.parseInt(influencerArray.get(2).toString()), Integer.parseInt(influencerArray.get(3).toString()),
             		Integer.parseInt(influencerArray.get(4).toString()), Integer.parseInt(influencerArray.get(5).toString()), 
@@ -292,17 +292,14 @@ public class CardCreator {
 			cardcreating.setSecondaryEffect(earningInfluencer);
 			break;
 		case "PlacementInfluencer"	:
-			
-			JSONArray discountArray= (JSONArray) jsonLineItem.get("Discount");
+			JSONArray discountArray= (JSONArray) jsonLineItem.get("Disc");
 			Possession discount = new Possession(Integer.parseInt(discountArray.get(0).toString()),Integer.parseInt(discountArray.get(1).toString()),
             		Integer.parseInt(discountArray.get(2).toString()), Integer.parseInt(discountArray.get(3).toString()),
             		Integer.parseInt(discountArray.get(4).toString()), Integer.parseInt(discountArray.get(5).toString()), 
             	    Integer.parseInt(discountArray.get(6).toString()));
-			
 			if("null".equals((jsonLineItem.get("TowerEffected").toString()))){
 				PlacementInfluencer placementInfluencer = new PlacementInfluencer( Integer.parseInt(jsonLineItem.get("ActionValueBonus").toString()), null, discount);
 				cardcreating.setSecondaryEffect(placementInfluencer);
-				
 			} else {
 				PlacementInfluencer placementInfluencer = new PlacementInfluencer( Integer.parseInt(jsonLineItem.get("ActionValueBonus").toString()), DevCardType.valueOf(jsonLineItem.get("TowerEffected").toString()), discount);
 				cardcreating.setSecondaryEffect(placementInfluencer);

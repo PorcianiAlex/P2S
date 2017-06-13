@@ -1,14 +1,11 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
+
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
-import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
+
 
 public class Board {
 	private Game game;

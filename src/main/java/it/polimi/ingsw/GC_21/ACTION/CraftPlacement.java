@@ -34,7 +34,7 @@ public class CraftPlacement extends PlacementAction {
 	public static CraftPlacement factoryCraftPlacement(Player playerInAction, FamilyMemberColor familyMemberColor,
 			Board board, int servantsNumber, CraftType craftType, int spaceType) {
 		FamilyMember selectedFamilyMember = playerInAction.getSpecificFamilyMember(familyMemberColor);
-		int actionValue = selectedFamilyMember.getAssociatedDice().getValue();
+		int actionValue = selectedFamilyMember.getActionValue();
 		Servants servantsToConvert = new Servants(servantsNumber);
 		CraftArea craftArea = board.getSpecificCraftArea(craftType);
 		ActionSpace selectedActionSpace = craftArea.selectActionSpace(spaceType);

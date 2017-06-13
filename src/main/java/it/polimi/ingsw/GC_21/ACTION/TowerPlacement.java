@@ -12,6 +12,7 @@ import it.polimi.ingsw.GC_21.BOARD.Tower;
 import it.polimi.ingsw.GC_21.EFFECT.DoTakeCardAction;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.EffectType;
+import it.polimi.ingsw.GC_21.EFFECT.Permanent;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Coins;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
@@ -54,7 +55,7 @@ public class TowerPlacement extends PlacementAction {
 		Floor selectedFloor = selectedTower.getFloors()[floorNumber-1];
 		SingleActionSpace selectedActionSpace = selectedFloor.getSingleActionSpace();
 		FamilyMember selectedFamilyMember = playerInAction.getSpecificFamilyMember(selectedFamilyMemberColor);
-		int actionValue = selectedFamilyMember.getAssociatedDice().getValue();
+		int actionValue = selectedFamilyMember.getActionValue();
 		Servants servantsToConvert = new Servants(servantsNumber);
 		TowerPlacement towerPlacement = new TowerPlacement(playerInAction, actionValue , selectedFamilyMember, selectedFloor, selectedTower, selectedActionSpace, servantsToConvert, board);
 		return towerPlacement;
@@ -99,7 +100,7 @@ public class TowerPlacement extends PlacementAction {
 	public void earnPermanentEffect(DevelopmentCard selectedCard) {
 		if (selectedCard != null) {
 			Effect permanentEffectToGet = selectedCard.getSecondaryEffect();
-			if (permanentEffectToGet!=null){
+			if (permanentEffectToGet!=null && permanentEffectToGet instanceof Permanent){
 				playerInAction.getMyPersonalBoard().addPermanentEffect(permanentEffectToGet);
 			}
 		}

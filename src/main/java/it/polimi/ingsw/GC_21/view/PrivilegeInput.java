@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_21.view;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.RewardMessage;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.PrivilegeMessage;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class PrivilegeInput extends InputFromView {
@@ -26,7 +26,7 @@ public class PrivilegeInput extends InputFromView {
 		adapter.out("You have " + privilegesNumber + " privileges left to convert!");
 		adapter.out("Choose your reward! Type: \n (1) 1x Woods 1 x Stones \n (2) 2x Servants \n (3) 2x Coins \n (4) 2x Military Points \n (5) 1x Faith Points");
 		String choice = remoteView.getAdapter().in();
-		RewardMessage rewardMessage = new RewardMessage(choice, rewards, privilegesNumber, earnedRewards);
+		PrivilegeMessage rewardMessage = new PrivilegeMessage(choice, rewards, privilegesNumber, earnedRewards);
 		if (!remoteView.notifyMessage(rewardMessage)){
 			this.execute(remoteView);
 			}

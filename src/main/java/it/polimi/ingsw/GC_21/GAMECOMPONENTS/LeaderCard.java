@@ -1,28 +1,55 @@
 package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 
 public class LeaderCard extends Card {
-	
-	private String description;
-	private boolean played;
+	protected int numberOfVenturesRequired;
+	protected int numberOfCharactersRequired;
+	protected int numberOfBuildingRequired;
+	protected int numberOfTerritoryRequired;
 	
 	
 	public LeaderCard(String name) {
 		super(name);
-		// TODO Auto-generated constructor stub
-	}
-	
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public boolean isPlayed() {
-		return played;
-	}
-	public void setPlayed(boolean played) {
-		this.played = played;
 	}
 
+
+	public int getNumberOfVenturesRequired() {
+		return numberOfVenturesRequired;
+	}
+
+
+	public void setNumberOfVenturesRequired(int numberOfVenturesRequired) {
+		this.numberOfVenturesRequired = numberOfVenturesRequired;
+	}
+
+
+	public int getNumberOfCharactersRequired() {
+		return numberOfCharactersRequired;
+	}
+
+
+	public void setNumberOfCharactersRequired(int numberOfCharactersRequired) {
+		this.numberOfCharactersRequired = numberOfCharactersRequired;
+	}
+
+
+	public int getNumberOfBuildingRequired() {
+		return numberOfBuildingRequired;
+	}
+
+
+	public void setNumberOfBuildingRequired(int numberOfBuildingRequired) {
+		this.numberOfBuildingRequired = numberOfBuildingRequired;
+	}
+
+
+	public int getNumberOfTerritoryRequired() {
+		return numberOfTerritoryRequired;
+	}
+
+
+	public void setNumberOfTerritoryRequired(int numberOfTerritoryRequired) {
+		this.numberOfTerritoryRequired = numberOfTerritoryRequired;
+	}
+	
 	
 }

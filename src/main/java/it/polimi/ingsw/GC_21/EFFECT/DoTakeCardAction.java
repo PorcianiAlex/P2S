@@ -18,7 +18,7 @@ import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.view.TakeCardInput;
 
-public class DoTakeCardAction extends Immediate {
+public class DoTakeCardAction extends Effect {
 	private final int actionValueInfluencer;
 	private final DevCardType devCardType;
 	private final Possession discount;	

@@ -3,7 +3,6 @@ package it.polimi.ingsw.GC_21.BOARD;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
-import it.polimi.ingsw.GC_21.EFFECT.Immediate;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 
@@ -18,7 +17,7 @@ public class MultipleActionSpace extends ActionSpace {
 		return familyMembersLocated;
 	}
 	
-	@Override
+@Override
 	public void placeFamilyMember(FamilyMember familyMamber) {
 		familyMembersLocated.add(familyMamber);
 	}

@@ -1,10 +1,8 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
-import javax.management.monitor.GaugeMonitor;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
-import it.polimi.ingsw.GC_21.EFFECT.Immediate;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
@@ -41,10 +39,6 @@ public class ActionSpace {
 		}
 	}
 	
-	
-	public void placeFamilyMember(FamilyMember familyMamber) {	
-	}
-
 	public int getRequiredDice() {
 		return requiredDice;
 	}
@@ -63,5 +57,9 @@ public class ActionSpace {
 
 	public Effect getActionSpaceEffect() {
 		return actionSpaceEffect;
+	}
+
+
+	public void placeFamilyMember(FamilyMember familyMamber) {		
 	}
 }

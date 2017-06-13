@@ -28,7 +28,7 @@ public class Age {
 		for (int i = 1; i < 3; i++) {
 			currentRound = new Round(i, game);
 			currentRound.executeRound();
-			excommHandler.executeExcomm(ageNumber);
+			excommHandler.executeExcomm();
 		}
 	}
 

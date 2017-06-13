@@ -5,10 +5,11 @@ import java.lang.reflect.Member;
 import it.polimi.ingsw.GC_21.BOARD.*;
 
 public class FamilyMember {
-	protected final Player ownerPlayer;
-	protected Boolean placed;
-	protected Dice associatedDice;
-	protected final FamilyMemberColor familyMemberColor;
+	private final Player ownerPlayer;
+	private Boolean placed;
+	private Dice associatedDice;
+	private final FamilyMemberColor familyMemberColor;
+	private int actionValue;
 	
 	
 	public FamilyMember(Dice dice, Player player) {
@@ -16,8 +17,17 @@ public class FamilyMember {
 		this.placed = false;
 		this.familyMemberColor = dice.getdiceColor();
 		this.ownerPlayer = player;
+		this.actionValue = dice.getValue();
 	}
 	
+	public int getActionValue() {
+		return actionValue;
+	}
+
+	public void setActionValue(int actionValue) {
+		this.actionValue = actionValue;
+	}
+
 	public FamilyMember(Player player) {
 		this.associatedDice = new Dice();
 		this.placed = false;

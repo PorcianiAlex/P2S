@@ -11,7 +11,7 @@ public class Card {
 
 	protected final String name;
 	protected Possession requirements;
-	private Immediate immediateEffect;
+	private Effect immediateEffect;
 	private Effect secondaryEffect;
 
 	public Card(String name) {
@@ -37,9 +37,7 @@ public class Card {
 
 
 	public void callCraftEffect(Player player){
-		if (secondaryEffect instanceof ToCallDuringCraft){
-			secondaryEffect.activateEffect(player, null);
-		}
+		secondaryEffect.activateEffect(player, null);
 	}
 	
 	
@@ -51,7 +49,7 @@ public class Card {
 
 
 
-	public Immediate getImmediateEffect() {
+	public Effect getImmediateEffect() {
 		return immediateEffect;
 	}
 
@@ -67,7 +65,7 @@ public class Card {
 	}
 
 
-	public void setImmediateEffect(Immediate immediateEffect) {
+	public void setImmediateEffect(Effect immediateEffect) {
 		this.immediateEffect = immediateEffect;
 	}
 

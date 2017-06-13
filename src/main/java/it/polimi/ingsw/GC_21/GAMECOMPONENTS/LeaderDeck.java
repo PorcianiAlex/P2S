@@ -8,7 +8,7 @@ public class LeaderDeck extends Deck {
 
 	public LeaderDeck(Game game) {
 		super(game);
-		cards = cardCreator.LeadCardsCreate();
+		//cards = cardCreator.LeadCardsCreate();
 	}
 	
 }

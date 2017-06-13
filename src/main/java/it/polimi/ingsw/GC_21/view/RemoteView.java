@@ -100,7 +100,7 @@ public void createPlayer(Game game) {
 	game.attach(this);
 	adapter.out("music");
     Color color = null; 
-    Boolean ok = new Boolean(false);  
+    boolean ok = false;  
     while(!ok) { 
     adapter.out("Choose your color: \n 1: BLUE \n 2: RED \n 3: YELLOW \n 4: GREEN"); 
     String choice = adapter.in(); 
@@ -137,10 +137,10 @@ public boolean checkColor(Color color) {
   public void input() { 
 	game.attachCurrent(this);
     adapter.out("Choose your action: " 
-        + "\n 1: tower placement" 
-        + "\n 2: craft placement " 
-        + "\n 3: market placement " 
-        + "\n 4: council placement" 
+        + "\n (1) Tower placement" 
+        + "\n (2) Craft placement " 
+        + "\n (3) Market placement " 
+        + "\n (4) Council placement"                 + "\n (5) Pass"
         ); 
     String choice = adapter.in(); 
     switch (choice) { 
@@ -154,8 +154,8 @@ public boolean checkColor(Color color) {
      	marketPlacementInput.execute(this);
      	break; 
     case "4": CouncilPlacementInput councilPlacementInput = new CouncilPlacementInput();
-    	councilPlacementInput.execute(this); 
-    	break; 
+    	councilPlacementInput.execute(this);     	
+    	break;     	    case "5": PassInput passInput = new PassInput();		passInput.execute(this); 		break;
     default: adapter.out("Invalid Input");
     	input(); 
     	break; 
@@ -165,7 +165,7 @@ public boolean checkColor(Color color) {
  
   public void response(Action action) {
 	  boolean result = this.notifyObservers(action); 
-	    if (result==false){ 
+	    if (!result){ 
 	      adapter.out("Oh bischero! Something went wrong! Try again!"); 
 	      this.input(); 
 	      return; 
@@ -212,25 +212,7 @@ public boolean checkColor(Color color) {
 		adapter.out("\n Your resources: " + player.getMyPersonalBoard().toString() + 			  
 					"\n" + game.getBoard().toString()); 
 		this.input(); 
-	  } 
-	
-	@Override
-	public void updateExcomm() {
-		adapter.out("Bergoglio wants to know if you have been a great guy recently! \n"
-			+ "Be careful: if you disappoint him you will get a permanent malus!!!" + 
-			"\nDo you want to be excommunicated? Y - N");
-		String choiche = adapter.in();
-		switch (choiche) {
-		case "Y" : this.notifyObservers(new ExcommAction(player, game, true));
-		case "N" :	this.notifyObservers(new ExcommAction(player, game, false));
-		default: this.notifyObservers(new ExcommAction(player, game, false));
-		}
-	}
-	
-	
-	
-
-
+	  } 
   @Override 
   public void update(String string) { 
     adapter.out(string); 
@@ -272,7 +254,7 @@ public void updateCurrent(InputFromView inputFromView) {
 @Override
 public void updateString(String comunication) {
 	adapter.out(comunication);
-} 
+}@Overridepublic void updateExcomm(ExcommInput excommInput) {	excommInput.execute(this);	} 
 
 
 }
