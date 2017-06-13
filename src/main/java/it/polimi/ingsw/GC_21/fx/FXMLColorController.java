@@ -21,20 +21,20 @@ public class FXMLColorController extends MetaController {
     }
 	
 	 @FXML protected void Blue(ActionEvent event) throws Exception {
-		 client.sendGUI("1");	     
-	    }
+		 //setta blu e manda
+	 }
 	 @FXML protected void Red(ActionEvent event) throws Exception {
-		 client.sendGUI("2");	     
+		// client.sendGUI("2");	     
     }
 	 @FXML protected void Yellow(ActionEvent event) throws Exception {
-	     client.sendGUI("3");	     
+	    // client.sendGUI("3");	     
     }
 	 @FXML protected void Green(ActionEvent event) throws Exception {
-	     client.sendGUI("4");	     
+	    // client.sendGUI("4");	     
     }
 	 
 	 @FXML protected void Ready(ActionEvent event) throws Exception {
-	     client.sendGUI("start"); //se sei l'host fa partire effettivamente la partita altrimenti ti fa andare sulla nuova schrmata senza eseguire il gioco	     
+	   //  client.sendGUI("start"); //se sei l'host fa partire effettivamente la partita altrimenti ti fa andare sulla nuova schrmata senza eseguire il gioco	     
 	     //nuova scena
 	     Stage stage = (Stage) welcometext.getScene().getWindow();
 	        FXMLGame fxmlGame = new FXMLGame();

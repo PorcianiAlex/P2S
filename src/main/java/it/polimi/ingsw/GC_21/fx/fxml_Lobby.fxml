@@ -26,7 +26,7 @@
   <stylesheets>
     <URL value="@style.css" />
   </stylesheets>
-  <Text id="welcome-text" text="Match Lobby" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+  <Text id="welcome-text" style="fx-text-size: 32" text="Match Lobby" GridPane.columnIndex="1" GridPane.rowIndex="0" />
   <TextField fx:id="numberofmatch" prefWidth="92.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
   <Button onAction="#Join" text="Join" GridPane.columnIndex="3" GridPane.rowIndex="3" />
   <Button mnemonicParsing="false" onAction="#Create" text="Create new game" GridPane.columnIndex="1" GridPane.rowIndex="1" />

@@ -15,20 +15,20 @@ public class FXMLLobbyController extends MetaController {
 	@FXML
     public void initialize() {
         System.out.println("inizializzazione?!");
-		texttarget.setText(client.getMessage());
+		//texttarget.setText(client.getMessage());
        
     }
 
 	
 	  @FXML protected void Create(ActionEvent event) throws Exception {
 	    	System.out.println("crea premuto");
-		     client.sendGUI("C");
-		     this.openColorScene();
+	    	// mcrea e manda Lobby con C e 0 join
+	    	this.openColorScene();
 	 
 	    }
 	  
 	  @FXML protected void Join(ActionEvent event) throws Exception {
-	    	if("".equals(numberofmatch.getText())) {
+	    	/*if(join non nel campo dei possibili join oppure vuuoto) {
 	    		Alert alert = new Alert(AlertType.ERROR);
     			alert.setTitle("Error");
     			alert.setHeaderText("you didn't choose the number of match you want to join!");
@@ -37,12 +37,11 @@ public class FXMLLobbyController extends MetaController {
 	    		return;
 	    	} else {
 	    		String num = numberofmatch.getText();
-	    		System.out.println(num);
-	    		client.sendGUI(num);
-			     this.openColorScene();
+	    		crea e manda lobby senza C e con join = num
+	    		this.openColorScene();
 
-	    	}
-	    	
+	    	}*/
+	    	this.openColorScene();
 	    }
 	  
 	  public void openColorScene() {

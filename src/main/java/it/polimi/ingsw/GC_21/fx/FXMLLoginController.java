@@ -31,7 +31,7 @@ import javafx.stage.Stage;
  
 public class FXMLLoginController extends MetaController {
 	
-	
+	@FXML private Text welcometext;
 	@FXML private Text actiontarget;
 	@FXML private javafx.scene.control.TextField user;
 	@FXML private javafx.scene.control.TextField passwordField;
@@ -64,40 +64,32 @@ public class FXMLLoginController extends MetaController {
 			actiontarget.setText("You must choose connection!");
 			return;
 		}
+    	
     	String username = user.getText();
     	String pass = passwordField.getText();
-    	client.sendGUI("GUI");
-    	client.sendGUI(inorup);
-    	client.sendGUI(username);
-    	client.sendGUI(pass);
+       	
+    	// crea e manda loginInput con username, pass, inorup
     	
-    	while(true) {
-    	String arrivingmess = client.getMessage();
-    		if(arrivingmess.equals("these username and password doesn't exist!") ||
-    				arrivingmess.equals("Oh grullo! tu sei già loggato!") ||
-    				arrivingmess.equals("this username already exists!")) {
+    	
+    		/* if(messaggio = FAIL)) {
     			Alert alert = new Alert(AlertType.ERROR);
     			alert.setTitle("Login Error");
     			alert.setHeaderText(arrivingmess);
     			alert.setContentText("Ooops, there was an error!");
-
     			alert.showAndWait();
     			return;
     		}
-    		if(arrivingmess.equals("Hi "+username+", welcome to our Lobby!")) {
-    			break;
-    		}
-    	}
-    	
-    	Stage stage = (Stage) user.getScene().getWindow();
+    		if(messaggio = OK) {
+    	*/
+    	Stage stage = (Stage) welcometext.getScene().getWindow();
         FXMLLobby fxmlLobby = new FXMLLobby();
         try {
 			fxmlLobby.start(stage);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-    }
     
+    }
     
 
 }

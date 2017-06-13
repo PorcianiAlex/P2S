@@ -5,7 +5,7 @@ public class AdapterCLI implements AdapterView{
 
 	public AdapterCLI(it.polimi.ingsw.GC_21.view.AdapterConnection adapterConnection) {
 		super();
-		adapterConnection = adapterConnection;
+		this.adapterConnection = adapterConnection;
 	}
 
 
