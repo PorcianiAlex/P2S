@@ -19,7 +19,8 @@ public class SocketClientCLI extends SocketClient{
 		super.startClient();
 		 Scanner tastiera = new Scanner(System.in);
 		 
-  
+		 out.println("CLI");
+		 out.flush();
         while (true){
         	
             String stringa = tastiera.nextLine();

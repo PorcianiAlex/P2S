@@ -5,7 +5,7 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class SocketAdapter implements Adapter{
+public class SocketAdapter implements AdapterConnection{
 
 	private Socket socket;
 	private Scanner in;

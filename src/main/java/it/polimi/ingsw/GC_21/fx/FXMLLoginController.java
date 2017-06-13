@@ -66,7 +66,7 @@ public class FXMLLoginController extends MetaController {
 		}
     	String username = user.getText();
     	String pass = passwordField.getText();
-    	
+    	client.sendGUI("GUI");
     	client.sendGUI(inorup);
     	client.sendGUI(username);
     	client.sendGUI(pass);
@@ -89,7 +89,7 @@ public class FXMLLoginController extends MetaController {
     		}
     	}
     	
-    	Stage stage = (Stage) actiontarget.getScene().getWindow();
+    	Stage stage = (Stage) user.getScene().getWindow();
         FXMLLobby fxmlLobby = new FXMLLobby();
         try {
 			fxmlLobby.start(stage);

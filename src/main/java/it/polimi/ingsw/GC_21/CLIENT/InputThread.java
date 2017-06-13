@@ -29,6 +29,7 @@ public class InputThread extends Thread {
                 break;
             }
 			if(socketClient.getView() == ViewType.GUI){
+				System.out.println("thread: "+messaggioricevuto);
 				socketClient.setMessForGui(messaggioricevuto);
 			} else {
             System.out.println(messaggioricevuto);

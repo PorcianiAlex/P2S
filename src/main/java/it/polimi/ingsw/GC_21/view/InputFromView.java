@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_21.view;
 
 public abstract class InputFromView {
-	protected Adapter adapter;
+	protected AdapterConnection adapter;
 	
 	public void execute(RemoteView remoteView){
 		this.setAdapter(remoteView);
