@@ -16,5 +16,6 @@ public interface P2SObserver<C> {
 	public void updateCurrent(InputFromView inputFromView);
 	public void updateInit();
 	void updateExcomm(ExcommInput excommInput);
+	void updateExcomm();
 		
 }

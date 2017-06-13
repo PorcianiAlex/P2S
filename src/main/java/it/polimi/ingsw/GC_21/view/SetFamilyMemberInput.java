@@ -35,7 +35,7 @@ public class SetFamilyMemberInput extends InputFromView{
 	@Override
 	public void execute(RemoteView remoteView) {
 		super.execute(remoteView);
-		adapter.out("One of your family member can be upgraded to value "
+		adapterConnection.out("One of your family member can be upgraded to value "
 				+ newFamilyMemberValue);
 		FamilyMemberColor selectedFamilyMember = this.chooseFamilyMember();
 		SetFamilyMemberMessage setFamilyMemberMessage = new SetFamilyMemberMessage(newFamilyMemberValue, player, selectedFamilyMember);
@@ -43,14 +43,14 @@ public class SetFamilyMemberInput extends InputFromView{
 	}
 	
 	public FamilyMemberColor chooseFamilyMember(){ 
-	    adapter.out("Select Family Member [ N - O - W - B ]:"); 
-	    String choice = adapter.in(); 
+	    adapterConnection.out("Select Family Member [ N - O - W - B ]:"); 
+	    String choice = adapterConnection.in(); 
 	    switch (choice) { 
 	    case "N": return FamilyMemberColor.Neutral; 
 	    case "O": return FamilyMemberColor.Orange; 
 	    case "W": return FamilyMemberColor.White; 
 	    case "B": return FamilyMemberColor.Black;
-	    default: adapter.out("Invalid family member choice, try again!"); 
+	    default: adapterConnection.out("Invalid family member choice, try again!"); 
 	      return this.chooseFamilyMember(); 
 	    } 
 	  } 
