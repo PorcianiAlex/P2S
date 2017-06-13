@@ -26,9 +26,9 @@ public class ConvertInput extends InputFromView {
 	@Override
 	public void execute(RemoteView remoteView) {
 		super.execute(remoteView);
-		adapter.out("You can choose between two conversion!\n(1) or (2)?");
-		adapter.out("If you pay: " + toPay1.toString() + ", you'll get: " + toTake1.toString());
-		adapter.out("If you pay: " + toPay2.toString() + ", you'll get: " + toTake2.toString());
+		adapterConnection.out("You can choose between two conversion!\n(1) or (2)?");
+		adapterConnection.out("If you pay: " + toPay1.toString() + ", you'll get: " + toTake1.toString());
+		adapterConnection.out("If you pay: " + toPay2.toString() + ", you'll get: " + toTake2.toString());
 		boolean choice = this.chooseConversion();
 		if (choice==true){
 			ConversionMessage conversionMessage = new ConversionMessage(toPay1, toTake1);
@@ -41,13 +41,13 @@ public class ConvertInput extends InputFromView {
 	}
 
 	public boolean chooseConversion(){
-		String choice = adapter.in();
+		String choice = adapterConnection.in();
 		switch (choice) {
 		case "1":
 			return true;
 		case "2":
 			return false;
-		default: adapter.out("Invalid choice! Try again!");
+		default: adapterConnection.out("Invalid choice! Try again!");
 			return chooseConversion();
 		}
 	}

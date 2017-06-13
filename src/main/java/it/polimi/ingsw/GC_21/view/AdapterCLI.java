@@ -5,13 +5,14 @@ public class AdapterCLI implements AdapterView{
 
 	public AdapterCLI(it.polimi.ingsw.GC_21.view.AdapterConnection adapterConnection) {
 		super();
-		adapterConnection = adapterConnection;
+		this.adapterConnection = adapterConnection;
 	}
 
 
 
 	@Override
 	public void send(String string) {
+		System.out.println(string);
 		adapterConnection.out(string);
 	}
 

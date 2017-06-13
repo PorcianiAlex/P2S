@@ -5,6 +5,8 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Scanner;
 
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Message;
+
 public class SocketAdapter implements AdapterConnection{
 
 	private Socket socket;
@@ -45,14 +47,28 @@ public class SocketAdapter implements AdapterConnection{
 
 	@Override
 	public String in() {
+		System.out.println("Socket In");
 		return in.next();			
 	}
 
 	@Override
 	public void out(String string) {
+		System.out.println("Socket out" + string);
 		out.println(string);
 		out.flush();
 		
+	}
+
+	@Override
+	public void sendObject(Message message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public InputFromView receiveObject() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

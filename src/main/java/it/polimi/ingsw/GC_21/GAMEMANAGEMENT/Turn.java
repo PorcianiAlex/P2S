@@ -20,10 +20,11 @@ public class Turn {
 	
 	public void executeView() {
 		for (int i = 0; i < game.getPlayers().size(); i++) {
-			System.out.println(game.getPlayers().size());
 			game.notifyObservers("Age: "+ game.getCurrentAge().getAgeNumber() + "\nRound: " + game.getCurrentAge().getCurrentRound().getRoundNumber() 
 					+"\nTurn: "+turnNumber +"\nTurn of player :"+ game.getPlayers().get(i).getName() +" color: " +game.getPlayers().get(i).getPlayerColor().toString() );
+			game.notifyObservers(game.getBoard());
 		}
+		
 		game.notifyTurn();
 		System.out.println("\n \n \n");
 		

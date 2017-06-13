@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
 
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Message;
 import it.polimi.ingsw.GC_21.fx.ViewType;
+import it.polimi.ingsw.GC_21.view.InputFromView;
 import it.polimi.ingsw.GC_21.view.Server;
 import it.polimi.ingsw.GC_21.view.ServerInterface;
 
@@ -22,13 +24,30 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 	private Stack<String> stackforclient;
 	private ViewType view;
 	private Object LOCK = new Object(); // just something to lock on
+	private InputFromView inputToSend = null;
+	private Message receivedMessage;
 
 	
+	public Message getReceivedMessage() {
+		while (receivedMessage == null) {
+		}
+		return receivedMessage;
+	}
+
+
+
+	public void setReceivedMessage(Message receivedMessage) {
+		this.receivedMessage = receivedMessage;
+	}
+
+
+
 	public RmiClient(ViewType view) throws RemoteException {
 		super();
 		this.view=view;
 		this.messagesforserver = new ArrayList<String>();
 		this.stackforclient = new Stack<String>();
+		
 	}
 
 	
@@ -65,9 +84,11 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 
 	
 	public void clientReceive(String string) {
+		System.out.println("ClientReceive");
 		if ("music".equals(string)) {
 			Music.start();
-		} else if(view.equals(ViewType.GUI)) {
+		} 
+		if(view.equals(ViewType.GUI)) {
 			this.stackforclient.push(string);
 			System.out.println(string);
 		} else {
@@ -81,6 +102,34 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 		while(stackforclient.isEmpty()) {
 		}
 		return stackforclient.pop();
+	}
+
+
+
+	@Override
+	public void receiveObject(Message message) {
+		setReceivedMessage(message);
+	}
+
+
+
+	@Override
+	public InputFromView sendObjectToServer() throws RemoteException {
+		while (inputToSend == null) {			
+		}
+		return inputToSend;
+	}
+
+
+
+	public InputFromView getInputToSend() {
+		return inputToSend;
+	}
+
+
+
+	public void setInputToSend(InputFromView inputToSend) {
+		this.inputToSend = inputToSend;
 	}
 	
 

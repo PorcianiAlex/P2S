@@ -38,68 +38,23 @@ public class RemoteView extends Observable<Action> implements P2SObserver, Curre
    } 
 @Override 
 public void run() { 
-	 try {		 String viewType = adapterConnection.in();		 if (viewType.equals("GUI")) {			adapterView = new AdapterGUI();		}		 else if (viewType.equals("CLI")) {			adapterView = new AdapterCLI(adapterConnection);		} 
-		this.chooseUsername();
+	 
+		inputLogin();
 		notifyInit();
-	 } 	 catch (IOException | ParseException e) {
-		e.printStackTrace();
-	} } 
+	  	 } 
   
-  public void chooseGame(ControllerManager controllerManager) {
+  public void inputLogin() {	InputFromView inputFromView = adapterConnection.receiveObject();	inputFromView.execute(this);	}public void chooseGame(ControllerManager controllerManager) {
 	  adapterConnection.out("Hi "+ username +", welcome to our Lobby!");
 	  adapterView.send("\nPress 'C' to create a game or enter the number of the match you want to join:\n" + controllerManager.getGames().toString());
 		    String choice = adapterConnection.in(); 
 		    notifyControllerManager(choice);
 }
  
-public void chooseUsername() throws FileNotFoundException, IOException, ParseException {
-	adapterView.send("Hi, do you want to Register (1) or Login (2) ?");
-	boolean insert = true;
-    String choice = adapterConnection.in(); 
-    switch (choice) { 
-    case "1": insert = true; 
-    break; 
-    case "2": insert =false;; 
-    break;
-    default : chooseUsername();
-    break;
-    }
-	adapterView.send("Enter your username: ");
-	username = adapterConnection.in();
-	adapterView.send("Enter your password: ");
-	String psw = adapterConnection.in();
-	LoginMessage loginMessage = new LoginMessage(username, psw, insert);
-	notifyMessage(loginMessage);
-}public void createPlayer(Game game) {
+public void createPlayer(Game game) {
 	this.game = game;	game.attach(this);	adapterConnection.out("music");    Color color = null;     Boolean ok = new Boolean(false);      while(!ok) {     adapterView.send("Choose your color: \n 1: BLUE \n 2: RED \n 3: YELLOW \n 4: GREEN");     String choice = adapterConnection.in();     switch (choice) {     case "1": color=Color.Blue;     break;     case "2": color=Color.Red;     break;     case "3": color=Color.Yellow;     break;     case "4": color=Color.Green;     break;     default: color=Color.Blue;       break;     }       ok = this.checkColor(color);   }       player =  new Player(username, color, game);       } 
 
 public boolean checkColor(Color color) {     for (int i = 0; i < game.getPlayers().size(); i++) {       if(color.equals(game.getPlayers().get(i).getPlayerColor())){         adapterConnection.out("Oh grullo! This color is already in use, choose another one, please!");         return false;       }     }     return true;   }  
-  public void input() { 
-	game.attachCurrent(this);
-    adapterConnection.out("Choose your action: " 
-        + "\n 1: tower placement" 
-        + "\n 2: craft placement " 
-        + "\n 3: market placement " 
-        + "\n 4: council placement" 
-        ); 
-    String choice = adapterConnection.in(); 
-    switch (choice) { 
-    case "1": TowerPlacementInput towerPlacementInput = new TowerPlacementInput();
-    	towerPlacementInput.execute(this); 
-    	break; 
-    case "2": CraftPlacementInput craftPlacementInput = new CraftPlacementInput();
-		craftPlacementInput.execute(this);
-		break; 
-    case "3": MarketPlacementInput marketPlacementInput = new MarketPlacementInput();
-     	marketPlacementInput.execute(this);
-     	break; 
-    case "4": CouncilPlacementInput councilPlacementInput = new CouncilPlacementInput();
-    	councilPlacementInput.execute(this); 
-    	break; 
-    default: adapterConnection.out("Invalid Input");
-    	input(); 
-    	break; 
-    }     
+  public void input() { 	game.attachCurrent(this);	game.notifyObservers(game);    adapterConnection.out("Choose your action: "         + "\n 1: tower placement"         + "\n 2: craft placement "         + "\n 3: market placement "         + "\n 4: council placement"         );     String choice = adapterConnection.in();     switch (choice) {     case "1": TowerPlacementInput towerPlacementInput = new TowerPlacementInput();    	towerPlacementInput.execute(this);     	break;     case "2": CraftPlacementInput craftPlacementInput = new CraftPlacementInput();		craftPlacementInput.execute(this);		break;     case "3": MarketPlacementInput marketPlacementInput = new MarketPlacementInput();     	marketPlacementInput.execute(this);     	break;     case "4": CouncilPlacementInput councilPlacementInput = new CouncilPlacementInput();    	councilPlacementInput.execute(this);     	break;     default: adapterConnection.out("Invalid Input");    	input();     	break;     }     
      
   } 
  
@@ -178,8 +133,7 @@ public boolean checkColor(Color color) {     for (int i = 0; i < game.getPlayer
    
  
   @Override 
-  public boolean update(Object change) { 
-    return false; 
+  public boolean update(Object change) {	  return true; 
   } 
 
 @Override

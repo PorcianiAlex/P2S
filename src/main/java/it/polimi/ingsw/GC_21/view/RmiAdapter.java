@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 
 import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClientInterface;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Message;
 
 public class RmiAdapter implements AdapterConnection{
 
@@ -41,5 +42,30 @@ public class RmiAdapter implements AdapterConnection{
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public void sendObject(Message message) {
+		try {
+			rmiClient.receiveObject(message);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+
+	}
+
+	@Override
+	public InputFromView receiveObject() {
+		try {
+			return rmiClient.sendObjectToServer();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}	
+		
+	}
+	
+	
 
 }
