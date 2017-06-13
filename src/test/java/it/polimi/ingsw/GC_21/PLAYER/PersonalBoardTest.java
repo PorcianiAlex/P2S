@@ -9,7 +9,6 @@ import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.EFFECT.Convert;
 import it.polimi.ingsw.GC_21.EFFECT.CraftInfluencer;
 import it.polimi.ingsw.GC_21.EFFECT.ForEachGet;
-import it.polimi.ingsw.GC_21.EFFECT.Immediate;
 import it.polimi.ingsw.GC_21.EFFECT.PlacementInfluencer;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.CraftCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;

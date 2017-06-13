@@ -17,12 +17,10 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.controller.Controller;
 
 public class Main {
-
-	public static void main(String[] args) throws RemoteException {		
 	
+	public static void main(String[] args) throws RemoteException {		
 		//Server Socket start!
 		Server server1 = new Server(6620);
         server1.startServer();
-
 	}
 }

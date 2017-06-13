@@ -4,7 +4,7 @@ public abstract class InputFromView {
 	protected AdapterConnection adapter;
 	
 	public void execute(RemoteView remoteView){
-		
+		this.setAdapter(remoteView);
 	}
 	
 	public void setAdapter(RemoteView remoteView) {

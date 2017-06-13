@@ -4,6 +4,7 @@ import java.awt.List;
 
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Message;
 import it.polimi.ingsw.GC_21.UTILITIES.*;
+import it.polimi.ingsw.GC_21.view.ExcommInput;
 import it.polimi.ingsw.GC_21.view.InputFromView;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
@@ -26,7 +27,6 @@ public abstract class Observable<C> {
 	}
 	
 	public Observable() {
-
 		observers = new ArrayList<P2SObserver<C>>();
 	}
 
@@ -44,8 +44,11 @@ public abstract class Observable<C> {
 	}
 	
 	public void notifyCurrent(InputFromView inputFromView){
-		this.currentObserver.updateCurrent(inputFromView);
+		for (P2SObserver<C> o : this.observers) {
+			o.updateCurrent(inputFromView);
+		}
 	}
+	
 	
 	
 	public void notifyTurn() {	
@@ -55,9 +58,9 @@ public abstract class Observable<C> {
 		}
 	}
 
-	public void notifyExcomm() {	
+	public void notifyExcomm(ExcommInput excommInput){
 		for (P2SObserver<C> o : this.observers) {
-			o.updateExcomm();
+			o.updateExcomm(excommInput);
 		}
 	}
 	

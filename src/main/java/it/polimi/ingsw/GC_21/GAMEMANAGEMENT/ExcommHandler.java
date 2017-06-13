@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ExDeck;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ExcommunicationCard;
+import it.polimi.ingsw.GC_21.view.ExcommInput;
 
 public class ExcommHandler {
 	private ExcommunicationCard[] excommunicationCards;
@@ -15,6 +16,7 @@ public class ExcommHandler {
 		excommThresholds = new int[3];
 		for (int i = 1; i <= 3; i++) {
 			ExDeck exDeck = new ExDeck(game, i);
+			exDeck.shuffle();
 		    excommunicationCards[i-1] = (ExcommunicationCard) exDeck.getCards().get(0);
 		}
 		excommThresholds[0]=3;
@@ -47,8 +49,9 @@ public class ExcommHandler {
 		this.game = game;
 	}
 
-	public void executeExcomm(int age) {
-		game.notifyExcomm();
+	public void executeExcomm() {
+		ExcommInput excommInput = new ExcommInput();
+		game.notifyCurrent(excommInput);;
 	}
 
 	

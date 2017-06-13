@@ -13,7 +13,8 @@ import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforePlacement;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Message;
 import it.polimi.ingsw.GC_21.UTILITIES.P2SObserver;
-
+import it.polimi.ingsw.GC_21.view.ExcommInput;
+import it.polimi.ingsw.GC_21.view.InputFromView;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
 public class Controller implements P2SObserver<Action>{
@@ -93,7 +94,7 @@ public class Controller implements P2SObserver<Action>{
 	@Override
 	public void updateControllerManager(String choice) {
 		controllerManager.addRemoteView(remoteView);
-		if(choice.equals("C")) {
+		if("C".equals(choice)) {
 	        modelGame = controllerManager.createGame(this);
 	        remoteView.createPlayer(modelGame); 
 	        letStart(); 
@@ -109,16 +110,10 @@ public class Controller implements P2SObserver<Action>{
 	public void letStart() { 
 	    remoteView.getAdapterView().send("Write 'start' when you want to start the game! \nYou must be 2 at least"); 
 	    String string = remoteView.getAdapter().in(); 
-	    if(string.equals("start") && modelGame.getPlayers().size()>1 || modelGame.getPlayers().size()==4 ) { 
+	    if("start".equals(string) /*&& modelGame.getPlayers().size()>1 || modelGame.getPlayers().size()==4*/ ) { 
 	      modelGame.executeGame(); 
 	    } else { letStart(); } 
 	  } 
-
-	@Override
-	public void updateExcomm() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void update(String string) {
@@ -136,6 +131,18 @@ public class Controller implements P2SObserver<Action>{
 	@Override
 	public void updateInit() {
 		remoteView.chooseGame(controllerManager);
+	}
+
+	@Override
+	public void updateCurrent(InputFromView inputFromView) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateExcomm(ExcommInput excommInput) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

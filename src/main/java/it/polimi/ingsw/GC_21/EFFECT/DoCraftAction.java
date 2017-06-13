@@ -10,7 +10,7 @@ import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class DoCraftAction extends Immediate {
+public class DoCraftAction extends Effect {
 	private CraftType craftType;
 	protected int actionValueInfluencer;
 	protected int actionValueBonus;
@@ -24,15 +24,17 @@ public class DoCraftAction extends Immediate {
 	
 	@Override
 	// At first this effect give the player the rewards, then executes a craft
-	public void activateEffect(Player player, Action placementAction){
-		super.activateEffect(player, placementAction);
-		PlacementAction placementAction2 = (PlacementAction) placementAction;
+	public void activateEffect(Player player, Action action){
+		super.activateEffect(player, action);
+		PlacementAction placementAction = (PlacementAction) action;
 		if (actionValueInfluencer==0){
-			CraftAction craftAction = new CraftAction(player, craftType, placementAction2.getActionValue()+actionValueBonus);
+			CraftAction craftAction = new CraftAction(player, craftType, placementAction.getActionValue()+actionValueBonus);
+			game.notifyCurrentString("Thanks to an effect, you're going to execute a craft with value: " + craftAction.getActionValue());
 			craftAction.Execute();
 		}
 		else{
 			CraftAction craftAction = new CraftAction(player, craftType, actionValueInfluencer+actionValueBonus);
+			game.notifyCurrentString("Thanks to an effect, you're going to execute a craft with value: " + craftAction.getActionValue());
 			craftAction.Execute();
 		}
 	}

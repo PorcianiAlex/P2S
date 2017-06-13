@@ -8,14 +8,14 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
-public class RewardMessage extends Message{
+public class PrivilegeMessage extends Message{
 	private String choice;
 	private int privileges;
 	protected Possession rewards;
 	protected ArrayList<Possession> earnedRewards;
 	protected Possession rewardByPrivilege;
 	
-	public RewardMessage(String choice, Possession rewards, int privileges, ArrayList<Possession> earnedRewards) {
+	public PrivilegeMessage(String choice, Possession rewards, int privileges, ArrayList<Possession> earnedRewards) {
 		super();
 		this.privileges = privileges;
 		this.choice = choice;

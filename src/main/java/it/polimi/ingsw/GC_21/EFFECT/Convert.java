@@ -14,7 +14,7 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.view.ConvertInput;
 
 
-public class Convert extends Immediate implements ToCallDuringCraft{
+public class Convert extends Effect implements ToCallDuringCraft{
 	private Possession toPay1;
 	private Possession toTake1;
 	private Possession toPay2;
@@ -31,15 +31,17 @@ public class Convert extends Immediate implements ToCallDuringCraft{
 	@Override
 	public void activateEffect(Player player,Action action){
 		super.activateEffect(player, action);
-		if (!(toPay2.equals(new Possession()) && toTake2.equals(new Possession()))){
+		if (!toPay2.equals(new Possession()) && !toTake2.equals(new Possession())){ //if there's a second conversion
 			ConvertInput convertInput = new ConvertInput(toPay1, toTake1, toPay2, toTake2);
 			game.notifyCurrent(convertInput);
 		}
 		else{
-			if (toPay1.checkRequirements(player)==true)
+			if (toPay1.checkRequirements(player)){
 				payAndEarn(player, toTake1, toPay1);
+				game.notifyCurrentString("Conversion completed!");
+			}
 			else{
-				game.notifyString("You don't have enough resources to convert!");
+				game.notifyCurrentString("You don't have enough resources to convert!");
 				return;
 			}
 		}
@@ -64,19 +66,6 @@ public class Convert extends Immediate implements ToCallDuringCraft{
 		return toTake2;
 	}
 
-
-	public boolean chooseConversion(Player player) {
-		Scanner in = new Scanner(System.in);
-		System.out.println("Choose your conversion! Type 0 for Conversion 1, type 1 for Conversion 2!");
-		int choice = in.nextInt();
-		if (choice == 0) { return true; }
-		if (choice == 1) { return false; }
-		else {
-			System.out.println("Invalid input, try again!");
-			return chooseConversion(player);
-		}
-		
-	}
 
 	@Override
 	public String toString() {

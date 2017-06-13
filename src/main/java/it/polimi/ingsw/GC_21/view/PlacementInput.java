@@ -24,7 +24,7 @@ public class PlacementInput extends InputFromView{
 		    if (servantsToConvert > playerServant){ 
 		      adapter.out("You don't have enough servant to convert, try again!"); 
 		      return this.chooseHowManyServants(remoteView); 
-		    } 
+		    }
 		    else { 
 		      adapter.out("You are going to convert " + servantsToConvert + " servants"); 
 		      return servantsToConvert; 
@@ -37,8 +37,8 @@ public class PlacementInput extends InputFromView{
 		    case "N": return FamilyMemberColor.Neutral; 
 		    case "O": return FamilyMemberColor.Orange; 
 		    case "W": return FamilyMemberColor.White; 
-		    case "B": return FamilyMemberColor.Black; 
-		    default: adapter.out("Invalid floor choice, try again!"); 
+		    case "B": return FamilyMemberColor.Black;
+		    default: adapter.out("Invalid family member choice, try again!"); 
 		      return this.chooseFamilyMember(); 
 		    } 
 		  } 

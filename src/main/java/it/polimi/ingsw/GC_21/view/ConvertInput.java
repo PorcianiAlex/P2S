@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_21.view;
 import java.io.CharConversionException;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.ConversionMessage;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.ConvertMessage;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 
 public class ConvertInput extends InputFromView {
@@ -31,11 +31,11 @@ public class ConvertInput extends InputFromView {
 		adapter.out("If you pay: " + toPay2.toString() + ", you'll get: " + toTake2.toString());
 		boolean choice = this.chooseConversion();
 		if (choice==true){
-			ConversionMessage conversionMessage = new ConversionMessage(toPay1, toTake1);
+			ConvertMessage conversionMessage = new ConvertMessage(toPay1, toTake1);
 			remoteView.notifyMessage(conversionMessage);
 		}
 		else{
-			ConversionMessage conversionMessage = new ConversionMessage(toPay1, toTake1);
+			ConvertMessage conversionMessage = new ConvertMessage(toPay1, toTake1);
 			remoteView.notifyMessage(conversionMessage);
 		}
 	}

@@ -9,7 +9,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class CraftInfluencer extends Effect implements ToCallBeforeCraft {
+public class CraftInfluencer extends Effect implements ToCallBeforeCraft, Permanent {
 	private CraftType craftType;
 	private int craftInfluencer;
 	
@@ -43,6 +43,13 @@ public class CraftInfluencer extends Effect implements ToCallBeforeCraft {
 		if (action instanceof CraftAction && ((CraftAction) action).getCraftType().equals(this.craftType)){
 			int newActionValue = this.craftInfluencer + ((CraftAction) action).getActionValue();
 			((CraftAction) action).setActionValue(newActionValue);
+			game.notifyCurrentString("Your craft has just been influenced!");
+			if (craftInfluencer>=0){
+				game.notifyCurrentString("Craft Bonus: " + craftInfluencer);
+			}
+			else{
+				game.notifyCurrentString("Craft Malus: " + craftInfluencer);
+			}
 		}
 	}
 	
