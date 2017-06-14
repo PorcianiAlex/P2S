@@ -62,5 +62,7 @@ public class LoginInput extends InputFromView {
 		remoteView.setUsername(username);
 		
 	}
+	
+	
 
 }
