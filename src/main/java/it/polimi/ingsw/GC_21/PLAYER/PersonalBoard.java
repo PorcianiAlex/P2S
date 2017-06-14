@@ -53,6 +53,9 @@ public class PersonalBoard {
 		else if (effect instanceof ToCallBeforePlacement){
 			toCallBeforePlacementEffects.add((ToCallBeforePlacement)effect);
 		}
+		else if (effect instanceof ToCallWhenEarning){
+			toCallWhenEarningEffects.add((ToCallWhenEarning) effect);
+		}
 	}
 	
 	public void payPossession(Possession possession){

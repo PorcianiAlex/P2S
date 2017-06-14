@@ -5,7 +5,7 @@ import it.polimi.ingsw.GC_21.BOARD.CraftType;
 
 
 public class CraftPlacementInput extends PlacementInput {
-	
+
 	@Override
 	public void execute(RemoteView remoteView) {
 		super.setAdapter(remoteView);
