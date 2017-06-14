@@ -88,7 +88,7 @@ public class Controller implements P2SObserver<Action>{
 	
 	@Override
 	public void updateTurn() {
-		remoteView.chooseGame(controllerManager);		
+		//remoteView.chooseGame(controllerManager);		
 	}
 
 	@Override
@@ -130,7 +130,6 @@ public class Controller implements P2SObserver<Action>{
 
 	@Override
 	public void updateInit() {
-		remoteView.chooseGame(controllerManager);
 	}
 
 	@Override

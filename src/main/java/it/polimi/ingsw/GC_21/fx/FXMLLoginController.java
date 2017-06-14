@@ -76,6 +76,7 @@ public class FXMLLoginController extends MetaController {
     	LoginInput loginInput = new LoginInput(username, pass, insert);
     	client2.setInputToSend(loginInput);
     	CheckLoginMessage inputmessage = (CheckLoginMessage) client2.getReceivedMessage();
+    	//games = inputmessage.getGames();
     	
     		 if(!inputmessage.isResult()) {
     			Alert alert = new Alert(AlertType.ERROR);

@@ -7,6 +7,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_21.CLIENT.Connections;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
@@ -18,6 +19,7 @@ public class MetaController {
 	protected static RmiClient client2;
 	protected static SocketClient client1;
 	protected static Connections client;
+	protected ArrayList<String> games;
 	
 	public static void factorySocket() {
 	    try {

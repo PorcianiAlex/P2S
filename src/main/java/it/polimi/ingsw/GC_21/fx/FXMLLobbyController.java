@@ -15,7 +15,10 @@ public class FXMLLobbyController extends MetaController {
 	@FXML
     public void initialize() {
         System.out.println("inizializzazione?!");
-		//texttarget.setText(client.getMessage());
+		for (int i = 0; i < games.size(); i++) {
+		 texttarget.setText(games.get(i));	
+		}
+        
        
     }
 
