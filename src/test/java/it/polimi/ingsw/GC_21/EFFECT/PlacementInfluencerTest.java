@@ -17,7 +17,7 @@ public class PlacementInfluencerTest {
 	@Test
 	public void testActivateEffect() {
 		PlacementInfluencer testPlacementInfluencer = new PlacementInfluencer(2, DevCardType.Territory, new Possession());
-		Game game = new Game();
+		Game game = new Game("");
 		Player testPlayer = new Player("ale", Color.Blue, game);
 		game.addPlayers(testPlayer);
 		TowerPlacement testTowerPlacement = TowerPlacement.factoryTowerPlacement(testPlayer, FamilyMemberColor.Black, DevCardType.Building, 1, 1, game.getBoard());
@@ -31,7 +31,7 @@ public class PlacementInfluencerTest {
 	@Test
 	public void testActivateEffect3() {
 		PlacementInfluencer testPlacementInfluencer = new PlacementInfluencer(2, DevCardType.Building, new Possession());
-		Game game = new Game();
+		Game game = new Game("");
 		Player testPlayer = new Player("ale", Color.Blue, game);
 		game.addPlayers(testPlayer);
 		TowerPlacement testTowerPlacement = TowerPlacement.factoryTowerPlacement(testPlayer, FamilyMemberColor.Black, DevCardType.Building, 1, 1, game.getBoard());
@@ -44,7 +44,7 @@ public class PlacementInfluencerTest {
 	@Test
 	public void testActivateEffect2() {
 		PlacementInfluencer testPlacementInfluencer = new PlacementInfluencer(1, DevCardType.Building, new Possession());
-		Game game = new Game();
+		Game game = new Game("");
 		Player testPlayer = new Player("ale", Color.Blue, game);
 		game.addPlayers(testPlayer);
 		TowerPlacement testTowerPlacement = TowerPlacement.factoryTowerPlacement(testPlayer, FamilyMemberColor.Black, DevCardType.Building, 1, 1, game.getBoard());

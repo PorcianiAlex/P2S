@@ -16,7 +16,7 @@ public class PlacementActionTest {
 
 	@Test
 	public void callBeforePlacementEmptyArray() {
-		Game game = new Game();
+		Game game = new Game("");
 		Player testPlayer = new Player("aaa", Color.Blue, game);
 		testPlayer.getSpecificFamilyMember(FamilyMemberColor.Black).getAssociatedDice().setValue(3);
 		TowerPlacement testAction = TowerPlacement.factoryTowerPlacement(testPlayer, FamilyMemberColor.Black, DevCardType.Building, 3, 1, game.getBoard());
@@ -31,7 +31,7 @@ public class PlacementActionTest {
 	
 	@Test
 	public void callBeforePlacementEffectsBuildingsAndTerritories() {
-		Game game = new Game();
+		Game game = new Game("");
 		Player testPlayer = new Player("aaa", Color.Blue, game);
 		Possession testDiscount = new Possession(1, 1, 1, 0, 0, 0, 0);
 		PlacementInfluencer test1 = new PlacementInfluencer(1, DevCardType.Building, testDiscount);
@@ -54,7 +54,7 @@ public class PlacementActionTest {
 	
 	@Test
 	public void callBeforePlacementEffectsBuildings() {
-		Game game = new Game();
+		Game game = new Game("");
 		Player testPlayer = new Player("aaa", Color.Blue, game);
 		Possession testDiscount = new Possession(1, 1, 1, 0, 0, 0, 0);
 		PlacementInfluencer test1 = new PlacementInfluencer(1, DevCardType.Building, testDiscount);

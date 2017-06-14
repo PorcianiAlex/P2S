@@ -43,7 +43,6 @@ public class LoginMessage extends Message{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		CheckLoginMessage checkLoginMessage = new CheckLoginMessage(true, "Login ok", findGames());
 		controller.getRemoteView().getAdapter().sendObject(checkLoginMessage);
 		controller.getRemoteView().inputObject();
@@ -68,8 +67,9 @@ public class LoginMessage extends Message{
 		for (int i = 0; i < gamesInLobby.size(); i++) {
 			Game game = gamesInLobby.get(i);
 			gamesString.add(game.toString());
+
 		}
-		System.out.println(gamesString);
+		System.out.println(gamesString.toString());
 		return gamesString;
 	}
 	

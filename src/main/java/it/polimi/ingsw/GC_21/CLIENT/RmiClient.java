@@ -88,7 +88,6 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 
 	
 	public void clientReceive(String string) {
-		System.out.println("ClientReceive");
 		if ("music".equals(string)) {
 			Music.start();
 		} 
@@ -113,6 +112,7 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 	@Override
 	public void receiveObject(Message message) {
 		setReceivedMessage(message);
+
 	}
 
 
@@ -120,9 +120,11 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 	@Override
 	public InputFromView sendObjectToServer() throws RemoteException {
 		while (inputToSend == null) {		
-			System.out.println("sendobjtosrv");
+			System.out.println(inputToSend);
 		}
-		return inputToSend;
+		InputFromView inputFromView = inputToSend;
+		inputToSend = null;
+		return inputFromView;
 	}
 
 

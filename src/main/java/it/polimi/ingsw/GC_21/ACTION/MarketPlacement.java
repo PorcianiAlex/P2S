@@ -56,7 +56,7 @@ public class MarketPlacement extends PlacementAction {
 	
 	public static void main(String[] args) {
 		Scanner tastiera = new Scanner(System.in);
-		Game game = new Game();	
+		Game game = new Game("santa");	
 		Board board = game.getBoard();
 		Player playerInAction = new Player("Santa", Color.Blue, game);
 		Player playerInAction2 = new Player("Alex", Color.Green, game);

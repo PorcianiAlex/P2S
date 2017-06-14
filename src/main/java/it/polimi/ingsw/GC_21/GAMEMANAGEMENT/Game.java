@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.net.ssl.HostnameVerifier;
 
 import org.junit.experimental.theories.Theories;
 
@@ -21,6 +22,7 @@ public class Game extends Observable implements Serializable {
 	
 	private static int currentNumberOfGame = 0; 
 	private int id;
+	private String host;
 	private int numberOfPlayers;
 	private Board board;
 	private ArrayList<Player> players;
@@ -28,7 +30,15 @@ public class Game extends Observable implements Serializable {
 	private ExcommHandler excommHandler;
 	
 	
-	
+	public Game(String host) {
+		this.id = currentNumberOfGame + 1;
+		currentNumberOfGame++;
+		this.board = new Board(this);	
+		this.players = new ArrayList<Player>();
+		this.excommHandler = new ExcommHandler(this);
+		this.numberOfPlayers = 1;
+		this.host = host;
+		}
 	
 
 	public int getNumberOfPlayers() {
@@ -47,13 +57,7 @@ public class Game extends Observable implements Serializable {
 		this.excommHandler = excommHandler;
 	}
 
-	public Game() {
-		this.id = currentNumberOfGame + 1;
-		currentNumberOfGame++;
-		this.board = new Board(this);	
-		this.players = new ArrayList<Player>();
-		this.excommHandler = new ExcommHandler(this);
-		}
+	
 	
 	public void executeGame() {
 		for (int i = 1; i < 4; i++) {
@@ -111,7 +115,7 @@ public class Game extends Observable implements Serializable {
 	}
 
 	public String toString() {
-		String string = new String("game: " + id + " players: " + players.size() + " host: " + players.get(0).getName() + "\n");
+		String string = new String("game: " + id + " players: " + numberOfPlayers + " host: " + host + "\n");
 		return string;
 	}
 	

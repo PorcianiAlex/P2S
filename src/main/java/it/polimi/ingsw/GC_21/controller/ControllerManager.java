@@ -36,7 +36,8 @@ public class ControllerManager {
 		return controllers;
 	}
 	public Game createGame(Controller controller) {
-		Game game = new Game();
+		String host = controller.getRemoteView().getUsername();
+		Game game = new Game(host);
 		controllers.add(controller);
 		addGame(game);
 		return game;

@@ -34,7 +34,7 @@ public class CouncilPalace {
 			if (familyMembers.get(i) != null) {
 				Player player = familyMembers.get(i).getOwnerPlayer();
 				for (int k = i; k < familyMembers.size(); k++) {//set to null all family members of the same player taken for the first time (cycle with i)
-					if (familyMembers.get(k).equals(player)) {
+					if (familyMembers.get(k).getOwnerPlayer().equals(player)) {
 						familyMembers.set(k, null);
 					}
 				}

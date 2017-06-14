@@ -22,6 +22,7 @@ public class LobbyMessage extends Message {
 	
 	@Override
 	public boolean convert() {
+		System.out.println("In lobby Message");
 		controllerManager = controller.getControllerManager();
 		remoteView  = controller.getRemoteView();
 		controllerManager.addRemoteView(remoteView);
@@ -33,7 +34,8 @@ public class LobbyMessage extends Message {
 	        remoteView.createPlayer(modelGame); 
 	        letStart(); 
 	    } 
-	    else if (joined < controllerManager.getGames().size() && joined > 0) {
+	    else if (joined <=  controllerManager.getGames().size() && joined > 0) {
+	    	System.out.println("Number: " + joined);
 	    	 modelGame = controllerManager.getGames().get(joined-1); //take the selected game
 		        CheckLoginMessage checkLoginMessage = new CheckLoginMessage(true, "Lobby ok", null); //TODO create a superclass message
 		        remoteView.getAdapter().sendObject(checkLoginMessage);
@@ -44,6 +46,7 @@ public class LobbyMessage extends Message {
 	    else {
 	        CheckLoginMessage checkLoginMessage = new CheckLoginMessage(false, "Your game choice is not valid", null); //TODO create a superclass message
 	        remoteView.getAdapter().sendObject(checkLoginMessage);
+	        remoteView.inputObject();
 
 
 		}   
