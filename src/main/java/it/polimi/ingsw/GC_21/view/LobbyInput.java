@@ -59,7 +59,8 @@ public class LobbyInput extends InputFromView{
 				chooseGame(controllerManager);
 			}
 			
-			CheckLobbyMessage checkLobbyMessage = new CheckLobbyMessage(created, joined);
+			LobbyMessage checkLobbyMessage = new LobbyMessage(created, joined);
+			remoteView.notifyMessage(checkLobbyMessage);
 
 	}
 	

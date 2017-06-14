@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.json.simple.parser.ParseException;
 
@@ -29,21 +30,23 @@ public class LoginMessage extends Message{
 				controller.getRemoteView().getAdapter().out("these username and password doesn't exist!");
 			}
 			if(!checkLoggedUsers(username) && insert==false) {
-				CheckLoginMessage checkLoginMessage = new CheckLoginMessage(false, "Oh grullo! tu sei già loggato!");
+				CheckLoginMessage checkLoginMessage = new CheckLoginMessage(false, "Oh grullo! tu sei già loggato!", null);
 				controller.getRemoteView().getAdapter().sendObject(checkLoginMessage);
-				controller.getRemoteView().inputLogin();
+				controller.getRemoteView().inputObject();
 			}
 			if (ok == false) {
-				CheckLoginMessage checkLoginMessage = new CheckLoginMessage(false, "Login Error");
+				CheckLoginMessage checkLoginMessage = new CheckLoginMessage(false, "Login Error", null);
 				controller.getRemoteView().getAdapter().sendObject(checkLoginMessage);
-				controller.getRemoteView().inputLogin();
+				controller.getRemoteView().inputObject();
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		CheckLoginMessage checkLoginMessage = new CheckLoginMessage(true, "Login ok");
+		
+		CheckLoginMessage checkLoginMessage = new CheckLoginMessage(true, "Login ok", findGames());
 		controller.getRemoteView().getAdapter().sendObject(checkLoginMessage);
+		controller.getRemoteView().inputObject();
 		return true;
 		
 	}
@@ -57,9 +60,23 @@ public class LoginMessage extends Message{
 	    } 
 	    return true; 
 	  }
-
-
 	
+	public ArrayList<String> findGames() {
+		ArrayList<String> gamesString = new ArrayList<String>();
+		gamesString.add("Games:");
+		ArrayList<Game> gamesInLobby = controller.getControllerManager().getGames();
+		for (int i = 0; i < gamesInLobby.size(); i++) {
+			Game game = gamesInLobby.get(i);
+			gamesString.add(game.toString());
+		}
+		return gamesString;
+	}
 	
-
 }
+
+
+
+	
+	
+
+
