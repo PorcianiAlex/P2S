@@ -11,6 +11,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
 
 import org.omg.PortableInterceptor.USER_EXCEPTION;
 
@@ -33,6 +34,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
  
 public class FXMLLoginController extends MetaController {
+
 	
 	@FXML private Text welcometext;
 	@FXML private Text actiontarget;
@@ -76,8 +78,8 @@ public class FXMLLoginController extends MetaController {
     	LoginInput loginInput = new LoginInput(username, pass, insert);
     	client2.setInputToSend(loginInput);
     	CheckLoginMessage inputmessage = (CheckLoginMessage) client2.getReceivedMessage();
-    	//games = inputmessage.getGames();
-    	
+    	games = inputmessage.getGames();
+    	System.out.println("from login:" + inputmessage.getString());
     		 if(!inputmessage.isResult()) {
     			Alert alert = new Alert(AlertType.ERROR);
     			alert.setTitle("Login Error");

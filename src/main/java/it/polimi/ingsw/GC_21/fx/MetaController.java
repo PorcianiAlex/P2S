@@ -19,7 +19,8 @@ public class MetaController {
 	protected static RmiClient client2;
 	protected static SocketClient client1;
 	protected static Connections client;
-	protected ArrayList<String> games;
+	protected static ArrayList<String> games = new ArrayList<String>();
+	
 	
 	public static void factorySocket() {
 	    try {
