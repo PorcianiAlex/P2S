@@ -32,7 +32,10 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 		while (receivedMessage == null) {
 			System.out.println("getrecmsg");
 		}
-		return receivedMessage;
+		Message message = receivedMessage;
+		receivedMessage = null;
+		System.out.println("In get Received: " + receivedMessage);
+		return message;
 	}
 
 
