@@ -5,6 +5,8 @@ import java.util.*;
 import javax.swing.text.View;
 
 import it.polimi.ingsw.GC_21.BOARD.Color;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderCard;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.OncePerTurnLeaderCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.view.RemoteView;
@@ -16,11 +18,11 @@ public class Player {
 	private Color playerColor;
 	private PersonalBoard myPersonalBoard;
 	private Game game;
-	
-	
-	
-	
-	
+	private boolean checkOnMP;
+	private boolean overchargeOnBusyTower;
+	private ArrayList<LeaderCard> leaderCards;
+	private ArrayList<OncePerTurnLeaderCard> playedOncePerTurnLeaderCards;
+
 	public Player(String name, Color playerColor, Game game) {
 		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), this);
 		this.name = name;
@@ -30,14 +32,46 @@ public class Player {
 		this.myPersonalBoard = new PersonalBoard(this);
 		this.myPersonalBoard.getMyPossession().add(new Possession(5, 5, 5, 5, 5, 5, 5));
 		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), this);
+		this.checkOnMP = false;
+		this.overchargeOnBusyTower = false;
+	}
+public ArrayList<LeaderCard> getLeaderCards() {
+		return leaderCards;
 	}
 
-	/*public void printOnPlayer(String string){
-		this.myView.getAdapter().out(string);
 
-	}*/
-	
-	
+	public void setLeaderCards(ArrayList<LeaderCard> leaderCards) {
+		this.leaderCards = leaderCards;
+	}
+
+
+
+
+	public ArrayList<OncePerTurnLeaderCard> getPlayedOncePerTurnLeaderCards() {
+		return playedOncePerTurnLeaderCards;
+	}
+	public void setPlayedOncePerTurnLeaderCards(ArrayList<OncePerTurnLeaderCard> playedOncePerTurnLeaderCards) {
+		this.playedOncePerTurnLeaderCards = playedOncePerTurnLeaderCards;
+	}
+	public boolean isCheckOnMP() {
+		return checkOnMP;
+	}
+
+
+	public void setCheckOnMP(boolean checkOnMP) {
+		this.checkOnMP = checkOnMP;
+	}
+
+
+	public boolean isOverchargeOnBusyTower() {
+		return overchargeOnBusyTower;
+	}
+
+
+	public void setOverchargeOnBusyTower(boolean overchargeOnBusyTower) {
+		this.overchargeOnBusyTower = overchargeOnBusyTower;
+	}
+
 
 	public String getName() {
 		return name;

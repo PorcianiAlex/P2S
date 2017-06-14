@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 
 import it.polimi.ingsw.GC_21.EFFECT.Convert;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.PossesionCreator;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 
 public class ConvertMessage extends Message {

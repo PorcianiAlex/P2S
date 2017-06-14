@@ -299,6 +299,13 @@ public class Possession {
 				+ ", Faith Points: " + faithPoints.toString() + ", Military Points: " + militaryPoints.toString()
 				+ ", Victory Points:" + victoryPoints.toString() +"]";
 	}
+
+	public void multiplyResource(int multiplier) {
+		this.coins.setValue(coins.getValue() * multiplier);
+		this.woods.setValue(woods.getValue() * multiplier);
+		this.stones.setValue(stones.getValue() * multiplier);
+		this.servants.setValue(servants.getValue() * multiplier);
+	}
 	
 
 	

@@ -77,7 +77,7 @@ public class TowerPlacement extends PlacementAction {
 			if(selectedActionSpace.getActionSpaceEffect()!=null) {
 				discount.add(selectedActionSpace.getActionSpaceEffect().getRewards());//if the Space requirement is satisfied I can use the eventual SpaceBonus to get the card
 			}
-		    if (checkBusyTower()) {
+		    if (checkBusyTower() && !playerInAction.isOverchargeOnBusyTower()) {
 		    	Coins moneyToPay = new Coins(3);
 				overcharge.addItemToPossession(moneyToPay);
 			}
@@ -121,7 +121,7 @@ public class TowerPlacement extends PlacementAction {
 				return false;
 		    }
 			OwnedCards ownedTerritoryCards = myPersonalBoard.getSpecificOwnedCards(DevCardType.Territory);
-			if(selectedCardType.equals(DevCardType.Territory) 
+			if(selectedCardType.equals(DevCardType.Territory) && !playerInAction.isCheckOnMP()
 					&& ownedTerritoryCards.getOwnedCardsnumber() > 2
 					&& !myPersonalBoard.getMyPossession().compare(ownedTerritoryCards.getOwnedCards()[ownedTerritoryCards.getOwnedCardsnumber()].getPossession())){
 				// check on MilitaryPoint Required taking a territoryCard. The requirement is saved in the correct personalCardPlace with the attribute Possession 
