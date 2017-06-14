@@ -13,7 +13,6 @@ import it.polimi.ingsw.GC_21.EFFECT.PlacementInfluencer;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.CraftCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.PossesionCreator;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ResourceType;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;

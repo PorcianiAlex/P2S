@@ -7,6 +7,12 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 public class PermanentLeaderCard extends LeaderCard{
 	private Permanent permanentEffect;
 	
+	@Override
+	public void callEffect(Player player) {
+		Effect effectToAdd = (Effect) permanentEffect;
+		player.getMyPersonalBoard().addPermanentEffect(effectToAdd);
+	}
+
 	public PermanentLeaderCard(String name, int numberOfVenturesRequired, int numberOfCharactersRequired,
 			int numberOfBuildingRequired, int numberOfTerritoryRequired, boolean played, Permanent permanentEffect) {
 		super(name, numberOfVenturesRequired, numberOfCharactersRequired, numberOfBuildingRequired,
@@ -63,10 +69,5 @@ public class PermanentLeaderCard extends LeaderCard{
 		this.permanentEffect = permanentEffect;
 	}
 
-	@Override
-	public void callEffect(Player player) {
-		Effect effectToAdd = (Effect) permanentEffect;
-		player.getMyPersonalBoard().addPermanentEffect(effectToAdd);
-	}
 
 }

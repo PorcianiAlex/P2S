@@ -25,7 +25,17 @@ public abstract class LeaderCard {
 
 
 	public boolean checkRequirements(Player player){
-		return true;
+		return player.getMyPersonalBoard().getMyPossession().compare(requirements) && this.checkOnCards(player);
+	}
+
+
+
+	private boolean checkOnCards(Player player) {
+		boolean enoughVentures = player.getMyPersonalBoard().getSpecificOwnedCards(DevCardType.Venture).getOwnedCardsnumber() >= numberOfVenturesRequired;
+		boolean enoughTerritories = player.getMyPersonalBoard().getSpecificOwnedCards(DevCardType.Territory).getOwnedCardsnumber() >= numberOfTerritoryRequired;
+		boolean enoughCharacters = player.getMyPersonalBoard().getSpecificOwnedCards(DevCardType.Character).getOwnedCardsnumber() >= numberOfCharactersRequired;
+		boolean enoughBuildings = player.getMyPersonalBoard().getSpecificOwnedCards(DevCardType.Building).getOwnedCardsnumber() >= numberOfBuildingRequired;
+		return enoughBuildings && enoughCharacters && enoughVentures && enoughTerritories;
 	}
 
 

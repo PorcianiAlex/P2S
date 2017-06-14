@@ -9,6 +9,8 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
+import it.polimi.ingsw.GC_21.view.CraftInput;
+import it.polimi.ingsw.GC_21.view.CraftPlacementInput;
 
 public class DoCraftAction extends Effect {
 	private CraftType craftType;
@@ -28,14 +30,15 @@ public class DoCraftAction extends Effect {
 		super.activateEffect(player, action);
 		PlacementAction placementAction = (PlacementAction) action;
 		if (actionValueInfluencer==0){
-			CraftAction craftAction = new CraftAction(player, craftType, placementAction.getActionValue()+actionValueBonus);
+			/*CraftAction craftAction = new CraftAction(player, craftType, placementAction.getActionValue()+actionValueBonus);
 			game.notifyCurrentString("Thanks to an effect, you're going to execute a craft with value: " + craftAction.getActionValue());
-			craftAction.Execute();
+			craftAction.Execute();*/
+			CraftInput craftInput = new CraftInput(craftType, placementAction.getActionValue() + actionValueBonus);
+			game.notifyCurrent(craftInput);
 		}
 		else{
-			CraftAction craftAction = new CraftAction(player, craftType, actionValueInfluencer+actionValueBonus);
-			game.notifyCurrentString("Thanks to an effect, you're going to execute a craft with value: " + craftAction.getActionValue());
-			craftAction.Execute();
+			CraftInput craftInput = new CraftInput(craftType, actionValueInfluencer);
+			game.notifyCurrent(craftInput);
 		}
 	}
 }
