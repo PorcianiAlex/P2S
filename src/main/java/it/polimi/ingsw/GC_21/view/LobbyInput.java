@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import org.json.simple.parser.ParseException;
 
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.CheckLobbyMessage;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.LoginMessage;
 import it.polimi.ingsw.GC_21.controller.ControllerManager;
 
