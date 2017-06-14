@@ -69,6 +69,7 @@ public class LoginMessage extends Message{
 			Game game = gamesInLobby.get(i);
 			gamesString.add(game.toString());
 		}
+		System.out.println(gamesString);
 		return gamesString;
 	}
 	

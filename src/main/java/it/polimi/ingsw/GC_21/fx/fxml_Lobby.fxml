@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
 <GridPane id="grid" prefHeight="536.0000558593674" prefWidth="776.9999000000025" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.ingsw.GC_21.fx.FXMLLobbyController">
   <columnConstraints>
@@ -30,9 +31,5 @@
   <TextField fx:id="numberofmatch" prefWidth="92.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
   <Button onAction="#Join" text="Join" GridPane.columnIndex="3" GridPane.rowIndex="3" />
   <Button mnemonicParsing="false" onAction="#Create" text="Create new game" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-  <Text fx:id="texttarget" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="2">
-    <GridPane.margin>
-      <Insets bottom="100.0" />
-    </GridPane.margin>
-  </Text>
+  <TextFlow fx:id="texttarget"  GridPane.columnIndex="1" GridPane.rowIndex="2" />
 </GridPane>
