@@ -20,15 +20,15 @@ public class FXMLLobbyController extends MetaController {
     }
 
 	
-	  @FXML protected void Create(ActionEvent event) throws Exception {
+	  @FXML protected void Create(ActionEvent event)  {
 	    	System.out.println("crea premuto");
 	    	// mcrea e manda Lobby con C e 0 join
 	    	this.openColorScene();
 	 
 	    }
 	  
-	  @FXML protected void Join(ActionEvent event) throws Exception {
-	    	/*if(join non nel campo dei possibili join oppure vuuoto) {
+	  @FXML protected void Join(ActionEvent event)  {
+	    	/*if(join non nel campo dei possibili join oppure vuoto) {
 	    		Alert alert = new Alert(AlertType.ERROR);
     			alert.setTitle("Error");
     			alert.setHeaderText("you didn't choose the number of match you want to join!");
