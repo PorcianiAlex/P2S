@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_21.view;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Scanner;
 
 import org.json.simple.parser.ParseException;
 
@@ -27,39 +28,30 @@ public class LoginInput extends InputFromView {
 
 	@Override
 	public void execute(RemoteView remoteView) {
-		try {
 			super.execute(remoteView);
-			if (CLI) {
-				chooseUsername(remoteView);
-			}
+			remoteView.setUsername(username);
 			LoginMessage loginMessage = new LoginMessage(username, psw, insert);
 			remoteView.notifyMessage(loginMessage);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
 	}
 	
-	public void chooseUsername(RemoteView remoteView) throws FileNotFoundException, IOException, ParseException {
-		adapterConnection.out("Hi, do you want to Register (1) or Login (2) ?");
+	public void chooseUsername() throws FileNotFoundException, IOException, ParseException {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Hi, do you want to Register (1) or Login (2) ?");
 		insert = true;
-	    String choice = adapterConnection.in(); 
+	    String choice = scanner.nextLine(); 
 	    switch (choice) { 
 	    case "1": insert = true; 
 	    break; 
 	    case "2": insert =false;; 
 	    break;
-	    default : chooseUsername(remoteView);
+	    default : chooseUsername();
 	    break;
 	    }
-		adapterConnection.out("Enter your username: ");
-		username = adapterConnection.in();
-		adapterConnection.out("Enter your password: ");
-		psw = adapterConnection.in();
-		remoteView.setUsername(username);
+	    System.out.println("Enter your username: ");
+		username = scanner.nextLine();
+		System.out.println("Enter your password: ");
+		psw = scanner.nextLine();
+		scanner.close();
 		
 	}
 	
