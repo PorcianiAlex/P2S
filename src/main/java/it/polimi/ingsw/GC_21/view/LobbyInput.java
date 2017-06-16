@@ -11,7 +11,6 @@ import it.polimi.ingsw.GC_21.controller.LobbyController;
 import it.polimi.ingsw.GC_21.controller.LoginController;
 
 public class LobbyInput extends InputForm{
-
 	private boolean created = false;
 	private int joined;
 	private ControllerManager controllerManager;
@@ -19,11 +18,9 @@ public class LobbyInput extends InputForm{
 	
 	
 	public LobbyInput() {
-		super();
 	}
 
 	public LobbyInput(boolean created, int joined) {
-		super();
 		this.created = created;
 		this.joined = joined;
 	}

@@ -10,6 +10,17 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class CreatePlayerInput extends InputForm {
 	private Color color;
+	
+	
+
+	public CreatePlayerInput(Color color) {
+		this.color = color;
+	}
+
+
+	public CreatePlayerInput() {
+	}
+
 
 	@Override
 	public void execute(RemoteView remoteView) {
@@ -41,7 +52,7 @@ public class CreatePlayerInput extends InputForm {
 	public void letStart(RemoteView remoteView) { 
 	    remoteView.getAdapter().out("Write 'start' when you want to start the game! \nYou must be 2 at least"); 
 	    String string = remoteView.getAdapter().in(); 
-	    if("start".equals(string) /*&& modelGame.getPlayers().size()>1 || modelGame.getPlayers().size()==4*/ ) { 
+	    if("start".equals(string) && remoteView.getGame().getPlayers().size()>1 || remoteView.getGame().getPlayers().size()==4 ) { 
 	      remoteView.getGame().executeGame(); 
 	    } else { letStart(remoteView); } 
 	  } 
