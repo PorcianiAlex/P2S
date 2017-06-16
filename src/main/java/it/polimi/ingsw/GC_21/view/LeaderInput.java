@@ -12,17 +12,17 @@ public class LeaderInput extends InputForm{
 	public void execute(RemoteView remoteView) {
 		super.execute(remoteView);
 		adapterConnection.out("Do you want to turn a Leader Card or to play one of your activated Leader Card?");
-		adapterConnection.out("/n(1) Turn Leader Card");
-		adapterConnection.out("/n(2) Play Leader Card");
+		adapterConnection.out("\n(1) Turn Leader Card");
+		adapterConnection.out("\n(2) Play Leader Card");
 		String choice = adapterConnection.in();
 		switch (choice){
 		case "1":	LeaderCard leaderToTurn = this.chooseLeaderToTurn(remoteView.getPlayer().getLeaderCards());
-					LeaderAction leaderTurn = new LeaderAction(remoteView.getPlayer(), leaderToTurn,  true);
+					LeaderAction leaderTurn = new LeaderAction(remoteView.getPlayer(), leaderToTurn,  true, remoteView.getGame());
 					remoteView.response(leaderTurn);
 					break;
 		case "2": 	LeaderCard leaderToPlay = this.chooseLeaderToPlay(remoteView.getPlayer().getPlayedOncePerTurnLeaderCards());
 					if (leaderToPlay != null){
-						LeaderAction leaderPlay = new LeaderAction(remoteView.getPlayer(), leaderToPlay, false);
+						LeaderAction leaderPlay = new LeaderAction(remoteView.getPlayer(), leaderToPlay, false, remoteView.getGame());
 						remoteView.response(leaderPlay);}
 					else{
 						remoteView.input();

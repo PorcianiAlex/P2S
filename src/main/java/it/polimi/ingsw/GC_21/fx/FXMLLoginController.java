@@ -16,11 +16,10 @@ import java.util.ArrayList;
 import org.omg.PortableInterceptor.USER_EXCEPTION;
 
 import it.polimi.ingsw.GC_21.CLIENT.CheckLoginMessage;
+import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
 import it.polimi.ingsw.GC_21.CLIENT.SocketClient;
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.CheckLoginMessage;
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.LoginMessage;
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Message;
+
 import it.polimi.ingsw.GC_21.view.LoginInput;
 import it.polimi.ingsw.GC_21.view.ServerInterface;
 import javafx.application.Application;
@@ -76,7 +75,7 @@ public class FXMLLoginController extends MetaController {
     	String pass = passwordField.getText();
        	
     	// crea e manda loginInput con username, pass, inorup
-    	Message logmess = client2.getReceivedMessage();
+    	MessageToClient logmess = client2.getReceivedMessage();
     	LoginInput loginInput = new LoginInput(username, pass, insert);
     	client2.setInputToSend(loginInput);
     	CheckLoginMessage inputmessage = (CheckLoginMessage) client2.getReceivedMessage();

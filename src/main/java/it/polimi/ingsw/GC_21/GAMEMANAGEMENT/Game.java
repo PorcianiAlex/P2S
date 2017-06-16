@@ -12,6 +12,7 @@ import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderDeck;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 import it.polimi.ingsw.GC_21.UTILITIES.Observable;
@@ -28,6 +29,7 @@ public class Game extends Observable implements Serializable {
 	private ArrayList<Player> players;
 	private Age currentAge;
 	private ExcommHandler excommHandler;
+	private LeaderDeck leaderDeck;
 	
 	
 	public Game(String host) {
@@ -38,8 +40,33 @@ public class Game extends Observable implements Serializable {
 		this.excommHandler = new ExcommHandler(this);
 		this.numberOfPlayers = 1;
 		this.host = host;
+		this.leaderDeck = new LeaderDeck(this);
 		}
 	
+
+	public LeaderDeck getLeaderDeck() {
+		return leaderDeck;
+	}
+
+
+	public void setLeaderDeck(LeaderDeck leaderDeck) {
+		this.leaderDeck = leaderDeck;
+	}
+
+
+	public Game(int id, String host, int numberOfPlayers, Board board, ArrayList<Player> players, Age currentAge,
+			ExcommHandler excommHandler, LeaderDeck leaderDeck) {
+		super();
+		this.id = id;
+		this.host = host;
+		this.numberOfPlayers = numberOfPlayers;
+		this.board = board;
+		this.players = players;
+		this.currentAge = currentAge;
+		this.excommHandler = excommHandler;
+		this.leaderDeck = leaderDeck;
+	}
+
 
 	public int getNumberOfPlayers() {
 		return numberOfPlayers;
