@@ -2,9 +2,10 @@ package it.polimi.ingsw.GC_21.view;
 
 import java.rmi.RemoteException;
 
+import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClientInterface;
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Message;
+import it.polimi.ingsw.GC_21.controller.ControllerForm;
 
 public class RmiAdapter implements AdapterConnection{
 
@@ -43,7 +44,7 @@ public class RmiAdapter implements AdapterConnection{
 	}
 
 	@Override
-	public void sendObject(Message message) {
+	public void sendObject(MessageToClient message) {
 		try {
 			rmiClient.receiveObject(message);
 		} catch (RemoteException e) {
@@ -54,7 +55,7 @@ public class RmiAdapter implements AdapterConnection{
 	}
 
 	@Override
-	public InputFromView receiveObject() {
+	public InputForm receiveObject() {
 		try {
 			return rmiClient.sendObjectToServer();
 		} catch (RemoteException e) {

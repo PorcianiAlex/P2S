@@ -36,7 +36,7 @@ public class MainClient {
 	default: ; factorySocket();
 		break;
 	}
-    
+        
    }
     	
     public static void factorySocket() {
@@ -44,6 +44,8 @@ public class MainClient {
 			String ip = InetAddress.getLocalHost().getHostAddress();
 			SocketClientCLI client1 = new SocketClientCLI(ip, 6620);
 			client1.startClient();
+			 RunCli runCli = new RunCli(client1);
+		     runCli.start();
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e2) {
@@ -58,6 +60,8 @@ public class MainClient {
         ServerInterface srv = (ServerInterface) reg.lookup("server"); 
     	RmiClient client2 = new RmiClient(ViewType.CLI);
         srv.join(client2);
+        RunCli runCli = new RunCli(client2);
+        runCli.start();
 	}
     
 }

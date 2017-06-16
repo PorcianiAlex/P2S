@@ -89,6 +89,18 @@ public class SocketClient implements Connections {
 		return stackforclient.pop();
 	}
 
+	@Override
+	public MessageToClient getReceivedMessage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Scanner getKeyboard() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 

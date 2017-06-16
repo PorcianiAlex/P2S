@@ -6,7 +6,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.PrivilegeMessage;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class PrivilegeInput extends InputFromView {
+public class PrivilegeInput extends InputForm {
 	int privilegesNumber;
 	protected Possession rewards;
 	protected ArrayList<Possession> earnedRewards;
@@ -27,7 +27,7 @@ public class PrivilegeInput extends InputFromView {
 		adapterConnection.out("Choose your reward! Type: \n (1) 1x Woods 1 x Stones \n (2) 2x Servants \n (3) 2x Coins \n (4) 2x Military Points \n (5) 1x Faith Points");
 		String choice = remoteView.getAdapter().in();
 		PrivilegeMessage rewardMessage = new PrivilegeMessage(choice, rewards, privilegesNumber, earnedRewards);
-		if (!remoteView.notifyMessage(rewardMessage)){
+		if (!remoteView.notifyController(rewardMessage)){
 			this.execute(remoteView);
 			}
 		}

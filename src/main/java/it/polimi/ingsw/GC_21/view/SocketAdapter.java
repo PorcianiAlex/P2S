@@ -5,7 +5,8 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Scanner;
 
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Message;
+import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
+import it.polimi.ingsw.GC_21.controller.ControllerForm;
 
 public class SocketAdapter implements AdapterConnection{
 
@@ -60,13 +61,13 @@ public class SocketAdapter implements AdapterConnection{
 	}
 
 	@Override
-	public void sendObject(Message message) {
+	public void sendObject(MessageToClient message) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public InputFromView receiveObject() {
+	public InputForm receiveObject() {
 		// TODO Auto-generated method stub
 		return null;
 	}

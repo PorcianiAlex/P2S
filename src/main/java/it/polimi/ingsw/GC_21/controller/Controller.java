@@ -11,10 +11,9 @@ import it.polimi.ingsw.GC_21.ACTION.PlacementAction;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforePlacement;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Message;
 import it.polimi.ingsw.GC_21.UTILITIES.P2SObserver;
 import it.polimi.ingsw.GC_21.view.ExcommInput;
-import it.polimi.ingsw.GC_21.view.InputFromView;
+import it.polimi.ingsw.GC_21.view.InputForm;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
 public class Controller implements P2SObserver<Action>{
@@ -92,27 +91,9 @@ public class Controller implements P2SObserver<Action>{
 
 	@Override
 	public void updateControllerManager(String choice) {
-		controllerManager.addRemoteView(remoteView);
-		if("C".equals(choice)) {
-	        modelGame = controllerManager.createGame(this);
-	        remoteView.createPlayer(modelGame); 
-	        letStart(); 
-	    } 
-	    else {  
-	      modelGame = controllerManager.getControllers().get(Integer.parseInt(choice)-1).getModelGame(); //take the selected game
-	      remoteView.createPlayer(modelGame); 
-	      modelGame.notifyString(remoteView.getPlayer().getName()+" joins the match! \nActual number of player: " + modelGame.getPlayers().size());
-	      remoteView.getAdapter().out("Waiting for the 'start' by the game host"); 
-	    }    		
 	}
 	
-	public void letStart() { 
-	    remoteView.getAdapterView().send("Write 'start' when you want to start the game! \nYou must be 2 at least"); 
-	    String string = remoteView.getAdapter().in(); 
-	    if("start".equals(string) /*&& modelGame.getPlayers().size()>1 || modelGame.getPlayers().size()==4*/ ) { 
-	      modelGame.executeGame(); 
-	    } else { letStart(); } 
-	  } 
+	
 
 	@Override
 	public void update(String string) {
@@ -121,9 +102,9 @@ public class Controller implements P2SObserver<Action>{
 	}
 
 	@Override
-	public boolean updateMessage(Message message) {
-		message.setController(this);
-		return message.convert();
+	public boolean updateMessage(ControllerForm controllerForm) {
+		controllerForm.setController(this);
+		return controllerForm.executeController();
 		
 	}
 
@@ -132,7 +113,7 @@ public class Controller implements P2SObserver<Action>{
 	}
 
 	@Override
-	public void updateCurrent(InputFromView inputFromView) {
+	public void updateCurrent(InputForm inputFromView) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -2,13 +2,15 @@ package it.polimi.ingsw.GC_21.view;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Scanner;
 
 import org.json.simple.parser.ParseException;
 
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.LoginMessage;
 import it.polimi.ingsw.GC_21.controller.ControllerManager;
+import it.polimi.ingsw.GC_21.controller.LobbyController;
+import it.polimi.ingsw.GC_21.controller.LoginController;
 
-public class LobbyInput extends InputFromView{
+public class LobbyInput extends InputForm{
 
 	private boolean created = false;
 	private int joined;
@@ -51,22 +53,14 @@ public class LobbyInput extends InputFromView{
 	}
 	
 	@Override
-	public void execute(RemoteView remoteView) {
-		
+	public void execute(RemoteView remoteView) {		
 			super.execute(remoteView);
-			if (CLI) {
-				chooseGame(controllerManager);
-			}
-			
-			LobbyMessage checkLobbyMessage = new LobbyMessage(created, joined);
-			remoteView.notifyMessage(checkLobbyMessage);
-
+			LobbyController checkLobbyMessage = new LobbyController(created, joined);
+			remoteView.notifyController(checkLobbyMessage);
 	}
 	
-	public void chooseGame(ControllerManager controllerManager) {
-		 adapterConnection.out("Hi, welcome to our Lobby!");
-		 adapterConnection.out("\nPress 'C' to create a game or enter the number of the match you want to join:\n" + controllerManager.getGames().toString());
-			   String choice = adapterConnection.in(); 
+	public void chooseGame(Scanner keyboard) {
+			   String choice = keyboard.nextLine(); 
 			   if(choice.equals("C")) {
 				   setCreated(true);
 			   } else {

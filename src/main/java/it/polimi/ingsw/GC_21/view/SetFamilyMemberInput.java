@@ -4,7 +4,7 @@ import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.SetFamilyMemberMessage;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class SetFamilyMemberInput extends InputFromView{
+public class SetFamilyMemberInput extends InputForm{
 	private int newFamilyMemberValue;
 	private Player player;
 	
@@ -39,7 +39,7 @@ public class SetFamilyMemberInput extends InputFromView{
 				+ newFamilyMemberValue);
 		FamilyMemberColor selectedFamilyMember = this.chooseFamilyMember();
 		SetFamilyMemberMessage setFamilyMemberMessage = new SetFamilyMemberMessage(newFamilyMemberValue, player, selectedFamilyMember);
-		remoteView.notifyMessage(setFamilyMemberMessage);
+		remoteView.notifyController(setFamilyMemberMessage);
 	}
 	
 	public FamilyMemberColor chooseFamilyMember(){ 

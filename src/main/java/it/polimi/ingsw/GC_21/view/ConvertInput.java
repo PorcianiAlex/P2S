@@ -6,7 +6,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.ConvertMessage;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 
-public class ConvertInput extends InputFromView {
+public class ConvertInput extends InputForm {
 	private Possession toPay1;
 	private Possession toTake1;
 	private Possession toPay2;
@@ -32,11 +32,11 @@ public class ConvertInput extends InputFromView {
 		boolean choice = this.chooseConversion();
 		if (choice==true){
 			ConvertMessage conversionMessage = new ConvertMessage(toPay1, toTake1);
-			remoteView.notifyMessage(conversionMessage);
+			remoteView.notifyController(conversionMessage);
 		}
 		else{
 			ConvertMessage conversionMessage = new ConvertMessage(toPay1, toTake1);
-			remoteView.notifyMessage(conversionMessage);
+			remoteView.notifyController(conversionMessage);
 		}
 	}
 

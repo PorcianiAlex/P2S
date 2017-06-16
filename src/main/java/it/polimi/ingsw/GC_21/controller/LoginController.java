@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
+package it.polimi.ingsw.GC_21.controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -6,46 +6,55 @@ import java.util.ArrayList;
 
 import org.json.simple.parser.ParseException;
 
-public class LoginMessage extends Message{
+import it.polimi.ingsw.GC_21.CLIENT.CheckLoginMessage;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
+
+public class LoginController extends ControllerForm{
 	private String username;
 	private String password;
 	private boolean insert;
 	
 
-	public LoginMessage(String username, String password, boolean insert) {
+	public LoginController(String username, String password, boolean insert) {
 		this.username = username;
 		this.password = password;
 		this.insert = insert;
 	}
 
 	@Override
-	public boolean convert()  {
+	public boolean executeController()  {
 		boolean ok = false;
 		try {
+			CheckLoginMessage checkLoginMessage = null;
 			ok = controller.getControllerManager().Login(username, password, insert);
 			if(ok == false && insert == true) {
-				controller.getRemoteView().getAdapter().out("this username already exists!");
+				checkLoginMessage = new CheckLoginMessage(false, "this username already exists!", null);
 			}
 			if(ok == false && insert == false) {
-				controller.getRemoteView().getAdapter().out("these username and password doesn't exist!");
+				checkLoginMessage = new CheckLoginMessage(false, "these username and password doesn't exist!", null);
+
 			}
 			if(!checkLoggedUsers(username) && insert==false) {
-				CheckLoginMessage checkLoginMessage = new CheckLoginMessage(false, "Oh grullo! tu sei già loggato!", null);
-				controller.getRemoteView().getAdapter().sendObject(checkLoginMessage);
-				controller.getRemoteView().inputObject();
+				 checkLoginMessage = new CheckLoginMessage(false, "Oh grullo! tu sei già loggato!", null);
+				
 			}
 			if (ok == false) {
-				CheckLoginMessage checkLoginMessage = new CheckLoginMessage(false, "Login Error", null);
-				controller.getRemoteView().getAdapter().sendObject(checkLoginMessage);
-				controller.getRemoteView().inputObject();
+				 checkLoginMessage = new CheckLoginMessage(false, "Login Error", null);
+				
 			}
+			else {
+				ArrayList<String> games = findGames();
+				String lobbyMessage = "Hi, welcome to our Lobby! \nPress 'C' to create a game or enter the number of the match you want to join:\n" + games.toString();
+				 checkLoginMessage = new CheckLoginMessage(true, lobbyMessage, games);
+
+			}
+			controller.getRemoteView().getAdapter().sendObject(checkLoginMessage);
+			controller.getRemoteView().inputObject();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		CheckLoginMessage checkLoginMessage = new CheckLoginMessage(true, "Login ok", findGames());
-		controller.getRemoteView().getAdapter().sendObject(checkLoginMessage);
-		controller.getRemoteView().inputObject();
+		
 		return true;
 		
 	}

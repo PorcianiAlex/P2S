@@ -113,6 +113,17 @@ public class Game extends Observable implements Serializable {
 	public void setCurrentAge(Age currentAge) {
 		this.currentAge = currentAge;
 	}
+	
+
+	public String getHost() {
+		return host;
+	}
+
+
+	public void setHost(String host) {
+		this.host = host;
+	}
+
 
 	public String toString() {
 		String string = new String("game: " + id + " players: " + numberOfPlayers + " host: " + host + "\n");

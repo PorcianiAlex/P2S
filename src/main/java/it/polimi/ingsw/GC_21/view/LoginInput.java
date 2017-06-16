@@ -2,12 +2,13 @@ package it.polimi.ingsw.GC_21.view;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Scanner;
 
 import org.json.simple.parser.ParseException;
 
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.LoginMessage;
+import it.polimi.ingsw.GC_21.controller.LoginController;
 
-public class LoginInput extends InputFromView {
+public class LoginInput extends InputForm {
 	private String username;
 	private String psw;
 	private boolean insert;
@@ -22,44 +23,32 @@ public class LoginInput extends InputFromView {
 	}
 	
 	public LoginInput() {
-		this.CLI = true;
 	}
 
 	@Override
 	public void execute(RemoteView remoteView) {
-		try {
 			super.execute(remoteView);
-			if (CLI) {
-				chooseUsername(remoteView);
-			}
-			LoginMessage loginMessage = new LoginMessage(username, psw, insert);
-			remoteView.notifyMessage(loginMessage);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+			remoteView.setUsername(username);
+			LoginController loginController = new LoginController(username, psw, insert);
+			remoteView.notifyController(loginController);
 	}
 	
-	public void chooseUsername(RemoteView remoteView) throws FileNotFoundException, IOException, ParseException {
-		adapterConnection.out("Hi, do you want to Register (1) or Login (2) ?");
+	public void chooseUsername(Scanner keyboard) throws FileNotFoundException, IOException, ParseException {
+		System.out.println("Hi, do you want to Register (1) or Login (2) ?");
 		insert = true;
-	    String choice = adapterConnection.in(); 
+	    String choice = keyboard.nextLine(); 
 	    switch (choice) { 
 	    case "1": insert = true; 
 	    break; 
 	    case "2": insert =false;; 
 	    break;
-	    default : chooseUsername(remoteView);
+	    default : chooseUsername(keyboard);
 	    break;
 	    }
-		adapterConnection.out("Enter your username: ");
-		username = adapterConnection.in();
-		adapterConnection.out("Enter your password: ");
-		psw = adapterConnection.in();
-		remoteView.setUsername(username);
+	    System.out.println("Enter your username: ");
+		username = keyboard.nextLine();
+		System.out.println("Enter your password: ");
+		psw = keyboard.nextLine();
 		
 	}
 	
