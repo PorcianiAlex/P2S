@@ -2,10 +2,10 @@ package it.polimi.ingsw.GC_21.UTILITIES;
 
 import java.awt.List;
 
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Message;
 import it.polimi.ingsw.GC_21.UTILITIES.*;
+import it.polimi.ingsw.GC_21.controller.ControllerForm;
 import it.polimi.ingsw.GC_21.view.ExcommInput;
-import it.polimi.ingsw.GC_21.view.InputFromView;
+import it.polimi.ingsw.GC_21.view.InputForm;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
 import java.util.*;
@@ -43,7 +43,7 @@ public abstract class Observable<C> {
 		this.currentObserver.updateString(comunication);
 	}
 	
-	public void notifyCurrent(InputFromView inputFromView){
+	public void notifyCurrent(InputForm inputFromView){
 		for (P2SObserver<C> o : this.observers) {
 			o.updateCurrent(inputFromView);
 		}
@@ -77,10 +77,10 @@ public abstract class Observable<C> {
 		}
 	}
 	
-	public boolean notifyMessage(Message message) {	
+	public boolean notifyController(ControllerForm controllerForm) {	
 		boolean response=false;
 		for (P2SObserver<C> o : this.observers) {
-			response = o.updateMessage(message);
+			response = o.updateMessage(controllerForm);
 		}
 		return response;
 	}

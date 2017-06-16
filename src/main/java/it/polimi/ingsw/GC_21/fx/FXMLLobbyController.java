@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_21.fx;
 
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.CheckLoginMessage;
+import it.polimi.ingsw.GC_21.CLIENT.CheckLoginMessage;
 import it.polimi.ingsw.GC_21.view.LobbyInput;
 import it.polimi.ingsw.GC_21.view.LoginInput;
 import javafx.event.ActionEvent;
@@ -52,12 +52,12 @@ public class FXMLLobbyController extends MetaController {
 		    LobbyInput lobbyInput = new LobbyInput(create, joined);
 	    	client2.setInputToSend(lobbyInput);
 	    	CheckLoginMessage inputmessage = (CheckLoginMessage) client2.getReceivedMessage();
-		  	System.out.println(inputmessage.getString());
+		  	System.out.println(inputmessage.getDescription());
 		  	
 		  	if(!inputmessage.isResult()) {
 	    		Alert alert = new Alert(AlertType.ERROR);
     			alert.setTitle("Error");
-    			alert.setHeaderText(inputmessage.getString());
+    			alert.setHeaderText(inputmessage.getDescription());
     			alert.setContentText(null);
     			alert.showAndWait();
 	    		return;

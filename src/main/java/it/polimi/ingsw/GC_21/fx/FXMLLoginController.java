@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import org.omg.PortableInterceptor.USER_EXCEPTION;
 
+import it.polimi.ingsw.GC_21.CLIENT.CheckLoginMessage;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
 import it.polimi.ingsw.GC_21.CLIENT.SocketClient;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.CheckLoginMessage;
@@ -80,11 +81,11 @@ public class FXMLLoginController extends MetaController {
     	client2.setInputToSend(loginInput);
     	CheckLoginMessage inputmessage = (CheckLoginMessage) client2.getReceivedMessage();
     	games = inputmessage.getGames();
-    	System.out.println("from login:" + inputmessage.getString());
+    	System.out.println("from login:" + inputmessage.getDescription());
     		 if(!inputmessage.isResult()) {
     			Alert alert = new Alert(AlertType.ERROR);
     			alert.setTitle("Login Error");
-    			alert.setHeaderText(inputmessage.getString());
+    			alert.setHeaderText(inputmessage.getDescription());
     			alert.setContentText("Ooops, there was an error!");
     			alert.showAndWait();
     			return;

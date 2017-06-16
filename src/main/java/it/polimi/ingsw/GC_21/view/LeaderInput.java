@@ -6,7 +6,7 @@ import it.polimi.ingsw.GC_21.ACTION.LeaderAction;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.OncePerTurnLeaderCard;
 
-public class LeaderInput extends InputFromView{
+public class LeaderInput extends InputForm{
 	
 	@Override
 	public void execute(RemoteView remoteView) {

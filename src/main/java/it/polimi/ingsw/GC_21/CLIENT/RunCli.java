@@ -3,7 +3,6 @@ package it.polimi.ingsw.GC_21.CLIENT;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.GameEndState;
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Message;
 
 public class RunCli {
 
@@ -18,8 +17,9 @@ public class RunCli {
 	public void start() {
 		
 		while(true) {
-			Message message = client.getReceivedMessage();
+			MessageToClient message = client.getReceivedMessage();
 			if(message.getGameEndState().equals(GameEndState.Over)) {
+				client.getKeyboard().close();
 				break;
 			}
 		}

@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_21.fx;
 
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Message;
+import it.polimi.ingsw.GC_21.controller.ControllerForm;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
