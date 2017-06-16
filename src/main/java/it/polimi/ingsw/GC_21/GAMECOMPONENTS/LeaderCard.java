@@ -2,23 +2,26 @@ package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public abstract class LeaderCard {
-	protected String name;
-	protected Possession requirements;
+public abstract class LeaderCard extends Card {
+
 	protected int numberOfVenturesRequired;
 	protected int numberOfCharactersRequired;
 	protected int numberOfBuildingRequired;
 	protected int numberOfTerritoryRequired;
+	protected Possession requirements;
 	protected boolean played;
 
+
+
+
 	public LeaderCard(String name, int numberOfVenturesRequired, int numberOfCharactersRequired,
-			int numberOfBuildingRequired, int numberOfTerritoryRequired, boolean played) {
-		super();
-		this.name = name;
+			int numberOfBuildingRequired, int numberOfTerritoryRequired, Possession requirements, boolean played) {
+		super(name);
 		this.numberOfVenturesRequired = numberOfVenturesRequired;
 		this.numberOfCharactersRequired = numberOfCharactersRequired;
 		this.numberOfBuildingRequired = numberOfBuildingRequired;
 		this.numberOfTerritoryRequired = numberOfTerritoryRequired;
+		this.requirements = requirements;
 		this.played = played;
 	}
 
@@ -43,14 +46,6 @@ public abstract class LeaderCard {
 	public String getName() {
 		return name;
 	}
-
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
 
 	public int getNumberOfVenturesRequired() {
 		return numberOfVenturesRequired;

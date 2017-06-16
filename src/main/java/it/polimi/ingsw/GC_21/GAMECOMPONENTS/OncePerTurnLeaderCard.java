@@ -8,10 +8,12 @@ public class OncePerTurnLeaderCard extends LeaderCard {
 	private Effect immediateEffect;
 
 
+
 	public OncePerTurnLeaderCard(String name, int numberOfVenturesRequired, int numberOfCharactersRequired,
-			int numberOfBuildingRequired, int numberOfTerritoryRequired, boolean played, Effect immediateEffect) {
+			int numberOfBuildingRequired, int numberOfTerritoryRequired, Possession requirements, boolean played,
+			Effect immediateEffect) {
 		super(name, numberOfVenturesRequired, numberOfCharactersRequired, numberOfBuildingRequired,
-				numberOfTerritoryRequired, played);
+				numberOfTerritoryRequired, requirements, played);
 		this.immediateEffect = immediateEffect;
 	}
 
@@ -20,10 +22,6 @@ public class OncePerTurnLeaderCard extends LeaderCard {
 		return name;
 	}
 
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 
 	public Effect getImmediateEffect() {
