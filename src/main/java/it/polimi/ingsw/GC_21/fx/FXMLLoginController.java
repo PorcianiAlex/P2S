@@ -19,7 +19,6 @@ import it.polimi.ingsw.GC_21.CLIENT.CheckLoginMessage;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
 import it.polimi.ingsw.GC_21.CLIENT.SocketClient;
-
 import it.polimi.ingsw.GC_21.view.LoginInput;
 import it.polimi.ingsw.GC_21.view.ServerInterface;
 import javafx.application.Application;
