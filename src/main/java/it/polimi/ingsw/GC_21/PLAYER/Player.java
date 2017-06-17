@@ -4,8 +4,11 @@ import java.util.*;
 
 import javax.swing.text.View;
 
+import org.omg.CORBA.PRIVATE_MEMBER;
+
 import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderCard;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderDeck;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.OncePerTurnLeaderCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
@@ -34,7 +37,17 @@ public class Player {
 		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), this);
 		this.checkOnMP = false;
 		this.overchargeOnBusyTower = false;
+		this.leaderCards = new ArrayList<LeaderCard>();
+		this.playedOncePerTurnLeaderCards = new ArrayList<OncePerTurnLeaderCard>();
+		this.pickLeaderCards(game.getLeaderDeck());
 	}
+	
+	public void pickLeaderCards(LeaderDeck leaderDeck) {
+		this.leaderCards.add((LeaderCard) leaderDeck.getSingleCard());
+		this.leaderCards.add((LeaderCard) leaderDeck.getSingleCard());
+		this.leaderCards.add((LeaderCard) leaderDeck.getSingleCard());
+	}
+	
 public ArrayList<LeaderCard> getLeaderCards() {
 		return leaderCards;
 	}

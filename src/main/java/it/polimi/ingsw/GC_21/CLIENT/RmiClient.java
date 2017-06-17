@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_21.CLIENT;
 
 import java.awt.image.TileObserver;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -11,9 +12,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
 
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Message;
 import it.polimi.ingsw.GC_21.fx.ViewType;
-import it.polimi.ingsw.GC_21.view.InputFromView;
+import it.polimi.ingsw.GC_21.view.InputForm;
 import it.polimi.ingsw.GC_21.view.Server;
 import it.polimi.ingsw.GC_21.view.ServerInterface;
 
@@ -25,9 +25,9 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 	private ViewType view;
 	private Object LOCK = new Object(); // just something to lock on
 	private Object LOCK2 = new Object(); // just something to lock on
-
-	private InputFromView inputToSend = null;
-	private Message receivedMessage;
+	private InputForm inputToSend = null;
+	private MessageToClient receivedMessage;
+	private Scanner keyboard;
 
 	
 	public RmiClient(ViewType view) throws RemoteException {
@@ -35,12 +35,14 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 		this.view=view;
 		this.messagesforserver = new ArrayList<String>();
 		this.stackforclient = new Stack<String>();
+		this.keyboard = new Scanner(System.in);
 		this.receivedMessage = null;
 	
 		
+		
 	}
 	
-	public  Message getReceivedMessage() {
+	public  MessageToClient getReceivedMessage() {
 		synchronized (LOCK) {
 		while (receivedMessage == null) {
 			try { LOCK.wait(); 
@@ -51,12 +53,12 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 	        }
 		}
 		}
-		Message message = receivedMessage;
+		MessageToClient message = receivedMessage;
 		receivedMessage = null;
 		if(view.equals(ViewType.CLI)) {
-			message.convert();
+			 InputForm inputForm = message.executeCLI(keyboard);
+			 setInputToSend(inputForm);
 		}
-		System.out.println("In get Received: " + message);
 		return message;
 	}
 
@@ -114,7 +116,7 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 
 
 	@Override
-	public void receiveObject(Message message) {
+	public void receiveObject(MessageToClient message) {
 		this.receivedMessage = message;
 		synchronized (LOCK) {
 		    LOCK.notifyAll();
@@ -124,34 +126,43 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 
 
 	@Override
-	public InputFromView sendObjectToServer() throws RemoteException {
+	public InputForm sendObjectToServer() throws RemoteException {
 		synchronized (LOCK2) {
-		while (inputToSend == null) {	
-			try { LOCK2.wait(); }
-	        catch (InterruptedException e) {
-	            // treat interrupt as exit request
-	            break;
-	        }
+			while (inputToSend == null) {	
+				try { LOCK2.wait(); }
+		        catch (InterruptedException e) {
+		            // treat interrupt as exit request
+		            break;
+		        }
 		}
 		}
-		InputFromView inputFromView = inputToSend;
+		InputForm inputFromView = inputToSend;
 		inputToSend = null;
 		return inputFromView;
 	}
 
 
 
-	public InputFromView getInputToSend() {
+	public InputForm getInputToSend() {
 		return inputToSend;
 	}
 
 
 
-	public void setInputToSend(InputFromView inputToSend) {
+	public void setInputToSend(InputForm inputToSend) {
 		this.inputToSend = inputToSend;
 		synchronized (LOCK2) {
 		    LOCK2.notifyAll();
 		}
+	}
+
+	@Override
+	public Scanner getKeyboard() {
+		return keyboard;
+	}
+
+	public void setKeyboard(Scanner keyboard) {
+		this.keyboard = keyboard;
 	}
 	
 

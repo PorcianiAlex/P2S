@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 
+import it.polimi.ingsw.GC_21.EFFECT.DontCheckMP;
+import it.polimi.ingsw.GC_21.EFFECT.DontSpend3Coins;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.Permanent;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
@@ -10,23 +12,34 @@ public class PermanentLeaderCard extends LeaderCard{
 	@Override
 	public void callEffect(Player player) {
 		Effect effectToAdd = (Effect) permanentEffect;
-		player.getMyPersonalBoard().addPermanentEffect(effectToAdd);
+		if (effectToAdd instanceof DontSpend3Coins || effectToAdd instanceof DontCheckMP){
+			effectToAdd.activateEffect(player, null);
+		}
+		else{
+			player.getMyPersonalBoard().addPermanentEffect(effectToAdd);
+		}
 	}
 
+
+
+
+
 	public PermanentLeaderCard(String name, int numberOfVenturesRequired, int numberOfCharactersRequired,
-			int numberOfBuildingRequired, int numberOfTerritoryRequired, boolean played, Permanent permanentEffect) {
+			int numberOfBuildingRequired, int numberOfTerritoryRequired, Possession requirements, boolean played,
+			Permanent permanentEffect) {
 		super(name, numberOfVenturesRequired, numberOfCharactersRequired, numberOfBuildingRequired,
-				numberOfTerritoryRequired, played);
+				numberOfTerritoryRequired, requirements, played);
 		this.permanentEffect = permanentEffect;
 	}
+
+
+
+
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public int getNumberOfVenturesRequired() {
 		return numberOfVenturesRequired;

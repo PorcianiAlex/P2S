@@ -15,11 +15,10 @@ import java.util.ArrayList;
 
 import org.omg.PortableInterceptor.USER_EXCEPTION;
 
+import it.polimi.ingsw.GC_21.CLIENT.CheckLoginMessage;
+import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
 import it.polimi.ingsw.GC_21.CLIENT.SocketClient;
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.CheckLoginMessage;
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.LoginMessage;
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Message;
 import it.polimi.ingsw.GC_21.view.LoginInput;
 import it.polimi.ingsw.GC_21.view.ServerInterface;
 import javafx.application.Application;
@@ -75,16 +74,16 @@ public class FXMLLoginController extends MetaController {
     	String pass = passwordField.getText();
        	
     	// crea e manda loginInput con username, pass, inorup
-    	Message logmess = client2.getReceivedMessage();
+    	MessageToClient logmess = client2.getReceivedMessage();
     	LoginInput loginInput = new LoginInput(username, pass, insert);
     	client2.setInputToSend(loginInput);
     	CheckLoginMessage inputmessage = (CheckLoginMessage) client2.getReceivedMessage();
     	games = inputmessage.getGames();
-    	System.out.println("from login:" + inputmessage.getString());
+    	System.out.println("from login:" + inputmessage.getDescription());
     		 if(!inputmessage.isResult()) {
     			Alert alert = new Alert(AlertType.ERROR);
     			alert.setTitle("Login Error");
-    			alert.setHeaderText(inputmessage.getString());
+    			alert.setHeaderText(inputmessage.getDescription());
     			alert.setContentText("Ooops, there was an error!");
     			alert.showAndWait();
     			return;

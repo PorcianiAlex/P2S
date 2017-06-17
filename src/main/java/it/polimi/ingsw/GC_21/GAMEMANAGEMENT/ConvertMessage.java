@@ -2,8 +2,9 @@ package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 
 import it.polimi.ingsw.GC_21.EFFECT.Convert;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
+import it.polimi.ingsw.GC_21.controller.ControllerForm;
 
-public class ConvertMessage extends Message {
+public class ConvertMessage extends ControllerForm {
 	private Possession toPay;
 	private Possession toTake;
 	
@@ -15,7 +16,7 @@ public class ConvertMessage extends Message {
 	}
 	
 	@Override
-	public boolean convert() {
+	public boolean executeController() {
 		Convert convert = new Convert(controller.getModelGame(), new Possession(), toPay, toTake, new Possession(), new Possession(), 0);
 		convert.activateEffect(controller.getRemoteView().getPlayer(), null);
 		return true;

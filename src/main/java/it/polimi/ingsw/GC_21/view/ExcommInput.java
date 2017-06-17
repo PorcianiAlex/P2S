@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_21.view;
 
 import it.polimi.ingsw.GC_21.ACTION.ExcommAction;
 
-public class ExcommInput extends InputFromView {
+public class ExcommInput extends InputForm {
 
 	@Override
 	public void execute(RemoteView remoteView) {

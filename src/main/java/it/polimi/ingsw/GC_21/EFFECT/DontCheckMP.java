@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_21.EFFECT;
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class DontCheckMP extends Effect{
+public class DontCheckMP extends Effect implements Permanent{
 	
 	@Override
 	public void activateEffect(Player player, Action action) {

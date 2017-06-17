@@ -6,7 +6,7 @@ import it.polimi.ingsw.GC_21.ACTION.TowerPlacement;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 
-public class TakeCardInput extends InputFromView{
+public class TakeCardInput extends InputForm{
 	private DevCardType devCardType;
 	private int actionValueInfluencer;
 	private Possession discount;

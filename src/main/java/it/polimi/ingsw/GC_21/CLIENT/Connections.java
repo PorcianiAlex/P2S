@@ -1,10 +1,11 @@
 package it.polimi.ingsw.GC_21.CLIENT;
 
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Message;
+import java.util.Scanner;
 
 public interface Connections {
  public void sendGUI(String string);
  public String getMessage();
- public Message getReceivedMessage();
+ public MessageToClient getReceivedMessage();
+public Scanner getKeyboard();
  
 }

@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_21.view;
 
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 
-public class PlacementInput extends InputFromView{
+public class PlacementInput extends InputForm{
 	protected FamilyMemberColor familyMemberColor; 
 	protected int servants;
 	

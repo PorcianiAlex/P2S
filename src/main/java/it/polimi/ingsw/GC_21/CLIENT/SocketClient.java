@@ -7,7 +7,6 @@ import java.net.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Message;
 import it.polimi.ingsw.GC_21.fx.ViewType;
 
 import java.util.*;
@@ -91,7 +90,13 @@ public class SocketClient implements Connections {
 	}
 
 	@Override
-	public Message getReceivedMessage() {
+	public MessageToClient getReceivedMessage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Scanner getKeyboard() {
 		// TODO Auto-generated method stub
 		return null;
 	}
