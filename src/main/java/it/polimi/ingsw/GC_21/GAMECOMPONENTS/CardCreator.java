@@ -99,27 +99,6 @@ public class CardCreator {
 		return cards;
 	}
 	
-	/*public ArrayList<Card> LeadCardsCreate() {
-		cards = new ArrayList<Card>();
-		try {
-		Object obj = parser.parse(new FileReader("cards.json"));
-	    JSONObject card = (JSONObject) obj;
-	    JSONArray cardarray= (JSONArray) card.get("LeadCard");
-	    for (Object o : cardarray) {
-           	JSONObject jsonLineItem = (JSONObject) o;     
-    	     LeaderCard leaderCard = new LeaderCard((String) jsonLineItem.get("name"));
-           	 this.addImm(leaderCard, jsonLineItem);
-           	 this.addReq(leaderCard, jsonLineItem);
-           	 cards.add(leaderCard);            	 
-            }
-	     
-		} catch (Exception e) {
-            e.printStackTrace();
-        } 
-		return cards;
-	}*/
-	
-
 	public void addImm(Card cardcreating, JSONObject jsonLineItem) {
 
 	        	    int privileges = Integer.parseInt(jsonLineItem.get("Priv").toString());            
@@ -219,16 +198,33 @@ public class CardCreator {
 	public void AddSecEff(Card cardcreating, JSONObject jsonLineItem) {
 		
         switch ((String) jsonLineItem.get("SecEffType")) {
+        case "forEachGet": 
+			ForEachGet forEachGet;
+  
+            Possession Rew2 = new Possession();
+			if("null".equals((jsonLineItem.get("forEachCard").toString()))){
+				 forEachGet = new ForEachGet(game, Rew2, 0, null, Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ForEachResource").toString()), Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ResourceYouGet").toString()), Integer.parseInt(jsonLineItem.get("GettingIndex").toString()), false);
+			}
+			else if ("null".equals((jsonLineItem.get("ForEachResource").toString()))) {
+				forEachGet = new ForEachGet(game, Rew2, 0, DevCardType.valueOf(jsonLineItem.get("forEachCard").toString()), Integer.parseInt(jsonLineItem.get("forEachCardIndex").toString()), null, Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ResourceYouGet").toString()), Integer.parseInt(jsonLineItem.get("GettingIndex").toString()), true);
+
+				//forEachGet = new ForEachGet(game, Rew2, 0, DevCardType.valueOf(jsonLineItem.get("forEachCard").toString()), Integer.parseInt(jsonLineItem.get("ForEachCardIndex").toString()), null, Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ResourceYouGet").toString()), Integer.parseInt(jsonLineItem.get("GettingIndex").toString()), true);
+			}
+			else {  forEachGet = new ForEachGet(game, Rew2, 0, DevCardType.valueOf(jsonLineItem.get("forEachCard").toString()), Integer.parseInt(jsonLineItem.get("ForEachCardIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ForEachResource").toString()), Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ResourceYouGet").toString()), Integer.parseInt(jsonLineItem.get("GettingIndex").toString()), false);
+			} 
+			cardcreating.setSecondaryEffect(forEachGet);
+			break;
         case "justImm":    
+        	int privileges = Integer.parseInt(jsonLineItem.get("Priv2").toString()); 
     	    JSONArray rewarray= (JSONArray) jsonLineItem.get("Rew");
 
             Possession Rew = new Possession(Integer.parseInt(rewarray.get(0).toString()),Integer.parseInt(rewarray.get(1).toString()),
             		Integer.parseInt(rewarray.get(2).toString()), Integer.parseInt(rewarray.get(3).toString()),
             		Integer.parseInt(rewarray.get(4).toString()), Integer.parseInt(rewarray.get(5).toString()), 
             	    Integer.parseInt(rewarray.get(6).toString()));
-            Effect effect = new Effect(Rew, 0, game);
+            Effect effect = new Effect(Rew, privileges, game);
             cardcreating.setSecondaryEffect(effect);
-        	
+        	break;
         case "convert":  
 			 JSONArray toTake1array= (JSONArray) jsonLineItem.get("toTake1");
              

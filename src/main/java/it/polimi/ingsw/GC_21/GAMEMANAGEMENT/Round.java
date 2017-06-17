@@ -17,6 +17,10 @@ public class Round {
 	public Round(int roundNumber, Game game) {
 		this.roundNumber = roundNumber;
 		this.game = game;
+		game.getBoard().refreshBoard();
+		for (int i = 0; i < game.getPlayers().size(); i++) {
+			game.getPlayers().get(i).refreshPlayer();
+		}
 		this.placeCard();
 		}
 	

@@ -30,7 +30,7 @@ public class ForEachGet extends Effect implements ToCallDuringCraft{
 	/*This effect is supposed to convert card OR resource, not both.
 	So one of forEachCard and forEachResource MUST be set to NULL*/
 	public ForEachGet(Game game, Possession rewards, int privileges, DevCardType forEachCard, int forEachCardIndex, ResourceType forEachResource,
-			int forEachResourceIndex, ResourceType resourceYouGet, int gettingIndex, boolean cardConversion) throws IllegalArgumentException {
+			int forEachResourceIndex, ResourceType resourceYouGet, int gettingIndex, boolean cardConversion){
 		super(rewards, privileges, game);
 		this.forEachCard = forEachCard;
 		this.forEachCardIndex = forEachCardIndex;
@@ -39,9 +39,6 @@ public class ForEachGet extends Effect implements ToCallDuringCraft{
 		this.resourceYouGet = resourceYouGet;
 		this.gettingIndex = gettingIndex;
 		CardConversion = cardConversion;
-		if (forEachCard!=null && forEachResource!=null){
-			throw new IllegalArgumentException("Cannot instantiate this effect!");
-		}
 	}
 
 
