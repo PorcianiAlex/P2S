@@ -26,11 +26,15 @@
   <stylesheets>
     <URL value="@style.css" />
   </stylesheets>
-  <Text id="welcometext" fx:id="welcometext" text="Choose your color:" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-  <Button id="bluebox" mnemonicParsing="false" onAction="#Blue" prefHeight="61.0" prefWidth="128.0" text="Blue" textFill="#0066ff" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-  <Button mnemonicParsing="false" onAction="#Red" prefHeight="57.0001220703125" prefWidth="130.0" text="Red" textFill="RED" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-  <Button mnemonicParsing="false" onAction="#Yellow" prefHeight="58.0" prefWidth="123.9998779296875" text="Yellow" textFill="#fff500" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-  <Button mnemonicParsing="false" onAction="#Green" prefHeight="54.0" prefWidth="123.0" text="Green" textFill="#009918" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+  <Text fx:id="welcometext" text="Choose your color:" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+  <ToggleButton id="bluebox" fx:id="blue" mnemonicParsing="false" onAction="#Ready" prefHeight="61.0" prefWidth="128.0" text="Blue" textFill="#0066ff" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+    <toggleGroup>
+      <ToggleGroup fx:id="place" />
+    </toggleGroup>
+  </ToggleButton>
+  <ToggleButton fx:id="red" mnemonicParsing="false" onAction="#Ready" prefHeight="57.0001220703125" prefWidth="130.0" text="Red" textFill="RED" toggleGroup="$place" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+  <ToggleButton fx:id="yellow" mnemonicParsing="false" onAction="#Ready" prefHeight="58.0" prefWidth="123.9998779296875" text="Yellow" textFill="#fff500" toggleGroup="$place" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+  <ToggleButton fx:id="green" mnemonicParsing="false" onAction="#Ready" prefHeight="54.0" prefWidth="123.0" text="Green" textFill="#009918" toggleGroup="$place" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
   <Text fx:id="texttarget" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="3">
     <GridPane.margin>
       <Insets bottom="100.0" />
