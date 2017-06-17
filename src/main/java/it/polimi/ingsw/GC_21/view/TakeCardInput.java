@@ -21,7 +21,7 @@ public class TakeCardInput extends InputForm{
 
 
 
-	@Override
+	/*@Override
 	public void execute(RemoteView remoteView) {
 		super.setAdapter(remoteView);
 		adapterConnection.out("Hey sgangherato, you can take another Card!!!\nYour new action value is " + this.actionValueInfluencer);
@@ -33,8 +33,8 @@ public class TakeCardInput extends InputForm{
 		boolean result = remoteView.notifyObservers(takeCardAction);
 		if (!result){
 			this.execute(remoteView);
-		}
-}
+		}*/
+
 		
 			
 			

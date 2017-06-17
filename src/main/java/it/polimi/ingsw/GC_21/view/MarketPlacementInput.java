@@ -11,7 +11,7 @@ public class MarketPlacementInput extends PlacementInput {
 		String Areastring = adapterConnection.in(); 
 		int AreaToPlace = Integer.parseInt(Areastring); 
 		super.execute(remoteView);
-		MarketPlacement marketPlacement = MarketPlacement.factoryMarketPlacement(remoteView.getPlayer(), familyMemberColor, AreaToPlace, servants, remoteView.getGame().getBoard()); 
+		MarketPlacement marketPlacement = MarketPlacement.factoryMarketPlacement(remoteView.getPlayer(), familyMemberColor, AreaToPlace, servantsToConvert, remoteView.getGame().getBoard()); 
 		remoteView.response(marketPlacement);	     
 			   
 			 

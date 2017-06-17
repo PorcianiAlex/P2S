@@ -25,11 +25,11 @@ public class LeaderInput extends InputForm{
 						LeaderAction leaderPlay = new LeaderAction(remoteView.getPlayer(), leaderToPlay, false);
 						remoteView.response(leaderPlay);}
 					else{
-						remoteView.input();
+						//remoteView.input();
 					}
 					break;
 		default: adapterConnection.out("Invalid choice, try again!");
-					remoteView.input();
+					//remoteView.input();
 		}
 
 
