@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="1090.0000999999975" prefWidth="1392.0" style="fx-background-color: gold;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.ingsw.GC_21.fx.FXMLGameController">
+<AnchorPane prefHeight="1090.0000999999975" prefWidth="1392.0" style="fx-background-color: gold" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.ingsw.GC_21.fx.FXMLGameController">
   <children>
     <Pane layoutX="7.0" layoutY="-34.0" prefHeight="997.0" prefWidth="739.0">
       <children>
@@ -16,34 +16,39 @@
           </image>
         </ImageView>
         <Button cancelButton="false" contentDisplay="CENTER" defaultButton="false" graphicTextGap="0.0" layoutX="349.0" layoutY="561.0" mnemonicParsing="false" opacity="0.05" prefHeight="54.921875" prefWidth="146.0" style="" text="" />
-        <Button layoutX="281.0" layoutY="111.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="153.0" layoutY="111.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="281.0" layoutY="111.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="401.0" layoutY="111.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="538.0" layoutY="111.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="281.0" layoutY="232.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="153.0" layoutY="232.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="281.0" layoutY="232.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="401.0" layoutY="232.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="538.0" layoutY="232.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="281.0" layoutY="351.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="153.0" layoutY="351.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="281.0" layoutY="351.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="401.0" layoutY="351.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="538.0" layoutY="351.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="281.0" layoutY="468.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="153.0" layoutY="468.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="281.0" layoutY="468.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="401.0" layoutY="468.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="538.0" layoutY="468.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button cancelButton="false" contentDisplay="CENTER" defaultButton="false" graphicTextGap="0.0" layoutX="153.0" layoutY="793.0" mnemonicParsing="false" opacity="0.05" prefHeight="41.921775000002526" prefWidth="117.0" style="" text="" />
-        <Button cancelButton="false" contentDisplay="CENTER" defaultButton="false" graphicTextGap="0.0" layoutX="153.0" layoutY="871.0" mnemonicParsing="false" opacity="0.05" prefHeight="41.921775000002526" prefWidth="117.0" style="" text="" />
-        <Button layoutX="80.0" layoutY="793.0" minWidth="42.0" mnemonicParsing="false" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="80.0" layoutY="871.0" minWidth="42.0" mnemonicParsing="false" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="388.0" layoutY="780.0" minWidth="42.0" mnemonicParsing="false" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="453.0" layoutY="780.0" minWidth="42.0" mnemonicParsing="false" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="504.0" layoutY="801.0" minWidth="42.0" mnemonicParsing="false" opacity="0.0" prefWidth="42.0" style="" text="Button" />
-        <Button layoutX="546.0" layoutY="843.0" minWidth="42.0" mnemonicParsing="false" opacity="0.0" prefWidth="42.0" style="" text="Button" />
+        <ToggleButton layoutX="281.0" layoutY="111.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button">
+          <toggleGroup>
+            <ToggleGroup fx:id="place" />
+          </toggleGroup>
+        </ToggleButton>
+        <ToggleButton fx:id="T1F4" layoutX="153.0" layoutY="111.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.29" prefWidth="42.0" style="" text="Button" toggleGroup="$place" />
+        <ToggleButton fx:id="T2F4" layoutX="281.0" layoutY="111.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" toggleGroup="$place" />
+        <ToggleButton fx:id="T3F4" layoutX="401.0" layoutY="111.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" toggleGroup="$place" />
+        <ToggleButton fx:id="T4F4" layoutX="538.0" layoutY="111.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
+        <ToggleButton layoutX="281.0" layoutY="232.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
+        <ToggleButton fx:id="T1F3" layoutX="153.0" layoutY="232.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.3" prefWidth="42.0" style="" text="Button" toggleGroup="$place" />
+        <ToggleButton fx:id="T2F3" layoutX="281.0" layoutY="232.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
+        <ToggleButton fx:id="T3F3" layoutX="401.0" layoutY="232.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
+        <ToggleButton fx:id="T4F3" layoutX="538.0" layoutY="232.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
+        <ToggleButton layoutX="281.0" layoutY="351.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
+        <ToggleButton fx:id="T1F2" layoutX="153.0" layoutY="351.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.27" prefWidth="42.0" style="" text="Button" toggleGroup="$place" />
+        <ToggleButton fx:id="T2F2" layoutX="281.0" layoutY="351.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
+        <ToggleButton fx:id="T3F2" layoutX="401.0" layoutY="351.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
+        <ToggleButton fx:id="T4F2" layoutX="538.0" layoutY="351.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
+        <ToggleButton layoutX="281.0" layoutY="468.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
+        <ToggleButton fx:id="T1F1" layoutX="153.0" layoutY="468.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" toggleGroup="$place" />
+        <ToggleButton fx:id="T2F1" layoutX="281.0" layoutY="468.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
+        <ToggleButton fx:id="T3F1" layoutX="401.0" layoutY="468.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
+        <ToggleButton fx:id="T4F1" layoutX="538.0" layoutY="468.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.0" prefWidth="42.0" style="" text="Button" />
+        <Button fx:id="P2" cancelButton="false" contentDisplay="CENTER" defaultButton="false" graphicTextGap="0.0" layoutX="153.0" layoutY="793.0" mnemonicParsing="false" opacity="0.05" prefHeight="41.921775000002526" prefWidth="117.0" style="" text="" />
+        <Button fx:id="H2" cancelButton="false" contentDisplay="CENTER" defaultButton="false" graphicTextGap="0.0" layoutX="153.0" layoutY="871.0" mnemonicParsing="false" opacity="0.05" prefHeight="41.921775000002526" prefWidth="117.0" style="" text="" />
+        <ToggleButton fx:id="P1" layoutX="80.0" layoutY="793.0" minWidth="42.0" mnemonicParsing="false" opacity="0.0" prefWidth="42.0" style="" text="Button" />
+        <ToggleButton fx:id="H1" layoutX="80.0" layoutY="871.0" minWidth="42.0" mnemonicParsing="false" opacity="0.0" prefWidth="42.0" style="" text="Button" />
+        <ToggleButton fx:id="M1" layoutX="388.0" layoutY="780.0" minWidth="42.0" mnemonicParsing="false" opacity="0.0" prefWidth="42.0" style="" text="Button" />
+        <ToggleButton fx:id="M2" layoutX="453.0" layoutY="780.0" minWidth="42.0" mnemonicParsing="false" opacity="0.0" prefWidth="42.0" style="" text="Button" />
+        <ToggleButton fx:id="M3" layoutX="504.0" layoutY="801.0" minWidth="42.0" mnemonicParsing="false" opacity="0.0" prefWidth="42.0" style="" text="Button" />
+        <ToggleButton fx:id="M4" layoutX="546.0" layoutY="843.0" minWidth="42.0" mnemonicParsing="false" opacity="0.0" prefWidth="42.0" style="" text="Button" />
+        <ToggleButton layoutX="312.0" layoutY="885.0" minWidth="42.0" mnemonicParsing="false" onAction="#Tower" opacity="0.51" prefWidth="42.0" style="" text="Button" />
       </children>
     </Pane>
     <Pane layoutX="731.0" layoutY="-34.0" prefHeight="983.0" prefWidth="614.0">
@@ -53,6 +58,8 @@
             <Image url="@punchboard_f_c_06.jpg" />
           </image>
         </ImageView>
+        <Button layoutX="488.0" layoutY="927.0" mnemonicParsing="false" text="Confirm" />
+        <Button layoutX="378.0" layoutY="927.0" mnemonicParsing="false" text="Reset" />
       </children>
     </Pane>
   </children>
