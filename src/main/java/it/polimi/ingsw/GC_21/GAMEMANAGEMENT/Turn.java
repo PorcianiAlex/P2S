@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 import javax.swing.text.View;
 
@@ -26,8 +27,8 @@ public class Turn {
 		}
 		
 		game.notifyTurn();
-		System.out.println("\n \n \n");
-		
+		game.generateRanking();	
+		System.out.println(game.getMilitaryPointsRanking().toString());
 	}
 
 	public int getTurnNumber() {

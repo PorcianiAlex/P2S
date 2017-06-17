@@ -37,38 +37,34 @@ public class Board {
 
 
 
-	/*public void refreshBoard() {
+	public void refreshBoard() {
 		for (int i = 0; i < towers.length; i++) {
 			for (int j = 0; j < towers[i].getFloors().length; j++) {
-				towers[i].getFloors()[j].getSingleActionSpace().setFamilyMember(null);;
+				towers[i].getFloors()[j].getSingleActionSpace().setFamilyMemberLocated(null);
+				towers[i].getFloors()[j].getSingleActionSpace().setBusy(false);
 			}
 		}
-		for (int i = 0; i < towers.length; i++) {
-			for (int j = 0; j < towers[i].getFloors().length; j++) {
-				towers[i].getFloors()[j].getDevCardPlace().setCard(null);
-			}
-		}	
-		for (int j = 0; j < craftAreas.length; j++) {
-			for (int i = 0; i < craftAreas[i].getMultipleActionSpace().getFamilyMember().size(); i++) {
-				craftAreas[i].getMultipleActionSpace().getFamilyMember().remove(i);		
-
-			}
-			craftAreas[j].getSingleActionSpace().setFamilyMember(null);
+		for (int i = 0; i < productionArea.getMultipleActionSpace().getFamilyMembers().size(); i++) {
+			productionArea.getMultipleActionSpace().getFamilyMembers().remove(i);
 		}
-		for (int i = 0; i < councilPalace.getMultipleActionSpace().getFamilyMember().size(); i++) {
-			councilPalace.getMultipleActionSpace().getFamilyMember().remove(i);
-			
+		productionArea.getSingleActionSpace().setFamilyMemberLocated(null);
+		productionArea.getSingleActionSpace().setBusy(false);
+		for (int i = 0; i < harvestArea.getMultipleActionSpace().getFamilyMembers().size(); i++) {
+			harvestArea.getMultipleActionSpace().getFamilyMembers().remove(i);
+		}
+		harvestArea.getSingleActionSpace().setFamilyMemberLocated(null);
+		harvestArea.getSingleActionSpace().setBusy(false);
+		for (int i = 0; i < councilPalace.getMultipleActionSpace().getFamilyMembers().size(); i++) {
+			councilPalace.getMultipleActionSpace().getFamilyMembers().remove(i);
 		}
 		for (int i = 0; i < marketArea.getSingleActionSpace().length; i++) {
-			marketArea.getSingleActionSpace()[i].setFamilyMember(null);
+			marketArea.getSingleActionSpace()[i].setFamilyMemberLocated(null);
+			marketArea.getSingleActionSpace()[i].setBusy(false);
 		}
-		
-		for (int j = 0; j < dices.length; j++) {
-			//<todo>
-		}
+	}
 		
 	
-	}*/
+	
 	
 	
 

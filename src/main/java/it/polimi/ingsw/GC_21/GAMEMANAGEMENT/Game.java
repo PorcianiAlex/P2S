@@ -2,6 +2,9 @@ package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.net.ssl.HostnameVerifier;
 
@@ -13,6 +16,8 @@ import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderDeck;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.MilitaryPoints;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.VictoryPoints;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 import it.polimi.ingsw.GC_21.UTILITIES.Observable;
@@ -30,6 +35,8 @@ public class Game extends Observable implements Serializable {
 	private Age currentAge;
 	private ExcommHandler excommHandler;
 	private LeaderDeck leaderDeck;
+	private ArrayList<Player> victoryPointsRanking;
+	private ArrayList<Player> militaryPointsRanking;
 	
 	
 	public Game(String host) {
@@ -41,8 +48,40 @@ public class Game extends Observable implements Serializable {
 		this.numberOfPlayers = 1;
 		this.host = host;
 		this.leaderDeck = new LeaderDeck(this);
+		victoryPointsRanking = new ArrayList<Player>();
+		militaryPointsRanking = new ArrayList<Player>();
 		}
 	
+	
+
+
+	public ArrayList<Player> getVictoryPointsRanking() {
+		return victoryPointsRanking;
+	}
+
+
+
+
+	public void setVictoryPointsRanking(ArrayList<Player> victoryPointsRanking) {
+		this.victoryPointsRanking = victoryPointsRanking;
+	}
+
+
+
+
+	public ArrayList<Player> getMilitaryPointsRanking() {
+		return militaryPointsRanking;
+	}
+
+
+
+
+	public void setMilitaryPointsRanking(ArrayList<Player> militaryPointsRanking) {
+		this.militaryPointsRanking = militaryPointsRanking;
+	}
+
+
+
 
 	public LeaderDeck getLeaderDeck() {
 		return leaderDeck;
@@ -64,7 +103,9 @@ public class Game extends Observable implements Serializable {
 		this.players = players;
 		this.currentAge = currentAge;
 		this.excommHandler = excommHandler;
-		this.leaderDeck = leaderDeck;
+		this.leaderDeck = new LeaderDeck(this);
+		victoryPointsRanking = new ArrayList<Player>();
+		militaryPointsRanking = new ArrayList<Player>();
 	}
 
 
@@ -87,13 +128,17 @@ public class Game extends Observable implements Serializable {
 	
 	
 	public void executeGame() {
+		for(int i = 0; i < players.size(); i++){
+			victoryPointsRanking.add(players.get(i));
+			militaryPointsRanking.add(players.get(i));
+		}
 		for (int i = 1; i < 4; i++) {
 			currentAge = new Age(i, this);
 			currentAge.executeAge();
 		}
 		
 	}
-	
+
 
 	public int getId() {
 		return id;
@@ -155,6 +200,34 @@ public class Game extends Observable implements Serializable {
 	public String toString() {
 		String string = new String("game: " + id + " players: " + numberOfPlayers + " host: " + host + "\n");
 		return string;
+	}
+
+
+
+	public void generateRanking() {
+		for (int i = 0; i < victoryPointsRanking.size(); i++) {
+			for (int j = i; j < victoryPointsRanking.size(); j++){
+				int victoryPointsI = victoryPointsRanking.get(i).getMyPersonalBoard().getMyPossession().getVictoryPoints().getValue();
+				int victoryPointsJ = victoryPointsRanking.get(j).getMyPersonalBoard().getMyPossession().getVictoryPoints().getValue();
+				if (victoryPointsI < victoryPointsJ){
+					Player tmp = victoryPointsRanking.get(i);
+					victoryPointsRanking.set(i, victoryPointsRanking.get(j));
+					victoryPointsRanking.set(j, tmp);
+				}
+			}
+		}
+		for (int i = 0; i < militaryPointsRanking.size(); i++) {
+			for (int j = i; j < militaryPointsRanking.size(); j++){
+				int militaryPointsI = militaryPointsRanking.get(i).getMyPersonalBoard().getMyPossession().getMilitaryPoints().getValue();
+				int militaryPointsJ = militaryPointsRanking.get(j).getMyPersonalBoard().getMyPossession().getMilitaryPoints().getValue();
+				if (militaryPointsI < militaryPointsJ){
+					Player tmp = militaryPointsRanking.get(i);
+					militaryPointsRanking.set(i, militaryPointsRanking.get(j));
+					militaryPointsRanking.set(j, tmp);
+				}
+			}
+		}
+		
 	}
 	
 	

@@ -48,6 +48,14 @@ public class Player {
 		this.leaderCards.add((LeaderCard) leaderDeck.getSingleCard());
 	}
 	
+	
+	public void refreshPlayer() {
+		for (int i = 0; i < familyMembers.length; i++) {
+			familyMembers[i].setPlaced(false);
+		}
+	}
+	
+	
 public ArrayList<LeaderCard> getLeaderCards() {
 		return leaderCards;
 	}
@@ -145,7 +153,6 @@ public ArrayList<LeaderCard> getLeaderCards() {
 	public String toString() {
 		return "Player [Name=" + name + ", playerColor=" + playerColor + "]";
 	}
-	
-	
+
 
 }

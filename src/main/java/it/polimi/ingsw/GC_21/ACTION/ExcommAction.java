@@ -54,7 +54,7 @@ public class ExcommAction extends Action {
 			int victoryPointsToGet = faithPointsTracking[currentPositionOnTracking];
 			playerInAction.getMyPersonalBoard().getMyPossession().addItemToPossession(Item.factoryItem(victoryPointsToGet, ResourceType.VictoryPoints));
 			game.notifyString("Well done " + playerInAction.getName() +", you haven't been excommunicated, but you will lose all your faith points!");
-			game.notifyString("...But, you'll gain " + victoryPointsToGet + "Victory Points!");
+			game.notifyString("...But, you'll gain " + victoryPointsToGet + " Victory Points!");
 
 		}
 	}
