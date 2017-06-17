@@ -14,4 +14,6 @@ public class CheckColorMessage extends MessageToClient {
 		return super.executeCLI(keyboard);
 	}
 
+	
+	
 }
