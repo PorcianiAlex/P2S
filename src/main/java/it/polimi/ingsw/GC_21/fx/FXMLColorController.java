@@ -42,9 +42,8 @@ public class FXMLColorController extends MetaController {
 
 	 @FXML protected void Ready(ActionEvent event){
 	   //  client.sendGUI("start"); //se sei l'host fa partire effettivamente la partita altrimenti ti fa andare sulla nuova schrmata senza eseguire il gioco	     
-	    
-		
-		 ToggleButton button = (ToggleButton) place.getSelectedToggle();
+		gameScene();
+		/* button = (ToggleButton) place.getSelectedToggle();
 		 colorplayer = Color.valueOf(button.getAccessibleText());
 		 CreatePlayerInput createPlayerInput = new  CreatePlayerInput(colorplayer);
 		 client2.setInputToSend(createPlayerInput);
@@ -53,10 +52,11 @@ public class FXMLColorController extends MetaController {
 			this.popup();
 			return;
 		} else if (checkColorMessage.isResult() && "attendo lo start".equals(checkColorMessage.getDescription())) {
-			System.out.println("aspetto start");
+			System.out.println(checkColorMessage.getDescription());
+			return;
 		} else {
 	     this.gameScene();
-		}
+		} */
 	 }
 	 
 	 
