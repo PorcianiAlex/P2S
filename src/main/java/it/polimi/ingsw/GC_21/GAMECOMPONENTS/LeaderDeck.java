@@ -17,6 +17,7 @@ public class LeaderDeck extends Deck {
 
 	public LeaderDeck(Game game) {
 		super(game);
+		this.cards = new ArrayList<Card>();
 		ArrayList<FamilyMemberColor> forSigismondoMaletesta = new ArrayList<FamilyMemberColor>();
 		forSigismondoMaletesta.add(FamilyMemberColor.Neutral);
 		ArrayList<FamilyMemberColor> forLudovicoIlMoro = new ArrayList<FamilyMemberColor>();

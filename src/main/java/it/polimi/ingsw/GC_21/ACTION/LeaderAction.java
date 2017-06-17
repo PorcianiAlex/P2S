@@ -1,24 +1,29 @@
 package it.polimi.ingsw.GC_21.ACTION;
 
 import java.util.ArrayList;
+
+
+
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.OncePerTurnLeaderCard;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class LeaderAction extends Action {
 	private boolean playOrTurn;
 	private LeaderCard leaderChosen;
 
-	public LeaderAction(Player playerInAction, LeaderCard leaderChosen, boolean playOrTurn) {
+	public LeaderAction(Player playerInAction, LeaderCard leaderChosen, boolean playOrTurn, Game game) {
 		super(playerInAction);
 		this.playOrTurn = playOrTurn;
 		this.leaderChosen = leaderChosen;
+		this.game = game;
 	}
 
 	@Override
 	public void Execute() {
 		super.Execute();
-		if (playOrTurn){
+		if (!playOrTurn){ //If I choose to play a card already turned
 			if (playerInAction.getPlayedOncePerTurnLeaderCards().contains(leaderChosen)){
 				((OncePerTurnLeaderCard) leaderChosen).callEffect(playerInAction);
 				}			
@@ -26,7 +31,7 @@ public class LeaderAction extends Action {
 				game.notifyCurrentString("You don't have any leader card to use!");
 				}
 			}
-		else{
+		else{ //if I have to turn a new leader Card
 			if (leaderChosen.checkRequirements(playerInAction) && !leaderChosen.isPlayed()){
 				leaderChosen.callEffect(playerInAction);
 				leaderChosen.setPlayed(true);
