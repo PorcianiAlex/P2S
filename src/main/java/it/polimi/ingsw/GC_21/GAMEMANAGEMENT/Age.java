@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
-import it.polimi.ingsw.GC_21.view.RemoteView;
+import it.polimi.ingsw.GC_21.VIEW.RemoteView;
 
 public class Age {
 	private int ageNumber;

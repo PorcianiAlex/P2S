@@ -20,10 +20,6 @@ public class PermanentLeaderCard extends LeaderCard{
 		}
 	}
 
-
-
-
-
 	public PermanentLeaderCard(String name, int numberOfVenturesRequired, int numberOfCharactersRequired,
 			int numberOfBuildingRequired, int numberOfTerritoryRequired, Possession requirements, boolean played,
 			Permanent permanentEffect) {

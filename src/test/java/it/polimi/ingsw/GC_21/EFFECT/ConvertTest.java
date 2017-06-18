@@ -15,17 +15,17 @@ import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.CLIENT.MainClient;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
+import it.polimi.ingsw.GC_21.CONTROLLER.ControllerManager;
 import it.polimi.ingsw.GC_21.EFFECT.Convert;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.controller.ControllerManager;
+import it.polimi.ingsw.GC_21.VIEW.AdapterConnection;
+import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.VIEW.RemoteView;
+import it.polimi.ingsw.GC_21.VIEW.RmiAdapter;
+import it.polimi.ingsw.GC_21.VIEW.Server;
 import it.polimi.ingsw.GC_21.fx.ViewType;
-import it.polimi.ingsw.GC_21.view.AdapterConnection;
-import it.polimi.ingsw.GC_21.view.InputForm;
-import it.polimi.ingsw.GC_21.view.RemoteView;
-import it.polimi.ingsw.GC_21.view.RmiAdapter;
-import it.polimi.ingsw.GC_21.view.Server;
 
 public class ConvertTest {
 	

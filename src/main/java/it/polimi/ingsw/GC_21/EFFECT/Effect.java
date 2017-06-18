@@ -9,7 +9,7 @@ import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.view.PrivilegeInput;
+import it.polimi.ingsw.GC_21.VIEW.PrivilegeInput;
 
 public  class Effect{
 	protected Game game; 

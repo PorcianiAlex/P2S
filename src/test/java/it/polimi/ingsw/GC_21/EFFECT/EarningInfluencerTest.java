@@ -15,6 +15,7 @@ import it.polimi.ingsw.GC_21.ACTION.PlacementAction;
 import it.polimi.ingsw.GC_21.ACTION.TowerPlacement;
 import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
+import it.polimi.ingsw.GC_21.CONTROLLER.ControllerManager;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
@@ -22,10 +23,9 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Privileges;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.controller.ControllerManager;
+import it.polimi.ingsw.GC_21.VIEW.RemoteView;
+import it.polimi.ingsw.GC_21.VIEW.RmiAdapter;
 import it.polimi.ingsw.GC_21.fx.ViewType;
-import it.polimi.ingsw.GC_21.view.RemoteView;
-import it.polimi.ingsw.GC_21.view.RmiAdapter;
 
 public class EarningInfluencerTest {
 

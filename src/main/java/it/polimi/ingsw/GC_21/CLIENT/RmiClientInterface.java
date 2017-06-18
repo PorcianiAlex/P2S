@@ -4,7 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Scanner;
 
-import it.polimi.ingsw.GC_21.view.InputForm;
+import it.polimi.ingsw.GC_21.VIEW.InputForm;
 
 public interface RmiClientInterface extends Remote {
 	public void clientReceive(String string)throws RemoteException;

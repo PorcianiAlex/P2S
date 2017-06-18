@@ -1,8 +1,8 @@
 package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 
+import it.polimi.ingsw.GC_21.CONTROLLER.ControllerForm;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.controller.ControllerForm;
 
 public class SetFamilyMemberMessage extends ControllerForm{
 	private int newFamilyMemberValue;
