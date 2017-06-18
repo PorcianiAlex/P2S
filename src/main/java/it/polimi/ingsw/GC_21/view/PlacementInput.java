@@ -8,6 +8,8 @@ public class PlacementInput extends ActionInput{
 	
 	protected FamilyMemberColor familyMemberColor; 
 	protected int servantsToConvert;
+	
+	
 	public PlacementInput(String choice, FamilyMemberColor familyMemberColor, int servantsToConvert) {
 		super(choice);
 		this.familyMemberColor = familyMemberColor;
@@ -20,13 +22,13 @@ public class PlacementInput extends ActionInput{
 	public void execute(RemoteView remoteView) {
 		int playerServant = remoteView.getPlayer().getMyPersonalBoard().getMyPossession().getServants().getValue(); 
 	    if (playerServant == 0){ 
-	      adapterConnection.out("You don't have servant to convert!"); 
+	      System.out.println("You don't have servant to convert!"); 
 	    } 
 	    if (servantsToConvert > playerServant){ 
-		      adapterConnection.out("You don't have enough servant to convert, try again!"); 
+		      System.out.println("You don't have enough servant to convert, try again!"); 
 		    }
 		    else { 
-		      adapterConnection.out("You are going to convert " + servantsToConvert + " servants"); 
+		      System.out.println("You are going to convert " + servantsToConvert + " servants"); 
 		    } 	
 		
 	}

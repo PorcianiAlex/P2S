@@ -1,10 +1,12 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 
-public class SingleActionSpace extends ActionSpace {
+public class SingleActionSpace extends ActionSpace implements Serializable{
 
 	private FamilyMember familyMemberLocated;
 

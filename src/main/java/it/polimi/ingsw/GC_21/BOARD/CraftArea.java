@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_21.EFFECT.CraftInfluencer;
@@ -8,7 +9,7 @@ import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class CraftArea {
+public class CraftArea implements Serializable{
 	private Game game;
 	private final CraftType craftType;
 	private final SingleActionSpace singleActionSpace;

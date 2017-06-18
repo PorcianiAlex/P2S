@@ -1,8 +1,10 @@
 package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class Possession {
+public class Possession implements Serializable{
 	private Coins coins;
 	private Woods woods;
 	private Stones stones;

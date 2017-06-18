@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_21.view;
 
 import java.awt.im.spi.InputMethod;
+import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.ACTION.TowerPlacement;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
@@ -10,6 +11,7 @@ public class TakeCardInput extends InputForm{
 	private DevCardType devCardType;
 	private int actionValueInfluencer;
 	private Possession discount;
+	private int selectedFloor;
 	
 	
 
@@ -21,21 +23,28 @@ public class TakeCardInput extends InputForm{
 
 
 
-	/*@Override
+	@Override
 	public void execute(RemoteView remoteView) {
 		super.setAdapter(remoteView);
-		adapterConnection.out("Hey sgangherato, you can take another Card!!!\nYour new action value is " + this.actionValueInfluencer);
-		TowerPlacementInput towerPlacementInput = new TowerPlacementInput();
-		devCardType = towerPlacementInput.selectTower();
-		adapterConnection.out("The kind of Card you can now take is " + this.devCardType.toString());
-		int selectedFloor = towerPlacementInput.selectFloor();
 		TowerPlacement takeCardAction = TowerPlacement.factoryTakeCard(remoteView.getPlayer(), devCardType, selectedFloor, actionValueInfluencer, discount, null, remoteView.getGame().getBoard());
 		boolean result = remoteView.notifyObservers(takeCardAction);
 		if (!result){
 			this.execute(remoteView);
-		}*/
-
+		}
 		
+		
+	
+
+	}
+	
+	@Override
+	public void inputFromCli(Scanner keyboard) {
+		adapterConnection.out("Hey sgangherato, you can take another Card!!!\nYour new action value is " + this.actionValueInfluencer);
+		TowerPlacementInput towerPlacementInput = new TowerPlacementInput();
+		devCardType = towerPlacementInput.selectTower(keyboard);
+		adapterConnection.out("The kind of Card you can now take is " + this.devCardType.toString());
+		selectedFloor = towerPlacementInput.selectFloor(keyboard);		
+	}
 			
 			
 		

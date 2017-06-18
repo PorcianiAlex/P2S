@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 
+import java.io.Serializable;
 import java.util.*;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
@@ -7,7 +8,7 @@ import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.EFFECT.*;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class Card {
+public class Card implements Serializable{
 
 	protected final String name;
 	protected Possession requirements;

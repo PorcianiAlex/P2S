@@ -17,9 +17,15 @@ public class CheckLoginMessage extends MessageToClient {
 	@Override
 	public InputForm executeCLI(Scanner keyboard) {
 		super.executeCLI(keyboard);
-		LobbyInput lobbyInput = new LobbyInput();
-		lobbyInput.chooseGame(keyboard);
-		return lobbyInput;
+		if (result) {
+			LobbyInput lobbyInput = new LobbyInput();
+			lobbyInput.chooseGame(keyboard);
+			return lobbyInput;
+		}
+		else {//maybe it's better to send a start message from server
+			StartMessage retryStartMessage = new StartMessage();
+			return retryStartMessage.executeCLI(keyboard);
+		}
 	}
 	
 	

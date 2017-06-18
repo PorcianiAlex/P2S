@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,7 +12,7 @@ import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.view.PrivilegeInput;
 
-public  class Effect implements ToCallDuringCraft{
+public  class Effect implements Serializable{
 	protected Game game; 
 	protected Possession rewards;
 	protected Privileges privileges;

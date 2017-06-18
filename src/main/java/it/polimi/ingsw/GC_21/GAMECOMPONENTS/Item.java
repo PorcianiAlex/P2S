@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable{
 	protected final ResourceType resourceType;
 	protected int value;
 	

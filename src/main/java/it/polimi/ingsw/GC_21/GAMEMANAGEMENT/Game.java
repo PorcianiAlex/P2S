@@ -24,7 +24,7 @@ import it.polimi.ingsw.GC_21.UTILITIES.Observable;
 import it.polimi.ingsw.GC_21.controller.Controller;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
-public class Game extends Observable implements Serializable {
+public class Game extends Observable implements Serializable{
 	
 	private static int currentNumberOfGame = 0; 
 	private int id;

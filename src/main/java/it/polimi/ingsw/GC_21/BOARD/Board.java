@@ -2,12 +2,14 @@ package it.polimi.ingsw.GC_21.BOARD;
 
 
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 
 
-public class Board {
+public class Board implements Serializable{
 	private Game game;
 	private Dice[] dices;
 	private Tower[] towers;

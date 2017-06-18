@@ -4,17 +4,29 @@ import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.ACTION.CraftPlacement;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
+import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 
 
 public class CraftPlacementInput extends PlacementInput {
 	private CraftType craftType;
+	private String spaceType;
+	
+	
+
+	public CraftPlacementInput(String choice, FamilyMemberColor familyMemberColor, int servantsToConvert,
+			CraftType craftType, String spaceType) {
+		super(choice, familyMemberColor, servantsToConvert);
+		this.craftType = craftType;
+		this.spaceType = spaceType;
+	}
+	
+	public CraftPlacementInput() {
+	}
+
+
 
 	@Override
 	public void execute(RemoteView remoteView) {
-		super.setAdapter(remoteView);
-	    adapterConnection.out("Where do you want to place your Family Member? Be careful, my dear bischero: \n if you choose the " 
-	        + "multiple action space you will get a malus on your craft! \n (1) Single Action Space - (2) Multiple Action Space"); 
-	    String spaceType = adapterConnection.in();
 	    super.execute(remoteView);
 	    CraftPlacement craftPlacement = CraftPlacement.factoryCraftPlacement(remoteView.getPlayer(), familyMemberColor, remoteView.getGame().getBoard(), servantsToConvert, craftType, Integer.parseInt(spaceType)); 
 	    remoteView.response(craftPlacement);
@@ -24,6 +36,7 @@ public class CraftPlacementInput extends PlacementInput {
 	@Override
 	public void inputFromCli(Scanner keyboard) {
 		selectCraftType(keyboard);
+		selectSpace(keyboard);
 		super.inputFromCli(keyboard);
 
 	}
@@ -38,6 +51,12 @@ public class CraftPlacementInput extends PlacementInput {
 	    	   selectCraftType(keyboard); 
 	    } 
 	  } 
+	  
+	  public void selectSpace(Scanner keyboard) {
+		  System.out.println("Where do you want to place your Family Member? Be careful, my dear bischero: \n if you choose the " 
+			        + "multiple action space you will get a malus on your craft! \n (1) Single Action Space - (2) Multiple Action Space"); 
+			    spaceType = keyboard.nextLine();
+	}
 	  
 
 }

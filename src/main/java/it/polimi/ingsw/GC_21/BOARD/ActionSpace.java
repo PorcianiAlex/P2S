@@ -1,13 +1,15 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class ActionSpace {
+public class ActionSpace implements Serializable {
 	protected Game game;
 	protected int requiredDice;
 	protected Effect actionSpaceEffect;

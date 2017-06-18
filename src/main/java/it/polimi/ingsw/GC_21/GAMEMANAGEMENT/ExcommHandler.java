@@ -1,12 +1,13 @@
 package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ExDeck;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ExcommunicationCard;
 import it.polimi.ingsw.GC_21.view.ExcommInput;
 
-public class ExcommHandler {
+public class ExcommHandler implements Serializable{
 	private ExcommunicationCard[] excommunicationCards;
 	private int[] excommThresholds;
 	private Game game;

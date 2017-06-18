@@ -1,10 +1,11 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
+import java.io.Serializable;
 import java.util.Random;
 
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 
-public class Dice {
+public class Dice implements Serializable {
 
 	private final FamilyMemberColor diceColor;
 	private int value;

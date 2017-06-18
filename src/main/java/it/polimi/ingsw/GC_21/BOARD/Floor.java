@@ -1,9 +1,11 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 
-public class Floor {
+public class Floor implements Serializable{
 	private Game game;
 	private int floorNumber;
 	private SingleActionSpace singleActionSpace;

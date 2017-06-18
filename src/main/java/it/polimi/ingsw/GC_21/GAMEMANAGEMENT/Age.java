@@ -1,12 +1,13 @@
 package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
-public class Age {
+public class Age implements Serializable{
 	private int ageNumber;
  	DevDeck buildingDeck ;
 	DevDeck territoryDeck;

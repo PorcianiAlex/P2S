@@ -25,20 +25,20 @@ public class LoginController extends ControllerForm{
 	public boolean executeController()  {
 		boolean ok = false;
 		try {
-			CheckLoginMessage checkLoginMessage = null;
+			CheckLoginMessage checkLoginMessage;
 			ok = controller.getControllerManager().Login(username, password, insert);
 			if(ok == false && insert == true) {
 				checkLoginMessage = new CheckLoginMessage(false, "this username already exists!", null);
 			}
-			if(ok == false && insert == false) {
+			else if(ok == false && insert == false) {
 				checkLoginMessage = new CheckLoginMessage(false, "these username and password doesn't exist!", null);
 
 			}
-			if(!checkLoggedUsers(username) && insert==false) {
+			else if(!checkLoggedUsers(username) && insert==false) {
 				 checkLoginMessage = new CheckLoginMessage(false, "Oh grullo! tu sei già loggato!", null);
 				
 			}
-			if (ok == false) {
+			else if (ok == false) {
 				 checkLoginMessage = new CheckLoginMessage(false, "Login Error", null);
 				
 			}
@@ -62,7 +62,6 @@ public class LoginController extends ControllerForm{
 	public boolean checkLoggedUsers(String name) { 
 	    for (int i = 0; i < controller.getControllerManager().getRemoteViews().size(); i++) { 
 	      if(name.equals(controller.getControllerManager().getRemoteViews().get(i).getUsername())){ 
-	        controller.getRemoteView().getAdapter().out("Oh grullo! tu sei già loggato!"); 
 	        return false; 
 	      } 
 	    } 
@@ -78,7 +77,6 @@ public class LoginController extends ControllerForm{
 			gamesString.add(game.toString());
 
 		}
-		System.out.println(gamesString.toString());
 		return gamesString;
 	}
 	

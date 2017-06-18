@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
+import java.io.Serializable;
 import java.util.*;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
@@ -9,7 +10,7 @@ import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class Tower {
+public class Tower implements Serializable{
 	private Game game;
 	private final DevCardType devCardType;
 	private Floor[] floors = new Floor[4];

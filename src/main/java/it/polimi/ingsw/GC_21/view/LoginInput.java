@@ -39,11 +39,12 @@ public class LoginInput extends InputForm {
 	    String choice = keyboard.nextLine(); 
 	    switch (choice) { 
 	    case "1": insert = true; 
-	    break; 
+	    	break; 
 	    case "2": insert =false;; 
-	    break;
-	    default : chooseUsername(keyboard);
-	    break;
+	    	break;
+	    default :System.out.println("Invalid input"); 
+	    	chooseUsername(keyboard);
+	    	break;
 	    }
 	    System.out.println("Enter your username: ");
 		username = keyboard.nextLine();

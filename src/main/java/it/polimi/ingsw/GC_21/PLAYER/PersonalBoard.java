@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_21.PLAYER;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.*;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
@@ -12,7 +13,7 @@ import it.polimi.ingsw.GC_21.EFFECT.ToCallDuringCraft;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallWhenEarning;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 
-public class PersonalBoard {
+public class PersonalBoard implements Serializable{
 	private final OwnedCards[] myOwnedCards;
 	private final Possession craftMinimumReward;
 	private Possession myPossession;

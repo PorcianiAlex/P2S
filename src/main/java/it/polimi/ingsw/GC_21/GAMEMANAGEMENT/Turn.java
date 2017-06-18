@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
@@ -9,7 +10,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
-public class Turn {
+public class Turn implements Serializable{
 
 	private int turnNumber;
 	private Game game;

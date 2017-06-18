@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_21.PLAYER;
 
+import java.io.Serializable;
 import java.util.*;
 
 import javax.swing.text.View;
@@ -14,7 +15,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
-public class Player {
+public class Player implements Serializable{
 
 	private FamilyMember[] familyMembers;
 	private String name;

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.print.DocFlavor.URL;
@@ -27,16 +28,15 @@ import it.polimi.ingsw.GC_21.EFFECT.LoseYourDevCardType;
 import it.polimi.ingsw.GC_21.EFFECT.PlacementInfluencer;
 import it.polimi.ingsw.GC_21.EFFECT.VictoryPointsInfluencer;
 
-public class CardCreator {
+public class CardCreator implements Serializable{
 	private Game game;
-	private ArrayList<Card> cards;
-	private JSONParser parser = new JSONParser();
-   
+	private ArrayList<Card> cards;   
 	public CardCreator(Game game) {
 		this.game = game;
 	}
 
 	public ArrayList<Card> devCardsCreate(DevCardType devCardType, int age) {
+		JSONParser parser = new JSONParser(); 
 		cards = new ArrayList<Card>();
 		try {
 		java.net.URL path = CardCreator.class.getResource("DevCards.json");
@@ -76,6 +76,7 @@ public class CardCreator {
 
 
 	public ArrayList<Card> ExCardsCreate(int age) {
+		JSONParser parser = new JSONParser();
 		cards = new ArrayList<Card>();
 		try {
 		java.net.URL path = CardCreator.class.getResource("ExCards.json");

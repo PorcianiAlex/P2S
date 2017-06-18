@@ -1,12 +1,13 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 
-public class MultipleActionSpace extends ActionSpace {
+public class MultipleActionSpace extends ActionSpace implements Serializable{
 	private ArrayList<FamilyMember> familyMembersLocated = new ArrayList<FamilyMember>();
 
 	public MultipleActionSpace(int requiredDice, Effect effect, Game game) {

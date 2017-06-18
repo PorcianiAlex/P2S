@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
+import java.io.Serializable;
 import java.util.*;
 
 import it.polimi.ingsw.GC_21.EFFECT.Convert;
@@ -9,7 +10,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 
-public class MarketArea {
+public class MarketArea implements Serializable{
 	private SingleActionSpace[] singleActionSpace;
 	private Game game;
 

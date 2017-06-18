@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
@@ -9,7 +10,7 @@ import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class CouncilPalace {
+public class CouncilPalace implements Serializable {
 	private MultipleActionSpace multipleActionSpace;
 	private Game game;
 	

@@ -2,6 +2,8 @@ package it.polimi.ingsw.GC_21.view;
 
 import java.util.Scanner;
 
+import it.polimi.ingsw.GC_21.PLAYER.Player;
+
 public class ActionInput extends InputForm {
 	protected String choice;
 	
@@ -14,8 +16,7 @@ public class ActionInput extends InputForm {
 	public ActionInput() {
 	}
 	
-	@Override
-	public void inputFromCli(Scanner keyboard) {
+	public InputForm chooseAction(Scanner keyboard, Player player) {
 			System.out.println("Choose your action: " + "\n 1: Tower placement" + "\n 2: Craft placement "
 					+ "\n 3: Market placement " + "\n 4: Council placement" + "\n 5: Pass" + "\n 6 Play Leader Card" + "\n 7 Discard Leader Card");
 			choice = keyboard.nextLine();			
@@ -23,31 +24,30 @@ public class ActionInput extends InputForm {
 			case "1":
 				TowerPlacementInput towerPlacementInput = new TowerPlacementInput();
 				towerPlacementInput.inputFromCli(keyboard);
-				break;
+				return towerPlacementInput;
 			case "2":
 				CraftPlacementInput craftPlacementInput = new CraftPlacementInput();
 				craftPlacementInput.inputFromCli(keyboard);
-				break;
+				return craftPlacementInput;
 			case "3":
 				MarketPlacementInput marketPlacementInput = new MarketPlacementInput();
 				marketPlacementInput.inputFromCli(keyboard);
-				break;
+				return marketPlacementInput;
 			case "4":
 				CouncilPlacementInput councilPlacementInput = new CouncilPlacementInput();
 				councilPlacementInput.inputFromCli(keyboard);
-				break;
+				return councilPlacementInput;
 			case "5":
 				PassInput passInput = new PassInput();
 				passInput.inputFromCli(keyboard);
-				break;
+				return passInput;
 			case "6":
-				LeaderInput leaderInput = new LeaderInput();
+				LeaderInput leaderInput = new LeaderInput(player);
 				leaderInput.inputFromCli(keyboard);
-				this.inputFromCli(keyboard);
+				return leaderInput;
 			default:
 				System.out.println("Invalid input, try again!");
-				this.inputFromCli(keyboard);
-				break;
+				return chooseAction(keyboard, player);
 			}
 	}	
 }

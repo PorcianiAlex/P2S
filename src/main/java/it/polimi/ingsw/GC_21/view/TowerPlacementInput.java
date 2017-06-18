@@ -10,8 +10,18 @@ import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 public class TowerPlacementInput extends PlacementInput {
 	private DevCardType selectedTower; 
     private int floor;
+     
 	
+	public TowerPlacementInput(String choice, FamilyMemberColor familyMemberColor, int servantsToConvert,
+			DevCardType selectedTower, int floor) {
+		super(choice, familyMemberColor, servantsToConvert);
+		this.selectedTower = selectedTower;
+		this.floor = floor;
+	}
 	
+	public TowerPlacementInput() {
+	}
+
 	@Override
 	public void execute(RemoteView remoteView) {
 		super.execute(remoteView);
@@ -21,9 +31,9 @@ public class TowerPlacementInput extends PlacementInput {
 	
 	@Override
 	public void inputFromCli(Scanner keyboard) {
-		super.inputFromCli(keyboard); 
 	    selectedTower = selectTower(keyboard); 
-	    floor = selectFloor(keyboard);   	    
+	    floor = selectFloor(keyboard);
+		super.inputFromCli(keyboard); 
 	}
  
 	 public DevCardType selectTower(Scanner keyboard){ 

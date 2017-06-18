@@ -15,10 +15,10 @@ public class CheckLobbyMessage extends MessageToClient{
 	
 	@Override
 	public InputForm executeCLI(Scanner keyboard) {
-		super.executeCLI(keyboard);
-		CreatePlayerInput createPlayerInput = new CreatePlayerInput();
-		createPlayerInput.inputFromCli(keyboard);
-		return createPlayerInput;
+			super.executeCLI(keyboard);
+			CreatePlayerInput createPlayerInput = new CreatePlayerInput();
+			createPlayerInput.inputFromCli(keyboard);
+			return createPlayerInput;
 	}
 
 }

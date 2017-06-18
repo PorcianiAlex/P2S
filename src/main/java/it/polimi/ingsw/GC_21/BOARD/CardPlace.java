@@ -1,8 +1,10 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
 
-public class CardPlace {	
+public class CardPlace implements Serializable {	
 	private Card card;
 
 	public CardPlace(Card card) {

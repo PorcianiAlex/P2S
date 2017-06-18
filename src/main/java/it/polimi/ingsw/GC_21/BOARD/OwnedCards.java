@@ -1,10 +1,12 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
 import it.polimi.ingsw.GC_21.PLAYER.PersonalCardPlace;
 
-public class OwnedCards {
+public class OwnedCards implements Serializable{
 	private PersonalCardPlace[] ownedCards;
 	private final DevCardType ownedCardsType;
 	private final int DIMENSION;

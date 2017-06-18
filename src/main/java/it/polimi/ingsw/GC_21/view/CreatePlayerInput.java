@@ -43,6 +43,7 @@ public class CreatePlayerInput extends InputForm {
 		else {
 			checkColorMessage = new CheckColorMessage(false, "Oh grullo! This color is already in use, choose another one, please!");
 			remoteView.getAdapter().sendObject(checkColorMessage);
+			remoteView.inputObject();
 		}					
 	}
 
@@ -51,9 +52,10 @@ public class CreatePlayerInput extends InputForm {
 	
 
 	public void letStart(RemoteView remoteView) { 
-	    String string = remoteView.getAdapter().in(); 
-	    if("start".equals(string) && remoteView.getGame().getPlayers().size()>1 || remoteView.getGame().getPlayers().size()==4 ) { 
-	      remoteView.getGame().executeGame(); 
+	    String string = remoteView.getAdapter().in();
+	    Game game = remoteView.getGame();
+	    if("start".equals(string) /*&& game.getPlayers().size()>1*/ || game.getPlayers().size()==4 ) { 
+	      game.executeGame(); 
 	    } else { letStart(remoteView); } 
 	  } 
 

@@ -1,10 +1,11 @@
 package it.polimi.ingsw.GC_21.PLAYER;
 
+import java.io.Serializable;
 import java.lang.reflect.Member;
 
 import it.polimi.ingsw.GC_21.BOARD.*;
 
-public class FamilyMember {
+public class FamilyMember implements Serializable{
 	private final Player ownerPlayer;
 	private Boolean placed;
 	private Dice associatedDice;

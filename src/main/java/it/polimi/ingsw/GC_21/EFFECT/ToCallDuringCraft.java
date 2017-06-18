@@ -1,9 +1,11 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public interface ToCallDuringCraft {
+public interface ToCallDuringCraft extends Serializable{
 
 
 }

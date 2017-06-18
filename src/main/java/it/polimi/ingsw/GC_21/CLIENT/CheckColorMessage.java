@@ -11,7 +11,13 @@ public class CheckColorMessage extends MessageToClient {
 	}
 	@Override
 	public InputForm executeCLI(Scanner keyboard) {
-		return super.executeCLI(keyboard);
+		if (result) {
+			return super.executeCLI(keyboard);
+		}
+		else {//maybe it's better to send a start message from server
+			CheckLobbyMessage retryLobbyMessage = new CheckLobbyMessage(true, "Retry");
+			return retryLobbyMessage.executeCLI(keyboard);
+		}
 	}
 
 	

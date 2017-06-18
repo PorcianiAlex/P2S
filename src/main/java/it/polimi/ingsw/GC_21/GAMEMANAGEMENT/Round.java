@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.omg.CORBA.PUBLIC_MEMBER;
@@ -8,7 +9,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.view.RemoteView;
 
-public class Round {
+public class Round implements Serializable{
 
 	private int roundNumber;
 	private Game game;
