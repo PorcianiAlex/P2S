@@ -11,7 +11,7 @@ import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.view.PrivilegeInput;
 
-public  class Effect implements ToCallDuringCraft{
+public  class Effect{
 	protected Game game; 
 	protected Possession rewards;
 	protected Privileges privileges;
@@ -46,7 +46,8 @@ public  class Effect implements ToCallDuringCraft{
 	
 	
 	public void activateEffect(Player player, Action action) {
-		if (privileges.getValue()!=0){
+		if (player!=null){
+			if (privileges.getValue()!=0){
 				PrivilegeInput privilegeInput = new PrivilegeInput(rewards, privileges.getValue(), earnedRewards);
 				game.notifyCurrent(privilegeInput);
 				}
@@ -58,7 +59,7 @@ public  class Effect implements ToCallDuringCraft{
 				game.notifyCurrentString("Oh ragazzotto! Here's a little cantuccino for you:\n" + rewards.toString());
 			}
 		}
-		
+	}
 	}
 
 	

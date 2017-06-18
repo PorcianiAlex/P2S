@@ -54,17 +54,17 @@ public class ForEachGet extends Effect implements ToCallDuringCraft{
 			Item rewardItem = Item.factoryItem(cardMultiplier * gettingIndex, resourceYouGet);
 			rewards.addItemToPossession(rewardItem);
 			callWhenEarningEffects(player, action);
-			game.notifyCurrentString("You will get " + gettingIndex + "x" + resourceYouGet + "for each" + forEachResourceIndex + " " + forEachResource);
 			earnRewards(player, rewards);
 		}
 		else{
 			int playerResourceNumber = player.getMyPersonalBoard().getMyPossession().getRequestedItem(forEachResource).getValue();
 			int resourceMultiplier = playerResourceNumber/forEachResourceIndex;
+			System.out.println(resourceMultiplier);
 			Possession rewards = new Possession(0,0,0,0,0,0,0);
 			Item rewardItem = Item.factoryItem(resourceMultiplier * gettingIndex, resourceYouGet);
+			System.out.println("reward item value" + rewardItem.getValue());
 			rewards.addItemToPossession(rewardItem);
 			callWhenEarningEffects(player, action);
-			game.notifyCurrentString("You will get " + gettingIndex + "x" + resourceYouGet + "for each" + forEachCardIndex + " " + forEachCard);
 			earnRewards(player, rewards);
 		}
 		

@@ -79,7 +79,6 @@ public class CardCreator {
 		cards = new ArrayList<Card>();
 		try {
 		java.net.URL path = CardCreator.class.getResource("ExCards.json");
-		System.out.println(path.getPath());
 		FileReader file = new FileReader(path.getPath());
 		Object obj = parser.parse(file);
 	    JSONObject card = (JSONObject) obj;

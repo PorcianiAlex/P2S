@@ -27,7 +27,6 @@ public class EarningInfluencer extends Effect implements ToCallWhenEarning, Perm
 	@Override
 	public void activateEffect(Player player, Action action) {
 		if (action instanceof PlacementAction){
-			game.notifyCurrentString("Your earning is going to be influenced by an effect!");
 			PlacementAction thisAction = (PlacementAction) action;
 			if (thisAction.getSelectedActionSpace().getActionSpaceEffect()!=null){
 				Possession rewardEffected = thisAction.getSelectedActionSpace().getActionSpaceEffect().getRewards();
