@@ -36,8 +36,6 @@ public class ExcommAction extends Action {
 		faithPointsTracking[18] = 21;
 		faithPointsTracking[19] = 22;
 		faithPointsTracking[20] = 23;
-
-
 	}	
 	
 	@Override
