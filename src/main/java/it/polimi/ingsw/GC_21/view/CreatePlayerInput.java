@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_21.view;
+package it.polimi.ingsw.GC_21.VIEW;
 
 import java.util.Scanner;
 

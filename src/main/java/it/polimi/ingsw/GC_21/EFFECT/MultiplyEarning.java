@@ -15,8 +15,6 @@ public class MultiplyEarning extends EarningInfluencer {
 		this.multiplier = multiplier;
 	}
 
-
-
 	@Override
 	public void setNewReward(Possession reward) {
 		reward.multiplyResource(multiplier);

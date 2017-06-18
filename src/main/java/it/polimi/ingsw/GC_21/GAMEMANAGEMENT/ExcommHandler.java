@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ExDeck;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ExcommunicationCard;
-import it.polimi.ingsw.GC_21.view.ExcommInput;
+import it.polimi.ingsw.GC_21.VIEW.ExcommInput;
 
 public class ExcommHandler implements Serializable{
 	private ExcommunicationCard[] excommunicationCards;

@@ -39,7 +39,6 @@ public class PlacementInfluencer extends Effect implements ToCallBeforePlacement
 	public void activateEffect(Player player, Action action) {
 		if (checkIfInfluenced(action)){
 			int newActionValue = this.actionValueBonus + ((PlacementAction) action).getActionValue();
-			game.notifyCurrentString("Your placement is going to be influenced!");
 			((PlacementAction) action).setActionValue(newActionValue);
 			((PlacementAction) action).getDiscount().add(discount);
 		}
@@ -53,12 +52,13 @@ public class PlacementInfluencer extends Effect implements ToCallBeforePlacement
 			isInstanceOfTowerPlacement = true;
 			TowerPlacement thisAction = (TowerPlacement) action;
 			FamilyMemberColor selectedFamilyMember = thisAction.getSelectedFamilyMember().getFamilyMemberColor();
-			if (this.familyMemberInfluenced != null && !familyMemberInfluenced.contains(selectedFamilyMember));
+			if (this.familyMemberInfluenced != null && !familyMemberInfluenced.contains(selectedFamilyMember)){
 				isFamilyMemberInfluenced = false;
 			}
 		if (((TowerPlacement) action).getSelectedTower().getDevCardType().equals(this.towerEffected) || towerEffected==null){
 			isRightTower = true;
 			}
+		}
 		return isInstanceOfTowerPlacement && isRightTower && isFamilyMemberInfluenced;
 		}
 	}

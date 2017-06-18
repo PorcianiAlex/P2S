@@ -2,9 +2,9 @@ package it.polimi.ingsw.GC_21.CLIENT;
 
 import java.util.Scanner;
 
-import it.polimi.ingsw.GC_21.view.CreatePlayerInput;
-import it.polimi.ingsw.GC_21.view.InputForm;
-import it.polimi.ingsw.GC_21.view.LobbyInput;
+import it.polimi.ingsw.GC_21.VIEW.CreatePlayerInput;
+import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.VIEW.LobbyInput;
 
 public class CheckLobbyMessage extends MessageToClient{
 

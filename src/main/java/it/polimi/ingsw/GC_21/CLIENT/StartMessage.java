@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 import org.json.simple.parser.ParseException;
 
-import it.polimi.ingsw.GC_21.view.InputForm;
-import it.polimi.ingsw.GC_21.view.LoginInput;
+import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.VIEW.LoginInput;
 
 public class StartMessage extends MessageToClient{
 	

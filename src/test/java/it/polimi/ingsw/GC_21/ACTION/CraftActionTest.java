@@ -14,13 +14,13 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class CraftActionTest {
 
-	/*@Test
+	@Test
 	public void testCallBeforeCraftEffectsProduction2() {
-		Game game = new Game();
+		Game game = new Game("Test");
 		Player testPlayer = new Player("aaa", Color.Blue, game);
-		CraftInfluencer test1 = new CraftInfluencer(CraftType.Production, 1);
-		CraftInfluencer test2 = new CraftInfluencer(CraftType.Harvest, 1);
-		CraftInfluencer test3 = new CraftInfluencer(CraftType.Production, 1);
+		CraftInfluencer test1 = new CraftInfluencer(CraftType.Production, 1, game);
+		CraftInfluencer test2 = new CraftInfluencer(CraftType.Harvest, 1, game);
+		CraftInfluencer test3 = new CraftInfluencer(CraftType.Production, 1, game);
 		testPlayer.getMyPersonalBoard().getToCallBeforeCraftEffects().add(test1);
 		testPlayer.getMyPersonalBoard().getToCallBeforeCraftEffects().add(test2);
 		testPlayer.getMyPersonalBoard().getToCallBeforeCraftEffects().add(test3);
@@ -35,11 +35,11 @@ public class CraftActionTest {
 	
 	@Test
 	public void testCallBeforeCraftEffectsProduction() {
-		Game game = new Game();
+		Game game = new Game("Test");
 		Player testPlayer = new Player("aaa", Color.Blue, game);
-		CraftInfluencer test1 = new CraftInfluencer(CraftType.Production, 1);
-		CraftInfluencer test2 = new CraftInfluencer(CraftType.Production, 1);
-		CraftInfluencer test3 = new CraftInfluencer(CraftType.Production, 1);
+		CraftInfluencer test1 = new CraftInfluencer(CraftType.Production, 1, game);
+		CraftInfluencer test2 = new CraftInfluencer(CraftType.Production, 1, game);
+		CraftInfluencer test3 = new CraftInfluencer(CraftType.Production, 1, game);
 		testPlayer.getMyPersonalBoard().getToCallBeforeCraftEffects().add(test1);
 		testPlayer.getMyPersonalBoard().getToCallBeforeCraftEffects().add(test2);
 		testPlayer.getMyPersonalBoard().getToCallBeforeCraftEffects().add(test3);
@@ -53,11 +53,11 @@ public class CraftActionTest {
 	
 	@Test
 	public void testCallBeforeCraftEffectsHarvest() {
-		Game game = new Game();
+		Game game = new Game("Test");
 		Player testPlayer = new Player("aaa", Color.Blue, game);
-		CraftInfluencer test1 = new CraftInfluencer(CraftType.Harvest, 1);
-		CraftInfluencer test2 = new CraftInfluencer(CraftType.Harvest, 1);
-		CraftInfluencer test3 = new CraftInfluencer(CraftType.Harvest, 1);
+		CraftInfluencer test1 = new CraftInfluencer(CraftType.Harvest, 1, game);
+		CraftInfluencer test2 = new CraftInfluencer(CraftType.Harvest, 1, game);
+		CraftInfluencer test3 = new CraftInfluencer(CraftType.Harvest, 1, game);
 		testPlayer.getMyPersonalBoard().getToCallBeforeCraftEffects().add(test1);
 		testPlayer.getMyPersonalBoard().getToCallBeforeCraftEffects().add(test2);
 		testPlayer.getMyPersonalBoard().getToCallBeforeCraftEffects().add(test3);
@@ -67,6 +67,6 @@ public class CraftActionTest {
 		int expectedActionValue = 6;
 		int actualActionValue = testAction.getActionValue();
 		assertTrue(expectedActionValue==actualActionValue);
-	}*/
+	}
 
 }

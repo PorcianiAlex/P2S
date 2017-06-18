@@ -19,9 +19,9 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class TowerPlacementTest {
 
-	/*@Test
+	@Test
 	public void testEarnPermanentEffectNull() {
-		Game game = new Game();
+		Game game = new Game("test");
 		Player testPlayer = new Player("aaa", Color.Blue, game);
 		DevelopmentCard test1 = new DevelopmentCard("aaa");
 		TowerPlacement testAction = TowerPlacement.factoryTowerPlacement(testPlayer, FamilyMemberColor.Black, DevCardType.Building, 1, 1, game.getBoard());
@@ -34,13 +34,13 @@ public class TowerPlacementTest {
 	
 	@Test
 	public void testEarnPermanentEffect() {
-		Game game = new Game();
+		Game game = new Game("test");
 		Player testPlayer = new Player("aaa", Color.Blue, game);
 		DevelopmentCard test2 = new DevelopmentCard("aaa");
 		PlacementInfluencer testEffect2 = new PlacementInfluencer(1, DevCardType.Building, new Possession());
 		test2.setSecondaryEffect(testEffect2);
 		DevelopmentCard test1 = new DevelopmentCard("aaa");
-		CraftInfluencer testEffect = new CraftInfluencer(CraftType.Harvest, 1);
+		CraftInfluencer testEffect = new CraftInfluencer(CraftType.Harvest, 1, game);
 		test1.setSecondaryEffect(testEffect);
 		TowerPlacement testAction = TowerPlacement.factoryTowerPlacement(testPlayer, FamilyMemberColor.Black, DevCardType.Building, 1, 1, game.getBoard());
 		testAction.earnPermanentEffect(test1);
@@ -55,10 +55,10 @@ public class TowerPlacementTest {
 	
 	@Test
 	public void testEarnPermanentEffect2() {
-		Game game = new Game();
+		Game game = new Game("test");
 		Player testPlayer = new Player("aaa", Color.Blue, game);
 		DevelopmentCard test1 = new DevelopmentCard("aaa");
-		CraftInfluencer testEffect = new CraftInfluencer(CraftType.Harvest, 1);
+		CraftInfluencer testEffect = new CraftInfluencer(CraftType.Harvest, 1, game);
 		test1.setSecondaryEffect(testEffect);
 		TowerPlacement testAction = TowerPlacement.factoryTowerPlacement(testPlayer, FamilyMemberColor.Black, DevCardType.Building, 1, 1, game.getBoard());
 		testAction.earnPermanentEffect(test1);
@@ -69,7 +69,7 @@ public class TowerPlacementTest {
 	
 	@Test
 	public void testEarnPermanentEffect3() {
-		Game game = new Game();
+		Game game = new Game("test");
 		Player testPlayer = new Player("aaa", Color.Blue, game);
 		DevelopmentCard test1 = new DevelopmentCard("aaa");
 		PlacementInfluencer testEffect = new PlacementInfluencer(1, DevCardType.Building, new Possession());
@@ -80,6 +80,6 @@ public class TowerPlacementTest {
 		Effect actual = ((Effect) testPlayer.getMyPersonalBoard().getToCallBeforePlacementEffects().get(0));
 		assertTrue(actual.equals(expected));
 	}
-	*/
+	
 
 }

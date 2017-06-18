@@ -3,6 +3,8 @@ package it.polimi.ingsw.GC_21.EFFECT;
 import static org.junit.Assert.*;
 
 import java.awt.Window.Type;
+import java.io.IOException;
+import java.rmi.RemoteException;
 
 import org.junit.Test;
 
@@ -10,101 +12,68 @@ import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.ACTION.CraftAction;
 import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
+import it.polimi.ingsw.GC_21.CLIENT.MainClient;
+import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
+import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
+import it.polimi.ingsw.GC_21.CONTROLLER.ControllerManager;
 import it.polimi.ingsw.GC_21.EFFECT.Convert;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
+import it.polimi.ingsw.GC_21.VIEW.AdapterConnection;
+import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.VIEW.RemoteView;
+import it.polimi.ingsw.GC_21.VIEW.RmiAdapter;
+import it.polimi.ingsw.GC_21.VIEW.Server;
+import it.polimi.ingsw.GC_21.fx.ViewType;
 
 public class ConvertTest {
-
-	/*@Test 
-	public void testActivateEffectRewardsNoPrivilegesChoice1() {
-		System.out.println("Type 0!!!");
+	
+	//Not testing here the interaction with user because it passes through connections
+	
+	@Test 
+	public void testActivateEffectRewardsNoPrivileges() throws IOException {
 		Possession rewards = new Possession(1, 1, 1, 1, 1, 1, 1);
 		Possession toPay1 = new Possession(1, 0, 0, 0, 0, 0, 0);
-		Possession toPay2 = new Possession(0, 1, 0, 0, 0, 0, 0);
 		Possession toTake1 = new Possession(0, 0, 1, 0, 0, 0, 0);
-		Possession toTake2 = new Possession(0, 0, 0, 1, 0, 0, 0);
-		Convert testConvert = new Convert(rewards, toPay1, toTake1, toPay2, toTake2, 0);
-		Game testGame = new Game();
+		Game testGame = new Game("Test");
+		RmiClient rmiClient = new RmiClient(ViewType.CLI);
+		RmiAdapter rmiAdapter = new RmiAdapter(rmiClient);
+		ControllerManager controllerManager = new ControllerManager();
+		RemoteView remoteView = new RemoteView(rmiAdapter, controllerManager);
+		Convert testConvert = new Convert(testGame, rewards, toPay1, toTake1, new Possession(), new Possession(), 0);
 		Player testPlayer = new Player("Test", Color.Blue, testGame);
 		Player testPlayer2 = new Player("Test2", Color.Red, testGame);
+		testGame.attachCurrent(remoteView);
+		remoteView.setPlayer(testPlayer);
 		testConvert.activateEffect(testPlayer, new CraftAction(testPlayer, CraftType.Harvest, 2));
-		System.out.println(testPlayer.getMyPersonalBoard().getMyPossession().toString());
 		testPlayer2.getMyPersonalBoard().getMyPossession().add(rewards);
 		testPlayer2.getMyPersonalBoard().getMyPossession().subtract(toPay1);
 		testPlayer2.getMyPersonalBoard().getMyPossession().add(toTake1);
-		System.out.println(testPlayer2.getMyPersonalBoard().getMyPossession().toString());
-		System.out.println(testPlayer2.getMyPersonalBoard().getMyPossession().equals(testPlayer.getMyPersonalBoard().getMyPossession()));
 		assertTrue(testPlayer2.getMyPersonalBoard().getMyPossession().equals(testPlayer.getMyPersonalBoard().getMyPossession()));
 	}
 	
-	@Test
-	public void testActivateEffectRewardsNoPrivilegesChoice2() {
-		System.out.println("Type 1!!!");
+	@Test 
+	public void testActivateEffectRewardsNoReq() throws IOException { //Player can't pay the "ToPay" Possession
 		Possession rewards = new Possession(1, 1, 1, 1, 1, 1, 1);
-		Possession toPay1 = new Possession(1, 0, 0, 0, 0, 0, 0);
-		Possession toPay2 = new Possession(0, 1, 0, 0, 0, 0, 0);
+		Possession toPay1 = new Possession(1, 222, 0, 0, 0, 0, 0);
 		Possession toTake1 = new Possession(0, 0, 1, 0, 0, 0, 0);
-		Possession toTake2 = new Possession(0, 0, 0, 1, 0, 0, 0);
-		Convert testConvert = new Convert(rewards, toPay1, toTake1, toPay2, toTake2, 0);
-		Game testGame = new Game();
+		Game testGame = new Game("Test");
+		RmiClient rmiClient = new RmiClient(ViewType.CLI);
+		RmiAdapter rmiAdapter = new RmiAdapter(rmiClient);
+		rmiClient.setLog(System.out);
+		ControllerManager controllerManager = new ControllerManager();
+		RemoteView remoteView = new RemoteView(rmiAdapter, controllerManager);
+		Convert testConvert = new Convert(testGame, rewards, toPay1, toTake1, new Possession(), new Possession(), 0);
 		Player testPlayer = new Player("Test", Color.Blue, testGame);
 		Player testPlayer2 = new Player("Test2", Color.Red, testGame);
+		testGame.attachCurrent(remoteView);
+		remoteView.setPlayer(testPlayer);
 		testConvert.activateEffect(testPlayer, new CraftAction(testPlayer, CraftType.Harvest, 2));
-		System.out.println(testPlayer.getMyPersonalBoard().getMyPossession().toString());
 		testPlayer2.getMyPersonalBoard().getMyPossession().add(rewards);
-		testPlayer2.getMyPersonalBoard().getMyPossession().subtract(toPay2);
-		testPlayer2.getMyPersonalBoard().getMyPossession().add(toTake2);
-		System.out.println(testPlayer2.getMyPersonalBoard().getMyPossession().toString());
-		System.out.println(testPlayer2.getMyPersonalBoard().getMyPossession().equals(testPlayer.getMyPersonalBoard().getMyPossession()));
 		assertTrue(testPlayer2.getMyPersonalBoard().getMyPossession().equals(testPlayer.getMyPersonalBoard().getMyPossession()));
 	}
 	
-	@Test
-	public void testActivateEffectRewards1PrivilegesChoice1With1Privilege() {
-		System.out.println("Type 0!!! CONVERT PRIVILEGE 1!!!");
-		Possession rewards = new Possession(1, 1, 1, 1, 1, 1, 1);
-		Possession toPay1 = new Possession(1, 0, 0, 0, 0, 0, 0);
-		Possession toPay2 = new Possession(0, 1, 0, 0, 0, 0, 0);
-		Possession toTake1 = new Possession(0, 0, 1, 0, 0, 0, 0);
-		Possession toTake2 = new Possession(0, 0, 0, 1, 0, 0, 0);
-		Game testGame = new Game();
-		Player testPlayer = new Player("Test", Color.Blue, testGame);
-		Player testPlayer2 = new Player("Test2", Color.Red, testGame);
-		testPlayer2.getMyPersonalBoard().getMyPossession().add(rewards);
-		testPlayer2.getMyPersonalBoard().getMyPossession().add(new Possession(0, 1, 1, 0, 0, 0, 0));
-		testPlayer2.getMyPersonalBoard().getMyPossession().subtract(toPay1);
-		testPlayer2.getMyPersonalBoard().getMyPossession().add(toTake1);
-		Convert testConvert = new Convert(rewards, toPay1, toTake1, toPay2, toTake2, 1);
-		testConvert.activateEffect(testPlayer, new CraftAction(testPlayer, CraftType.Harvest, 2));
-		System.out.println(testPlayer.getMyPersonalBoard().getMyPossession().toString());
-		System.out.println(testPlayer2.getMyPersonalBoard().getMyPossession().toString());
-		System.out.println(testPlayer2.getMyPersonalBoard().getMyPossession().equals(testPlayer.getMyPersonalBoard().getMyPossession()));
-		assertTrue(testPlayer2.getMyPersonalBoard().getMyPossession().equals(testPlayer.getMyPersonalBoard().getMyPossession()));
-	}
-
-	public void testActivateEffectRewards2PrivilegesChoice1With2Privilege() {
-		System.out.println("Type 0!!! CONVERT PRIVILEGE 1 & PRIVILEGE 2!!!");
-		Possession rewards = new Possession(1, 1, 1, 1, 1, 1, 1);
-		Possession toPay1 = new Possession(1, 0, 0, 0, 0, 0, 0);
-		Possession toPay2 = new Possession(0, 1, 0, 0, 0, 0, 0);
-		Possession toTake1 = new Possession(0, 0, 1, 0, 0, 0, 0);
-		Possession toTake2 = new Possession(0, 0, 0, 1, 0, 0, 0);
-		Game testGame = new Game();
-		Player testPlayer = new Player("Test", Color.Blue, testGame);
-		Player testPlayer2 = new Player("Test2", Color.Red, testGame);
-		testPlayer2.getMyPersonalBoard().getMyPossession().add(rewards);
-		testPlayer2.getMyPersonalBoard().getMyPossession().add(new Possession(0, 1, 1, 0, 0, 0, 0));
-		testPlayer2.getMyPersonalBoard().getMyPossession().subtract(toPay1);
-		testPlayer2.getMyPersonalBoard().getMyPossession().add(new Possession(0, 0, 0, 2, 0, 0, 0));
-		testPlayer2.getMyPersonalBoard().getMyPossession().add(toTake1);
-		Convert testConvert = new Convert(rewards, toPay1, toTake1, toPay2, toTake2, 2);
-		testConvert.activateEffect(testPlayer, new CraftAction(testPlayer, CraftType.Harvest, 2));
-		System.out.println(testPlayer.getMyPersonalBoard().getMyPossession().toString());
-		System.out.println(testPlayer2.getMyPersonalBoard().getMyPossession().toString());
-		System.out.println(testPlayer2.getMyPersonalBoard().getMyPossession().equals(testPlayer.getMyPersonalBoard().getMyPossession()));
-		assertTrue(testPlayer2.getMyPersonalBoard().getMyPossession().equals(testPlayer.getMyPersonalBoard().getMyPossession()));
-	}*/
+	
 	
 }

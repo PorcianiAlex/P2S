@@ -10,7 +10,7 @@ import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.view.PrivilegeInput;
+import it.polimi.ingsw.GC_21.VIEW.PrivilegeInput;
 
 public  class Effect implements Serializable{
 	protected Game game; 
@@ -47,7 +47,8 @@ public  class Effect implements Serializable{
 	
 	
 	public void activateEffect(Player player, Action action) {
-		if (privileges.getValue()!=0){
+		if (player!=null){
+			if (privileges.getValue()!=0){
 				PrivilegeInput privilegeInput = new PrivilegeInput(rewards, privileges.getValue(), earnedRewards);
 				game.notifyCurrent(privilegeInput);
 				}
@@ -59,7 +60,7 @@ public  class Effect implements Serializable{
 				game.notifyCurrentString("Oh ragazzotto! Here's a little cantuccino for you:\n" + rewards.toString());
 			}
 		}
-		
+	}
 	}
 
 	

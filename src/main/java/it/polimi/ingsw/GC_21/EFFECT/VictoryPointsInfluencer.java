@@ -31,10 +31,10 @@ public class VictoryPointsInfluencer extends Effect implements ToCallAfterFinalC
 			Possession malus = new Possession(0,0,0,0,0,0,0);
 			Item victoryPointsToLose = Item.factoryItem(resourceMultiplier, ResourceType.VictoryPoints);
 			malus.addItemToPossession(victoryPointsToLose);
-			game.notifyCurrentString("You will lose " + losingIndex +" Victory Points for each " + forEachResourceIndex + " " + forEachResource + "you have!");
+			game.notifyCurrentString("You will lose " + losingIndex +" Victory Points for each " + forEachResourceIndex + " " + forEachResource + " you have!");
 			player.getMyPersonalBoard().payPossession(malus);
 		}
-		else{
+		else{ //If I've to pay for each resource I have got
 			game.notifyCurrentString("You will lose " + losingIndex + " Victory Points, for every Coins, Stones, Woods or Servants!");
 			int servantsNumber = player.getMyPersonalBoard().getMyPossession().getServants().getValue();
 			int coinsNumber = player.getMyPersonalBoard().getMyPossession().getCoins().getValue();

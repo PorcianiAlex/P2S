@@ -3,8 +3,8 @@ package it.polimi.ingsw.GC_21.CLIENT;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import it.polimi.ingsw.GC_21.view.InputForm;
-import it.polimi.ingsw.GC_21.view.LobbyInput;
+import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.VIEW.LobbyInput;
 
 public class CheckLoginMessage extends MessageToClient {
 	private ArrayList<String> games;

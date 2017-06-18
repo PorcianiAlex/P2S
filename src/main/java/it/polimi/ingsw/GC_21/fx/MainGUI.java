@@ -10,7 +10,7 @@ import java.rmi.registry.Registry;
 
 import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
 import it.polimi.ingsw.GC_21.CLIENT.SocketClient;
-import it.polimi.ingsw.GC_21.view.ServerInterface;
+import it.polimi.ingsw.GC_21.VIEW.ServerInterface;
 import javafx.application.Application;
 
 public class MainGUI {

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.GameEndState;
-import it.polimi.ingsw.GC_21.view.InputForm;
+import it.polimi.ingsw.GC_21.VIEW.InputForm;
 
 public abstract class MessageToClient implements Serializable{
 	protected boolean result;

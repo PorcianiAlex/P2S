@@ -2,12 +2,12 @@ package it.polimi.ingsw.GC_21.CLIENT;
 
 import java.util.Scanner;
 
+import it.polimi.ingsw.GC_21.VIEW.ActionInput;
+import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.VIEW.LobbyInput;
 import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.view.ActionInput;
-import it.polimi.ingsw.GC_21.view.InputForm;
-import it.polimi.ingsw.GC_21.view.LobbyInput;
 
 public class ChooseActionMessage extends MessageToClient {
 	private Board board;

@@ -11,7 +11,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Item;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.view.ConvertInput;
+import it.polimi.ingsw.GC_21.VIEW.ConvertInput;
 
 
 public class Convert extends Effect implements ToCallDuringCraft{
@@ -38,7 +38,6 @@ public class Convert extends Effect implements ToCallDuringCraft{
 		else{
 			if (toPay1.checkRequirements(player)){
 				payAndEarn(player, toTake1, toPay1);
-				game.notifyCurrentString("Conversion completed!");
 			}
 			else{
 				game.notifyCurrentString("You don't have enough resources to convert!");

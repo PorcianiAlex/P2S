@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
 
+import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.VIEW.Server;
+import it.polimi.ingsw.GC_21.VIEW.ServerInterface;
 import it.polimi.ingsw.GC_21.fx.ViewType;
-import it.polimi.ingsw.GC_21.view.InputForm;
-import it.polimi.ingsw.GC_21.view.Server;
-import it.polimi.ingsw.GC_21.view.ServerInterface;
 
 
 public class RmiClient extends UnicastRemoteObject implements Serializable, RmiClientInterface, Connections{

@@ -1,8 +1,8 @@
 package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 
+import it.polimi.ingsw.GC_21.CONTROLLER.ControllerForm;
 import it.polimi.ingsw.GC_21.EFFECT.Convert;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
-import it.polimi.ingsw.GC_21.controller.ControllerForm;
 
 public class ConvertMessage extends ControllerForm {
 	private Possession toPay;
