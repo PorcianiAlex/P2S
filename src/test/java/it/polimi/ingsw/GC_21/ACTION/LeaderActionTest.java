@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
+import it.polimi.ingsw.GC_21.CONTROLLER.ControllerManager;
 import it.polimi.ingsw.GC_21.EFFECT.DontCheckMP;
 import it.polimi.ingsw.GC_21.EFFECT.EarningInfluencer;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
@@ -16,10 +17,9 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.PermanentLeaderCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.controller.ControllerManager;
+import it.polimi.ingsw.GC_21.VIEW.RemoteView;
+import it.polimi.ingsw.GC_21.VIEW.RmiAdapter;
 import it.polimi.ingsw.GC_21.fx.ViewType;
-import it.polimi.ingsw.GC_21.view.RemoteView;
-import it.polimi.ingsw.GC_21.view.RmiAdapter;
 
 public class LeaderActionTest  {
 
@@ -35,7 +35,6 @@ public class LeaderActionTest  {
 		Player testPlayer = new Player("Test", Color.Blue, testGame);
 		LeaderAction leaderAction = new LeaderAction(testPlayer, testCard3, true, testGame);
 		leaderAction.Execute();
-		System.out.println(testPlayer.getMyPersonalBoard().getToCallWhenEarningEffects());
 		assertTrue(testPlayer.getMyPersonalBoard().getToCallWhenEarningEffects().size()==1);
 	}
 	

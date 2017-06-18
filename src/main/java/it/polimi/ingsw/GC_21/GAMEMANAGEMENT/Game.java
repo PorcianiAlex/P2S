@@ -13,6 +13,7 @@ import org.junit.experimental.theories.Theories;
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.BOARD.Color;
+import it.polimi.ingsw.GC_21.CONTROLLER.Controller;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderDeck;
@@ -21,8 +22,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.VictoryPoints;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 import it.polimi.ingsw.GC_21.UTILITIES.Observable;
-import it.polimi.ingsw.GC_21.controller.Controller;
-import it.polimi.ingsw.GC_21.view.RemoteView;
+import it.polimi.ingsw.GC_21.VIEW.RemoteView;
 
 public class Game extends Observable implements Serializable {
 	

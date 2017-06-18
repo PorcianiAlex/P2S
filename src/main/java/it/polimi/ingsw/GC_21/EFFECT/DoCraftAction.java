@@ -9,8 +9,8 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.view.CraftInput;
-import it.polimi.ingsw.GC_21.view.CraftPlacementInput;
+import it.polimi.ingsw.GC_21.VIEW.CraftInput;
+import it.polimi.ingsw.GC_21.VIEW.CraftPlacementInput;
 
 public class DoCraftAction extends Effect {
 	private CraftType craftType;

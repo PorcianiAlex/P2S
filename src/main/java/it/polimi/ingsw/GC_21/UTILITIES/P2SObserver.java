@@ -1,9 +1,9 @@
 package it.polimi.ingsw.GC_21.UTILITIES;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
-import it.polimi.ingsw.GC_21.controller.ControllerForm;
-import it.polimi.ingsw.GC_21.view.ExcommInput;
-import it.polimi.ingsw.GC_21.view.InputForm;
+import it.polimi.ingsw.GC_21.CONTROLLER.ControllerForm;
+import it.polimi.ingsw.GC_21.VIEW.ExcommInput;
+import it.polimi.ingsw.GC_21.VIEW.InputForm;
 
 public interface P2SObserver<C> {
 	

@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_21.CLIENT;
 
 import java.util.Scanner;
 
-import it.polimi.ingsw.GC_21.view.InputForm;
+import it.polimi.ingsw.GC_21.VIEW.InputForm;
 
 public class CheckColorMessage extends MessageToClient {
 

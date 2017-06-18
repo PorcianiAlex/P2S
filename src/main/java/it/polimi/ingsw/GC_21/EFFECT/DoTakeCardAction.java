@@ -16,7 +16,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.view.TakeCardInput;
+import it.polimi.ingsw.GC_21.VIEW.TakeCardInput;
 
 public class DoTakeCardAction extends Effect {
 	private final int actionValueInfluencer;

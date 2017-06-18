@@ -2,11 +2,11 @@ package it.polimi.ingsw.GC_21.UTILITIES;
 
 import java.awt.List;
 
+import it.polimi.ingsw.GC_21.CONTROLLER.ControllerForm;
 import it.polimi.ingsw.GC_21.UTILITIES.*;
-import it.polimi.ingsw.GC_21.controller.ControllerForm;
-import it.polimi.ingsw.GC_21.view.ExcommInput;
-import it.polimi.ingsw.GC_21.view.InputForm;
-import it.polimi.ingsw.GC_21.view.RemoteView;
+import it.polimi.ingsw.GC_21.VIEW.ExcommInput;
+import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.VIEW.RemoteView;
 
 import java.util.*;
 

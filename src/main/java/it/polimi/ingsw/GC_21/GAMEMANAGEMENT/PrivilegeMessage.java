@@ -3,11 +3,11 @@ package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 import java.rmi.Remote;
 import java.util.ArrayList;
 
+import it.polimi.ingsw.GC_21.CONTROLLER.ControllerForm;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.controller.ControllerForm;
-import it.polimi.ingsw.GC_21.view.RemoteView;
+import it.polimi.ingsw.GC_21.VIEW.RemoteView;
 
 public class PrivilegeMessage extends ControllerForm{
 	private String choice;

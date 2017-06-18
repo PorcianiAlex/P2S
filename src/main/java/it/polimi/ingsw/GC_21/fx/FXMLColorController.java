@@ -4,8 +4,8 @@ import java.awt.Button;
 
 import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.CLIENT.CheckColorMessage;
-import it.polimi.ingsw.GC_21.controller.ControllerForm;
-import it.polimi.ingsw.GC_21.view.CreatePlayerInput;
+import it.polimi.ingsw.GC_21.CONTROLLER.ControllerForm;
+import it.polimi.ingsw.GC_21.VIEW.CreatePlayerInput;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
