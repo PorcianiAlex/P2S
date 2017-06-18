@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="1090.0000999999975" prefWidth="1392.0" style="fx-background-color: gold" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.ingsw.GC_21.fx.FXMLGameController">
   <children>
-    <Pane layoutX="7.0" layoutY="-34.0" prefHeight="997.0" prefWidth="739.0">
+    <Pane fx:id="Pane1" layoutX="7.0" layoutY="-62.0" prefHeight="997.0" prefWidth="739.0">
       <children>
         <ImageView fx:id="board" fitHeight="1000.0" fitWidth="725.5608778502352" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true" smooth="true">
           <image>
@@ -47,7 +47,7 @@
         <Button layoutX="312.0" layoutY="885.0" minWidth="42.0" mnemonicParsing="false" onAction="#Serv" opacity="0.61" prefWidth="42.0" style="" text="Serv" />
       </children>
     </Pane>
-    <Pane layoutX="731.0" layoutY="-34.0" prefHeight="983.0" prefWidth="614.0" style="">
+    <Pane layoutX="731.0" layoutY="-62.0" prefHeight="983.0" prefWidth="614.0" style="">
       <children>
         <ImageView fitHeight="449.6856688223463" fitWidth="640.0000610351562" layoutX="0.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
           <image>
@@ -55,7 +55,15 @@
           </image>
         </ImageView>
         <Button layoutX="476.0" layoutY="894.0" mnemonicParsing="false" onAction="#Confirm" text="Confirm" />
-        <Button layoutX="378.0" layoutY="894.0" mnemonicParsing="false" text="Reset" />
+        <Button layoutX="378.0" layoutY="894.0" mnemonicParsing="false" onAction="#Reset" text="Reset" />
+        <ToggleButton layoutX="26.0" layoutY="492.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="White">
+          <toggleGroup>
+            <ToggleGroup fx:id="family" />
+          </toggleGroup>
+        </ToggleButton>
+        <ToggleButton layoutX="161.0" layoutY="492.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="Black" toggleGroup="$family" />
+        <ToggleButton layoutX="302.0" layoutY="492.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="Orange" toggleGroup="$family" />
+        <ToggleButton layoutX="439.0" layoutY="492.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="Neutral" toggleGroup="$family" />
       </children>
     </Pane>
   </children>
