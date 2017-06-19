@@ -24,8 +24,6 @@ public class Player implements Serializable{
 	private Game game;
 	private boolean checkOnMP;
 	private boolean overchargeOnBusyTower;
-	private ArrayList<LeaderCard> leaderCards;
-	private ArrayList<OncePerTurnLeaderCard> playedOncePerTurnLeaderCards;
 
 	public Player(String name, Color playerColor, Game game) {
 		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), this);
@@ -33,23 +31,14 @@ public class Player implements Serializable{
 		this.game = game;
 		this.game.addPlayers(this);
 		this.playerColor = playerColor;
-		this.myPersonalBoard = new PersonalBoard(this);
+		this.myPersonalBoard = new PersonalBoard(this, game);
 		this.myPersonalBoard.getMyPossession().add(new Possession(5, 5, 5, 5, 5, 5, 5));
 		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), this);
 		this.checkOnMP = false;
 		this.overchargeOnBusyTower = false;
-		this.leaderCards = new ArrayList<LeaderCard>();
-		this.playedOncePerTurnLeaderCards = new ArrayList<OncePerTurnLeaderCard>();
-		this.pickLeaderCards(game.getLeaderDeck());
+
 	}
-	
-	public void pickLeaderCards(LeaderDeck leaderDeck) {
-		this.leaderCards.add((LeaderCard) leaderDeck.getSingleCard());
-		this.leaderCards.add((LeaderCard) leaderDeck.getSingleCard());
-		this.leaderCards.add((LeaderCard) leaderDeck.getSingleCard());
-	}
-	
-	
+
 	public void refreshPlayer() {
 		for (int i = 0; i < familyMembers.length; i++) {
 			familyMembers[i].setPlaced(false);
@@ -57,24 +46,7 @@ public class Player implements Serializable{
 	}
 	
 	
-public ArrayList<LeaderCard> getLeaderCards() {
-		return leaderCards;
-	}
 
-
-	public void setLeaderCards(ArrayList<LeaderCard> leaderCards) {
-		this.leaderCards = leaderCards;
-	}
-
-
-
-
-	public ArrayList<OncePerTurnLeaderCard> getPlayedOncePerTurnLeaderCards() {
-		return playedOncePerTurnLeaderCards;
-	}
-	public void setPlayedOncePerTurnLeaderCards(ArrayList<OncePerTurnLeaderCard> playedOncePerTurnLeaderCards) {
-		this.playedOncePerTurnLeaderCards = playedOncePerTurnLeaderCards;
-	}
 	public boolean isCheckOnMP() {
 		return checkOnMP;
 	}

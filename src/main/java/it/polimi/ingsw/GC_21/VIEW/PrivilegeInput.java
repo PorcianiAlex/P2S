@@ -25,8 +25,8 @@ public class PrivilegeInput extends InputForm {
 	@Override
 	public void execute(RemoteView remoteView){
 		super.execute(remoteView);
-		PrivilegeController rewardMessage = new PrivilegeController(choice, rewards, privilegesNumber, earnedRewards);
-		if (!remoteView.notifyController(rewardMessage)){
+		PrivilegeController privilegeController = new PrivilegeController(choice, rewards, privilegesNumber, earnedRewards);
+		if (!remoteView.notifyController(privilegeController)){
 			this.execute(remoteView);
 			}
 		}
@@ -35,8 +35,11 @@ public class PrivilegeInput extends InputForm {
 	public void inputFromCli(Scanner keyboard) {
 		System.out.println("\nChoose your reward! Type: \n (1) 1x Woods 1 x Stones \n (2) 2x Servants"
 				+ " \n (3) 2x Coins \n (4) 2x Military Points \n (5) 1x Faith Points");
-		choice = keyboard.nextLine();
+
+			this.choice = keyboard.next();
+
+
 		}
 	}
 
-
+ 

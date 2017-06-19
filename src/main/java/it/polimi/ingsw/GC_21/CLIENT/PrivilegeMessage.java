@@ -26,6 +26,7 @@ public class PrivilegeMessage extends MessageToClient{
 	public InputForm executeCLI(Scanner keyboard) {
 		super.executeCLI(keyboard);
 		PrivilegeInput privilegeInput = new PrivilegeInput(rewards, privilegesNumber, earnedRewards);
+		privilegeInput.inputFromCli(keyboard);
 		return privilegeInput;	
 	}
 

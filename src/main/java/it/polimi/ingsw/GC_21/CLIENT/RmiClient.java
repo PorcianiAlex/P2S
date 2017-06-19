@@ -33,7 +33,6 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 
 	
 	public RmiClient(ViewType view) throws RemoteException {
-		super();
 		this.view=view;
 		this.messagesforserver = new ArrayList<String>();
 		this.stackforclient = new Stack<String>();

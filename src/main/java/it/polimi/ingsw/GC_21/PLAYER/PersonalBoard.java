@@ -12,8 +12,10 @@ import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforePlacement;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallDuringCraft;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallWhenEarning;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 
 public class PersonalBoard implements Serializable{
+	private Game game;
 	private final OwnedCards[] myOwnedCards;
 	private final Possession craftMinimumReward;
 	private Possession myPossession;
@@ -21,7 +23,9 @@ public class PersonalBoard implements Serializable{
 	private ArrayList<ToCallBeforeCraft> toCallBeforeCraftEffects;
 	private ArrayList<ToCallBeforePlacement> toCallBeforePlacementEffects;
 	private ArrayList<ToCallWhenEarning> toCallWhenEarningEffects;
-	
+	private ArrayList<LeaderCard> leaderCards;
+	private ArrayList<OncePerTurnLeaderCard> playedOncePerTurnLeaderCards;
+
 	public ArrayList<ToCallWhenEarning> getToCallWhenEarningEffects() {
 		return toCallWhenEarningEffects;
 	}
@@ -30,7 +34,7 @@ public class PersonalBoard implements Serializable{
 		this.toCallWhenEarningEffects = toCallWhenEarningEffects;
 	}
 
-	public PersonalBoard(Player player) {
+	public PersonalBoard(Player player, Game game) {
 		this.myOwnedCards = OwnedCards.factoryOwnedCards();
 		this.myPossession = new Possession(0, 0, 0, 0, 0, 0, 0);
 		this.craftMinimumReward = new Possession(1,1,1,1,1,1,1);
@@ -38,7 +42,9 @@ public class PersonalBoard implements Serializable{
 		this.toCallBeforeCraftEffects= new ArrayList<ToCallBeforeCraft>();
 		this.toCallBeforePlacementEffects = new ArrayList<ToCallBeforePlacement>();
 		this.toCallWhenEarningEffects = new ArrayList<ToCallWhenEarning>();
-
+		this.leaderCards = new ArrayList<LeaderCard>();
+		this.playedOncePerTurnLeaderCards = new ArrayList<OncePerTurnLeaderCard>();
+		this.pickLeaderCards(game.getLeaderDeck());
 	}
 	
 	public void addDevCard(DevelopmentCard devCard) {
@@ -46,6 +52,12 @@ public class PersonalBoard implements Serializable{
 		tmpCardType.add(devCard);
 		}
 	 
+	public void pickLeaderCards(LeaderDeck leaderDeck) {
+		this.leaderCards.add((LeaderCard) leaderDeck.getSingleCard());
+		this.leaderCards.add((LeaderCard) leaderDeck.getSingleCard());
+		this.leaderCards.add((LeaderCard) leaderDeck.getSingleCard());
+	}
+	
 
 	public void addPermanentEffect(Effect effect){
 		if (effect instanceof ToCallBeforeCraft){
@@ -132,13 +144,39 @@ public class PersonalBoard implements Serializable{
 		this.myPossession = myPossession;
 	}
 
+	
+	
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
+	public ArrayList<LeaderCard> getLeaderCards() {
+		return leaderCards;
+	}
+
+	public void setLeaderCards(ArrayList<LeaderCard> leaderCards) {
+		this.leaderCards = leaderCards;
+	}
+
+	public ArrayList<OncePerTurnLeaderCard> getPlayedOncePerTurnLeaderCards() {
+		return playedOncePerTurnLeaderCards;
+	}
+
+	public void setPlayedOncePerTurnLeaderCards(ArrayList<OncePerTurnLeaderCard> playedOncePerTurnLeaderCards) {
+		this.playedOncePerTurnLeaderCards = playedOncePerTurnLeaderCards;
+	}
+
 	@Override
 	public String toString() {
 		String myOwnedCardString = "";
 		for (int i = 0; i < myOwnedCards.length; i++) {
 			myOwnedCardString = myOwnedCardString + myOwnedCards[i].toString() + "\n";
 		}
-		return player.getName() + " PersonalBoard \n{myPossession=" + myPossession.toString() + "\nmyOwnedCards: \n" + myOwnedCardString + "}";
+		return player.getName() + " PersonalBoard \n{myPossession=" + myPossession.toString() + "\nmy Development Cards: \n" + myOwnedCardString + "\nmy Leader Cards: " + this.leaderCards.toString() +"}";
 	}
 	
 	

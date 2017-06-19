@@ -4,50 +4,68 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.ACTION.LeaderAction;
+import it.polimi.ingsw.GC_21.CLIENT.ChooseActionMessage;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.OncePerTurnLeaderCard;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class LeaderInput extends InputForm{//TODO to correct
 	private Player player;
-	private ArrayList<LeaderCard> leaderCards = player.getLeaderCards();
-	private ArrayList<OncePerTurnLeaderCard> playedOncePerTurnLeaderCards = player.getPlayedOncePerTurnLeaderCards();
+	private ArrayList<LeaderCard> leaderCards;
+	private ArrayList<OncePerTurnLeaderCard> playedOncePerTurnLeaderCards;
 	private String leaderCard;
-	private boolean playOrTurn; 
+	private boolean turningLeaderCard; 
+	private LeaderCard selectedLeaderCard;
 		
 
 	
 	public LeaderInput(Player player) {
 		this.player = player;
+		this.leaderCards = player.getMyPersonalBoard().getLeaderCards();
+		this.playedOncePerTurnLeaderCards = player.getMyPersonalBoard().getPlayedOncePerTurnLeaderCards();
 	}
 
 	@Override
 	public void execute(RemoteView remoteView) {
 		super.execute(remoteView);
-		LeaderCard selectedLeaderCard;
-		if (playOrTurn) {
+		if (turningLeaderCard) { //If I want to turn a leader card
 			switch(leaderCard){//Change the selection of the card
 			case "1":  selectedLeaderCard = leaderCards.get(0);	
+						break;
 			case "2":  selectedLeaderCard = leaderCards.get(1);
-			case "3":  selectedLeaderCard = leaderCards.get(2);
-			default: selectedLeaderCard = leaderCards.get(0);
-				System.out.println("Invalid choice, try again!");
+						break;
+			case "3":  selectedLeaderCard = leaderCards.get(2);	
+						break;
+			default: 
+					System.out.println("Invalid choice, try again!");
+					this.execute(remoteView);
 					 //this.chooseLeaderToTurn(keyboard); Send a Message
 			}
 		
 		}
 		else {
-			int leaderToPlay = Integer.parseInt(leaderCard);
-			if (leaderToPlay < playedOncePerTurnLeaderCards.size()){
-				selectedLeaderCard = playedOncePerTurnLeaderCards.get(leaderToPlay-1);
-			}
-			else {
+			try {
+				int leaderToPlay = Integer.parseInt(leaderCard);
+				if (leaderToPlay == -1) {
+					ChooseActionMessage chooseActionMessage = new ChooseActionMessage("You didn't play any Leader Card yet or none of your Leader Cards can help you now!", remoteView.getGame().getBoard(), remoteView.getPlayer());
+					remoteView.getAdapter().sendObject(chooseActionMessage);
+					return;
+				}
+				if (leaderToPlay < playedOncePerTurnLeaderCards.size() && leaderToPlay!=-1){
+					selectedLeaderCard = playedOncePerTurnLeaderCards.get(leaderToPlay-1);
+				}
+				else {
+					System.out.println("Invalid choice, try again!");
+					selectedLeaderCard = null;
+				}
+			} catch (NumberFormatException e) {
 				System.out.println("Invalid choice, try again!");
+				this.execute(remoteView);
 				selectedLeaderCard = null;
 			} 
 		}
 		
-		LeaderAction leaderTurn = new LeaderAction(remoteView.getPlayer(), selectedLeaderCard,  playOrTurn, remoteView.getGame());
+		LeaderAction leaderTurn = new LeaderAction(remoteView.getPlayer(), selectedLeaderCard,  turningLeaderCard, remoteView.getGame());
 		remoteView.response(leaderTurn);
 		
 		
@@ -61,8 +79,10 @@ public class LeaderInput extends InputForm{//TODO to correct
 		String choice = keyboard.nextLine();
 		switch (choice){
 		case "1":	chooseLeaderToTurn(keyboard);
+					turningLeaderCard = true;
 					break;
 		case "2": 	chooseLeaderToPlay(keyboard);
+					turningLeaderCard = false;
 					break;
 		default: System.out.println("Invalid choice, try again!");
 					inputFromCli(keyboard);
@@ -74,21 +94,55 @@ public class LeaderInput extends InputForm{//TODO to correct
 	
 	private void chooseLeaderToPlay(Scanner keyboard) {
 		if (playedOncePerTurnLeaderCards.isEmpty()){
-			System.out.println("You didn't play any Leader Card yet or none of your Leader Cards can help you now!");
+			leaderCard = "-1";
 		}
 		else{
 			for (int i = 0; i < playedOncePerTurnLeaderCards.size(); i++) {
 				System.out.println("Insert " +"(" + i+1 + ") to play " + playedOncePerTurnLeaderCards.get(i).getName());
 			}
 			leaderCard = keyboard.nextLine();
-			
 		}
 	}
 
 	public void chooseLeaderToTurn(Scanner keyboard){
-		System.out.println("Which leader card do you want to activate? /n (1) " + leaderCards.get(0) + "(2) " + leaderCards.get(1) + "(3) " + leaderCards.get(2) );
+		System.out.println("Which leader card do you want to activate?");
+		for (int i = 0; i < leaderCards.size(); i++) {
+			System.out.println("Insert " +"(" + i+1 + ") to turn " + leaderCards.get(i).getName());
+		}
 		leaderCard = keyboard.nextLine();
-		
 	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+
+	public ArrayList<LeaderCard> getLeaderCards() {
+		return leaderCards;
+	}
+
+	public void setLeaderCards(ArrayList<LeaderCard> leaderCards) {
+		this.leaderCards = leaderCards;
+	}
+
+	public ArrayList<OncePerTurnLeaderCard> getPlayedOncePerTurnLeaderCards() {
+		return playedOncePerTurnLeaderCards;
+	}
+
+	public void setPlayedOncePerTurnLeaderCards(ArrayList<OncePerTurnLeaderCard> playedOncePerTurnLeaderCards) {
+		this.playedOncePerTurnLeaderCards = playedOncePerTurnLeaderCards;
+	}
+
+	public String getLeaderCard() {
+		return leaderCard;
+	}
+
+	public void setLeaderCard(String leaderCard) {
+		this.leaderCard = leaderCard;
+	}
+
 	
 }

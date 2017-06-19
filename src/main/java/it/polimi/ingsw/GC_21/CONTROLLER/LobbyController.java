@@ -24,18 +24,19 @@ public class LobbyController extends ControllerForm {
 		controllerManager = controller.getControllerManager();
 		remoteView  = controller.getRemoteView();
 		controllerManager.addRemoteView(remoteView);
-		modelGame = controller.getModelGame();
 		CheckLobbyMessage checkLobbyMessage;
 		if(create) {
 	        modelGame = controllerManager.createGame(controller);
 	        checkLobbyMessage = new CheckLobbyMessage(true, "Lobby ok"); 
 			modelGame.attach(remoteView);
+			controller.setModelGame(modelGame);
 			remoteView.setGame(modelGame);
 
 	    } 
 	    else if (joined <=  controllerManager.getGames().size() && joined > 0) {
 	    	 modelGame = controllerManager.getGames().get(joined-1); //take the selected game
 	    	 modelGame.attach(remoteView);
+	    	 controller.setModelGame(modelGame);
 	    	 remoteView.setGame(modelGame);
 		     checkLobbyMessage = new CheckLobbyMessage(true, "Lobby ok"); 
 		     

@@ -57,7 +57,7 @@ public  class Effect implements Serializable{
 			this.callWhenEarningEffects(player, action);
 			this.earnByPrivilege(player);
 			this.earnRewards(player, rewards);
-			if (!rewards.equals(new Possession())){
+			if (!rewards.equals(new Possession()) ){
 				game.notifyCurrentString("Oh ragazzotto! Here's a little cantuccino for you:\n" + rewards.toString());
 			}
 		}

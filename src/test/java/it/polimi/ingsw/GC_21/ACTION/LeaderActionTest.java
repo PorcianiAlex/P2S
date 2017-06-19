@@ -81,7 +81,7 @@ public class LeaderActionTest  {
 		RemoteView remoteView = new RemoteView(rmiAdapter, controllerManager);
 		testGame.attachCurrent(remoteView);
 		Player testPlayer = new Player("Test", Color.Blue, testGame);
-		testPlayer.getPlayedOncePerTurnLeaderCards().add(testCard3);
+		testPlayer.getMyPersonalBoard().getPlayedOncePerTurnLeaderCards().add(testCard3);
 		LeaderAction leaderAction = new LeaderAction(testPlayer, testCard3, false, testGame);
 		leaderAction.Execute();
 		Possession actual = testPlayer.getMyPersonalBoard().getMyPossession();

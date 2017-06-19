@@ -10,12 +10,12 @@ import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class LeaderAction extends Action {
-	private boolean playOrTurn;
+	private boolean turningLeaderCard;
 	private LeaderCard leaderChosen;
 
-	public LeaderAction(Player playerInAction, LeaderCard leaderChosen, boolean playOrTurn, Game game) {
+	public LeaderAction(Player playerInAction, LeaderCard leaderChosen, boolean turningLeaderCard, Game game) {
 		super(playerInAction);
-		this.playOrTurn = playOrTurn;
+		this.turningLeaderCard = turningLeaderCard;
 		this.leaderChosen = leaderChosen;
 		this.game = game;
 	}
@@ -23,8 +23,9 @@ public class LeaderAction extends Action {
 	@Override
 	public void Execute() {
 		super.Execute();
-		if (!playOrTurn){ //If I choose to play a card already turned
-			if (playerInAction.getPlayedOncePerTurnLeaderCards().contains(leaderChosen)){
+		if (leaderChosen!=null){
+			if (!turningLeaderCard){ //If I choose to play a card already turned
+			if (playerInAction.getMyPersonalBoard().getPlayedOncePerTurnLeaderCards().contains(leaderChosen)){
 				((OncePerTurnLeaderCard) leaderChosen).callEffect(playerInAction);
 				}			
 			else{
@@ -36,8 +37,9 @@ public class LeaderAction extends Action {
 				leaderChosen.callEffect(playerInAction);
 				leaderChosen.setPlayed(true);
 				if (leaderChosen instanceof OncePerTurnLeaderCard){
-					playerInAction.getPlayedOncePerTurnLeaderCards().add((OncePerTurnLeaderCard) leaderChosen);
+					playerInAction.getMyPersonalBoard().getPlayedOncePerTurnLeaderCards().add((OncePerTurnLeaderCard) leaderChosen);
 				}
+				game.notifyCurrentString("Leader Card activated!");
 			}
 			else{
 				game.notifyCurrentString("You didn't satisfy the requirement to turn this card or it's already played!");
@@ -45,4 +47,5 @@ public class LeaderAction extends Action {
 		}
 		}
 	}
+}
 
