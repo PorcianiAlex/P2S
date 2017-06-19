@@ -7,13 +7,10 @@ import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 
 public class MarketPlacementInput extends PlacementInput {
 	private int AreaToPlace;
-	private String Areastring;
 	
-	public MarketPlacementInput(String choice, FamilyMemberColor familyMemberColor, int servantsToConvert,
-			int areaToPlace, String areastring) {
-		super(choice, familyMemberColor, servantsToConvert);
+	public MarketPlacementInput(int areaToPlace) {
+		super();
 		AreaToPlace = areaToPlace;
-		Areastring = areastring;
 	}
 	
 	public MarketPlacementInput() {
@@ -31,7 +28,7 @@ public class MarketPlacementInput extends PlacementInput {
 	@Override
 	public void inputFromCli(Scanner keyboard) {
 		System.out.println("Which reward do you want? \n [2x Coins (1) - 2x Servants (2) - 3x Military Points + 2x Coins (3) - 2x Privileges (4)"); 
-		Areastring = keyboard.nextLine(); 
+		String Areastring = keyboard.nextLine(); 
 		AreaToPlace = Integer.parseInt(Areastring);
 		super.inputFromCli(keyboard);
 	}

@@ -11,8 +11,10 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.VIEW.CouncilPlacementInput;
 import it.polimi.ingsw.GC_21.VIEW.CraftInput;
+import it.polimi.ingsw.GC_21.VIEW.CraftPlacementInput;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
 import it.polimi.ingsw.GC_21.VIEW.MarketPlacementInput;
+import it.polimi.ingsw.GC_21.VIEW.PlacementInput;
 import it.polimi.ingsw.GC_21.VIEW.TowerPlacementInput;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,7 +28,7 @@ public class FXMLGameController extends MetaController{
 
 	private FamilyMemberColor familyMemberColor;
 	private int servToConvert = 0;
-	private InputForm inputForm;
+	private PlacementInput inputForm;
 	
 	@FXML private ToggleGroup place;
 	@FXML private ToggleGroup family;
@@ -50,7 +52,7 @@ public class FXMLGameController extends MetaController{
 		 System.out.println( floor);
 
 		 //settare la input con il giusto costruttore
-		 inputForm = new TowerPlacementInput();
+		 inputForm = new TowerPlacementInput(devCardType, floor);
 		 		 
 	 }
 	 
@@ -67,7 +69,7 @@ public class FXMLGameController extends MetaController{
 		 int area = Integer.parseInt(button.getText());
 		 System.out.println( area);
 		 
-		inputForm = new MarketPlacementInput();
+		inputForm = new MarketPlacementInput(area);
 		//TowerPlacementInput towerPlacementInput = new TowerPlacementInput();
 
 		 }
@@ -81,7 +83,7 @@ public class FXMLGameController extends MetaController{
 		 System.out.println( craftType );
 		 System.out.println( area);
 
-		 inputForm = new CraftInput(craftType, area);
+		 inputForm = new CraftPlacementInput(craftType, area);
 		 }
 	 
 	 	@FXML protected void FamilyMember(ActionEvent event) {
@@ -114,6 +116,9 @@ public class FXMLGameController extends MetaController{
 	 }
 	 
 	 @FXML protected void Confirm(ActionEvent event) {
-		//client2.setInputToSend(inputForm);
+		inputForm.setFamilyMemberColor(familyMemberColor);
+		inputForm.setServantsToConvert(servToConvert);
+		client2.setInputToSend(inputForm);
+		System.out.println("action send");
 	 }
 }

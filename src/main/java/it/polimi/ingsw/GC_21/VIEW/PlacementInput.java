@@ -9,13 +9,7 @@ public class PlacementInput extends ActionInput{
 	protected FamilyMemberColor familyMemberColor; 
 	protected int servantsToConvert;
 	
-	
-	public PlacementInput(String choice, FamilyMemberColor familyMemberColor, int servantsToConvert) {
-		super(choice);
-		this.familyMemberColor = familyMemberColor;
-		this.servantsToConvert = servantsToConvert;
-	}
-	
+
 	public PlacementInput() {		
 	}
 

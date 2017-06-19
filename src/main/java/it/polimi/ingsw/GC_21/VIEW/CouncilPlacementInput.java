@@ -7,8 +7,8 @@ public class CouncilPlacementInput extends PlacementInput{
 	
 	
 	
-	public CouncilPlacementInput(String choice, FamilyMemberColor familyMemberColor, int servantsToConvert) {
-		super(choice, familyMemberColor, servantsToConvert);
+	public CouncilPlacementInput( FamilyMemberColor familyMemberColor, int servantsToConvert) {
+		super();
 	}
 	
 	public CouncilPlacementInput() {
