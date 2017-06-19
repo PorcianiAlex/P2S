@@ -8,6 +8,7 @@ import javax.swing.text.View;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.ACTION.PlacementAction;
+import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforePlacement;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
@@ -112,11 +113,7 @@ public class Controller implements P2SObserver<Action>{
 	public void updateInit() {
 	}
 
-	@Override
-	public void updateCurrent(InputForm inputFromView) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public void updateExcomm(ExcommInput excommInput) {
@@ -126,6 +123,12 @@ public class Controller implements P2SObserver<Action>{
 
 	@Override
 	public void updateExcomm() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateCurrent(MessageToClient message) {
 		// TODO Auto-generated method stub
 		
 	}

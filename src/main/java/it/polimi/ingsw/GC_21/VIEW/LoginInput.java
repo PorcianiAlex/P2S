@@ -16,7 +16,6 @@ public class LoginInput extends InputForm {
 
 	
 	public LoginInput(String username, String psw, boolean insert) {
-		super();
 		this.username = username;
 		this.psw = psw;
 		this.insert = insert;
@@ -32,8 +31,17 @@ public class LoginInput extends InputForm {
 			LoginController loginController = new LoginController(username, psw, insert);
 			remoteView.notifyController(loginController);
 	}
+	@Override
+	public void inputFromCli(Scanner keyboard) {
+			try {
+				registerOrLogin(keyboard);
+				chooseUsername(keyboard);
+			} catch (IOException | ParseException e) {
+				e.printStackTrace();
+			}
+	}
 	
-	public void chooseUsername(Scanner keyboard) throws FileNotFoundException, IOException, ParseException {
+	public void registerOrLogin(Scanner keyboard) {
 		System.out.println("Hi, do you want to Register (1) or Login (2) ?");
 		insert = true;
 	    String choice = keyboard.nextLine(); 
@@ -43,14 +51,16 @@ public class LoginInput extends InputForm {
 	    case "2": insert =false;; 
 	    	break;
 	    default :System.out.println("Invalid input"); 
-	    	chooseUsername(keyboard);
+	    	registerOrLogin(keyboard);
 	    	break;
 	    }
+	}
+	
+	public void chooseUsername(Scanner keyboard) throws FileNotFoundException, IOException, ParseException {
 	    System.out.println("Enter your username: ");
 		username = keyboard.nextLine();
 		System.out.println("Enter your password: ");
 		psw = keyboard.nextLine();
-		
 	}
 	
 	

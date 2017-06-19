@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
+import it.polimi.ingsw.GC_21.CLIENT.SetFamilyMemberMessage;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
@@ -19,8 +20,8 @@ public class SetFamilyMemberValue extends Effect {
 	@Override
 	public void activateEffect(Player player, Action action) {
 		super.activateEffect(player, action);
-		SetFamilyMemberInput setFamilyMemberInput = new SetFamilyMemberInput(newFamilyMemberValue, player);
-		game.notifyCurrent(setFamilyMemberInput);
+		SetFamilyMemberMessage setFamilyMemberMessage = new SetFamilyMemberMessage(newFamilyMemberValue, player);
+		game.notifyCurrent(setFamilyMemberMessage);
 	}
 
 }

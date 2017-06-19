@@ -15,7 +15,6 @@ public class LobbyController extends ControllerForm {
 	private int joined;
 	
 	public LobbyController(boolean create, int joined) {
-		super();
 		this.create = create;
 		this.joined = joined;
 	}

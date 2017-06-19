@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_21.ACTION.CraftAction;
 import it.polimi.ingsw.GC_21.ACTION.CraftPlacement;
 import it.polimi.ingsw.GC_21.ACTION.PlacementAction;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
+import it.polimi.ingsw.GC_21.CLIENT.CraftMessage;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
@@ -33,12 +34,12 @@ public class DoCraftAction extends Effect {
 			/*CraftAction craftAction = new CraftAction(player, craftType, placementAction.getActionValue()+actionValueBonus);
 			game.notifyCurrentString("Thanks to an effect, you're going to execute a craft with value: " + craftAction.getActionValue());
 			craftAction.Execute();*/
-			CraftInput craftInput = new CraftInput(craftType, placementAction.getActionValue() + actionValueBonus);
-			game.notifyCurrent(craftInput);
+			CraftMessage craftMessage = new CraftMessage(craftType, placementAction.getActionValue() + actionValueBonus);
+			game.notifyCurrent(craftMessage);
 		}
 		else{
-			CraftInput craftInput = new CraftInput(craftType, actionValueInfluencer);
-			game.notifyCurrent(craftInput);
+			CraftMessage craftMessage = new CraftMessage(craftType, actionValueInfluencer);
+			game.notifyCurrent(craftMessage);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_21.controller;
+package it.polimi.ingsw.GC_21.CONTROLLER;
 
 import java.rmi.Remote;
 import java.util.ArrayList;
@@ -6,19 +6,16 @@ import java.util.ArrayList;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.view.RemoteView;
+import it.polimi.ingsw.GC_21.VIEW.RemoteView;
 
 public class PrivilegeController extends ControllerForm{
-	private String choice;
 	private int privileges;
 	protected Possession rewards;
 	protected ArrayList<Possession> earnedRewards;
 	protected Possession rewardByPrivilege;
 	
 	public PrivilegeController(String choice, Possession rewards, int privileges, ArrayList<Possession> earnedRewards) {
-		super();
 		this.privileges = privileges;
-		this.choice = choice;
 		this.earnedRewards = earnedRewards;
 		this.rewardByPrivilege = createReward(choice);
 		this.rewards = rewards;

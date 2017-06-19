@@ -2,6 +2,8 @@ package it.polimi.ingsw.GC_21.UTILITIES;
 
 import java.awt.List;
 
+import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
+import it.polimi.ingsw.GC_21.CLIENT.PrivilegeMessage;
 import it.polimi.ingsw.GC_21.CONTROLLER.ControllerForm;
 import it.polimi.ingsw.GC_21.UTILITIES.*;
 import it.polimi.ingsw.GC_21.VIEW.ExcommInput;
@@ -43,9 +45,9 @@ public abstract class Observable<C> {
 		this.currentObserver.updateString(comunication);
 	}
 	
-	public void notifyCurrent(InputForm inputFromView){
+	public void notifyCurrent(MessageToClient message){
 		for (P2SObserver<C> o : this.observers) {
-			o.updateCurrent(inputFromView);
+			o.updateCurrent(message);
 		}
 	}
 	

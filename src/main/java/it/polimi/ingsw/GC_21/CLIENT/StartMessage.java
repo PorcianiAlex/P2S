@@ -17,20 +17,10 @@ public class StartMessage extends MessageToClient{
 	}
 
 	@Override
-	public InputForm executeCLI(Scanner keyboard) {
-		
-		try {
+	public InputForm executeCLI(Scanner keyboard) {		
 			LoginInput loginInput = new LoginInput();
-			loginInput.chooseUsername(keyboard);
+			loginInput.inputFromCli(keyboard);
 			return loginInput;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 
 }

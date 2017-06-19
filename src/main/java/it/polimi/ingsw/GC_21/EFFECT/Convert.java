@@ -7,6 +7,7 @@ import java.util.function.IntPredicate;
 import org.junit.internal.Throwables;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
+import it.polimi.ingsw.GC_21.CLIENT.ConvertMessage;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Item;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
@@ -32,8 +33,8 @@ public class Convert extends Effect implements ToCallDuringCraft{
 	public void activateEffect(Player player,Action action){
 		super.activateEffect(player, action);
 		if (!toPay2.equals(new Possession()) && !toTake2.equals(new Possession())){ //if there's a second conversion
-			ConvertInput convertInput = new ConvertInput(toPay1, toTake1, toPay2, toTake2);
-			game.notifyCurrent(convertInput);
+			ConvertMessage convertMessage = new ConvertMessage(toPay1, toTake1, toPay2, toTake2);
+			game.notifyCurrent(convertMessage);
 		}
 		else{
 			if (toPay1.checkRequirements(player)){

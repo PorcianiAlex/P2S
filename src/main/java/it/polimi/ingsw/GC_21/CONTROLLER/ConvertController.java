@@ -1,15 +1,14 @@
-package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
+package it.polimi.ingsw.GC_21.CONTROLLER;
 
-import it.polimi.ingsw.GC_21.CONTROLLER.ControllerForm;
 import it.polimi.ingsw.GC_21.EFFECT.Convert;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 
-public class ConvertMessage extends ControllerForm {
+public class ConvertController extends ControllerForm {
 	private Possession toPay;
 	private Possession toTake;
 	
 	
-	public ConvertMessage(Possession toPay, Possession toTake) {
+	public ConvertController(Possession toPay, Possession toTake) {
 		super();
 		this.toPay = toPay;
 		this.toTake = toTake;

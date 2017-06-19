@@ -11,6 +11,7 @@ import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.BOARD.Floor;
 import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Tower;
+import it.polimi.ingsw.GC_21.CLIENT.TakeCardMessage;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
@@ -41,8 +42,8 @@ public class DoTakeCardAction extends Effect {
 	@Override
 	public void activateEffect(Player player, Action placementAction) {
 		super.activateEffect(player, placementAction);
-		TakeCardInput placementInput = new TakeCardInput(devCardType, actionValueInfluencer, discount);
-		game.notifyCurrent(placementInput);
+		TakeCardMessage takeCardMessage = new TakeCardMessage(devCardType, actionValueInfluencer, discount);
+		game.notifyCurrent(takeCardMessage);
 	}
 	
 

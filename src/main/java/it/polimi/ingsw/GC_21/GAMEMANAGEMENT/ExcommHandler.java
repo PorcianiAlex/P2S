@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import it.polimi.ingsw.GC_21.CLIENT.ExcommMessage;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ExDeck;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ExcommunicationCard;
 import it.polimi.ingsw.GC_21.VIEW.ExcommInput;
@@ -51,8 +52,8 @@ public class ExcommHandler implements Serializable{
 	}
 
 	public void executeExcomm() {
-		ExcommInput excommInput = new ExcommInput();
-		game.notifyCurrent(excommInput);;
+		ExcommMessage excommMessage = new ExcommMessage();
+		game.notifyCurrent(excommMessage);
 	}
 
 	

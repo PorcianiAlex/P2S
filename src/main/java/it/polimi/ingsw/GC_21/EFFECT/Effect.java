@@ -7,6 +7,7 @@ import java.util.Scanner;
 import org.omg.CORBA.BooleanSeqHelper;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
+import it.polimi.ingsw.GC_21.CLIENT.PrivilegeMessage;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
@@ -49,8 +50,8 @@ public  class Effect implements Serializable{
 	public void activateEffect(Player player, Action action) {
 		if (player!=null){
 			if (privileges.getValue()!=0){
-				PrivilegeInput privilegeInput = new PrivilegeInput(rewards, privileges.getValue(), earnedRewards);
-				game.notifyCurrent(privilegeInput);
+				PrivilegeMessage privilegeMessage = new PrivilegeMessage(rewards, privileges.getValue(), earnedRewards);
+				game.notifyCurrent(privilegeMessage);
 				}
 		else{
 			this.callWhenEarningEffects(player, action);

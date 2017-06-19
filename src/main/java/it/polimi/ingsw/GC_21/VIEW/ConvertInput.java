@@ -1,9 +1,10 @@
 package it.polimi.ingsw.GC_21.VIEW;
 
 import java.io.CharConversionException;
+import java.util.Scanner;
 
+import it.polimi.ingsw.GC_21.CONTROLLER.ConvertController;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.ConvertMessage;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 
 public class ConvertInput extends InputForm {
@@ -11,10 +12,12 @@ public class ConvertInput extends InputForm {
 	private Possession toTake1;
 	private Possession toPay2;
 	private Possession toTake2;
+	private Possession toPayChoosed;
+	private Possession toTakeChoosed;
+
 	
 	
 	public ConvertInput(Possession toPay1, Possession toTake1, Possession toPay2, Possession toTake2) {
-		super();
 		this.toPay1 = toPay1;
 		this.toTake1 = toTake1;
 		this.toPay2 = toPay2;
@@ -26,29 +29,21 @@ public class ConvertInput extends InputForm {
 	@Override
 	public void execute(RemoteView remoteView) {
 		super.execute(remoteView);
-		adapterConnection.out("You can choose between two conversion!\n(1) or (2)?");
-		adapterConnection.out("If you pay: " + toPay1.toString() + ", you'll get: " + toTake1.toString());
-		adapterConnection.out("If you pay: " + toPay2.toString() + ", you'll get: " + toTake2.toString());
-		boolean choice = this.chooseConversion();
-		if (choice==true){
-			ConvertMessage conversionMessage = new ConvertMessage(toPay1, toTake1);
-			remoteView.notifyController(conversionMessage);
-		}
-		else{
-			ConvertMessage conversionMessage = new ConvertMessage(toPay1, toTake1);
-			remoteView.notifyController(conversionMessage);
-		}
+		ConvertController conversionMessage = new ConvertController(toPayChoosed, toTakeChoosed);
+		remoteView.notifyController(conversionMessage);
 	}
 
-	public boolean chooseConversion(){
-		String choice = adapterConnection.in();
+	public void chooseConversion(Scanner keyboard){
+		String choice = keyboard.nextLine();
 		switch (choice) {
 		case "1":
-			return true;
+			toPayChoosed = toPay1;
+			toTakeChoosed = toTake1;
 		case "2":
-			return false;
-		default: adapterConnection.out("Invalid choice! Try again!");
-			return chooseConversion();
+			toPayChoosed = toPay2;
+			toTakeChoosed = toTake1;
+		default: System.out.println("Invalid choice! Try again!");
+			 chooseConversion(keyboard);
 		}
 	}
 	

@@ -28,7 +28,7 @@ public class TakeCardInput extends InputForm{
 		super.setAdapter(remoteView);
 		TowerPlacement takeCardAction = TowerPlacement.factoryTakeCard(remoteView.getPlayer(), devCardType, selectedFloor, actionValueInfluencer, discount, null, remoteView.getGame().getBoard());
 		boolean result = remoteView.notifyObservers(takeCardAction);
-		if (!result){
+		if (!result){//TODO send a message
 			this.execute(remoteView);
 		}
 		
@@ -39,10 +39,11 @@ public class TakeCardInput extends InputForm{
 	
 	@Override
 	public void inputFromCli(Scanner keyboard) {
-		adapterConnection.out("Hey sgangherato, you can take another Card!!!\nYour new action value is " + this.actionValueInfluencer);
 		TowerPlacementInput towerPlacementInput = new TowerPlacementInput();
-		devCardType = towerPlacementInput.selectTower(keyboard);
-		adapterConnection.out("The kind of Card you can now take is " + this.devCardType.toString());
+		if (devCardType == null) {//TODO set a jolly devCardType
+			devCardType = towerPlacementInput.selectTower(keyboard);
+		}
+		System.out.println("The kind of Card you can now take is " + this.devCardType.toString());
 		selectedFloor = towerPlacementInput.selectFloor(keyboard);		
 	}
 			
