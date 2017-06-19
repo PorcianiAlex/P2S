@@ -25,6 +25,8 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 	private ViewType view;
 	private Object LOCK = new Object(); // just something to lock on
 	private Object LOCK2 = new Object(); // just something to lock on
+	private Object LOCK3 = new Object(); // just something to lock on
+	private Object LOCK4 = new Object(); // just something to lock on
 	private InputForm inputToSend = null;
 	private MessageToClient receivedMessage;
 	private Scanner keyboard;
@@ -62,13 +64,20 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 		return message;
 	}
 
-	
+	@Override
+	public void receiveObject(MessageToClient message) {
+		this.receivedMessage = message;
+		synchronized (LOCK) {
+		    LOCK.notifyAll();
+		}
+	}
+
 	
 	public String sendToServer() throws RemoteException {
-		/*if(view.equals(ViewType.GUI)) {
-			synchronized (LOCK) {
+		if(view.equals(ViewType.GUI)) {
+			synchronized (LOCK3) {
 			    while (messagesforserver.isEmpty()) {
-			        try { LOCK.wait(); }
+			        try { LOCK3.wait(); }
 			        catch (InterruptedException e) {
 			            // treat interrupt as exit request
 			            break;
@@ -80,15 +89,19 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 		messagesforserver.remove(0);
 		System.out.println(toserver);
 		return toserver;
-		} else {*/
+		} else {
 		Scanner scanner = new Scanner(System.in);
 		return scanner.nextLine();
-		//}
+		}
 	}
 
 
 	public void sendGUI(String mess) {
 		messagesforserver.add(mess);
+		synchronized (LOCK3) {
+		    LOCK3.notifyAll();
+		}
+		
 		
 	}
 
@@ -100,6 +113,9 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 		if(view.equals(ViewType.GUI)) {
 			this.stackforclient.push(string);
 			System.out.println(string);
+			synchronized (LOCK4) {
+		    LOCK4.notifyAll();
+		}
 		} else {
 			System.out.println(string);
 		}
@@ -108,19 +124,16 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 	
 	@Override
 	public String getMessage() {
-		while(stackforclient.isEmpty()) {
+		synchronized (LOCK4) {
+			while (stackforclient.isEmpty()) {	
+				try { LOCK4.wait(); }
+		        catch (InterruptedException e) {
+		            // treat interrupt as exit request
+		            break;
+		        }
+		}
 		}
 		return stackforclient.pop();
-	}
-
-
-
-	@Override
-	public void receiveObject(MessageToClient message) {
-		this.receivedMessage = message;
-		synchronized (LOCK) {
-		    LOCK.notifyAll();
-		}
 	}
 
 

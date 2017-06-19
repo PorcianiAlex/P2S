@@ -2,9 +2,9 @@ package it.polimi.ingsw.GC_21.VIEW;
 
 import java.util.ArrayList;
 
+import it.polimi.ingsw.GC_21.CONTROLLER.PrivilegeController;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.controller.PrivilegeController;
 
 public class PrivilegeInput extends InputForm {
 	int privilegesNumber;

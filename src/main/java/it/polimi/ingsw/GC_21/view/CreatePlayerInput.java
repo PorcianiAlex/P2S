@@ -54,7 +54,11 @@ public class CreatePlayerInput extends InputForm {
 	public void letStart(RemoteView remoteView) { 
 	    String string = remoteView.getAdapter().in();
 	    Game game = remoteView.getGame();
-	    if("start".equals(string) /*&& game.getPlayers().size()>1*/ || game.getPlayers().size()==4 ) { 
+	    if("start".equals(string) || game.getPlayers().size()==4 ) {
+	    	while (game.getPlayers().size() < 2) {
+	    		System.out.println("puppacelo sadegh");
+			}
+	      remoteView.getGame().notifyString("Ready to Play");
 	      game.executeGame(); 
 	    } else { letStart(remoteView); } 
 	  } 

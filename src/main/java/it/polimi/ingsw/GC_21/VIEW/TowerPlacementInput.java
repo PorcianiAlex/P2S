@@ -12,9 +12,9 @@ public class TowerPlacementInput extends PlacementInput {
     private int floor;
      
 	
-	public TowerPlacementInput(String choice, FamilyMemberColor familyMemberColor, int servantsToConvert,
+	public TowerPlacementInput(
 			DevCardType selectedTower, int floor) {
-		super(choice, familyMemberColor, servantsToConvert);
+		super();
 		this.selectedTower = selectedTower;
 		this.floor = floor;
 	}

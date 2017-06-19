@@ -9,13 +9,7 @@ public class PlacementInput extends ActionInput{
 	protected FamilyMemberColor familyMemberColor; 
 	protected int servantsToConvert;
 	
-	
-	public PlacementInput(String choice, FamilyMemberColor familyMemberColor, int servantsToConvert) {
-		super(choice);
-		this.familyMemberColor = familyMemberColor;
-		this.servantsToConvert = servantsToConvert;
-	}
-	
+
 	public PlacementInput() {		
 	}
 
@@ -59,7 +53,23 @@ public class PlacementInput extends ActionInput{
 		    default: System.out.println("Invalid Family Member choice, try again!"); 
 		      return this.chooseFamilyMember(keyboard); 
 		    } 
-		  } 
+		  }
+
+	public FamilyMemberColor getFamilyMemberColor() {
+		return familyMemberColor;
+	}
+
+	public void setFamilyMemberColor(FamilyMemberColor familyMemberColor) {
+		this.familyMemberColor = familyMemberColor;
+	}
+
+	public int getServantsToConvert() {
+		return servantsToConvert;
+	}
+
+	public void setServantsToConvert(int servantsToConvert) {
+		this.servantsToConvert = servantsToConvert;
+	} 
 	 
 
 }
