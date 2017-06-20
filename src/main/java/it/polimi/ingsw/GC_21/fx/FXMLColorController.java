@@ -54,7 +54,7 @@ public class FXMLColorController extends MetaController {
 		ToggleButton button = (ToggleButton) place.getSelectedToggle();
 		 colorplayer = Color.valueOf(button.getAccessibleText());
 		 CreatePlayerInput createPlayerInput = new  CreatePlayerInput(colorplayer);
-		 client2.setInputToSend(createPlayerInput);
+		 client2.sendInput(createPlayerInput);
 		 CheckColorMessage checkColorMessage = (CheckColorMessage) client.getReceivedMessage();
 		 if (!checkColorMessage.isResult()) {
 			this.popup();

@@ -16,8 +16,11 @@ import it.polimi.ingsw.GC_21.fx.ViewType;
 
 import java.util.*;
 
+import javax.swing.plaf.basic.BasicSplitPaneUI.KeyboardDownRightHandler;
+
 public class SocketClient implements Connections {
     protected String ip;
+    protected Scanner keyboard;
     protected int port;
     protected PrintWriter out;
     protected Scanner in;
@@ -50,8 +53,8 @@ public class SocketClient implements Connections {
         in = new Scanner(socketclient.getInputStream()); //arriva dal server
         out = new PrintWriter(socketclient.getOutputStream()); //invia al server
         
-	    /*Thread inputThread = new InputThread(out, in, this);
-        inputThread.start();*/
+	    Thread inputThread = new InputThread(out, in, this);
+        inputThread.start();
         
        
     }
@@ -123,6 +126,17 @@ public class SocketClient implements Connections {
 		oosClient.writeObject(inputForm);
 		oosClient.flush();		
 	}
+
+	@Override
+	public void sendString() throws RemoteException {
+		out.println(keyboard.nextLine());
+	}
+
+	@Override
+	public void setKeyboard(Scanner keyboard) throws RemoteException {
+		this.keyboard = keyboard;
+	}
+
 
 
 

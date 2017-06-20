@@ -44,15 +44,15 @@ public class ExcommAction extends Action {
 		int threshold = game.getExcommHandler().getExcommThresholds()[age-1];
 		if (this.choice || playerInAction.getMyPersonalBoard().getMyPossession().getFaithPoints().getValue()<threshold) {
 			playerInAction.getMyPersonalBoard().addPermanentEffect(game.getExcommHandler().getExcommunicationCards()[age-1].getSecondaryEffect());
-			game.notifyString("Mmmh... Bergoglio is so upset! " +  playerInAction.getName() + " just got excommunicated!!");
+			//game.notifyString("Mmmh... Bergoglio is so upset! " +  playerInAction.getName() + " just got excommunicated!!");
 		}
 		else {
 			playerInAction.getMyPersonalBoard().getMyPossession().getFaithPoints().setValue(0);
 			int currentPositionOnTracking = playerInAction.getMyPersonalBoard().getMyPossession().getFaithPoints().getValue();
 			int victoryPointsToGet = faithPointsTracking[currentPositionOnTracking];
 			playerInAction.getMyPersonalBoard().getMyPossession().addItemToPossession(Item.factoryItem(victoryPointsToGet, ResourceType.VictoryPoints));
-			game.notifyString("Well done " + playerInAction.getName() +", you haven't been excommunicated, but you will lose all your faith points!");
-			game.notifyString("...But, you'll gain " + victoryPointsToGet + " Victory Points!");
+			/*game.notifyString("Well done " + playerInAction.getName() +", you haven't been excommunicated, but you will lose all your faith points!");
+			game.notifyString("...But, you'll gain " + victoryPointsToGet + " Victory Points!");*/
 
 		}
 	}

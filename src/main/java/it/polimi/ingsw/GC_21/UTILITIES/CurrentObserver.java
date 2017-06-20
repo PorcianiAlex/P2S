@@ -6,5 +6,4 @@ import it.polimi.ingsw.GC_21.VIEW.InputForm;
 public interface CurrentObserver {
 
 		public void updateCurrent(MessageToClient messageToClient);
-		public void updateString(String comunication);
 }

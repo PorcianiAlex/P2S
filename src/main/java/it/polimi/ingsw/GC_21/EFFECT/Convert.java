@@ -40,10 +40,10 @@ public class Convert extends Effect implements ToCallDuringCraft{
 			if (toPay1.checkRequirements(player)){
 				payAndEarn(player, toTake1, toPay1);
 			}
-			else{
+			/*else{
 				game.notifyCurrentString("You don't have enough resources to convert!");
 				return;
-			}
+			}*/
 		}
 	}
 

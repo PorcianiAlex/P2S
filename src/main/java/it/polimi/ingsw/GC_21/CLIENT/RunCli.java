@@ -18,6 +18,7 @@ public class RunCli {
 
 	public void start() throws ClassNotFoundException, IOException {
 		Scanner keyboard = new Scanner(System.in);
+		client.setKeyboard(keyboard);
 		while(true) {
 			MessageToClient message = client.getReceivedMessage();
 			if (message != null) {

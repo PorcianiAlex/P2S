@@ -42,7 +42,7 @@ public class MainClient {
     public static void factorySocket() {
     try {
 			String ip = InetAddress.getLocalHost().getHostAddress();
-			SocketClientCLI client1 = new SocketClientCLI(ip, 6620);
+			SocketClient client1 = new SocketClient(ip, 6620, ViewType.CLI);
 			client1.startClient();
 			 RunCli runCli = new RunCli(client1);
 		     runCli.start();

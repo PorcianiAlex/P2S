@@ -15,7 +15,7 @@ public class ExcommInput extends InputForm {
 					break;
 		case "N" :	remoteView.notifyObservers(new ExcommAction(remoteView.getPlayer(), remoteView.getGame(), false));
 					break;
-		default: adapterConnection.out("Sorry, Sua Eccellenza didn't get your answer... could you repeat please?");//TODO error message
+		default: //TODO error message
 					remoteView.notifyObservers(new ExcommAction(remoteView.getPlayer(), remoteView.getGame(), true));
 		}		
 	}

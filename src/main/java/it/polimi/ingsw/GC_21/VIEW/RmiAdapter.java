@@ -16,16 +16,7 @@ public class RmiAdapter implements AdapterConnection{
 		this.rmiClient = rmiClient;
 	}
 
-	@Override
-	public String in() {
-		try {
-			return rmiClient.sendToServer();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return "errore";
-		}
-	}
-
+	
 	public RmiClientInterface getRmiClient() {
 		return rmiClient;
 	}
@@ -34,15 +25,7 @@ public class RmiAdapter implements AdapterConnection{
 		this.rmiClient = rmiClient;
 	}
 
-	@Override
-	public void out(String string) {
-		try {
-			rmiClient.clientReceive(string);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-	}
-
+	
 	@Override
 	public void sendObject(MessageToClient message) {
 		try {

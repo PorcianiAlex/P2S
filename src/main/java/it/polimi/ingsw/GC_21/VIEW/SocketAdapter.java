@@ -31,19 +31,7 @@ public class SocketAdapter implements AdapterConnection{
 	}
 	
 
-	@Override
-	public String in() {
-		System.out.println("Socket In");
-		return in.next();			
-	}
-
-	@Override
-	public void out(String string) {
-		System.out.println("Socket out" + string);
-		out.println(string);
-		out.flush();
-		
-	}
+	
 
 	@Override
 	public void sendObject(MessageToClient message) {
@@ -51,7 +39,6 @@ public class SocketAdapter implements AdapterConnection{
 			oos.writeObject(message);
 			oos.flush();
 		} catch (IOException e) {
-			out("IO Error");
 			sendObject(message);//retry to send
 		}
 	}
@@ -63,7 +50,6 @@ public class SocketAdapter implements AdapterConnection{
 			return inputForm;
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
-			out("Error, retry");
 			return null;
 		}
 	}

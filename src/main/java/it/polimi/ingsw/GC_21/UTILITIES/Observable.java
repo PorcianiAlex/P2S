@@ -41,10 +41,6 @@ public abstract class Observable<C> {
 	}
 
 	
-	public void notifyCurrentString(String comunication){
-		this.currentObserver.updateString(comunication);
-	}
-	
 	public void notifyCurrent(MessageToClient message){
 		for (P2SObserver<C> o : this.observers) {
 			o.updateCurrent(message);
@@ -60,24 +56,11 @@ public abstract class Observable<C> {
 		}
 	}
 
-	public void notifyExcomm(ExcommInput excommInput){
-		for (P2SObserver<C> o : this.observers) {
-			o.updateExcomm(excommInput);
-		}
-	}
 	
 	
-	public void notifyString(String string) {	
-		for (P2SObserver<C> o : this.observers) {
-			o.update(string);
-		}
-	}
 	
-	public void notifyControllerManager(String string) {	
-		for (P2SObserver<C> o : this.observers) {
-			o.updateControllerManager(string);
-		}
-	}
+	
+	
 	
 	public boolean notifyController(ControllerForm controllerForm) {	
 		boolean response=false;
@@ -98,11 +81,7 @@ public abstract class Observable<C> {
 
 	}
 	
-	public void notifyInit() {
-		for (P2SObserver<C> o : this.observers) {
-			o.updateInit();
-		}
-	}
+
 	
 	public void notifyMessageToClient(MessageToClient messageToClient) {
 		for (P2SObserver<C> o : this.observers) {

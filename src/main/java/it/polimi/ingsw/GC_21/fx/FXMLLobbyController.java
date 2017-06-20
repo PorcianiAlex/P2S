@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_21.fx;
 
+import java.io.IOException;
+
 import it.polimi.ingsw.GC_21.CLIENT.CheckLobbyMessage;
 import it.polimi.ingsw.GC_21.CLIENT.CheckLoginMessage;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
@@ -34,14 +36,14 @@ public class FXMLLobbyController extends MetaController {
     }
 
 	
-	  @FXML protected void Create(ActionEvent event)  {
+	  @FXML protected void Create(ActionEvent event) throws IOException  {
 	    	System.out.println("crea premuto");
 	    	// mcrea e manda Lobby con C e 0 join
 	    	this.openColorScene(true, 0);
 	 
 	    }
 	  
-	  @FXML protected void Join(ActionEvent event)  {
+	  @FXML protected void Join(ActionEvent event) throws IOException  {
 	    	
 	    
 		  	int num = Integer.parseInt(numberofmatch.getText());
@@ -49,10 +51,10 @@ public class FXMLLobbyController extends MetaController {
 	    	this.openColorScene(false, num);
 	    }
 	  
-	  public void openColorScene(boolean create, int joined) {
+	  public void openColorScene(boolean create, int joined) throws IOException {
 		  	
 		    LobbyInput lobbyInput = new LobbyInput(create, joined);
-	    	client2.setInputToSend(lobbyInput);
+	    	client2.sendInput(lobbyInput);
 	    	CheckLobbyMessage inputmessage = (CheckLobbyMessage) client2.getReceivedMessage();
 		  	System.out.println(inputmessage.getDescription());
 		  	

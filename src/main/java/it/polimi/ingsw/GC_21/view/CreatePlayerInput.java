@@ -32,10 +32,10 @@ public class CreatePlayerInput extends InputForm {
 			 if (remoteView.getUsername().equals(remoteView.getGame().getHost())) {
 				 checkColorMessage = new CheckColorMessage(true, "Write 'start' when you want to start the game! \nYou must be 2 at least");
 				 remoteView.getAdapter().sendObject(checkColorMessage);
-				 letStart(remoteView);				
+				 remoteView.inputObject();
 					}
 			 else {
-				 remoteView.getGame().notifyString(remoteView.getPlayer().getName()+" joins the match! \nActual number of player: " + remoteView.getGame().getPlayers().size());
+				 //remoteView.getGame().notifyString(remoteView.getPlayer().getName()+" joins the match! \nActual number of player: " + remoteView.getGame().getPlayers().size());
 				 checkColorMessage = new CheckColorMessage(true, "Waiting for the 'start' by the game host");
 				 remoteView.getAdapter().sendObject(checkColorMessage);
 			}
@@ -51,17 +51,7 @@ public class CreatePlayerInput extends InputForm {
 	
 	
 
-	public void letStart(RemoteView remoteView) { 
-	    String string = remoteView.getAdapter().in();
-	    Game game = remoteView.getGame();
-	    if("start".equals(string) /*|| game.getPlayers().size()==4*/ ) {
-	    	/*while (game.getPlayers().size() < 2) {
-	    	\System.out.println("Waiting for players...");
-			}*/
-	      remoteView.getGame().notifyString("Ready to Play");
-	      game.executeGame(); 
-	    } else { letStart(remoteView); } 
-	  } 
+	
 
 	
 	
