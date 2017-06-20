@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_21.fx;
 
+import java.io.IOException;
+
 import it.polimi.ingsw.GC_21.CLIENT.Connections;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 
@@ -15,10 +17,14 @@ public class MessThread extends Thread{
 
 	@Override
 	public void run() {
-		this.receiveMess();
+		try {
+			this.receiveMess();
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public void receiveMess() {
+	public void receiveMess() throws ClassNotFoundException, IOException {
 		while(true) {
 			System.out.println("attendo un nuovo messaggio dal thread!");
 			MessageToClient messageToClient = client.getReceivedMessage();

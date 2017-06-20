@@ -101,24 +101,13 @@ public class SocketClient implements Connections {
 
 	@Override
 	public MessageToClient getReceivedMessage() throws ClassNotFoundException, IOException {
-		/*while(receivedMessage == null) {
-			try { synchronized (LOCK) {
-				LOCKobj.wait();
-			}
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}		
-
-			}*/
 			MessageToClient messageToClient = (MessageToClient) oisClient.readObject();
 				return messageToClient;
-		/*MessageToClient message = receivedMessage;
-		receivedMessage = null;*/
+		
 	}
 
 	@Override
 	public Scanner getKeyboard() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
