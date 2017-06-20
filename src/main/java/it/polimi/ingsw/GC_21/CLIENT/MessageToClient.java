@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.GameEndState;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public abstract class MessageToClient implements Serializable{
 	protected boolean result;
@@ -47,6 +48,8 @@ public abstract class MessageToClient implements Serializable{
 		this.gameEndState = gameEndState;
 	}
 	
-	
+	public void executeGUI(FXMLGameController gameController) {		
+		
+	}
 
 }

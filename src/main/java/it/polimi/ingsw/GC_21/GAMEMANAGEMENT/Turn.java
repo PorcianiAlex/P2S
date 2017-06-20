@@ -6,6 +6,7 @@ import java.util.TreeMap;
 
 import javax.swing.text.View;
 
+import it.polimi.ingsw.GC_21.CLIENT.TurnMessage;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.VIEW.RemoteView;
@@ -26,7 +27,8 @@ public class Turn implements Serializable{
 					+"\nTurn: "+turnNumber +"\nTurn of player :"+ game.getPlayers().get(i).getName() +" color: " +game.getPlayers().get(i).getPlayerColor().toString() );
 			game.notifyObservers(game.getBoard());
 		}
-		
+		TurnMessage turnMessage = new TurnMessage(game.getBoard(), game.getPlayers());
+		game.notifyMessageToClient(turnMessage);
 		game.notifyTurn();
 		game.generateRanking();	
 		System.out.println(game.getMilitaryPointsRanking().toString());

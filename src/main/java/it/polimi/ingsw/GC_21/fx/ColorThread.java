@@ -26,12 +26,11 @@ public class ColorThread extends Thread {
 		System.out.println("thread: "+mess);
 		texttarget.setText(mess);
 		if ("Ready to Play".equals(mess)) {
-			break;
+			return;
 		}
 		
 		
 	}
-	return;	
 	}
 	
 	
