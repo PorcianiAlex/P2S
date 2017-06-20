@@ -39,7 +39,11 @@ public class FXMLLobbyController extends MetaController {
 	  @FXML protected void Create(ActionEvent event) throws IOException  {
 	    	System.out.println("crea premuto");
 	    	// mcrea e manda Lobby con C e 0 join
-	    	this.openColorScene(true, 0);
+	    	try {
+				this.openColorScene(true, 0);
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 	 
 	    }
 	  
@@ -48,14 +52,18 @@ public class FXMLLobbyController extends MetaController {
 	    
 		  	int num = Integer.parseInt(numberofmatch.getText());
 	    		
-	    	this.openColorScene(false, num);
+	    	try {
+				this.openColorScene(false, num);
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 	    }
 	  
-	  public void openColorScene(boolean create, int joined) throws IOException {
+	  public void openColorScene(boolean create, int joined) throws IOException, ClassNotFoundException {
 		  	
 		    LobbyInput lobbyInput = new LobbyInput(create, joined);
-	    	client2.sendInput(lobbyInput);
-	    	CheckLobbyMessage inputmessage = (CheckLobbyMessage) client2.getReceivedMessage();
+	    	client.sendInput(lobbyInput);
+	    	CheckLobbyMessage inputmessage = (CheckLobbyMessage) client.getReceivedMessage();
 		  	System.out.println(inputmessage.getDescription());
 		  	
 		  	if(!inputmessage.isResult()) {

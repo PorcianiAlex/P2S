@@ -16,8 +16,6 @@ import it.polimi.ingsw.GC_21.VIEW.ServerInterface;
 
 public class MetaController {
 	
-	protected static RmiClient client2;
-	protected static SocketClient client1;
 	protected static Connections client;
 	protected static ArrayList<String> games = new ArrayList<String>();
 	
@@ -25,7 +23,7 @@ public class MetaController {
 	public static void factorySocket() {
 	    try {
 				String ip = InetAddress.getLocalHost().getHostAddress();
-				client1 = new SocketClient(ip, 6620, ViewType.GUI);
+				SocketClient client1 = new SocketClient(ip, 6620, ViewType.GUI);
 				client1.startClient();
 				client = client1;
 			} catch (UnknownHostException e) {
@@ -40,7 +38,7 @@ public class MetaController {
 	    public static void factoryRmi() throws RemoteException, NotBoundException {
 	    	Registry reg = LocateRegistry.getRegistry(8000);
 	        ServerInterface srv = (ServerInterface) reg.lookup("server");
-	    	client2 = new RmiClient(ViewType.GUI);
+	    	RmiClient client2 = new RmiClient(ViewType.GUI);
 	        srv.join(client2);
 	        client = client2;
 		}

@@ -2,7 +2,9 @@ package it.polimi.ingsw.GC_21.fx;
 
 import java.awt.Button;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
@@ -25,6 +27,7 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.VIEW.CouncilPlacementInput;
 import it.polimi.ingsw.GC_21.VIEW.CraftInput;
 import it.polimi.ingsw.GC_21.VIEW.CraftPlacementInput;
+import it.polimi.ingsw.GC_21.VIEW.InitGameInput;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
 import it.polimi.ingsw.GC_21.VIEW.MarketPlacementInput;
 import it.polimi.ingsw.GC_21.VIEW.PlacementInput;
@@ -113,14 +116,11 @@ public class FXMLGameController extends MetaController implements Initializable{
 		 }
 	 
 	 	@FXML protected void FamilyMember(ActionEvent event) {
-		 
-	 		// da mettere i tasti (4 TOGGLE DI UN NUOVO GROUP)
-	 		
+		 	 		
 		 ToggleButton button = (ToggleButton) family.getSelectedToggle();
 		 familyMemberColor = FamilyMemberColor.valueOf(button.getText());
 		 System.out.println( familyMemberColor );
 		 
-
 		 }
 	 
 	 @FXML protected void Serv(ActionEvent event) {
@@ -136,11 +136,11 @@ public class FXMLGameController extends MetaController implements Initializable{
 			
 	 }
 	 
-	 @FXML protected void Confirm(ActionEvent event) {
+	 @FXML protected void Confirm(ActionEvent event) throws RemoteException, IOException {
 		if(canGo) {
 		inputForm.setFamilyMemberColor(familyMemberColor);
 		inputForm.setServantsToConvert(servToConvert);
-		client2.sendInput(inputForm);
+		client.sendInput(inputForm);
 		System.out.println("action send");
 		
 		familyMemberColor=null;
@@ -158,7 +158,17 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 }
 	 
 	 @FXML protected void Card(ActionEvent event) {
-		 //apri carta
+		 
+		 ToggleButton button = (ToggleButton) cards.getSelectedToggle();
+		 BackgroundImage imageView = button.getBackground().getImages().get(0);
+		 Image image = imageView.getImage();
+		 
+		 Alert alert = new Alert(AlertType.ERROR);
+		 alert.setTitle("Zoom on card");
+		 alert.setHeaderText(null);
+		 alert.setContentText(null);
+		 alert.setGraphic(new ImageView(image));
+		 alert.showAndWait();
 	 }
 
 	public void refreshBoard(Board board, ArrayList<Player> players) {
@@ -173,24 +183,21 @@ public class FXMLGameController extends MetaController implements Initializable{
 		//carte
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				String namecard = board.getTowers()[i].getFloors()[j].getDevCardPlace().getCard().getName();
-				//da nome a file
+				ToggleButton toggleButton =  (ToggleButton) cards.getToggles().get(j+4*i);
 				
-				//Image image = new Image("/devcards/devcards_f_en_c_17.png");
-				//ImageView imageView = new ImageView(image);
-				
-				cards.getToggles().stream().forEach(toggle -> ((ToggleButton) toggle).setStyle
-						("-fx-background-image: url('/devcards/devcards_f_en_c_17.png');  -fx-background-size: 70px; -fx-background-repeat: no-repeat; -fx-background-position: center center"));
-				
-				
-				//ToggleButton toggleButton =  (ToggleButton) cards.getToggles().get(j+4*i);
-				//toggleButton.setGraphic(imageView);
-				
+				if(!board.getTowers()[i].getFloors()[j].getSingleActionSpace().isBusy()) {
+				String idcard = board.getTowers()[i].getFloors()[j].getDevCardPlace().getCard().getID();		
+				toggleButton.setStyle
+				("-fx-background-image: url('/devcards/devcards_f_en_c_"+idcard+".png');  -fx-background-size: 70px; -fx-background-repeat: no-repeat; -fx-background-position: 90%;");
+				} else {
+					toggleButton.setStyle
+					("-fx-background-color: white;  -fx-background-size: 70px; -fx-background-repeat: no-repeat; -fx-background-position: 90%;");
+					
+				}
 			}
 			
 		}
-		
-		
+			
 	}
 	
 	public void ifChooseAction() {
@@ -206,8 +213,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 		System.out.println("default initialize!");
 		messThread = new MessThread(client, this);
         messThread.start();
-       //IntGameForm con true
-        client.sendGUI("start");
+                
 	}
 
 	

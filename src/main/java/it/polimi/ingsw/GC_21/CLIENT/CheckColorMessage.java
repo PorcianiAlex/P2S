@@ -28,6 +28,12 @@ public class CheckColorMessage extends MessageToClient {
 			return retryLobbyMessage.executeCLI(keyboard);
 		}
 	}
+	public boolean isHost() {
+		return host;
+	}
+	public void setHost(boolean host) {
+		this.host = host;
+	}
 
 	
 	
