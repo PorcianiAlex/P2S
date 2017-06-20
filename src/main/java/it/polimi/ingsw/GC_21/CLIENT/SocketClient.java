@@ -53,9 +53,7 @@ public class SocketClient implements Connections {
         in = new Scanner(socketclient.getInputStream()); //arriva dal server
         out = new PrintWriter(socketclient.getOutputStream()); //invia al server
         
-	    Thread inputThread = new InputThread(out, in, this);
-        inputThread.start();
-        
+	    
        
     }
 
