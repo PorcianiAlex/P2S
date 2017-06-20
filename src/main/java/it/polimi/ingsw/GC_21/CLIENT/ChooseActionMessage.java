@@ -8,14 +8,13 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.VIEW.ActionInput;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
 import it.polimi.ingsw.GC_21.VIEW.LobbyInput;
+import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public class ChooseActionMessage extends MessageToClient {
-	private Board board;
 	private Player player;
-
+	
 	public ChooseActionMessage(String description, Board board, Player player) {
 		super(true, description);
-		this.board = board;
 		this.player = player;
 	}
 	
@@ -26,4 +25,10 @@ public class ChooseActionMessage extends MessageToClient {
 		return actionInput.chooseAction(keyboard, player);
 	}
 
+	@Override
+	public void executeGUI(FXMLGameController gameController) {
+		gameController.ifChooseAction();
+		
+	}
+	
 }

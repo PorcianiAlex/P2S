@@ -8,6 +8,7 @@ import javax.xml.ws.handler.MessageContext;
 import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.CLIENT.CheckColorMessage;
 import it.polimi.ingsw.GC_21.CLIENT.ChooseActionMessage;
+import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.CONTROLLER.ControllerForm;
 import it.polimi.ingsw.GC_21.VIEW.CreatePlayerInput;
 import javafx.event.ActionEvent;
@@ -22,7 +23,7 @@ import javafx.stage.Stage;
 
 public class FXMLColorController extends MetaController {
 
-	private Color colorplayer;
+	private Color colorplayer = null ;
 	private boolean start;
 	private ColorThread colorThread;
 	
@@ -59,20 +60,24 @@ public class FXMLColorController extends MetaController {
 			this.popup();
 		} else if (checkColorMessage.isResult() && "Write 'start' when you want to start the game! \nYou must be 2 at least".equals(checkColorMessage.getDescription())) {
 			System.out.println(checkColorMessage.getDescription());
+			colorThread = new ColorThread(texttarget, client, this);
+	        colorThread.start();
 		} else {
 	     this.gameScene();
 		} 
 	 }
 	 
 	 @FXML public void Ready(ActionEvent event) throws ClassNotFoundException, IOException {
+		 if(colorplayer!=null) {
 		 client.sendGUI("start");
-		 ChooseActionMessage chooseActionMessage = (ChooseActionMessage) client.getReceivedMessage();
+		 //occhio perchè se lo preme prima inizia comunque, c'è da mettere un controllo! LOCK
 		 gameScene();
+		 }
+		 return;
 	}
 	 
 
 	public synchronized void gameScene() {
-		colorThread.interrupt();
 		Stage stage = (Stage) welcometext.getScene().getWindow();
 	        FXMLGame fxmlGame = new FXMLGame();
 	        try {
