@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_21.CLIENT;
 
 import java.awt.image.TileObserver;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.rmi.NotBoundException;
@@ -175,6 +176,12 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 
 	public void setKeyboard(Scanner keyboard) {
 		this.keyboard = keyboard;
+	}
+
+	@Override
+	public void sendInput(InputForm inputForm) throws IOException {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_21.fx;
 
 import java.awt.Button;
+import java.io.IOException;
 
 import javax.xml.ws.handler.MessageContext;
 
@@ -47,7 +48,7 @@ public class FXMLColorController extends MetaController {
     }
 	
 
-	 @FXML protected void Color(ActionEvent event){
+	 @FXML protected void Color(ActionEvent event) throws ClassNotFoundException, IOException{
 	   //client.sendGUI("start"); //se sei l'host fa partire effettivamente la partita altrimenti ti fa andare sulla nuova schrmata senza eseguire il gioco	     
 		ToggleButton button = (ToggleButton) place.getSelectedToggle();
 		 colorplayer = Color.valueOf(button.getAccessibleText());
@@ -63,7 +64,7 @@ public class FXMLColorController extends MetaController {
 		} 
 	 }
 	 
-	 @FXML public void Ready(ActionEvent event) {
+	 @FXML public void Ready(ActionEvent event) throws ClassNotFoundException, IOException {
 		 client.sendGUI("start");
 		 ChooseActionMessage chooseActionMessage = (ChooseActionMessage) client.getReceivedMessage();
 		 gameScene();

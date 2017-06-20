@@ -50,18 +50,26 @@ public class MainClient {
 			e.printStackTrace();
 		} catch (IOException e2) {
             System.out.println("errore");
-        }
+        } catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	        
 
      }
     
     public static void factoryRmi() throws RemoteException, NotBoundException {
-    	Registry reg = LocateRegistry.getRegistry(8000);
-        ServerInterface srv = (ServerInterface) reg.lookup("server"); 
-    	RmiClient client2 = new RmiClient(ViewType.CLI);
-        srv.join(client2);
-        RunCli runCli = new RunCli(client2);
-        runCli.start();
+        try {
+        	Registry reg = LocateRegistry.getRegistry(8000);
+            ServerInterface srv = (ServerInterface) reg.lookup("server"); 
+        	RmiClient client2 = new RmiClient(ViewType.CLI);
+            srv.join(client2);
+            RunCli runCli = new RunCli(client2);
+			runCli.start();
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
     
 }

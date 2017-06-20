@@ -17,7 +17,8 @@ public class StartMessage extends MessageToClient{
 	}
 
 	@Override
-	public InputForm executeCLI(Scanner keyboard) {		
+	public InputForm executeCLI(Scanner keyboard) {
+			System.out.println("In start message");
 			LoginInput loginInput = new LoginInput();
 			loginInput.inputFromCli(keyboard);
 			return loginInput;

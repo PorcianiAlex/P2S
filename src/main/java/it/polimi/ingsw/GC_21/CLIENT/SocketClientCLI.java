@@ -17,7 +17,7 @@ public class SocketClientCLI extends SocketClient{
 	@Override
 	public void startClient() throws IOException {
 		super.startClient();
-		 Scanner tastiera = new Scanner(System.in);
+		 /*Scanner tastiera = new Scanner(System.in);
 		 
 		
         while (true){
@@ -36,7 +36,7 @@ public class SocketClientCLI extends SocketClient{
         tastiera.close();
         socketclient.close();       
 
-	}
+	}*/
 
-	
+	}
 }

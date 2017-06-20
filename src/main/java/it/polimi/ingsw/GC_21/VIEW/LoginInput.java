@@ -43,6 +43,7 @@ public class LoginInput extends InputForm {
 	
 	public void registerOrLogin(Scanner keyboard) {
 		System.out.println("Hi, do you want to Register (1) or Login (2) ?");
+		System.out.println("In register login");
 		insert = true;
 	    String choice = keyboard.nextLine(); 
 	    switch (choice) { 
