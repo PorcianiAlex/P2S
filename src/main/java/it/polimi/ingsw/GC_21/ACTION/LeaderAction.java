@@ -28,9 +28,9 @@ public class LeaderAction extends Action {
 			if (playerInAction.getMyPersonalBoard().getPlayedOncePerTurnLeaderCards().contains(leaderChosen)){
 				((OncePerTurnLeaderCard) leaderChosen).callEffect(playerInAction);
 				}			
-			else{
+			/*else{
 				game.notifyCurrentString("You don't have any leader card to use!");
-				}
+				}*/
 			}
 		else{ //if I have to turn a new leader Card
 			if (leaderChosen.checkRequirements(playerInAction) && !leaderChosen.isPlayed()){
@@ -39,11 +39,11 @@ public class LeaderAction extends Action {
 				if (leaderChosen instanceof OncePerTurnLeaderCard){
 					playerInAction.getMyPersonalBoard().getPlayedOncePerTurnLeaderCards().add((OncePerTurnLeaderCard) leaderChosen);
 				}
-				game.notifyCurrentString("Leader Card activated!");
+				//game.notifyCurrentString("Leader Card activated!");
 			}
-			else{
+			/*else{
 				game.notifyCurrentString("You didn't satisfy the requirement to turn this card or it's already played!");
-			}
+			}*/
 		}
 		}
 	}

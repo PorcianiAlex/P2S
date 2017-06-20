@@ -22,5 +22,7 @@ public class Main {
 		//Server start!
 		Server server1 = new Server(6620);
         server1.startServer();
+        
+        
 	}
 }

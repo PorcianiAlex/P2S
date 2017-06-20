@@ -91,41 +91,13 @@ public class Controller implements P2SObserver<Action>{
 	}
 
 	@Override
-	public void updateControllerManager(String choice) {
-	}
-	
-	
-
-	@Override
-	public void update(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public boolean updateMessage(ControllerForm controllerForm) {
 		controllerForm.setController(this);
 		return controllerForm.executeController();
 		
 	}
 
-	@Override
-	public void updateInit() {
-	}
-
 	
-
-	@Override
-	public void updateExcomm(ExcommInput excommInput) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateExcomm() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void updateCurrent(MessageToClient message) {

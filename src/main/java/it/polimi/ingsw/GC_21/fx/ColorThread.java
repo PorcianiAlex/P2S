@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_21.fx;
 
+import java.rmi.RemoteException;
+
 import it.polimi.ingsw.GC_21.CLIENT.Connections;
 import javafx.scene.text.Text;
 
@@ -21,17 +23,23 @@ public class ColorThread extends Thread {
 	@Override
 	public void run() {
 		while(true) {
-		System.out.println("thread in attesa");
-		String mess = client.getMessage();
-		System.out.println("thread: "+mess);
-		texttarget.setText(mess);
-		if ("Ready to Play".equals(mess)) {
-			return;
+		try {		
+			System.out.println("thread in attesa");
+			String mess = client.getMessage();
+			System.out.println("thread: "+mess);
+			texttarget.setText(mess);
+			if ("Ready to Play".equals(mess)) {
+				return;
+				}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			}
+		
 		}
 		
 		
 	}
-	}
+	
 	
 	
 }

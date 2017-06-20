@@ -56,7 +56,7 @@ public class FXMLLoginController extends MetaController {
     }
     
     
-    protected void connect(boolean insert) throws RemoteException, NotBoundException {
+    protected void connect(boolean insert) throws NotBoundException, IOException {
        //apre la connessione scelta
     	//testa il login / reg 
   
@@ -77,7 +77,7 @@ public class FXMLLoginController extends MetaController {
     	// crea e manda loginInput con username, pass, inorup
     	StartMessage logmess = (StartMessage) client2.getReceivedMessage();
     	LoginInput loginInput = new LoginInput(username, pass, insert);
-    	client2.setInputToSend(loginInput);
+    	client2.sendInput(loginInput);
     	CheckLoginMessage inputmessage = (CheckLoginMessage) client2.getReceivedMessage();
     	games = inputmessage.getGames();
     	System.out.println("from login:" + inputmessage.getDescription());

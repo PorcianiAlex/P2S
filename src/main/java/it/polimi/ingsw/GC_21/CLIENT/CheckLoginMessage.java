@@ -14,6 +14,10 @@ public class CheckLoginMessage extends MessageToClient {
 		this.games = games;
 	}
 	
+	public CheckLoginMessage (String string) {
+		super(true, string);	
+		}
+
 	@Override
 	public InputForm executeCLI(Scanner keyboard) {
 		super.executeCLI(keyboard);

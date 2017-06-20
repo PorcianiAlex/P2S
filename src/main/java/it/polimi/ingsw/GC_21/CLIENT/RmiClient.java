@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_21.CLIENT;
 
 import java.awt.image.TileObserver;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.rmi.NotBoundException;
@@ -18,7 +19,7 @@ import it.polimi.ingsw.GC_21.VIEW.ServerInterface;
 import it.polimi.ingsw.GC_21.fx.ViewType;
 
 
-public class RmiClient extends UnicastRemoteObject implements Serializable, RmiClientInterface, Connections{
+public class RmiClient extends UnicastRemoteObject implements Serializable, RmiClientInterface{
 
 	private ArrayList<String> messagesforserver;
 	private Stack<String> stackforclient;
@@ -30,20 +31,17 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 	private InputForm inputToSend = null;
 	private MessageToClient receivedMessage;
 	private Scanner keyboard;
+	private boolean outOfTime;
 
 	
 	public RmiClient(ViewType view) throws RemoteException {
 		this.view=view;
 		this.messagesforserver = new ArrayList<String>();
 		this.stackforclient = new Stack<String>();
-		this.keyboard = new Scanner(System.in);
 		this.receivedMessage = null;
-	
-		
-		
 	}
 	
-	public  MessageToClient getReceivedMessage() {
+	public  MessageToClient getReceivedMessage() throws IOException {
 		synchronized (LOCK) {
 		while (receivedMessage == null) {
 			try { LOCK.wait(); 
@@ -56,10 +54,6 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 		}
 		MessageToClient message = receivedMessage;
 		receivedMessage = null;
-		if(view.equals(ViewType.CLI)) {
-			 InputForm inputForm = message.executeCLI(keyboard);
-			 setInputToSend(inputForm);
-		}
 		return message;
 	}
 
@@ -71,7 +65,7 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 		}
 	}
 
-	
+	@Override
 	public String sendToServer() throws RemoteException {
 		if(view.equals(ViewType.GUI)) {
 			synchronized (LOCK3) {
@@ -160,8 +154,8 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 	}
 
 
-
-	public void setInputToSend(InputForm inputToSend) {
+	@Override
+	public void sendInput(InputForm inputToSend) {
 		this.inputToSend = inputToSend;
 		synchronized (LOCK2) {
 		    LOCK2.notifyAll();
@@ -176,7 +170,15 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 	public void setKeyboard(Scanner keyboard) {
 		this.keyboard = keyboard;
 	}
+
+	@Override
+	public void sendString() throws RemoteException {
+		sendGUI(keyboard.nextLine()); 
+	}
+
 	
+
+
 
 	
 }

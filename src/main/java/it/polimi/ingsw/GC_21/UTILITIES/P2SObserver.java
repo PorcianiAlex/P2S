@@ -11,14 +11,9 @@ public interface P2SObserver<C> {
 	
 
 	public  boolean update(C change);
-	public void updateControllerManager(String string);
-	public void update(String string);
 	public boolean updateMessage(ControllerForm controllerForm);
 	public void updateTurn();
 	public void updateCurrent(MessageToClient message);
-	public void updateInit();
-	void updateExcomm(ExcommInput excommInput);
-	void updateExcomm();
 	public void updateMessageToClient(MessageToClient message);
 
 		

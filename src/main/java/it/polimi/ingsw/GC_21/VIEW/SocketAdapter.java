@@ -1,19 +1,59 @@
 package it.polimi.ingsw.GC_21.VIEW;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
-import it.polimi.ingsw.GC_21.CONTROLLER.ControllerForm;
 
 public class SocketAdapter implements AdapterConnection{
 
 	private Socket socket;
 	private Scanner in;
 	private PrintStream out;
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+
         
+	public SocketAdapter(Socket socket) throws IOException {
+		this.socket = socket;
+		in = new Scanner(socket.getInputStream());// Canale in ingresso della socket (out del client)
+	    out = new PrintStream(socket.getOutputStream()); // Canale in uscita della socket (in del client)
+		ois = new ObjectInputStream(socket.getInputStream());
+		oos = new ObjectOutputStream(socket.getOutputStream());
+
+
+	}
+	
+
+	
+
+	@Override
+	public void sendObject(MessageToClient message) {
+		try {
+			oos.writeObject(message);
+			oos.flush();
+		} catch (IOException e) {
+			sendObject(message);//retry to send
+		}
+	}
+
+	@Override
+	public InputForm receiveObject() {
+		try {
+			InputForm inputForm = (InputForm) ois.readObject();
+			return inputForm;
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public Socket getSocket() {
 		return socket;
 	}
@@ -36,40 +76,6 @@ public class SocketAdapter implements AdapterConnection{
 
 	public void setOut(PrintStream out) {
 		this.out = out;
-	}
-
-	public SocketAdapter(Socket socket) throws IOException {
-		super();
-		this.socket = socket;
-		in = new Scanner(socket.getInputStream());// Canale in ingresso della socket (out del client)
-	    out = new PrintStream(socket.getOutputStream()); // Canale in uscita della socket (in del client)
-		
-}
-
-	@Override
-	public String in() {
-		System.out.println("Socket In");
-		return in.next();			
-	}
-
-	@Override
-	public void out(String string) {
-		System.out.println("Socket out" + string);
-		out.println(string);
-		out.flush();
-		
-	}
-
-	@Override
-	public void sendObject(MessageToClient message) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public InputForm receiveObject() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

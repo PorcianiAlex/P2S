@@ -1,4 +1,10 @@
 package it.polimi.ingsw.GC_21.CLIENT;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
@@ -19,6 +25,7 @@ public class InputThread extends Thread {
 
 	@Override
 	public void run() {
+		
 		while(true) {
 			String messaggioricevuto = in.nextLine(); //arriva dal socket server
 			if (messaggioricevuto.equals("music")) {

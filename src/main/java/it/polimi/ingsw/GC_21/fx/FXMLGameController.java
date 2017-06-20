@@ -140,7 +140,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 		if(canGo) {
 		inputForm.setFamilyMemberColor(familyMemberColor);
 		inputForm.setServantsToConvert(servToConvert);
-		client2.setInputToSend(inputForm);
+		client2.sendInput(inputForm);
 		System.out.println("action send");
 		
 		familyMemberColor=null;

@@ -15,8 +15,7 @@ public class LoseYourDevCardType extends Effect implements ToCallBeforeFinalCoun
 
 	//Sets OwnedCardNumber of a certain type to 0, in order not to be counted in the final ranking-making.
 	@Override
-	public void activateEffect(Player player, Action action) {
-		game.notifyCurrentString("Your Development Card of type " + cardsToLose.toString() + " won't give you Victory Points in the final counting!");
+	public void activateEffect(Player player, Action action) {//send message
 		player.getMyPersonalBoard().getSpecificOwnedCards(cardsToLose).setOwnedCardsnumber(0);
 	}
 

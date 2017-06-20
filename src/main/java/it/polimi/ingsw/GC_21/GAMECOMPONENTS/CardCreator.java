@@ -13,6 +13,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.w3c.dom.CDATASection;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
@@ -57,14 +58,14 @@ public class CardCreator implements Serializable{
 				((CraftCard) devCardCreating).setRequiredValueForCraft(Integer.parseInt(jsonLineItem.get("craftValue").toString()));
 			}
            	else {devCardCreating = new DevelopmentCard((String) jsonLineItem.get("name"));}
-           	
+           	devCardCreating.setID(jsonLineItem.get("ID").toString());
            	 devCardCreating.setAge(age);
          	 devCardCreating.setDevCardType(devCardType);
          	 this.addImm(devCardCreating, jsonLineItem);
          	 this.AddSecEff(devCardCreating, jsonLineItem);
            	 this.addReq(devCardCreating, jsonLineItem);
            	 cards.add(devCardCreating);
-           	 System.out.println("card created " + devCardCreating.getName());
+           	 System.out.println("Card just created " + devCardCreating.getName() + " with ID: " + devCardCreating.getID());
             }
 	     }
 		} catch (Exception e) {
@@ -90,7 +91,11 @@ public class CardCreator implements Serializable{
            	 ExcommunicationCard excommunicationCard = new ExcommunicationCard((String) jsonLineItem.get("name"));
            	 excommunicationCard.setAge(age);
            	 this.AddSecEff(excommunicationCard, jsonLineItem);
+            excommunicationCard.setID(jsonLineItem.get("ID").toString());
+
          	 cards.add(excommunicationCard);  
+           	 System.out.println("Card just created " + excommunicationCard.getName() + " with ID: " + excommunicationCard.getID());
+
             }
 	     }
 		} catch (Exception e) {
@@ -198,15 +203,15 @@ public class CardCreator implements Serializable{
 	public void AddSecEff(Card cardcreating, JSONObject jsonLineItem) {
 		
         switch ((String) jsonLineItem.get("SecEffType")) {
-        case "forEachGet": 
+        case "ForEachGet": 
 			ForEachGet forEachGet;
   
             Possession Rew2 = new Possession();
-			if("null".equals((jsonLineItem.get("forEachCard").toString()))){
+			if("null".equals((jsonLineItem.get("ForEachCard").toString()))){
 				 forEachGet = new ForEachGet(game, Rew2, 0, null, Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ForEachResource").toString()), Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ResourceYouGet").toString()), Integer.parseInt(jsonLineItem.get("GettingIndex").toString()), false);
 			}
 			else if ("null".equals((jsonLineItem.get("ForEachResource").toString()))) {
-				forEachGet = new ForEachGet(game, Rew2, 0, DevCardType.valueOf(jsonLineItem.get("forEachCard").toString()), Integer.parseInt(jsonLineItem.get("forEachCardIndex").toString()), null, Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ResourceYouGet").toString()), Integer.parseInt(jsonLineItem.get("GettingIndex").toString()), true);
+				forEachGet = new ForEachGet(game, Rew2, 0, DevCardType.valueOf(jsonLineItem.get("ForEachCard").toString()), Integer.parseInt(jsonLineItem.get("ForEachCardIndex").toString()), null, Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ResourceYouGet").toString()), Integer.parseInt(jsonLineItem.get("GettingIndex").toString()), true);
 
 				//forEachGet = new ForEachGet(game, Rew2, 0, DevCardType.valueOf(jsonLineItem.get("forEachCard").toString()), Integer.parseInt(jsonLineItem.get("ForEachCardIndex").toString()), null, Integer.parseInt(jsonLineItem.get("ForEachResourceIndex").toString()), ResourceType.valueOf(jsonLineItem.get("ResourceYouGet").toString()), Integer.parseInt(jsonLineItem.get("GettingIndex").toString()), true);
 			}
@@ -329,5 +334,25 @@ public class CardCreator implements Serializable{
 		
 	}
 
-	
+	public static void main(String[] args) {
+		Game game = new Game("aa");
+		CardCreator cardCreator = new CardCreator(game);
+		cardCreator.devCardsCreate(DevCardType.Building, 1);
+		cardCreator.devCardsCreate(DevCardType.Territory, 1);
+		cardCreator.devCardsCreate(DevCardType.Venture, 1);
+		cardCreator.devCardsCreate(DevCardType.Character, 1);
+		cardCreator.devCardsCreate(DevCardType.Building, 2); //OK
+		cardCreator.devCardsCreate(DevCardType.Territory,2);//OK
+		cardCreator.devCardsCreate(DevCardType.Venture, 2); //OK
+		cardCreator.devCardsCreate(DevCardType.Character,2); //OK
+		cardCreator.devCardsCreate(DevCardType.Building, 3); //OK
+		cardCreator.devCardsCreate(DevCardType.Territory, 3); //OK
+		cardCreator.devCardsCreate(DevCardType.Venture, 3);
+		cardCreator.devCardsCreate(DevCardType.Character, 3);
+		cardCreator.ExCardsCreate(1);
+		cardCreator.ExCardsCreate(2);
+
+		cardCreator.ExCardsCreate(3);
+
+	}
 }
