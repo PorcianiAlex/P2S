@@ -31,6 +31,7 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 	private InputForm inputToSend = null;
 	private MessageToClient receivedMessage;
 	private Scanner keyboard;
+	private boolean outOfTime;
 
 	
 	public RmiClient(ViewType view) throws RemoteException {
@@ -39,9 +40,6 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 		this.stackforclient = new Stack<String>();
 		this.keyboard = new Scanner(System.in);
 		this.receivedMessage = null;
-	
-		
-		
 	}
 	
 	public  MessageToClient getReceivedMessage() {
@@ -72,7 +70,7 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 		}
 	}
 
-	
+	@Override
 	public String sendToServer() throws RemoteException {
 		if(view.equals(ViewType.GUI)) {
 			synchronized (LOCK3) {

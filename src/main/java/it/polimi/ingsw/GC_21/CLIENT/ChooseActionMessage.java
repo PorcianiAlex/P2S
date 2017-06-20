@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_21.CLIENT;
 
 import java.util.Scanner;
+import java.util.Timer;
 
 import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
@@ -21,8 +22,11 @@ public class ChooseActionMessage extends MessageToClient {
 	@Override
 	public InputForm executeCLI(Scanner keyboard) {
 		super.executeCLI(keyboard);
+		Timer timer = startTimer();
 		ActionInput actionInput = new ActionInput();
-		return actionInput.chooseAction(keyboard, player);
+		timer.cancel();
+		inputFormToSend = actionInput.chooseAction(keyboard, player);
+		return inputFormToSend;
 	}
 
 	@Override
