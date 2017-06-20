@@ -69,7 +69,6 @@ public class FXMLColorController extends MetaController {
 	 @FXML public void Ready(ActionEvent event) {
 		System.out.println("sono nella ready");
 		 if(colorplayer!=null) {
-		 client.sendGUI("start");
 		 //occhio perchè se lo preme prima inizia comunque, c'è da mettere un controllo! LOCK
 		 gameScene();
 		 }

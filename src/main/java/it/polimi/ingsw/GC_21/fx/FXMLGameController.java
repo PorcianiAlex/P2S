@@ -1,10 +1,13 @@
 package it.polimi.ingsw.GC_21.fx;
 
 import java.awt.Button;
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.ResourceBundle;
 
+import javax.swing.ButtonGroup;
 import javax.xml.ws.handler.MessageContext;
 
 import com.sun.glass.ui.Window;
@@ -31,9 +34,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.chart.ValueAxis;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class FXMLGameController extends MetaController implements Initializable{
@@ -44,9 +59,13 @@ public class FXMLGameController extends MetaController implements Initializable{
 	private Board classBoard;
 	private ArrayList<Player> classPlayers;
 	private MessThread messThread;
+	private boolean canGo;
 	
 	@FXML private ToggleGroup place;
 	@FXML private ToggleGroup family;
+	@FXML private Text whitedice, blackdice, orangedice;
+	@FXML private ToggleGroup cards;
+
 
 	
 	 @FXML protected void Tower(ActionEvent event) {
@@ -74,7 +93,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 		 
 		 ToggleButton button = (ToggleButton) place.getSelectedToggle();
 		 int area = Integer.parseInt(button.getText());
-		 System.out.println( area);
+		 System.out.println(area);
 		 
 		inputForm = new MarketPlacementInput(area);
 		//TowerPlacementInput towerPlacementInput = new TowerPlacementInput();
@@ -118,6 +137,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 }
 	 
 	 @FXML protected void Confirm(ActionEvent event) {
+		if(canGo) {
 		inputForm.setFamilyMemberColor(familyMemberColor);
 		inputForm.setServantsToConvert(servToConvert);
 		client2.setInputToSend(inputForm);
@@ -126,25 +146,58 @@ public class FXMLGameController extends MetaController implements Initializable{
 		familyMemberColor=null;
 		servToConvert=0;
 		inputForm=null;
-		
+		canGo=false;
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("It's not your turn!");
+			alert.setContentText("wait your turn please");
+			alert.showAndWait();
+		}
+		return;
 	 }
-
+	 
+	 @FXML protected void Card(ActionEvent event) {
+		 //apri carta
+	 }
 
 	public void refreshBoard(Board board, ArrayList<Player> players) {
 		System.out.println("sono nella refreshboard");
 		classBoard = board;
 		classPlayers = players;
 		//setto la board
-		for (int i = 0; i < 3; i++) {
-			int val = board.getDices()[i].getValue();
-			System.out.println(val);
+		//dadi:
+		blackdice.setText(String.valueOf(board.getDices()[0].getValue()));
+		whitedice.setText(String.valueOf(board.getDices()[1].getValue()));	
+		orangedice.setText(String.valueOf(board.getDices()[2].getValue()));
+		//carte
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				String namecard = board.getTowers()[i].getFloors()[j].getDevCardPlace().getCard().getName();
+				//da nome a file
+				
+				//Image image = new Image("/devcards/devcards_f_en_c_17.png");
+				//ImageView imageView = new ImageView(image);
+				
+				cards.getToggles().stream().forEach(toggle -> ((ToggleButton) toggle).setStyle
+						("-fx-background-image: url('/devcards/devcards_f_en_c_17.png');  -fx-background-size: 70px; -fx-background-repeat: no-repeat; -fx-background-position: center center"));
+				
+				
+				//ToggleButton toggleButton =  (ToggleButton) cards.getToggles().get(j+4*i);
+				//toggleButton.setGraphic(imageView);
+				
+			}
+			
 		}
+		
 		
 	}
 	
 	public void ifChooseAction() {
 		//gli mostro la conferma
 		System.out.println("è il tuo turno, sono nella chooseaction");
+		canGo = true;
+		return;
 	}
 
 
@@ -153,8 +206,9 @@ public class FXMLGameController extends MetaController implements Initializable{
 		System.out.println("default initialize!");
 		messThread = new MessThread(client, this);
         messThread.start();
-		
+       //IntGameForm con true
+        client.sendGUI("start");
 	}
-	
+
 	
 }
