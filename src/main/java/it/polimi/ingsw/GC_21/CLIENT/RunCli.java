@@ -28,7 +28,10 @@ public class RunCli {
 					return;
 				}
 				InputForm inputForm = message.executeCLI(keyboard);
-				client.sendInput(inputForm);
+				if (inputForm != null) {
+					client.sendInput(inputForm);
+				}
+				
 				
 			}
 			

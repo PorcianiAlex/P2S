@@ -41,6 +41,7 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 		this.receivedMessage = null;
 	}
 	
+	@Override
 	public  MessageToClient getReceivedMessage() throws IOException {
 		synchronized (LOCK) {
 		while (receivedMessage == null) {
@@ -65,28 +66,7 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 		}
 	}
 
-	@Override
-	public String sendToServer() throws RemoteException {
-		if(view.equals(ViewType.GUI)) {
-			synchronized (LOCK3) {
-			    while (messagesforserver.isEmpty()) {
-			        try { LOCK3.wait(); }
-			        catch (InterruptedException e) {
-			            // treat interrupt as exit request
-			            break;
-			        }
-			    }
-			}
-		String toserver = new String(messagesforserver.get(0));
-		System.out.println(toserver);
-		messagesforserver.remove(0);
-		System.out.println(toserver);
-		return toserver;
-		} else {
-		Scanner scanner = new Scanner(System.in);
-		return scanner.nextLine();
-		}
-	}
+	
 
 
 	public void sendGUI(String mess) {
@@ -115,19 +95,7 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 		
 	}
 	
-	@Override
-	public String getMessage() {
-		synchronized (LOCK4) {
-			while (stackforclient.isEmpty()) {	
-				try { LOCK4.wait(); }
-		        catch (InterruptedException e) {
-		            // treat interrupt as exit request
-		            break;
-		        }
-		}
-		}
-		return stackforclient.pop();
-	}
+	
 
 
 
@@ -137,7 +105,6 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 			while (inputToSend == null) {	
 				try { LOCK2.wait(); }
 		        catch (InterruptedException e) {
-		            // treat interrupt as exit request
 		            break;
 		        }
 		}
@@ -171,10 +138,7 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 		this.keyboard = keyboard;
 	}
 
-	@Override
-	public void sendString() throws RemoteException {
-		sendGUI(keyboard.nextLine()); 
-	}
+	
 
 	
 
