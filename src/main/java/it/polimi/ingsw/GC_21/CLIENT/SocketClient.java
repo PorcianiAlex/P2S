@@ -87,18 +87,7 @@ public class SocketClient implements Connections {
 		
 	}
 	
-	@Override
-	public String getMessage() {
-		while(stackforclient.isEmpty()) {
-		try { synchronized (LOCK) {
-			LOCK.wait();
-		}
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		}	
-		return stackforclient.pop();
-	}
+	
 
 	@Override
 	public MessageToClient getReceivedMessage() throws ClassNotFoundException, IOException {
@@ -125,10 +114,7 @@ public class SocketClient implements Connections {
 		oosClient.flush();		
 	}
 
-	@Override
-	public void sendString() throws RemoteException {
-		out.println(keyboard.nextLine());
-	}
+	
 
 	@Override
 	public void setKeyboard(Scanner keyboard) throws RemoteException {

@@ -12,7 +12,6 @@ public class RmiAdapter implements AdapterConnection{
 	private RmiClientInterface rmiClient; 
 	
 	public RmiAdapter(RmiClientInterface rmiClient) {
-		super();
 		this.rmiClient = rmiClient;
 	}
 
@@ -31,7 +30,6 @@ public class RmiAdapter implements AdapterConnection{
 		try {
 			rmiClient.receiveObject(message);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 
@@ -42,7 +40,6 @@ public class RmiAdapter implements AdapterConnection{
 		try {
 			return rmiClient.sendObjectToServer();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}	

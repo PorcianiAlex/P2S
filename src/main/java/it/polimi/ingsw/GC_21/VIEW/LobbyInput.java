@@ -57,12 +57,18 @@ public class LobbyInput extends InputForm{
 	}
 	
 	public void chooseGame(Scanner keyboard) {
-			   String choice = keyboard.nextLine(); 
+		try {
+			 String choice = keyboard.nextLine(); 
 			   if(choice.equals("C")) {
 				   setCreated(true);
 			   } else {
 				   setJoined(Integer.parseInt(choice));
 			   }
+		} catch (NumberFormatException e) {
+			System.out.println("Invalid input, choose C or a game number");
+			chooseGame(keyboard);
+		}
+			  
 	}
 
 }

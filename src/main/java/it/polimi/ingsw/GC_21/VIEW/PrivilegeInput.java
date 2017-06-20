@@ -37,7 +37,7 @@ public class PrivilegeInput extends InputForm {
 				+ " \n (3) 2x Coins \n (4) 2x Military Points \n (5) 1x Faith Points");
 
 			this.choice = keyboard.next();
-
+			
 
 		}
 	}
