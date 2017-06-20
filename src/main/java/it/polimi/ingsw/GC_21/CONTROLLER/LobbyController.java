@@ -27,10 +27,11 @@ public class LobbyController extends ControllerForm {
 		CheckLobbyMessage checkLobbyMessage;
 		if(create) {
 	        modelGame = controllerManager.createGame(controller);
-	        checkLobbyMessage = new CheckLobbyMessage(true, "Lobby ok"); 
 			modelGame.attach(remoteView);
 			controller.setModelGame(modelGame);
 			remoteView.setGame(modelGame);
+	        checkLobbyMessage = new CheckLobbyMessage(true, "Welcome in the game"); 
+
 
 	    } 
 	    else if (joined <=  controllerManager.getGames().size() && joined > 0) {
@@ -38,7 +39,7 @@ public class LobbyController extends ControllerForm {
 	    	 modelGame.attach(remoteView);
 	    	 controller.setModelGame(modelGame);
 	    	 remoteView.setGame(modelGame);
-		     checkLobbyMessage = new CheckLobbyMessage(true, "Lobby ok"); 
+		     checkLobbyMessage = new CheckLobbyMessage(true, "Welcome in the game"); 
 		     
 		}
 	    else {

@@ -29,19 +29,19 @@ public class CreatePlayerInput extends InputForm {
 		if (checkColor(color, remoteView.getGame())) {
 			Player player = new Player(remoteView.getUsername(), color, remoteView.getGame());
 			remoteView.setPlayer(player);
-			 if (remoteView.getUsername().equals(remoteView.getGame().getHost())) {
-				 checkColorMessage = new CheckColorMessage(true, "Write 'start' when you want to start the game! \nYou must be 2 at least");
+			 if (remoteView.getUsername().equals(remoteView.getGame().getHost())) {//if the remote vie is the host
+				 checkColorMessage = new CheckColorMessage(true, "Write 'start' when you want to start the game! \nYou must be 2 at least", true);
 				 remoteView.getAdapter().sendObject(checkColorMessage);
 				 remoteView.inputObject();
 					}
 			 else {
 				 //remoteView.getGame().notifyString(remoteView.getPlayer().getName()+" joins the match! \nActual number of player: " + remoteView.getGame().getPlayers().size());
-				 checkColorMessage = new CheckColorMessage(true, "Waiting for the 'start' by the game host");
+				 checkColorMessage = new CheckColorMessage(true, "Waiting for the 'start' by the game host", false);
 				 remoteView.getAdapter().sendObject(checkColorMessage);
 			}
 		}
 		else {
-			checkColorMessage = new CheckColorMessage(false, "Oh grullo! This color is already in use, choose another one, please!");
+			checkColorMessage = new CheckColorMessage(false, "Oh grullo! This color is already in use, choose another one, please!", false);
 			remoteView.getAdapter().sendObject(checkColorMessage);
 			remoteView.inputObject();
 		}					

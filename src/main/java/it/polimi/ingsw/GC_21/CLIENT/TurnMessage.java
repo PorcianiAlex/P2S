@@ -10,15 +10,22 @@ import it.polimi.ingsw.GC_21.VIEW.PassInput;
 import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public class TurnMessage extends MessageToClient{
+	private int age;
 	private Board board;
 	private ArrayList<Player> players;
 	private boolean outOfTime;
+	private int round;
+	private int turnNumber;
 
 
-	public TurnMessage(Board board, ArrayList<Player> players) {
-		super(true, "");
+
+	public TurnMessage(Board board, ArrayList<Player> players, int age, int round, int turnNumber) {
+		super(true, board.toString());
 		this.board = board;
 		this.players = players;
+		this.age = age;
+		this.round = round;
+		this.turnNumber = turnNumber;
 	}
 
 
@@ -44,7 +51,8 @@ public class TurnMessage extends MessageToClient{
 
 	@Override
 	public InputForm executeCLI(Scanner keyboard) {
-		startTimer();
+		super.executeCLI(keyboard);
+		//startTimer();
 		return null;
 	}
 	

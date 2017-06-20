@@ -22,9 +22,9 @@ public class ChooseActionMessage extends MessageToClient {
 	@Override
 	public InputForm executeCLI(Scanner keyboard) {
 		super.executeCLI(keyboard);
-		Timer timer = startTimer();
+		//Timer timer = startTimer();
 		ActionInput actionInput = new ActionInput();
-		timer.cancel();
+		//timer.cancel();
 		inputFormToSend = actionInput.chooseAction(keyboard, player);
 		return inputFormToSend;
 	}

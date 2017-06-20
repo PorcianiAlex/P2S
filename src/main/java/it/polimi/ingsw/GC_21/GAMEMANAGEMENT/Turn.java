@@ -25,9 +25,10 @@ public class Turn implements Serializable{
 		for (int i = 0; i < game.getPlayers().size(); i++) {
 			game.notifyObservers("Age: "+ game.getCurrentAge().getAgeNumber() + "\nRound: " + game.getCurrentAge().getCurrentRound().getRoundNumber() 
 					+"\nTurn: "+turnNumber +"\nTurn of player :"+ game.getPlayers().get(i).getName() +" color: " +game.getPlayers().get(i).getPlayerColor().toString() );
-			game.notifyObservers(game.getBoard());
 		}
-		TurnMessage turnMessage = new TurnMessage(game.getBoard(), game.getPlayers());
+		TurnMessage turnMessage = new TurnMessage(game.getBoard(), game.getPlayers(), 
+					game.getCurrentAge().getAgeNumber(), game.getCurrentAge().getCurrentRound().getRoundNumber(), 
+					turnNumber);
 		game.notifyMessageToClient(turnMessage);
 		game.notifyTurn();
 		game.generateRanking();	
