@@ -44,8 +44,4 @@ public class MetaController {
 		}
 
 
-		public String getMessagefromserver() throws RemoteException {
-			return client.getMessage();
-		}
-	
 }

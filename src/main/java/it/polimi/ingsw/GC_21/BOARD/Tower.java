@@ -26,8 +26,8 @@ public class Tower implements Serializable{
 	public static Tower[] factoryTowers(Game game){
 		Tower[] towers=new Tower[4];
 		towers[0]=new Tower(DevCardType.Territory, game);
-		towers[1]=new Tower(DevCardType.Building, game);
-		towers[2]=new Tower(DevCardType.Character, game);
+		towers[1]=new Tower(DevCardType.Character, game);
+		towers[2]=new Tower(DevCardType.Building, game);
 		towers[3]=new Tower(DevCardType.Venture, game);
 		return towers;
 	}
