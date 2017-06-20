@@ -9,7 +9,7 @@ import it.polimi.ingsw.GC_21.EFFECT.*;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class Card implements Serializable{
-
+	protected String ID;
 	protected final String name;
 	protected Possession requirements;
 	private Effect immediateEffect;
@@ -19,6 +19,25 @@ public class Card implements Serializable{
 		this.name=name;
 	}
 	
+
+
+
+
+	public String getID() {
+		return ID;
+	}
+
+
+
+
+
+	public void setID(String iD) {
+		ID = iD;
+	}
+
+
+
+
 
 	public String getName() {
 		return name;

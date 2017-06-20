@@ -3,7 +3,6 @@ package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public abstract class LeaderCard extends Card {
-
 	protected int numberOfVenturesRequired;
 	protected int numberOfCharactersRequired;
 	protected int numberOfBuildingRequired;
@@ -14,9 +13,10 @@ public abstract class LeaderCard extends Card {
 
 
 
-	public LeaderCard(String name, int numberOfVenturesRequired, int numberOfCharactersRequired,
+	public LeaderCard(String ID, String name, int numberOfVenturesRequired, int numberOfCharactersRequired,
 			int numberOfBuildingRequired, int numberOfTerritoryRequired, Possession requirements, boolean played) {
 		super(name);
+		this.ID = ID;
 		this.numberOfVenturesRequired = numberOfVenturesRequired;
 		this.numberOfCharactersRequired = numberOfCharactersRequired;
 		this.numberOfBuildingRequired = numberOfBuildingRequired;

@@ -20,10 +20,10 @@ public class PermanentLeaderCard extends LeaderCard{
 		}
 	}
 
-	public PermanentLeaderCard(String name, int numberOfVenturesRequired, int numberOfCharactersRequired,
+	public PermanentLeaderCard(String ID, String name, int numberOfVenturesRequired, int numberOfCharactersRequired,
 			int numberOfBuildingRequired, int numberOfTerritoryRequired, Possession requirements, boolean played,
 			Permanent permanentEffect) {
-		super(name, numberOfVenturesRequired, numberOfCharactersRequired, numberOfBuildingRequired,
+		super(ID, name, numberOfVenturesRequired, numberOfCharactersRequired, numberOfBuildingRequired,
 				numberOfTerritoryRequired, requirements, played);
 		this.permanentEffect = permanentEffect;
 	}

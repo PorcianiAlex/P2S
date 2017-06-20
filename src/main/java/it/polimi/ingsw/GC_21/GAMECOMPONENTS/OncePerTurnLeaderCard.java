@@ -9,10 +9,10 @@ public class OncePerTurnLeaderCard extends LeaderCard {
 
 
 
-	public OncePerTurnLeaderCard(String name, int numberOfVenturesRequired, int numberOfCharactersRequired,
+	public OncePerTurnLeaderCard(String ID, String name, int numberOfVenturesRequired, int numberOfCharactersRequired,
 			int numberOfBuildingRequired, int numberOfTerritoryRequired, Possession requirements, boolean played,
 			Effect immediateEffect) {
-		super(name, numberOfVenturesRequired, numberOfCharactersRequired, numberOfBuildingRequired,
+		super(ID, name, numberOfVenturesRequired, numberOfCharactersRequired, numberOfBuildingRequired,
 				numberOfTerritoryRequired, requirements, played);
 		this.immediateEffect = immediateEffect;
 	}
