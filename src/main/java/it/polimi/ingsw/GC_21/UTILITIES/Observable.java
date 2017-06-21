@@ -42,9 +42,9 @@ public abstract class Observable<C> {
 
 	
 	public void notifyCurrent(MessageToClient message){
-		for (P2SObserver<C> o : this.observers) {
-			o.updateCurrent(message);
-		}
+		//for (P2SObserver<C> o : this.observers) {
+			currentObserver.updateCurrent(message);
+		//}
 	}
 	
 	

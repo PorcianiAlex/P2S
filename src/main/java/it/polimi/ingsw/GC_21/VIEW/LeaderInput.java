@@ -28,7 +28,12 @@ public class LeaderInput extends InputForm{//TODO to correct
 	@Override
 	public void execute(RemoteView remoteView) {
 		super.execute(remoteView);
-		if (turningLeaderCard) { //If I want to turn a leader card
+		if (leaderCards.isEmpty()){
+			ChooseActionMessage chooseActionMessage = new ChooseActionMessage("",  remoteView.getPlayer());
+			remoteView.getAdapter().sendObject(chooseActionMessage);
+			remoteView.inputObject();
+		}
+		else if (turningLeaderCard) { //If I want to turn a leader card
 			switch(leaderCard){//Change the selection of the card
 			case "1":  selectedLeaderCard = leaderCards.get(0);	
 						break;
@@ -49,6 +54,7 @@ public class LeaderInput extends InputForm{//TODO to correct
 				if (leaderToPlay == -1) {
 					ChooseActionMessage chooseActionMessage = new ChooseActionMessage("You didn't play any Leader Card yet or none of your Leader Cards can help you now!",  remoteView.getPlayer());
 					remoteView.getAdapter().sendObject(chooseActionMessage);
+					remoteView.inputObject();
 					return;
 				}
 				if (leaderToPlay < playedOncePerTurnLeaderCards.size() && leaderToPlay!=-1){
@@ -67,14 +73,21 @@ public class LeaderInput extends InputForm{//TODO to correct
 		
 		LeaderAction leaderTurn = new LeaderAction(remoteView.getPlayer(), selectedLeaderCard,  turningLeaderCard, remoteView.getGame());
 		remoteView.response(leaderTurn);
-		
+		ChooseActionMessage chooseActionMessage = new ChooseActionMessage("",  remoteView.getPlayer());
+		remoteView.getAdapter().sendObject(chooseActionMessage);
+		remoteView.inputObject();
 		
 		}
 	
 	@Override
 	public void inputFromCli(Scanner keyboard) {
 		super.inputFromCli(keyboard);
-		System.out.println("Do you want to turn a Leader Card or to play one of your activated Leader Card? "
+		if (leaderCards.isEmpty()){
+			System.out.println("You don't have any leader card!");
+		}
+		else {
+			System.out.println("Do you want to turn a Leader Card or to play one of your activated Leader Card? "
+		
 				+ "\n(1) Turn Leader Card \n(2) Play Leader Card");
 		String choice = keyboard.next();
 		switch (choice){
@@ -86,10 +99,8 @@ public class LeaderInput extends InputForm{//TODO to correct
 					break;
 		default: System.out.println("Invalid choice, try again!");
 					inputFromCli(keyboard);
-	}
-		
-
-
+		}
+		}
 	}
 	
 	private void chooseLeaderToPlay(Scanner keyboard) {
