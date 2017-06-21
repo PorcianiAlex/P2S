@@ -29,7 +29,7 @@ public class LeaderActionTest  {
 		RmiClient rmiClient = new RmiClient(ViewType.CLI);
 		RmiAdapter rmiAdapter = new RmiAdapter(rmiClient);
 		ControllerManager controllerManager = new ControllerManager();
-		PermanentLeaderCard testCard3 = new PermanentLeaderCard("test2", 0, 0, 0, 0, new Possession(), false, new EarningInfluencer(new Possession()));
+		PermanentLeaderCard testCard3 = new PermanentLeaderCard("aa", "test2", 0, 0, 0, 0, new Possession(), false, new EarningInfluencer(new Possession()));
 		RemoteView remoteView = new RemoteView(rmiAdapter, controllerManager);
 		testGame.attachCurrent(remoteView);
 		Player testPlayer = new Player("Test", Color.Blue, testGame);
@@ -44,7 +44,7 @@ public class LeaderActionTest  {
 		RmiClient rmiClient = new RmiClient(ViewType.CLI);
 		RmiAdapter rmiAdapter = new RmiAdapter(rmiClient);
 		ControllerManager controllerManager = new ControllerManager();
-		PermanentLeaderCard testCard3 = new PermanentLeaderCard("test2", 0, 0, 0, 0, new Possession(), false, new DontCheckMP());
+		PermanentLeaderCard testCard3 = new PermanentLeaderCard("aa", "test2", 0, 0, 0, 0, new Possession(), false, new DontCheckMP());
 		RemoteView remoteView = new RemoteView(rmiAdapter, controllerManager);
 		testGame.attachCurrent(remoteView);
 		Player testPlayer = new Player("Test", Color.Blue, testGame);
@@ -60,7 +60,7 @@ public class LeaderActionTest  {
 		RmiClient rmiClient = new RmiClient(ViewType.CLI);
 		RmiAdapter rmiAdapter = new RmiAdapter(rmiClient);
 		ControllerManager controllerManager = new ControllerManager();
-		OncePerTurnLeaderCard testCard3 = new OncePerTurnLeaderCard("test2", 0, 0, 0, 0, new Possession(10,10,0,0,0,0,0), false, new Effect(new Possession(5, 0, 0, 0, 0, 0, 0), 0, testGame));
+		OncePerTurnLeaderCard testCard3 = new OncePerTurnLeaderCard("aa", "test2", 0, 0, 0, 0, new Possession(10,10,0,0,0,0,0), false, new Effect(new Possession(5, 0, 0, 0, 0, 0, 0), 0, testGame));
 		RemoteView remoteView = new RemoteView(rmiAdapter, controllerManager);
 		testGame.attachCurrent(remoteView);
 		Player testPlayer = new Player("Test", Color.Blue, testGame);
@@ -77,7 +77,7 @@ public class LeaderActionTest  {
 		RmiClient rmiClient = new RmiClient(ViewType.CLI);
 		RmiAdapter rmiAdapter = new RmiAdapter(rmiClient);
 		ControllerManager controllerManager = new ControllerManager();
-		OncePerTurnLeaderCard testCard3 = new OncePerTurnLeaderCard("test2", 0, 0, 0, 0, new Possession(), false, new Effect(new Possession(5, 0, 0, 0, 0, 0, 0), 0, testGame));
+		OncePerTurnLeaderCard testCard3 = new OncePerTurnLeaderCard("aa", "test2", 0, 0, 0, 0, new Possession(), false, new Effect(new Possession(5, 0, 0, 0, 0, 0, 0), 0, testGame));
 		RemoteView remoteView = new RemoteView(rmiAdapter, controllerManager);
 		testGame.attachCurrent(remoteView);
 		Player testPlayer = new Player("Test", Color.Blue, testGame);

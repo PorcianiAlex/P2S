@@ -49,9 +49,19 @@ public class PlacementAction extends Action {
 		callBeforePlacementEffects();
 		convertServant(servantsToConvert);
 	    place();
+	    Effect toRipristinate = saveEffect();
 	    selectedActionSpace.callSpaceEffect(playerInAction, this);
+	    selectedActionSpace.setActionSpaceEffect(toRipristinate);
 		}
 	
+	private Effect saveEffect() {
+		if (selectedActionSpace.getActionSpaceEffect()!=null){
+			Effect toRipristinate = new Effect(selectedActionSpace.getActionSpaceEffect());
+			return toRipristinate;
+		}
+		else return null;
+	}
+
 	public void callBeforePlacementEffects() {
 		if (!playerInAction.getMyPersonalBoard().getToCallBeforePlacementEffects().isEmpty()){
 			int size = playerInAction.getMyPersonalBoard().getToCallBeforePlacementEffects().size();

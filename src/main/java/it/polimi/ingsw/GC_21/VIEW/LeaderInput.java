@@ -76,7 +76,7 @@ public class LeaderInput extends InputForm{//TODO to correct
 		super.inputFromCli(keyboard);
 		System.out.println("Do you want to turn a Leader Card or to play one of your activated Leader Card? "
 				+ "\n(1) Turn Leader Card \n(2) Play Leader Card");
-		String choice = keyboard.nextLine();
+		String choice = keyboard.next();
 		switch (choice){
 		case "1":	chooseLeaderToTurn(keyboard);
 					turningLeaderCard = true;
@@ -100,16 +100,17 @@ public class LeaderInput extends InputForm{//TODO to correct
 			for (int i = 0; i < playedOncePerTurnLeaderCards.size(); i++) {
 				System.out.println("Insert " +"(" + i+1 + ") to play " + playedOncePerTurnLeaderCards.get(i).getName());
 			}
-			leaderCard = keyboard.nextLine();
+			leaderCard = keyboard.next();
 		}
 	}
 
 	public void chooseLeaderToTurn(Scanner keyboard){
 		System.out.println("Which leader card do you want to activate?");
 		for (int i = 0; i < leaderCards.size(); i++) {
-			System.out.println("Insert " +"(" + i+1 + ") to turn " + leaderCards.get(i).getName());
+			int indexOfLeaderCards = i+1;
+			System.out.println("Insert " +"(" + indexOfLeaderCards + ") to turn " + leaderCards.get(i).getName());
 		}
-		leaderCard = keyboard.nextLine();
+		leaderCard = keyboard.next();
 	}
 
 	public Player getPlayer() {

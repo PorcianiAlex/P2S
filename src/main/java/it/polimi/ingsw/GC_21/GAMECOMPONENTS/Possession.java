@@ -38,6 +38,16 @@ public class Possession implements Serializable{
 	}
 	
 	
+	public Possession(Possession rewards) {
+		this.coins = new Coins(rewards.coins.getValue());
+		this.woods = new Woods(rewards.woods.getValue());
+		this.stones = new Stones(rewards.stones.getValue());
+		this.faithPoints = new FaithPoints(rewards.faithPoints.getValue());
+		this.militaryPoints = new MilitaryPoints(rewards.militaryPoints.getValue());
+		this.victoryPoints = new VictoryPoints(rewards.victoryPoints.getValue());
+		this.servants = new Servants(rewards.servants.getValue());
+	}
+
 	public boolean equals(Possession possession2) {
 		if (this.coins.equals(possession2.coins) &&
 			this.woods.equals(possession2.woods) &&
