@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.BOARD.Board;
+import it.polimi.ingsw.GC_21.BOARD.Floor;
+import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
+import it.polimi.ingsw.GC_21.BOARD.Tower;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
 import it.polimi.ingsw.GC_21.VIEW.PassInput;
@@ -16,6 +20,10 @@ public class TurnMessage extends MessageToClient{
 	private boolean outOfTime;
 	private int round;
 	private int turnNumber;
+	private SingleActionSpace singleActionSpace;
+	private Floor floor;
+	private Tower tower;
+
 
 
 
@@ -26,6 +34,9 @@ public class TurnMessage extends MessageToClient{
 		this.age = age;
 		this.round = round;
 		this.turnNumber = turnNumber;
+		this.tower = board.getSpecificTower(DevCardType.Territory);
+		this.floor = board.getSpecificTower(DevCardType.Territory).getFloors()[0];
+		this.singleActionSpace = board.getSpecificTower(DevCardType.Territory).getFloors()[0].getSingleActionSpace();
 	}
 
 

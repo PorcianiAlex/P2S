@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_21.VIEW;
 
+import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -38,6 +39,7 @@ public class SocketAdapter implements AdapterConnection{
 		try {
 			oos.writeObject(message);
 			oos.flush();
+			oos.reset();
 		} catch (IOException e) {
 			sendObject(message);//retry to send
 		}
