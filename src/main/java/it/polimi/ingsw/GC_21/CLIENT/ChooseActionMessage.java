@@ -14,7 +14,7 @@ import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 public class ChooseActionMessage extends MessageToClient {
 	private Player player;
 	
-	public ChooseActionMessage(String description, Board board, Player player) {
+	public ChooseActionMessage(String description, Player player) {
 		super(true, description);
 		this.player = player;
 	}

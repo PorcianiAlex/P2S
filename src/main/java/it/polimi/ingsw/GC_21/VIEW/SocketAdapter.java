@@ -47,6 +47,9 @@ public class SocketAdapter implements AdapterConnection{
 	public InputForm receiveObject() {
 		try {
 			InputForm inputForm = (InputForm) ois.readObject();
+			if (inputForm == null) {
+				return receiveObject();
+			}
 			return inputForm;
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();

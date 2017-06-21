@@ -19,8 +19,8 @@ public class TurnMessage extends MessageToClient{
 
 
 
-	public TurnMessage(Board board, ArrayList<Player> players, int age, int round, int turnNumber) {
-		super(true, board.toString());
+	public TurnMessage(Board board, ArrayList<Player> players, int age, int round, int turnNumber, String description) {
+		super(true, description);
 		this.board = board;
 		this.players = players;
 		this.age = age;
@@ -52,7 +52,7 @@ public class TurnMessage extends MessageToClient{
 	@Override
 	public InputForm executeCLI(Scanner keyboard) {
 		super.executeCLI(keyboard);
-		//startTimer();
+		System.out.println(board.toString());
 		return null;
 	}
 	

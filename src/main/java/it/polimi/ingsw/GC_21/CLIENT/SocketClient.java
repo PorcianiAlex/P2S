@@ -92,6 +92,9 @@ public class SocketClient implements Connections {
 	@Override
 	public MessageToClient getReceivedMessage() throws ClassNotFoundException, IOException {
 			MessageToClient messageToClient = (MessageToClient) oisClient.readObject();
+			if (messageToClient == null) {
+				return getReceivedMessage();
+			}
 				return messageToClient;
 		
 	}
