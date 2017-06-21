@@ -24,7 +24,7 @@ public class DiscardInput extends InputForm {
 	public void execute(RemoteView remoteView) {
 		super.execute(remoteView);
 		if (leaderToDiscard.isPlayed()){
-			ChooseActionMessage chooseActionMessage = new ChooseActionMessage("You cannot discard a Leader Card you already played!", remoteView.getGame().getBoard(), remoteView.getPlayer());
+			ChooseActionMessage chooseActionMessage = new ChooseActionMessage("You cannot discard a Leader Card you already played!",  remoteView.getPlayer());
 			remoteView.getAdapter().sendObject(chooseActionMessage);
 		}
 		

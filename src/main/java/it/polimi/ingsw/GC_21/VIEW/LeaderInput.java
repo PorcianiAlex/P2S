@@ -47,7 +47,7 @@ public class LeaderInput extends InputForm{//TODO to correct
 			try {
 				int leaderToPlay = Integer.parseInt(leaderCard);
 				if (leaderToPlay == -1) {
-					ChooseActionMessage chooseActionMessage = new ChooseActionMessage("You didn't play any Leader Card yet or none of your Leader Cards can help you now!", remoteView.getGame().getBoard(), remoteView.getPlayer());
+					ChooseActionMessage chooseActionMessage = new ChooseActionMessage("You didn't play any Leader Card yet or none of your Leader Cards can help you now!",  remoteView.getPlayer());
 					remoteView.getAdapter().sendObject(chooseActionMessage);
 					return;
 				}
