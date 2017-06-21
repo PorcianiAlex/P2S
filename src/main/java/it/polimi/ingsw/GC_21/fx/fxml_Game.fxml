@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="988.00022207031" prefWidth="1372.0001220703125" style="fx-background-color: gold" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.ingsw.GC_21.fx.FXMLGameController">
+<AnchorPane prefHeight="850.0" prefWidth="1150.0" style=" -fx-background-image: url('/gamebg.jpg'); -fx-background-size:cover;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.ingsw.GC_21.fx.FXMLGameController">
   <children>
-    <Pane fx:id="Pane1" layoutX="98.0" layoutY="62.0" prefHeight="841.0" prefWidth="601.0">
+    <Pane fx:id="Pane1" layoutX="6.0" layoutY="12.0" prefHeight="841.0" prefWidth="601.0">
       <children>
         <ImageView fx:id="board" fitHeight="816.6788330078125" fitWidth="592.5502285718937" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true" smooth="true">
           <image>
@@ -75,33 +75,171 @@
         <ToggleButton layoutX="369.0" layoutY="63.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
       </children>
     </Pane>
-    <Pane layoutX="686.0" layoutY="62.0" prefHeight="796.0" prefWidth="536.0" style="">
+    <Pane layoutX="600.0" layoutY="12.0" prefHeight="796.0" prefWidth="536.0" style="">
       <children>
-        <Button layoutX="337.0" layoutY="652.0" mnemonicParsing="false" onAction="#Confirm" text="Confirm" />
-        <Button layoutX="350.0" layoutY="599.0" mnemonicParsing="false" onAction="#Reset" text="Reset" />
-        <ToggleButton layoutX="14.0" layoutY="599.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="White">
+        <Button layoutX="365.0" layoutY="728.0" mnemonicParsing="false" onAction="#Confirm" text="Confirm" />
+        <Button layoutX="378.0" layoutY="681.0" mnemonicParsing="false" onAction="#Reset" text="Reset" />
+        <ToggleButton layoutX="39.0" layoutY="681.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="White">
           <toggleGroup>
             <ToggleGroup fx:id="family" />
           </toggleGroup>
         </ToggleButton>
-        <ToggleButton layoutX="150.0" layoutY="599.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="Black" toggleGroup="$family" />
-        <ToggleButton layoutX="14.0" layoutY="652.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="Orange" toggleGroup="$family" />
-        <ToggleButton layoutX="150.0" layoutY="652.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="Neutral" toggleGroup="$family" />
+        <ToggleButton layoutX="174.0" layoutY="681.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="Black" toggleGroup="$family" />
+        <ToggleButton layoutX="39.0" layoutY="728.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="Orange" toggleGroup="$family" />
+        <ToggleButton layoutX="174.0" layoutY="728.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="Neutral" toggleGroup="$family" />
         <Text fx:id="state" layoutX="39.0" layoutY="651.0" strokeType="OUTSIDE" strokeWidth="0.0" text="">
           <font>
             <Font size="24.0" />
           </font>
         </Text>
-        <TabPane layoutX="7.0" layoutY="14.0" prefHeight="357.0" prefWidth="529.0" tabClosingPolicy="UNAVAILABLE">
+        <TabPane layoutX="7.0" layoutY="14.0" prefHeight="590.0" prefWidth="529.0" tabClosingPolicy="UNAVAILABLE">
           <tabs>
-            <Tab text="Untitled Tab 1">
+            <Tab text="Player 1">
               <content>
-                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                    <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@punchboard_f_c_06.jpg" />
+                      </image>
+                    </ImageView>
+                    <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="410.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@ventureboard.jpg" />
+                      </image>
+                    </ImageView>
+                    <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@ventureboard.jpg" />
+                      </image>
+                    </ImageView>
+                    <ToggleButton layoutX="14.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="myterritory" />
+                      </toggleGroup>
+                    </ToggleButton>
+                    <ToggleButton layoutX="83.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myterritory" />
+                    <ToggleButton layoutX="155.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myterritory" />
+                    <ToggleButton layoutX="227.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myterritory" />
+                    <ToggleButton layoutX="295.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myterritory" />
+                    <ToggleButton layoutX="364.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myterritory" />
+                    <ToggleButton layoutX="14.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="mybuilding" />
+                      </toggleGroup>
+                    </ToggleButton>
+                    <ToggleButton layoutX="83.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mybuilding" />
+                    <ToggleButton layoutX="155.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mybuilding" />
+                    <ToggleButton layoutX="227.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mybuilding" />
+                    <ToggleButton layoutX="295.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mybuilding" />
+                    <ToggleButton layoutX="365.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mybuilding" />
+                    <ToggleButton layoutX="461.0" layoutY="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="myleader" />
+                      </toggleGroup>
+                    </ToggleButton>
+                    <ToggleButton layoutX="461.0" layoutY="155.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myleader" />
+                    <ToggleButton layoutX="461.0" layoutY="255.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myleader" />
+                    <ToggleButton layoutX="461.0" layoutY="358.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myleader" />
+                    <Text layoutX="465.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leaders">
+                      <font>
+                        <Font size="18.0" fx:id="x2" />
+                      </font>
+                    </Text>
+                    <ToggleButton layoutX="15.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="myventure" />
+                      </toggleGroup>
+                    </ToggleButton>
+                    <ToggleButton layoutX="84.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myventure" />
+                    <ToggleButton layoutX="156.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myventure" />
+                    <ToggleButton layoutX="229.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myventure" />
+                    <ToggleButton layoutX="296.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myventure" />
+                    <ToggleButton layoutX="365.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myventure" />
+                    <ToggleButton layoutX="15.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="mycharacheter" />
+                      </toggleGroup>
+                    </ToggleButton>
+                    <ToggleButton layoutX="83.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mycharacheter" />
+                    <ToggleButton layoutX="155.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mycharacheter" />
+                    <ToggleButton layoutX="227.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mycharacheter" />
+                    <ToggleButton layoutX="295.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mycharacheter" />
+                    <ToggleButton layoutX="364.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mycharacheter" />
+                  </children>
+                </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Untitled Tab 2">
+            <Tab text="Player 2">
               <content>
-                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                    <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@punchboard_f_c_06.jpg" />
+                      </image>
+                    </ImageView>
+                    <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="410.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@ventureboard.jpg" />
+                      </image>
+                    </ImageView>
+                    <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@ventureboard.jpg" />
+                      </image>
+                    </ImageView>
+                    <ToggleButton layoutX="14.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="x3" />
+                      </toggleGroup>
+                    </ToggleButton>
+                    <ToggleButton layoutX="83.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x3" />
+                    <ToggleButton layoutX="155.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x3" />
+                    <ToggleButton layoutX="227.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x3" />
+                    <ToggleButton layoutX="295.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x3" />
+                    <ToggleButton layoutX="364.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x3" />
+                    <ToggleButton layoutX="14.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="x4" />
+                      </toggleGroup>
+                    </ToggleButton>
+                    <ToggleButton layoutX="83.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x4" />
+                    <ToggleButton layoutX="155.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x4" />
+                    <ToggleButton layoutX="227.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x4" />
+                    <ToggleButton layoutX="295.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x4" />
+                    <ToggleButton layoutX="365.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x4" />
+                    <ToggleButton layoutX="461.0" layoutY="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="x5" />
+                      </toggleGroup>
+                    </ToggleButton>
+                    <ToggleButton layoutX="461.0" layoutY="155.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x5" />
+                    <ToggleButton layoutX="461.0" layoutY="255.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x5" />
+                    <ToggleButton layoutX="461.0" layoutY="358.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x5" />
+                    <Text font="$x2" layoutX="465.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leaders" />
+                    <ToggleButton layoutX="15.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="x6" />
+                      </toggleGroup>
+                    </ToggleButton>
+                    <ToggleButton layoutX="84.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x6" />
+                    <ToggleButton layoutX="156.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x6" />
+                    <ToggleButton layoutX="229.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x6" />
+                    <ToggleButton layoutX="296.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x6" />
+                    <ToggleButton layoutX="365.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x6" />
+                    <ToggleButton layoutX="15.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="x7" />
+                      </toggleGroup>
+                    </ToggleButton>
+                    <ToggleButton layoutX="83.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x7" />
+                    <ToggleButton layoutX="155.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x7" />
+                    <ToggleButton layoutX="227.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x7" />
+                    <ToggleButton layoutX="295.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x7" />
+                    <ToggleButton layoutX="364.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x7" />
+                  </children>
+                </AnchorPane>
               </content>
             </Tab>
           </tabs>

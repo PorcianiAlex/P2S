@@ -17,6 +17,7 @@ public class FXMLLobby extends Application {
 	        Parent root = FXMLLoader.load(getClass().getResource("fxml_Lobby.fxml"));
 			stage.setTitle("Lorenzo's Lobby");
 			stage.setScene(new Scene(root, 530, 375));
+	        stage.centerOnScreen();
 			stage.show();
         } catch (IOException e) {
 			e.printStackTrace();

@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Currency;
 import java.util.ResourceBundle;
 
 import javax.swing.ButtonGroup;
@@ -18,10 +20,12 @@ import com.sun.media.jfxmedia.events.NewFrameEvent;
 import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
+import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
 import it.polimi.ingsw.GC_21.CLIENT.ChooseActionMessage;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.CLIENT.TurnMessage;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderCard;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.VIEW.CouncilPlacementInput;
@@ -45,6 +49,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.Toggle;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -64,11 +71,8 @@ public class FXMLGameController extends MetaController implements Initializable{
 	private MessThread messThread;
 	private boolean canGo;
 	
-	@FXML private ToggleGroup place;
-	@FXML private ToggleGroup family;
+	@FXML private ToggleGroup cards, place, family, myterritory, mybuilding, myventure, myleader, mycharacheter;
 	@FXML private Text whitedice, blackdice, orangedice, state;
-	@FXML private ToggleGroup cards;
-	@FXML private javafx.scene.control.Button player0, player1, player2, player3;
 
 
 
@@ -209,8 +213,28 @@ public class FXMLGameController extends MetaController implements Initializable{
 		}
 		
 		//setto la personalboard
-		player0.setText(players.get(0).getName());
-		player1.setText(players.get(0).getName());
+		ArrayList<ToggleGroup> tab1 = new ArrayList<>();
+		tab1.addAll(Arrays.asList(myterritory,mycharacheter,mybuilding,myventure));
+		//for (int i = 0; i < players.size(); i++) {
+			Player currPlayer = players.get(0);
+			for (int k = 0; k < tab1.size(); k++) {
+				ToggleGroup currToggleGroup =  tab1.get(k);
+				OwnedCards currcards = currPlayer.getMyPersonalBoard().getSpecificOwnedCards(DevCardType.geType(k));
+					for (int j = 0; j < 6; j++) {
+						ToggleButton toggleButton = (ToggleButton) currToggleGroup.getToggles().get(j);
+							if(currcards.getMyOwnedCards()[j].getCard()!=null) {
+							String idmycard = currcards.getMyOwnedCards()[j].getCard().getID();
+							toggleButton.setStyle
+							("-fx-background-image: url('/devcards/devcards_f_en_c_"+idmycard+".png');  -fx-background-size: 70px; -fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-opacity: 1;");
+							} else {
+								toggleButton.setStyle
+								("-fx-background-image: url('/devcards/whitecard.png');  -fx-background-size: 70px; -fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-opacity:0;");
+								
+							}
+			
+					}
+			}
+		//}
 
 	}
 	
