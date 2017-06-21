@@ -36,7 +36,7 @@ public class PlacementInput extends ActionInput{
 	
 	 public int chooseHowManyServants(Scanner keyboard){ 
 		    System.out.println("How many servants do you want to convert?:"); 
-		    String servstring = keyboard.nextLine(); 
+		    String servstring = keyboard.next(); 
 		    int servantsToConvert = Integer.parseInt(servstring); 
 		    return servantsToConvert; 
 
@@ -44,7 +44,7 @@ public class PlacementInput extends ActionInput{
 	 
 	 public FamilyMemberColor chooseFamilyMember(Scanner keyboard){ 
 		    System.out.println("Select Family Member [ N - O - W - B ]:"); 
-		    String choice = keyboard.nextLine(); 
+		    String choice = keyboard.next(); 
 		    switch (choice) { 
 		    case "N": return FamilyMemberColor.Neutral; 
 		    case "O": return FamilyMemberColor.Orange; 

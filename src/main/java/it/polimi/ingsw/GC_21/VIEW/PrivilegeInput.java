@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_21.VIEW;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import it.polimi.ingsw.GC_21.CLIENT.PrivilegeMessage;
 import it.polimi.ingsw.GC_21.CONTROLLER.PrivilegeController;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
@@ -27,7 +28,8 @@ public class PrivilegeInput extends InputForm {
 		super.execute(remoteView);
 		PrivilegeController privilegeController = new PrivilegeController(choice, rewards, privilegesNumber, earnedRewards);
 		if (!remoteView.notifyController(privilegeController)){
-			this.execute(remoteView);
+			PrivilegeMessage privilegeMessage = new PrivilegeMessage(rewards, privilegesNumber, earnedRewards);
+			remoteView.getAdapter().sendObject(privilegeMessage);
 			}
 		}
 	

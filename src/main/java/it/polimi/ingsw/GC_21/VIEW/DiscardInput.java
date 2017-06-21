@@ -23,16 +23,16 @@ public class DiscardInput extends InputForm {
 	@Override
 	public void execute(RemoteView remoteView) {
 		super.execute(remoteView);
-		if (leaderToDiscard.isPlayed()){
-			ChooseActionMessage chooseActionMessage = new ChooseActionMessage("You cannot discard a Leader Card you already played!", remoteView.getGame().getBoard(), remoteView.getPlayer());
+		if (leaderToDiscard.isPlayed() ){
+			ChooseActionMessage chooseActionMessage = new ChooseActionMessage("You cannot discard a Leader Card you already played!",  remoteView.getPlayer());
 			remoteView.getAdapter().sendObject(chooseActionMessage);
 		}
 		
 		else{
-			leaderCards.remove(leaderToDiscard);
+			remoteView.getPlayer().getMyPersonalBoard().getLeaderCards().remove(leaderToDiscard);
 			PrivilegeMessage privilegeMessage = new PrivilegeMessage(new Possession(), 1, new ArrayList<Possession>());
 			remoteView.getAdapter().sendObject(privilegeMessage);
-			remoteView.inputObject();
+			//remoteView.inputObject();
 		}
 	}
 	
@@ -45,7 +45,7 @@ public class DiscardInput extends InputForm {
 			System.out.println("Insert " +"(" + toPrint + ") to discard " + leaderCards.get(i).getName());
 		}
 		try {
-			int choice = keyboard.nextInt();
+			int choice = Integer.parseInt(keyboard.next());
 			leaderToDiscard = leaderCards.get(choice-1);
 		} catch (Exception e) {
 			System.out.println("Invalid input, try again!");

@@ -12,6 +12,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.PrimitiveIterator.OfDouble;
 
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
 import it.polimi.ingsw.GC_21.VIEW.Server;
@@ -54,6 +55,9 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 		}
 		}
 		MessageToClient message = receivedMessage;
+		if (message instanceof PrivilegeMessage){
+			System.out.println("sono un privilege");
+		}
 		receivedMessage = null;
 		return message;
 	}
