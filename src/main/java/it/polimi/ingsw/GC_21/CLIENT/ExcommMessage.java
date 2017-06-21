@@ -15,6 +15,7 @@ public class ExcommMessage extends MessageToClient {
 	
 	@Override
 	public InputForm executeCLI(Scanner keyboard) {
+		System.out.println(description);
 		ExcommInput excommInput = new ExcommInput();
 		excommInput.inputFromCli(keyboard);
 		return excommInput;

@@ -23,6 +23,6 @@ public class ExcommInput extends InputForm {
 
 @Override
 public void inputFromCli(Scanner keyboard) {
-	 choice = keyboard.nextLine();
+	 choice = keyboard.next();
 	}
 }

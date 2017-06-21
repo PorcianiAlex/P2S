@@ -17,6 +17,9 @@ public class PrivilegeController extends ControllerForm{
 	public PrivilegeController(String choice, Possession rewards, int privileges, ArrayList<Possession> earnedRewards) {
 		this.privileges = privileges;
 		this.earnedRewards = earnedRewards;
+		if (earnedRewards==null){
+			earnedRewards = new ArrayList<Possession>();
+		}
 		this.rewardByPrivilege = createReward(choice);
 		this.rewards = rewards;
 	}

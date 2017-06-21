@@ -12,7 +12,13 @@ public class PrivilegeMessage extends MessageToClient{
 		protected Possession rewards;
 		protected ArrayList<Possession> earnedRewards;
 
-		
+		public PrivilegeMessage(Possession rewards, int privilegesNumber) {
+			super(true, "You have " + privilegesNumber + " privileges left to convert! ");
+			this.rewards = rewards;
+			this.privilegesNumber = privilegesNumber;
+			this.earnedRewards =  new ArrayList<Possession>();
+		}
+
 		
 	public PrivilegeMessage(Possession rewards, int privilegesNumber, ArrayList<Possession> earnedRewards) {
 		super(true, "You have " + privilegesNumber + " privileges left to convert! ");

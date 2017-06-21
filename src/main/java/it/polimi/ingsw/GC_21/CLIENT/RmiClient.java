@@ -22,8 +22,8 @@ import it.polimi.ingsw.GC_21.fx.ViewType;
 
 public class RmiClient extends UnicastRemoteObject implements Serializable, RmiClientInterface{
 
-	private ArrayList<String> messagesforserver;
-	private Stack<String> stackforclient;
+	private ArrayList<String> messagesForServer;
+	private Stack<String> stackForClient;
 	private ViewType view;
 	private Object LOCK = new Object(); // just something to lock on
 	private Object LOCK2 = new Object(); // just something to lock on
@@ -32,13 +32,12 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 	private InputForm inputToSend = null;
 	private MessageToClient receivedMessage;
 	private Scanner keyboard;
-	private boolean outOfTime;
 
 	
 	public RmiClient(ViewType view) throws RemoteException {
 		this.view=view;
-		this.messagesforserver = new ArrayList<String>();
-		this.stackforclient = new Stack<String>();
+		this.messagesForServer = new ArrayList<String>();
+		this.stackForClient = new Stack<String>();
 		this.receivedMessage = null;
 	}
 	
@@ -55,9 +54,6 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 		}
 		}
 		MessageToClient message = receivedMessage;
-		if (message instanceof PrivilegeMessage){
-			System.out.println("sono un privilege");
-		}
 		receivedMessage = null;
 		return message;
 	}
@@ -74,7 +70,7 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 
 
 	public void sendGUI(String mess) {
-		messagesforserver.add(mess);
+		messagesForServer.add(mess);
 		synchronized (LOCK3) {
 		    LOCK3.notifyAll();
 		}
@@ -88,7 +84,7 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 			Music.start();
 		} 
 		if(view.equals(ViewType.GUI)) {
-			this.stackforclient.push(string);
+			this.stackForClient.push(string);
 			System.out.println(string);
 			synchronized (LOCK4) {
 		    LOCK4.notifyAll();
