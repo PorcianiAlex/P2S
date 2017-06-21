@@ -38,7 +38,7 @@ public class TowerPlacementInput extends PlacementInput {
  
 	 public DevCardType selectTower(Scanner keyboard){ 
 		    System.out.println("Select Tower [1-4]:"); 
-		    String choice = keyboard.nextLine(); 
+		    String choice = keyboard.next(); 
 		    switch (choice) { 
 		    case "1": return DevCardType.Territory; 
 		    case "2": return DevCardType.Character; 
@@ -52,8 +52,14 @@ public class TowerPlacementInput extends PlacementInput {
 	 
 	 public int selectFloor(Scanner keyboard){ 
 		    System.out.println("Select Floor [1-4]:"); 
-		    String choicestring = keyboard.nextLine();  
-		    int choice = Integer.parseInt(choicestring); 
+		    String choicestring = keyboard.next();  
+		    int choice;
+			try {
+				choice = Integer.parseInt(choicestring);
+			} catch (NumberFormatException e) {
+				System.out.println("Invalid floor choice, try again!"); 
+			     return this.selectFloor(keyboard); 
+			} 
 		    if (choice <=4 && choice >=1){ 
 		      return choice; 
 		    } 

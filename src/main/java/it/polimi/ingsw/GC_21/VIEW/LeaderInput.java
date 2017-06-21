@@ -42,9 +42,9 @@ public class LeaderInput extends InputForm{//TODO to correct
 			case "3":  selectedLeaderCard = leaderCards.get(2);	
 						break;
 			default: 
-					System.out.println("Invalid choice, try again!");
-					this.execute(remoteView);
-					 //this.chooseLeaderToTurn(keyboard); Send a Message
+					ChooseActionMessage retryChooseAction = new ChooseActionMessage("Invalid choice, tell me what you want to do!", player);
+					remoteView.getAdapter().sendObject(retryChooseAction);
+					remoteView.inputObject();
 			}
 		
 		}

@@ -27,6 +27,7 @@ public class RunCli {
 					System.out.println("THE END!");
 					return;
 				}
+				
 				InputForm inputForm = message.executeCLI(keyboard);
 				if (inputForm != null) {
 					client.sendInput(inputForm);
