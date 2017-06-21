@@ -29,6 +29,13 @@ public  class Effect implements Serializable{
 		this.privileges = new Privileges(privileges);
 	}
 	
+	public Effect(Effect effect){
+		this.game=effect.game;
+		this.rewards = new Possession(effect.rewards);
+		this.earnedRewards = new ArrayList<Possession>();
+		this.privileges = new Privileges(effect.privileges.getValue());
+	}
+	
 	public Effect(Possession rewards, int privileges, Game game, ArrayList<Possession> earnedRewards) {
 		this.game=game;
 		this.rewards = rewards;

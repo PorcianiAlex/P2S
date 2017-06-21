@@ -69,7 +69,7 @@ public class TurnMessage extends MessageToClient{
 	
 	@Override
 	public void executeGUI(FXMLGameController gameController) {
-		gameController.refreshBoard(board, players);
+		gameController.refreshBoard(board, players, description);
 		
 	}
 	

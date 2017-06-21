@@ -66,8 +66,10 @@ public class FXMLGameController extends MetaController implements Initializable{
 	
 	@FXML private ToggleGroup place;
 	@FXML private ToggleGroup family;
-	@FXML private Text whitedice, blackdice, orangedice;
+	@FXML private Text whitedice, blackdice, orangedice, state;
 	@FXML private ToggleGroup cards;
+	@FXML private javafx.scene.control.Button player0, player1, player2, player3;
+
 
 
 	
@@ -171,11 +173,13 @@ public class FXMLGameController extends MetaController implements Initializable{
 		 alert.showAndWait();
 	 }
 
-	public void refreshBoard(Board board, ArrayList<Player> players) {
+	public void refreshBoard(Board board, ArrayList<Player> players, String dString) {
 		System.out.println("sono nella refreshboard");
 		classBoard = board;
 		classPlayers = players;
 		//setto la board
+		//gamemanagement
+		state.setText(dString);
 		//dadi:
 		blackdice.setText(String.valueOf(board.getDices()[0].getValue()));
 		whitedice.setText(String.valueOf(board.getDices()[1].getValue()));	
@@ -185,24 +189,35 @@ public class FXMLGameController extends MetaController implements Initializable{
 			for (int j = 0; j < 4; j++) {
 				ToggleButton toggleButton =  (ToggleButton) cards.getToggles().get(j+4*i);
 				
-				if(!board.getTowers()[i].getFloors()[j].getSingleActionSpace().isBusy()) {
+				if(board.getTowers()[i].getFloors()[j].getDevCardPlace().getCard()!=null) {
 				String idcard = board.getTowers()[i].getFloors()[j].getDevCardPlace().getCard().getID();		
 				toggleButton.setStyle
-				("-fx-background-image: url('/devcards/devcards_f_en_c_"+idcard+".png');  -fx-background-size: 70px; -fx-background-repeat: no-repeat; -fx-background-position: 90%;");
+				("-fx-background-image: url('/devcards/devcards_f_en_c_"+idcard+".png');  -fx-background-size: 70px; -fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-opacity: 1;");
 				} else {
+					ToggleButton placebutton =  (ToggleButton) place.getToggles().get(j+4*i);
 					toggleButton.setStyle
-					("-fx-background-color: white;  -fx-background-size: 70px; -fx-background-repeat: no-repeat; -fx-background-position: 90%;");
-					
+					("-fx-background-image: url('/devcards/whitecard.png');  -fx-background-size: 70px; -fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-opacity:0;");
+					if(board.getTowers()[i].getFloors()[j].getSingleActionSpace().isBusy()) {
+					String color = board.getTowers()[i].getFloors()[j].getSingleActionSpace().getFamilyMemberLocated().getOwnerPlayer().getPlayerColor().toString();
+				    placebutton.setStyle("-fx-background-color:"+color+"; -fx-opacity:0.3;");
+					} else {
+					placebutton.setStyle("-fx-background-color: white; -fx-opacity:0.3; ");
+					}
 				}
 			}
 			
 		}
-			
+		
+		//setto la personalboard
+		player0.setText(players.get(0).getName());
+		player1.setText(players.get(0).getName());
+
 	}
 	
 	public void ifChooseAction() {
 		//gli mostro la conferma
 		System.out.println("è il tuo turno, sono nella chooseaction");
+		state.setText("It's your turn!");
 		canGo = true;
 		return;
 	}
@@ -215,6 +230,8 @@ public class FXMLGameController extends MetaController implements Initializable{
         messThread.start();
                 
 	}
+	
+	
 
 	
 }

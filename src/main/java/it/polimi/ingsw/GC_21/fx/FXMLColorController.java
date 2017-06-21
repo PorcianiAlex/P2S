@@ -28,7 +28,7 @@ public class FXMLColorController extends MetaController {
 	private Color colorplayer = null ;
 	private boolean start;
 	private ColorThread colorThread;
-	private boolean host;
+	private boolean host = false;
 	
 	@FXML private Text texttarget;
 	@FXML private Text welcometext;
@@ -66,8 +66,6 @@ public class FXMLColorController extends MetaController {
 			System.out.println(checkColorMessage.getDescription());
 			colorThread = new ColorThread(texttarget, client, this);
 	        colorThread.start();
-		} else {
-	     this.gameScene();
 		} 
 	 }
 	 
@@ -83,6 +81,8 @@ public class FXMLColorController extends MetaController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		 } else if(colorplayer!=null && !host) {
+			 gameScene();
 		 }
 		 return;
 	}

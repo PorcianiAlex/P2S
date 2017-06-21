@@ -41,20 +41,23 @@ public class CraftPlacementInput extends PlacementInput {
 	}
 	   
 	  public void selectCraftType(Scanner keyboard){ 
-	    System.out.println("Which kind of craft do you want to execute? (1) Production - (2) Harvest"); 
-	    String choice = keyboard.nextLine(); 
+	    System.out.println("Which kind of craft do you want to execute? \n(1) Production - (2) Harvest"); 
+	    String choice = keyboard.next(); 
+	    
 	    switch (choice){ 
 	      case "1":  craftType = CraftType.Production; 
+	      				break;
 	      case "2":  craftType = CraftType.Harvest; 
+	      				break;
 	      default: System.out.println("Invalid Input, ");
-	    	   selectCraftType(keyboard); 
+	      			selectCraftType(keyboard); 
 	    } 
 	  } 
 	  
 	  public void selectSpace(Scanner keyboard) {
 		  System.out.println("Where do you want to place your Family Member? Be careful, my dear bischero: \n if you choose the " 
 			        + "multiple action space you will get a malus on your craft! \n (1) Single Action Space - (2) Multiple Action Space"); 
-		  String spacestring = keyboard.nextLine();
+		  String spacestring = keyboard.next();
 		  spaceType = Integer.parseInt(spacestring);
 	}
 	  
