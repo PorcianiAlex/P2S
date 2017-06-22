@@ -27,7 +27,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface, Seri
     private int port;
     private ServerSocket serverSocket;
     private ExecutorService executor;
-    private ControllerManager controlloreManager;
+    private ControllerManager controllerManager;
 
     public  Server(int port) throws RemoteException{
         this.port=port;
@@ -42,7 +42,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface, Seri
     
     public void startServer() {
     	
-    	controlloreManager = new ControllerManager();
+    	controllerManager = new ControllerManager();
     	
        executor =  Executors.newCachedThreadPool();
        
@@ -69,7 +69,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface, Seri
         	           		   		          		   
         		  Socket socket = serverSocket.accept();
         		  SocketAdapter socketAdapter = new SocketAdapter(socket);
-          		  RemoteView remoteView = new RemoteView(socketAdapter, controlloreManager);
+          		  RemoteView remoteView = new RemoteView(socketAdapter, controllerManager);
         		  executor.submit(remoteView);        		  
         	   if(serverSocket.isClosed()) {break;}
         		 
@@ -88,7 +88,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface, Seri
     	RmiAdapter rmiAdapter = new RmiAdapter(rmiClient);
     	RemoteView remoteView;
 		try {
-			remoteView = new RemoteView(rmiAdapter, controlloreManager);
+			remoteView = new RemoteView(rmiAdapter, controllerManager);
 			executor.submit(remoteView);
 		} catch (IOException e) {
 			e.printStackTrace();

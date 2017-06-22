@@ -14,8 +14,8 @@ public class CheckColorMessage extends MessageToClient {
 	}
 	@Override
 	public InputForm executeCLI(Scanner keyboard) {
+		super.executeCLI(keyboard);
 		if (result) {
-			super.executeCLI(keyboard);
 			if (host) {
 				InitGameInput initGameInput = new InitGameInput();
 				initGameInput.inputFromCli(keyboard);
@@ -23,7 +23,7 @@ public class CheckColorMessage extends MessageToClient {
 			}
 			return null;
 		}
-		else {//maybe it's better to send a start message from server
+		else {
 			CheckLobbyMessage retryLobbyMessage = new CheckLobbyMessage(true, "Retry");
 			return retryLobbyMessage.executeCLI(keyboard);
 		}

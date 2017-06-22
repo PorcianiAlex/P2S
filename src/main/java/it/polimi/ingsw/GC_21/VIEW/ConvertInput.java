@@ -28,13 +28,13 @@ public class ConvertInput extends InputForm {
 
 	@Override
 	public void execute(RemoteView remoteView) {
-		super.execute(remoteView);
 		ConvertController conversionMessage = new ConvertController(toPayChoosed, toTakeChoosed);
 		remoteView.notifyController(conversionMessage);
 	}
 
 	public void chooseConversion(Scanner keyboard){
 		String choice = keyboard.nextLine();
+		keyboard.reset();
 		switch (choice) {
 		case "1":
 			toPayChoosed = toPay1;

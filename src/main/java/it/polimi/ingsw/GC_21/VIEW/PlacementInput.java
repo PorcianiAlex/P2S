@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_21.VIEW;
 
 import java.util.Scanner;
 
+import it.polimi.ingsw.GC_21.CLIENT.ChooseActionMessage;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 
 public class PlacementInput extends ActionInput{
@@ -16,15 +17,16 @@ public class PlacementInput extends ActionInput{
 	public void execute(RemoteView remoteView) {
 		int playerServant = remoteView.getPlayer().getMyPersonalBoard().getMyPossession().getServants().getValue(); 
 	    if (playerServant == 0){ 
-	      System.out.println("You don't have servant to convert!"); 
+	    	ChooseActionMessage retryActionMessage = new ChooseActionMessage("You don't have servant to convert!", remoteView.getPlayer());
+	    	adapterConnection.sendObject(retryActionMessage);
+	    	remoteView.inputObject();
 	    } 
 	    if (servantsToConvert > playerServant){ 
-		      System.out.println("You don't have enough servant to convert, try again!"); 
+	    	ChooseActionMessage retryActionMessage = new ChooseActionMessage("You don't have enough servant to convert, try again!", remoteView.getPlayer());
+	    	adapterConnection.sendObject(retryActionMessage);
+	    	remoteView.inputObject();
 		    }
-		    else { 
-		      System.out.println("You are going to convert " + servantsToConvert + " servants"); 
-		    } 	
-		
+		   
 	}
 	
 	@Override
@@ -37,6 +39,7 @@ public class PlacementInput extends ActionInput{
 	 public int chooseHowManyServants(Scanner keyboard){ 
 		    System.out.println("How many servants do you want to convert?:"); 
 		    String servstring = keyboard.next(); 
+		    keyboard.reset();
 		    int servantsToConvert = Integer.parseInt(servstring); 
 		    return servantsToConvert; 
 
@@ -45,6 +48,7 @@ public class PlacementInput extends ActionInput{
 	 public FamilyMemberColor chooseFamilyMember(Scanner keyboard){ 
 		    System.out.println("Select Family Member [ N - O - W - B ]:"); 
 		    String choice = keyboard.next(); 
+		    keyboard.reset();
 		    switch (choice) { 
 		    case "N": return FamilyMemberColor.Neutral; 
 		    case "O": return FamilyMemberColor.Orange; 

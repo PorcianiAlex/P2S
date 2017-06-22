@@ -4,6 +4,7 @@ import java.awt.im.spi.InputMethod;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.ACTION.TowerPlacement;
+import it.polimi.ingsw.GC_21.CLIENT.ChooseActionMessage;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 
@@ -27,14 +28,7 @@ public class TakeCardInput extends InputForm{
 	public void execute(RemoteView remoteView) {
 		super.setAdapter(remoteView);
 		TowerPlacement takeCardAction = TowerPlacement.factoryTakeCard(remoteView.getPlayer(), devCardType, selectedFloor, actionValueInfluencer, discount, null, remoteView.getGame().getBoard());
-		boolean result = remoteView.notifyObservers(takeCardAction);
-		if (!result){//TODO send a message
-			this.execute(remoteView);
-		}
-		
-		
-	
-
+		 remoteView.response(takeCardAction);
 	}
 	
 	@Override

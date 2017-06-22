@@ -41,7 +41,7 @@ public class SocketAdapter implements AdapterConnection{
 			oos.flush();
 			oos.reset();
 		} catch (IOException e) {
-			sendObject(message);//retry to send
+			e.printStackTrace();
 		}
 	}
 

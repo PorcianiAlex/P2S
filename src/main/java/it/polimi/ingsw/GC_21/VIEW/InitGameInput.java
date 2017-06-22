@@ -23,9 +23,8 @@ public InitGameInput() {
 	    Game game = remoteView.getGame();
 	    if(start || game.getPlayers().size()==4) {
 	    	/*while (game.getPlayers().size() < 2) {
-	    	\System.out.println("Waiting for players...");
+	    	System.out.println("Waiting for players...");
 			}*/
-	    	System.out.println("execute game");
 	      game.executeGame(); 
 	    } else { execute(remoteView); } 
 	  } 
@@ -35,6 +34,7 @@ public InitGameInput() {
 	public void inputFromCli(Scanner keyboard) {
 		super.inputFromCli(keyboard);
 		String string = keyboard.next();
+		keyboard.reset();
 		if (!string.equals("start")) {
 			System.out.println("Send Start please");
 			inputFromCli(keyboard);

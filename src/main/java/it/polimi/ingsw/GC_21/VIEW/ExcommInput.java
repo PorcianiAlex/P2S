@@ -15,8 +15,8 @@ public class ExcommInput extends InputForm {
 					break;
 		case "N" :	remoteView.notifyObservers(new ExcommAction(remoteView.getPlayer(), remoteView.getGame(), false));
 					break;
-		default: //TODO error message
-					remoteView.notifyObservers(new ExcommAction(remoteView.getPlayer(), remoteView.getGame(), true));
+		default: remoteView.notifyObservers(new ExcommAction(remoteView.getPlayer(), remoteView.getGame(), true));
+					break;
 		}		
 	}
 
@@ -24,5 +24,6 @@ public class ExcommInput extends InputForm {
 @Override
 public void inputFromCli(Scanner keyboard) {
 	 choice = keyboard.nextLine();
+	 keyboard.reset();
 	}
 }

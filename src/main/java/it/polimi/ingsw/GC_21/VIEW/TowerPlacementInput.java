@@ -12,9 +12,7 @@ public class TowerPlacementInput extends PlacementInput {
     private int floor;
      
 	
-	public TowerPlacementInput(
-			DevCardType selectedTower, int floor) {
-		super();
+	public TowerPlacementInput(DevCardType selectedTower, int floor) {
 		this.selectedTower = selectedTower;
 		this.floor = floor;
 	}
@@ -24,7 +22,7 @@ public class TowerPlacementInput extends PlacementInput {
 
 	@Override
 	public void execute(RemoteView remoteView) {
-		super.execute(remoteView);
+		setAdapter(remoteView);
 	    TowerPlacement towerPlacement = TowerPlacement.factoryTowerPlacement(remoteView.getPlayer(), familyMemberColor, selectedTower, floor, servantsToConvert, remoteView.getGame().getBoard()); 
 	    remoteView.response(towerPlacement);
 	}
@@ -38,7 +36,8 @@ public class TowerPlacementInput extends PlacementInput {
  
 	 public DevCardType selectTower(Scanner keyboard){ 
 		    System.out.println("Select Tower [1-4]:"); 
-		    String choice = keyboard.nextLine(); 
+		    String choice = keyboard.next(); 
+		    keyboard.reset();
 		    switch (choice) { 
 		    case "1": return DevCardType.Territory; 
 		    case "2": return DevCardType.Character; 
@@ -52,7 +51,8 @@ public class TowerPlacementInput extends PlacementInput {
 	 
 	 public int selectFloor(Scanner keyboard){ 
 		    System.out.println("Select Floor [1-4]:"); 
-		    String choicestring = keyboard.nextLine();  
+		    String choicestring = keyboard.next();
+		    keyboard.reset();
 		    int choice = Integer.parseInt(choicestring); 
 		    if (choice <=4 && choice >=1){ 
 		      return choice; 

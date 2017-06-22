@@ -37,7 +37,6 @@ public class LeaderInput extends InputForm{//TODO to correct
 			case "3":  selectedLeaderCard = leaderCards.get(2);	
 						break;
 			default: 
-					System.out.println("Invalid choice, try again!");
 					this.execute(remoteView);
 					 //this.chooseLeaderToTurn(keyboard); Send a Message
 			}
@@ -66,9 +65,7 @@ public class LeaderInput extends InputForm{//TODO to correct
 		}
 		
 		LeaderAction leaderTurn = new LeaderAction(remoteView.getPlayer(), selectedLeaderCard,  turningLeaderCard, remoteView.getGame());
-		remoteView.response(leaderTurn);
-		
-		
+		remoteView.response(leaderTurn);	
 		}
 	
 	@Override
@@ -77,6 +74,7 @@ public class LeaderInput extends InputForm{//TODO to correct
 		System.out.println("Do you want to turn a Leader Card or to play one of your activated Leader Card? "
 				+ "\n(1) Turn Leader Card \n(2) Play Leader Card");
 		String choice = keyboard.next();
+		keyboard.reset();
 		switch (choice){
 		case "1":	chooseLeaderToTurn(keyboard);
 					turningLeaderCard = true;
@@ -84,7 +82,7 @@ public class LeaderInput extends InputForm{//TODO to correct
 		case "2": 	chooseLeaderToPlay(keyboard);
 					turningLeaderCard = false;
 					break;
-		default: System.out.println("Invalid choice, try again!");
+		default: System.out.println("Oh grullo are you joking?? Turn or Play");
 					inputFromCli(keyboard);
 	}
 		

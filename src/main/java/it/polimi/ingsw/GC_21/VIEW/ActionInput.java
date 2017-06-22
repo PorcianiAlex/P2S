@@ -20,7 +20,8 @@ public class ActionInput extends InputForm {
 	public InputForm chooseAction(Scanner keyboard, Player player) {
 			System.out.println("Choose your action: " + "\n 1: Tower placement" + "\n 2: Craft placement "
 					+ "\n 3: Market placement " + "\n 4: Council placement" + "\n 5: Pass" + "\n 6: Play Leader Card" + "\n 7: Discard Leader Card");
-			choice = keyboard.next();			
+			choice = keyboard.next();
+			keyboard.reset();
 			switch (choice) {
 			case "1":
 				TowerPlacementInput towerPlacementInput = new TowerPlacementInput();
