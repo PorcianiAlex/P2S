@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_21.CLIENT;
 
 import java.util.Scanner;
 import java.util.Timer;
+import java.util.concurrent.ExecutionException;
 
 import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
@@ -15,7 +16,7 @@ public class ChooseActionMessage extends MessageToClient {
 	private Player player;
 	
 	public ChooseActionMessage(boolean result, String description, Player player) {
-		super(result, description);
+		super(result, true, description);
 		this.player = player;
 	}
 	
@@ -24,7 +25,6 @@ public class ChooseActionMessage extends MessageToClient {
 		super.executeCLI(keyboard);
 		//Timer timer = startTimer();
 		ActionInput actionInput = new ActionInput();
-		//timer.cancel();
 		inputFormToSend = actionInput.chooseAction(keyboard, player);
 		return inputFormToSend;
 	}
