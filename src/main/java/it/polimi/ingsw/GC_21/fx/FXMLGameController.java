@@ -24,6 +24,7 @@ import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
 import it.polimi.ingsw.GC_21.CLIENT.ChooseActionMessage;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
+import it.polimi.ingsw.GC_21.CLIENT.Music;
 import it.polimi.ingsw.GC_21.CLIENT.TurnMessage;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderCard;
@@ -37,6 +38,7 @@ import it.polimi.ingsw.GC_21.VIEW.InputForm;
 import it.polimi.ingsw.GC_21.VIEW.MarketPlacementInput;
 import it.polimi.ingsw.GC_21.VIEW.PlacementInput;
 import it.polimi.ingsw.GC_21.VIEW.TowerPlacementInput;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -76,6 +78,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	
 	@FXML private ToggleGroup cards, place, family, myterritory, mybuilding, myventure, myleader, mycharacheter, x3,x4,x5,x6, x7;
 	@FXML private Text whitedice, blackdice, orangedice, state;
+	@FXML private Text r1,r2,r3,r4,r5,r6,r7,r8;
 	@FXML private Tab pl1, pl2;
 
 
@@ -216,8 +219,8 @@ public class FXMLGameController extends MetaController implements Initializable{
 		}
 		
 		//setto la personalboard
-		pl1.setText(players.get(0).getName());
-		pl2.setText(players.get(1).getName());
+		//pl1.setText(players.get(0).getName());
+		//pl2.setText(players.get(1).getName());
 
 		for (int i = 0; i < players.size(); i++) {
 			Player currPlayer = players.get(i);
@@ -241,12 +244,32 @@ public class FXMLGameController extends MetaController implements Initializable{
 			}
 		}
 
+		//resources
+		for (int i = 0; i < players.size(); i++) {
+		
+
+		}
+		
 	}
 	
-	public void ifChooseAction() {
+	public void ifChooseAction(boolean firstaction, String description) {
 		//gli mostro la conferma
+		if(firstaction) {
 		System.out.println("è il tuo turno, sono nella chooseaction");
-		state.setText("It's your turn!");
+		state.setText("It's your turn!");	
+		} else {
+			Platform.runLater(new Runnable() {
+			    @Override
+			    public void run() {
+			    	Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("Error");
+					alert.setHeaderText("Invalid Action!");
+					alert.setContentText(description);
+					alert.showAndWait();
+			    }
+			});
+		
+		}	
 		canGo = true;
 		return;
 	}
@@ -255,6 +278,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("default initialize!");
+		Music.start();
 		messThread = new MessThread(client, this);
         messThread.start();
         // creazione arraylist di togglegroup per ogni tab del tabPane
@@ -264,6 +288,9 @@ public class FXMLGameController extends MetaController implements Initializable{
         tab2.addAll(Arrays.asList(x3,x7,x4,x6));
         tabs.add(tab1);
         tabs.add(tab2);
+        ArrayList<Text> res1 = new ArrayList<>();
+        ArrayList<Text> res2 = new ArrayList<>();
+        res1.addAll(Arrays.asList(r1,r2,r3,r4,r5,r6,r7));
         
 	}
 	

@@ -14,8 +14,8 @@ import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 public class ChooseActionMessage extends MessageToClient {
 	private Player player;
 	
-	public ChooseActionMessage(String description, Player player) {
-		super(true, description);
+	public ChooseActionMessage(boolean result, String description, Player player) {
+		super(result, description);
 		this.player = player;
 	}
 	
@@ -31,7 +31,7 @@ public class ChooseActionMessage extends MessageToClient {
 
 	@Override
 	public void executeGUI(FXMLGameController gameController) {
-		gameController.ifChooseAction();
+		gameController.ifChooseAction(result, description);
 		
 	}
 	
