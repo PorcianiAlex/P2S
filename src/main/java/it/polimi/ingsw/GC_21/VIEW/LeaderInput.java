@@ -29,7 +29,7 @@ public class LeaderInput extends InputForm{//TODO to correct
 	public void execute(RemoteView remoteView) {
 		super.execute(remoteView);
 		if (leaderCards.isEmpty()){
-			ChooseActionMessage chooseActionMessage = new ChooseActionMessage("",  remoteView.getPlayer());
+			ChooseActionMessage chooseActionMessage = new ChooseActionMessage(false, "You haven't got any leader cards",  remoteView.getPlayer());
 			remoteView.getAdapter().sendObject(chooseActionMessage);
 			remoteView.inputObject();
 		}
@@ -42,7 +42,7 @@ public class LeaderInput extends InputForm{//TODO to correct
 			case "3":  selectedLeaderCard = leaderCards.get(2);	
 						break;
 			default: 
-					ChooseActionMessage retryChooseAction = new ChooseActionMessage("Invalid choice, tell me what you want to do!", player);
+					ChooseActionMessage retryChooseAction = new ChooseActionMessage(false, "Invalid choice, tell me what you want to do!", player);
 					remoteView.getAdapter().sendObject(retryChooseAction);
 					remoteView.inputObject();
 			}
@@ -52,7 +52,7 @@ public class LeaderInput extends InputForm{//TODO to correct
 			try {
 				int leaderToPlay = Integer.parseInt(leaderCard);
 				if (leaderToPlay == -1) {
-					ChooseActionMessage chooseActionMessage = new ChooseActionMessage("You didn't play any Leader Card yet or none of your Leader Cards can help you now!",  remoteView.getPlayer());
+					ChooseActionMessage chooseActionMessage = new ChooseActionMessage(false, "You didn't play any Leader Card yet or none of your Leader Cards can help you now!",  remoteView.getPlayer());
 					remoteView.getAdapter().sendObject(chooseActionMessage);
 					remoteView.inputObject();
 					return;
@@ -73,7 +73,7 @@ public class LeaderInput extends InputForm{//TODO to correct
 		
 		LeaderAction leaderTurn = new LeaderAction(remoteView.getPlayer(), selectedLeaderCard,  turningLeaderCard, remoteView.getGame());
 		remoteView.response(leaderTurn);
-		ChooseActionMessage chooseActionMessage = new ChooseActionMessage("",  remoteView.getPlayer());
+		ChooseActionMessage chooseActionMessage = new ChooseActionMessage(true , "Action completed",  remoteView.getPlayer());
 		remoteView.getAdapter().sendObject(chooseActionMessage);
 		remoteView.inputObject();
 		

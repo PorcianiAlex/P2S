@@ -17,12 +17,12 @@ public class PlacementInput extends ActionInput{
 	public void execute(RemoteView remoteView) {
 		int playerServant = remoteView.getPlayer().getMyPersonalBoard().getMyPossession().getServants().getValue(); 
 	    if (playerServant == 0){ 
-	    	ChooseActionMessage retryActionMessage = new ChooseActionMessage("You don't have servant to convert!", remoteView.getPlayer());
+	    	ChooseActionMessage retryActionMessage = new ChooseActionMessage(false, "You don't have servant to convert!", remoteView.getPlayer());
 	    	adapterConnection.sendObject(retryActionMessage);
 	    	remoteView.inputObject();
 	    } 
 	    if (servantsToConvert > playerServant){ 
-	    	ChooseActionMessage retryActionMessage = new ChooseActionMessage("You don't have enough servant to convert, try again!", remoteView.getPlayer());
+	    	ChooseActionMessage retryActionMessage = new ChooseActionMessage(false, "You don't have enough servant to convert, try again!", remoteView.getPlayer());
 	    	adapterConnection.sendObject(retryActionMessage);
 	    	remoteView.inputObject();
 		    }
