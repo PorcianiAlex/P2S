@@ -22,6 +22,13 @@ public class Turn implements Serializable{
 	}
 	
 	public void executeView() {
+		ArrayList<Player> turnOrder = game.getBoard().getCouncilPalace().getTurnOrder();
+		ArrayList<Player> playersInGame = game.getPlayers();
+		for (int j = 0; j < playersInGame.size(); j++) {
+			if (!turnOrder.contains(playersInGame.get(j))) {
+				turnOrder.add(playersInGame.get(j));
+			}
+		}	
 		game.notifyTurn();
 		game.generateRanking();	
 		System.out.println(game.getMilitaryPointsRanking().toString());

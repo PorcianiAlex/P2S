@@ -15,14 +15,14 @@ public class CheckLobbyMessage extends MessageToClient{
 	
 	@Override
 	public InputForm executeCLI(Scanner keyboard) {
+		super.executeCLI(keyboard);
 		if (result) {
-			super.executeCLI(keyboard);
 			CreatePlayerInput createPlayerInput = new CreatePlayerInput();
 			createPlayerInput.inputFromCli(keyboard);
 			return createPlayerInput;	
 		}
 		else {
-			CheckLoginMessage checkLoginMessage = new CheckLoginMessage("Retry");
+			CheckLoginMessage checkLoginMessage = new CheckLoginMessage("Retry!");
 			return checkLoginMessage.executeCLI(keyboard);
 		}
 	}

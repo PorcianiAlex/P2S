@@ -5,6 +5,7 @@ import java.awt.List;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.CLIENT.PrivilegeMessage;
 import it.polimi.ingsw.GC_21.CONTROLLER.ControllerForm;
+import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.UTILITIES.*;
 import it.polimi.ingsw.GC_21.VIEW.ExcommInput;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
@@ -18,7 +19,8 @@ import javax.sound.sampled.LineListener;
 public abstract class Observable<C> {
 	private ArrayList<P2SObserver<C>> observers;
 	private CurrentObserver currentObserver;
-	
+	private HashMap<P2SObserver<C>, Player> playerObserver = new HashMap<P2SObserver<C>, Player>();
+			
 	public void attachCurrent(CurrentObserver currentObserver){
 		this.currentObserver=currentObserver;
 	}
@@ -49,13 +51,28 @@ public abstract class Observable<C> {
 	
 	
 	
-	public void notifyTurn() {	
-		for (P2SObserver<C> o : this.observers) {
-			o.updateTurn();
-			detachCurrent();
+	public void notifyTurn() {
+			for (P2SObserver<C> o : this.observers) {
+					o.updateTurn();
+					detachCurrent();
+				}
+			}
+			
+
+
+
+	
+	public void notifyTurnOrdered(ArrayList<Player> turnOrder) {
+		for (int i = 0; i < turnOrder.size(); i++) {
+			for (P2SObserver<C> o : this.observers) {
+				if (turnOrder.get(i).equals(playerObserver.get(o))) {
+					o.updateTurn();
+					detachCurrent();
+				}
+			}
+			
 		}
 	}
-
 	
 	
 	

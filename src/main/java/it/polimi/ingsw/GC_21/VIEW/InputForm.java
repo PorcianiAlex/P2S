@@ -14,7 +14,6 @@ public abstract class InputForm implements Serializable {
 	
 	
 	public void inputFromCli(Scanner keyboard) {
-		
 	}
 	
 	public void setAdapter(RemoteView remoteView) {

@@ -90,6 +90,7 @@ public class LeaderInput extends InputForm{//TODO to correct
 		
 				+ "\n(1) Turn Leader Card \n(2) Play Leader Card");
 		String choice = keyboard.next();
+		keyboard.reset();
 		switch (choice){
 		case "1":	chooseLeaderToTurn(keyboard);
 					turningLeaderCard = true;
@@ -97,7 +98,7 @@ public class LeaderInput extends InputForm{//TODO to correct
 		case "2": 	chooseLeaderToPlay(keyboard);
 					turningLeaderCard = false;
 					break;
-		default: System.out.println("Invalid choice, try again!");
+		default: System.out.println("Oh grullo are you joking?? Turn or Play");
 					inputFromCli(keyboard);
 		}
 		}

@@ -36,7 +36,6 @@ public class SetFamilyMemberInput extends InputForm{
 
 	@Override
 	public void execute(RemoteView remoteView) {
-		super.execute(remoteView);
 		SetFamilyMemberController setFamilyMemberMessage = new SetFamilyMemberController(newFamilyMemberValue, player, selectedFamilyMember);
 		remoteView.notifyController(setFamilyMemberMessage);
 	}

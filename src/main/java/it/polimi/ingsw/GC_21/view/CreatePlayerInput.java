@@ -26,7 +26,7 @@ public class CreatePlayerInput extends InputForm {
 	public void execute(RemoteView remoteView) {
 		CheckColorMessage checkColorMessage;
 		super.execute(remoteView);
-		if (checkColor(color, remoteView.getGame())) {
+		if (checkColor(remoteView.getGame())) {
 			Player player = new Player(remoteView.getUsername(), color, remoteView.getGame());
 			remoteView.setPlayer(player);
 			 if (remoteView.getUsername().equals(remoteView.getGame().getHost())) {//if the remote vie is the host
@@ -47,22 +47,11 @@ public class CreatePlayerInput extends InputForm {
 		}					
 	}
 
-		
-	
-	
-
-	
-
-	
-	
 	@Override
 	public void inputFromCli(Scanner keyboard) {
-		createPlayer(keyboard);
-	}
-	
-	public void createPlayer(Scanner keyboard) {
 			System.out.println("Choose your color: \n 1: BLUE \n 2: RED \n 3: YELLOW \n 4: GREEN");
 			String choice = keyboard.nextLine();
+			keyboard.reset();
 			switch (choice) {
 			case "1":
 				color = Color.Blue;
@@ -77,14 +66,15 @@ public class CreatePlayerInput extends InputForm {
 				color = Color.Green;
 				break;
 			default:
-				color = Color.Blue;
+				System.out.println("Invalid color input, try again!");
+				inputFromCli(keyboard);
 				break;
 			}
 		}
 		
 	
 
-	public boolean checkColor(Color color, Game game) {
+	public boolean checkColor(Game game) {
 		for (int i = 0; i < game.getPlayers().size(); i++) {
 			if (color.equals(game.getPlayers().get(i).getPlayerColor())) {
 				return false;

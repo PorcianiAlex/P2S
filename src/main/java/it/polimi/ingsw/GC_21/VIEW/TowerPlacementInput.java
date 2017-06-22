@@ -12,9 +12,7 @@ public class TowerPlacementInput extends PlacementInput {
     private int floor;
      
 	
-	public TowerPlacementInput(
-			DevCardType selectedTower, int floor) {
-		super();
+	public TowerPlacementInput(DevCardType selectedTower, int floor) {
 		this.selectedTower = selectedTower;
 		this.floor = floor;
 	}
@@ -24,7 +22,7 @@ public class TowerPlacementInput extends PlacementInput {
 
 	@Override
 	public void execute(RemoteView remoteView) {
-		super.execute(remoteView);
+		setAdapter(remoteView);
 	    TowerPlacement towerPlacement = TowerPlacement.factoryTowerPlacement(remoteView.getPlayer(), familyMemberColor, selectedTower, floor, servantsToConvert, remoteView.getGame().getBoard()); 
 	    remoteView.response(towerPlacement);
 	}

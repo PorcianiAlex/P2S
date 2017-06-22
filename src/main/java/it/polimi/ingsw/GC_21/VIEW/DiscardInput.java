@@ -16,7 +16,6 @@ public class DiscardInput extends InputForm {
 	
 
 	public DiscardInput(Player player) {
-		super();
 		this.leaderCards = player.getMyPersonalBoard().getLeaderCards();
 	}
 
@@ -62,7 +61,7 @@ public class DiscardInput extends InputForm {
 			int choice = Integer.parseInt(keyboard.next());
 			leaderToDiscard = choice-1;
 		} catch (Exception e) {
-			System.out.println("Invalid input, try again!");
+			System.out.println("Exception, try again!");
 			this.inputFromCli(keyboard);
 		}
 		}

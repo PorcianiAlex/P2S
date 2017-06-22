@@ -29,7 +29,7 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 	private Object LOCK2 = new Object(); // just something to lock on
 	private Object LOCK3 = new Object(); // just something to lock on
 	private Object LOCK4 = new Object(); // just something to lock on
-	private InputForm inputToSend = null;
+	private InputForm inputToSend;
 	private MessageToClient receivedMessage;
 	private Scanner keyboard;
 
@@ -39,6 +39,7 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 		this.messagesForServer = new ArrayList<String>();
 		this.stackForClient = new Stack<String>();
 		this.receivedMessage = null;
+		this.inputToSend = null;
 	}
 	
 	@Override

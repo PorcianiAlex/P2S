@@ -43,15 +43,15 @@ public class LoginInput extends InputForm {
 	
 	public void registerOrLogin(Scanner keyboard) {
 		System.out.println("Hi, do you want to Register (1) or Login (2) ?");
-		System.out.println("In register login");
 		insert = true;
-	    String choice = keyboard.nextLine(); 
+	    String choice = keyboard.nextLine();
+	    keyboard.reset();
 	    switch (choice) { 
 	    case "1": insert = true; 
 	    	break; 
 	    case "2": insert =false;; 
 	    	break;
-	    default :System.out.println("Invalid input"); 
+	    default :System.out.println("Invalid input, Register or Login"); 
 	    	registerOrLogin(keyboard);
 	    	break;
 	    }
@@ -60,8 +60,10 @@ public class LoginInput extends InputForm {
 	public void chooseUsername(Scanner keyboard) throws FileNotFoundException, IOException, ParseException {
 	    System.out.println("Enter your username: ");
 		username = keyboard.nextLine();
+		keyboard.reset();
 		System.out.println("Enter your password: ");
 		psw = keyboard.nextLine();
+		keyboard.reset();
 	}
 	
 	

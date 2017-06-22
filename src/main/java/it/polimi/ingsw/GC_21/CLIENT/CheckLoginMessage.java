@@ -26,7 +26,7 @@ public class CheckLoginMessage extends MessageToClient {
 			lobbyInput.chooseGame(keyboard);
 			return lobbyInput;
 		}
-		else {//maybe it's better to send a start message from server
+		else {
 			StartMessage retryStartMessage = new StartMessage();
 			return retryStartMessage.executeCLI(keyboard);
 		}

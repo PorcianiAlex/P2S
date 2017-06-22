@@ -27,21 +27,15 @@ public class CouncilPalace implements Serializable {
 		this.multipleActionSpace = multipleActionSpace;
 	}
 	
-	public Player[] getTurnOrder() {
-		ArrayList<FamilyMember> familyMembers = getMultipleActionSpace().getFamilyMembers();
-		Player[] turnOrder = new Player[4];
-		int j = 0;
+	public ArrayList<Player> getTurnOrder() {
+		ArrayList<FamilyMember> familyMembers = multipleActionSpace.getFamilyMembers();//family members in council palace
+		ArrayList<Player> turnOrder = new ArrayList<Player>();//Players that take a new turn position
 		for (int i = 0; i < familyMembers.size(); i++) {
-			if (familyMembers.get(i) != null) {
 				Player player = familyMembers.get(i).getOwnerPlayer();
-				for (int k = i; k < familyMembers.size(); k++) {//set to null all family members of the same player taken for the first time (cycle with i)
-					if (familyMembers.get(k).getOwnerPlayer().equals(player)) {
-						familyMembers.set(k, null);
-					}
+				if (!turnOrder.contains(player)) {
+					turnOrder.add(player);
 				}
-				turnOrder[j] = player;
-			}
-		}
+		}		
 		return turnOrder;
 	}
 

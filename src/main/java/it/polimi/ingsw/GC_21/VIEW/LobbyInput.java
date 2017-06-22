@@ -51,7 +51,6 @@ public class LobbyInput extends InputForm{
 	
 	@Override
 	public void execute(RemoteView remoteView) {		
-			super.execute(remoteView);
 			LobbyController checkLobbyMessage = new LobbyController(created, joined);
 			remoteView.notifyController(checkLobbyMessage);
 	}
@@ -59,6 +58,7 @@ public class LobbyInput extends InputForm{
 	public void chooseGame(Scanner keyboard) {
 		try {
 			 String choice = keyboard.nextLine(); 
+			 keyboard.reset();
 			   if(choice.equals("C")) {
 				   setCreated(true);
 			   } else {

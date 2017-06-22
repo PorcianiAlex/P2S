@@ -14,7 +14,6 @@ public class CraftPlacementInput extends PlacementInput {
 	
 
 	public CraftPlacementInput(CraftType craftType, int spaceType) {
-		super();
 		this.craftType = craftType;
 		this.spaceType = spaceType;
 	}
@@ -43,7 +42,7 @@ public class CraftPlacementInput extends PlacementInput {
 	  public void selectCraftType(Scanner keyboard){ 
 	    System.out.println("Which kind of craft do you want to execute? \n(1) Production - (2) Harvest"); 
 	    String choice = keyboard.next(); 
-	    
+	    keyboard.reset();
 	    switch (choice){ 
 	      case "1":  craftType = CraftType.Production; 
 	      				break;
@@ -58,6 +57,7 @@ public class CraftPlacementInput extends PlacementInput {
 		  System.out.println("Where do you want to place your Family Member? Be careful, my dear bischero: \n if you choose the " 
 			        + "multiple action space you will get a malus on your craft! \n (1) Single Action Space - (2) Multiple Action Space"); 
 		  String spacestring = keyboard.next();
+		  keyboard.reset();
 		  spaceType = Integer.parseInt(spacestring);
 	}
 	  
