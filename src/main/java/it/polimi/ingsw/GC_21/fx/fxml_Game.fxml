@@ -94,7 +94,7 @@
         </Text>
         <TabPane layoutX="7.0" layoutY="14.0" prefHeight="590.0" prefWidth="529.0" tabClosingPolicy="UNAVAILABLE">
           <tabs>
-            <Tab text="Player 1">
+            <Tab fx:id="pl1" text="Player 1">
               <content>
                 <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>
@@ -170,7 +170,7 @@
                 </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Player 2">
+            <Tab fx:id="pl2" text="Player 2">
               <content>
                 <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>

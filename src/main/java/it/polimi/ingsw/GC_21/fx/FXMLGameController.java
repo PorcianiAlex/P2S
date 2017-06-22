@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_21.fx;
 
 import java.awt.Button;
+import java.awt.List;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -70,10 +71,12 @@ public class FXMLGameController extends MetaController implements Initializable{
 	private ArrayList<Player> classPlayers;
 	private MessThread messThread;
 	private boolean canGo;
-	
-	@FXML private ToggleGroup cards, place, family, myterritory, mybuilding, myventure, myleader, mycharacheter;
-	@FXML private Text whitedice, blackdice, orangedice, state;
+    private ArrayList<ArrayList<ToggleGroup>> tabs = new ArrayList<ArrayList<ToggleGroup>>();
 
+	
+	@FXML private ToggleGroup cards, place, family, myterritory, mybuilding, myventure, myleader, mycharacheter, x3,x4,x5,x6, x7;
+	@FXML private Text whitedice, blackdice, orangedice, state;
+	@FXML private Tab pl1, pl2;
 
 
 	
@@ -164,8 +167,8 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 }
 	 
 	 @FXML protected void Card(ActionEvent event) {
+		 ToggleButton button = (ToggleButton) event.getSource();
 		 
-		 ToggleButton button = (ToggleButton) cards.getSelectedToggle();
 		 BackgroundImage imageView = button.getBackground().getImages().get(0);
 		 Image image = imageView.getImage();
 		 
@@ -213,12 +216,14 @@ public class FXMLGameController extends MetaController implements Initializable{
 		}
 		
 		//setto la personalboard
-		ArrayList<ToggleGroup> tab1 = new ArrayList<>();
-		tab1.addAll(Arrays.asList(myterritory,mycharacheter,mybuilding,myventure));
-		//for (int i = 0; i < players.size(); i++) {
-			Player currPlayer = players.get(0);
-			for (int k = 0; k < tab1.size(); k++) {
-				ToggleGroup currToggleGroup =  tab1.get(k);
+		pl1.setText(players.get(0).getName());
+		pl2.setText(players.get(1).getName());
+
+		for (int i = 0; i < players.size(); i++) {
+			Player currPlayer = players.get(i);
+			ArrayList<ToggleGroup> currtab = tabs.get(i);
+			for (int k = 0; k < currtab.size(); k++) {
+				ToggleGroup currToggleGroup =  currtab.get(k);
 				OwnedCards currcards = currPlayer.getMyPersonalBoard().getSpecificOwnedCards(DevCardType.geType(k));
 					for (int j = 0; j < 6; j++) {
 						ToggleButton toggleButton = (ToggleButton) currToggleGroup.getToggles().get(j);
@@ -234,7 +239,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 			
 					}
 			}
-		//}
+		}
 
 	}
 	
@@ -252,7 +257,14 @@ public class FXMLGameController extends MetaController implements Initializable{
 		System.out.println("default initialize!");
 		messThread = new MessThread(client, this);
         messThread.start();
-                
+        // creazione arraylist di togglegroup per ogni tab del tabPane
+        ArrayList<ToggleGroup> tab1 = new ArrayList<>();
+    	ArrayList<ToggleGroup> tab2 = new ArrayList<>();
+        tab1.addAll(Arrays.asList(myterritory,mycharacheter,mybuilding,myventure));
+        tab2.addAll(Arrays.asList(x3,x7,x4,x6));
+        tabs.add(tab1);
+        tabs.add(tab2);
+        
 	}
 	
 	
