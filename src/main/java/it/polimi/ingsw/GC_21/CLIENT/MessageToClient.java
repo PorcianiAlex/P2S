@@ -14,11 +14,12 @@ public abstract class MessageToClient implements Serializable{
 	protected boolean result;
 	protected String description;
 	protected GameEndState gameEndState = GameEndState.Going;
-	protected static boolean outOfTime;
+	protected boolean waiting; //if the message needs an input from the client!
 	protected InputForm inputFormToSend;
 	
-	public MessageToClient(boolean result, String description) {
+	public MessageToClient(boolean result, boolean waiting, String description) {
 		this.result = result;
+		this.waiting = waiting;
 		this.description = description;
 	}
 	

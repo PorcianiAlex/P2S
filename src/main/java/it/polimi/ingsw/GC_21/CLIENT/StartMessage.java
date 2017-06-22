@@ -13,7 +13,7 @@ public class StartMessage extends MessageToClient{
 	
 	
 	public StartMessage() {
-		super(true, "Start Game");
+		super(true, false, "Start Game");
 	}
 
 	@Override

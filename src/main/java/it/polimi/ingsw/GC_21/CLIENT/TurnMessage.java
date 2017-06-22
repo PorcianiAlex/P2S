@@ -28,7 +28,7 @@ public class TurnMessage extends MessageToClient{
 
 
 	public TurnMessage(Board board, ArrayList<Player> players, int age, int round, int turnNumber, String description) {
-		super(true, description);
+		super(true, false, description);
 		this.board = board;
 		this.players = players;
 		this.age = age;

@@ -14,7 +14,7 @@ public class ConvertMessage extends MessageToClient {
 	
 	
 	public ConvertMessage(Possession toPay1, Possession toTake1, Possession toPay2, Possession toTake2) {
-		super(true, "You can choose between two conversion!\n(1) or (2)?"
+		super(true, true, "You can choose between two conversion!\n(1) or (2)?"
 				+ "If you pay: " + toPay1.toString() + ", you'll get: " + toTake1.toString()
 				+ "If you pay: " + toPay2.toString() + ", you'll get: " + toTake2.toString());
 		this.toPay1 = toPay1;

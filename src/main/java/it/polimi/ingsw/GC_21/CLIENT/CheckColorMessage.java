@@ -9,7 +9,7 @@ public class CheckColorMessage extends MessageToClient {
 	private boolean host;
 
 	public CheckColorMessage(boolean result, String description, boolean host) {
-		super(result, description);
+		super(result, false, description);
 		this.host = host;
 	}
 	@Override
