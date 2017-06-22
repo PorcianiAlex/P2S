@@ -8,7 +8,7 @@ import it.polimi.ingsw.GC_21.VIEW.InputForm;
 public class ExcommMessage extends MessageToClient {
 
 	public ExcommMessage() {
-		super(true, "Bergoglio wants to know if you have been a great guy recently! \n"
+		super(true, true, "Bergoglio wants to know if you have been a great guy recently! \n"
 				+ "Be careful: if you disappoint him, you will get a permanent malus!!!" + 
 				"\nDo you want to be excommunicated? (Y) - (N)");
 	}

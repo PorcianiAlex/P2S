@@ -13,7 +13,7 @@ public class SetFamilyMemberMessage extends MessageToClient{
 
 	
 	public SetFamilyMemberMessage(int newFamilyMemberValue, Player player) {
-		super(true, "One of your family member can be upgraded to value "
+		super(true, true, "One of your family member can be upgraded to value "
 				+ newFamilyMemberValue);
 		this.newFamilyMemberValue = newFamilyMemberValue;
 		this.player = player;

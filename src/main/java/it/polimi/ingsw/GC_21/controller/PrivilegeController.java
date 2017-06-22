@@ -42,7 +42,6 @@ public class PrivilegeController extends ControllerForm{
 			Effect copyEffect = new Effect(rewards, privileges-1, controller.getModelGame(), earnedRewards);
 			copyEffect.setEarnedReward(rewardByPrivilege);
 			copyEffect.activateEffect(controller.getRemoteView().getPlayer(), null);
-			controller.getRemoteView().inputObject();
 			return true;
 		}
 		else{

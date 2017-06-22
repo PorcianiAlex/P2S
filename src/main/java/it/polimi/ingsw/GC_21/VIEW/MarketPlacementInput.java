@@ -23,7 +23,7 @@ public class MarketPlacementInput extends PlacementInput {
 	
 	@Override
 	public void inputFromCli(Scanner keyboard) {
-		System.out.println("Which reward do you want? \n [2x Coins (1) - 2x Servants (2) - 3x Military Points + 2x Coins (3) - 2x Privileges (4)"); 
+		System.out.println("Which reward do you want? \n [5x Coins (1) - 5x Servants (2) - 3x Military Points + 2x Coins (3) - 2x Privileges (4)"); 
 		String Areastring = keyboard.next(); 
 		keyboard.reset();
 		try {

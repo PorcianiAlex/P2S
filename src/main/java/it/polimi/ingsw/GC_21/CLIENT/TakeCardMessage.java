@@ -16,7 +16,7 @@ public class TakeCardMessage extends MessageToClient{
 	
 
 	public TakeCardMessage(DevCardType devCardType, int actionValueInfluencer, Possession discount) {
-		super(true, "Hey sgangherato, you can take another Card!!!\nYour new action value is " + actionValueInfluencer);
+		super(true, true, "Hey sgangherato, you can take another Card!!!\nYour new action value is " + actionValueInfluencer);
 		this.devCardType = devCardType;
 		this.actionValueInfluencer = actionValueInfluencer;
 		this.discount = discount;

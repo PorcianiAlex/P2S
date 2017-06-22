@@ -11,7 +11,7 @@ public class CraftMessage extends MessageToClient {
 	private int actionValue;
 
 	public CraftMessage(CraftType craftType, int actionValue) {
-		super(true, "You can make a craft with value " + actionValue + ", how many servant do you want to convert?");
+		super(true, true, "You can make a craft with value " + actionValue + ", how many servant do you want to convert?");
 		this.craftType = craftType;
 		this.actionValue = actionValue;
 		}

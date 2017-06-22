@@ -42,7 +42,7 @@ public class TowerPlacementInput extends PlacementInput {
 		    case "2": return DevCardType.Character; 
 		    case "3": return DevCardType.Building; 
 		    case "4": return DevCardType.Venture; 
-		    default: System.out.println("Invalid floor choice, try again!"); 
+		    default: System.out.println("Invalid tower choice, try again!"); 
 		      return this.selectTower(keyboard);  
 		    }   
 	 } 

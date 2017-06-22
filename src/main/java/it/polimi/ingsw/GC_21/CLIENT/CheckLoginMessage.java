@@ -10,12 +10,12 @@ public class CheckLoginMessage extends MessageToClient {
 	private ArrayList<String> games;
 
 	public CheckLoginMessage(boolean result, String string, ArrayList<String> games) {
-		super(result, string);
+		super(result, false, string);
 		this.games = games;
 	}
 	
 	public CheckLoginMessage (String string) {
-		super(true, string);	
+		super(true, false, string);	
 		}
 
 	@Override

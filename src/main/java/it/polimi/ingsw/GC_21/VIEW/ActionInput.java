@@ -1,27 +1,72 @@
 package it.polimi.ingsw.GC_21.VIEW;
 
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
+import javax.naming.TimeLimitExceededException;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import it.polimi.ingsw.GC_21.ACTION.Action;
+import it.polimi.ingsw.GC_21.ACTION.Pass;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class ActionInput extends InputForm {
+public class ActionInput extends InputForm implements Runnable {
 	protected String choice;
-	
+	protected Scanner keyboard;
+	protected Player player;
+	protected boolean outOfTime;
 	
 	
 	public ActionInput(String choice) {
 		this.choice = choice;
+		outOfTime = false;
 	}
 	
 	public ActionInput() {
+		outOfTime = false;
+
 	}
 	
-	public InputForm chooseAction(Scanner keyboard, Player player) {
-			System.out.println("Choose your action: " + "\n 1: Tower placement" + "\n 2: Craft placement "
-					+ "\n 3: Market placement " + "\n 4: Council placement" + "\n 5: Pass" + "\n 6: Play Leader Card" + "\n 7: Discard Leader Card");
-			choice = keyboard.next();
-			keyboard.reset();
+	public ActionInput(Scanner keyboard, Player player) {
+		this.keyboard = keyboard;
+		this.player = player;
+		outOfTime = false;
+
+	}
+	
+	
+	public InputForm chooseAction(Scanner keyboard, Player player) throws ExecutionException, InterruptedException {
+		System.out.println("Choose your action: " + "\n 1: Tower placement" + "\n 2: Craft placement "
+				+ "\n 3: Market placement " + "\n 4: Council placement" + "\n 5: Pass" + "\n 6: Play Leader Card" + "\n 7: Discard Leader Card");
+			ActionInput actionInput = new ActionInput(keyboard, player);
+			ExecutorService executorService = Executors.newFixedThreadPool(2);
+			ActionTimer actionTimer = new ActionTimer(actionInput);
+			executorService.submit(actionInput);
+			executorService.submit(actionTimer);
+			while (true) {
+				System.out.println(outOfTime);
+				if (choice!=null){
+					if (outOfTime){
+						choice = "5";
+					}
+					break;
+				}
+			}
 			switch (choice) {
 			case "1":
 				TowerPlacementInput towerPlacementInput = new TowerPlacementInput();
@@ -53,7 +98,20 @@ public class ActionInput extends InputForm {
 				return discardInput;
 			default:
 				System.out.println("Invalid input, try again!");
-				return chooseAction(keyboard, player);
-			}
-	}	
-}
+				return this.chooseAction(keyboard, player);
+			} 
+	}
+
+	@Override
+	public void run(){
+		choice = keyboard.next();
+		return;
+		}
+
+
+	public void setOutOfTime(boolean outOfTime){
+		this.outOfTime = outOfTime;
+	}
+	
+	}
+

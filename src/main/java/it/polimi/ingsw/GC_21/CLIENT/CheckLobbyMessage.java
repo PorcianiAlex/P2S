@@ -9,7 +9,7 @@ import it.polimi.ingsw.GC_21.VIEW.LobbyInput;
 public class CheckLobbyMessage extends MessageToClient{
 
 	public CheckLobbyMessage(boolean result, String description) {
-		super(result, description);
+		super(result, false, description);
 	}
 	
 	
