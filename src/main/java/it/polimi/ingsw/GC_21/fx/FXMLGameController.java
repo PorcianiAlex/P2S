@@ -1,12 +1,15 @@
 package it.polimi.ingsw.GC_21.fx;
 
 import java.awt.Button;
+import java.awt.List;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Currency;
 import java.util.ResourceBundle;
 
 import javax.swing.ButtonGroup;
@@ -18,10 +21,12 @@ import com.sun.media.jfxmedia.events.NewFrameEvent;
 import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
+import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
 import it.polimi.ingsw.GC_21.CLIENT.ChooseActionMessage;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.CLIENT.TurnMessage;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderCard;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.VIEW.CouncilPlacementInput;
@@ -45,6 +50,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.Toggle;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -63,13 +71,12 @@ public class FXMLGameController extends MetaController implements Initializable{
 	private ArrayList<Player> classPlayers;
 	private MessThread messThread;
 	private boolean canGo;
-	
-	@FXML private ToggleGroup place;
-	@FXML private ToggleGroup family;
-	@FXML private Text whitedice, blackdice, orangedice, state;
-	@FXML private ToggleGroup cards;
-	@FXML private javafx.scene.control.Button player0, player1, player2, player3;
+    private ArrayList<ArrayList<ToggleGroup>> tabs = new ArrayList<ArrayList<ToggleGroup>>();
 
+	
+	@FXML private ToggleGroup cards, place, family, myterritory, mybuilding, myventure, myleader, mycharacheter, x3,x4,x5,x6, x7;
+	@FXML private Text whitedice, blackdice, orangedice, state;
+	@FXML private Tab pl1, pl2;
 
 
 	
@@ -160,8 +167,8 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 }
 	 
 	 @FXML protected void Card(ActionEvent event) {
+		 ToggleButton button = (ToggleButton) event.getSource();
 		 
-		 ToggleButton button = (ToggleButton) cards.getSelectedToggle();
 		 BackgroundImage imageView = button.getBackground().getImages().get(0);
 		 Image image = imageView.getImage();
 		 
@@ -209,8 +216,30 @@ public class FXMLGameController extends MetaController implements Initializable{
 		}
 		
 		//setto la personalboard
-		player0.setText(players.get(0).getName());
-		player1.setText(players.get(0).getName());
+		pl1.setText(players.get(0).getName());
+		pl2.setText(players.get(1).getName());
+
+		for (int i = 0; i < players.size(); i++) {
+			Player currPlayer = players.get(i);
+			ArrayList<ToggleGroup> currtab = tabs.get(i);
+			for (int k = 0; k < currtab.size(); k++) {
+				ToggleGroup currToggleGroup =  currtab.get(k);
+				OwnedCards currcards = currPlayer.getMyPersonalBoard().getSpecificOwnedCards(DevCardType.geType(k));
+					for (int j = 0; j < 6; j++) {
+						ToggleButton toggleButton = (ToggleButton) currToggleGroup.getToggles().get(j);
+							if(currcards.getMyOwnedCards()[j].getCard()!=null) {
+							String idmycard = currcards.getMyOwnedCards()[j].getCard().getID();
+							toggleButton.setStyle
+							("-fx-background-image: url('/devcards/devcards_f_en_c_"+idmycard+".png');  -fx-background-size: 70px; -fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-opacity: 1;");
+							} else {
+								toggleButton.setStyle
+								("-fx-background-image: url('/devcards/whitecard.png');  -fx-background-size: 70px; -fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-opacity:0;");
+								
+							}
+			
+					}
+			}
+		}
 
 	}
 	
@@ -228,7 +257,14 @@ public class FXMLGameController extends MetaController implements Initializable{
 		System.out.println("default initialize!");
 		messThread = new MessThread(client, this);
         messThread.start();
-                
+        // creazione arraylist di togglegroup per ogni tab del tabPane
+        ArrayList<ToggleGroup> tab1 = new ArrayList<>();
+    	ArrayList<ToggleGroup> tab2 = new ArrayList<>();
+        tab1.addAll(Arrays.asList(myterritory,mycharacheter,mybuilding,myventure));
+        tab2.addAll(Arrays.asList(x3,x7,x4,x6));
+        tabs.add(tab1);
+        tabs.add(tab2);
+        
 	}
 	
 	

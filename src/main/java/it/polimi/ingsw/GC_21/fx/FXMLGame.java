@@ -12,8 +12,8 @@ public class FXMLGame extends Application {
 	      
 	    	Parent root = FXMLLoader.load(getClass().getResource("fxml_Game.fxml"));
 	        stage.setTitle("Game");
-	        stage.setScene(new Scene(root));
-	        stage.setFullScreen (true);
+	        stage.setScene(new Scene(root, 1150, 850));
+	        stage.centerOnScreen();
 	        stage.show();
 	    }
 }

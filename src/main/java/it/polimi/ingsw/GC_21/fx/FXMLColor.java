@@ -13,6 +13,7 @@ public class FXMLColor extends Application {
 	    	Parent root = FXMLLoader.load(getClass().getResource("fxml_Color.fxml"));
 	        stage.setTitle("Choose your color");
 	        stage.setScene(new Scene(root, 530, 375));
+	        stage.centerOnScreen();
 	        stage.show();
 	    }
 }
