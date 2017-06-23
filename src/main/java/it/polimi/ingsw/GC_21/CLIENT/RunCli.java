@@ -22,17 +22,15 @@ public class RunCli {
 		while(true) {
 			MessageToClient message = client.getReceivedMessage();
 			if (message != null) {
-				if(message.getGameEndState().equals(GameEndState.Over)) {
-					client.getKeyboard().close();
-					System.out.println("THE END!");
-					return;
-				}
-				
 				InputForm inputForm = message.executeCLI(keyboard);
 				if (inputForm != null) {
 					client.sendInput(inputForm);
 				}
-				
+				if(message.getGameEndState().equals(GameEndState.Over)) {
+					client.getKeyboard().close();
+					client.close();
+					return;
+				}
 				
 			}
 			

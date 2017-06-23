@@ -5,12 +5,13 @@ import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import it.polimi.ingsw.GC_21.ACTION.Pass;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.GameEndState;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
 import it.polimi.ingsw.GC_21.VIEW.PassInput;
 import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
-public abstract class MessageToClient implements Serializable{
+public class MessageToClient implements Serializable{
 	protected boolean result;
 	protected String description;
 	protected GameEndState gameEndState = GameEndState.Going;
@@ -23,7 +24,6 @@ public abstract class MessageToClient implements Serializable{
 		this.waiting = waiting;
 	}
 
-	protected InputForm inputFormToSend;
 	
 	public MessageToClient(boolean result, boolean waiting, String description) {
 		this.result = result;
@@ -31,22 +31,18 @@ public abstract class MessageToClient implements Serializable{
 		this.description = description;
 	}
 	
-	public InputForm executeCLI(Scanner keyboard) {
-		System.out.println(description);
-		return inputFormToSend;
+	
+	public MessageToClient(boolean result, String description) {
+		this.result = result;
+		this.waiting = false;
+		this.description = description;
 	}
 	
-	public Timer startTimer() {
-		TimerTask task = new TimerTask() {
-			@Override
-			public void run() {
-				inputFormToSend = new PassInput();
-			}
-		};
-		Timer timer = new Timer(true);
-		timer.schedule(task, 10*1000);
-		return timer;
+	public InputForm executeCLI(Scanner keyboard) {
+		System.out.println(description);
+		return null;
 	}
+	
 
 	public boolean isResult() {
 		return result;

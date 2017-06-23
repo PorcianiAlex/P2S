@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_21.VIEW;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
@@ -26,6 +27,11 @@ public InitGameInput() {
 	    	System.out.println("Waiting for players...");
 			}*/
 	      game.executeGame(); 
+	      try {
+			remoteView.getAdapter().close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	    } else { execute(remoteView); } 
 	  } 
 	
@@ -34,7 +40,6 @@ public InitGameInput() {
 	public void inputFromCli(Scanner keyboard) {
 		super.inputFromCli(keyboard);
 		String string = keyboard.next();
-		keyboard.reset();
 		if (!string.equals("start")) {
 			System.out.println("Send Start please");
 			inputFromCli(keyboard);

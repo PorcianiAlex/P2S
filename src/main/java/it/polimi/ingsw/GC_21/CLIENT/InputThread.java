@@ -11,7 +11,7 @@ import java.util.Scanner;
 import it.polimi.ingsw.GC_21.fx.ViewType;
 
 
-public class InputThread extends Thread {
+/*public class InputThread extends Thread {
 	private PrintWriter out;
 	private Scanner in;
 	private SocketClient socketClient;
@@ -45,4 +45,4 @@ public class InputThread extends Thread {
 	
 		}
 	}
-}
+}*/

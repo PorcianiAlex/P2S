@@ -22,12 +22,9 @@ public class SocketClient implements Connections {
     protected String ip;
     protected Scanner keyboard;
     protected int port;
-    protected PrintWriter out;
-    protected Scanner in;
     protected ObjectInputStream oisClient;
     protected ObjectOutputStream oosClient;
     protected Socket socketclient;
-    protected ViewType view;
 	protected Stack<String> stackforclient;
 	protected Object LOCK = new Object();
 	protected Object LOCKobj = new Object();
@@ -39,23 +36,18 @@ public class SocketClient implements Connections {
     this.ip=ip;
     this.port=port;
     socketclient = new Socket(ip,port);
-    this.view=viewType;
     stackforclient = new Stack<String>();
 	this.oosClient = new ObjectOutputStream(socketclient.getOutputStream());
 	this.oisClient = new ObjectInputStream(socketclient.getInputStream());
 
     }
-
-    public void startClient() throws IOException {
-         //crealo con due viewtype diverse
-        
-        System.out.println("Sono dentro il gioco!");
-        in = new Scanner(socketclient.getInputStream()); //arriva dal server
-        out = new PrintWriter(socketclient.getOutputStream()); //invia al server
-        
-	    
-       
+@Override
+    public void close() throws IOException{
+    	socketclient.close();
+    	oosClient.close();
+    	oisClient.close();
     }
+
 
 	public String getIp() {
 		return ip;
@@ -65,19 +57,11 @@ public class SocketClient implements Connections {
 		this.ip = ip;
 	}
 
-	public ViewType getView() {
-		return view;
-	}
-
+	
 	public void setPort(int port) {
 		this.port = port;
 	}
 
-	public void sendGUI(String stringa) {
-		out.println(stringa);
-		System.out.println(stringa);
-		out.flush();
-	}
 
 	public void setMessForGui(String mess) {
 		synchronized (LOCK) {

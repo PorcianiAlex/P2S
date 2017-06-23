@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_21.ACTION;
 
+import javax.xml.ws.handler.MessageContext;
+
+import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Item;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.OncePerTurnLeaderCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ResourceType;
@@ -44,16 +47,17 @@ public class ExcommAction extends Action {
 		int threshold = game.getExcommHandler().getExcommThresholds()[age-1];
 		if (this.choice || playerInAction.getMyPersonalBoard().getMyPossession().getFaithPoints().getValue()<threshold) {
 			playerInAction.getMyPersonalBoard().addPermanentEffect(game.getExcommHandler().getExcommunicationCards()[age-1].getSecondaryEffect());
-			//game.notifyString("Mmmh... Bergoglio is so upset! " +  playerInAction.getName() + " just got excommunicated!!");
+			MessageToClient notifyExcommMessage = new MessageToClient(true, "Mmmh.. Bergoglio is upset! You are going to be excommunicated!!");
+			game.notifyBroadcast(notifyExcommMessage);
 		}
 		else {
-			playerInAction.getMyPersonalBoard().getMyPossession().getFaithPoints().setValue(0);
 			int currentPositionOnTracking = playerInAction.getMyPersonalBoard().getMyPossession().getFaithPoints().getValue();
 			int victoryPointsToGet = faithPointsTracking[currentPositionOnTracking];
+			playerInAction.getMyPersonalBoard().getMyPossession().getFaithPoints().setValue(0);
 			playerInAction.getMyPersonalBoard().getMyPossession().addItemToPossession(Item.factoryItem(victoryPointsToGet, ResourceType.VictoryPoints));
-			/*game.notifyString("Well done " + playerInAction.getName() +", you haven't been excommunicated, but you will lose all your faith points!");
-			game.notifyString("...But, you'll gain " + victoryPointsToGet + " Victory Points!");*/
-
+			MessageToClient notifyExcommMessage = new MessageToClient(true, "Well done " + playerInAction.getName() +", you haven't been excommunicated, but you will lose all your faith points!\n"
+					+ "But you'll gain " + victoryPointsToGet + " Victory Points!");
+			game.notifyBroadcast(notifyExcommMessage);
 		}
 	}
 }

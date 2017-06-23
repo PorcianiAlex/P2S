@@ -14,6 +14,7 @@ import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.CLIENT.ExcommMessage;
+import it.polimi.ingsw.GC_21.CLIENT.GameOverMessage;
 import it.polimi.ingsw.GC_21.CONTROLLER.Controller;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
@@ -137,7 +138,8 @@ public class Game extends Observable implements Serializable{
 			currentAge = new Age(i, this);
 			currentAge.executeAge();
 		}
-		
+		GameOverMessage gameOverMessage = new GameOverMessage(true, "And the winner is......... " + victoryPointsRanking.get(0).getName() + "!!!\n Congrats!", board, players, victoryPointsRanking);
+		this.notifyBroadcast(gameOverMessage);
 	}
 
 

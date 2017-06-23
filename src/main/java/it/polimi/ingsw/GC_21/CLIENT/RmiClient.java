@@ -139,6 +139,11 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 		this.keyboard = keyboard;
 	}
 
+	@Override
+	public void close() throws IOException {
+		
+	}
+
 	
 
 	

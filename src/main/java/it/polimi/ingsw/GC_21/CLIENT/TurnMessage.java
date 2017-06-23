@@ -17,14 +17,9 @@ public class TurnMessage extends MessageToClient{
 	private int age;
 	private Board board;
 	private ArrayList<Player> players;
-	private boolean outOfTime;
 	private int round;
 	private int turnNumber;
-	private SingleActionSpace singleActionSpace;
-	private Floor floor;
-	private Tower tower;
-
-
+	
 
 
 	public TurnMessage(Board board, ArrayList<Player> players, int age, int round, int turnNumber, String description) {

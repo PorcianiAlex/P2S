@@ -24,7 +24,6 @@ public class MetaController {
 	    try {
 				String ip = InetAddress.getLocalHost().getHostAddress();
 				SocketClient client1 = new SocketClient(ip, 6620, ViewType.GUI);
-				client1.startClient();
 				client = client1;
 			} catch (UnknownHostException e) {
 				e.printStackTrace();

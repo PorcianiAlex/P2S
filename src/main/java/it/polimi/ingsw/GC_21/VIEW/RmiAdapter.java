@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_21.VIEW;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
@@ -43,6 +44,13 @@ public class RmiAdapter implements AdapterConnection{
 			e.printStackTrace();
 			return null;
 		}	
+		
+	}
+
+
+	@Override
+	public void close() throws IOException {
+		// TODO Auto-generated method stub
 		
 	}
 	

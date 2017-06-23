@@ -12,6 +12,6 @@ public MessageToClient getReceivedMessage() throws ClassNotFoundException, Remot
 public Scanner getKeyboard()throws RemoteException;
 public void sendInput(InputForm inputForm) throws IOException, RemoteException;
 public void setKeyboard(Scanner keyboard)throws RemoteException;
-
+public void close() throws IOException;
  
 }

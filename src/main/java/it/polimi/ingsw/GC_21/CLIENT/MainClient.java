@@ -43,7 +43,6 @@ public class MainClient {
     try {
 			String ip = InetAddress.getLocalHost().getHostAddress();
 			SocketClient client1 = new SocketClient(ip, 6620, ViewType.CLI);
-			client1.startClient();
 			 RunCli runCli = new RunCli(client1);
 		     runCli.start();
 		} catch (UnknownHostException e) {
@@ -67,7 +66,6 @@ public class MainClient {
             RunCli runCli = new RunCli(client2);
 			runCli.start();
 		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

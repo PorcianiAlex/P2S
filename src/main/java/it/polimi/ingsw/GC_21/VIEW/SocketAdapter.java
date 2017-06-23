@@ -15,16 +15,12 @@ import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 public class SocketAdapter implements AdapterConnection{
 
 	private Socket socket;
-	private Scanner in;
-	private PrintStream out;
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 
         
 	public SocketAdapter(Socket socket) throws IOException {
 		this.socket = socket;
-		in = new Scanner(socket.getInputStream());// Canale in ingresso della socket (out del client)
-	    out = new PrintStream(socket.getOutputStream()); // Canale in uscita della socket (in del client)
 		ois = new ObjectInputStream(socket.getInputStream());
 		oos = new ObjectOutputStream(socket.getOutputStream());
 
@@ -32,7 +28,12 @@ public class SocketAdapter implements AdapterConnection{
 	}
 	
 
-	
+	@Override
+	public void close() throws IOException {
+		socket.close();
+		oos.close();
+		ois.close();
+	}
 
 	@Override
 	public void sendObject(MessageToClient message) {
@@ -65,22 +66,6 @@ public class SocketAdapter implements AdapterConnection{
 
 	public void setSocket(Socket socket) {
 		this.socket = socket;
-	}
-
-	public Scanner getIn() {
-		return in;
-	}
-
-	public void setIn(Scanner in) {
-		this.in = in;
-	}
-
-	public PrintStream getOut() {
-		return out;
-	}
-
-	public void setOut(PrintStream out) {
-		this.out = out;
 	}
 
 }
