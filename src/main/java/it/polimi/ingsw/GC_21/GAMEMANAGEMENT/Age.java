@@ -29,8 +29,8 @@ public class Age implements Serializable{
 		for (int i = 1; i < 3; i++) {
 			currentRound = new Round(i, game);
 			currentRound.executeRound();
-			excommHandler.executeExcomm();
 		}
+		excommHandler.executeExcomm();
 	}
 
 	public void CreateDeck() {

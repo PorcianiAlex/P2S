@@ -41,6 +41,8 @@ public class LeaderInput extends InputForm{//TODO to correct
 						break;
 			case "3":  selectedLeaderCard = leaderCards.get(2);	
 						break;
+			case "4":  selectedLeaderCard = leaderCards.get(3);	
+				break;
 			default: 
 					ChooseActionMessage retryChooseAction = new ChooseActionMessage(false, "Invalid choice, tell me what you want to do!", player);
 					remoteView.getAdapter().sendObject(retryChooseAction);

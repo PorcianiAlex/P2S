@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
+import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.ExcommHandler;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 
 
@@ -163,7 +164,7 @@ public class Board implements Serializable{
 
 
 	public String toString() {
-		return dices[0].toString() + " \n " + dices[1].toString() + " \n " + dices[2].toString() + " \n " + towers[0].toString() + " \n " + towers[1].toString() + " \n " + 
+		return " " + dices[0].toString() + " \n " + dices[1].toString() + " \n " + dices[2].toString() + " \n" + game.getExcommHandler().toString() + " \n " + towers[0].toString() + " \n " + towers[1].toString() + " \n " + 
 				towers[2].toString() + " \n " + towers[3].toString() + " \n " + marketArea.toString() +" \n " + productionArea.toString() + " \n " + harvestArea.toString()
 				+ " \n " + councilPalace.toString();
 	}

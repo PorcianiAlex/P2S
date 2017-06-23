@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import javax.naming.TimeLimitExceededException;
+import javax.net.ssl.SSLException;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,36 +26,21 @@ import it.polimi.ingsw.GC_21.ACTION.Pass;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class ActionInput extends InputForm  {
+public class ActionInput extends InputForm {
 	protected String choice;
 	protected Scanner keyboard;
 	protected Player player;
 	protected boolean outOfTime;
 	
 	
-	public ActionInput(String choice) {
-		this.choice = choice;
-		outOfTime = false;
-	}
-	
-	public ActionInput() {
-		outOfTime = false;
 
-	}
-	
-	public ActionInput(Scanner keyboard, Player player) {
-		this.keyboard = keyboard;
-		this.player = player;
-		outOfTime = false;
-
-	}
 	
 	
-	public InputForm chooseAction(Scanner keyboard, Player player) { 
-	      System.out.println("Choose your action: " + "\n 1: Tower placement" + "\n 2: Craft placement " 
-	          + "\n 3: Market placement " + "\n 4: Council placement" + "\n 5: Pass" + "\n 6: Play Leader Card" + "\n 7: Discard Leader Card"); 
-	      choice = keyboard.next(); 
-	      keyboard.reset(); 
+	
+	public InputForm chooseAction(Scanner keyboard, Player player) throws ExecutionException, InterruptedException {
+		System.out.println("Choose your action: " + "\n 1: Tower placement" + "\n 2: Craft placement "
+				+ "\n 3: Market placement " + "\n 4: Council placement" + "\n 5: Pass" + "\n 6: Play Leader Card" + "\n 7: Discard Leader Card");
+			choice = keyboard.next();
 			switch (choice) {
 			case "1":
 				TowerPlacementInput towerPlacementInput = new TowerPlacementInput();
@@ -89,6 +75,11 @@ public class ActionInput extends InputForm  {
 				return this.chooseAction(keyboard, player);
 			} 
 	}
+			public String getChoice() {
+				return choice;
+			}
+
 
 	}
+
 

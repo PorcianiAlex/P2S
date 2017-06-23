@@ -14,7 +14,7 @@ public interface P2SObserver<C> {
 	public boolean updateMessage(ControllerForm controllerForm);
 	public void updateTurn();
 	public void updateCurrent(MessageToClient message);
-	public void updateMessageToClient(MessageToClient message);
+	public void updateBroadcast(MessageToClient message);
 
 		
 }

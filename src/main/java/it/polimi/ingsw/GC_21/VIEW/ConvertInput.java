@@ -12,8 +12,8 @@ public class ConvertInput extends InputForm {
 	private Possession toTake1;
 	private Possession toPay2;
 	private Possession toTake2;
-	private Possession toPayChoosed;
-	private Possession toTakeChoosed;
+	private Possession toPayChosen;
+	private Possession toTakeChosen;
 
 	
 	
@@ -28,20 +28,21 @@ public class ConvertInput extends InputForm {
 
 	@Override
 	public void execute(RemoteView remoteView) {
-		ConvertController conversionMessage = new ConvertController(toPayChoosed, toTakeChoosed);
+		ConvertController conversionMessage = new ConvertController(toPayChosen, toTakeChosen);
 		remoteView.notifyController(conversionMessage);
 	}
 
 	public void chooseConversion(Scanner keyboard){
-		String choice = keyboard.nextLine();
-		keyboard.reset();
+		String choice = keyboard.next();
 		switch (choice) {
 		case "1":
-			toPayChoosed = toPay1;
-			toTakeChoosed = toTake1;
+			toPayChosen = toPay1;
+			toTakeChosen = toTake1;
+			break;
 		case "2":
-			toPayChoosed = toPay2;
-			toTakeChoosed = toTake1;
+			toPayChosen = toPay2;
+			toTakeChosen = toTake1;
+			break;
 		default: System.out.println("Invalid choice! Try again!");
 			 chooseConversion(keyboard);
 		}

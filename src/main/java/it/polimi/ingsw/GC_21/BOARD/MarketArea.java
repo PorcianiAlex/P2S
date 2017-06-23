@@ -22,7 +22,8 @@ public class MarketArea implements Serializable{
 		Possession toTake1 = new Possession(1, 1, 0, 3, 0, 0, 0);
 		Possession toTake2 = new Possession(1, 1, 0, 0, 4, 0, 0);
 		Possession reward = new Possession(0,0,0,0,0,0,1);
-		singleActionSpace[0] = new SingleActionSpace(1, new Effect(new Possession(5, 0, 0, 0, 0, 0, 0),0, game), game);
+		singleActionSpace[0] = new SingleActionSpace(1, new Convert(game, new Possession(), new Possession(2, 0, 0, 0, 0, 0, 0), new Possession(0, 2, 0, 0, 0, 0, 0), new Possession(0, 0, 2, 0, 0, 0, 0), new Possession(0, 0, 0, 2, 0, 0, 0), 1), game);
+		//singleActionSpace[0] = new SingleActionSpace(1, new Effect(new Possession(5, 0, 0, 0, 0, 0, 0),0, game), game);
 		singleActionSpace[1] = new SingleActionSpace(1, new Effect(new Possession(0, 0, 0, 5, 0, 0, 0),0, game), game);
 		singleActionSpace[2] = new SingleActionSpace(1, new Effect(new Possession(2, 0, 0, 0, 0, 3, 0),0, game),game);
 		singleActionSpace[3] = new SingleActionSpace(1, new Effect(null, (2), game), game);

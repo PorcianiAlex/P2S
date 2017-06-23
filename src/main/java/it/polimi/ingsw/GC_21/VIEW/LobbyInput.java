@@ -57,7 +57,7 @@ public class LobbyInput extends InputForm{
 	
 	public void chooseGame(Scanner keyboard) {
 		try {
-			 String choice = keyboard.nextLine(); 
+			 String choice = keyboard.next(); 
 			 keyboard.reset();
 			   if(choice.equals("C")) {
 				   setCreated(true);

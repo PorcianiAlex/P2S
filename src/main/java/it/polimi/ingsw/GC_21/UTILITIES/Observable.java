@@ -100,9 +100,9 @@ public abstract class Observable<C> {
 	
 
 	
-	public void notifyMessageToClient(MessageToClient messageToClient) {
+	public void notifyBroadcast(MessageToClient messageToClient) {
 		for (P2SObserver<C> o : this.observers) {
-			o.updateMessageToClient(messageToClient);
+			o.updateBroadcast(messageToClient);
 		}
 	}
 
