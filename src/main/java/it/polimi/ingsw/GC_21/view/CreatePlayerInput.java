@@ -50,7 +50,7 @@ public class CreatePlayerInput extends InputForm {
 	@Override
 	public void inputFromCli(Scanner keyboard) {
 			System.out.println("Choose your color: \n 1: BLUE \n 2: RED \n 3: YELLOW \n 4: GREEN");
-			String choice = keyboard.nextLine();
+			String choice = keyboard.next();
 			keyboard.reset();
 			switch (choice) {
 			case "1":

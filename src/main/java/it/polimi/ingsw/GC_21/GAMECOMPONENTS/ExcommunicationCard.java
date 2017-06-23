@@ -4,6 +4,11 @@ import it.polimi.ingsw.GC_21.EFFECT.Effect;
 
 public class ExcommunicationCard extends Card {
 
+	@Override
+	public String toString() {
+		return "ExcommunicationCard [=" + age + " " + name + "]";
+	}
+
 	private int age;
 
 	public ExcommunicationCard(String name) {

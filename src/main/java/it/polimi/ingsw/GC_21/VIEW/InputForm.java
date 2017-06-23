@@ -4,8 +4,7 @@ import java.io.Serializable;
 import java.util.Scanner;
 import java.util.concurrent.Callable;
 
-public class InputForm implements Serializable {
-	
+public abstract class InputForm implements Serializable {
 	protected AdapterConnection adapterConnection;
 	
 	public void execute(RemoteView remoteView){

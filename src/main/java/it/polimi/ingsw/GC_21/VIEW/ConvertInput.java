@@ -33,7 +33,7 @@ public class ConvertInput extends InputForm {
 	}
 
 	public void chooseConversion(Scanner keyboard){
-		String choice = keyboard.nextLine();
+		String choice = keyboard.next();
 		keyboard.reset();
 		switch (choice) {
 		case "1":

@@ -15,11 +15,8 @@ public class ActionTimer extends Thread {
 	@Override
 	public void run() {
 		try {
-			System.out.println("sono nel timer thread!");
 			sleep(10000);
 			actionInput.setOutOfTime(true);
-			System.out.println("ho settato outOfTime a true!");
-
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -44,7 +44,7 @@ public class LoginInput extends InputForm {
 	public void registerOrLogin(Scanner keyboard) {
 		System.out.println("Hi, do you want to Register (1) or Login (2) ?");
 		insert = true;
-	    String choice = keyboard.nextLine();
+	    String choice = keyboard.next();
 	    keyboard.reset();
 	    switch (choice) { 
 	    case "1": insert = true; 
@@ -59,10 +59,10 @@ public class LoginInput extends InputForm {
 	
 	public void chooseUsername(Scanner keyboard) throws FileNotFoundException, IOException, ParseException {
 	    System.out.println("Enter your username: ");
-		username = keyboard.nextLine();
+		username = keyboard.next();
 		keyboard.reset();
 		System.out.println("Enter your password: ");
-		psw = keyboard.nextLine();
+		psw = keyboard.next();
 		keyboard.reset();
 	}
 	

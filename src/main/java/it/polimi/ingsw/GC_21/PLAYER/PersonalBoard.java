@@ -56,6 +56,7 @@ public class PersonalBoard implements Serializable{
 		this.leaderCards.add((LeaderCard) leaderDeck.getSingleCard());
 		this.leaderCards.add((LeaderCard) leaderDeck.getSingleCard());
 		this.leaderCards.add((LeaderCard) leaderDeck.getSingleCard());
+		this.leaderCards.add((LeaderCard) leaderDeck.getSingleCard());
 	}
 	
 
