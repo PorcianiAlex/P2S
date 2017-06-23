@@ -74,13 +74,13 @@ public class FXMLGameController extends MetaController implements Initializable{
 	private MessThread messThread;
 	private boolean canGo;
     private ArrayList<ArrayList<ToggleGroup>> tabs = new ArrayList<ArrayList<ToggleGroup>>();
+    private ArrayList<ArrayList<Text>> ress = new ArrayList<ArrayList<Text>>();
 
-	
-	@FXML private ToggleGroup cards, place, family, myterritory, mybuilding, myventure, myleader, mycharacheter, x3,x4,x5,x6, x7;
+	//riferimento ad array di carte, dadi, risorse e player
+	@FXML private ToggleGroup cards, place, family, myterritory, mybuilding, myventure, myleader, mycharacheter, x3,x4,x5,x6,x7,x12,x15,x16,x13,x20,x23,x21,x24;
 	@FXML private Text whitedice, blackdice, orangedice, state;
-	@FXML private Text r1,r2,r3,r4,r5,r6,r7,r8;
+	@FXML private Text r1,r2,r3,r4,r5,r6,r7,r8, r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20,r21,r22,r23,r24,r25,r26,r27,r28;
 	@FXML private Tab pl1, pl2;
-
 
 	
 	 @FXML protected void Tower(ActionEvent event) {
@@ -172,15 +172,23 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 @FXML protected void Card(ActionEvent event) {
 		 ToggleButton button = (ToggleButton) event.getSource();
 		 
+		 if(button.getBackground()!=null) {
 		 BackgroundImage imageView = button.getBackground().getImages().get(0);
 		 Image image = imageView.getImage();
 		 
-		 Alert alert = new Alert(AlertType.ERROR);
-		 alert.setTitle("Zoom on card");
-		 alert.setHeaderText(null);
-		 alert.setContentText(null);
-		 alert.setGraphic(new ImageView(image));
-		 alert.showAndWait();
+		 Platform.runLater(new Runnable() {
+			    @Override
+			    public void run() {
+			    	Alert alert = new Alert(AlertType.ERROR);
+			    	alert.setTitle("Zoom on card");
+			    	alert.setHeaderText(null);
+			    	alert.setContentText(null);
+			    	alert.setGraphic(new ImageView(image));
+			    	alert.showAndWait();
+			    }
+			});
+		 }
+		 
 	 }
 
 	public void refreshBoard(Board board, ArrayList<Player> players, String dString) {
@@ -246,7 +254,18 @@ public class FXMLGameController extends MetaController implements Initializable{
 
 		//resources
 		for (int i = 0; i < players.size(); i++) {
-		
+		Player cPlayer = players.get(i);
+		ArrayList<Text> currress = ress.get(i);
+		currress.get(0).setText(String.valueOf(cPlayer.getMyPersonalBoard().getMyPossession().getCoins().getValue()));
+		System.out.println(String.valueOf(cPlayer.getMyPersonalBoard().getMyPossession().getCoins().getValue()));
+		currress.get(1).setText(String.valueOf(cPlayer.getMyPersonalBoard().getMyPossession().getWoods().getValue()));
+		currress.get(2).setText(String.valueOf(cPlayer.getMyPersonalBoard().getMyPossession().getStones().getValue()));
+		currress.get(3).setText(String.valueOf(cPlayer.getMyPersonalBoard().getMyPossession().getServants().getValue()));
+		currress.get(4).setText("VP: "+String.valueOf(cPlayer.getMyPersonalBoard().getMyPossession().getVictoryPoints().getValue()));
+		currress.get(5).setText("MP: "+String.valueOf(cPlayer.getMyPersonalBoard().getMyPossession().getMilitaryPoints().getValue()));
+		currress.get(6).setText("FP: "+String.valueOf(cPlayer.getMyPersonalBoard().getMyPossession().getFaithPoints().getValue()));
+
+			
 
 		}
 		
@@ -284,14 +303,29 @@ public class FXMLGameController extends MetaController implements Initializable{
         // creazione arraylist di togglegroup per ogni tab del tabPane
         ArrayList<ToggleGroup> tab1 = new ArrayList<>();
     	ArrayList<ToggleGroup> tab2 = new ArrayList<>();
+    	ArrayList<ToggleGroup> tab3 = new ArrayList<>();
+    	ArrayList<ToggleGroup> tab4 = new ArrayList<>();
         tab1.addAll(Arrays.asList(myterritory,mycharacheter,mybuilding,myventure));
         tab2.addAll(Arrays.asList(x3,x7,x4,x6));
+        tab3.addAll(Arrays.asList(x12,x15,x16,x13));
+        tab4.addAll(Arrays.asList(x20,x23,x21,x24));
         tabs.add(tab1);
         tabs.add(tab2);
+        tabs.add(tab3);
+        tabs.add(tab4);
         ArrayList<Text> res1 = new ArrayList<>();
         ArrayList<Text> res2 = new ArrayList<>();
+        ArrayList<Text> res3 = new ArrayList<>();
+        ArrayList<Text> res4 = new ArrayList<>();
         res1.addAll(Arrays.asList(r1,r2,r3,r4,r5,r6,r7));
-        
+        res2.addAll(Arrays.asList(r8,r9,r10,r11,r12,r13,r14));
+        res3.addAll(Arrays.asList(r15,r16,r17,r18,r19,r20,r21));
+        res3.addAll(Arrays.asList(r22,r23,r24,r25,r26,r27,r28));
+        ress.add(res1); 
+        ress.add(res2);
+        ress.add(res3);
+        ress.add(res4);
+
 	}
 	
 	
