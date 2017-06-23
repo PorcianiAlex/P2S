@@ -6,6 +6,7 @@ import java.util.Scanner;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
 import it.polimi.ingsw.GC_21.VIEW.PrivilegeInput;
+import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public class PrivilegeMessage extends MessageToClient{
 		protected int privilegesNumber;
@@ -35,5 +36,10 @@ public class PrivilegeMessage extends MessageToClient{
 		privilegeInput.inputFromCli(keyboard);
 		return privilegeInput;	
 	}
-
+	
+	@Override
+	public void executeGUI(FXMLGameController gameController) {
+		PrivilegeInput privilegeInput = new PrivilegeInput(rewards, privilegesNumber, earnedRewards);
+		gameController.Privilege(privilegeInput);
+	}
 }

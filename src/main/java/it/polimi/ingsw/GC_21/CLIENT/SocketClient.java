@@ -98,7 +98,8 @@ public class SocketClient implements Connections {
 	@Override
 	public void sendInput(InputForm inputForm) throws IOException {
 		oosClient.writeObject(inputForm);
-		oosClient.flush();		
+		oosClient.flush();
+		oosClient.reset();
 	}
 
 	

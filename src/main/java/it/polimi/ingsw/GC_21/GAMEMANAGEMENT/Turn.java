@@ -31,7 +31,6 @@ public class Turn implements Serializable{
 		}	
 		game.notifyTurn();
 		game.generateRanking();	
-		System.out.println(game.getMilitaryPointsRanking().toString());
 	}
 
 	public int getTurnNumber() {

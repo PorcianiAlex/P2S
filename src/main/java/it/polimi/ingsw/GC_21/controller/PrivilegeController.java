@@ -27,10 +27,15 @@ public class PrivilegeController extends ControllerForm{
 	private Possession createReward(String choice) {
 		switch (choice){
 		case "1": return new Possession(0, 1, 1, 0, 0, 0, 0);
+		case "1 wood and 1 stone": return new Possession(0, 1, 1, 0, 0, 0, 0);
 		case "2": return new Possession(0, 0, 0, 2, 0, 0, 0);
+		case "2 servants": return new Possession(0, 0, 0, 2, 0, 0, 0);
 		case "3": return new Possession(2, 0, 0, 0, 0, 0, 0);
+		case "2 coins": return new Possession(2, 0, 0, 0, 0, 0, 0);
 		case "4": return new Possession(0, 0, 0, 0, 0, 2, 0);
+		case "2 Military points": return new Possession(0, 0, 0, 0, 0, 2, 0);
 		case "5": return new Possession(0, 0, 0, 0, 1, 0, 0);
+		case "1 Faith point": return new Possession(0, 0, 0, 0, 1, 0, 0);
 		default: return new Possession();
 		}
 

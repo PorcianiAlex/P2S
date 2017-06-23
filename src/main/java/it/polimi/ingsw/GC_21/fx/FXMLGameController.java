@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Currency;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javax.swing.ButtonGroup;
@@ -28,15 +29,20 @@ import it.polimi.ingsw.GC_21.CLIENT.Music;
 import it.polimi.ingsw.GC_21.CLIENT.TurnMessage;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderCard;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.VIEW.CouncilPlacementInput;
 import it.polimi.ingsw.GC_21.VIEW.CraftInput;
 import it.polimi.ingsw.GC_21.VIEW.CraftPlacementInput;
+import it.polimi.ingsw.GC_21.VIEW.ExcommInput;
 import it.polimi.ingsw.GC_21.VIEW.InitGameInput;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
 import it.polimi.ingsw.GC_21.VIEW.MarketPlacementInput;
+import it.polimi.ingsw.GC_21.VIEW.PassInput;
 import it.polimi.ingsw.GC_21.VIEW.PlacementInput;
+import it.polimi.ingsw.GC_21.VIEW.PrivilegeInput;
+import it.polimi.ingsw.GC_21.VIEW.TakeCardInput;
 import it.polimi.ingsw.GC_21.VIEW.TowerPlacementInput;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -50,7 +56,9 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -68,20 +76,24 @@ public class FXMLGameController extends MetaController implements Initializable{
 
 	private FamilyMemberColor familyMemberColor;
 	private int servToConvert = 0;
-	private PlacementInput inputForm;
+	private PlacementInput placementinputForm;
+	private InputForm inputForm;
 	private Board classBoard;
 	private ArrayList<Player> classPlayers;
 	private MessThread messThread;
-	private boolean canGo;
+	private boolean canGo, secondcard = false;
+	private Object LOCK = new Object(); // just something to lock on
     private ArrayList<ArrayList<ToggleGroup>> tabs = new ArrayList<ArrayList<ToggleGroup>>();
     private ArrayList<ArrayList<Text>> ress = new ArrayList<ArrayList<Text>>();
+    private ArrayList<Tab> playerNames = new ArrayList<Tab>();
 
 	//riferimento ad array di carte, dadi, risorse e player
 	@FXML private ToggleGroup cards, place, family, myterritory, mybuilding, myventure, myleader, mycharacheter, x3,x4,x5,x6,x7,x12,x15,x16,x13,x20,x23,x21,x24;
 	@FXML private Text whitedice, blackdice, orangedice, state;
 	@FXML private Text r1,r2,r3,r4,r5,r6,r7,r8, r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20,r21,r22,r23,r24,r25,r26,r27,r28;
-	@FXML private Tab pl1, pl2;
-
+	@FXML private Tab pl1,pl2,pl3,pl4;
+	@FXML private javafx.scene.control.Button confirmbtn;
+	@FXML private ToggleButton white, black, orange, neutral;
 	
 	 @FXML protected void Tower(ActionEvent event) {
 			 
@@ -93,13 +105,13 @@ public class FXMLGameController extends MetaController implements Initializable{
 		 System.out.println( floor);
 
 		 //settare la input con il giusto costruttore
-		 inputForm = new TowerPlacementInput(devCardType, floor);
+		 placementinputForm = new TowerPlacementInput(devCardType, floor);
 		 		 
 	 }
 	 
 	 @FXML protected void Council(ActionEvent event) {
 		 
-		inputForm = new CouncilPlacementInput();
+		placementinputForm = new CouncilPlacementInput();
 		 //TowerPlacementInput towerPlacementInput = new TowerPlacementInput();
 
 	 }
@@ -110,7 +122,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 		 int area = Integer.parseInt(button.getText());
 		 System.out.println(area);
 		 
-		inputForm = new MarketPlacementInput(area);
+		placementinputForm = new MarketPlacementInput(area);
 		//TowerPlacementInput towerPlacementInput = new TowerPlacementInput();
 
 		 }
@@ -124,7 +136,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 		 System.out.println( craftType );
 		 System.out.println( area);
 
-		 inputForm = new CraftPlacementInput(craftType, area);
+		 placementinputForm = new CraftPlacementInput(craftType, area);
 		 }
 	 
 	 	@FXML protected void FamilyMember(ActionEvent event) {
@@ -144,20 +156,35 @@ public class FXMLGameController extends MetaController implements Initializable{
 		 
 		 familyMemberColor=null;
 			servToConvert=0;
-			inputForm=null;
+			placementinputForm=null;
 			
 	 }
 	 
+	 @FXML protected void Pass(ActionEvent event) {
+		 PassInput passInput = new PassInput();
+		 try {
+			client.sendInput(passInput);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	 }
+	 
 	 @FXML protected void Confirm(ActionEvent event) throws RemoteException, IOException {
-		if(canGo) {
-		inputForm.setFamilyMemberColor(familyMemberColor);
-		inputForm.setServantsToConvert(servToConvert);
-		client.sendInput(inputForm);
+		if(secondcard) {
+			synchronized (LOCK) {
+			    LOCK.notifyAll();
+			}
+			secondcard = false;
+		}
+		else if(canGo) {
+		placementinputForm.setFamilyMemberColor(familyMemberColor);
+		placementinputForm.setServantsToConvert(servToConvert);
+		client.sendInput(placementinputForm);
 		System.out.println("action send");
 		
 		familyMemberColor=null;
 		servToConvert=0;
-		inputForm=null;
+		placementinputForm=null;
 		canGo=false;
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -190,6 +217,8 @@ public class FXMLGameController extends MetaController implements Initializable{
 		 }
 		 
 	 }
+	 
+	
 
 	public void refreshBoard(Board board, ArrayList<Player> players, String dString) {
 		System.out.println("sono nella refreshboard");
@@ -226,12 +255,25 @@ public class FXMLGameController extends MetaController implements Initializable{
 			
 		}
 		
-		//setto la personalboard
-		//pl1.setText(players.get(0).getName());
-		//pl2.setText(players.get(1).getName());
-
+		//a volte dà null pointer ex!
+		/*for (int i = 0; i < players.size(); i++) {
+			playerNames.get(i).setText(players.get(i).getName());
+		}*/
+		
+		//personalboards refresh
+		
 		for (int i = 0; i < players.size(); i++) {
 			Player currPlayer = players.get(i);
+			ArrayList<Text> currress = ress.get(i);
+			currress.get(0).setText(String.valueOf(currPlayer.getMyPersonalBoard().getMyPossession().getCoins().getValue()));
+			System.out.println(String.valueOf(currPlayer.getMyPersonalBoard().getMyPossession().getCoins().getValue()));
+			currress.get(1).setText(String.valueOf(currPlayer.getMyPersonalBoard().getMyPossession().getWoods().getValue()));
+			currress.get(2).setText(String.valueOf(currPlayer.getMyPersonalBoard().getMyPossession().getStones().getValue()));
+			currress.get(3).setText(String.valueOf(currPlayer.getMyPersonalBoard().getMyPossession().getServants().getValue()));
+			currress.get(4).setText("VP: "+String.valueOf(currPlayer.getMyPersonalBoard().getMyPossession().getVictoryPoints().getValue()));
+			currress.get(5).setText("MP: "+String.valueOf(currPlayer.getMyPersonalBoard().getMyPossession().getMilitaryPoints().getValue()));
+			currress.get(6).setText("FP: "+String.valueOf(currPlayer.getMyPersonalBoard().getMyPossession().getFaithPoints().getValue()));		
+
 			ArrayList<ToggleGroup> currtab = tabs.get(i);
 			for (int k = 0; k < currtab.size(); k++) {
 				ToggleGroup currToggleGroup =  currtab.get(k);
@@ -251,27 +293,17 @@ public class FXMLGameController extends MetaController implements Initializable{
 					}
 			}
 		}
-
-		//resources
-		for (int i = 0; i < players.size(); i++) {
-		Player cPlayer = players.get(i);
-		ArrayList<Text> currress = ress.get(i);
-		currress.get(0).setText(String.valueOf(cPlayer.getMyPersonalBoard().getMyPossession().getCoins().getValue()));
-		System.out.println(String.valueOf(cPlayer.getMyPersonalBoard().getMyPossession().getCoins().getValue()));
-		currress.get(1).setText(String.valueOf(cPlayer.getMyPersonalBoard().getMyPossession().getWoods().getValue()));
-		currress.get(2).setText(String.valueOf(cPlayer.getMyPersonalBoard().getMyPossession().getStones().getValue()));
-		currress.get(3).setText(String.valueOf(cPlayer.getMyPersonalBoard().getMyPossession().getServants().getValue()));
-		currress.get(4).setText("VP: "+String.valueOf(cPlayer.getMyPersonalBoard().getMyPossession().getVictoryPoints().getValue()));
-		currress.get(5).setText("MP: "+String.valueOf(cPlayer.getMyPersonalBoard().getMyPossession().getMilitaryPoints().getValue()));
-		currress.get(6).setText("FP: "+String.valueOf(cPlayer.getMyPersonalBoard().getMyPossession().getFaithPoints().getValue()));
-
-			
-
-		}
+	
 		
 	}
 	
-	public void ifChooseAction(boolean firstaction, String description) {
+	public void ifChooseAction(boolean firstaction, String description, Player player) {
+		
+		//set family member placed
+		for (int i = 0; i < 4; i++) {
+			ToggleButton tButton = (ToggleButton) family.getToggles().get(i);
+			tButton.setDisable((player.getFamilyMembers()[i].isPlaced()));
+		}
 		//gli mostro la conferma
 		if(firstaction) {
 		System.out.println("è il tuo turno, sono nella chooseaction");
@@ -325,8 +357,111 @@ public class FXMLGameController extends MetaController implements Initializable{
         ress.add(res2);
         ress.add(res3);
         ress.add(res4);
+        playerNames.addAll(Arrays.asList(pl1,pl2,pl3,pl4));
 
 	}
+
+	//interactions
+	
+	public void Privilege(PrivilegeInput privilegeInput) {
+		
+		ArrayList<String> choices = new ArrayList<String>();
+		choices.add("1 wood and 1 stone");
+		choices.add("2 servants");
+		choices.add("2 coins");
+		choices.add("2 Military points");
+		choices.add("1 Faith point");
+
+		
+		Platform.runLater(new Runnable() {
+		    @Override
+		    public void run() {
+		    	ChoiceDialog<String> dialog = new ChoiceDialog<>("2 coins", choices);
+		    	dialog.setTitle("New Privilege!");
+		    	dialog.setHeaderText("Oh ciccio! You have a new Council Privilege!");
+		    	dialog.setContentText("Choose your reward:");
+		    	Optional<String> result = dialog.showAndWait();
+		    	result.ifPresent(letter -> privilegeInput.setChoice(result.get()));
+		    	try {
+		    		client.sendInput(privilegeInput);
+		    	} catch (IOException e) {
+		    		e.printStackTrace();
+		    	}   
+		    }
+		});
+	 }
+
+	public void takeNewCard(DevCardType devCardType, int actionValueInfluencer, Possession discount) {
+		secondcard =true;
+		
+		Platform.runLater(new Runnable() {
+		    @Override
+		    public void run() {
+		    	Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Take new card");
+				alert.setHeaderText("You can take another card!");
+				alert.setContentText("Hey sgangherato, you can take another Card!!!\n"
+						+ " Check your Card, you may have some restriction on Card Type and a discount\nJust choose your space on tower and press confirm\n"
+						+ "Your new action value is: " + actionValueInfluencer);
+				alert.showAndWait();
+		    }    
+		});
+		
+		synchronized (LOCK) {
+				 try {
+					LOCK.wait(); // wait confirm
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				} 
+				}
+		
+			ToggleButton button = (ToggleButton) place.getSelectedToggle();
+		    DevCardType dType =  DevCardType.valueOf(button.getUserData().toString());
+		    int floor = Integer.parseInt(button.getText());
+		    if(devCardType != null) {
+		    	dType=devCardType;
+		    }
+		    inputForm = new TakeCardInput(dType, actionValueInfluencer, discount, floor);
+		    try {
+				client.sendInput(inputForm);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	}
+
+	public void excomm(String description) {
+		
+	Platform.runLater(new Runnable(){ 
+	@Override
+	public void run() {
+		ExcommInput excommInput;
+	   	Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Excommunication time");
+		alert.setHeaderText(description);
+		alert.setContentText("Choose your destiny:");
+
+		ButtonType buttonTypeOne = new ButtonType("Yes");
+		ButtonType buttonTypeTwo = new ButtonType("No");
+
+		alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == buttonTypeOne){
+		    excommInput = new ExcommInput("Y");
+		} else {
+			excommInput = new ExcommInput("N");
+			 } 
+		try {
+			client.sendInput(excommInput);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		}
+			});		
+			
+	}
+		
+	
 	
 	
 
