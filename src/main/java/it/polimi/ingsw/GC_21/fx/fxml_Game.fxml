@@ -79,7 +79,7 @@
     </Pane>
     <Pane layoutX="600.0" layoutY="12.0" prefHeight="796.0" prefWidth="567.0" style="">
       <children>
-        <Button layoutX="365.0" layoutY="728.0" mnemonicParsing="false" onAction="#Confirm" text="Confirm" />
+        <Button fx:id="confirmbtn" layoutX="365.0" layoutY="728.0" mnemonicParsing="false" onAction="#Confirm" text="Confirm" />
         <Button layoutX="378.0" layoutY="681.0" mnemonicParsing="false" onAction="#Reset" text="Reset" />
         <ToggleButton layoutX="39.0" layoutY="681.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="White">
           <toggleGroup>
@@ -202,7 +202,7 @@
                 </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Player 2">
+            <Tab fx:id="pl2" text="Player 2">
               <content>
                 <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>
@@ -300,7 +300,7 @@
                 </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Player 3">
+            <Tab fx:id="pl3" text="Player 3">
               <content>
                 <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>
@@ -386,7 +386,7 @@
                 </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Player 4">
+            <Tab fx:id="pl4" text="Player 4">
               <content>
                 <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>

@@ -15,7 +15,7 @@ public class PrivilegeInput extends InputForm {
 	protected ArrayList<Possession> earnedRewards;
 	protected String choice;
 
-	
+
 	
 	public PrivilegeInput(Possession rewards, int privilegesNumber, ArrayList<Possession> earnedRewards) {
 		this.rewards = rewards;
@@ -40,6 +40,15 @@ public class PrivilegeInput extends InputForm {
 			this.choice = keyboard.next();
 			keyboard.reset();
 		}
+
+	public String getChoice() {
+		return choice;
+	}
+
+	public void setChoice(String choice) {
+		this.choice = choice;
+	}
+	
 	}
 
  

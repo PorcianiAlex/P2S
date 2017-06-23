@@ -108,7 +108,7 @@ public class CardCreator implements Serializable{
 
 	        	    int privileges = Integer.parseInt(jsonLineItem.get("Priv").toString());            
 	               
-	        	    JSONArray reqarray= (JSONArray) jsonLineItem.get("Req");
+	        	    JSONArray reqarray= (JSONArray) jsonLineItem.get("Imm");
 	                	             	               
 	                Possession Rew = new Possession(Integer.parseInt(reqarray.get(0).toString()),Integer.parseInt(reqarray.get(1).toString()),
 	                		Integer.parseInt(reqarray.get(2).toString()), Integer.parseInt(reqarray.get(3).toString()),

@@ -21,6 +21,13 @@ public class TakeCardInput extends InputForm{
 		this.actionValueInfluencer = actionValueInfluencer;
 		this.discount = discount;
 	}
+	
+	public TakeCardInput(DevCardType devCardType, int actionValueInfluencer, Possession discount, int selectedfloor) {
+		this.devCardType = devCardType;
+		this.actionValueInfluencer = actionValueInfluencer;
+		this.discount = discount;
+		this.selectedFloor=selectedfloor;
+	}
 
 
 

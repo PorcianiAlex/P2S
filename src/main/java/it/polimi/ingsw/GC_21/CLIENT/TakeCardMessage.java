@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
 import it.polimi.ingsw.GC_21.VIEW.TakeCardInput;
+import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public class TakeCardMessage extends MessageToClient{
 	private DevCardType devCardType;
@@ -27,5 +28,10 @@ public class TakeCardMessage extends MessageToClient{
 		TakeCardInput takeCardInput = new TakeCardInput(devCardType, actionValueInfluencer, discount);
 		takeCardInput.inputFromCli(keyboard);
 		return takeCardInput;
+	}
+	
+	@Override
+	public void executeGUI(FXMLGameController gameController) {
+			gameController.takeNewCard(devCardType, actionValueInfluencer, discount);	
 	}
 }
