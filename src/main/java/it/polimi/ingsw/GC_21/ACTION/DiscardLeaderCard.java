@@ -22,7 +22,6 @@ public class DiscardLeaderCard extends Action{
 	@Override
 	public void Execute() {
 		playerInAction.getMyPersonalBoard().getLeaderCards().remove(leaderChosen);
-		System.out.println(playerInAction.getMyPersonalBoard().getLeaderCards().toString());
 		PrivilegeMessage privilegeMessage = new PrivilegeMessage(new Possession(), 1);
 		game.notifyCurrent(privilegeMessage);
 	}

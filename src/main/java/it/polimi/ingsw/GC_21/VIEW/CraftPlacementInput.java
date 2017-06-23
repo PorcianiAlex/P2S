@@ -25,7 +25,6 @@ public class CraftPlacementInput extends PlacementInput {
 
 	@Override
 	public void execute(RemoteView remoteView) {
-	    super.execute(remoteView);
 	    CraftPlacement craftPlacement = CraftPlacement.factoryCraftPlacement(remoteView.getPlayer(), familyMemberColor, remoteView.getGame().getBoard(), servantsToConvert, craftType, spaceType); 
 	    remoteView.response(craftPlacement);
 	}

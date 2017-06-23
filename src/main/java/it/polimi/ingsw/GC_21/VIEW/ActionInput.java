@@ -26,7 +26,7 @@ import it.polimi.ingsw.GC_21.ACTION.Pass;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
-public class ActionInput extends InputForm implements Runnable {
+public class ActionInput extends InputForm {
 	protected String choice;
 	protected Scanner keyboard;
 	protected Player player;
@@ -40,20 +40,7 @@ public class ActionInput extends InputForm implements Runnable {
 	public InputForm chooseAction(Scanner keyboard, Player player) throws ExecutionException, InterruptedException {
 		System.out.println("Choose your action: " + "\n 1: Tower placement" + "\n 2: Craft placement "
 				+ "\n 3: Market placement " + "\n 4: Council placement" + "\n 5: Pass" + "\n 6: Play Leader Card" + "\n 7: Discard Leader Card");
-			ActionInput actionInput = new ActionInput(keyboard, player);
-			ExecutorService executorService = Executors.newFixedThreadPool(2);
-			ActionTimer actionTimer = new ActionTimer(actionInput);
-			executorService.submit(actionInput);
-			executorService.submit(actionTimer);
-			while (true) {
-				System.out.println(outOfTime);
-				if (choice!=null){
-					if (outOfTime){
-						choice = "5";
-					}
-					break;
-				}
-			}
+			choice = keyboard.next();
 			switch (choice) {
 			case "1":
 				TowerPlacementInput towerPlacementInput = new TowerPlacementInput();
@@ -85,24 +72,14 @@ public class ActionInput extends InputForm implements Runnable {
 				return discardInput;
 			default:
 				System.out.println("Invalid input, try again!");
-				return this.call();
+				return this.chooseAction(keyboard, player);
 			} 
 	}
 			public String getChoice() {
 				return choice;
 			}
 
-	@Override
-	public void run(){
-		choice = keyboard.next();
-		return;
-		}
 
-
-	public void setOutOfTime(boolean outOfTime){
-		this.outOfTime = outOfTime;
-	}
-	
 	}
 
 

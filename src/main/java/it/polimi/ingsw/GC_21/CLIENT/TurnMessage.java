@@ -34,9 +34,7 @@ public class TurnMessage extends MessageToClient{
 		this.age = age;
 		this.round = round;
 		this.turnNumber = turnNumber;
-		this.tower = board.getSpecificTower(DevCardType.Territory);
-		this.floor = board.getSpecificTower(DevCardType.Territory).getFloors()[0];
-		this.singleActionSpace = board.getSpecificTower(DevCardType.Territory).getFloors()[0].getSingleActionSpace();
+		
 	}
 
 
@@ -63,6 +61,9 @@ public class TurnMessage extends MessageToClient{
 	@Override
 	public InputForm executeCLI(Scanner keyboard) {
 		super.executeCLI(keyboard);
+		for (int i = 0; i < players.size(); i++) {
+			System.out.println(players.get(i).getMyPersonalBoard().toString() + " \n" );
+		}
 		System.out.println(board.toString());
 		return null;
 	}

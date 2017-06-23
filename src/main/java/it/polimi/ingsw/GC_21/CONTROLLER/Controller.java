@@ -106,7 +106,7 @@ public class Controller implements P2SObserver<Action>{
 	}
 
 	@Override
-	public void updateMessageToClient(MessageToClient message) {
+	public void updateBroadcast(MessageToClient message) {
 		// TODO Auto-generated method stub
 		
 	}

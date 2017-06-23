@@ -22,27 +22,28 @@ public class DiscardInput extends InputForm {
 	@Override
 	public void execute(RemoteView remoteView) {
 		super.execute(remoteView);
+		ChooseActionMessage chooseActionMessage;
 		if (leaderCards.isEmpty()){
-			ChooseActionMessage chooseActionMessage = new ChooseActionMessage(false, "You haven't got any leader cards",  remoteView.getPlayer());
-			remoteView.getAdapter().sendObject(chooseActionMessage);
-			remoteView.inputObject();
+			 chooseActionMessage = new ChooseActionMessage(false, "You haven't got any leader cards",  remoteView.getPlayer());
+			
 		}
 		else if (remoteView.getPlayer().getMyPersonalBoard().getLeaderCards().get(leaderToDiscard).isPlayed() ){
-
+			chooseActionMessage = new ChooseActionMessage(false, "You can't discard a leader card you already played",  remoteView.getPlayer());
+			
 		}
 		else if (!remoteView.getPlayer().getMyPersonalBoard().getLeaderCards().contains(leaderToDiscard)){
 				DiscardLeaderCard discardLeaderCard = new DiscardLeaderCard(remoteView.getPlayer(), leaderToDiscard, remoteView.getGame());
 				discardLeaderCard.Execute();
-				ChooseActionMessage chooseActionMessage = new ChooseActionMessage(false, "You just discarded your leader card!",  remoteView.getPlayer());
-				remoteView.getAdapter().sendObject(chooseActionMessage);
-				remoteView.inputObject();
+				chooseActionMessage = new ChooseActionMessage(false, "You just discarded your leader card!",  remoteView.getPlayer());
+			
 			}
 		
 		else{
-			ChooseActionMessage chooseActionMessage = new ChooseActionMessage(false, "You already discarded this leader card!", remoteView.getPlayer());
-			remoteView.getAdapter().sendObject(chooseActionMessage);
-			remoteView.inputObject();
+			chooseActionMessage = new ChooseActionMessage(false, "You already discarded this leader card!", remoteView.getPlayer());
+			
 		}
+		remoteView.getAdapter().sendObject(chooseActionMessage);
+		remoteView.inputObject();
 	}
 	
 	@Override

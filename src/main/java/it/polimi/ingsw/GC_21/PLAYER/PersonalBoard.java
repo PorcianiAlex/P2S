@@ -83,7 +83,6 @@ public class PersonalBoard implements Serializable{
 			OwnedCards ownedBuildingCardsCards = getSpecificOwnedCards(DevCardType.Building);
 			for (int i = 0; i < ownedBuildingCardsCards.getOwnedCardsnumber(); i++) {
 				CraftCard tmp = (CraftCard) ownedBuildingCardsCards.getMyOwnedCards()[i].getCard();
-				System.out.println(tmp.toString());
 				if(actionValue >=  tmp.getRequiredValueForCraft()) {
 					tmp.callCraftEffect(player);
 				}

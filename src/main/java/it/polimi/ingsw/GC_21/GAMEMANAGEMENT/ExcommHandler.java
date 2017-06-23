@@ -59,7 +59,7 @@ public class ExcommHandler implements Serializable{
 
 	public void executeExcomm() {
 		ExcommMessage excommMessage = new ExcommMessage();
-		game.notifyMessageToClient(excommMessage);
+		game.notifyBroadcast(excommMessage);
 	}
 
 	

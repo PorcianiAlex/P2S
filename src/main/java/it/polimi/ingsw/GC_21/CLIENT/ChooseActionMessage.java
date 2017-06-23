@@ -25,7 +25,15 @@ public class ChooseActionMessage extends MessageToClient {
 		super.executeCLI(keyboard);
 		//Timer timer = startTimer();
 		ActionInput actionInput = new ActionInput();
-		inputFormToSend = actionInput.chooseAction(keyboard, player);
+		try {
+			inputFormToSend = actionInput.chooseAction(keyboard, player);
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return inputFormToSend;
 	}
 
