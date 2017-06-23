@@ -39,7 +39,7 @@ public class ChooseActionMessage extends MessageToClient {
 
 	@Override
 	public void executeGUI(FXMLGameController gameController) {
-		gameController.ifChooseAction(result, description);
+		gameController.ifChooseAction(result, description, player);
 		
 	}
 	

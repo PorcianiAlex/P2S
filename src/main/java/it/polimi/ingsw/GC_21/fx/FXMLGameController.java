@@ -35,9 +35,11 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.VIEW.CouncilPlacementInput;
 import it.polimi.ingsw.GC_21.VIEW.CraftInput;
 import it.polimi.ingsw.GC_21.VIEW.CraftPlacementInput;
+import it.polimi.ingsw.GC_21.VIEW.ExcommInput;
 import it.polimi.ingsw.GC_21.VIEW.InitGameInput;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
 import it.polimi.ingsw.GC_21.VIEW.MarketPlacementInput;
+import it.polimi.ingsw.GC_21.VIEW.PassInput;
 import it.polimi.ingsw.GC_21.VIEW.PlacementInput;
 import it.polimi.ingsw.GC_21.VIEW.PrivilegeInput;
 import it.polimi.ingsw.GC_21.VIEW.TakeCardInput;
@@ -54,6 +56,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Dialog;
@@ -78,7 +81,8 @@ public class FXMLGameController extends MetaController implements Initializable{
 	private Board classBoard;
 	private ArrayList<Player> classPlayers;
 	private MessThread messThread;
-	private boolean canGo, secondcard = false, sametower = false;
+	private boolean canGo, secondcard = false;
+	private Object LOCK = new Object(); // just something to lock on
     private ArrayList<ArrayList<ToggleGroup>> tabs = new ArrayList<ArrayList<ToggleGroup>>();
     private ArrayList<ArrayList<Text>> ress = new ArrayList<ArrayList<Text>>();
     private ArrayList<Tab> playerNames = new ArrayList<Tab>();
@@ -89,6 +93,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	@FXML private Text r1,r2,r3,r4,r5,r6,r7,r8, r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20,r21,r22,r23,r24,r25,r26,r27,r28;
 	@FXML private Tab pl1,pl2,pl3,pl4;
 	@FXML private javafx.scene.control.Button confirmbtn;
+	@FXML private ToggleButton white, black, orange, neutral;
 	
 	 @FXML protected void Tower(ActionEvent event) {
 			 
@@ -155,9 +160,20 @@ public class FXMLGameController extends MetaController implements Initializable{
 			
 	 }
 	 
+	 @FXML protected void Pass(ActionEvent event) {
+		 PassInput passInput = new PassInput();
+		 try {
+			client.sendInput(passInput);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	 }
+	 
 	 @FXML protected void Confirm(ActionEvent event) throws RemoteException, IOException {
 		if(secondcard) {
-			client.sendInput(inputForm);
+			synchronized (LOCK) {
+			    LOCK.notifyAll();
+			}
 			secondcard = false;
 		}
 		else if(canGo) {
@@ -201,6 +217,8 @@ public class FXMLGameController extends MetaController implements Initializable{
 		 }
 		 
 	 }
+	 
+	
 
 	public void refreshBoard(Board board, ArrayList<Player> players, String dString) {
 		System.out.println("sono nella refreshboard");
@@ -279,7 +297,13 @@ public class FXMLGameController extends MetaController implements Initializable{
 		
 	}
 	
-	public void ifChooseAction(boolean firstaction, String description) {
+	public void ifChooseAction(boolean firstaction, String description, Player player) {
+		
+		//set family member placed
+		for (int i = 0; i < 4; i++) {
+			ToggleButton tButton = (ToggleButton) family.getToggles().get(i);
+			tButton.setDisable((player.getFamilyMembers()[i].isPlaced()));
+		}
 		//gli mostro la conferma
 		if(firstaction) {
 		System.out.println("è il tuo turno, sono nella chooseaction");
@@ -368,6 +392,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 }
 
 	public void takeNewCard(DevCardType devCardType, int actionValueInfluencer, Possession discount) {
+		secondcard =true;
 		
 		Platform.runLater(new Runnable() {
 		    @Override
@@ -382,6 +407,14 @@ public class FXMLGameController extends MetaController implements Initializable{
 		    }    
 		});
 		
+		synchronized (LOCK) {
+				 try {
+					LOCK.wait(); // wait confirm
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				} 
+				}
+		
 			ToggleButton button = (ToggleButton) place.getSelectedToggle();
 		    DevCardType dType =  DevCardType.valueOf(button.getUserData().toString());
 		    int floor = Integer.parseInt(button.getText());
@@ -389,7 +422,43 @@ public class FXMLGameController extends MetaController implements Initializable{
 		    	dType=devCardType;
 		    }
 		    inputForm = new TakeCardInput(dType, actionValueInfluencer, discount, floor);
-		    secondcard=true;
+		    try {
+				client.sendInput(inputForm);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	}
+
+	public void excomm(String description) {
+		
+	Platform.runLater(new Runnable(){ 
+	@Override
+	public void run() {
+		ExcommInput excommInput;
+	   	Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Excommunication time");
+		alert.setHeaderText(description);
+		alert.setContentText("Choose your destiny:");
+
+		ButtonType buttonTypeOne = new ButtonType("Yes");
+		ButtonType buttonTypeTwo = new ButtonType("No");
+
+		alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == buttonTypeOne){
+		    excommInput = new ExcommInput("Y");
+		} else {
+			excommInput = new ExcommInput("N");
+			 } 
+		try {
+			client.sendInput(excommInput);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		}
+			});		
+			
 	}
 		
 	

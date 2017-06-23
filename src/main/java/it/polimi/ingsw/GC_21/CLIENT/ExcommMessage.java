@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.VIEW.ExcommInput;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public class ExcommMessage extends MessageToClient {
 
@@ -20,6 +21,10 @@ public class ExcommMessage extends MessageToClient {
 		excommInput.inputFromCli(keyboard);
 		return excommInput;
 
+	}
+	
+	public void executeGUI(FXMLGameController gameController) {		
+		gameController.excomm(description);
 	}
 
 }

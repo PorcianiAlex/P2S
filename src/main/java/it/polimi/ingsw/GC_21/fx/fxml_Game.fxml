@@ -79,16 +79,16 @@
     </Pane>
     <Pane layoutX="600.0" layoutY="12.0" prefHeight="796.0" prefWidth="567.0" style="">
       <children>
-        <Button fx:id="confirmbtn" layoutX="365.0" layoutY="728.0" mnemonicParsing="false" onAction="#Confirm" text="Confirm" />
-        <Button layoutX="378.0" layoutY="681.0" mnemonicParsing="false" onAction="#Reset" text="Reset" />
-        <ToggleButton layoutX="39.0" layoutY="681.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="White">
+        <Button fx:id="confirmbtn" layoutX="414.0" layoutY="728.0" mnemonicParsing="false" onAction="#Confirm" text="Confirm" textFill="#319900" />
+        <Button layoutX="311.0" layoutY="681.0" mnemonicParsing="false" onAction="#Reset" text="Reset" />
+        <ToggleButton fx:id="black" layoutX="39.0" layoutY="681.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="Black">
           <toggleGroup>
             <ToggleGroup fx:id="family" />
           </toggleGroup>
         </ToggleButton>
-        <ToggleButton layoutX="174.0" layoutY="681.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="Black" toggleGroup="$family" />
-        <ToggleButton layoutX="39.0" layoutY="728.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="Orange" toggleGroup="$family" />
-        <ToggleButton layoutX="174.0" layoutY="728.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="Neutral" toggleGroup="$family" />
+        <ToggleButton fx:id="white" layoutX="174.0" layoutY="681.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="White" toggleGroup="$family" />
+        <ToggleButton fx:id="orange" layoutX="39.0" layoutY="728.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="Orange" toggleGroup="$family" />
+        <ToggleButton fx:id="neutral" layoutX="174.0" layoutY="728.0" mnemonicParsing="false" onAction="#FamilyMember" prefWidth="125.0" text="Neutral" toggleGroup="$family" />
         <Text fx:id="state" layoutX="39.0" layoutY="651.0" strokeType="OUTSIDE" strokeWidth="0.0" text="">
           <font>
             <Font size="20.0" />
@@ -474,6 +474,7 @@
             </Tab>
           </tabs>
         </TabPane>
+        <Button layoutX="316.0" layoutY="728.0" mnemonicParsing="false" onAction="#Pass" text="Pass" />
       </children>
     </Pane>
   </children>
