@@ -2,10 +2,19 @@ package it.polimi.ingsw.GC_21.BOARD;
 
 
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.Serializable;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.ExcommHandler;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 
@@ -19,7 +28,7 @@ public class Board implements Serializable{
 	private CraftArea productionArea;
 	private CraftArea harvestArea;
 	
-	public Board(Game game) {
+	public Board(Game game) throws IOException, ParseException {
 		this.dices = Dice.factoryDices();
 		this.game=game;
 		this.towers = Tower.factoryTowers(game); 
@@ -27,6 +36,67 @@ public class Board implements Serializable{
 		this.councilPalace = new CouncilPalace(game);
 		this.productionArea = new CraftArea(CraftType.Production, game);
 		this.harvestArea = new CraftArea( CraftType.Harvest, game);
+		this.setEffectsOnTower();
+	}
+
+
+	private void setEffectsOnTower() throws IOException, ParseException {
+		JSONParser parser = new JSONParser();
+		java.net.URL path = MarketArea.class.getResource("spaceEffects.json");
+		FileReader file = new FileReader(path.getPath());
+		JSONObject obj = (JSONObject) parser.parse(file);
+	    JSONArray territories= (JSONArray) obj.get("territoryTower");
+	    int i = 2;
+		for (Object o : territories) {
+           	JSONObject jsonLineItem = (JSONObject) o;      
+           	int privileges = Integer.parseInt(jsonLineItem.get("Priv").toString());            
+    	    JSONArray reward= (JSONArray) jsonLineItem.get("Reward");          	               
+            Possession rewards = new Possession(Integer.parseInt(reward.get(0).toString()),Integer.parseInt(reward.get(1).toString()),
+            		Integer.parseInt(reward.get(2).toString()), Integer.parseInt(reward.get(3).toString()),
+            		Integer.parseInt(reward.get(4).toString()), Integer.parseInt(reward.get(5).toString()), 
+            	    Integer.parseInt(reward.get(6).toString()));
+            towers[0].getFloors()[i].getSingleActionSpace().setActionSpaceEffect(new Effect(rewards, privileges, game)); 
+            i++;
+		}
+	    JSONArray buildings= (JSONArray) obj.get("buildingTower");
+		i=2;
+		for (Object o : buildings) {
+           	JSONObject jsonLineItem = (JSONObject) o;      
+           	int privileges = Integer.parseInt(jsonLineItem.get("Priv").toString());            
+    	    JSONArray reward= (JSONArray) jsonLineItem.get("Reward");          	               
+            Possession rewards = new Possession(Integer.parseInt(reward.get(0).toString()),Integer.parseInt(reward.get(1).toString()),
+            		Integer.parseInt(reward.get(2).toString()), Integer.parseInt(reward.get(3).toString()),
+            		Integer.parseInt(reward.get(4).toString()), Integer.parseInt(reward.get(5).toString()), 
+            	    Integer.parseInt(reward.get(6).toString()));
+            towers[2].getFloors()[i].getSingleActionSpace().setActionSpaceEffect(new Effect(rewards, privileges, game)); 
+            i++;
+		}
+		  JSONArray characters= (JSONArray) obj.get("characterTower");
+			i=2;
+			for (Object o : characters) {
+	           	JSONObject jsonLineItem = (JSONObject) o;      
+	           	int privileges = Integer.parseInt(jsonLineItem.get("Priv").toString());            
+	    	    JSONArray reward= (JSONArray) jsonLineItem.get("Reward");          	               
+	            Possession rewards = new Possession(Integer.parseInt(reward.get(0).toString()),Integer.parseInt(reward.get(1).toString()),
+	            		Integer.parseInt(reward.get(2).toString()), Integer.parseInt(reward.get(3).toString()),
+	            		Integer.parseInt(reward.get(4).toString()), Integer.parseInt(reward.get(5).toString()), 
+	            	    Integer.parseInt(reward.get(6).toString()));
+	            towers[1].getFloors()[i].getSingleActionSpace().setActionSpaceEffect(new Effect(rewards, privileges, game)); 
+	            i++;
+			}
+			JSONArray ventures= (JSONArray) obj.get("ventureTower");
+			i=2;
+			for (Object o : ventures) {
+	           	JSONObject jsonLineItem = (JSONObject) o;      
+	           	int privileges = Integer.parseInt(jsonLineItem.get("Priv").toString());            
+	    	    JSONArray reward= (JSONArray) jsonLineItem.get("Reward");          	               
+	            Possession rewards = new Possession(Integer.parseInt(reward.get(0).toString()),Integer.parseInt(reward.get(1).toString()),
+	            		Integer.parseInt(reward.get(2).toString()), Integer.parseInt(reward.get(3).toString()),
+	            		Integer.parseInt(reward.get(4).toString()), Integer.parseInt(reward.get(5).toString()), 
+	            	    Integer.parseInt(reward.get(6).toString()));
+	            towers[3].getFloors()[i].getSingleActionSpace().setActionSpaceEffect(new Effect(rewards, privileges, game)); 
+	            i++;
+			}
 	}
 
 

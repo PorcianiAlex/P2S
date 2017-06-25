@@ -1,0 +1,33 @@
+{
+	"marketArea" : [ 
+	{"Reward":[5,0,0,0,0,0,0], "Priv":"0"},
+	{"Reward":[0,0,0,5,0,0,0], "Priv":"0"},
+	{"Reward":[2,0,0,0,3,0,0], "Priv":"0"},
+	{"Reward":[0,0,0,0,0,0,0], "Priv":"2"}
+	],
+	
+	"territoryTower" : [
+	{"Reward":[0,1,0,0,0,0,0], "Priv":"0"},
+	{"Reward":[0,2,0,0,0,0,0], "Priv":"0"}
+	],
+	
+	"buildingTower" : [
+	{"Reward":[0,0,1,0,0,0,0], "Priv":"0"},
+	{"Reward":[0,0,2,0,0,0,0], "Priv":"0"}
+	],
+	
+	"characterTower" : [
+	{"Reward":[0,0,0,0,0,1,0], "Priv":"0"},
+	{"Reward":[0,0,0,0,0,2,0], "Priv":"0"}
+	],
+	
+	"ventureTower" : [
+	{"Reward":[1,0,0,0,0,0,0], "Priv":"0"},
+	{"Reward":[2,0,0,0,0,0,0], "Priv":"0"}
+	],
+	
+	"councilPalace" : {
+	"Reward":[2,0,0,0,0,0,0], "Priv":"1"
+	}
+	
+}

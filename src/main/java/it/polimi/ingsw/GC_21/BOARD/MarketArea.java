@@ -1,8 +1,17 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import it.polimi.ingsw.GC_21.ACTION.ExcommAction;
 import it.polimi.ingsw.GC_21.EFFECT.Convert;
 import it.polimi.ingsw.GC_21.EFFECT.DoTakeCardAction;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
@@ -14,18 +23,26 @@ public class MarketArea implements Serializable{
 	private SingleActionSpace[] singleActionSpace;
 	private Game game;
 
-	public MarketArea(Game game){
+	public MarketArea(Game game) throws IOException, ParseException{
 		this.singleActionSpace = new SingleActionSpace[4];
 		this.game=game;
-		Possession toPay1 = new Possession(1, 1, 0, 0, 0, 0, 0);
-		Possession toPay2 = new Possession(1, 2, 0, 0, 0, 0, 0);
-		Possession toTake1 = new Possession(1, 1, 0, 3, 0, 0, 0);
-		Possession toTake2 = new Possession(1, 1, 0, 0, 4, 0, 0);
-		Possession reward = new Possession(0,0,0,0,0,0,1);
-		singleActionSpace[0] = new SingleActionSpace(1, new Effect(new Possession(5, 0, 0, 0, 0, 0, 0),0, game), game);
-		singleActionSpace[1] = new SingleActionSpace(1, new Effect(new Possession(0, 0, 0, 5, 0, 0, 0),0, game), game);
-		singleActionSpace[2] = new SingleActionSpace(1, new Effect(new Possession(2, 0, 0, 0, 0, 3, 0),0, game),game);
-		singleActionSpace[3] = new SingleActionSpace(1, new Effect(null, (2), game), game);
+		JSONParser parser = new JSONParser();
+		java.net.URL path = MarketArea.class.getResource("spaceEffects.json");
+		FileReader file = new FileReader(path.getPath());
+		JSONObject obj = (JSONObject) parser.parse(file);
+	    JSONArray marketEffects= (JSONArray) obj.get("marketArea");
+	    int i = 0;
+		for (Object o : marketEffects) {
+           	JSONObject jsonLineItem = (JSONObject) o;      
+           	int privileges = Integer.parseInt(jsonLineItem.get("Priv").toString());            
+    	    JSONArray reward= (JSONArray) jsonLineItem.get("Reward");          	               
+            Possession rewards = new Possession(Integer.parseInt(reward.get(0).toString()),Integer.parseInt(reward.get(1).toString()),
+            		Integer.parseInt(reward.get(2).toString()), Integer.parseInt(reward.get(3).toString()),
+            		Integer.parseInt(reward.get(4).toString()), Integer.parseInt(reward.get(5).toString()), 
+            	    Integer.parseInt(reward.get(6).toString()));
+            singleActionSpace[i] = new SingleActionSpace(1, new Effect(rewards, privileges, game), game);
+            i++;
+		}
 	}
 
 	public SingleActionSpace[] getSingleActionSpace() {

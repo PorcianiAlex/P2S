@@ -1,8 +1,18 @@
 package it.polimi.ingsw.GC_21.ACTION;
 
+import java.io.FileReader;
+import java.io.IOException;
+
 import javax.xml.ws.handler.MessageContext;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.CardCreator;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.FaithPoints;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Item;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.OncePerTurnLeaderCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ResourceType;
@@ -13,32 +23,19 @@ public class ExcommAction extends Action {
 	private boolean choice;
 	private int[] faithPointsTracking;
 	
-	public ExcommAction(Player playerInAction, Game game, boolean choice) {
+	public ExcommAction(Player playerInAction, Game game, boolean choice) throws IOException, ParseException {
 		super(playerInAction);
 		this.choice = choice;
 		this.game = game;
-		faithPointsTracking = new int[21];
-		faithPointsTracking[0] = 1;
-		faithPointsTracking[1] = 2;
-		faithPointsTracking[2] = 3;
-		faithPointsTracking[3] = 4;
-		faithPointsTracking[4] = 5;
-		faithPointsTracking[5] = 6;
-		faithPointsTracking[6] = 8;
-		faithPointsTracking[7] = 9;
-		faithPointsTracking[8] = 10;
-		faithPointsTracking[9] = 11;
-		faithPointsTracking[10] = 13;
-		faithPointsTracking[11] = 14;
-		faithPointsTracking[12] = 15;
-		faithPointsTracking[13] = 16;
-		faithPointsTracking[14] = 17;
-		faithPointsTracking[15] = 18;
-		faithPointsTracking[16] = 19;
-		faithPointsTracking[17] = 20;
-		faithPointsTracking[18] = 21;
-		faithPointsTracking[19] = 22;
-		faithPointsTracking[20] = 23;
+		faithPointsTracking = new int[14];
+		JSONParser parser = new JSONParser();
+		java.net.URL path = ExcommAction.class.getResource("faithPointsTracking.json");
+		FileReader file = new FileReader(path.getPath());
+		JSONObject obj = (JSONObject) parser.parse(file);
+	    JSONArray victoryPoints= (JSONArray) obj.get("faithPointsTracking");
+		for (int i = 0; i < faithPointsTracking.length; i++) {
+			faithPointsTracking[i]=Integer.parseInt(victoryPoints.get(i).toString());
+		}
 	}	
 	
 	@Override

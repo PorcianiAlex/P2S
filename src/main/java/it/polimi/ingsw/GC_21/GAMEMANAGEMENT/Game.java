@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.TreeMap;
 
 import javax.net.ssl.HostnameVerifier;
 
+import org.json.simple.parser.ParseException;
 import org.junit.experimental.theories.Theories;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
@@ -44,7 +46,15 @@ public class Game extends Observable implements Serializable{
 	public Game(String host) {
 		this.id = currentNumberOfGame + 1;
 		currentNumberOfGame++;
-		this.board = new Board(this);	
+		try {
+			this.board = new Board(this);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 		this.players = new ArrayList<Player>();
 		this.excommHandler = new ExcommHandler(this);
 		this.numberOfPlayers = 1;

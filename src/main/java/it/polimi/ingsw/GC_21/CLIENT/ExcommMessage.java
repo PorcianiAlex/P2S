@@ -10,8 +10,7 @@ public class ExcommMessage extends MessageToClient {
 
 	public ExcommMessage() {
 		super(true, true, "Bergoglio wants to know if you have been a great guy recently! \n"
-				+ "Be careful: if you disappoint him, you will get a permanent malus!!!" + 
-				"\nDo you want to be excommunicated? (Y) - (N)");
+				+ "Be careful: if you disappoint him, you will get a permanent malus!!!");
 	}
 	
 	@Override

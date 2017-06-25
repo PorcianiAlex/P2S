@@ -14,7 +14,7 @@ public class FXMLGame extends Application {
 	    public void start(Stage stage) throws Exception {
 	      
 	    	Parent root = FXMLLoader.load(getClass().getResource("fxml_Game.fxml"));
-	        stage.setTitle("Game");
+	        stage.setTitle("Lorenzo il Magnifico");
 	        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 	        int width = gd.getDisplayMode().getWidth();
 	        int height = gd.getDisplayMode().getHeight();
