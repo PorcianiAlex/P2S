@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="850.0" prefWidth="1170.0" style=" -fx-background-image: url('/gamebg.jpg'); -fx-background-size:cover;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.ingsw.GC_21.fx.FXMLGameController">
+<AnchorPane prefHeight="850.0" prefWidth="1363.0" style=" -fx-background-image: url('/gamebg.jpg'); -fx-background-size:cover;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.ingsw.GC_21.fx.FXMLGameController">
   <children>
     <Pane fx:id="Pane1" layoutX="6.0" layoutY="12.0" prefHeight="841.0" prefWidth="601.0">
       <children>
@@ -79,6 +79,11 @@
     </Pane>
     <Pane layoutX="600.0" layoutY="12.0" prefHeight="816.6788330078125" prefWidth="567.0" style="">
       <children>
+        <Rectangle arcHeight="36.0" arcWidth="46.0" fill="#fff3de" height="50.921875" layoutX="12.0" layoutY="616.0" smooth="true" strokeLineCap="SQUARE" strokeLineJoin="BEVEL" strokeType="INSIDE" strokeWidth="2.2" style="" width="521.0">
+          <stroke>
+            <Color blue="0.000" green="0.000" red="0.400" fx:id="x25" />
+          </stroke>
+        </Rectangle>
         <Button fx:id="confirmbtn" layoutX="428.0" layoutY="729.0" mnemonicParsing="false" onAction="#Confirm" text="Confirm" textFill="#319900" />
         <Button layoutX="353.0" layoutY="729.0" mnemonicParsing="false" onAction="#Reset" text="Reset" />
         <ToggleButton fx:id="black" layoutX="22.0" layoutY="677.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#FamilyMember" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="Black">
@@ -89,7 +94,7 @@
         <ToggleButton fx:id="white" layoutX="64.0" layoutY="677.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#FamilyMember" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="White" toggleGroup="$family" />
         <ToggleButton fx:id="orange" layoutX="22.0" layoutY="730.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#FamilyMember" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="Orange" toggleGroup="$family" />
         <ToggleButton fx:id="neutral" layoutX="64.0" layoutY="729.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#FamilyMember" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="Neutral" toggleGroup="$family" />
-        <Text fx:id="state" layoutX="39.0" layoutY="651.0" strokeType="OUTSIDE" strokeWidth="0.0" text="">
+        <Text fx:id="state" fill="$x25" layoutX="29.0" layoutY="651.0" strokeType="OUTSIDE" strokeWidth="0.0" text="">
           <font>
             <Font size="20.0" />
           </font>
@@ -488,7 +493,7 @@
             <Image url="@servo.png" />
           </image>
         </ImageView>
-        <Button layoutX="162.0" layoutY="729.0" minHeight="35.921875" minWidth="35.0" mnemonicParsing="false" onAction="#Serv" opacity="1.0" prefHeight="35.921875" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;" text="+" wrapText="false">
+        <Button layoutX="162.0" layoutY="730.0" minHeight="35.921875" minWidth="35.0" mnemonicParsing="false" onAction="#Serv" opacity="1.0" prefHeight="35.921875" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;" text="+" wrapText="false">
           <font>
             <Font size="24.0" />
           </font>

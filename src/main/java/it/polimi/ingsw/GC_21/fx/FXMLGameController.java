@@ -154,7 +154,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 
 	 @FXML protected void Serv(ActionEvent event) {
 		 javafx.scene.control.Button button = (javafx.scene.control.Button) event.getSource();
-		 if(button.getText().equals("+")) {
+		 if(button.getText().equals("+") && servToConvert < myPlayer.getMyPersonalBoard().getMyPossession().getServants().getValue()) {
 		 this.servToConvert++;
 		 } else if(button.getText().equals("-") && servToConvert > 0){
 		 this.servToConvert--;
