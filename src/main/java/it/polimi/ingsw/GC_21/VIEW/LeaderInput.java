@@ -17,7 +17,13 @@ public class LeaderInput extends InputForm{//TODO to correct
 	private boolean turningLeaderCard; 
 	private LeaderCard selectedLeaderCard;
 		
-
+	public LeaderInput(Player player, String leaderCard, boolean turning) {
+		this.player = player;
+		this.leaderCards = player.getMyPersonalBoard().getLeaderCards();
+		this.playedOncePerTurnLeaderCards = player.getMyPersonalBoard().getPlayedOncePerTurnLeaderCards();
+		this.leaderCard=leaderCard;
+		this.turningLeaderCard = turning;
+	}
 	
 	public LeaderInput(Player player) {
 		this.player = player;

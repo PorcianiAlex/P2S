@@ -14,6 +14,10 @@ public class DiscardInput extends InputForm {
 	private int leaderToDiscard;
 	private ArrayList<LeaderCard> leaderCards;
 	
+	public DiscardInput(Player player, int leaderToDiscard) {
+		this.leaderCards = player.getMyPersonalBoard().getLeaderCards();
+		this.leaderToDiscard = leaderToDiscard;
+	}
 
 	public DiscardInput(Player player) {
 		this.leaderCards = player.getMyPersonalBoard().getLeaderCards();
@@ -34,7 +38,7 @@ public class DiscardInput extends InputForm {
 		else if (!remoteView.getPlayer().getMyPersonalBoard().getLeaderCards().contains(leaderToDiscard)){
 				DiscardLeaderCard discardLeaderCard = new DiscardLeaderCard(remoteView.getPlayer(), leaderToDiscard, remoteView.getGame());
 				discardLeaderCard.Execute();
-				chooseActionMessage = new ChooseActionMessage(false, "You just discarded your leader card!",  remoteView.getPlayer());
+				chooseActionMessage = new ChooseActionMessage(true, "You just discarded your leader card!",  remoteView.getPlayer());
 			
 			}
 		

@@ -6,6 +6,7 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.net.*;
+import java.net.UnknownHostException;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -32,6 +33,14 @@ public class Server extends UnicastRemoteObject implements ServerInterface, Seri
     public  Server(int port) throws RemoteException{
         this.port=port;
         
+        String ip;
+		try {
+			ip = InetAddress.getLocalHost().getHostAddress();
+			System.out.println(ip); 
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		
 				
     }
     
