@@ -1,7 +1,15 @@
 package it.polimi.ingsw.GC_21.CLIENT;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.BOARD.Floor;
@@ -29,7 +37,6 @@ public class TurnMessage extends MessageToClient{
 		this.age = age;
 		this.round = round;
 		this.turnNumber = turnNumber;
-		
 	}
 
 
@@ -52,6 +59,8 @@ public class TurnMessage extends MessageToClient{
 		this.players = players;
 	}
 	
+	
+	
 
 	@Override
 	public InputForm executeCLI(Scanner keyboard) {
@@ -68,5 +77,8 @@ public class TurnMessage extends MessageToClient{
 		gameController.refreshBoard(board, players, description);
 		
 	}
+
+
+
 	
 }

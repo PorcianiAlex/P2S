@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.GameEndState;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.VIEW.PassInput;
 
 public class RunCli {
 
@@ -22,6 +23,10 @@ public class RunCli {
 		while(true) {
 			MessageToClient message = client.getReceivedMessage();
 			if (message != null) {
+				if (message instanceof ChooseActionMessage){
+					System.out.println("client settato");
+					((ChooseActionMessage) message).setClient(client);
+				}
 				InputForm inputForm = message.executeCLI(keyboard);
 				if (inputForm != null) {
 					client.sendInput(inputForm);
@@ -36,6 +41,15 @@ public class RunCli {
 			
 		}
 		
+	}
+	
+	public void pass() {
+		PassInput passInput = new PassInput();
+		try {
+			client.sendInput(passInput);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

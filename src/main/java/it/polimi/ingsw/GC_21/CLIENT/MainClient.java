@@ -41,8 +41,9 @@ public class MainClient {
     	
     public static void factorySocket() {
     try {
-			String ip = InetAddress.getLocalHost().getHostAddress();
-			SocketClient client1 = new SocketClient(ip, 6620, ViewType.CLI);
+			//String ip = InetAddress.getLocalHost().getHostAddress();
+		String ip= "192.168.43.92"	;
+    	SocketClient client1 = new SocketClient(ip, 6620, ViewType.CLI);
 			 RunCli runCli = new RunCli(client1);
 		     runCli.start();
 		} catch (UnknownHostException e) {

@@ -14,18 +14,32 @@ import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public class ChooseActionMessage extends MessageToClient {
 	private Player player;
+	private TimerThread timerThread;
+	private Connections client;
 	
+	public Connections getClient() {
+		return client;
+	}
+
+	public void setClient(Connections client) {
+		this.client = client;
+	}
+
 	public ChooseActionMessage(boolean result, String description, Player player) {
 		super(result, true, description);
 		this.player = player;
+		timerThread = new TimerThread();
 	}
 	
 	@Override
 	public InputForm executeCLI(Scanner keyboard) {
+		System.out.println("sononellaexcli");
+		timerThread.setClient(client);
+		timerThread.start();
 		super.executeCLI(keyboard);
-		//Timer timer = startTimer();
 		ActionInput actionInput = new ActionInput();
 		try {
+			System.out.println("sto per chiamare la ca");
 			return actionInput.chooseAction(keyboard, player);
 		} catch (ExecutionException | InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -40,5 +54,6 @@ public class ChooseActionMessage extends MessageToClient {
 		gameController.ifChooseAction(result, description, player);
 		
 	}
+
 	
 }

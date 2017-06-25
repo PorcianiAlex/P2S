@@ -12,7 +12,9 @@ import java.util.concurrent.TimeoutException;
 
 import javax.naming.TimeLimitExceededException;
 import javax.net.ssl.SSLException;
+import javax.sql.rowset.spi.SyncResolver;
 
+import java.security.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,17 +32,24 @@ public class ActionInput extends InputForm {
 	protected String choice;
 	protected Scanner keyboard;
 	protected Player player;
-	protected boolean outOfTime;
+	long counter;
 	
 	
+	public ActionInput(Scanner keyboard, Player player) {
+		super();
+		this.keyboard = keyboard;
+		this.player = player;
+	}
 
-	
-	
-	
+
+
+
+
+
 	public InputForm chooseAction(Scanner keyboard, Player player) throws ExecutionException, InterruptedException {
 		System.out.println("Choose your action: " + "\n 1: Tower placement" + "\n 2: Craft placement "
 				+ "\n 3: Market placement " + "\n 4: Council placement" + "\n 5: Pass" + "\n 6: Play Leader Card" + "\n 7: Discard Leader Card");
-			choice = keyboard.next();
+		choice = keyboard.next();
 			switch (choice) {
 			case "1":
 				TowerPlacementInput towerPlacementInput = new TowerPlacementInput();
@@ -73,8 +82,20 @@ public class ActionInput extends InputForm {
 			default:
 				System.out.println("Invalid input, try again!");
 				return this.chooseAction(keyboard, player);
-			} 
+			}
+
 	}
+
+
+
+
+
+
+	public ActionInput() {
+		super();
+	}
+
+
 			public String getChoice() {
 				return choice;
 			}
