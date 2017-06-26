@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.ACTION.CraftAction;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
-import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class CraftInput extends InputForm {
 	private CraftType craftType;

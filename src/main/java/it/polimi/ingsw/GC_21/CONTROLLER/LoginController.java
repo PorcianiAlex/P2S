@@ -1,10 +1,7 @@
 package it.polimi.ingsw.GC_21.CONTROLLER;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_21.CLIENT.CheckLoginMessage;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;

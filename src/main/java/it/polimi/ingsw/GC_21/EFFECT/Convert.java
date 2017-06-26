@@ -1,18 +1,12 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
-import java.awt.Choice;
-import java.util.Scanner;
-import java.util.function.IntPredicate;
 
-import org.junit.internal.Throwables;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.CLIENT.ConvertMessage;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Item;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.VIEW.ConvertInput;
 
 
 public class Convert extends Effect implements ToCallDuringCraft{

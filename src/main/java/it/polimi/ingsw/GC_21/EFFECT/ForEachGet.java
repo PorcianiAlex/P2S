@@ -1,14 +1,6 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
-
-import java.util.IntSummaryStatistics;
-
-import javax.annotation.Resource;
-import javax.jws.soap.SOAPBinding;
-
-import org.omg.PortableServer.Servant;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Item;

@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.ACTION.CraftPlacement;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
-import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 
 
 public class CraftPlacementInput extends PlacementInput {

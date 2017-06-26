@@ -1,22 +1,16 @@
 package it.polimi.ingsw.GC_21.CLIENT;
 
-import java.awt.image.TileObserver;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
+
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
-import java.util.PrimitiveIterator.OfDouble;
 
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
-import it.polimi.ingsw.GC_21.VIEW.Server;
-import it.polimi.ingsw.GC_21.VIEW.ServerInterface;
+
 import it.polimi.ingsw.GC_21.fx.ViewType;
 
 

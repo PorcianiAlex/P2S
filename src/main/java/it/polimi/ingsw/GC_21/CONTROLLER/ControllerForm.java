@@ -1,10 +1,5 @@
 package it.polimi.ingsw.GC_21.CONTROLLER;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.Serializable;
-
-import org.json.simple.parser.ParseException;
 
 public abstract class ControllerForm {
 	

@@ -1,8 +1,5 @@
 package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 
 public class DevDeck extends Deck {

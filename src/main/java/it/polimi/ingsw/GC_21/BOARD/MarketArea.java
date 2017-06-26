@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
@@ -11,11 +10,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import it.polimi.ingsw.GC_21.ACTION.ExcommAction;
-import it.polimi.ingsw.GC_21.EFFECT.Convert;
-import it.polimi.ingsw.GC_21.EFFECT.DoTakeCardAction;
+
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 

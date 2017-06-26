@@ -1,17 +1,14 @@
 package it.polimi.ingsw.GC_21.PLAYER;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.*;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
-import it.polimi.ingsw.GC_21.EFFECT.EffectType;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallAfterFinalCount;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforeCraft;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforeFinalCount;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforePlacement;
-import it.polimi.ingsw.GC_21.EFFECT.ToCallDuringCraft;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallWhenEarning;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;

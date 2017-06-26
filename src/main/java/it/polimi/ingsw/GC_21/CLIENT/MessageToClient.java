@@ -2,13 +2,10 @@ package it.polimi.ingsw.GC_21.CLIENT;
 
 import java.io.Serializable;
 import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import it.polimi.ingsw.GC_21.ACTION.Pass;
+
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.GameEndState;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
-import it.polimi.ingsw.GC_21.VIEW.PassInput;
 import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public class MessageToClient implements Serializable{

@@ -1,23 +1,17 @@
 package it.polimi.ingsw.GC_21.ACTION;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
-import javax.management.InstanceAlreadyExistsException;
 
 import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Board;
-import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.BOARD.CraftArea;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
-import it.polimi.ingsw.GC_21.BOARD.MultipleActionSpace;
-import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
+
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforeCraft;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
+
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;

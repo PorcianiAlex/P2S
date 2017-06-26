@@ -6,8 +6,6 @@ import java.util.Scanner;
 import it.polimi.ingsw.GC_21.CLIENT.PrivilegeMessage;
 import it.polimi.ingsw.GC_21.CONTROLLER.PrivilegeController;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
-import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.CONTROLLER.PrivilegeController;
 
 public class PrivilegeInput extends InputForm {
 	protected int privilegesNumber;

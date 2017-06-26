@@ -5,9 +5,7 @@ import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.ACTION.DiscardLeaderCard;
 import it.polimi.ingsw.GC_21.CLIENT.ChooseActionMessage;
-import it.polimi.ingsw.GC_21.CLIENT.PrivilegeMessage;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderCard;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class DiscardInput extends InputForm {
@@ -35,17 +33,12 @@ public class DiscardInput extends InputForm {
 			chooseActionMessage = new ChooseActionMessage(false, "You can't discard a leader card you already played",  remoteView.getPlayer());
 			
 		}
-		else if (!remoteView.getPlayer().getMyPersonalBoard().getLeaderCards().contains(leaderToDiscard)){
+		else{
 				DiscardLeaderCard discardLeaderCard = new DiscardLeaderCard(remoteView.getPlayer(), leaderToDiscard, remoteView.getGame());
 				discardLeaderCard.Execute();
 				chooseActionMessage = new ChooseActionMessage(true, "You just discarded your leader card!",  remoteView.getPlayer());
 			
 			}
-		
-		else{
-			chooseActionMessage = new ChooseActionMessage(false, "You already discarded this leader card!", remoteView.getPlayer());
-			
-		}
 		remoteView.getAdapter().sendObject(chooseActionMessage);
 		remoteView.inputObject();
 	}

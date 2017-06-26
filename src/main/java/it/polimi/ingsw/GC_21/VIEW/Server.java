@@ -2,21 +2,14 @@ package it.polimi.ingsw.GC_21.VIEW;
 
 
 import java.io.IOException;
-import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.io.Serializable;
 import java.net.*;
 import java.net.UnknownHostException;
-import java.util.*;
 import java.util.concurrent.*;
 
-import javax.print.attribute.standard.JobImpressions;
 
-import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClientInterface;
-import it.polimi.ingsw.GC_21.CONTROLLER.Controller;
 import it.polimi.ingsw.GC_21.CONTROLLER.ControllerManager;
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 
 import java.rmi.*;
 import java.rmi.registry.LocateRegistry;

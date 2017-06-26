@@ -1,7 +1,5 @@
 package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 
-import it.polimi.ingsw.GC_21.BOARD.CardPlace;
-import it.polimi.ingsw.GC_21.BOARD.DevCardPlace;
 
 public class DevelopmentCard extends Card {
 	

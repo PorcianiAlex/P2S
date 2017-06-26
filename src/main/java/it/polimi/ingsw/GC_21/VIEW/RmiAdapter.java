@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
-import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClientInterface;
-import it.polimi.ingsw.GC_21.CONTROLLER.ControllerForm;
 
 public class RmiAdapter implements AdapterConnection{
 

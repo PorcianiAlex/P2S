@@ -2,9 +2,6 @@ package it.polimi.ingsw.GC_21.CONTROLLER;
 
 import java.util.ArrayList;
 
-import java.util.PrimitiveIterator.OfDouble;
-
-import javax.swing.text.View;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.ACTION.PlacementAction;
@@ -13,8 +10,7 @@ import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforePlacement;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.UTILITIES.P2SObserver;
-import it.polimi.ingsw.GC_21.VIEW.ExcommInput;
-import it.polimi.ingsw.GC_21.VIEW.InputForm;
+
 import it.polimi.ingsw.GC_21.VIEW.RemoteView;
 
 public class Controller implements P2SObserver<Action>{

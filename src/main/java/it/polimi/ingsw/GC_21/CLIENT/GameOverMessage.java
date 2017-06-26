@@ -1,12 +1,10 @@
 package it.polimi.ingsw.GC_21.CLIENT;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.GameEndState;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.VIEW.InputForm;
 
 public class GameOverMessage extends MessageToClient{
 	private Board board;

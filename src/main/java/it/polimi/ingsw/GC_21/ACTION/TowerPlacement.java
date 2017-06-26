@@ -1,31 +1,23 @@
 package it.polimi.ingsw.GC_21.ACTION;
 
-import java.util.Scanner;
 
-import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Board;
-import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.BOARD.Floor;
 import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
 import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Tower;
-import it.polimi.ingsw.GC_21.EFFECT.DoTakeCardAction;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.EffectType;
 import it.polimi.ingsw.GC_21.EFFECT.Permanent;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Coins;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Ventures;
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
+
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
-import it.polimi.ingsw.GC_21.PLAYER.PersonalCardPlace;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class TowerPlacement extends PlacementAction {

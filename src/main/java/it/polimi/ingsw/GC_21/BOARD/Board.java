@@ -15,7 +15,6 @@ import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.ExcommHandler;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 
 

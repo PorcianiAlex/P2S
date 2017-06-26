@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_21.ACTION;
 
 import java.util.Scanner;
 
-import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.BOARD.CouncilPalace;

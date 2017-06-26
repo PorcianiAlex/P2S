@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_21.BOARD;
 
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;

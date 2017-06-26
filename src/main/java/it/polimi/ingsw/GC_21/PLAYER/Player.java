@@ -1,20 +1,13 @@
 package it.polimi.ingsw.GC_21.PLAYER;
 
 import java.io.Serializable;
-import java.util.*;
 
-import javax.swing.text.View;
-
-import org.omg.CORBA.PRIVATE_MEMBER;
 
 import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderCard;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderDeck;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.OncePerTurnLeaderCard;
+
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
-import it.polimi.ingsw.GC_21.VIEW.RemoteView;
 
 public class Player implements Serializable{
 

@@ -1,8 +1,6 @@
 package it.polimi.ingsw.GC_21.CLIENT;
 
 import sun.audio.*;
-import javax.swing.*;
-import java.awt.event.*;
 import java.io.*;
 
 public class Music {

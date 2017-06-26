@@ -1,9 +1,6 @@
 package it.polimi.ingsw.GC_21.CONTROLLER;
 
-import java.util.ArrayList;
-
 import it.polimi.ingsw.GC_21.CLIENT.CheckLobbyMessage;
-import it.polimi.ingsw.GC_21.CLIENT.CheckLoginMessage;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.VIEW.RemoteView;
 

@@ -3,21 +3,11 @@ package it.polimi.ingsw.GC_21.EFFECT;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.ACTION.*;
-import it.polimi.ingsw.GC_21.ACTION.CraftAction;
-import it.polimi.ingsw.GC_21.ACTION.PlacementAction;
-import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
-import it.polimi.ingsw.GC_21.BOARD.Board;
-import it.polimi.ingsw.GC_21.BOARD.CraftType;
-import it.polimi.ingsw.GC_21.BOARD.Floor;
-import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
-import it.polimi.ingsw.GC_21.BOARD.Tower;
 import it.polimi.ingsw.GC_21.CLIENT.TakeCardMessage;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
-import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.VIEW.TakeCardInput;
 
 public class DoTakeCardAction extends Effect {
 	private final int actionValueInfluencer;

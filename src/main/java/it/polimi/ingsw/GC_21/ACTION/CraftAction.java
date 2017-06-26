@@ -2,15 +2,11 @@ package it.polimi.ingsw.GC_21.ACTION;
 
 import java.util.ArrayList;
 
-import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
-import it.polimi.ingsw.GC_21.BOARD.CraftArea;
+
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
-import it.polimi.ingsw.GC_21.BOARD.MultipleActionSpace;
-import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
+
 import it.polimi.ingsw.GC_21.EFFECT.*;
-import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforePlacement;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
-import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
+
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class CraftAction extends Action{

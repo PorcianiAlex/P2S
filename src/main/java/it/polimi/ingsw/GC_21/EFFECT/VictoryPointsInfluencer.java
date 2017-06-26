@@ -1,7 +1,5 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
-import java.util.ArrayList;
-
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Item;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;

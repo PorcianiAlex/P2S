@@ -1,11 +1,9 @@
 package it.polimi.ingsw.GC_21.VIEW;
 
-import java.io.CharConversionException;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.CONTROLLER.ConvertController;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 
 public class ConvertInput extends InputForm {
 	private Possession toPay1;

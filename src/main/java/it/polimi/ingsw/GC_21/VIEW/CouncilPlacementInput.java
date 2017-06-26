@@ -1,9 +1,7 @@
 package it.polimi.ingsw.GC_21.VIEW;
 
-import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.ACTION.CouncilPlacement;
-import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 
 public class CouncilPlacementInput extends PlacementInput{
 	

@@ -1,29 +1,10 @@
 package it.polimi.ingsw.GC_21.VIEW;
 
 import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.Callable;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
-import javax.naming.TimeLimitExceededException;
-import javax.net.ssl.SSLException;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import it.polimi.ingsw.GC_21.ACTION.Action;
-import it.polimi.ingsw.GC_21.ACTION.Pass;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
+
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class ActionInput extends InputForm {

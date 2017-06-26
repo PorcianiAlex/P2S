@@ -1,14 +1,10 @@
 package it.polimi.ingsw.GC_21.VIEW;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Scanner;
 
-import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_21.CONTROLLER.ControllerManager;
 import it.polimi.ingsw.GC_21.CONTROLLER.LobbyController;
-import it.polimi.ingsw.GC_21.CONTROLLER.LoginController;
 
 public class LobbyInput extends InputForm{
 	private boolean created = false;

@@ -1,17 +1,14 @@
 package it.polimi.ingsw.GC_21.EFFECT;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
-import it.polimi.ingsw.GC_21.ACTION.CraftAction;
-import it.polimi.ingsw.GC_21.ACTION.CraftPlacement;
+
 import it.polimi.ingsw.GC_21.ACTION.PlacementAction;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.CLIENT.CraftMessage;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
-import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.VIEW.CraftInput;
-import it.polimi.ingsw.GC_21.VIEW.CraftPlacementInput;
+
 
 public class DoCraftAction extends Effect {
 	private CraftType craftType;

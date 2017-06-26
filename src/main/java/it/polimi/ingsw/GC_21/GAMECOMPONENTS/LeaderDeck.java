@@ -15,6 +15,8 @@ import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 
 public class LeaderDeck extends Deck {
 
+	
+	//DetailedRequirements.pdf didn't say to load leader cards by file, so we created them here... hope it doesn't really matter!
 	public LeaderDeck(Game game) {
 		super(game);
 		this.cards = new ArrayList<Card>();
@@ -25,7 +27,7 @@ public class LeaderDeck extends Deck {
 		forLudovicoIlMoro.add(FamilyMemberColor.White); 
 		forLudovicoIlMoro.add(FamilyMemberColor.Orange); 
 		OncePerTurnLeaderCard francescoSforza = new OncePerTurnLeaderCard("01", "Francesco Sforza", 5, 0, 0, 0, new Possession(), false, new DoCraftAction(game, new Possession(), CraftType.Harvest, 1, 0, 0));
-		PermanentLeaderCard filippoBrunelleschi = new PermanentLeaderCard("03", "Filippo Brunelleschi", 0, 0, 5, 0,new Possession(), false,  new DontSpend3Coins()); //da rivedere
+		PermanentLeaderCard filippoBrunelleschi = new PermanentLeaderCard("03", "Filippo Brunelleschi", 0, 0, 5, 0,new Possession(), false,  new DontSpend3Coins());
 		PermanentLeaderCard sigismondoMaletesta = new PermanentLeaderCard("14", "Sigismondo Maletesta", 0, 0, 0, 0, new Possession(0, 0, 0, 0, 3, 7, 0),false, new PlacementInfluencer(3, null, new Possession(), forSigismondoMaletesta));
 		OncePerTurnLeaderCard girolamoSavonarola = new OncePerTurnLeaderCard("05", "Girolamo Savonarola", 0, 0, 0, 0, new Possession(18,0,0,0,0,0,0), false, new Effect(new Possession(0, 0, 0, 0, 1, 0, 0), 0, game));
 		OncePerTurnLeaderCard michelangeloBuonarroti = new OncePerTurnLeaderCard("08", "Michelangelo Buonarroti", 0, 0, 0, 0, new Possession(0, 0, 10, 0, 0, 0, 0), false, new Effect(new Possession(3, 0, 0, 0, 0, 0, 0), 0, game));

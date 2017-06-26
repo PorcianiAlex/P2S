@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
 
-import it.polimi.ingsw.GC_21.EFFECT.Effect;
 
 public class ExcommunicationCard extends Card {
 

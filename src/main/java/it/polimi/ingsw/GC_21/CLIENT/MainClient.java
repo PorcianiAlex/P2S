@@ -7,13 +7,8 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.RMIClientSocketFactory;
 import java.util.Scanner;
 
-import org.junit.experimental.theories.Theories;
-import org.omg.CORBA.PUBLIC_MEMBER;
-
-import it.polimi.ingsw.GC_21.VIEW.Server;
 import it.polimi.ingsw.GC_21.VIEW.ServerInterface;
 import it.polimi.ingsw.GC_21.fx.ViewType;
 

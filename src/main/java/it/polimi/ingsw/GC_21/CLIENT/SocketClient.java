@@ -1,22 +1,18 @@
 package it.polimi.ingsw.GC_21.CLIENT;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
-import java.io.Serializable;
+
 import java.net.*;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
 import it.polimi.ingsw.GC_21.fx.ViewType;
 
 import java.util.*;
 
-import javax.swing.plaf.basic.BasicSplitPaneUI.KeyboardDownRightHandler;
 
 public class SocketClient implements Connections {
     protected String ip;

@@ -2,16 +2,12 @@ package it.polimi.ingsw.GC_21.EFFECT;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Scanner;
-
-import org.omg.CORBA.BooleanSeqHelper;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.CLIENT.PrivilegeMessage;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.*;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.VIEW.PrivilegeInput;
 
 public  class Effect implements Serializable{
 	protected Game game; 

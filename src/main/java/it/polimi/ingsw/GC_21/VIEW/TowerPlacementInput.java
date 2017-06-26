@@ -4,8 +4,7 @@ import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.ACTION.TowerPlacement;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
-import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
+
 
 public class TowerPlacementInput extends PlacementInput {
 	private DevCardType selectedTower; 

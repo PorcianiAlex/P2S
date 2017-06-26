@@ -292,7 +292,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 					case "Play Leader":
 				    	 inputForm = new LeaderInput(myPlayer,String.valueOf(j+1),true);
 						break;
-					default: inputForm = null; System.out.println("nome del bottone non coincide!");
+					default: System.out.println("nome del bottone non coincide!");
 						return;
 					}
 			    	try {

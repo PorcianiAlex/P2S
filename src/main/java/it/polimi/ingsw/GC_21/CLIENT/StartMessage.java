@@ -1,10 +1,7 @@
 package it.polimi.ingsw.GC_21.CLIENT;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Scanner;
 
-import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
 import it.polimi.ingsw.GC_21.VIEW.LoginInput;

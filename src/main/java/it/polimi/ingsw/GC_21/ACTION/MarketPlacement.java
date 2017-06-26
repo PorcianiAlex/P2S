@@ -2,13 +2,10 @@ package it.polimi.ingsw.GC_21.ACTION;
 
 import java.util.Scanner;
 
-import it.polimi.ingsw.GC_21.BOARD.ActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.BOARD.Color;
-import it.polimi.ingsw.GC_21.BOARD.MarketArea;
 import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
+
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.OncePerTurnLeaderCard;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.PermanentLeaderCard;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 

@@ -1,9 +1,6 @@
 package it.polimi.ingsw.GC_21.PLAYER;
 
 import it.polimi.ingsw.GC_21.BOARD.CardPlace;
-import it.polimi.ingsw.GC_21.BOARD.CraftType;
-import it.polimi.ingsw.GC_21.EFFECT.EffectType;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 

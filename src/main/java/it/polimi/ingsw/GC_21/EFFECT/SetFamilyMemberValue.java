@@ -5,7 +5,6 @@ import it.polimi.ingsw.GC_21.CLIENT.SetFamilyMemberMessage;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.VIEW.SetFamilyMemberInput;
 
 public class SetFamilyMemberValue extends Effect {
 	private int newFamilyMemberValue;

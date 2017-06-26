@@ -3,7 +3,6 @@ package it.polimi.ingsw.GC_21.VIEW;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.ACTION.MarketPlacement;
-import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 
 public class MarketPlacementInput extends PlacementInput {
 	private int AreaToPlace;

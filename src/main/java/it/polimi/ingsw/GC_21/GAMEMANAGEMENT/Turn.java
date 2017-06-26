@@ -2,14 +2,10 @@ package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.TreeMap;
 
-import javax.swing.text.View;
 
-import it.polimi.ingsw.GC_21.CLIENT.TurnMessage;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.VIEW.RemoteView;
+
 
 public class Turn implements Serializable{
 

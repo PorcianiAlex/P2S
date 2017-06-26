@@ -40,7 +40,7 @@ public InitGameInput() {
 	public void inputFromCli(Scanner keyboard) {
 		super.inputFromCli(keyboard);
 		String string = keyboard.next();
-		if (!string.equals("start")) {
+		if (!"start".equals(string)) {
 			System.out.println("Send Start please");
 			inputFromCli(keyboard);
 		}
