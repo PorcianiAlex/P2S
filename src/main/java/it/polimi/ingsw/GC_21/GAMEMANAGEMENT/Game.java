@@ -148,6 +148,9 @@ public class Game extends Observable implements Serializable{
 			currentAge = new Age(i, this);
 			currentAge.executeAge();
 		}
+		for (int i = 0; i < players.size(); i++) {
+			players.get(i).getMyPersonalBoard().finalEarning();
+		}
 		GameOverMessage gameOverMessage = new GameOverMessage(true, "And the winner is......... " + victoryPointsRanking.get(0).getName() + "!!!\n Congrats!", board, players, victoryPointsRanking);
 		this.notifyBroadcast(gameOverMessage);
 	}

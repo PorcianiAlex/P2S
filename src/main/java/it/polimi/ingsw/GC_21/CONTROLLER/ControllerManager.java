@@ -35,7 +35,7 @@ public class ControllerManager {
 	public ArrayList<Controller> getControllers() {
 		return controllers;
 	}
-	public Game createGame(Controller controller) {
+	public synchronized Game createGame(Controller controller) {
 		String host = controller.getRemoteView().getUsername();
 		Game game = new Game(host);
 		controllers.add(controller);
@@ -52,11 +52,11 @@ public class ControllerManager {
 	public ArrayList<Game> getGames() {
 		return games;
 	}
-	public void addGame(Game game) {
+	public synchronized void addGame(Game game) {
 		games.add(game);
 	}
 	
-	public boolean Login(String user, String psw, Boolean insert) throws FileNotFoundException, IOException, ParseException {
+	public synchronized boolean Login(String user, String psw, Boolean insert) throws FileNotFoundException, IOException, ParseException {
 		
 		Object obj = parser.parse(new FileReader("Users.json"));
 	    JSONObject users = (JSONObject) obj;

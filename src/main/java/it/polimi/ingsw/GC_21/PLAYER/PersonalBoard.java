@@ -7,7 +7,9 @@ import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.EffectType;
+import it.polimi.ingsw.GC_21.EFFECT.ToCallAfterFinalCount;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforeCraft;
+import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforeFinalCount;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforePlacement;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallDuringCraft;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallWhenEarning;
@@ -23,6 +25,8 @@ public class PersonalBoard implements Serializable{
 	private ArrayList<ToCallBeforeCraft> toCallBeforeCraftEffects;
 	private ArrayList<ToCallBeforePlacement> toCallBeforePlacementEffects;
 	private ArrayList<ToCallWhenEarning> toCallWhenEarningEffects;
+	private ArrayList<ToCallBeforeFinalCount> toCallBeforeFinalCountEffects;
+	private ArrayList<ToCallAfterFinalCount> toCallAfterFinalCountEffects;
 	private ArrayList<LeaderCard> leaderCards;
 	private ArrayList<OncePerTurnLeaderCard> playedOncePerTurnLeaderCards;
 
@@ -42,6 +46,8 @@ public class PersonalBoard implements Serializable{
 		this.toCallBeforeCraftEffects= new ArrayList<ToCallBeforeCraft>();
 		this.toCallBeforePlacementEffects = new ArrayList<ToCallBeforePlacement>();
 		this.toCallWhenEarningEffects = new ArrayList<ToCallWhenEarning>();
+		this.toCallAfterFinalCountEffects = new ArrayList<ToCallAfterFinalCount>();
+		this.toCallBeforeFinalCountEffects = new ArrayList<ToCallBeforeFinalCount>();
 		this.leaderCards = new ArrayList<LeaderCard>();
 		this.playedOncePerTurnLeaderCards = new ArrayList<OncePerTurnLeaderCard>();
 		this.pickLeaderCards(game.getLeaderDeck());
@@ -70,12 +76,81 @@ public class PersonalBoard implements Serializable{
 		else if (effect instanceof ToCallWhenEarning){
 			toCallWhenEarningEffects.add((ToCallWhenEarning) effect);
 		}
+		else if (effect instanceof ToCallBeforeFinalCount){
+			toCallBeforeFinalCountEffects.add((ToCallBeforeFinalCount) effect);
+		}
+		else if (effect instanceof ToCallAfterFinalCount){
+			toCallAfterFinalCountEffects.add((ToCallAfterFinalCount) effect);
+		}
 	}
+	
+	public void finalEarning(){
+		this.callBeforeFinalCountEffects();
+		earnByCharacters();
+		earnByVentures();
+		earnByTerritories();
+		earnByResources();
+		this.callAfterFinalCountEffects();
+	}
+	
 	
 	public void payPossession(Possession possession){
 		if (possession!= null){
 			myPossession.subtract(possession);
 		}
+	}
+	
+	public void earnByResources(){
+		int servantsNumber = player.getMyPersonalBoard().getMyPossession().getServants().getValue();
+		int coinsNumber = player.getMyPersonalBoard().getMyPossession().getCoins().getValue();
+		int woodsNumber = player.getMyPersonalBoard().getMyPossession().getWoods().getValue();
+		int stonesNumber = player.getMyPersonalBoard().getMyPossession().getStones().getValue();
+		int sumOfResources = servantsNumber + coinsNumber + woodsNumber + stonesNumber;
+		myPossession.addItemToPossession(new VictoryPoints(sumOfResources/5));
+	}
+	
+	public void earnByCharacters(){
+		int[] vPoints = new int[6];
+		vPoints[0] = 1;
+		vPoints[1] = 3;
+		vPoints[2] = 6;
+		vPoints[3] = 10;
+		vPoints[4] = 15;
+		vPoints[5] = 21;
+		int vPointsToTake = vPoints[getSpecificOwnedCards(DevCardType.Character).getOwnedCardsnumber()-1];
+		myPossession.addItemToPossession(new VictoryPoints(vPointsToTake));
+	}
+	
+	public void earnByTerritories(){
+		int[] vPoints = new int[4];
+		vPoints[0] = 1;
+		vPoints[1] = 4;
+		vPoints[2] = 10;
+		vPoints[3] = 20;
+		if (getSpecificOwnedCards(DevCardType.Territory).getOwnedCardsnumber() >= 3){
+			int finalVP = vPoints[getSpecificOwnedCards(DevCardType.Territory).getOwnedCardsnumber() - 3];
+			myPossession.addItemToPossession(new VictoryPoints(finalVP));
+		}
+	}
+	
+	public void callBeforeFinalCountEffects() {
+		for (int i = 0; i < toCallBeforeFinalCountEffects.size(); i++) {
+			((Effect) toCallBeforeFinalCountEffects.get(i)).activateEffect(player, null);
+		}
+	}
+	
+	public void callAfterFinalCountEffects() {
+		for (int i = 0; i < toCallAfterFinalCountEffects.size(); i++) {
+			((Effect) toCallAfterFinalCountEffects.get(i)).activateEffect(player, null);
+		}
+	}
+	
+	public void earnByVentures(){
+		int finalVP = 0;
+		for (int i = 0; i < getSpecificOwnedCards(DevCardType.Venture).getOwnedCardsnumber(); i++) {
+			finalVP = finalVP + ((Ventures) getSpecificOwnedCards(DevCardType.Venture).getOwnedCards()[i].getCard()).getFinalVictoryPoints().getValue();
+		}
+		myPossession.addItemToPossession(new VictoryPoints(finalVP));
 	}
 
 	public void activateCraft(CraftType craftType, int actionValue) {

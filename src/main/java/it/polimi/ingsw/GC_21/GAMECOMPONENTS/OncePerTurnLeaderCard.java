@@ -4,7 +4,7 @@ import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class OncePerTurnLeaderCard extends LeaderCard {
-
+	private boolean playedThisTurn;
 	private Effect immediateEffect;
 
 
@@ -15,6 +15,17 @@ public class OncePerTurnLeaderCard extends LeaderCard {
 		super(ID, name, numberOfVenturesRequired, numberOfCharactersRequired, numberOfBuildingRequired,
 				numberOfTerritoryRequired, requirements, played);
 		this.immediateEffect = immediateEffect;
+		this.playedThisTurn = false;
+	}
+
+
+	public boolean isPlayedThisTurn() {
+		return playedThisTurn;
+	}
+
+
+	public void setPlayedThisTurn(boolean playedThisTurn) {
+		this.playedThisTurn = playedThisTurn;
 	}
 
 

@@ -8,6 +8,7 @@ import javax.swing.text.View;
 import org.omg.CORBA.PRIVATE_MEMBER;
 
 import it.polimi.ingsw.GC_21.BOARD.Color;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderDeck;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.OncePerTurnLeaderCard;
@@ -32,7 +33,12 @@ public class Player implements Serializable{
 		this.game.addPlayers(this);
 		this.playerColor = playerColor;
 		this.myPersonalBoard = new PersonalBoard(this, game);
-		this.myPersonalBoard.getMyPossession().add(new Possession(5, 5, 5, 5, 5, 5, 5));
+		this.myPersonalBoard.getMyPossession().add(new Possession(50, 50, 50, 50, 50, 50, 50));
+		myPersonalBoard.getSpecificOwnedCards(DevCardType.Venture).setOwnedCardsnumber(6);
+		myPersonalBoard.getSpecificOwnedCards(DevCardType.Building).setOwnedCardsnumber(6);
+		myPersonalBoard.getSpecificOwnedCards(DevCardType.Territory).setOwnedCardsnumber(6);
+		myPersonalBoard.getSpecificOwnedCards(DevCardType.Character).setOwnedCardsnumber(6);
+
 		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), this);
 		this.checkOnMP = false;
 		this.overchargeOnBusyTower = false;

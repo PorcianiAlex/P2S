@@ -65,8 +65,9 @@ public class LeaderInput extends InputForm{//TODO to correct
 					remoteView.inputObject();
 					return;
 				}
-				if (leaderToPlay < playedOncePerTurnLeaderCards.size() && leaderToPlay!=-1){
+				if (leaderToPlay < playedOncePerTurnLeaderCards.size()+1 && leaderToPlay!=-1 && !player.getMyPersonalBoard().getPlayedOncePerTurnLeaderCards().get(leaderToPlay-1).isPlayedThisTurn()){
 					selectedLeaderCard = playedOncePerTurnLeaderCards.get(leaderToPlay-1);
+					player.getMyPersonalBoard().getPlayedOncePerTurnLeaderCards().get(leaderToPlay-1).setPlayedThisTurn(true);
 				}
 				else {
 					System.out.println("Invalid choice, try again!");
@@ -78,7 +79,6 @@ public class LeaderInput extends InputForm{//TODO to correct
 				selectedLeaderCard = null;
 			} 
 		}
-		
 		LeaderAction leaderTurn = new LeaderAction(remoteView.getPlayer(), selectedLeaderCard,  turningLeaderCard, remoteView.getGame());
 		remoteView.response(leaderTurn);
 		ChooseActionMessage chooseActionMessage = new ChooseActionMessage(true , "Action completed",  remoteView.getPlayer());
@@ -118,9 +118,16 @@ public class LeaderInput extends InputForm{//TODO to correct
 		}
 		else{
 			for (int i = 0; i < playedOncePerTurnLeaderCards.size(); i++) {
-				System.out.println("Insert " +"(" + i+1 + ") to play " + playedOncePerTurnLeaderCards.get(i).getName());
+				int toPrint = i+1;
+				System.out.println("Insert " +"(" + toPrint + ") to play " + playedOncePerTurnLeaderCards.get(i).getName());
 			}
 			leaderCard = keyboard.next();
+			if (playedOncePerTurnLeaderCards.get(Integer.parseInt(leaderCard)-1).isPlayedThisTurn()){
+				System.out.println("You already played this card in this turn!");
+				chooseLeaderToPlay(keyboard);
+				return;
+			}
+			playedOncePerTurnLeaderCards.get(Integer.parseInt(leaderCard)-1).setPlayed(true);
 		}
 	}
 
