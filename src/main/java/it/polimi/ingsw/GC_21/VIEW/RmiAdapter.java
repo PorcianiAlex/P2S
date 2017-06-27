@@ -29,7 +29,7 @@ public class RmiAdapter implements AdapterConnection{
 		try {
 			rmiClient.receiveObject(message);
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			return;
 		}		
 
 	}
@@ -38,9 +38,8 @@ public class RmiAdapter implements AdapterConnection{
 	public InputForm receiveObject() {
 		try {
 			return rmiClient.sendObjectToServer();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return null;
+		} catch (Exception e) {
+			return new PassInput();
 		}	
 		
 	}

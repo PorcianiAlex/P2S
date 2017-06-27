@@ -37,12 +37,11 @@ public InitGameInput() {
 	
 
 	@Override
-	public void inputFromCli(Scanner keyboard) {
-		super.inputFromCli(keyboard);
-		String string = keyboard.next();
-		if (!"start".equals(string)) {
+	public void inputFromCli() throws InterruptedException  {
+		String string = takeInput(this);
+		if (!string.equals("start")) {
 			System.out.println("Send Start please");
-			inputFromCli(keyboard);
+			inputFromCli();
 		}
 		else {
 			start = true;

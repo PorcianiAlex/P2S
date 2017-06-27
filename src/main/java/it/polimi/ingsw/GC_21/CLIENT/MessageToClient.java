@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.GameEndState;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.VIEW.LobbyInput;
+import it.polimi.ingsw.GC_21.VIEW.PassInput;
 import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public class MessageToClient implements Serializable{
@@ -13,6 +15,8 @@ public class MessageToClient implements Serializable{
 	protected String description;
 	protected GameEndState gameEndState = GameEndState.Going;
 	protected boolean waiting; //if the message needs an input from the client!
+	protected InputForm inputForm;
+	
 	public boolean isWaiting() {
 		return waiting;
 	}
@@ -35,9 +39,13 @@ public class MessageToClient implements Serializable{
 		this.description = description;
 	}
 	
-	public InputForm executeCLI(Scanner keyboard) {
+	public InputForm executeCLI(Object LOCK) throws InterruptedException  {
 		System.out.println(description);
-		return null;
+		synchronized (LOCK) {
+			LOCK.notifyAll();
+		}	
+		inputForm.inputFromCli();
+		return inputForm;
 	}
 	
 
@@ -69,4 +77,13 @@ public class MessageToClient implements Serializable{
 		
 	}
 
+	public InputForm getInputForm() {
+		return inputForm;
+	}
+
+	public void setInputForm(InputForm inputForm) {
+		this.inputForm = inputForm;
+	}
+
+	
 }

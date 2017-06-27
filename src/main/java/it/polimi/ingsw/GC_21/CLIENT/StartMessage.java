@@ -7,17 +7,24 @@ import it.polimi.ingsw.GC_21.VIEW.InputForm;
 import it.polimi.ingsw.GC_21.VIEW.LoginInput;
 
 public class StartMessage extends MessageToClient{
-	
+	MessageToClient callMessage;
 	
 	public StartMessage() {
 		super(true, false, "Start Game");
 	}
 
-	@Override
-	public InputForm executeCLI(Scanner keyboard) {
-			LoginInput loginInput = new LoginInput();
-			loginInput.inputFromCli(keyboard);
-			return loginInput;
+	public StartMessage(CheckLoginMessage checkLoginMessage) {
+		super(true, false, "Start Game");
+		this.callMessage = checkLoginMessage;
 	}
 
+	@Override
+	public InputForm executeCLI(Object lOCK) throws InterruptedException {
+		inputForm = new LoginInput();
+		if (callMessage != null) {
+			callMessage.setInputForm(inputForm);
+		}
+		return super.executeCLI(lOCK);
+	}
+	
 }

@@ -21,6 +21,11 @@ public class DiscardInput extends InputForm {
 		this.leaderCards = player.getMyPersonalBoard().getLeaderCards();
 	}
 
+	public DiscardInput(ActionInput actionInput, StringBuffer input, Player player) {
+		super(actionInput, input);
+		this.leaderCards = player.getMyPersonalBoard().getLeaderCards();
+	}
+
 	@Override
 	public void execute(RemoteView remoteView) {
 		super.execute(remoteView);
@@ -44,7 +49,7 @@ public class DiscardInput extends InputForm {
 	}
 	
 	@Override
-	public void inputFromCli(Scanner keyboard) {
+	public void inputFromCli() throws InterruptedException{
 		if (leaderCards.isEmpty()){
 			System.out.println("You don't have any leader card to discard!");
 		}
@@ -56,11 +61,12 @@ public class DiscardInput extends InputForm {
 			System.out.println("Insert " +"(" + toPrint + ") to discard " + leaderCards.get(i).getName());
 		}
 		try {
-			int choice = Integer.parseInt(keyboard.next());
+			String string = takeInput(actionInput);
+			int choice = Integer.parseInt(string);
 			leaderToDiscard = choice-1;
 		} catch (Exception e) {
 			System.out.println("Exception, try again!");
-			this.inputFromCli(keyboard);
+			this.inputFromCli();
 		}
 		}
 	}

@@ -51,10 +51,10 @@ public class LobbyInput extends InputForm{
 			remoteView.notifyController(checkLobbyMessage);
 	}
 	
-	public void chooseGame(Scanner keyboard) {
+	@Override
+	public void inputFromCli() throws InterruptedException {
 		try {
-			 String choice = keyboard.next(); 
-			 keyboard.reset();
+			String choice = takeInput(this);
 			   if(choice.equals("C")) {
 				   setCreated(true);
 			   } else {
@@ -62,9 +62,12 @@ public class LobbyInput extends InputForm{
 			   }
 		} catch (NumberFormatException e) {
 			System.out.println("Invalid input, choose C or a game number");
-			chooseGame(keyboard);
+			inputFromCli();
 		}
-			  
 	}
+	
+		
+			  
+	
 
 }

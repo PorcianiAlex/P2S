@@ -4,6 +4,8 @@ import java.awt.Button;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.List;
+import java.awt.ScrollPaneAdjustable;
+import java.awt.Scrollbar;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -18,6 +20,7 @@ import java.util.jar.Attributes.Name;
 
 import javax.sound.midi.Soundbank;
 import javax.swing.ButtonGroup;
+import javax.swing.Scrollable;
 import javax.xml.ws.handler.MessageContext;
 
 import com.sun.glass.ui.Window;
@@ -81,6 +84,9 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.AnchorPane;
+
+
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -107,7 +113,8 @@ public class FXMLGameController extends MetaController implements Initializable{
 	@FXML private Text servconverting, r1,r2,r3,r4,r5,r6,r7,r8, r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20,r21,r22,r23,r24,r25,r26,r27,r28;
 	@FXML private Tab pl1,pl2,pl3,pl4;
 	@FXML private javafx.scene.control.Button confirmbtn;
-	@FXML private ScrollPane SP;
+	@FXML private ToggleButton white, black, orange, neutral;
+	@FXML private AnchorPane anchorPane; 
 	
 	 @FXML protected void Tower(ActionEvent event) {
 			 

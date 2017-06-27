@@ -17,10 +17,9 @@ public class CraftMessage extends MessageToClient {
 		}
 	
 	@Override
-	public InputForm executeCLI(Scanner keyboard) {
-		CraftInput craftInput = new CraftInput(craftType, actionValue);
-		craftInput.inputFromCli(keyboard);
-		return craftInput;
+	public InputForm executeCLI(Object lOCK) throws InterruptedException {
+		inputForm = new CraftInput(craftType, actionValue);
+		return super.executeCLI(lOCK);
 	}
 
 }

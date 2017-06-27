@@ -45,9 +45,8 @@ public class MainClient {
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e2) {
-            System.out.println("errore");
+            System.out.println("IO excption");
         } catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	        

@@ -16,7 +16,6 @@ import java.util.*;
 
 public class SocketClient implements Connections {
     protected String ip;
-    protected Scanner keyboard;
     protected int port;
     protected ObjectInputStream oisClient;
     protected ObjectOutputStream oosClient;
@@ -79,10 +78,7 @@ public class SocketClient implements Connections {
 		
 	}
 
-	@Override
-	public Scanner getKeyboard() {
-		return null;
-	}
+	
 
 	public void setObjForGui(MessageToClient receivedMessage) {
 		synchronized (LOCKobj) {
@@ -100,13 +96,7 @@ public class SocketClient implements Connections {
 
 	
 
-	@Override
-	public void setKeyboard(Scanner keyboard) throws RemoteException {
-		this.keyboard = keyboard;
-	}
-
-
-
+	
 
 
 }

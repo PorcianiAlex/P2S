@@ -6,12 +6,18 @@ import it.polimi.ingsw.GC_21.CLIENT.ChooseActionMessage;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 
 public class PlacementInput extends ActionInput{
-	
+	protected ActionInput actionInput;
 	protected FamilyMemberColor familyMemberColor; 
 	protected int servantsToConvert;
 	
 
-	public PlacementInput() {		
+	public PlacementInput(ActionInput actionInput, StringBuffer input) {
+		this.actionInput = actionInput;
+		this.input = input;
+	}
+
+	public PlacementInput() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public void execute(RemoteView remoteView) {
@@ -30,32 +36,30 @@ public class PlacementInput extends ActionInput{
 	}
 	
 	@Override
-	public void inputFromCli(Scanner keyboard) {
-		familyMemberColor = this.chooseFamilyMember(keyboard); 
-	    servantsToConvert = this.chooseHowManyServants(keyboard); 
+	public void inputFromCli() throws InterruptedException {
+		familyMemberColor = this.chooseFamilyMember(actionInput); 
+	    servantsToConvert = this.chooseHowManyServants(actionInput); 
 	}
 	
 	
-	 public int chooseHowManyServants(Scanner keyboard){ 
+	 public int chooseHowManyServants(InputForm craftInput) throws InterruptedException{ 
 		    System.out.println("How many servants do you want to convert?:"); 
-		    String servstring = keyboard.next(); 
-		    keyboard.reset();
-		    int servantsToConvert = Integer.parseInt(servstring); 
+		    String servantString = takeInput(craftInput);
+		    int servantsToConvert = Integer.parseInt(servantString); 
 		    return servantsToConvert; 
 
 	 } 
 	 
-	 public FamilyMemberColor chooseFamilyMember(Scanner keyboard){ 
+	 public FamilyMemberColor chooseFamilyMember(InputForm setFamilyMemberInput) throws InterruptedException{ 
 		    System.out.println("Select Family Member [ N - O - W - B ]:"); 
-		    String choice = keyboard.next(); 
-		    keyboard.reset();
+		    String choice = takeInput(setFamilyMemberInput);
 		    switch (choice) { 
 		    case "N": return FamilyMemberColor.Neutral; 
 		    case "O": return FamilyMemberColor.Orange; 
 		    case "W": return FamilyMemberColor.White; 
 		    case "B": return FamilyMemberColor.Black; 
 		    default: System.out.println("Invalid Family Member choice, try again!"); 
-		      return this.chooseFamilyMember(keyboard); 
+		      return this.chooseFamilyMember(setFamilyMemberInput); 
 		    } 
 		  }
 

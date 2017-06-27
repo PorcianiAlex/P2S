@@ -6,7 +6,7 @@ import it.polimi.ingsw.GC_21.ACTION.TowerPlacement;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 
-public class TakeCardInput extends InputForm{
+public class TakeCardInput extends ActionInput{
 	private DevCardType devCardType;
 	private int actionValueInfluencer;
 	private Possession discount;
@@ -37,13 +37,13 @@ public class TakeCardInput extends InputForm{
 	}
 	
 	@Override
-	public void inputFromCli(Scanner keyboard) {
-		TowerPlacementInput towerPlacementInput = new TowerPlacementInput();
+	public void inputFromCli() throws InterruptedException {
+		TowerPlacementInput towerPlacementInput = new TowerPlacementInput(this, input);
 		if (devCardType == null) {//TODO set a jolly devCardType
-			devCardType = towerPlacementInput.selectTower(keyboard);
+			devCardType = towerPlacementInput.selectTower();
 		}
 		System.out.println("The kind of Card you can now take is " + this.devCardType.toString());
-		selectedFloor = towerPlacementInput.selectFloor(keyboard);		
+		selectedFloor = towerPlacementInput.selectFloor();		
 	}
 			
 

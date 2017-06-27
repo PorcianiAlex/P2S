@@ -31,6 +31,13 @@ public class LeaderInput extends InputForm{//TODO to correct
 		this.playedOncePerTurnLeaderCards = player.getMyPersonalBoard().getPlayedOncePerTurnLeaderCards();
 	}
 
+	public LeaderInput(ActionInput actionInput, StringBuffer input, Player player) {
+		super(actionInput, input);
+		this.player = player;
+		this.leaderCards = player.getMyPersonalBoard().getLeaderCards();
+		this.playedOncePerTurnLeaderCards = player.getMyPersonalBoard().getPlayedOncePerTurnLeaderCards();
+	}
+
 	@Override
 	public void execute(RemoteView remoteView) {
 		super.execute(remoteView);
@@ -88,8 +95,8 @@ public class LeaderInput extends InputForm{//TODO to correct
 		}
 	
 	@Override
-	public void inputFromCli(Scanner keyboard) {
-		super.inputFromCli(keyboard);
+	public void inputFromCli() throws InterruptedException {
+		super.inputFromCli();
 		if (leaderCards.isEmpty()){
 			System.out.println("You don't have any leader card!");
 		}
@@ -97,22 +104,21 @@ public class LeaderInput extends InputForm{//TODO to correct
 			System.out.println("Do you want to turn a Leader Card or to play one of your activated Leader Card? "
 		
 				+ "\n(1) Turn Leader Card \n(2) Play Leader Card");
-		String choice = keyboard.next();
-		keyboard.reset();
+			String choice = takeInput(actionInput);
 		switch (choice){
-		case "1":	chooseLeaderToTurn(keyboard);
+		case "1":	chooseLeaderToTurn();
 					turningLeaderCard = true;
 					break;
-		case "2": 	chooseLeaderToPlay(keyboard);
+		case "2": 	chooseLeaderToPlay();
 					turningLeaderCard = false;
 					break;
 		default: System.out.println("Oh grullo are you joking?? Turn or Play");
-					inputFromCli(keyboard);
+					inputFromCli();
 		}
 		}
 	}
 	
-	private void chooseLeaderToPlay(Scanner keyboard) {
+	private void chooseLeaderToPlay() throws InterruptedException {
 		if (playedOncePerTurnLeaderCards.isEmpty()){
 			leaderCard = "-1";
 		}
@@ -121,23 +127,23 @@ public class LeaderInput extends InputForm{//TODO to correct
 				int toPrint = i+1;
 				System.out.println("Insert " +"(" + toPrint + ") to play " + playedOncePerTurnLeaderCards.get(i).getName());
 			}
-			leaderCard = keyboard.next();
+			leaderCard = takeInput(actionInput);
 			if (playedOncePerTurnLeaderCards.get(Integer.parseInt(leaderCard)-1).isPlayedThisTurn()){
 				System.out.println("You already played this card in this turn!");
-				chooseLeaderToPlay(keyboard);
+				chooseLeaderToPlay();
 				return;
 			}
 			playedOncePerTurnLeaderCards.get(Integer.parseInt(leaderCard)-1).setPlayed(true);
 		}
 	}
 
-	public void chooseLeaderToTurn(Scanner keyboard){
+	public void chooseLeaderToTurn() throws InterruptedException{
 		System.out.println("Which leader card do you want to activate?");
 		for (int i = 0; i < leaderCards.size(); i++) {
 			int indexOfLeaderCards = i+1;
 			System.out.println("Insert " +"(" + indexOfLeaderCards + ") to turn " + leaderCards.get(i).getName());
 		}
-		leaderCard = keyboard.next();
+		leaderCard = takeInput(actionInput);
 	}
 
 	public Player getPlayer() {

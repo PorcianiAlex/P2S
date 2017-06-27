@@ -25,7 +25,6 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 	private Object LOCK4 = new Object(); // just something to lock on
 	private InputForm inputToSend;
 	private MessageToClient receivedMessage;
-	private Scanner keyboard;
 
 	
 	public RmiClient(ViewType view) throws RemoteException {
@@ -40,12 +39,13 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 	public  MessageToClient getReceivedMessage() throws IOException {
 		synchronized (LOCK) {
 		while (receivedMessage == null) {
-			try { LOCK.wait(); 
-			}
-	        catch (InterruptedException e) {
-	            // treat interrupt as exit request
-	            break;
-	        }
+			 try {
+				LOCK.wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} 
+		
+
 		}
 		}
 		MessageToClient message = receivedMessage;
@@ -124,14 +124,7 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 		}
 	}
 
-	@Override
-	public Scanner getKeyboard() {
-		return keyboard;
-	}
-
-	public void setKeyboard(Scanner keyboard) {
-		this.keyboard = keyboard;
-	}
+	
 
 	@Override
 	public void close() throws IOException {

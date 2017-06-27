@@ -18,11 +18,11 @@ public class SetFamilyMemberMessage extends MessageToClient{
 		this.newFamilyMemberValue = newFamilyMemberValue;
 		this.player = player;
 	}
-	
 	@Override
-	public InputForm executeCLI(Scanner keyboard) {
-		SetFamilyMemberInput setFamilyMemberInput = new SetFamilyMemberInput(newFamilyMemberValue, player);
-		setFamilyMemberInput.inputFromCli(keyboard);
-		return setFamilyMemberInput;
+	public InputForm executeCLI(Object lOCK) throws InterruptedException {
+		inputForm = new SetFamilyMemberInput(newFamilyMemberValue, player);
+		return super.executeCLI(lOCK);
 	}
+	
+	
 }

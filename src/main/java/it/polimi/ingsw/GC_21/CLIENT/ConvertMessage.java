@@ -25,11 +25,10 @@ public class ConvertMessage extends MessageToClient {
 	
 	
 	@Override
-	public InputForm executeCLI(Scanner keyboard) {
-		super.executeCLI(keyboard);
-		ConvertInput convertInput = new ConvertInput(toPay1, toTake1, toPay2, toTake2);
-		convertInput.chooseConversion(keyboard);
-		return convertInput;
+	public InputForm executeCLI(Object lOCK) throws InterruptedException {
+		inputForm = new ConvertInput(toPay1, toTake1, toPay2, toTake2);
+		return super.executeCLI(lOCK);
 	}
-
+	
+	
 }
