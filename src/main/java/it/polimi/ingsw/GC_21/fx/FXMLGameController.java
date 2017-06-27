@@ -70,6 +70,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.Toggle;
@@ -106,7 +107,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	@FXML private Text servconverting, r1,r2,r3,r4,r5,r6,r7,r8, r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20,r21,r22,r23,r24,r25,r26,r27,r28;
 	@FXML private Tab pl1,pl2,pl3,pl4;
 	@FXML private javafx.scene.control.Button confirmbtn;
-	@FXML private AnchorPane AP;
+	@FXML private ScrollPane SP;
 	
 	 @FXML protected void Tower(ActionEvent event) {
 			 
@@ -284,7 +285,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 			    	dialog.setContentText("Choose which one: ");
 			    	Optional<String> result = dialog.showAndWait();
 			    	int j;
-			    	if(result==null) {
+			    	if(result.get()==null) {
 			    		return;
 			    	}
 			    	for ( j= 0; j < myPlayer.getMyPersonalBoard().getLeaderCards().size(); j++) {

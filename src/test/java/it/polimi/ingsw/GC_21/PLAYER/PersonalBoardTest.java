@@ -22,12 +22,25 @@ import it.polimi.ingsw.GC_21.PLAYER.Player;
 public class PersonalBoardTest {
 	
 	@Test
+	public void testEarnByResources() {
+		Game game = new Game("Test");
+		Player testPlayer = new Player("aaa", Color.Blue, game);
+		testPlayer.getMyPersonalBoard().setMyPossession(new Possession(5, 5, 5, 5, 5, 5, 5));
+		testPlayer.getMyPersonalBoard().earnByResources();
+		int actual = testPlayer.getMyPersonalBoard().getMyPossession().getVictoryPoints().getValue();
+		int expected = 9;
+		System.out.println(actual);
+		assertTrue(expected == actual);
+	}
+	
+	@Test
 	public void testAddPermanent(){
 		Game game = new Game("Test");
 		Player testPlayer = new Player("aaa", Color.Blue, game);
 		PlacementInfluencer test = new PlacementInfluencer(1, DevCardType.Building, new Possession());
 		PlacementInfluencer test2 = new PlacementInfluencer(1, DevCardType.Building, new Possession());
 		CraftInfluencer test3 = new CraftInfluencer(CraftType.Harvest, 3, game);
+		testPlayer.getMyPersonalBoard().setMyPossession(new Possession(5, 5, 5, 5, 5, 5, 5));
 		testPlayer.getMyPersonalBoard().addPermanentEffect(test);
 		testPlayer.getMyPersonalBoard().addPermanentEffect(test2);
 		testPlayer.getMyPersonalBoard().addPermanentEffect(test3);
@@ -41,6 +54,7 @@ public class PersonalBoardTest {
 		Player testPlayer = new Player("aaa", Color.Blue, game);
 		PlacementInfluencer test = new PlacementInfluencer(1, DevCardType.Building, new Possession());
 		PlacementInfluencer test2 = new PlacementInfluencer(1, DevCardType.Building, new Possession());
+		testPlayer.getMyPersonalBoard().setMyPossession(new Possession(5, 5, 5, 5, 5, 5, 5));
 		testPlayer.getMyPersonalBoard().addPermanentEffect(test);
 		testPlayer.getMyPersonalBoard().addPermanentEffect(test2);
 		assertTrue(2==testPlayer.getMyPersonalBoard().getToCallBeforePlacementEffects().size());
@@ -58,6 +72,7 @@ public class PersonalBoardTest {
 		Possession toTake2 = new Possession(0, 0, 0, 0, 0, 0, 0);
 		testDevCard.setSecondaryEffect(new Convert(game, toPay1, toTake1, toPay2, toTake2, toTake2, 0));
 		Player testPlayer = new Player("ale", Color.Blue, game);
+		testPlayer.getMyPersonalBoard().setMyPossession(new Possession(5, 5, 5, 5, 5, 5, 5));
 		testPlayer.getMyPersonalBoard().addDevCard(testDevCard);
 		assertTrue(testPlayer.getMyPersonalBoard().getSpecificOwnedCards(DevCardType.Building).getMyOwnedCards()[0].getCard().getName().equals(testDevCard.getName()));
 	}
@@ -67,6 +82,7 @@ public class PersonalBoardTest {
 		Possession testPossession = new Possession(1,1,1,1,1,1,1);
 		Game game = new Game("Test");
 		Player testPlayer = new Player("ale", Color.Blue, game);
+		testPlayer.getMyPersonalBoard().setMyPossession(new Possession(5, 5, 5, 5, 5, 5, 5));
 		testPlayer.getMyPersonalBoard().payPossession(testPossession);
 		Possession actual = testPlayer.getMyPersonalBoard().getMyPossession();
 		Possession expected = new Possession(4, 4, 4, 4, 4, 4, 4);
@@ -78,6 +94,7 @@ public class PersonalBoardTest {
 	public void testActivateCraftProduction() {
 		Game game = new Game("Test");
 		Player testPlayer = new Player("ale", Color.Blue, game);
+		testPlayer.getMyPersonalBoard().setMyPossession(new Possession(5, 5, 5, 5, 5, 5, 5));
 		//FIRST CARD CONSTRUCTION
 		CraftCard testDevCard = new CraftCard("test1");
 		testDevCard.setDevCardType(DevCardType.Building);
@@ -106,6 +123,7 @@ public class PersonalBoardTest {
 	public void testActivateCraftHarvest() {
 		Game game = new Game("Test");
 		Player testPlayer = new Player("ale", Color.Blue, game);
+		testPlayer.getMyPersonalBoard().setMyPossession(new Possession(5, 5, 5, 5, 5, 5, 5));
 		//FIRST CARD CONSTRUCTION
 		CraftCard testDevCard = new CraftCard("test1");
 		testDevCard.setDevCardType(DevCardType.Territory);
@@ -134,6 +152,7 @@ public class PersonalBoardTest {
 	public void testActivateCraftForEachGetProductionCraftValue3() {
 		Game game = new Game("Test");
 		Player testPlayer = new Player("ale", Color.Blue, game);
+		testPlayer.getMyPersonalBoard().setMyPossession(new Possession(5, 5, 5, 5, 5, 5, 5));
 		//FIRST CARD CONSTRUCTION
 		CraftCard testDevCard = new CraftCard("test1");
 		testDevCard.setDevCardType(DevCardType.Building);
@@ -159,6 +178,7 @@ public class PersonalBoardTest {
 	public void testActivateCraftForEachGetProductionFails() {
 		Game game = new Game("Test");
 		Player testPlayer = new Player("ale", Color.Blue, game);
+		testPlayer.getMyPersonalBoard().setMyPossession(new Possession(5, 5, 5, 5, 5, 5, 5));
 		//FIRST CARD CONSTRUCTION
 		CraftCard testDevCard = new CraftCard("test1");
 		testDevCard.setDevCardType(DevCardType.Building);
@@ -183,6 +203,7 @@ public class PersonalBoardTest {
 	public void testActivateCraftForEachGetProduction() {
 		Game game = new Game("Test");
 		Player testPlayer = new Player("ale", Color.Blue, game);
+		testPlayer.getMyPersonalBoard().setMyPossession(new Possession(5, 5, 5, 5, 5, 5, 5));
 		//FIRST CARD CONSTRUCTION
 		CraftCard testDevCard = new CraftCard("test1");
 		testDevCard.setDevCardType(DevCardType.Building);
@@ -208,6 +229,7 @@ public class PersonalBoardTest {
 	public void testActivateCraftOnlyHarvest() {
 		Game game = new Game("Test");
 		Player testPlayer = new Player("ale", Color.Blue, game);
+		testPlayer.getMyPersonalBoard().setMyPossession(new Possession(5, 5, 5, 5, 5, 5, 5));
 		//FIRST CARD CONSTRUCTION
 		CraftCard testDevCard = new CraftCard("test1");
 		testDevCard.setDevCardType(DevCardType.Building);
