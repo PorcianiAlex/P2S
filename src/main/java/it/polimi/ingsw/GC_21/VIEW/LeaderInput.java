@@ -130,7 +130,7 @@ public class LeaderInput extends InputForm{//TODO to correct
 			leaderCard = takeInput(actionInput);
 			if (playedOncePerTurnLeaderCards.get(Integer.parseInt(leaderCard)-1).isPlayedThisTurn()){
 				System.out.println("You already played this card in this turn!");
-				chooseLeaderToPlay(keyboard);
+				chooseLeaderToPlay();
 				return;
 			}
 			playedOncePerTurnLeaderCards.get(Integer.parseInt(leaderCard)-1).setPlayed(true);
