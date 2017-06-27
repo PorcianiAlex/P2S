@@ -53,8 +53,8 @@ public class Server extends UnicastRemoteObject implements ServerInterface, Seri
            serverSocket = new ServerSocket(port);
            System.out.println("Server Socket ready...");
        
-           LocateRegistry.createRegistry(8000);
-           Registry reg = LocateRegistry.getRegistry(8000);
+           LocateRegistry.createRegistry(2020);
+           Registry reg = LocateRegistry.getRegistry(2020);
            reg.rebind("server", this);
            System.out.println("Server RMI up and running...");
        } catch (IOException e){

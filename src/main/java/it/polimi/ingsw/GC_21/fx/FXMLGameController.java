@@ -379,18 +379,21 @@ public class FXMLGameController extends MetaController implements Initializable{
 			}
 		}
 		//refresh craft area
-					
+				ToggleButton harvestbtn =  (ToggleButton) place.getToggles().get(19);
 				if(board.getHarvestArea().getSingleActionSpace().isBusy()) {
-					ToggleButton placebutton =  (ToggleButton) place.getToggles().get(18);
 					String color = board.getHarvestArea().getSingleActionSpace().getFamilyMemberLocated().getOwnerPlayer().getPlayerColor().toString();
 					String famcolor = board.getHarvestArea().getSingleActionSpace().getFamilyMemberLocated().getAssociatedDice().getdiceColor().toString();
-					placebutton.setStyle(" -fx-background-image: url('/familymembers/"+color+famcolor+".png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-opacity:1; -fx-background-color: transparent;");
+					harvestbtn.setStyle(" -fx-background-image: url('/familymembers/"+color+famcolor+".png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-opacity:1; -fx-background-color: transparent;");
+				}else {
+					harvestbtn.setStyle(" -fx-background-color: transparent; -fx-opacity:1;");
 				}
+				ToggleButton prodbtn =  (ToggleButton) place.getToggles().get(19);
 				if(board.getProductionArea().getSingleActionSpace().isBusy()) {
-					ToggleButton placebutton =  (ToggleButton) place.getToggles().get(19);
 					String color = board.getProductionArea().getSingleActionSpace().getFamilyMemberLocated().getOwnerPlayer().getPlayerColor().toString();
 					String famcolor = board.getProductionArea().getSingleActionSpace().getFamilyMemberLocated().getAssociatedDice().getdiceColor().toString();
-					placebutton.setStyle(" -fx-background-image: url('/familymembers/"+color+famcolor+".png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-opacity:1; -fx-background-color: transparent;");
+					prodbtn.setStyle(" -fx-background-image: url('/familymembers/"+color+famcolor+".png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-opacity:1; -fx-background-color: transparent;");
+				}else {
+					prodbtn.setStyle(" -fx-background-color: transparent; -fx-opacity:1;");
 				}
 				
 			

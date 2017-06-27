@@ -22,7 +22,8 @@ public class MetaController {
 	
 	public static void factorySocket() {
 	    try {
-				String ip = InetAddress.getLocalHost().getHostAddress();
+				//String ip = InetAddress.getLocalHost().getHostAddress();
+	    		String ip = "192.168.1.9";
 				SocketClient client1 = new SocketClient(ip, 6620, ViewType.GUI);
 				client = client1;
 			} catch (UnknownHostException e) {
@@ -35,7 +36,7 @@ public class MetaController {
 	     }
 	    
 	    public static void factoryRmi() throws RemoteException, NotBoundException {
-	    	Registry reg = LocateRegistry.getRegistry(8000);
+	    	Registry reg = LocateRegistry.getRegistry(2020);
 	        ServerInterface srv = (ServerInterface) reg.lookup("server");
 	    	RmiClient client2 = new RmiClient(ViewType.GUI);
 	        srv.join(client2);

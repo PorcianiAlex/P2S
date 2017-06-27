@@ -199,7 +199,7 @@
                       </fill>
                     </Circle>
                     <Text id="orangedice" fx:id="r4" fill="WHITE" font="$x8" layoutX="250.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="" />
-                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00cc52" height="26.6015625" layoutX="465.0" layoutY="436.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
+                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffd466" height="26.6015625" layoutX="465.0" layoutY="436.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
                     <Text fx:id="r5" fill="WHITE" font="$x2" layoutX="468.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#33b6ff" height="26.6015625" layoutX="465.0" layoutY="469.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
                     <Text fx:id="r6" fill="WHITE" font="$x2" layoutX="468.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
@@ -215,17 +215,12 @@
                   <children>
                     <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                       <image>
-                        <Image url="@punchboard_f_c_06.jpg" />
-                      </image>
-                    </ImageView>
-                    <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="410.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                        <Image url="@ventureboard.jpg" />
+                        <Image url="@personal1.png" />
                       </image>
                     </ImageView>
                     <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
                       <image>
-                        <Image url="@ventureboard.jpg" />
+                        <Image url="@personal2.png" />
                       </image>
                     </ImageView>
                     <ToggleButton layoutX="14.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
@@ -313,17 +308,12 @@
                   <children>
                     <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                       <image>
-                        <Image url="@punchboard_f_c_06.jpg" />
-                      </image>
-                    </ImageView>
-                    <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="410.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                        <Image url="@ventureboard.jpg" />
+                        <Image url="@personal1.png" />
                       </image>
                     </ImageView>
                     <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
                       <image>
-                        <Image url="@ventureboard.jpg" />
+                        <Image url="@personal2.png" />
                       </image>
                     </ImageView>
                     <ToggleButton layoutX="14.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
@@ -399,17 +389,12 @@
                   <children>
                     <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                       <image>
-                        <Image url="@punchboard_f_c_06.jpg" />
-                      </image>
-                    </ImageView>
-                    <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="410.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                        <Image url="@ventureboard.jpg" />
+                        <Image url="@personal1.png" />
                       </image>
                     </ImageView>
                     <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
                       <image>
-                        <Image url="@ventureboard.jpg" />
+                        <Image url="@personal2.png" />
                       </image>
                     </ImageView>
                     <ToggleButton layoutX="14.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">

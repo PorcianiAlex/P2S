@@ -27,10 +27,7 @@ public class Player implements Serializable{
 		this.playerColor = playerColor;
 		this.myPersonalBoard = new PersonalBoard(this, game);
 		this.myPersonalBoard.getMyPossession().add(new Possession(50, 50, 50, 50, 50, 50, 50));
-		myPersonalBoard.getSpecificOwnedCards(DevCardType.Venture).setOwnedCardsnumber(6);
-		myPersonalBoard.getSpecificOwnedCards(DevCardType.Building).setOwnedCardsnumber(6);
-		myPersonalBoard.getSpecificOwnedCards(DevCardType.Territory).setOwnedCardsnumber(6);
-		myPersonalBoard.getSpecificOwnedCards(DevCardType.Character).setOwnedCardsnumber(6);
+		
 
 		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), this);
 		this.checkOnMP = false;
