@@ -5,6 +5,7 @@ package it.polimi.ingsw.GC_21.BOARD;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -14,6 +15,7 @@ import org.json.simple.parser.ParseException;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ExcommunicationCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 
@@ -26,6 +28,7 @@ public class Board implements Serializable{
 	private CouncilPalace councilPalace;
 	private CraftArea productionArea;
 	private CraftArea harvestArea;
+	private ExcommunicationCard[] excommunicationCards;
 	
 	public Board(Game game) throws IOException, ParseException {
 		this.dices = Dice.factoryDices();
@@ -239,7 +242,17 @@ public class Board implements Serializable{
 	}
 
 
+	public ExcommunicationCard[] getExcommunicationCards() {
+		return excommunicationCards;
+	}
 
+
+	public void setExcommunicationCards(ExcommunicationCard[] excommunicationCards) {
+		this.excommunicationCards = excommunicationCards;
+	}
+
+
+	
 
 	
 }

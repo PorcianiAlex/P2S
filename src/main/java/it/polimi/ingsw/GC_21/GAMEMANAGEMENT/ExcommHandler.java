@@ -29,6 +29,7 @@ public class ExcommHandler implements Serializable{
 		excommThresholds[1]=4;
 		excommThresholds[2]=5;
 		this.game=game;
+		game.getBoard().setExcommunicationCards(excommunicationCards);
 	}
 	
 	public ExcommunicationCard[] getExcommunicationCards() {

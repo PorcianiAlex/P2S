@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="850.0" prefWidth="1363.0" style=" -fx-background-image: url('/gamebg.jpg'); -fx-background-size:cover;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.ingsw.GC_21.fx.FXMLGameController">
+<AnchorPane fx:id="AP" prefHeight="850.0" prefWidth="1363.0" style=" -fx-background-image: url('/gamebg.jpg'); -fx-background-size:cover;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.ingsw.GC_21.fx.FXMLGameController">
   <children>
     <Pane fx:id="Pane1" layoutX="6.0" layoutY="12.0" prefHeight="841.0" prefWidth="601.0">
       <children>
@@ -75,6 +75,13 @@
         <ToggleButton layoutX="372.0" layoutY="256.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
         <ToggleButton layoutX="372.0" layoutY="160.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
         <ToggleButton layoutX="369.0" layoutY="63.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
+        <ToggleButton layoutX="129.0" layoutY="496.0" minWidth="37.0" mnemonicParsing="false" onAction="#Card" prefHeight="61.921875" prefWidth="37.0" text="">
+          <toggleGroup>
+            <ToggleGroup fx:id="excomm" />
+          </toggleGroup>
+        </ToggleButton>
+        <ToggleButton layoutX="169.0" layoutY="496.0" minWidth="37.0" mnemonicParsing="false" onAction="#Card" prefHeight="61.921875" prefWidth="37.0" text="" toggleGroup="$excomm" />
+        <ToggleButton layoutX="209.0" layoutY="496.0" minWidth="37.0" mnemonicParsing="false" onAction="#Card" prefHeight="61.921875" prefWidth="37.0" text="" toggleGroup="$excomm" />
       </children>
     </Pane>
     <Pane layoutX="600.0" layoutY="12.0" prefHeight="816.6788330078125" prefWidth="567.0" style="">

@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_21.fx;
 
 import java.awt.Button;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.List;
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +32,7 @@ import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.CLIENT.Music;
 import it.polimi.ingsw.GC_21.CLIENT.TurnMessage;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ExcommunicationCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.OncePerTurnLeaderCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
@@ -54,6 +57,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.chart.ValueAxis;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ToggleButton;
@@ -69,6 +73,7 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.Toggle;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -96,11 +101,12 @@ public class FXMLGameController extends MetaController implements Initializable{
     private ArrayList<Tab> playerNames = new ArrayList<Tab>();
 
 	//riferimento ad array di carte, dadi, risorse e player
-	@FXML private ToggleGroup cards, place, family, myterritory, mybuilding, myventure, myleader, mycharacheter, x3,x4,x5,x6,x7,x12,x14,x15,x16,x13,x20,x23,x21,x22,x24;
+	@FXML private ToggleGroup cards, place, excomm, family, myterritory, mybuilding, myventure, myleader, mycharacheter, x3,x4,x5,x6,x7,x12,x14,x15,x16,x13,x20,x23,x21,x22,x24;
 	@FXML private Text whitedice, blackdice, orangedice, state;
 	@FXML private Text servconverting, r1,r2,r3,r4,r5,r6,r7,r8, r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20,r21,r22,r23,r24,r25,r26,r27,r28;
 	@FXML private Tab pl1,pl2,pl3,pl4;
 	@FXML private javafx.scene.control.Button confirmbtn;
+	@FXML private AnchorPane AP;
 	
 	 @FXML protected void Tower(ActionEvent event) {
 			 
@@ -278,8 +284,12 @@ public class FXMLGameController extends MetaController implements Initializable{
 			    	dialog.setContentText("Choose which one: ");
 			    	Optional<String> result = dialog.showAndWait();
 			    	int j;
+			    	if(result==null) {
+			    		return;
+			    	}
 			    	for ( j= 0; j < myPlayer.getMyPersonalBoard().getLeaderCards().size(); j++) {
-						if(result.get().equals(myPlayer.getMyPersonalBoard().getLeaderCards().get(j).getName())) {break;}
+						if(result.get().equals(myPlayer.getMyPersonalBoard().getLeaderCards().get(j).getName())) 
+						{break;}
 					}
 			    	InputForm inputForm;
 			    	switch (button.getText()) {
@@ -326,7 +336,14 @@ public class FXMLGameController extends MetaController implements Initializable{
 		blackdice.setText(String.valueOf(board.getDices()[0].getValue()));
 		whitedice.setText(String.valueOf(board.getDices()[1].getValue()));	
 		orangedice.setText(String.valueOf(board.getDices()[2].getValue()));
-		//carte
+		//excomcards
+		for (int i = 0; i < 3; i++) {
+			String exid = board.getExcommunicationCards()[i].getID();
+			ToggleButton toggleExcomm =  (ToggleButton) excomm.getToggles().get(i);
+			toggleExcomm.setStyle
+			("-fx-background-image: url('/components/excomm_"+exid+".png');  -fx-background-size: 40px; -fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-opacity: 1;");
+		}
+		//towers
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
 				ToggleButton toggleButton =  (ToggleButton) cards.getToggles().get(j+4*i);
@@ -347,10 +364,37 @@ public class FXMLGameController extends MetaController implements Initializable{
 					} else {
 					placebutton.setStyle(" -fx-background-color: transparent; -fx-opacity:1;");
 					}
-				}
-			
-			
+				}			
 		}
+		
+		//refresh market
+		for (int i = 0; i < 4; i++) {
+			ToggleButton placebutton =  (ToggleButton) place.getToggles().get(20+i);
+			if(board.getMarketArea().getSingleActionSpace()[i].isBusy()) {
+			String color = board.getMarketArea().getSingleActionSpace()[i].getFamilyMemberLocated().getOwnerPlayer().getPlayerColor().toString();
+			String famcolor = board.getMarketArea().getSingleActionSpace()[i].getFamilyMemberLocated().getAssociatedDice().getdiceColor().toString();
+			placebutton.setStyle(" -fx-background-image: url('/familymembers/"+color+famcolor+".png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-opacity:1; -fx-background-color: transparent;");
+			} else {
+				placebutton.setStyle(" -fx-background-color: transparent; -fx-opacity:1;");
+			}
+		}
+		//refresh craft area
+					
+				if(board.getHarvestArea().getSingleActionSpace().isBusy()) {
+					ToggleButton placebutton =  (ToggleButton) place.getToggles().get(18);
+					String color = board.getHarvestArea().getSingleActionSpace().getFamilyMemberLocated().getOwnerPlayer().getPlayerColor().toString();
+					String famcolor = board.getHarvestArea().getSingleActionSpace().getFamilyMemberLocated().getAssociatedDice().getdiceColor().toString();
+					placebutton.setStyle(" -fx-background-image: url('/familymembers/"+color+famcolor+".png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-opacity:1; -fx-background-color: transparent;");
+				}
+				if(board.getProductionArea().getSingleActionSpace().isBusy()) {
+					ToggleButton placebutton =  (ToggleButton) place.getToggles().get(19);
+					String color = board.getProductionArea().getSingleActionSpace().getFamilyMemberLocated().getOwnerPlayer().getPlayerColor().toString();
+					String famcolor = board.getProductionArea().getSingleActionSpace().getFamilyMemberLocated().getAssociatedDice().getdiceColor().toString();
+					placebutton.setStyle(" -fx-background-image: url('/familymembers/"+color+famcolor+".png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-opacity:1; -fx-background-color: transparent;");
+				}
+				
+			
+				
 		
 		for (int i = 0; i < players.size(); i++) {
 			String name = players.get(i).getName();
@@ -362,10 +406,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 			    }
 			   });
 		}
-		
-		
-		
-		
+				
 		//personalboards refresh
 		
 		for (int i = 0; i < players.size(); i++) {
@@ -472,6 +513,11 @@ public class FXMLGameController extends MetaController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("default initialize!");
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+		int width = gd.getDisplayMode().getWidth();
+        int height = gd.getDisplayMode().getHeight();
+        AP.setMaxHeight(height);
+        AP.setMaxWidth(width);
 		Music.start();
 		messThread = new MessThread(client, this);
         messThread.start();
