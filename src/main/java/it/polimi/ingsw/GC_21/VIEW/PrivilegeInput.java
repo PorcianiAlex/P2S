@@ -32,11 +32,10 @@ public class PrivilegeInput extends InputForm {
 		}
 	
 	@Override
-	public void inputFromCli(Scanner keyboard) {
+	public void inputFromCli() throws InterruptedException {
 		System.out.println("\nChoose your reward! Type: \n (1) 1x Woods 1 x Stones \n (2) 2x Servants"
 				+ " \n (3) 2x Coins \n (4) 2x Military Points \n (5) 1x Faith Points");
-			this.choice = keyboard.next();
-			keyboard.reset();
+			this.choice = takeInput(this);
 		}
 
 	public String getChoice() {

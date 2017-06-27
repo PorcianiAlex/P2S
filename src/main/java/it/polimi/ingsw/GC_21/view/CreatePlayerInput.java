@@ -28,6 +28,7 @@ public class CreatePlayerInput extends InputForm {
 		if (checkColor(remoteView.getGame())) {
 			Player player = new Player(remoteView.getUsername(), color, remoteView.getGame());
 			remoteView.setPlayer(player);
+			remoteView.getGame().attachPlayer(player, remoteView);
 			 if (remoteView.getUsername().equals(remoteView.getGame().getHost())) {//if the remote vie is the host
 				 checkColorMessage = new CheckColorMessage(true, "Write 'start' when you want to start the game! \nYou must be 2 at least", true);
 				 remoteView.getAdapter().sendObject(checkColorMessage);
@@ -47,10 +48,9 @@ public class CreatePlayerInput extends InputForm {
 	}
 
 	@Override
-	public void inputFromCli(Scanner keyboard) {
+	public void inputFromCli() throws InterruptedException {
 			System.out.println("Choose your color: \n 1: BLUE \n 2: RED \n 3: YELLOW \n 4: GREEN");
-			String choice = keyboard.next();
-			keyboard.reset();
+			String choice = takeInput(this);
 			switch (choice) {
 			case "1":
 				color = Color.Blue;
@@ -66,7 +66,7 @@ public class CreatePlayerInput extends InputForm {
 				break;
 			default:
 				System.out.println("Invalid color input, try again!");
-				inputFromCli(keyboard);
+				inputFromCli();
 				break;
 			}
 		}

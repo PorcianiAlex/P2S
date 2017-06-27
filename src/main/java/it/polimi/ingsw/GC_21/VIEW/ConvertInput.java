@@ -29,9 +29,10 @@ public class ConvertInput extends InputForm {
 		ConvertController conversionMessage = new ConvertController(toPayChosen, toTakeChosen);
 		remoteView.notifyController(conversionMessage);
 	}
-
-	public void chooseConversion(Scanner keyboard){
-		String choice = keyboard.next();
+	
+	@Override
+	public void inputFromCli() throws InterruptedException{
+		String choice = takeInput(this);
 		switch (choice) {
 		case "1":
 			toPayChosen = toPay1;
@@ -42,7 +43,7 @@ public class ConvertInput extends InputForm {
 			toTakeChosen = toTake1;
 			break;
 		default: System.out.println("Invalid choice! Try again!");
-			 chooseConversion(keyboard);
+			 inputFromCli();
 		}
 	}
 	

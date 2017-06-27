@@ -41,7 +41,10 @@ public abstract class Observable<C> {
 	public void detach(P2SObserver<C> o) {
 		this.observers.remove(o);
 	}
-
+	
+	public void attachPlayer(Player player, P2SObserver<C> key){
+		playerObserver.put(key, player);
+	}
 	
 	public void notifyCurrent(MessageToClient message){
 		currentObserver.updateCurrent(message);

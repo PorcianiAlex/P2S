@@ -50,8 +50,8 @@ public class TurnMessage extends MessageToClient{
 	
 
 	@Override
-	public InputForm executeCLI(Scanner keyboard) {
-		super.executeCLI(keyboard);
+	public InputForm executeCLI(Object LOCK) throws InterruptedException {
+		System.out.println(description);;
 		for (int i = 0; i < players.size(); i++) {
 			System.out.println(players.get(i).getMyPersonalBoard().toString() + " \n" );
 		}

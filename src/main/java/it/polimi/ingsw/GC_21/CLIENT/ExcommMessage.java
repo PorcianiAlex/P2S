@@ -12,15 +12,13 @@ public class ExcommMessage extends MessageToClient {
 		super(true, true, "Bergoglio wants to know if you have been a great guy recently! \n"
 				+ "Be careful: if you disappoint him, you will get a permanent malus!!!");
 	}
-	
 	@Override
-	public InputForm executeCLI(Scanner keyboard) {
-		System.out.println(description);
-		ExcommInput excommInput = new ExcommInput();
-		excommInput.inputFromCli(keyboard);
-		return excommInput;
-
+	public InputForm executeCLI(Object lOCK) throws InterruptedException {
+		inputForm = new ExcommInput();
+		return super.executeCLI(lOCK);
 	}
+	
+	
 	
 	public void executeGUI(FXMLGameController gameController) {		
 		gameController.excomm(description);

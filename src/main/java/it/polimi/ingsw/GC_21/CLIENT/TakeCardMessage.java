@@ -23,11 +23,11 @@ public class TakeCardMessage extends MessageToClient{
 		this.discount = discount;
 	}
 	
+	
 	@Override
-	public InputForm executeCLI(Scanner keyboard) {
-		TakeCardInput takeCardInput = new TakeCardInput(devCardType, actionValueInfluencer, discount);
-		takeCardInput.inputFromCli(keyboard);
-		return takeCardInput;
+	public InputForm executeCLI(Object lOCK) throws InterruptedException {
+		 inputForm = new TakeCardInput(devCardType, actionValueInfluencer, discount);
+		return super.executeCLI(lOCK);
 	}
 	
 	@Override

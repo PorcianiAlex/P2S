@@ -49,8 +49,7 @@ public class ExcommInput extends InputForm {
 
 
 @Override
-public void inputFromCli(Scanner keyboard) {
-		System.out.println("Do you want to be excommunicated?\n(Y) - (N)");
-	 choice = keyboard.next();
-	}
+public void inputFromCli() throws InterruptedException {
+	choice = takeInput(this);
+}
 }

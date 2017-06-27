@@ -492,6 +492,7 @@
           </font>
         </Button>
       </children>
-    </Pane>
+     </Pane>
   </children>
-</AnchorPane>
+</ScrollPane>
+

@@ -12,20 +12,21 @@ public class CheckColorMessage extends MessageToClient {
 		super(result, false, description);
 		this.host = host;
 	}
+	
 	@Override
-	public InputForm executeCLI(Scanner keyboard) {
-		super.executeCLI(keyboard);
+	public InputForm executeCLI(Object LOCK) throws InterruptedException {
 		if (result) {
-			if (host) {
-				InitGameInput initGameInput = new InitGameInput();
-				initGameInput.inputFromCli(keyboard);
-				return initGameInput;
+			if (host) {	
+				inputForm = new InitGameInput();
+				return super.executeCLI(LOCK);
 			}
+			System.out.println(description);
 			return null;
 		}
 		else {
-			CheckLobbyMessage retryLobbyMessage = new CheckLobbyMessage(true, "Retry");
-			return retryLobbyMessage.executeCLI(keyboard);
+			System.out.println(description);
+			CheckLobbyMessage retryLobbyMessage = new CheckLobbyMessage(this, true, "Retry");
+			return retryLobbyMessage.executeCLI(LOCK);
 		}
 	}
 	public boolean isHost() {

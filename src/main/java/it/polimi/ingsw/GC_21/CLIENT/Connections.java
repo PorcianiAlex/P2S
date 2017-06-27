@@ -9,9 +9,7 @@ import it.polimi.ingsw.GC_21.VIEW.InputForm;
 
 public interface Connections extends Remote{
 public MessageToClient getReceivedMessage() throws ClassNotFoundException, RemoteException, IOException;
-public Scanner getKeyboard()throws RemoteException;
 public void sendInput(InputForm inputForm) throws IOException, RemoteException;
-public void setKeyboard(Scanner keyboard)throws RemoteException;
 public void close() throws IOException;
  
 }

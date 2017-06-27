@@ -3,26 +3,40 @@ package it.polimi.ingsw.GC_21.CLIENT;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.VIEW.CreatePlayerInput;
+import it.polimi.ingsw.GC_21.VIEW.InitGameInput;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
 
 public class CheckLobbyMessage extends MessageToClient{
 
+	private MessageToClient callMessage;
+
+
 	public CheckLobbyMessage(boolean result, String description) {
 		super(result, false, description);
+		if (result) {
+		}
 	}
 	
 	
+	public CheckLobbyMessage(CheckColorMessage checkColorMessage, boolean b, String string) {
+		super(b, string);
+		this.callMessage = checkColorMessage;
+	}
+
+
 	@Override
-	public InputForm executeCLI(Scanner keyboard) {
-		super.executeCLI(keyboard);
+	public InputForm executeCLI(Object LOCK) throws InterruptedException {
 		if (result) {
-			CreatePlayerInput createPlayerInput = new CreatePlayerInput();
-			createPlayerInput.inputFromCli(keyboard);
-			return createPlayerInput;	
+			inputForm = new CreatePlayerInput();
+			if (callMessage != null) {
+				callMessage.setInputForm(inputForm);
+			}
+			return super.executeCLI(LOCK);	
 		}
 		else {
-			CheckLoginMessage checkLoginMessage = new CheckLoginMessage("Retry!");
-			return checkLoginMessage.executeCLI(keyboard);
+			System.out.println(description);
+			CheckLoginMessage checkLoginMessage = new CheckLoginMessage("Retry!", this);
+			return checkLoginMessage.executeCLI(LOCK);
 		}
 	}
 

@@ -30,11 +30,9 @@ public class PrivilegeMessage extends MessageToClient{
 
 	
 	@Override
-	public InputForm executeCLI(Scanner keyboard) {
-		super.executeCLI(keyboard);
-		PrivilegeInput privilegeInput = new PrivilegeInput(rewards, privilegesNumber, earnedRewards);
-		privilegeInput.inputFromCli(keyboard);
-		return privilegeInput;	
+	public InputForm executeCLI(Object lOCK) throws InterruptedException {
+		inputForm = new PrivilegeInput(rewards, privilegesNumber, earnedRewards);
+		return super.executeCLI(lOCK);
 	}
 	
 	@Override

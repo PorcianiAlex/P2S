@@ -23,9 +23,9 @@ public class CraftInput extends InputForm {
 		}
 	
 	@Override
-	public void inputFromCli(Scanner keyboard) {
+	public void inputFromCli() throws InterruptedException {
 		PlacementInput placementInput = new PlacementInput();
-		placementInput.chooseHowManyServants(keyboard);
+		placementInput.chooseHowManyServants(this);
 		servantsToConvert = placementInput.getServantsToConvert();
 	}
 

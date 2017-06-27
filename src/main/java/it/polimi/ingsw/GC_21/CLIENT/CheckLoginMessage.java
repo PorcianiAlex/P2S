@@ -3,11 +3,13 @@ package it.polimi.ingsw.GC_21.CLIENT;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import it.polimi.ingsw.GC_21.VIEW.CreatePlayerInput;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
 import it.polimi.ingsw.GC_21.VIEW.LobbyInput;
 
 public class CheckLoginMessage extends MessageToClient {
 	private ArrayList<String> games;
+	private CheckLobbyMessage callMessage;
 
 	public CheckLoginMessage(boolean result, String string, ArrayList<String> games) {
 		super(result, false, string);
@@ -18,17 +20,24 @@ public class CheckLoginMessage extends MessageToClient {
 		super(true, false, string);	
 		}
 
+	public CheckLoginMessage(String string, CheckLobbyMessage checkLobbyMessage) {
+		super(true, false, string);
+		this.callMessage = checkLobbyMessage;
+	}
+
 	@Override
-	public InputForm executeCLI(Scanner keyboard) {
-		super.executeCLI(keyboard);
+	public InputForm executeCLI(Object LOCK) throws InterruptedException {
 		if (result) {
-			LobbyInput lobbyInput = new LobbyInput();
-			lobbyInput.chooseGame(keyboard);
-			return lobbyInput;
+			inputForm = new LobbyInput();
+			if (callMessage != null) {
+				callMessage.setInputForm(inputForm);
+			}
+			return super.executeCLI(LOCK);
 		}
 		else {
-			StartMessage retryStartMessage = new StartMessage();
-			return retryStartMessage.executeCLI(keyboard);
+			System.out.println(description);
+			StartMessage retryStartMessage = new StartMessage(this);
+			return retryStartMessage.executeCLI(LOCK);
 		}
 	}
 	
