@@ -516,11 +516,6 @@ public class FXMLGameController extends MetaController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("default initialize!");
-        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-		int width = gd.getDisplayMode().getWidth();
-        int height = gd.getDisplayMode().getHeight();
-        AP.setMaxHeight(height);
-        AP.setMaxWidth(width);
 		Music.start();
 		messThread = new MessThread(client, this);
         messThread.start();

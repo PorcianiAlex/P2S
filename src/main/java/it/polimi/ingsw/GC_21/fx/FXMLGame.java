@@ -15,10 +15,7 @@ public class FXMLGame extends Application {
 	      
 	    	Parent root = FXMLLoader.load(getClass().getResource("fxml_Game.fxml"));
 	        stage.setTitle("Lorenzo il Magnifico");
-	        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-	        int width = gd.getDisplayMode().getWidth();
-	        int height = gd.getDisplayMode().getHeight();
-	        stage.setScene(new Scene(root, width, height));
+	        stage.setScene(new Scene(root,java.awt.Toolkit.getDefaultToolkit().getScreenSize().width, java.awt.Toolkit.getDefaultToolkit().getScreenSize().height));
 	        stage.centerOnScreen();
 	        stage.show();
 	    }
