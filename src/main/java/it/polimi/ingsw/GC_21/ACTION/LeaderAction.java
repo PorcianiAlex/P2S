@@ -29,6 +29,7 @@ public class LeaderAction extends Action {
 			for (int i = 0; i < playerInAction.getMyPersonalBoard().getLeaderCards().size(); i++) {
 				if (playerInAction.getMyPersonalBoard().getLeaderCards().get(i).getName().equals(leaderName)){
 					((OncePerTurnLeaderCard) leaderChosen).callEffect(playerInAction);
+					((OncePerTurnLeaderCard) leaderChosen).setPlayedThisTurn(true);
 				return;
 				}
 			}
@@ -42,6 +43,7 @@ public class LeaderAction extends Action {
 				leaderChosen.setPlayed(true);
 				if (leaderChosen instanceof OncePerTurnLeaderCard){
 					playerInAction.getMyPersonalBoard().getPlayedOncePerTurnLeaderCards().add((OncePerTurnLeaderCard) leaderChosen);
+					((OncePerTurnLeaderCard) leaderChosen).setPlayedThisTurn(true);
 				}
 		
 				System.out.println(playerInAction.getName() + " just activated a leader card!");

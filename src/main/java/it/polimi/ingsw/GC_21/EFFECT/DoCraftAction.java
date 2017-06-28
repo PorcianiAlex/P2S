@@ -27,7 +27,7 @@ public class DoCraftAction extends Effect {
 	public void activateEffect(Player player, Action action){
 		super.activateEffect(player, action);
 		PlacementAction placementAction = (PlacementAction) action;
-		if (actionValueInfluencer==0){
+		if (actionValueInfluencer==0 && action!=null){
 			/*CraftAction craftAction = new CraftAction(player, craftType, placementAction.getActionValue()+actionValueBonus);
 			game.notifyCurrentString("Thanks to an effect, you're going to execute a craft with value: " + craftAction.getActionValue());
 			craftAction.Execute();*/

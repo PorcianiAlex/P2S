@@ -155,7 +155,7 @@ public class PersonalBoard implements Serializable{
 			OwnedCards ownedBuildingCardsCards = getSpecificOwnedCards(DevCardType.Building);
 			for (int i = 0; i < ownedBuildingCardsCards.getOwnedCardsnumber(); i++) {
 				CraftCard tmp = (CraftCard) ownedBuildingCardsCards.getMyOwnedCards()[i].getCard();
-				if(actionValue >=  tmp.getRequiredValueForCraft()) {
+				if(tmp!=null && actionValue >=  tmp.getRequiredValueForCraft()) {
 					tmp.callCraftEffect(player);
 				}
 			}
@@ -163,7 +163,7 @@ public class PersonalBoard implements Serializable{
 			OwnedCards ownedTerritoryCards = getSpecificOwnedCards(DevCardType.Territory);
 			for (int i = 0; i < ownedTerritoryCards.getOwnedCardsnumber(); i++) {
 				CraftCard tmp = (CraftCard) ownedTerritoryCards.getMyOwnedCards()[i].getCard();
-				if(actionValue >=  tmp.getRequiredValueForCraft()) {
+				if(tmp!=null && actionValue >=  tmp.getRequiredValueForCraft() ) {
 					tmp.callCraftEffect(player);
 				}
 			}
@@ -249,6 +249,12 @@ public class PersonalBoard implements Serializable{
 			myOwnedCardString = myOwnedCardString + myOwnedCards[i].toString() + "\n";
 		}
 		return player.getName() + " PersonalBoard \n{myPossession=" + myPossession.toString() + "\nmy Development Cards: \n" + myOwnedCardString + "\nmy Leader Cards: " + this.leaderCards.toString() +"}";
+	}
+
+	public void refreshOncePerTurnLeaders() {
+		for (int i = 0; i < playedOncePerTurnLeaderCards.size(); i++) {
+			playedOncePerTurnLeaderCards.get(i).setPlayedThisTurn(false);
+		}
 	}
 	
 	

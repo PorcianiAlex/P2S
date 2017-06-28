@@ -248,4 +248,13 @@ public class Game extends Observable implements Serializable{
 
 
 
+
+	public void resetPlayedLeaders() {
+		for (int i = 0; i < players.size(); i++) {
+			players.get(i).getMyPersonalBoard().refreshOncePerTurnLeaders();
+		}
+	}
+
+
+
 }

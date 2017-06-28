@@ -48,13 +48,13 @@ public class LeaderInput extends InputForm{//TODO to correct
 		}
 		else if (turningLeaderCard) { //If I want to turn a leader card
 			switch(leaderCard){//Change the selection of the card
-			case "1":  selectedLeaderCard = leaderCards.get(0);	
+			case "1":  selectedLeaderCard = remoteView.getPlayer().getMyPersonalBoard().getLeaderCards().get(0);	
 						break;
-			case "2":  selectedLeaderCard = leaderCards.get(1);
+			case "2":  selectedLeaderCard = remoteView.getPlayer().getMyPersonalBoard().getLeaderCards().get(1);
 						break;
-			case "3":  selectedLeaderCard = leaderCards.get(2);	
+			case "3":  selectedLeaderCard = remoteView.getPlayer().getMyPersonalBoard().getLeaderCards().get(2);	
 						break;
-			case "4":  selectedLeaderCard = leaderCards.get(3);	
+			case "4":  selectedLeaderCard = remoteView.getPlayer().getMyPersonalBoard().getLeaderCards().get(3);	
 				break;
 			default: 
 					ChooseActionMessage retryChooseAction = new ChooseActionMessage(false, "Invalid choice, tell me what you want to do!", player);
@@ -73,7 +73,7 @@ public class LeaderInput extends InputForm{//TODO to correct
 					return;
 				}
 				if (leaderToPlay < playedOncePerTurnLeaderCards.size()+1 && leaderToPlay!=-1 && !player.getMyPersonalBoard().getPlayedOncePerTurnLeaderCards().get(leaderToPlay-1).isPlayedThisTurn()){
-					selectedLeaderCard = playedOncePerTurnLeaderCards.get(leaderToPlay-1);
+					selectedLeaderCard = remoteView.getPlayer().getMyPersonalBoard().getPlayedOncePerTurnLeaderCards().get(leaderToPlay-1);
 					player.getMyPersonalBoard().getPlayedOncePerTurnLeaderCards().get(leaderToPlay-1).setPlayedThisTurn(true);
 				}
 				else {
