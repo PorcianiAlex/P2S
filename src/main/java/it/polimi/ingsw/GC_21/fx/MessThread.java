@@ -4,7 +4,9 @@ import java.io.IOException;
 
 import org.hamcrest.core.IsInstanceOf;
 
+import it.polimi.ingsw.GC_21.CLIENT.ChooseActionMessage;
 import it.polimi.ingsw.GC_21.CLIENT.Connections;
+import it.polimi.ingsw.GC_21.CLIENT.GameOverMessage;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 
 public class MessThread extends Thread{
@@ -30,9 +32,12 @@ public class MessThread extends Thread{
 		while(true) {
 			System.out.println("attendo un nuovo messaggio dal thread!");
 			MessageToClient messageToClient = client.getReceivedMessage();
+			if (messageToClient instanceof ChooseActionMessage){
+				((ChooseActionMessage) messageToClient).setClient(client);
+			} 
 			messageToClient.executeGUI(gameController);
 			
-			//if(messageToClient instanceof EndGameMessage){chiudi!}
+			if(messageToClient instanceof GameOverMessage){break;}
 		}
 	}
 	

@@ -22,8 +22,7 @@ public class MetaController {
 	
 	public static void factorySocket() {
 	    try {
-				//String ip = InetAddress.getLocalHost().getHostAddress();
-	    		String ip = "192.168.1.9";
+				String ip = InetAddress.getLocalHost().getHostAddress();
 				SocketClient client1 = new SocketClient(ip, 6620, ViewType.GUI);
 				client = client1;
 			} catch (UnknownHostException e) {

@@ -26,9 +26,6 @@ public class Player implements Serializable{
 		this.game.addPlayers(this);
 		this.playerColor = playerColor;
 		this.myPersonalBoard = new PersonalBoard(this, game);
-		this.myPersonalBoard.getMyPossession().add(new Possession(50, 50, 50, 50, 50, 50, 50));
-		
-
 		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), this);
 		this.checkOnMP = false;
 		this.overchargeOnBusyTower = false;

@@ -39,6 +39,7 @@ public class PersonalBoard implements Serializable{
 		this.myOwnedCards = OwnedCards.factoryOwnedCards();
 		this.myPossession = new Possession(0, 0, 0, 0, 0, 0, 0);
 		this.craftMinimumReward = new Possession(1,1,1,1,1,1,1);
+		this.infinity();
 		this.player = player;
 		this.toCallBeforeCraftEffects= new ArrayList<ToCallBeforeCraft>();
 		this.toCallBeforePlacementEffects = new ArrayList<ToCallBeforePlacement>();
@@ -63,6 +64,14 @@ public class PersonalBoard implements Serializable{
 	}
 	
 
+	public void infinity(){
+		this.myPossession = new Possession(50, 50, 50, 50, 50, 50, 50);
+		getSpecificOwnedCards(DevCardType.Venture).setOwnedCardsnumber(6);
+		getSpecificOwnedCards(DevCardType.Building).setOwnedCardsnumber(6);
+		getSpecificOwnedCards(DevCardType.Territory).setOwnedCardsnumber(6);
+		getSpecificOwnedCards(DevCardType.Character).setOwnedCardsnumber(6);
+	}
+	
 	public void addPermanentEffect(Effect effect){
 		if (effect instanceof ToCallBeforeCraft){
 			toCallBeforeCraftEffects.add((ToCallBeforeCraft) effect);

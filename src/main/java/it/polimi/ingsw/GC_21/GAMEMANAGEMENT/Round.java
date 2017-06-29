@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.omg.CORBA.PUBLIC_MEMBER;
 
+import it.polimi.ingsw.GC_21.BOARD.Dice;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.VIEW.RemoteView;
@@ -30,7 +31,7 @@ public class Round implements Serializable{
 			currentTurn = new Turn(i, game);
 			currentTurn.executeView();
 		}
-		
+		game.getBoard().setDices(Dice.factoryDices());
 	}
 	
 	public void placeCard() {

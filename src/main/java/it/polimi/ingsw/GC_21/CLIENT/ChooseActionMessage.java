@@ -50,7 +50,11 @@ public class ChooseActionMessage extends MessageToClient implements Callable<Inp
 
 	@Override
 	public void executeGUI(FXMLGameController gameController) {
-		gameController.ifChooseAction(result, description, player);
+		ExecutorService poolExecutorService = Executors.newFixedThreadPool(1);
+		timerThread = new TimerThread(client);
+		timerThread.start();
+				
+		gameController.ifChooseAction(result, description, player, timerThread);
 		
 	}
 

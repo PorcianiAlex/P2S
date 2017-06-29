@@ -42,10 +42,10 @@ public class SetFamilyMemberInput extends InputForm{
 	
 	
 	@Override
-	public void inputFromCli(Scanner keyboard) {
+	public void inputFromCli() throws InterruptedException {
 		PlacementInput placementInput = new PlacementInput();
-		selectedFamilyMember = 	placementInput.chooseFamilyMember(keyboard);
-
+		selectedFamilyMember = 	placementInput.chooseFamilyMember(this);
+		
 	}
 	
 	
