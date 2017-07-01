@@ -16,7 +16,8 @@ import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 public class PersonalBoard implements Serializable{
 	private Game game;
 	private final OwnedCards[] myOwnedCards;
-	private final Possession craftMinimumReward;
+	private final Effect productionBonusTile;
+	private final Effect harvestBonusTile;
 	private Possession myPossession;
 	private final Player player;
 	private ArrayList<ToCallBeforeCraft> toCallBeforeCraftEffects;
@@ -37,8 +38,9 @@ public class PersonalBoard implements Serializable{
 
 	public PersonalBoard(Player player, Game game) {
 		this.myOwnedCards = OwnedCards.factoryOwnedCards();
-		this.myPossession = new Possession();
-		this.craftMinimumReward = new Possession(1,1,1,1,1,1,1);
+		this.myPossession = new Possession(0, 0, 0, 0, 0, 0, 0);
+		this.productionBonusTile = new Effect(new Possession(2, 0, 0, 0, 0, 0, 0), 0, game);
+		this.harvestBonusTile = new Effect(new Possession(0, 1, 1, 0, 0, 0, 0), 0, game);
 		//this.infinity();
 		this.player = player;
 		this.toCallBeforeCraftEffects= new ArrayList<ToCallBeforeCraft>();
@@ -161,6 +163,7 @@ public class PersonalBoard implements Serializable{
 
 	public void activateCraft(CraftType craftType, int actionValue) {
 		if(craftType.equals(CraftType.Production)) {
+			productionBonusTile.activateEffect(player, null);
 			OwnedCards ownedBuildingCardsCards = getSpecificOwnedCards(DevCardType.Building);
 			for (int i = 0; i < ownedBuildingCardsCards.getOwnedCardsnumber(); i++) {
 				CraftCard tmp = (CraftCard) ownedBuildingCardsCards.getMyOwnedCards()[i].getCard();
@@ -169,6 +172,7 @@ public class PersonalBoard implements Serializable{
 				}
 			}
 		} else if (craftType.equals(CraftType.Harvest)) {
+			harvestBonusTile.activateEffect(player, null);
 			OwnedCards ownedTerritoryCards = getSpecificOwnedCards(DevCardType.Territory);
 			for (int i = 0; i < ownedTerritoryCards.getOwnedCardsnumber(); i++) {
 				CraftCard tmp = (CraftCard) ownedTerritoryCards.getMyOwnedCards()[i].getCard();

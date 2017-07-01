@@ -22,6 +22,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderDeck;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.MilitaryPoints;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.VictoryPoints;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
@@ -140,6 +141,7 @@ public class Game extends Observable implements Serializable{
 	
 	
 	public void executeGame() {
+		this.assignResources();
 		for(int i = 0; i < players.size(); i++){
 			victoryPointsRanking.add(players.get(i));
 			militaryPointsRanking.add(players.get(i));
@@ -154,6 +156,15 @@ public class Game extends Observable implements Serializable{
 		GameOverMessage gameOverMessage = new GameOverMessage(true, "And the winner is......... " + victoryPointsRanking.get(0).getName() + "!!!\n Congrats!", board, players, victoryPointsRanking);
 		this.notifyBroadcast(gameOverMessage);
 	}
+
+
+	private void assignResources() {
+		for (int i = 0; i < players.size(); i++) {
+			players.get(i).getMyPersonalBoard().setMyPossession(new Possession(5+i, 5+i, 5+i, 5+i, 5+i, 5+i, 5+i));
+		}
+	}
+
+
 
 
 	public int getId() {
