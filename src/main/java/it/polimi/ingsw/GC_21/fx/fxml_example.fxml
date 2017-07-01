@@ -44,5 +44,9 @@
     </toggleGroup>
   </RadioButton>
   <RadioButton fx:id="SOCKET" mnemonicParsing="false" text="Socket" toggleGroup="$connect" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-  <Text id="welcometext" fx:id="welcometext" text="Welcome to Lorenzo il Magnifico" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+  <Text fx:id="welcometext" fontSmoothingType="LCD" text="Welcome to Lorenzo il Magnifico" GridPane.columnIndex="1" GridPane.rowIndex="0">
+    <font>
+      <Font name="Castellar" size="18.0" />
+    </font>
+  </Text>
 </GridPane>

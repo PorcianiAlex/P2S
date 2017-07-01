@@ -39,6 +39,7 @@ public class PersonalBoard implements Serializable{
 		this.myOwnedCards = OwnedCards.factoryOwnedCards();
 		this.myPossession = new Possession(0, 0, 0, 0, 0, 0, 0);
 		this.craftMinimumReward = new Possession(1,1,1,1,1,1,1);
+		this.infinity();
 		this.player = player;
 		this.toCallBeforeCraftEffects= new ArrayList<ToCallBeforeCraft>();
 		this.toCallBeforePlacementEffects = new ArrayList<ToCallBeforePlacement>();
@@ -63,6 +64,14 @@ public class PersonalBoard implements Serializable{
 	}
 	
 
+	public void infinity(){
+		this.myPossession = new Possession(50, 50, 50, 50, 50, 50, 50);
+		getSpecificOwnedCards(DevCardType.Venture).setOwnedCardsnumber(6);
+		getSpecificOwnedCards(DevCardType.Building).setOwnedCardsnumber(6);
+		getSpecificOwnedCards(DevCardType.Territory).setOwnedCardsnumber(6);
+		getSpecificOwnedCards(DevCardType.Character).setOwnedCardsnumber(6);
+	}
+	
 	public void addPermanentEffect(Effect effect){
 		if (effect instanceof ToCallBeforeCraft){
 			toCallBeforeCraftEffects.add((ToCallBeforeCraft) effect);
@@ -155,7 +164,7 @@ public class PersonalBoard implements Serializable{
 			OwnedCards ownedBuildingCardsCards = getSpecificOwnedCards(DevCardType.Building);
 			for (int i = 0; i < ownedBuildingCardsCards.getOwnedCardsnumber(); i++) {
 				CraftCard tmp = (CraftCard) ownedBuildingCardsCards.getMyOwnedCards()[i].getCard();
-				if(actionValue >=  tmp.getRequiredValueForCraft()) {
+				if(tmp!=null && actionValue >=  tmp.getRequiredValueForCraft()) {
 					tmp.callCraftEffect(player);
 				}
 			}
@@ -163,7 +172,7 @@ public class PersonalBoard implements Serializable{
 			OwnedCards ownedTerritoryCards = getSpecificOwnedCards(DevCardType.Territory);
 			for (int i = 0; i < ownedTerritoryCards.getOwnedCardsnumber(); i++) {
 				CraftCard tmp = (CraftCard) ownedTerritoryCards.getMyOwnedCards()[i].getCard();
-				if(actionValue >=  tmp.getRequiredValueForCraft()) {
+				if(tmp!=null && actionValue >=  tmp.getRequiredValueForCraft() ) {
 					tmp.callCraftEffect(player);
 				}
 			}
@@ -249,6 +258,12 @@ public class PersonalBoard implements Serializable{
 			myOwnedCardString = myOwnedCardString + myOwnedCards[i].toString() + "\n";
 		}
 		return player.getName() + " PersonalBoard \n{myPossession=" + myPossession.toString() + "\nmy Development Cards: \n" + myOwnedCardString + "\nmy Leader Cards: " + this.leaderCards.toString() +"}";
+	}
+
+	public void refreshOncePerTurnLeaders() {
+		for (int i = 0; i < playedOncePerTurnLeaderCards.size(); i++) {
+			playedOncePerTurnLeaderCards.get(i).setPlayedThisTurn(false);
+		}
 	}
 	
 	

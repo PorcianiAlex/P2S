@@ -24,8 +24,9 @@ public class Turn implements Serializable{
 			if (!turnOrder.contains(playersInGame.get(j))) {
 				turnOrder.add(playersInGame.get(j));
 			}
-		}
-		game.notifyTurnOrdered(turnOrder);
+		}	
+		game.resetPlayedLeaders();
+		game.notifyTurn();
 		game.generateRanking();	
 	}
 

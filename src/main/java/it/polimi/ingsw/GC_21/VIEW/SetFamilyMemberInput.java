@@ -36,7 +36,7 @@ public class SetFamilyMemberInput extends InputForm{
 
 	@Override
 	public void execute(RemoteView remoteView) {
-		SetFamilyMemberController setFamilyMemberMessage = new SetFamilyMemberController(newFamilyMemberValue, player, selectedFamilyMember);
+		SetFamilyMemberController setFamilyMemberMessage = new SetFamilyMemberController(newFamilyMemberValue, remoteView.getPlayer(), selectedFamilyMember);
 		remoteView.notifyController(setFamilyMemberMessage);
 	}
 	
@@ -44,8 +44,8 @@ public class SetFamilyMemberInput extends InputForm{
 	@Override
 	public void inputFromCli() throws InterruptedException {
 		PlacementInput placementInput = new PlacementInput();
-		placementInput.chooseFamilyMember(this);
-		selectedFamilyMember = placementInput.getFamilyMemberColor();
+		selectedFamilyMember = 	placementInput.chooseFamilyMember(this);
+		
 	}
 	
 	

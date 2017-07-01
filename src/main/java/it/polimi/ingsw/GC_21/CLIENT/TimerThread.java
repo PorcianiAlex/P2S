@@ -15,12 +15,18 @@ public class TimerThread extends Thread {
 		
 	}
 	
+	public TimerThread(Connections client2) {
+		this.client = client2;
+	}
+
 	@Override
 	public void run() {
 		try {
 			this.sleep(10000);
 			client.sendInput(new PassInput());
-			future.cancel(true);
+			if (future!= null){
+				future.cancel(true);
+			}
 		} catch (InterruptedException | IOException e) {
 			System.out.println("Bravo, my dear");
 		}

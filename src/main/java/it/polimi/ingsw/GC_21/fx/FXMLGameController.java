@@ -33,6 +33,7 @@ import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
 import it.polimi.ingsw.GC_21.CLIENT.ChooseActionMessage;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.CLIENT.Music;
+import it.polimi.ingsw.GC_21.CLIENT.TimerThread;
 import it.polimi.ingsw.GC_21.CLIENT.TurnMessage;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ExcommunicationCard;
@@ -73,6 +74,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.Toggle;
@@ -105,6 +107,7 @@ public class FXMLGameController extends MetaController implements Initializable{
     private ArrayList<ToggleGroup> leaders = new ArrayList<ToggleGroup>();
     private ArrayList<ArrayList<Text>> ress = new ArrayList<ArrayList<Text>>();
     private ArrayList<Tab> playerNames = new ArrayList<Tab>();
+    private TimerThread timerThread;
 
 	//riferimento ad array di carte, dadi, risorse e player
 	@FXML private ToggleGroup cards, place, excomm, family, myterritory, mybuilding, myventure, myleader, mycharacheter, x3,x4,x5,x6,x7,x12,x14,x15,x16,x13,x20,x23,x21,x22,x24;
@@ -176,7 +179,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 }
 	 
 	 @FXML protected void Reset(ActionEvent event) {
-		 
+		
 		 	familyMemberColor=null;
 			servToConvert=0;
 			servconverting.setText(String.valueOf(servToConvert));
@@ -191,6 +194,9 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 }
 	 
 	 @FXML protected void Pass(ActionEvent event) {
+		 if(timerThread!=null){	
+			 timerThread.interrupt();
+			 }
 		 PassInput passInput = new PassInput();
 		 try {
 			client.sendInput(passInput);
@@ -221,7 +227,9 @@ public class FXMLGameController extends MetaController implements Initializable{
 			alert.setContentText("wait your turn please");
 			alert.showAndWait();
 		}
-		this.Reset(event);
+		 if(timerThread!=null){	
+			 timerThread.interrupt();
+			 }
 		this.setFamilyButton();
 		return;
 	 }
@@ -291,7 +299,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 			    	dialog.setContentText("Choose which one: ");
 			    	Optional<String> result = dialog.showAndWait();
 			    	int j;
-			    	if(result==null) {
+			    	if(result.get()==null) {
 			    		return;
 			    	}
 			    	for ( j= 0; j < myPlayer.getMyPersonalBoard().getLeaderCards().size(); j++) {
@@ -304,10 +312,10 @@ public class FXMLGameController extends MetaController implements Initializable{
 				    	 inputForm = new DiscardInput(myPlayer, j);
 						break;
 					case "Activate Leader":
-				    	 inputForm = new LeaderInput(myPlayer,String.valueOf(j+1),false);
+				    	 inputForm = new LeaderInput(myPlayer,String.valueOf(j+1),true);
 						break;
 					case "Play Leader":
-				    	 inputForm = new LeaderInput(myPlayer,String.valueOf(j+1),true);
+				    	 inputForm = new LeaderInput(myPlayer,String.valueOf(j+1),false);
 						break;
 					default: System.out.println("nome del bottone non coincide!");
 						return;
@@ -483,9 +491,9 @@ public class FXMLGameController extends MetaController implements Initializable{
 				}
 	}
 	
-	public void ifChooseAction(boolean firstaction, String description, Player player) {
+	public void ifChooseAction(boolean firstaction, String description, Player player, TimerThread timerThread) {
 		myPlayer = player;
-		
+		this.timerThread=timerThread;
 		//set family button
 		ToggleButton black = (ToggleButton) family.getToggles().get(0);
         black.setStyle(" -fx-background-image: url('/familymembers/"+myPlayer.getPlayerColor()+"Black.png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-background-color: transparent;");

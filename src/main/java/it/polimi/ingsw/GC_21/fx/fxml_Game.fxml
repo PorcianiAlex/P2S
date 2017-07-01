@@ -6,493 +6,493 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="AP" prefHeight="850.0" prefWidth="1363.0" style=" -fx-background-image: url('/gamebg.jpg'); -fx-background-size:cover;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.ingsw.GC_21.fx.FXMLGameController">
-  <StackPane fx:id="stackPane" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" ></StackPane>
-  <children>
-    <Pane fx:id="Pane1" layoutX="6.0" layoutY="12.0" prefHeight="841.0" prefWidth="601.0">
+<ScrollPane fx:id="SP" fitToWidth="true" prefHeight="850.0" prefWidth="1363.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.ingsw.GC_21.fx.FXMLGameController">
+  <content>
+    <Pane style=" -fx-background-image: url('/gamebg.jpg'); -fx-background-size:cover;">
       <children>
-        <ImageView fx:id="board" fitHeight="816.6788330078125" fitWidth="592.5502285718937" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true" smooth="true">
-          <image>
-            <Image url="@gameboard_f_c.jpeg" />
-          </image>
-        </ImageView>
-        <ToggleButton fx:id="T1F1" layoutX="120.0" layoutY="374.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="1" userData="Territory">
-          <toggleGroup>
-            <ToggleGroup fx:id="place" />
-          </toggleGroup>
-        </ToggleButton>
-        <ToggleButton fx:id="T1F2" layoutX="120.0" layoutY="278.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="2" toggleGroup="$place" userData="Territory" />
-        <ToggleButton fx:id="T1F3" layoutX="124.0" layoutY="194.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="3" toggleGroup="$place" userData="Territory" />
-        <ToggleButton fx:id="T1F4" layoutX="120.0" layoutY="93.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="4" toggleGroup="$place" userData="Territory" />
-        <ToggleButton fx:id="T2F1" layoutX="225.0" layoutY="377.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="1" toggleGroup="$place" userData="Character" />
-        <ToggleButton fx:id="T2F2" layoutX="225.0" layoutY="287.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="2" toggleGroup="$place" userData="Character" />
-        <ToggleButton fx:id="T2F3" layoutX="225.0" layoutY="194.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="3" toggleGroup="$place" userData="Character" />
-        <ToggleButton fx:id="T2F4" layoutX="231.0" layoutY="93.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="4" toggleGroup="$place" userData="Character" />
-        <ToggleButton fx:id="T3F1" layoutX="328.0" layoutY="376.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="1" toggleGroup="$place" userData="Building" />
-        <ToggleButton fx:id="T3F2" layoutX="328.0" layoutY="287.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="2" toggleGroup="$place" userData="Building" />
-        <ToggleButton fx:id="T3F3" layoutX="328.0" layoutY="185.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="3" toggleGroup="$place" userData="Building" />
-        <ToggleButton fx:id="T3F4" layoutX="329.0" layoutY="93.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="4" toggleGroup="$place" userData="Building" />
-        <ToggleButton fx:id="T4F1" layoutX="433.0" layoutY="377.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="1" toggleGroup="$place" userData="Venture" />
-        <ToggleButton fx:id="T4F2" layoutX="430.0" layoutY="287.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="2" toggleGroup="$place" userData="Venture" />
-        <ToggleButton fx:id="T4F3" layoutX="432.0" layoutY="185.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="3" toggleGroup="$place" userData="Venture" />
-        <ToggleButton fx:id="T4F4" layoutX="432.0" layoutY="93.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="4" toggleGroup="$place" userData="Venture" />
-        <ToggleButton fx:id="P2" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="120.0" layoutY="650.0" minHeight="32.921875" mnemonicParsing="false" onAction="#Craft" opacity="1.0" prefHeight="32.921875" prefWidth="102.0" style="-fx-background-color: transparent;&#10;-fx-border-color: black;" text="2" toggleGroup="$place" userData="Production" />
-        <ToggleButton fx:id="H2" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="120.0" layoutY="710.0" minHeight="34.921875" mnemonicParsing="false" onAction="#Craft" opacity="1.0" prefHeight="34.921875" prefWidth="98.0" style="-fx-background-color: transparent;&#10;-fx-border-color: black;" text="2" toggleGroup="$place" userData="Harvest" />
-        <ToggleButton fx:id="P1" layoutX="61.0" layoutY="650.0" minWidth="42.0" mnemonicParsing="false" onAction="#Craft" opacity="1.0" prefWidth="42.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="1" toggleGroup="$place" userData="Production" />
-        <ToggleButton fx:id="H1" layoutX="61.0" layoutY="716.0" minWidth="42.0" mnemonicParsing="false" onAction="#Craft" opacity="1.0" prefWidth="42.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="1" toggleGroup="$place" userData="Harvest" />
-        <ToggleButton fx:id="M1" layoutX="316.0" layoutY="639.0" minHeight="31.921875" minWidth="35.0" mnemonicParsing="false" onAction="#Market" opacity="1.0" prefHeight="31.921875" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="1" toggleGroup="$place" />
-        <ToggleButton fx:id="M2" layoutX="366.0" layoutY="640.0" minHeight="31.921875" minWidth="35.0" mnemonicParsing="false" onAction="#Market" opacity="1.0" prefHeight="31.921875" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="2" toggleGroup="$place" />
-        <ToggleButton fx:id="M3" layoutX="411.0" layoutY="655.0" minHeight="31.921875" minWidth="35.0" mnemonicParsing="false" onAction="#Market" opacity="1.0" prefHeight="31.921875" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="3" toggleGroup="$place" />
-        <ToggleButton fx:id="M4" layoutX="445.0" layoutY="684.0" minHeight="31.921875" minWidth="37.0" mnemonicParsing="false" onAction="#Market" opacity="1.0" prefHeight="31.921875" prefWidth="37.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;-fx-border-color: black;" text="4" toggleGroup="$place" />
-        <ToggleButton contentDisplay="CENTER" graphicTextGap="0.0" layoutX="280.0" layoutY="458.0" mnemonicParsing="false" onAction="#Council" opacity="1.0" prefHeight="50.921875" prefWidth="132.0" style="-fx-background-color: transparent;&#10;-fx-border-color: black;" text="council" toggleGroup="$place" />
-        <Text fx:id="whitedice" layoutX="366.0" layoutY="750.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="">
-          <font>
-            <Font size="32.0" fx:id="x1" />
-          </font>
-        </Text>
-        <Text fx:id="orangedice" fill="WHITE" font="$x1" layoutX="412.0" layoutY="750.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="" />
-        <Text fx:id="blackdice" fill="WHITE" font="$x1" layoutX="315.0" layoutY="751.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
-        <ToggleButton layoutX="59.0" layoutY="357.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-          <toggleGroup>
-            <ToggleGroup fx:id="cards" />
-          </toggleGroup>
-        </ToggleButton>
-        <ToggleButton id="0" layoutX="59.0" layoutY="256.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
-        <ToggleButton id="1" layoutX="61.0" layoutY="160.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
-        <ToggleButton layoutX="61.0" layoutY="63.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
-        <ToggleButton layoutX="164.0" layoutY="357.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
-        <ToggleButton layoutX="166.0" layoutY="256.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
-        <ToggleButton layoutX="164.0" layoutY="160.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
-        <ToggleButton layoutX="168.0" layoutY="63.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
-        <ToggleButton layoutX="268.0" layoutY="357.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
-        <ToggleButton layoutX="267.0" layoutY="256.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
-        <ToggleButton layoutX="271.0" layoutY="160.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
-        <ToggleButton layoutX="270.0" layoutY="63.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
-        <ToggleButton layoutX="372.0" layoutY="357.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
-        <ToggleButton layoutX="372.0" layoutY="256.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
-        <ToggleButton layoutX="372.0" layoutY="160.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
-        <ToggleButton layoutX="369.0" layoutY="63.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
-        <ToggleButton layoutX="129.0" layoutY="496.0" minWidth="37.0" mnemonicParsing="false" onAction="#Card" prefHeight="61.921875" prefWidth="37.0" text="">
-          <toggleGroup>
-            <ToggleGroup fx:id="excomm" />
-          </toggleGroup>
-        </ToggleButton>
-        <ToggleButton layoutX="169.0" layoutY="496.0" minWidth="37.0" mnemonicParsing="false" onAction="#Card" prefHeight="61.921875" prefWidth="37.0" text="" toggleGroup="$excomm" />
-        <ToggleButton layoutX="209.0" layoutY="496.0" minWidth="37.0" mnemonicParsing="false" onAction="#Card" prefHeight="61.921875" prefWidth="37.0" text="" toggleGroup="$excomm" />
+        <Pane fx:id="Pane1" layoutX="6.0" layoutY="12.0" prefHeight="841.0" prefWidth="601.0">
+          <children>
+            <ImageView fx:id="board" fitHeight="816.6788330078125" fitWidth="592.5502285718937" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true" smooth="true">
+              <image>
+                <Image url="@gameboard_f_c.jpeg" />
+              </image>
+            </ImageView>
+            <ToggleButton fx:id="T1F1" layoutX="120.0" layoutY="376.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="1" textFill="TRANSPARENT" userData="Territory">
+              <toggleGroup>
+                <ToggleGroup fx:id="place" />
+              </toggleGroup>
+            </ToggleButton>
+            <ToggleButton fx:id="T1F2" layoutX="120.0" layoutY="280.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;" text="2" textFill="TRANSPARENT" toggleGroup="$place" userData="Territory" />
+            <ToggleButton fx:id="T1F3" layoutX="124.0" layoutY="197.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="3" textFill="TRANSPARENT" toggleGroup="$place" userData="Territory" />
+            <ToggleButton fx:id="T1F4" layoutX="120.0" layoutY="94.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="4" textFill="TRANSPARENT" toggleGroup="$place" userData="Territory" />
+            <ToggleButton fx:id="T2F1" layoutX="225.0" layoutY="380.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="1" textFill="TRANSPARENT" toggleGroup="$place" userData="Character" />
+            <ToggleButton fx:id="T2F2" layoutX="225.0" layoutY="290.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="2" textFill="TRANSPARENT" toggleGroup="$place" userData="Character" />
+            <ToggleButton fx:id="T2F3" layoutX="225.0" layoutY="197.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="3" textFill="TRANSPARENT" toggleGroup="$place" userData="Character" />
+            <ToggleButton fx:id="T2F4" layoutX="231.0" layoutY="94.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="4" textFill="TRANSPARENT" toggleGroup="$place" userData="Character" />
+            <ToggleButton fx:id="T3F1" layoutX="328.0" layoutY="379.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="1" textFill="TRANSPARENT" toggleGroup="$place" userData="Building" />
+            <ToggleButton fx:id="T3F2" layoutX="328.0" layoutY="290.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="2" textFill="TRANSPARENT" toggleGroup="$place" userData="Building" />
+            <ToggleButton fx:id="T3F3" layoutX="328.0" layoutY="188.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="3" textFill="TRANSPARENT" toggleGroup="$place" userData="Building" />
+            <ToggleButton fx:id="T3F4" layoutX="329.0" layoutY="96.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="4" textFill="TRANSPARENT" toggleGroup="$place" userData="Building" />
+            <ToggleButton fx:id="T4F1" layoutX="433.0" layoutY="377.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="1" textFill="TRANSPARENT" toggleGroup="$place" userData="Venture" />
+            <ToggleButton fx:id="T4F2" layoutX="430.0" layoutY="289.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="2" textFill="TRANSPARENT" toggleGroup="$place" userData="Venture" />
+            <ToggleButton fx:id="T4F3" layoutX="432.0" layoutY="188.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="3" textFill="TRANSPARENT" toggleGroup="$place" userData="Venture" />
+            <ToggleButton fx:id="T4F4" layoutX="432.0" layoutY="96.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="4" textFill="TRANSPARENT" toggleGroup="$place" userData="Venture" />
+            <ToggleButton fx:id="P2" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="118.0" layoutY="650.0" minHeight="31.9217529296875" mnemonicParsing="false" onAction="#Craft" opacity="1.0" prefHeight="31.9217529296875" prefWidth="102.0" style="-fx-background-color: transparent;&#10; -fx-text-fill: transparent;" text="2" toggleGroup="$place" userData="Production" />
+            <ToggleButton fx:id="H2" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="120.0" layoutY="710.0" minHeight="34.921875" mnemonicParsing="false" onAction="#Craft" opacity="1.0" prefHeight="34.921875" prefWidth="98.0" style="-fx-background-color: transparent;&#10; -fx-text-fill: transparent;" text="2" toggleGroup="$place" userData="Harvest" />
+            <ToggleButton fx:id="P1" layoutX="59.0" layoutY="650.0" minWidth="42.0" mnemonicParsing="false" onAction="#Craft" opacity="1.0" prefWidth="42.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="1" textFill="TRANSPARENT" toggleGroup="$place" userData="Production" />
+            <ToggleButton fx:id="H1" layoutX="59.0" layoutY="716.0" minWidth="42.0" mnemonicParsing="false" onAction="#Craft" opacity="1.0" prefWidth="42.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="1" textFill="TRANSPARENT" toggleGroup="$place" userData="Harvest" />
+            <ToggleButton fx:id="M1" layoutX="316.0" layoutY="639.0" minHeight="31.921875" minWidth="35.0" mnemonicParsing="false" onAction="#Market" opacity="1.0" prefHeight="31.921875" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="1" textFill="TRANSPARENT" toggleGroup="$place" />
+            <ToggleButton fx:id="M2" layoutX="366.0" layoutY="640.0" minHeight="31.921875" minWidth="35.0" mnemonicParsing="false" onAction="#Market" opacity="1.0" prefHeight="31.921875" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="2" textFill="TRANSPARENT" toggleGroup="$place" />
+            <ToggleButton fx:id="M3" layoutX="411.0" layoutY="655.0" minHeight="31.921875" minWidth="35.0" mnemonicParsing="false" onAction="#Market" opacity="1.0" prefHeight="31.921875" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="3" textFill="TRANSPARENT" toggleGroup="$place" />
+            <ToggleButton fx:id="M4" layoutX="445.0" layoutY="684.0" minHeight="31.921875" minWidth="37.0" mnemonicParsing="false" onAction="#Market" opacity="1.0" prefHeight="31.921875" prefWidth="37.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="4" textFill="TRANSPARENT" toggleGroup="$place" />
+            <ToggleButton contentDisplay="CENTER" graphicTextGap="0.0" layoutX="280.0" layoutY="458.0" mnemonicParsing="false" onAction="#Council" opacity="1.0" prefHeight="50.921875" prefWidth="132.0" style="-fx-background-color: transparent;&#10; -fx-text-fill: transparent;" text="council" toggleGroup="$place" />
+            <Text fx:id="whitedice" layoutX="366.0" layoutY="750.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="">
+              <font>
+                <Font size="32.0" fx:id="x1" />
+              </font>
+            </Text>
+            <Text fx:id="orangedice" fill="WHITE" font="$x1" layoutX="412.0" layoutY="750.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="" />
+            <Text fx:id="blackdice" fill="WHITE" font="$x1" layoutX="315.0" layoutY="751.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
+            <ToggleButton layoutX="59.0" layoutY="357.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+              <toggleGroup>
+                <ToggleGroup fx:id="cards" />
+              </toggleGroup>
+            </ToggleButton>
+            <ToggleButton id="0" layoutX="59.0" layoutY="256.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
+            <ToggleButton id="1" layoutX="61.0" layoutY="160.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
+            <ToggleButton layoutX="61.0" layoutY="63.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
+            <ToggleButton layoutX="164.0" layoutY="357.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
+            <ToggleButton layoutX="166.0" layoutY="256.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
+            <ToggleButton layoutX="164.0" layoutY="160.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
+            <ToggleButton layoutX="168.0" layoutY="63.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
+            <ToggleButton layoutX="268.0" layoutY="357.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
+            <ToggleButton layoutX="267.0" layoutY="256.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
+            <ToggleButton layoutX="271.0" layoutY="160.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
+            <ToggleButton layoutX="270.0" layoutY="63.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
+            <ToggleButton layoutX="372.0" layoutY="357.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
+            <ToggleButton layoutX="372.0" layoutY="256.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
+            <ToggleButton layoutX="372.0" layoutY="160.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
+            <ToggleButton layoutX="369.0" layoutY="63.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$cards" />
+            <ToggleButton layoutX="129.0" layoutY="496.0" minWidth="37.0" mnemonicParsing="false" onAction="#Card" prefHeight="61.921875" prefWidth="37.0" text="">
+              <toggleGroup>
+                <ToggleGroup fx:id="excomm" />
+              </toggleGroup>
+            </ToggleButton>
+            <ToggleButton layoutX="169.0" layoutY="496.0" minWidth="37.0" mnemonicParsing="false" onAction="#Card" prefHeight="61.921875" prefWidth="37.0" text="" toggleGroup="$excomm" />
+            <ToggleButton layoutX="209.0" layoutY="496.0" minWidth="37.0" mnemonicParsing="false" onAction="#Card" prefHeight="61.921875" prefWidth="37.0" text="" toggleGroup="$excomm" />
+          </children>
+        </Pane>
+        <Pane layoutX="600.0" layoutY="12.0" prefHeight="817.0" prefWidth="713.0" style="">
+          <children>
+            <Rectangle arcHeight="36.0" arcWidth="46.0" fill="#fff3de" height="50.921875" layoutX="12.0" layoutY="628.0" smooth="true" strokeLineCap="SQUARE" strokeLineJoin="BEVEL" strokeType="INSIDE" strokeWidth="2.2" style="" width="521.0">
+              <stroke>
+                <Color blue="0.000" green="0.000" red="0.400" fx:id="x25" />
+              </stroke>
+            </Rectangle>
+            <ToggleButton fx:id="black" layoutX="23.0" layoutY="702.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#FamilyMember" prefHeight="40.0" prefWidth="40.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10; -fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 18px;&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);;" text="Black" textFill="TRANSPARENT">
+              <toggleGroup>
+                <ToggleGroup fx:id="family" />
+              </toggleGroup>
+            </ToggleButton>
+            <ToggleButton fx:id="white" layoutX="73.0" layoutY="702.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#FamilyMember" prefHeight="40.0" prefWidth="40.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10; -fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 18px;&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);;" text="White" textFill="TRANSPARENT" toggleGroup="$family" />
+            <ToggleButton fx:id="orange" layoutX="120.0" layoutY="704.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#FamilyMember" prefHeight="40.0" prefWidth="40.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10; -fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 18px;&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);;" text="Orange" textFill="TRANSPARENT" toggleGroup="$family" />
+            <ToggleButton fx:id="neutral" layoutX="165.0" layoutY="703.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#FamilyMember" prefHeight="40.0" prefWidth="40.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10; -fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 18px;&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);;" text="Neutral" textFill="TRANSPARENT" toggleGroup="$family" />
+            <Text fx:id="state" fill="$x25" layoutX="29.0" layoutY="663.0" strokeType="OUTSIDE" strokeWidth="0.0" text="">
+              <font>
+                <Font size="20.0" fx:id="x26" />
+              </font>
+            </Text>
+            <TabPane layoutX="7.0" layoutY="14.0" prefHeight="599.0" prefWidth="546.0" style="-fx-background-color: transparent;" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab fx:id="pl1" style="-fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);" text="Player 1">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@personal1.png" />
+                          </image>
+                        </ImageView>
+                        <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@personal2.png" />
+                          </image>
+                        </ImageView>
+                        <ToggleButton layoutX="14.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="myterritory" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="83.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myterritory" />
+                        <ToggleButton layoutX="155.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myterritory" />
+                        <ToggleButton layoutX="227.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myterritory" />
+                        <ToggleButton layoutX="295.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myterritory" />
+                        <ToggleButton layoutX="364.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myterritory" />
+                        <ToggleButton layoutX="14.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="mybuilding" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="83.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mybuilding" />
+                        <ToggleButton layoutX="155.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mybuilding" />
+                        <ToggleButton layoutX="227.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mybuilding" />
+                        <ToggleButton layoutX="295.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mybuilding" />
+                        <ToggleButton layoutX="365.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mybuilding" />
+                        <ToggleButton layoutX="465.0" layoutY="35.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="myleader" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="465.0" layoutY="134.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myleader" />
+                        <ToggleButton layoutX="465.0" layoutY="234.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myleader" />
+                        <ToggleButton layoutX="465.0" layoutY="337.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myleader" />
+                        <Text layoutX="469.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leaders">
+                          <font>
+                            <Font size="18.0" fx:id="x2" />
+                          </font>
+                        </Text>
+                        <ToggleButton layoutX="15.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="myventure" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="84.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myventure" />
+                        <ToggleButton layoutX="156.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myventure" />
+                        <ToggleButton layoutX="229.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myventure" />
+                        <ToggleButton layoutX="296.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myventure" />
+                        <ToggleButton layoutX="365.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myventure" />
+                        <ToggleButton layoutX="15.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="mycharacheter" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="83.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mycharacheter" />
+                        <ToggleButton layoutX="155.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mycharacheter" />
+                        <ToggleButton layoutX="227.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mycharacheter" />
+                        <ToggleButton layoutX="295.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mycharacheter" />
+                        <ToggleButton layoutX="364.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mycharacheter" />
+                        <Circle fill="GREY" layoutX="187.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
+                        <Text id="orangedice" fx:id="r3" fill="WHITE" layoutX="180.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="" textAlignment="CENTER">
+                          <font>
+                            <Font size="26.0" fx:id="x8" />
+                          </font>
+                        </Text>
+                        <Circle layoutX="117.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE">
+                          <fill>
+                            <Color blue="0.000" green="0.431" red="0.600" fx:id="x9" />
+                          </fill>
+                        </Circle>
+                        <Text id="orangedice" fx:id="r2" fill="WHITE" font="$x8" layoutX="110.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="" textAlignment="CENTER" />
+                        <Circle layoutX="46.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE">
+                          <fill>
+                            <Color blue="0.000" green="0.722" red="1.000" fx:id="x10" />
+                          </fill>
+                        </Circle>
+                        <Text id="orangedice" fx:id="r1" fill="WHITE" font="$x8" layoutX="39.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="" textAlignment="CENTER" />
+                        <Circle layoutX="257.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE">
+                          <fill>
+                            <Color blue="1.000" green="0.000" red="0.561" fx:id="x11" />
+                          </fill>
+                        </Circle>
+                        <Text id="orangedice" fx:id="r4" fill="WHITE" font="$x8" layoutX="250.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="" textAlignment="CENTER" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffd466" height="26.6015625" layoutX="465.0" layoutY="436.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
+                        <Text fx:id="r5" fill="WHITE" font="$x2" layoutX="468.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#33b6ff" height="26.6015625" layoutX="465.0" layoutY="469.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
+                        <Text fx:id="r6" fill="WHITE" font="$x2" layoutX="468.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cc0062" height="26.6015625" layoutX="465.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
+                        <Text fx:id="r7" fill="WHITE" font="$x2" layoutX="468.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab fx:id="pl2" style="-fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);" text="Player 2">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@personal1.png" />
+                          </image>
+                        </ImageView>
+                        <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@personal2.png" />
+                          </image>
+                        </ImageView>
+                        <ToggleButton layoutX="14.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="x3" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="83.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x3" />
+                        <ToggleButton layoutX="155.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x3" />
+                        <ToggleButton layoutX="227.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x3" />
+                        <ToggleButton layoutX="295.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x3" />
+                        <ToggleButton layoutX="364.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x3" />
+                        <ToggleButton layoutX="14.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="x4" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="83.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x4" />
+                        <ToggleButton layoutX="155.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x4" />
+                        <ToggleButton layoutX="227.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x4" />
+                        <ToggleButton layoutX="295.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x4" />
+                        <ToggleButton layoutX="365.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x4" />
+                        <ToggleButton layoutX="465.0" layoutY="35.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="x5" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="465.0" layoutY="134.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x5" />
+                        <ToggleButton layoutX="465.0" layoutY="234.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x5" />
+                        <ToggleButton layoutX="465.0" layoutY="337.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x5" />
+                        <Text font="$x2" layoutX="469.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leaders" />
+                        <ToggleButton layoutX="15.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="x6" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="84.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x6" />
+                        <ToggleButton layoutX="156.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x6" />
+                        <ToggleButton layoutX="229.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x6" />
+                        <ToggleButton layoutX="296.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x6" />
+                        <ToggleButton layoutX="365.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x6" />
+                        <ToggleButton layoutX="15.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="x7" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="83.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x7" />
+                        <ToggleButton layoutX="155.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x7" />
+                        <ToggleButton layoutX="227.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x7" />
+                        <ToggleButton layoutX="295.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x7" />
+                        <ToggleButton layoutX="364.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x7" />
+                        <Circle fill="GREY" layoutX="187.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
+                        <Text id="orangedice" fx:id="r10" fill="WHITE" font="$x8" layoutX="180.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Circle fill="$x9" layoutX="117.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
+                        <Text id="orangedice" fx:id="r9" fill="WHITE" font="$x8" layoutX="110.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Circle fill="$x10" layoutX="46.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
+                        <Text id="orangedice" fx:id="r8" fill="WHITE" font="$x8" layoutX="39.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Circle fill="$x11" layoutX="257.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
+                        <Text id="orangedice" fx:id="r11" fill="WHITE" font="$x8" layoutX="250.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="26.6015625" layoutX="465.0" layoutY="436.0" stroke="BLACK" strokeType="INSIDE" width="61.0">
+                          <fill>
+                            <Color blue="0.322" green="0.800" red="0.000" fx:id="x17" />
+                          </fill>
+                        </Rectangle>
+                        <Text fx:id="r12" fill="WHITE" font="$x2" layoutX="468.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VP: 5" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="26.6015625" layoutX="465.0" layoutY="469.0" stroke="BLACK" strokeType="INSIDE" width="61.0">
+                          <fill>
+                            <Color blue="1.000" green="0.714" red="0.200" fx:id="x18" />
+                          </fill>
+                        </Rectangle>
+                        <Text fx:id="r13" fill="WHITE" font="$x2" layoutX="468.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MP: 5" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="26.6015625" layoutX="465.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="61.0">
+                          <fill>
+                            <Color blue="0.384" green="0.000" red="0.800" fx:id="x19" />
+                          </fill>
+                        </Rectangle>
+                        <Text fx:id="r14" fill="WHITE" font="$x2" layoutX="468.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FP: 5" />
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab fx:id="pl3" style="-fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);" text="Player 3">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@personal1.png" />
+                          </image>
+                        </ImageView>
+                        <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@personal2.png" />
+                          </image>
+                        </ImageView>
+                        <ToggleButton layoutX="14.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="x12" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="83.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x12" />
+                        <ToggleButton layoutX="155.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x12" />
+                        <ToggleButton layoutX="227.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x12" />
+                        <ToggleButton layoutX="295.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x12" />
+                        <ToggleButton layoutX="364.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x12" />
+                        <ToggleButton layoutX="14.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="x13" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="83.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x13" />
+                        <ToggleButton layoutX="155.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x13" />
+                        <ToggleButton layoutX="227.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x13" />
+                        <ToggleButton layoutX="295.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x13" />
+                        <ToggleButton layoutX="365.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x13" />
+                        <ToggleButton layoutX="465.0" layoutY="35.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="x14" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="465.0" layoutY="134.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x14" />
+                        <ToggleButton layoutX="465.0" layoutY="234.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x14" />
+                        <ToggleButton layoutX="465.0" layoutY="337.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x14" />
+                        <Text font="$x2" layoutX="469.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leaders" />
+                        <ToggleButton layoutX="15.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="x15" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="84.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x15" />
+                        <ToggleButton layoutX="156.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x15" />
+                        <ToggleButton layoutX="229.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x15" />
+                        <ToggleButton layoutX="296.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x15" />
+                        <ToggleButton layoutX="365.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x15" />
+                        <ToggleButton layoutX="15.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="x16" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="83.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x16" />
+                        <ToggleButton layoutX="155.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x16" />
+                        <ToggleButton layoutX="227.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x16" />
+                        <ToggleButton layoutX="295.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x16" />
+                        <ToggleButton layoutX="364.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x16" />
+                        <Circle fill="GREY" layoutX="187.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
+                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="180.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Circle fill="$x9" layoutX="117.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
+                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="110.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Circle fill="$x10" layoutX="46.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
+                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="39.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Circle fill="$x11" layoutX="257.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
+                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="250.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x17" height="26.6015625" layoutX="465.0" layoutY="436.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
+                        <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VP: 5" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x18" height="26.6015625" layoutX="465.0" layoutY="469.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
+                        <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MP: 5" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x19" height="26.6015625" layoutX="465.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
+                        <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FP: 5" />
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab fx:id="pl4" style="-fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);" text="Player 4">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@personal1.png" />
+                          </image>
+                        </ImageView>
+                        <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@personal2.png" />
+                          </image>
+                        </ImageView>
+                        <ToggleButton layoutX="14.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="x20" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="83.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x20" />
+                        <ToggleButton layoutX="155.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x20" />
+                        <ToggleButton layoutX="227.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x20" />
+                        <ToggleButton layoutX="295.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x20" />
+                        <ToggleButton layoutX="364.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x20" />
+                        <ToggleButton layoutX="14.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="x21" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="83.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x21" />
+                        <ToggleButton layoutX="155.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x21" />
+                        <ToggleButton layoutX="227.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x21" />
+                        <ToggleButton layoutX="295.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x21" />
+                        <ToggleButton layoutX="365.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x21" />
+                        <ToggleButton layoutX="465.0" layoutY="35.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="x22" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="465.0" layoutY="134.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x22" />
+                        <ToggleButton layoutX="465.0" layoutY="234.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x22" />
+                        <ToggleButton layoutX="465.0" layoutY="337.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x22" />
+                        <Text font="$x2" layoutX="469.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leaders" />
+                        <ToggleButton layoutX="15.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="x23" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="84.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x23" />
+                        <ToggleButton layoutX="156.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x23" />
+                        <ToggleButton layoutX="229.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x23" />
+                        <ToggleButton layoutX="296.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x23" />
+                        <ToggleButton layoutX="365.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x23" />
+                        <ToggleButton layoutX="15.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="x24" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="83.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x24" />
+                        <ToggleButton layoutX="155.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x24" />
+                        <ToggleButton layoutX="227.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x24" />
+                        <ToggleButton layoutX="295.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x24" />
+                        <ToggleButton layoutX="364.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x24" />
+                        <Circle fill="GREY" layoutX="187.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
+                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="180.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Circle fill="$x9" layoutX="117.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
+                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="110.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Circle fill="$x10" layoutX="46.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
+                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="39.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Circle fill="$x11" layoutX="257.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
+                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="250.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x17" height="26.6015625" layoutX="465.0" layoutY="436.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
+                        <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VP: 5" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x18" height="26.6015625" layoutX="465.0" layoutY="469.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
+                        <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MP: 5" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x19" height="26.6015625" layoutX="465.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
+                        <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FP: 5" />
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+            <Button layoutX="553.0" layoutY="65.0" mnemonicParsing="false" onAction="#discardLeader" style="-fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 18px;&#10;    -fx-text-fill: #311c09;&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);;" text="Discard Leader" />
+            <Button layoutX="552.0" layoutY="131.0" mnemonicParsing="false" onAction="#discardLeader" style="-fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 18px;&#10;    -fx-text-fill: #311c09;&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);;" text="Activate Leader" />
+            <Button layoutX="553.0" layoutY="197.0" mnemonicParsing="false" onAction="#discardLeader" style="-fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 18px;&#10;    -fx-text-fill: #311c09;&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);;" text="Play Leader" />
+            <Button cancelButton="false" contentDisplay="CENTER" defaultButton="false" font="$x26" graphicTextGap="0.0" layoutX="218.0" layoutY="703.0" minHeight="35.921875" minWidth="35.0" mnemonicParsing="false" onAction="#Serv" opacity="1.0" prefHeight="35.921875" prefWidth="35.0" style=" -fx-padding: -15 0 0 0;&#10;    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;&#10;    -fx-background-radius: 8;&#10;    -fx-background-color: &#10;        linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),&#10;        #9d4024,&#10;        #d86e3a,&#10;        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c);&#10;    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );&#10;    -fx-font-weight: bold;&#10;    -fx-font-size: 30;" text="-" textAlignment="CENTER" textFill="WHITE" wrapText="false" />
+            <Text fx:id="servconverting" layoutX="304.0" layoutY="735.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+              <font>
+                <Font size="34.0" />
+              </font>
+            </Text>
+            <ImageView fitHeight="50.921875" fitWidth="30.486122062836568" layoutX="265.0" layoutY="692.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@servo.png" />
+              </image>
+            </ImageView>
+            <Button layoutX="331.0" layoutY="702.0" minHeight="35.921875" minWidth="35.0" mnemonicParsing="false" onAction="#Serv" opacity="1.0" prefHeight="35.921875" prefWidth="35.0" style=" -fx-padding: -10 0 0 0;&#10;    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;&#10;    -fx-background-radius: 8;&#10;    -fx-background-color: &#10;        linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),&#10;        #9d4024,&#10;        #d86e3a,&#10;        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c);&#10;    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );&#10;    -fx-font-weight: bold;&#10;    -fx-font-size: 30;&#10;    -fx-margin: 0px 0px 0px;" text="+" textFill="WHITE" wrapText="false">
+              <font>
+                <Font size="10.0" />
+              </font>
+            </Button>
+            <Button fx:id="confirmbtn" font="$x8" layoutX="395.0" layoutY="689.0" mnemonicParsing="false" onAction="#Confirm" opacity="1.0" prefHeight="61.01953125" prefWidth="157.0" style="-fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 18px;&#10;    -fx-text-fill: #311c09;&#10;-fx-effect: dropshadow( one-pass-box , rgba(255,255,255,0.5) , 0, 0.0 , 0 , 1);&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);;" text="Confirm" textFill="WHITE" />
+            <Button layoutX="562.0" layoutY="692.0" mnemonicParsing="false" onAction="#Reset" style="-fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 18px;&#10;    -fx-text-fill: #311c09;&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);" text="Reset" />
+            <Button layoutX="553.0" layoutY="260.0" mnemonicParsing="false" onAction="#Pass" style="-fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 18px;&#10;    -fx-text-fill: #311c09;&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);;" text="Pass" />
+          </children>
+        </Pane>
       </children>
     </Pane>
-    <Pane layoutX="600.0" layoutY="12.0" prefHeight="816.6788330078125" prefWidth="567.0" style="">
-      <children>
-        <Rectangle arcHeight="36.0" arcWidth="46.0" fill="#fff3de" height="50.921875" layoutX="12.0" layoutY="616.0" smooth="true" strokeLineCap="SQUARE" strokeLineJoin="BEVEL" strokeType="INSIDE" strokeWidth="2.2" style="" width="521.0">
-          <stroke>
-            <Color blue="0.000" green="0.000" red="0.400" fx:id="x25" />
-          </stroke>
-        </Rectangle>
-        <Button fx:id="confirmbtn" layoutX="428.0" layoutY="729.0" mnemonicParsing="false" onAction="#Confirm" text="Confirm" textFill="#319900" />
-        <Button layoutX="353.0" layoutY="729.0" mnemonicParsing="false" onAction="#Reset" text="Reset" />
-        <ToggleButton fx:id="black" layoutX="22.0" layoutY="677.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#FamilyMember" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="Black">
-          <toggleGroup>
-            <ToggleGroup fx:id="family" />
-          </toggleGroup>
-        </ToggleButton>
-        <ToggleButton fx:id="white" layoutX="64.0" layoutY="677.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#FamilyMember" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="White" toggleGroup="$family" />
-        <ToggleButton fx:id="orange" layoutX="22.0" layoutY="730.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#FamilyMember" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="Orange" toggleGroup="$family" />
-        <ToggleButton fx:id="neutral" layoutX="64.0" layoutY="729.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#FamilyMember" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="Neutral" toggleGroup="$family" />
-        <Text fx:id="state" fill="$x25" layoutX="29.0" layoutY="651.0" strokeType="OUTSIDE" strokeWidth="0.0" text="">
-          <font>
-            <Font size="20.0" />
-          </font>
-        </Text>
-        <TabPane layoutX="7.0" layoutY="14.0" prefHeight="599.0" prefWidth="546.0" tabClosingPolicy="UNAVAILABLE">
-          <tabs>
-            <Tab fx:id="pl1" text="Player 1">
-              <content>
-                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                  <children>
-                    <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                        <Image url="@personal1.png" />
-                      </image>
-                    </ImageView>
-                    <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                        <Image url="@personal2.png" />
-                      </image>
-                    </ImageView>
-                    <ToggleButton layoutX="14.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-                      <toggleGroup>
-                        <ToggleGroup fx:id="myterritory" />
-                      </toggleGroup>
-                    </ToggleButton>
-                    <ToggleButton layoutX="83.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myterritory" />
-                    <ToggleButton layoutX="155.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myterritory" />
-                    <ToggleButton layoutX="227.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myterritory" />
-                    <ToggleButton layoutX="295.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myterritory" />
-                    <ToggleButton layoutX="364.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myterritory" />
-                    <ToggleButton layoutX="14.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-                      <toggleGroup>
-                        <ToggleGroup fx:id="mybuilding" />
-                      </toggleGroup>
-                    </ToggleButton>
-                    <ToggleButton layoutX="83.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mybuilding" />
-                    <ToggleButton layoutX="155.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mybuilding" />
-                    <ToggleButton layoutX="227.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mybuilding" />
-                    <ToggleButton layoutX="295.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mybuilding" />
-                    <ToggleButton layoutX="365.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mybuilding" />
-                    <ToggleButton layoutX="465.0" layoutY="35.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-                      <toggleGroup>
-                        <ToggleGroup fx:id="myleader" />
-                      </toggleGroup>
-                    </ToggleButton>
-                    <ToggleButton layoutX="465.0" layoutY="134.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myleader" />
-                    <ToggleButton layoutX="465.0" layoutY="234.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myleader" />
-                    <ToggleButton layoutX="465.0" layoutY="337.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myleader" />
-                    <Text layoutX="469.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leaders">
-                      <font>
-                        <Font size="18.0" fx:id="x2" />
-                      </font>
-                    </Text>
-                    <ToggleButton layoutX="15.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-                      <toggleGroup>
-                        <ToggleGroup fx:id="myventure" />
-                      </toggleGroup>
-                    </ToggleButton>
-                    <ToggleButton layoutX="84.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myventure" />
-                    <ToggleButton layoutX="156.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myventure" />
-                    <ToggleButton layoutX="229.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myventure" />
-                    <ToggleButton layoutX="296.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myventure" />
-                    <ToggleButton layoutX="365.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$myventure" />
-                    <ToggleButton layoutX="15.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-                      <toggleGroup>
-                        <ToggleGroup fx:id="mycharacheter" />
-                      </toggleGroup>
-                    </ToggleButton>
-                    <ToggleButton layoutX="83.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mycharacheter" />
-                    <ToggleButton layoutX="155.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mycharacheter" />
-                    <ToggleButton layoutX="227.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mycharacheter" />
-                    <ToggleButton layoutX="295.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mycharacheter" />
-                    <ToggleButton layoutX="364.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$mycharacheter" />
-                    <Circle fill="GREY" layoutX="187.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                    <Text id="orangedice" fx:id="r3" fill="WHITE" layoutX="180.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="">
-                      <font>
-                        <Font size="26.0" fx:id="x8" />
-                      </font>
-                    </Text>
-                    <Circle layoutX="117.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE">
-                      <fill>
-                        <Color blue="0.000" green="0.431" red="0.600" fx:id="x9" />
-                      </fill>
-                    </Circle>
-                    <Text id="orangedice" fx:id="r2" fill="WHITE" font="$x8" layoutX="110.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="" />
-                    <Circle layoutX="46.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE">
-                      <fill>
-                        <Color blue="0.000" green="0.722" red="1.000" fx:id="x10" />
-                      </fill>
-                    </Circle>
-                    <Text id="orangedice" fx:id="r1" fill="WHITE" font="$x8" layoutX="39.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="" />
-                    <Circle layoutX="257.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE">
-                      <fill>
-                        <Color blue="1.000" green="0.000" red="0.561" fx:id="x11" />
-                      </fill>
-                    </Circle>
-                    <Text id="orangedice" fx:id="r4" fill="WHITE" font="$x8" layoutX="250.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="" />
-                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffd466" height="26.6015625" layoutX="465.0" layoutY="436.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
-                    <Text fx:id="r5" fill="WHITE" font="$x2" layoutX="468.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
-                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#33b6ff" height="26.6015625" layoutX="465.0" layoutY="469.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
-                    <Text fx:id="r6" fill="WHITE" font="$x2" layoutX="468.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
-                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cc0062" height="26.6015625" layoutX="465.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
-                    <Text fx:id="r7" fill="WHITE" font="$x2" layoutX="468.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
-                  </children>
-                </AnchorPane>
-              </content>
-            </Tab>
-            <Tab fx:id="pl2" text="Player 2">
-              <content>
-                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                  <children>
-                    <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                        <Image url="@personal1.png" />
-                      </image>
-                    </ImageView>
-                    <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                        <Image url="@personal2.png" />
-                      </image>
-                    </ImageView>
-                    <ToggleButton layoutX="14.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-                      <toggleGroup>
-                        <ToggleGroup fx:id="x3" />
-                      </toggleGroup>
-                    </ToggleButton>
-                    <ToggleButton layoutX="83.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x3" />
-                    <ToggleButton layoutX="155.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x3" />
-                    <ToggleButton layoutX="227.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x3" />
-                    <ToggleButton layoutX="295.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x3" />
-                    <ToggleButton layoutX="364.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x3" />
-                    <ToggleButton layoutX="14.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-                      <toggleGroup>
-                        <ToggleGroup fx:id="x4" />
-                      </toggleGroup>
-                    </ToggleButton>
-                    <ToggleButton layoutX="83.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x4" />
-                    <ToggleButton layoutX="155.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x4" />
-                    <ToggleButton layoutX="227.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x4" />
-                    <ToggleButton layoutX="295.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x4" />
-                    <ToggleButton layoutX="365.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x4" />
-                    <ToggleButton layoutX="465.0" layoutY="35.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-                      <toggleGroup>
-                        <ToggleGroup fx:id="x5" />
-                      </toggleGroup>
-                    </ToggleButton>
-                    <ToggleButton layoutX="465.0" layoutY="134.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x5" />
-                    <ToggleButton layoutX="465.0" layoutY="234.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x5" />
-                    <ToggleButton layoutX="465.0" layoutY="337.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x5" />
-                    <Text font="$x2" layoutX="469.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leaders" />
-                    <ToggleButton layoutX="15.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-                      <toggleGroup>
-                        <ToggleGroup fx:id="x6" />
-                      </toggleGroup>
-                    </ToggleButton>
-                    <ToggleButton layoutX="84.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x6" />
-                    <ToggleButton layoutX="156.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x6" />
-                    <ToggleButton layoutX="229.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x6" />
-                    <ToggleButton layoutX="296.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x6" />
-                    <ToggleButton layoutX="365.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x6" />
-                    <ToggleButton layoutX="15.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-                      <toggleGroup>
-                        <ToggleGroup fx:id="x7" />
-                      </toggleGroup>
-                    </ToggleButton>
-                    <ToggleButton layoutX="83.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x7" />
-                    <ToggleButton layoutX="155.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x7" />
-                    <ToggleButton layoutX="227.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x7" />
-                    <ToggleButton layoutX="295.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x7" />
-                    <ToggleButton layoutX="364.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x7" />
-                    <Circle fill="GREY" layoutX="187.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                    <Text id="orangedice" fx:id="r10" fill="WHITE" font="$x8" layoutX="180.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
-                    <Circle fill="$x9" layoutX="117.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                    <Text id="orangedice" fx:id="r9" fill="WHITE" font="$x8" layoutX="110.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
-                    <Circle fill="$x10" layoutX="46.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                    <Text id="orangedice" fx:id="r8" fill="WHITE" font="$x8" layoutX="39.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
-                    <Circle fill="$x11" layoutX="257.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                    <Text id="orangedice" fx:id="r11" fill="WHITE" font="$x8" layoutX="250.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
-                    <Rectangle arcHeight="5.0" arcWidth="5.0" height="26.6015625" layoutX="465.0" layoutY="436.0" stroke="BLACK" strokeType="INSIDE" width="61.0">
-                      <fill>
-                        <Color blue="0.322" green="0.800" red="0.000" fx:id="x17" />
-                      </fill>
-                    </Rectangle>
-                    <Text fx:id="r12" fill="WHITE" font="$x2" layoutX="468.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VP: 5" />
-                    <Rectangle arcHeight="5.0" arcWidth="5.0" height="26.6015625" layoutX="465.0" layoutY="469.0" stroke="BLACK" strokeType="INSIDE" width="61.0">
-                      <fill>
-                        <Color blue="1.000" green="0.714" red="0.200" fx:id="x18" />
-                      </fill>
-                    </Rectangle>
-                    <Text fx:id="r13" fill="WHITE" font="$x2" layoutX="468.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MP: 5" />
-                    <Rectangle arcHeight="5.0" arcWidth="5.0" height="26.6015625" layoutX="465.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="61.0">
-                      <fill>
-                        <Color blue="0.384" green="0.000" red="0.800" fx:id="x19" />
-                      </fill>
-                    </Rectangle>
-                    <Text fx:id="r14" fill="WHITE" font="$x2" layoutX="468.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FP: 5" />
-                  </children>
-                </AnchorPane>
-              </content>
-            </Tab>
-            <Tab fx:id="pl3" text="Player 3">
-              <content>
-                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                  <children>
-                    <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                        <Image url="@personal1.png" />
-                      </image>
-                    </ImageView>
-                    <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                        <Image url="@personal2.png" />
-                      </image>
-                    </ImageView>
-                    <ToggleButton layoutX="14.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-                      <toggleGroup>
-                        <ToggleGroup fx:id="x12" />
-                      </toggleGroup>
-                    </ToggleButton>
-                    <ToggleButton layoutX="83.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x12" />
-                    <ToggleButton layoutX="155.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x12" />
-                    <ToggleButton layoutX="227.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x12" />
-                    <ToggleButton layoutX="295.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x12" />
-                    <ToggleButton layoutX="364.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x12" />
-                    <ToggleButton layoutX="14.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-                      <toggleGroup>
-                        <ToggleGroup fx:id="x13" />
-                      </toggleGroup>
-                    </ToggleButton>
-                    <ToggleButton layoutX="83.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x13" />
-                    <ToggleButton layoutX="155.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x13" />
-                    <ToggleButton layoutX="227.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x13" />
-                    <ToggleButton layoutX="295.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x13" />
-                    <ToggleButton layoutX="365.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x13" />
-                    <ToggleButton layoutX="465.0" layoutY="35.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-                      <toggleGroup>
-                        <ToggleGroup fx:id="x14" />
-                      </toggleGroup>
-                    </ToggleButton>
-                    <ToggleButton layoutX="465.0" layoutY="134.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x14" />
-                    <ToggleButton layoutX="465.0" layoutY="234.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x14" />
-                    <ToggleButton layoutX="465.0" layoutY="337.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x14" />
-                    <Text font="$x2" layoutX="469.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leaders" />
-                    <ToggleButton layoutX="15.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-                      <toggleGroup>
-                        <ToggleGroup fx:id="x15" />
-                      </toggleGroup>
-                    </ToggleButton>
-                    <ToggleButton layoutX="84.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x15" />
-                    <ToggleButton layoutX="156.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x15" />
-                    <ToggleButton layoutX="229.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x15" />
-                    <ToggleButton layoutX="296.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x15" />
-                    <ToggleButton layoutX="365.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x15" />
-                    <ToggleButton layoutX="15.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-                      <toggleGroup>
-                        <ToggleGroup fx:id="x16" />
-                      </toggleGroup>
-                    </ToggleButton>
-                    <ToggleButton layoutX="83.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x16" />
-                    <ToggleButton layoutX="155.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x16" />
-                    <ToggleButton layoutX="227.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x16" />
-                    <ToggleButton layoutX="295.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x16" />
-                    <ToggleButton layoutX="364.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x16" />
-                    <Circle fill="GREY" layoutX="187.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                    <Text id="orangedice" fill="WHITE" font="$x8" layoutX="180.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
-                    <Circle fill="$x9" layoutX="117.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                    <Text id="orangedice" fill="WHITE" font="$x8" layoutX="110.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
-                    <Circle fill="$x10" layoutX="46.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                    <Text id="orangedice" fill="WHITE" font="$x8" layoutX="39.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
-                    <Circle fill="$x11" layoutX="257.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                    <Text id="orangedice" fill="WHITE" font="$x8" layoutX="250.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
-                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x17" height="26.6015625" layoutX="465.0" layoutY="436.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
-                    <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VP: 5" />
-                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x18" height="26.6015625" layoutX="465.0" layoutY="469.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
-                    <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MP: 5" />
-                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x19" height="26.6015625" layoutX="465.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
-                    <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FP: 5" />
-                  </children>
-                </AnchorPane>
-              </content>
-            </Tab>
-            <Tab fx:id="pl4" text="Player 4">
-              <content>
-                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                  <children>
-                    <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                        <Image url="@personal1.png" />
-                      </image>
-                    </ImageView>
-                    <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                        <Image url="@personal2.png" />
-                      </image>
-                    </ImageView>
-                    <ToggleButton layoutX="14.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-                      <toggleGroup>
-                        <ToggleGroup fx:id="x20" />
-                      </toggleGroup>
-                    </ToggleButton>
-                    <ToggleButton layoutX="83.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x20" />
-                    <ToggleButton layoutX="155.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x20" />
-                    <ToggleButton layoutX="227.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x20" />
-                    <ToggleButton layoutX="295.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x20" />
-                    <ToggleButton layoutX="364.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x20" />
-                    <ToggleButton layoutX="14.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-                      <toggleGroup>
-                        <ToggleGroup fx:id="x21" />
-                      </toggleGroup>
-                    </ToggleButton>
-                    <ToggleButton layoutX="83.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x21" />
-                    <ToggleButton layoutX="155.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x21" />
-                    <ToggleButton layoutX="227.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x21" />
-                    <ToggleButton layoutX="295.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x21" />
-                    <ToggleButton layoutX="365.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x21" />
-                    <ToggleButton layoutX="465.0" layoutY="35.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-                      <toggleGroup>
-                        <ToggleGroup fx:id="x22" />
-                      </toggleGroup>
-                    </ToggleButton>
-                    <ToggleButton layoutX="465.0" layoutY="134.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x22" />
-                    <ToggleButton layoutX="465.0" layoutY="234.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x22" />
-                    <ToggleButton layoutX="465.0" layoutY="337.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x22" />
-                    <Text font="$x2" layoutX="469.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leaders" />
-                    <ToggleButton layoutX="15.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-                      <toggleGroup>
-                        <ToggleGroup fx:id="x23" />
-                      </toggleGroup>
-                    </ToggleButton>
-                    <ToggleButton layoutX="84.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x23" />
-                    <ToggleButton layoutX="156.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x23" />
-                    <ToggleButton layoutX="229.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x23" />
-                    <ToggleButton layoutX="296.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x23" />
-                    <ToggleButton layoutX="365.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x23" />
-                    <ToggleButton layoutX="15.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
-                      <toggleGroup>
-                        <ToggleGroup fx:id="x24" />
-                      </toggleGroup>
-                    </ToggleButton>
-                    <ToggleButton layoutX="83.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x24" />
-                    <ToggleButton layoutX="155.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x24" />
-                    <ToggleButton layoutX="227.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x24" />
-                    <ToggleButton layoutX="295.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x24" />
-                    <ToggleButton layoutX="364.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x24" />
-                    <Circle fill="GREY" layoutX="187.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                    <Text id="orangedice" fill="WHITE" font="$x8" layoutX="180.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
-                    <Circle fill="$x9" layoutX="117.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                    <Text id="orangedice" fill="WHITE" font="$x8" layoutX="110.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
-                    <Circle fill="$x10" layoutX="46.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                    <Text id="orangedice" fill="WHITE" font="$x8" layoutX="39.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
-                    <Circle fill="$x11" layoutX="257.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                    <Text id="orangedice" fill="WHITE" font="$x8" layoutX="250.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
-                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x17" height="26.6015625" layoutX="465.0" layoutY="436.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
-                    <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VP: 5" />
-                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x18" height="26.6015625" layoutX="465.0" layoutY="469.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
-                    <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MP: 5" />
-                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x19" height="26.6015625" layoutX="465.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
-                    <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FP: 5" />
-                  </children>
-                </AnchorPane>
-              </content>
-            </Tab>
-          </tabs>
-        </TabPane>
-        <Button layoutX="303.0" layoutY="729.0" mnemonicParsing="false" onAction="#Pass" text="Pass" />
-        <Button layoutX="275.0" layoutY="674.0" mnemonicParsing="false" onAction="#discardLeader" text="Discard Leader" />
-        <Button layoutX="371.0" layoutY="674.0" mnemonicParsing="false" onAction="#discardLeader" text="Activate Leader" />
-        <Button layoutX="487.0" layoutY="674.0" mnemonicParsing="false" onAction="#discardLeader" text="Play Leader" />
-        <Button layoutX="120.0" layoutY="729.0" minHeight="35.921875" minWidth="35.0" mnemonicParsing="false" onAction="#Serv" opacity="1.0" prefHeight="35.921875" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;" text="-">
-          <font>
-            <Font size="10.0" />
-          </font>
-        </Button>
-        <Text fx:id="servconverting" layoutX="162.0" layoutY="716.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
-          <font>
-            <Font size="34.0" />
-          </font>
-        </Text>
-        <ImageView fitHeight="50.921875" fitWidth="30.486122062836568" layoutX="123.0" layoutY="673.0" pickOnBounds="true" preserveRatio="true">
-          <image>
-            <Image url="@servo.png" />
-          </image>
-        </ImageView>
-        <Button layoutX="162.0" layoutY="730.0" minHeight="35.921875" minWidth="35.0" mnemonicParsing="false" onAction="#Serv" opacity="1.0" prefHeight="35.921875" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;" text="+" wrapText="false">
-          <font>
-            <Font size="24.0" />
-          </font>
-        </Button>
-      </children>
-     </Pane>
-  </children>
+  </content>
 </ScrollPane>
 
