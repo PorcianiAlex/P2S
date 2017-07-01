@@ -5,6 +5,7 @@ import java.util.Scanner;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.VIEW.ConvertInput;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public class ConvertMessage extends MessageToClient {
 	private Possession toPay1;
@@ -28,6 +29,11 @@ public class ConvertMessage extends MessageToClient {
 	public InputForm executeCLI(Object lOCK) throws InterruptedException {
 		inputForm = new ConvertInput(toPay1, toTake1, toPay2, toTake2);
 		return super.executeCLI(lOCK);
+	}
+	
+	@Override
+	public void executeGUI(FXMLGameController gameController) {
+		gameController.convertMessage(toPay1, toTake1, toPay2, toTake2);
 	}
 	
 	

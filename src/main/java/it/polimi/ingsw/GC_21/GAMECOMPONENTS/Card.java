@@ -55,7 +55,9 @@ public class Card implements Serializable{
 
 
 	public void callCraftEffect(Player player){
+		if(secondaryEffect!=null) {
 		secondaryEffect.activateEffect(player, null);
+		}
 	}
 	
 	

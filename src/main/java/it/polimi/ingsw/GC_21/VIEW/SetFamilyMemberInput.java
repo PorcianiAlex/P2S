@@ -11,8 +11,15 @@ public class SetFamilyMemberInput extends InputForm{
 	private Player player;
 	private FamilyMemberColor selectedFamilyMember;
 	
-
 	
+	
+	public SetFamilyMemberInput( int newFamilyMemberValue, Player player,
+			FamilyMemberColor selectedFamilyMember) {
+		this.newFamilyMemberValue = newFamilyMemberValue;
+		this.player = player;
+		this.selectedFamilyMember = selectedFamilyMember;
+	}
+
 	public SetFamilyMemberInput(int newFamilyMemberValue, Player player) {
 		this.newFamilyMemberValue = newFamilyMemberValue;
 		this.player = player;

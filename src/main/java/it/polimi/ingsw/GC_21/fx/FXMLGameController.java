@@ -18,6 +18,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.jar.Attributes.Name;
 
+import javax.naming.spi.DirStateFactory.Result;
 import javax.sound.midi.Soundbank;
 import javax.swing.ButtonGroup;
 import javax.swing.Scrollable;
@@ -42,6 +43,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.OncePerTurnLeaderCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
+import it.polimi.ingsw.GC_21.VIEW.ConvertInput;
 import it.polimi.ingsw.GC_21.VIEW.CouncilPlacementInput;
 import it.polimi.ingsw.GC_21.VIEW.CraftInput;
 import it.polimi.ingsw.GC_21.VIEW.CraftPlacementInput;
@@ -54,6 +56,7 @@ import it.polimi.ingsw.GC_21.VIEW.MarketPlacementInput;
 import it.polimi.ingsw.GC_21.VIEW.PassInput;
 import it.polimi.ingsw.GC_21.VIEW.PlacementInput;
 import it.polimi.ingsw.GC_21.VIEW.PrivilegeInput;
+import it.polimi.ingsw.GC_21.VIEW.SetFamilyMemberInput;
 import it.polimi.ingsw.GC_21.VIEW.TakeCardInput;
 import it.polimi.ingsw.GC_21.VIEW.TowerPlacementInput;
 import javafx.application.Platform;
@@ -77,6 +80,7 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Toggle;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -111,7 +115,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 
 	//riferimento ad array di carte, dadi, risorse e player
 	@FXML private ToggleGroup cards, place, excomm, family, myterritory, mybuilding, myventure, myleader, mycharacheter, x3,x4,x5,x6,x7,x12,x14,x15,x16,x13,x20,x23,x21,x22,x24;
-	@FXML private Text whitedice, blackdice, orangedice, state;
+	@FXML private Text whitedice, blackdice, orangedice, state, turntext;
 	@FXML private Text servconverting, r1,r2,r3,r4,r5,r6,r7,r8, r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20,r21,r22,r23,r24,r25,r26,r27,r28;
 	@FXML private Tab pl1,pl2,pl3,pl4;
 	@FXML private javafx.scene.control.Button confirmbtn;
@@ -200,6 +204,8 @@ public class FXMLGameController extends MetaController implements Initializable{
 		 PassInput passInput = new PassInput();
 		 try {
 			client.sendInput(passInput);
+			turntext.setText(" ");
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -213,14 +219,15 @@ public class FXMLGameController extends MetaController implements Initializable{
 			}
 			secondcard = false;
 		}
-		else if(canGo) {
+		else if(canGo && familyMemberColor!=null && placementinputForm!=null) {
+		
 		placementinputForm.setFamilyMemberColor(familyMemberColor);
 		placementinputForm.setServantsToConvert(servToConvert);
 		client.sendInput(placementinputForm);
 		System.out.println("action send");
-		
+		turntext.setText(" ");
 		canGo=false;
-		} else {
+		} else if(!canGo){
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("It's not your turn!");
@@ -344,7 +351,6 @@ public class FXMLGameController extends MetaController implements Initializable{
 		System.out.println("sono nella refreshboard");
 		classBoard = board;
 		classPlayers = players;
-		//setto la board
 		//gamemanagement
 		state.setText(dString);
 		//dadi:
@@ -402,7 +408,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 				}else {
 					harvestbtn.setStyle(" -fx-background-color: transparent; -fx-opacity:1;");
 				}
-				ToggleButton prodbtn =  (ToggleButton) place.getToggles().get(19);
+				ToggleButton prodbtn =  (ToggleButton) place.getToggles().get(18);
 				if(board.getProductionArea().getSingleActionSpace().isBusy()) {
 					String color = board.getProductionArea().getSingleActionSpace().getFamilyMemberLocated().getOwnerPlayer().getPlayerColor().toString();
 					String famcolor = board.getProductionArea().getSingleActionSpace().getFamilyMemberLocated().getAssociatedDice().getdiceColor().toString();
@@ -491,9 +497,11 @@ public class FXMLGameController extends MetaController implements Initializable{
 				}
 	}
 	
-	public void ifChooseAction(boolean firstaction, String description, Player player, TimerThread timerThread) {
+	  public void ifChooseAction(boolean firstaction, String description, Player player, TimerThread timerThread) { 
 		myPlayer = player;
-		this.timerThread=timerThread;
+	    this.timerThread=timerThread; 
+
+		//start timer animation
 		//set family button
 		ToggleButton black = (ToggleButton) family.getToggles().get(0);
         black.setStyle(" -fx-background-image: url('/familymembers/"+myPlayer.getPlayerColor()+"Black.png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-background-color: transparent;");
@@ -509,7 +517,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 		//gli mostro la conferma
 		if(firstaction) {
 		System.out.println("è il tuo turno, sono nella chooseaction");
-		state.setText(player.getName()+", it's your turn!");	
+		turntext.setText(player.getName()+", it's your turn!");	
 		} else {
 			Platform.runLater(new Runnable() {
 			    @Override
@@ -663,7 +671,96 @@ public class FXMLGameController extends MetaController implements Initializable{
 			});		
 			
 	}
+
+	public void convertMessage(Possession toPay1, Possession toTake1, Possession toPay2, Possession toTake2) {
+
+		ArrayList<String> choices = new ArrayList<String>();
+		choices.add("pay: "+toPay1.toString()+" and gain: "+toTake1.toString());
+		choices.add("pay: "+toPay2.toString()+" and gain: "+toTake2.toString());
+
 		
+		Platform.runLater(new Runnable() {
+		    @Override
+		    public void run() {
+		    	ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
+		    	dialog.setTitle("Convert your resources!");
+		    	dialog.setHeaderText("Oh grullo! You can choose resources to covert");
+		    	dialog.setContentText("Choose your covert combination:");
+		    	Optional<String> result = dialog.showAndWait();
+		    	int j;
+		    	if(result.get()==null) {
+		    		return;
+		    	}
+		    	for ( j= 0; j < 2; j++) {
+					if(result.get().equals(choices.get(j))){
+					break;
+					}
+				}
+		    	try {
+		    		if(j==0) {
+		    			client.sendInput(new ConvertInput(toPay1, toTake1, toPay2, toTake2, toPay1, toTake1));
+		    		} else {
+		    			client.sendInput(new ConvertInput(toPay1, toTake1, toPay2, toTake2, toPay2, toTake2));
+					}
+		    		
+		    	} catch (IOException e) {
+		    		e.printStackTrace();
+		    	}
+		    }
+		});
+		
+		}
+
+	public void setFamilyMemberLeader(int newFamilyMemberValue, Player player) {
+		ArrayList<String> choices = new ArrayList<String>();
+		choices.add("Black");
+		choices.add("White");
+		choices.add("Orange");
+		choices.add("Neutral");
+
+		
+		Platform.runLater(new Runnable() {
+		    @Override
+		    public void run() {
+		    	ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
+		    	dialog.setTitle("Set family member value");
+		    	dialog.setHeaderText("One of your family member can be upgraded to value "
+						+ newFamilyMemberValue);
+		    	dialog.setContentText("Choose which one:");
+		    	Optional<String> result = dialog.showAndWait();
+		    	
+		    	try {
+		    		client.sendInput(new SetFamilyMemberInput(newFamilyMemberValue, player, FamilyMemberColor.valueOf(result.get())));
+		    		
+		    	} catch (IOException e) {
+		    		e.printStackTrace();
+		    	}
+		    }
+		});
+	}
+
+	public void craftMessage(CraftType craftType, int actionValue) {
+		Platform.runLater(new Runnable() {
+		    @Override
+		    public void run() {
+		    	TextInputDialog dialog = new TextInputDialog();
+		    	dialog.setTitle("you can add servants");
+		    	dialog.setHeaderText("You can make a craft with value " + actionValue + ", how many servant do you want to convert?");
+		    	Optional<String> result = dialog.showAndWait();
+			    	
+		    	try {
+		    		if(result.isPresent()) {
+		    			client.sendInput(new CraftInput(craftType, actionValue, Integer.valueOf(result.get())));
+		    		} else {
+		    			client.sendInput(new CraftInput(craftType, actionValue, Integer.valueOf(result.get())));
+					}
+		    	} catch (IOException e) {
+		    		e.printStackTrace();
+		    	}
+		    }
+		
+		});
+	}
 	
 	
 	

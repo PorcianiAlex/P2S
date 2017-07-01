@@ -10,6 +10,15 @@ public class CraftInput extends InputForm {
 	private int actionValue;
 	private int servantsToConvert;
 	
+	
+	
+	public CraftInput(CraftType craftType, int actionValue,
+			int servantsToConvert) {
+		this.craftType = craftType;
+		this.actionValue = actionValue;
+		this.servantsToConvert = servantsToConvert;
+	}
+
 	public CraftInput(CraftType craftType, int actionValue) {
 		this.craftType = craftType;
 		this.actionValue = actionValue;

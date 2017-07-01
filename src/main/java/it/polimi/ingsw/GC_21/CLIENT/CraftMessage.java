@@ -5,6 +5,7 @@ import java.util.Scanner;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.VIEW.CraftInput;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public class CraftMessage extends MessageToClient {
 	private CraftType craftType;
@@ -20,6 +21,11 @@ public class CraftMessage extends MessageToClient {
 	public InputForm executeCLI(Object lOCK) throws InterruptedException {
 		inputForm = new CraftInput(craftType, actionValue);
 		return super.executeCLI(lOCK);
+	}
+	
+	@Override
+	public void executeGUI(FXMLGameController gameController) {
+		gameController.craftMessage(craftType, actionValue);
 	}
 
 }
