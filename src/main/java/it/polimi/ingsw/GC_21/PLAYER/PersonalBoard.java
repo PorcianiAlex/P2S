@@ -37,7 +37,7 @@ public class PersonalBoard implements Serializable{
 
 	public PersonalBoard(Player player, Game game) {
 		this.myOwnedCards = OwnedCards.factoryOwnedCards();
-		this.myPossession = new Possession(6, 6, 6, 6, 6, 6, 6);
+		this.myPossession = new Possession();
 		this.craftMinimumReward = new Possession(1,1,1,1,1,1,1);
 		//this.infinity();
 		this.player = player;
