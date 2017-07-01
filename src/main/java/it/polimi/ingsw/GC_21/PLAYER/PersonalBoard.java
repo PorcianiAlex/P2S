@@ -217,9 +217,6 @@ public class PersonalBoard implements Serializable{
 		return myOwnedCards;
 	}
 
-	public Possession getCraftMinimumReward() {
-		return craftMinimumReward;
-	}
 
 	public Possession getMyPossession() {
 		return myPossession;
