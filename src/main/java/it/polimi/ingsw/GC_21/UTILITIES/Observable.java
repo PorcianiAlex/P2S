@@ -58,8 +58,18 @@ public abstract class Observable<C> {
 					detachCurrent();
 				}
 			}
+	
+	public void notifyInit() {
+		for (P2SObserver<C> o : this.observers) {
+				o.updateInit();
+			}
+		}
 			
-
+	public void notifyClose() {
+		for (P2SObserver<C> o : this.observers) {
+				o.updateClose();
+			}
+		}
 
 
 	

@@ -52,7 +52,7 @@ public class SocketAdapter implements AdapterConnection{
 			return inputForm;
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
-			return null;
+			return new PassInput();//if client is disconnected, do a default pass action
 		}
 	}
 	

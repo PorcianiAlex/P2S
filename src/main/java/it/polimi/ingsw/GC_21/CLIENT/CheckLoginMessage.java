@@ -10,6 +10,7 @@ import it.polimi.ingsw.GC_21.VIEW.LobbyInput;
 public class CheckLoginMessage extends MessageToClient {
 	private ArrayList<String> games;
 	private CheckLobbyMessage callMessage;
+	private boolean possibleReconnection = false;
 
 	public CheckLoginMessage(boolean result, String string, ArrayList<String> games) {
 		super(result, false, string);
@@ -28,7 +29,7 @@ public class CheckLoginMessage extends MessageToClient {
 	@Override
 	public InputForm executeCLI(Object LOCK) throws InterruptedException {
 		if (result) {
-			inputForm = new LobbyInput();
+			inputForm = new LobbyInput(possibleReconnection);
 			if (callMessage != null) {
 				callMessage.setInputForm(inputForm);
 			}
@@ -48,6 +49,14 @@ public class CheckLoginMessage extends MessageToClient {
 
 	public void setGames(ArrayList<String> games) {
 		this.games = games;
+	}
+
+	public boolean isPossibleReconnection() {
+		return possibleReconnection;
+	}
+
+	public void setPossibleReconnection(boolean possibleReconnection) {
+		this.possibleReconnection = possibleReconnection;
 	}
 
 	
