@@ -39,7 +39,7 @@ public class PersonalBoard implements Serializable{
 		this.myOwnedCards = OwnedCards.factoryOwnedCards();
 		this.myPossession = new Possession(0, 0, 0, 0, 0, 0, 0);
 		this.craftMinimumReward = new Possession(1,1,1,1,1,1,1);
-		this.infinity();
+		//this.infinity();
 		this.player = player;
 		this.toCallBeforeCraftEffects= new ArrayList<ToCallBeforeCraft>();
 		this.toCallBeforePlacementEffects = new ArrayList<ToCallBeforePlacement>();
