@@ -26,12 +26,9 @@ public InitGameInput() {
 	    	/*while (game.getPlayers().size() < 2) {
 	    	System.out.println("Waiting for players...");
 			}*/
+	    	remoteView.notifyInit();
 	      game.executeGame(); 
-	      try {
-			remoteView.getAdapter().close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	      remoteView.notifyClose();
 	    } else { execute(remoteView); } 
 	  } 
 	

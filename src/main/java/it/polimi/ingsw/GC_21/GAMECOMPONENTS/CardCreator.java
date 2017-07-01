@@ -58,7 +58,7 @@ public class CardCreator implements Serializable{
          	 this.AddSecEff(devCardCreating, jsonLineItem);
            	 this.addReq(devCardCreating, jsonLineItem);
            	 cards.add(devCardCreating);
-           	 System.out.println("Card just created " + devCardCreating.getName() + " with ID: " + devCardCreating.getID());
+           	 //System.out.println("Card just created " + devCardCreating.getName() + " with ID: " + devCardCreating.getID());
             }
 	     }
 		} catch (Exception e) {
@@ -87,7 +87,7 @@ public class CardCreator implements Serializable{
             excommunicationCard.setID(jsonLineItem.get("ID").toString());
 
          	 cards.add(excommunicationCard);  
-           	 System.out.println("Card just created " + excommunicationCard.getName() + " with ID: " + excommunicationCard.getID());
+           	 //System.out.println("Card just created " + excommunicationCard.getName() + " with ID: " + excommunicationCard.getID());
 
             }
 	     }

@@ -15,6 +15,10 @@ public interface P2SObserver<C> {
 	public void updateTurn();
 	public void updateCurrent(MessageToClient message);
 	public void updateBroadcast(MessageToClient message);
+	public void updateClose();
+	public void updateInit();
+
+
 
 		
 }

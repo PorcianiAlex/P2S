@@ -23,6 +23,7 @@ public class LoginController extends ControllerForm{
 		boolean ok = false;
 		try {
 			CheckLoginMessage checkLoginMessage;
+			boolean possibleReconnection = controller.getControllerManager().gameReconnection(username);
 			ok = controller.getControllerManager().Login(username, password, insert);
 			if(ok == false && insert == true) {
 				checkLoginMessage = new CheckLoginMessage(false, "this username already exists!", null);
@@ -31,7 +32,7 @@ public class LoginController extends ControllerForm{
 				checkLoginMessage = new CheckLoginMessage(false, "these username and password doesn't exist!", null);
 
 			}
-			else if(!checkLoggedUsers(username) && insert==false) {
+			else if(!checkLoggedUsers(username) && insert==false && !possibleReconnection) {
 				 checkLoginMessage = new CheckLoginMessage(false, "Oh grullo! tu sei già loggato!", null);
 				
 			}
@@ -43,6 +44,9 @@ public class LoginController extends ControllerForm{
 				ArrayList<String> games = findGames();
 				String lobbyMessage = "Hi, welcome to our Lobby! \nPress 'C' to create a game or enter the number of the match you want to join:\n" + games.toString();
 				 checkLoginMessage = new CheckLoginMessage(true, lobbyMessage, games);
+				 if (possibleReconnection){
+						checkLoginMessage.setPossibleReconnection(true);
+					}
 
 			}
 			controller.getRemoteView().getAdapter().sendObject(checkLoginMessage);

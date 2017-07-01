@@ -1,6 +1,5 @@
-package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
+package it.polimi.ingsw.GC_21.CONTROLLER;
 
-import it.polimi.ingsw.GC_21.CONTROLLER.ControllerForm;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 

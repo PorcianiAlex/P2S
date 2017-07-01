@@ -39,12 +39,14 @@ public class MessageToClient implements Serializable{
 		this.description = description;
 	}
 	
-	public InputForm executeCLI(Object LOCK) throws InterruptedException  {
+	public InputForm executeCLI(Object LOCK) throws InterruptedException  {//notifies the run CLI that there is a new Input form to fill
 		System.out.println(description);
 		synchronized (LOCK) {
 			LOCK.notifyAll();
-		}	
-		inputForm.inputFromCli();
+		}
+		if (inputForm != null) {
+			inputForm.inputFromCli();
+		}
 		return inputForm;
 	}
 	

@@ -16,10 +16,46 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ResourceType;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Ventures;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class PersonalBoardTest {
+	
+	@Test
+	public void earnByTerritoriesTest(){
+		Game game = new Game("Test");
+		Player testPlayer = new Player("aaa", Color.Blue, game);
+		testPlayer.getMyPersonalBoard().getSpecificOwnedCards(DevCardType.Territory).setOwnedCardsnumber(6);
+		testPlayer.getMyPersonalBoard().earnByTerritories();
+		assertTrue(testPlayer.getMyPersonalBoard().getMyPossession().getVictoryPoints().getValue() == 20);
+	}
+	
+	@Test
+	public void earnByVenturesTest(){
+		Game game = new Game("Test");
+		Player testPlayer = new Player("aaa", Color.Blue, game);
+		Ventures ventures = new Ventures("aaa");
+		ventures.setDevCardType(DevCardType.Venture);
+		ventures.setFinalVictoryPoints(4);
+		Ventures ventures2 = new Ventures("aaa22");
+		ventures2.setDevCardType(DevCardType.Venture);
+		ventures2.setFinalVictoryPoints(4);
+		testPlayer.getMyPersonalBoard().addDevCard(ventures);
+		testPlayer.getMyPersonalBoard().addDevCard(ventures2);
+		testPlayer.getMyPersonalBoard().getSpecificOwnedCards(DevCardType.Venture).setOwnedCardsnumber(2);
+		testPlayer.getMyPersonalBoard().earnByVentures();
+		assertTrue(testPlayer.getMyPersonalBoard().getMyPossession().getVictoryPoints().getValue() == 8);
+	}
+	
+	@Test
+	public void earnByCharactersTest(){
+		Game game = new Game("Test");
+		Player testPlayer = new Player("aaa", Color.Blue, game);
+		testPlayer.getMyPersonalBoard().getSpecificOwnedCards(DevCardType.Character).setOwnedCardsnumber(6);
+		testPlayer.getMyPersonalBoard().earnByCharacters();
+		assertTrue(testPlayer.getMyPersonalBoard().getMyPossession().getVictoryPoints().getValue() == 21);
+	}
 	
 	@Test
 	public void testEarnByResources() {

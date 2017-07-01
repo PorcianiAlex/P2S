@@ -24,9 +24,9 @@ public class RunCli implements Runnable {
 		 runCliThread.start();
 		while(true) {
 			synchronized (LOCK) {
-				message = client.getReceivedMessage();
+				 message = client.getReceivedMessage();
 			}
-			if (message != null) {
+			 if (message != null) {
 				if (message instanceof ChooseActionMessage){
 					((ChooseActionMessage) message).setClient(client);
 					}

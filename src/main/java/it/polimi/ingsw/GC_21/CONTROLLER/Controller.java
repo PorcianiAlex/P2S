@@ -107,6 +107,18 @@ public class Controller implements P2SObserver<Action>{
 		
 	}
 
+	@Override
+	public void updateClose() {
+		controllerManager.getRemoteViews().remove(remoteView);
+		
+	}
+
+	@Override
+	public void updateInit() {
+		controllerManager.getGames().remove(modelGame);
+		controllerManager.getActiveGames().add(modelGame);
+	}
+
 
 	
 }

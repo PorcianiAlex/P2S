@@ -27,7 +27,7 @@ public class CraftInput extends InputForm {
 	@Override
 	public void execute(RemoteView remoteView) {
 		setAdapter(remoteView);
-		CraftAction craftAction = new CraftAction(remoteView.getPlayer(), craftType, servantsToConvert);
+		CraftAction craftAction = new CraftAction(remoteView.getPlayer(), craftType, servantsToConvert, actionValue);
 		remoteView.response(craftAction);
 		}
 	
