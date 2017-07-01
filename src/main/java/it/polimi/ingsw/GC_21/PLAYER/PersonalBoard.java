@@ -39,8 +39,8 @@ public class PersonalBoard implements Serializable{
 	public PersonalBoard(Player player, Game game) {
 		this.myOwnedCards = OwnedCards.factoryOwnedCards();
 		this.myPossession = new Possession(0, 0, 0, 0, 0, 0, 0);
-		this.productionBonusTile = new Effect(new Possession(2, 0, 0, 0, 0, 0, 0), 0, game);
-		this.harvestBonusTile = new Effect(new Possession(0, 1, 1, 0, 0, 0, 0), 0, game);
+		this.productionBonusTile = new Effect(new Possession(2, 0, 0, 0, 0, 1, 0), 0, game);
+		this.harvestBonusTile = new Effect(new Possession(0, 1, 1, 1, 0, 0, 0), 0, game);
 		//this.infinity();
 		this.player = player;
 		this.toCallBeforeCraftEffects= new ArrayList<ToCallBeforeCraft>();
