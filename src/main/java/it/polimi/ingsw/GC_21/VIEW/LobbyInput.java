@@ -10,10 +10,12 @@ public class LobbyInput extends InputForm{
 	private boolean created = false;
 	private int joined;
 	private ControllerManager controllerManager;
+	private boolean reconnection;
 	
 	
 	
-	public LobbyInput() {
+	public LobbyInput(boolean reconnection) {
+		this.reconnection = reconnection;
 	}
 
 	public LobbyInput(boolean created, int joined) {
@@ -47,13 +49,34 @@ public class LobbyInput extends InputForm{
 	
 	@Override
 	public void execute(RemoteView remoteView) {		
-			LobbyController checkLobbyMessage = new LobbyController(created, joined);
+			LobbyController checkLobbyMessage = new LobbyController(created, joined, reconnection);
 			remoteView.notifyController(checkLobbyMessage);
 	}
 	
 	@Override
 	public void inputFromCli() throws InterruptedException {
-		try {
+			if (reconnection) {
+				System.out.println("You are  already in an active game. Do you want to continue this game? \n(Y) or (N)?");
+				String answer = takeInput(this);
+				switch (answer) {
+				case "Y": reconnection = true;			
+					break;
+				case "N": reconnection = false;
+					chooseOrCreate();
+				default: reconnection = false;
+					chooseOrCreate();
+					break;
+				}
+			}
+			else {
+				chooseOrCreate();
+			}
+		
+		}
+		
+	
+		public void chooseOrCreate() throws InterruptedException {
+			try{
 			String choice = takeInput(this);
 			   if(choice.equals("C")) {
 				   setCreated(true);
@@ -62,11 +85,9 @@ public class LobbyInput extends InputForm{
 			   }
 		} catch (NumberFormatException e) {
 			System.out.println("Invalid input, choose C or a game number");
-			inputFromCli();
+			chooseOrCreate();
 		}
-	}
-	
-		
+		}
 			  
 	
 

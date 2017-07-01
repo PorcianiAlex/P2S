@@ -16,20 +16,24 @@ import org.json.simple.parser.ParseException;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
+import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.VIEW.RemoteView;
 
 public class ControllerManager {
 
 	private ArrayList<Controller> controllers;
 	private ArrayList<RemoteView> remoteViews;
-	private ArrayList<Game> games;
+	private ArrayList<Game> gamesInLobby;
+	private ArrayList<Game> activeGames;
 	private JSONParser parser = new JSONParser();
 
 	
 	public ControllerManager() {
 		controllers = new ArrayList<Controller>();
-		games = new ArrayList<Game>();
+		gamesInLobby = new ArrayList<Game>();
 		remoteViews = new ArrayList<RemoteView>();
+		activeGames = new ArrayList<Game>();
+
 	}
 	
 	public ArrayList<Controller> getControllers() {
@@ -50,10 +54,23 @@ public class ControllerManager {
 	}
 	
 	public ArrayList<Game> getGames() {
-		return games;
+		return gamesInLobby;
 	}
 	public synchronized void addGame(Game game) {
-		games.add(game);
+		gamesInLobby.add(game);
+	}
+	
+	
+	public synchronized boolean gameReconnection(String user) {
+		for (int i = 0; i < activeGames.size(); i++) {
+			ArrayList<Player> players = activeGames.get(i).getPlayers();
+			for (int j = 0; j < players.size(); j++) {
+				if (user.equals(players.get(j).getName())) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 	public synchronized boolean Login(String user, String psw, Boolean insert) throws FileNotFoundException, IOException, ParseException {
@@ -101,6 +118,23 @@ public class ControllerManager {
 	    
 	    }
 	return false;
+	}
+
+	public RemoteView getMyActiveRemoteView(String username) {
+		for (int i = 0; i < remoteViews.size(); i++) {
+			if (remoteViews.get(i).getUsername().equals(username)) {
+				return remoteViews.get(i);
+			}
+		}
+		return null;//it should not 
+	}
+
+	public ArrayList<Game> getActiveGames() {
+		return activeGames;
+	}
+
+	public void setActiveGames(ArrayList<Game> activeGames) {
+		this.activeGames = activeGames;
 	}
 	
 	

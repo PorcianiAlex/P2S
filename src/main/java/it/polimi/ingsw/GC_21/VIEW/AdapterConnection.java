@@ -10,7 +10,7 @@ import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 public interface AdapterConnection {
        public void sendObject(MessageToClient messageToClient);
        public InputForm receiveObject();
-	public void close() throws IOException; 
+       public void close() throws IOException; 
 	
 	
 }

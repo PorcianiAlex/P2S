@@ -39,7 +39,7 @@ public class RmiAdapter implements AdapterConnection{
 		try {
 			return rmiClient.sendObjectToServer();
 		} catch (Exception e) {
-			return new PassInput();
+			return new PassInput();//if client is disconnected, do a default pass action
 		}	
 		
 	}
