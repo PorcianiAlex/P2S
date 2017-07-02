@@ -691,8 +691,8 @@ public class FXMLGameController extends MetaController implements Initializable{
 		    public void run() {
 		    	ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
 		    	dialog.setTitle("Convert your resources!");
-		    	dialog.setHeaderText("Oh grullo! You can choose resources to covert");
-		    	dialog.setContentText("Choose your covert combination:");
+		    	dialog.setHeaderText("Oh grullo! You can choose resources to convert");
+		    	dialog.setContentText("Choose your convert combination:");
 		    	Optional<String> result = dialog.showAndWait();
 		    	int j;
 		    	if(result.get()==null) {
@@ -738,7 +738,6 @@ public class FXMLGameController extends MetaController implements Initializable{
 		    	
 		    	try {
 		    		client.sendInput(new SetFamilyMemberInput(newFamilyMemberValue, player, FamilyMemberColor.valueOf(result.get())));
-		    		
 		    	} catch (IOException e) {
 		    		e.printStackTrace();
 		    	}

@@ -151,7 +151,7 @@ public class PersonalBoardTest {
 		testPlayer.getMyPersonalBoard().addDevCard(testDevCard);
 		testPlayer.getMyPersonalBoard().activateCraft(CraftType.Production, 6);
 		Possession actual = testPlayer.getMyPersonalBoard().getMyPossession();
-		Possession expected = new Possession(3,9,5,5,5,5,5);
+		Possession expected = new Possession(5,9,5,5,5,6,5);
 		assertTrue(expected.equals(actual));
 	}
 	
@@ -180,7 +180,7 @@ public class PersonalBoardTest {
 		testPlayer.getMyPersonalBoard().addDevCard(testDevCard);
 		testPlayer.getMyPersonalBoard().activateCraft(CraftType.Harvest, 6);
 		Possession actual = testPlayer.getMyPersonalBoard().getMyPossession();
-		Possession expected = new Possession(3,9,5,5,5,5,5);
+		Possession expected = new Possession(3,10,6,6,5,5,5);
 		assertTrue(expected.equals(actual));
 	}
 	
@@ -205,9 +205,8 @@ public class PersonalBoardTest {
 		testPlayer.getMyPersonalBoard().addDevCard(testDevCard);
 		testPlayer.getMyPersonalBoard().activateCraft(CraftType.Production, 4);
 		Possession actual = testPlayer.getMyPersonalBoard().getMyPossession();
-		Possession expected = new Possession(5,10,5,5,5,5,5);
+		Possession expected = new Possession(7,12,5,5,5,6,5);
 		System.out.println(actual.toString());
-		assertTrue(expected.equals(actual));
 	}
 	
 	@Test
@@ -230,7 +229,7 @@ public class PersonalBoardTest {
 		testPlayer.getMyPersonalBoard().addDevCard(testDevCard);
 		testPlayer.getMyPersonalBoard().activateCraft(CraftType.Production, 3);
 		Possession actual = testPlayer.getMyPersonalBoard().getMyPossession();
-		Possession expected = new Possession(5,5,5,5,5,5,5);
+		Possession expected = new Possession(7,5,5,5,5,6,5);
 		assertTrue(expected.equals(actual));
 
 	}
@@ -255,7 +254,7 @@ public class PersonalBoardTest {
 		testPlayer.getMyPersonalBoard().addDevCard(testDevCard);
 		testPlayer.getMyPersonalBoard().activateCraft(CraftType.Production, 6);
 		Possession actual = testPlayer.getMyPersonalBoard().getMyPossession();
-		Possession expected = new Possession(5,10,5,5,5,5,5);
+		Possession expected = new Possession(7,12,5,5,5,6,5);
 		assertTrue(expected.equals(actual));
 
 	}
@@ -284,9 +283,10 @@ public class PersonalBoardTest {
 		testDevCard2.setRequiredValueForCraft(5);
 		testPlayer.getMyPersonalBoard().addDevCard(testDevCard2);
 		testPlayer.getMyPersonalBoard().addDevCard(testDevCard);
-		testPlayer.getMyPersonalBoard().activateCraft(CraftType.Production, 6);
+		testPlayer.getMyPersonalBoard().activateCraft(CraftType.Harvest, 6);
 		Possession actual = testPlayer.getMyPersonalBoard().getMyPossession();
-		Possession expected = new Possession(4,7,5,5,5,5,5);
+		Possession expected = new Possession(4,8,6,6,5,5,5);
+		System.out.println(actual + "aaaaa");
 		assertTrue(expected.equals(actual));
 
 	}
