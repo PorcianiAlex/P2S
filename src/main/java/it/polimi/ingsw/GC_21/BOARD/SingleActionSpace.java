@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
+import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 
 public class SingleActionSpace extends ActionSpace implements Serializable{
@@ -17,8 +18,13 @@ public class SingleActionSpace extends ActionSpace implements Serializable{
 	
 	@Override
 	public void placeFamilyMember(FamilyMember familyMember) {
+		if (familyMember.getOwnerPlayer().getPlayerColor() == Color.Black) {
+			setBlack(true);
+		}
+		else {
 			setFamilyMemberLocated(familyMember);
 			setBusy(true);
+		}		
 	}
     
 

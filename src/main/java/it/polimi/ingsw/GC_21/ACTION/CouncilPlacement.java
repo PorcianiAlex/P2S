@@ -3,11 +3,11 @@ package it.polimi.ingsw.GC_21.ACTION;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.BOARD.Board;
-import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.BOARD.CouncilPalace;
 import it.polimi.ingsw.GC_21.BOARD.MultipleActionSpace;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
+import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;

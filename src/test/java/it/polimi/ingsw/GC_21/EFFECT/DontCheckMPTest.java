@@ -7,7 +7,7 @@ import java.rmi.RemoteException;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.GC_21.BOARD.Color;
+import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
 import it.polimi.ingsw.GC_21.CONTROLLER.ControllerManager;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;

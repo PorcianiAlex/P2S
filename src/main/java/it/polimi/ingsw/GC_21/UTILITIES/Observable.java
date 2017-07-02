@@ -50,6 +50,31 @@ public abstract class Observable<C> {
 		currentObserver.updateCurrent(message);
 	}
 	
+	public void notifyBlackTurn(Player player){
+		for (P2SObserver<C> o : this.observers) {
+			if (player.equals(playerObserver.get(o))) {
+				for (int i = 0; i < 4; i++) {
+					o.updateTurn();
+					detachCurrent();
+				}
+			}
+		}
+	}
+	
+	public void notifyBlackSwitch(Player blackPlayer, Player playerToSwitch){
+		for (P2SObserver<C> o : this.observers) {
+			if (blackPlayer.equals(playerObserver.get(o))) {
+					o.updateBlackSwitch(playerToSwitch);
+					playerObserver.put(o, playerToSwitch);
+					for (P2SObserver<C> obs : this.observers) {
+						if (playerToSwitch.equals(playerObserver.get(obs)) && !obs.equals(o)) {
+							playerObserver.put(obs, blackPlayer);
+							return;
+						}
+					}
+				}
+			}
+		}
 	
 	
 	public void notifyTurn() {
@@ -70,10 +95,18 @@ public abstract class Observable<C> {
 				o.updateClose();
 			}
 		}
+	public void notifyBlack() {
+		for (P2SObserver<C> o : this.observers) {
+				o.updateBlack();
+			}
+		}
 
 
 	
-	public void notifyTurnOrdered(ArrayList<Player> turnOrder) {
+	public void notifyOrderedTurn(ArrayList<Player> turnOrder, Player blackPlayer) {
+		if (blackPlayer != null) {
+			notifyBlackTurn(blackPlayer);
+		}
 		for (int i = 0; i < turnOrder.size(); i++) {
 			for (P2SObserver<C> o : this.observers) {
 				if (turnOrder.get(i).equals(playerObserver.get(o))) {

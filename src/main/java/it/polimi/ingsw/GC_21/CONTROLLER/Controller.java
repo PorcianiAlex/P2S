@@ -9,6 +9,8 @@ import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforePlacement;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
+import it.polimi.ingsw.GC_21.PLAYER.Color;
+import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.UTILITIES.P2SObserver;
 
 import it.polimi.ingsw.GC_21.VIEW.RemoteView;
@@ -60,11 +62,17 @@ public class Controller implements P2SObserver<Action>{
 
 	@Override
 	public boolean update(Action action) {
+		if (remoteView.getPlayer().getPlayerColor() == Color.Black) {
+			if (!action.checkBlack()) {
+				action.place();
+				return true;
+			}
+			return false;
+		}
 		if (action instanceof PlacementAction){
-			int indexOfToCallBeforePlacementArray = action.getPlayerInAction().getMyPersonalBoard().getToCallBeforePlacementEffects().size();
-			ArrayList<ToCallBeforePlacement> effectsOnTheGo = action.getPlayerInAction().getMyPersonalBoard().getToCallBeforePlacementEffects();
-			for (int i = 0; i < indexOfToCallBeforePlacementArray; i++) {
-				((Effect) effectsOnTheGo.get(i)).activateEffect(action.getPlayerInAction(), action);
+		int indexOfToCallBeforePlacementArray = action.getPlayerInAction().getMyPersonalBoard().getToCallBeforePlacementEffects().size();
+		ArrayList<ToCallBeforePlacement> effectsOnTheGo = action.getPlayerInAction().getMyPersonalBoard().getToCallBeforePlacementEffects();			for (int i = 0; i < indexOfToCallBeforePlacementArray; i++) {
+			((Effect) effectsOnTheGo.get(i)).activateEffect(action.getPlayerInAction(), action);
 			}
 		}
 		boolean checkAction = action.checkAction();
@@ -74,6 +82,7 @@ public class Controller implements P2SObserver<Action>{
 		}
 		return false;
 	}
+	
 
 	
 	@Override
@@ -110,6 +119,22 @@ public class Controller implements P2SObserver<Action>{
 	public void updateInit() {
 		controllerManager.getGames().remove(modelGame);
 		controllerManager.getActiveGames().add(modelGame);
+	}
+
+	
+
+	@Override
+	public void updateBlack() {
+		Player blackPlayer = modelGame.getCurrentAge().getCurrentRound().getCurrentTurn().getBlackPlayer();			Player playerToSwitch = remoteView.getPlayer();
+		modelGame.notifyBlackSwitch(blackPlayer, playerToSwitch);
+		remoteView.setPlayer(blackPlayer);
+		remoteView.getPlayer().setName(remoteView.getUsername());					
+	}
+
+	@Override
+	public void updateBlackSwitch(Player playerToSwitch) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

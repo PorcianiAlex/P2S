@@ -3,7 +3,6 @@ package it.polimi.ingsw.GC_21.PLAYER;
 import java.io.Serializable;
 import java.util.*;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
-import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallAfterFinalCount;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforeCraft;
@@ -169,7 +168,7 @@ public class PersonalBoard implements Serializable{
 		if (getSpecificOwnedCards(DevCardType.Venture).getOwnedCardsnumber()!=0) {
 			int finalVP = 0;
 			for (int i = 0; i < getSpecificOwnedCards(DevCardType.Venture).getOwnedCardsnumber(); i++) {
-				finalVP = finalVP + ((Ventures) getSpecificOwnedCards(DevCardType.Venture).getOwnedCards()[i].getCard())
+				finalVP = finalVP + ((Ventures) getSpecificOwnedCards(DevCardType.Venture).getMyDevCards()[i].getCard())
 						.getFinalVictoryPoints().getValue();
 			}
 			myPossession.addItemToPossession(new VictoryPoints(finalVP));
@@ -181,7 +180,7 @@ public class PersonalBoard implements Serializable{
 			productionBonusTile.activateEffect(player, null);
 			OwnedCards ownedBuildingCardsCards = getSpecificOwnedCards(DevCardType.Building);
 			for (int i = 0; i < ownedBuildingCardsCards.getOwnedCardsnumber(); i++) {
-				CraftCard tmp = (CraftCard) ownedBuildingCardsCards.getMyOwnedCards()[i].getCard();
+				CraftCard tmp = (CraftCard) ownedBuildingCardsCards.getMyDevCards()[i].getCard();
 				if(tmp!=null && actionValue >=  tmp.getRequiredValueForCraft()) {
 					tmp.callCraftEffect(player);
 				}
@@ -190,7 +189,7 @@ public class PersonalBoard implements Serializable{
 			harvestBonusTile.activateEffect(player, null);
 			OwnedCards ownedTerritoryCards = getSpecificOwnedCards(DevCardType.Territory);
 			for (int i = 0; i < ownedTerritoryCards.getOwnedCardsnumber(); i++) {
-				CraftCard tmp = (CraftCard) ownedTerritoryCards.getMyOwnedCards()[i].getCard();
+				CraftCard tmp = (CraftCard) ownedTerritoryCards.getMyDevCards()[i].getCard();
 				if(tmp!=null && actionValue >=  tmp.getRequiredValueForCraft() ) {
 					tmp.callCraftEffect(player);
 				}

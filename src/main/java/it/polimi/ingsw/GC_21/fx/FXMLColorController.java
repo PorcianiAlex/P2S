@@ -6,11 +6,11 @@ import java.rmi.RemoteException;
 
 import javax.xml.ws.handler.MessageContext;
 
-import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.CLIENT.CheckColorMessage;
 import it.polimi.ingsw.GC_21.CLIENT.ChooseActionMessage;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.CONTROLLER.ControllerForm;
+import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.VIEW.CreatePlayerInput;
 import it.polimi.ingsw.GC_21.VIEW.InitGameInput;
 import javafx.event.ActionEvent;
@@ -37,6 +37,7 @@ public class FXMLColorController extends MetaController {
 	@FXML private ToggleButton red;
 	@FXML private ToggleButton yellow;
 	@FXML private ToggleButton green;
+	@FXML private javafx.scene.control.Button ready;
 	
 	@FXML
     public void initialize() {
@@ -45,16 +46,15 @@ public class FXMLColorController extends MetaController {
         blue.setAccessibleText(Color.Blue.toString());
         yellow.setAccessibleText(Color.Yellow.toString());
         red.setAccessibleText(Color.Red.toString());
+        ready.setVisible(false);
         
-        colorThread = new ColorThread(texttarget, client, this);
-        colorThread.start();
         
     }
 	
 
 	 @FXML protected void Color(ActionEvent event) throws ClassNotFoundException, IOException{
 	   //client.sendGUI("start"); //se sei l'host fa partire effettivamente la partita altrimenti ti fa andare sulla nuova schrmata senza eseguire il gioco	     
-		ToggleButton button = (ToggleButton) place.getSelectedToggle();
+		 ToggleButton button = (ToggleButton) place.getSelectedToggle();
 		 colorplayer = Color.valueOf(button.getAccessibleText());
 		 CreatePlayerInput createPlayerInput = new  CreatePlayerInput(colorplayer);
 		 client.sendInput(createPlayerInput);
@@ -62,16 +62,17 @@ public class FXMLColorController extends MetaController {
 		 host = checkColorMessage.isHost();
 		 if (!checkColorMessage.isResult()) {
 			this.popup();
-		} else if (checkColorMessage.isResult() && checkColorMessage.isHost()) {
-			System.out.println(checkColorMessage.getDescription());
+		} else {
 			colorThread = new ColorThread(texttarget, client, this);
-	        colorThread.start();
-		} 
+			colorThread.start();
+		 if (host) {
+			 ready.setVisible(true);
+		}
 	 }
+	}
 	 
 	 @FXML public void Ready(ActionEvent event) throws ClassNotFoundException, IOException {
 		 if(colorplayer!=null && host) {
-		 //occhio perchè se lo preme prima inizia comunque, c'è da mettere un controllo! LOCK
 		 gameScene();
 		 InitGameInput initGameInput = new InitGameInput(true);
 	        try {
@@ -81,9 +82,7 @@ public class FXMLColorController extends MetaController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		 } else if(colorplayer!=null && !host) {
-			 gameScene();
-		 }
+		 } 
 		 return;
 	}
 	 

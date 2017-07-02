@@ -2,8 +2,6 @@ package it.polimi.ingsw.GC_21.PLAYER;
 
 import java.io.Serializable;
 
-
-import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
@@ -18,6 +16,7 @@ public class Player implements Serializable{
 	private Game game;
 	private boolean checkOnMP;
 	private boolean overchargeOnBusyTower;
+	private int blackPoint;
 
 	public Player(String name, Color playerColor, Game game) {
 		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), this);
@@ -30,6 +29,10 @@ public class Player implements Serializable{
 		this.checkOnMP = false;
 		this.overchargeOnBusyTower = false;
 
+	}
+	
+	public void guessedPosition() {
+		blackPoint ++;
 	}
 
 	public void refreshPlayer() {
@@ -113,6 +116,15 @@ public class Player implements Serializable{
 
 	public void setGame(Game game) {
 		this.game = game;
+	}
+	
+	
+	public int getBlackPoint() {
+		return blackPoint;
+	}
+
+	public void setBlackPoint(int blackPoint) {
+		this.blackPoint = blackPoint;
 	}
 
 	@Override

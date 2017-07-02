@@ -10,7 +10,6 @@ import org.junit.Test;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.ACTION.CraftAction;
-import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.CLIENT.MainClient;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
@@ -19,6 +18,7 @@ import it.polimi.ingsw.GC_21.CONTROLLER.ControllerManager;
 import it.polimi.ingsw.GC_21.EFFECT.Convert;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
+import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.VIEW.AdapterConnection;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;

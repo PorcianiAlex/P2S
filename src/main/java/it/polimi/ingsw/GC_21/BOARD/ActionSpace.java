@@ -13,13 +13,14 @@ public class ActionSpace implements Serializable {
 	protected Game game;
 	protected int requiredDice;
 	protected Effect actionSpaceEffect;
-	protected boolean Busy;
+	protected boolean busy;
+	protected boolean black;
 
 	public ActionSpace(int requiredDice, Effect actionSpaceEffect, Game game) {
 		this.game = game;
 		this.requiredDice = requiredDice;
 		this.actionSpaceEffect = actionSpaceEffect;
-		this.Busy = false;
+		this.busy = false;
 	}
 	
 	
@@ -31,7 +32,7 @@ public class ActionSpace implements Serializable {
 
 	@Override
 	public String toString() {
-		return  " requiredDice=" + requiredDice + ", Busy=" + Busy + "]";
+		return  " requiredDice=" + requiredDice + ", Busy=" + busy + "]";
 	}
 
 
@@ -50,11 +51,11 @@ public class ActionSpace implements Serializable {
 	}
 	
 	public boolean isBusy() {
-		return Busy;
+		return busy;
 	}
 
 	public void setBusy(boolean busy) {
-		Busy = busy;
+		busy = busy;
 	}
 
 	public Effect getActionSpaceEffect() {
@@ -64,4 +65,16 @@ public class ActionSpace implements Serializable {
 
 	public void placeFamilyMember(FamilyMember familyMamber) {		
 	}
+
+
+	public boolean isBlack() {
+		return black;
+	}
+
+
+	public void setBlack(boolean black) {
+		this.black = black;
+	}
+	
+	
 }

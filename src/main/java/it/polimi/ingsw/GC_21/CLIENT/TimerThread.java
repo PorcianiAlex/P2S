@@ -22,7 +22,7 @@ public class TimerThread extends Thread {
 	@Override
 	public void run() {
 		try {
-			this.sleep(30000);
+			this.sleep(100000);
 			client.sendInput(new PassInput());
 			if (future!= null){
 				future.cancel(true);
