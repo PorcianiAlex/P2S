@@ -35,7 +35,7 @@ public class MetaController {
 	     }
 	    
 	    public static void factoryRmi() throws RemoteException, NotBoundException {
-	    	Registry reg = LocateRegistry.getRegistry(2020);
+	    	Registry reg = LocateRegistry.getRegistry(8000);
 	        ServerInterface srv = (ServerInterface) reg.lookup("server");
 	    	RmiClient client2 = new RmiClient(ViewType.GUI);
 	        srv.join(client2);

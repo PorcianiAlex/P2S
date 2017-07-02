@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.GameEndState;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
+import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public class GameOverMessage extends MessageToClient{
 	private Board board;
@@ -20,6 +21,9 @@ public class GameOverMessage extends MessageToClient{
 		this.gameEndState = GameEndState.Over;
 	}
 	
+	public void executeGUI(FXMLGameController gameController) {		
+		gameController.gameOver(description);
+	}
 
 
 }

@@ -12,6 +12,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.omg.PortableInterceptor.USER_EXCEPTION;
 
@@ -20,13 +21,17 @@ import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
 import it.polimi.ingsw.GC_21.CLIENT.SocketClient;
 import it.polimi.ingsw.GC_21.CLIENT.StartMessage;
+import it.polimi.ingsw.GC_21.VIEW.ExcommInput;
+import it.polimi.ingsw.GC_21.VIEW.LobbyInput;
 import it.polimi.ingsw.GC_21.VIEW.LoginInput;
 import it.polimi.ingsw.GC_21.VIEW.ServerInterface;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
@@ -79,6 +84,46 @@ public class FXMLLoginController extends MetaController {
     	LoginInput loginInput = new LoginInput(username, pass, insert);
     	client.sendInput(loginInput);
     	CheckLoginMessage inputmessage = (CheckLoginMessage) client.getReceivedMessage();
+    	//for reconnecting users..
+    	if(inputmessage.isPossibleReconnection()) {
+    		Platform.runLater(new Runnable(){ 
+    			@Override
+    			public void run() {
+    				
+    			   	Alert alert = new Alert(AlertType.CONFIRMATION);
+    				alert.setTitle("You have a standby match!");
+    				alert.setHeaderText("You can reconnect to previous match or start a new game");
+    				alert.setContentText("Do you want to reconnect?");
+
+    				ButtonType buttonTypeOne = new ButtonType("Yes");
+    				ButtonType buttonTypeTwo = new ButtonType("No");
+
+    				alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+
+    				Optional<ButtonType> result = alert.showAndWait();
+    				if (result.get() == buttonTypeOne){
+    				    LobbyInput lobbyInput = new LobbyInput(true);
+    				    try {
+							client.sendInput(lobbyInput);
+							reconnect();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+    				} else {
+    					newLobby(inputmessage);
+    					 } 
+    				}
+
+    			});	
+    	} else {
+			newLobby(inputmessage);
+		}
+    	
+    
+    }
+    
+    
+    private void newLobby(CheckLoginMessage inputmessage) {
     	games = inputmessage.getGames();
     	System.out.println("from login:" + inputmessage.getDescription());
     		 if(!inputmessage.isResult()) {
@@ -97,8 +142,16 @@ public class FXMLLoginController extends MetaController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-    
-    }
-    }
+    		 }
+	}
 
+    public void reconnect() {
+    	Stage stage = (Stage) welcometext.getScene().getWindow();
+        FXMLGame fxmlGame = new FXMLGame();
+        try {
+			fxmlGame.start(stage);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

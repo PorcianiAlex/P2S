@@ -49,6 +49,7 @@ public class VictoryPointsInfluencerTest {
 		testGame.attachCurrent(remoteView);
 		VictoryPointsInfluencer victoryPointsInfluencer = new VictoryPointsInfluencer(testGame, null, 1, 1, true);
 		Player testPlayer = new Player("test", Color.Blue, testGame);
+		testPlayer.getMyPersonalBoard().getMyPossession().add(new Possession(5, 5, 5, 5, 5, 5, 5));
 		testPlayer.getMyPersonalBoard().getMyPossession().addItemToPossession(new VictoryPoints(50));
 		victoryPointsInfluencer.activateEffect(testPlayer, null);
 		int actual = testPlayer.getMyPersonalBoard().getMyPossession().getVictoryPoints().getValue();

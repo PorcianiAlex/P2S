@@ -10,6 +10,15 @@ public class CraftInput extends InputForm {
 	private int actionValue;
 	private int servantsToConvert;
 	
+	
+	
+	public CraftInput(CraftType craftType, int actionValue,
+			int servantsToConvert) {
+		this.craftType = craftType;
+		this.actionValue = actionValue;
+		this.servantsToConvert = servantsToConvert;
+	}
+
 	public CraftInput(CraftType craftType, int actionValue) {
 		this.craftType = craftType;
 		this.actionValue = actionValue;
@@ -18,7 +27,7 @@ public class CraftInput extends InputForm {
 	@Override
 	public void execute(RemoteView remoteView) {
 		setAdapter(remoteView);
-		CraftAction craftAction = new CraftAction(remoteView.getPlayer(), craftType, servantsToConvert);
+		CraftAction craftAction = new CraftAction(remoteView.getPlayer(), craftType, servantsToConvert, actionValue);
 		remoteView.response(craftAction);
 		}
 	

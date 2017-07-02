@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_21.EFFECT;
 
 import static org.junit.Assert.*;
 
+import java.awt.event.MouseWheelEvent;
 import java.io.IOException;
 
 import org.junit.Test;
@@ -10,10 +11,12 @@ import it.polimi.ingsw.GC_21.ACTION.CraftAction;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
 import it.polimi.ingsw.GC_21.CONTROLLER.ControllerManager;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Coins;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ResourceType;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Woods;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
@@ -24,8 +27,6 @@ import it.polimi.ingsw.GC_21.fx.ViewType;
 public class ForEachGetTest {
 	
    @Test
-
-
 	public void testActivateEffectForEachBuildingFiveWood() throws IOException {
 	RmiClient rmiClient = new RmiClient(ViewType.CLI);
 	RmiAdapter rmiAdapter = new RmiAdapter(rmiClient);
@@ -58,7 +59,7 @@ public class ForEachGetTest {
 		testPlayer2.getMyPersonalBoard().getMyPossession().add(new Possession(10, 10, 10, 10, 10, 10, 10));
 		ForEachGet forEachGetTest = new ForEachGet(testGame, null, 0, null, 0, ResourceType.Coins, 1, ResourceType.Woods, 1, false);
 		forEachGetTest.activateEffect(testPlayer, null);
-		testPlayer2.getMyPersonalBoard().getMyPossession().add(new Possession(0, 15, 0, 0, 0, 0, 0));
+		testPlayer2.getMyPersonalBoard().getMyPossession().add(new Possession(0, 10, 0, 0, 0, 0, 0));
 		assertTrue(testPlayer2.getMyPersonalBoard().getMyPossession().equals(testPlayer.getMyPersonalBoard().getMyPossession()));
 	}
 	
@@ -72,9 +73,12 @@ public class ForEachGetTest {
 		testGame.attachCurrent(remoteView);
 		Player testPlayer = new Player("Test", Color.Blue, testGame);
 		Player testPlayer2 = new Player("Test2", Color.Red, testGame);
+		testPlayer.getMyPersonalBoard().getMyPossession().addItemToPossession(new Woods(2));
 		ForEachGet forEachGetTest = new ForEachGet(testGame, null, 0, null, 0, ResourceType.Woods, 2, ResourceType.Coins, 1, false);
 		forEachGetTest.activateEffect(testPlayer, new CraftAction(testPlayer, CraftType.Harvest, 2));
-		testPlayer2.getMyPersonalBoard().getMyPossession().add(new Possession(2, 0, 0, 0, 0, 0, 0));
+		testPlayer2.getMyPersonalBoard().getMyPossession().add(new Possession(1, 2, 0, 0, 0, 0, 0));
+		System.out.println(testPlayer2.getMyPersonalBoard().getMyPossession());
+		System.out.println(testPlayer.getMyPersonalBoard().getMyPossession());
 		assertTrue(testPlayer2.getMyPersonalBoard().getMyPossession().equals(testPlayer.getMyPersonalBoard().getMyPossession()));
 	}
 	

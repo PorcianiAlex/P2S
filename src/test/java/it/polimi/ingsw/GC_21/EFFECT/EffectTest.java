@@ -53,7 +53,8 @@ public class EffectTest {
 		Possession rewards = new Possession(1, 1, 1, 1, 1, 1, 1);
 		Effect testEffect = new Effect(rewards, 0, testGame);
 		testEffect.activateEffect(null, new Pass(testPlayer));
-		assertTrue(testPlayer.getMyPersonalBoard().getMyPossession().equals(new Possession(5, 5, 5, 5, 5, 5, 5)));
+		System.out.println(testPlayer.getMyPersonalBoard().getMyPossession());
+		assertTrue(testPlayer.getMyPersonalBoard().getMyPossession().equals(new Player("aaa", Color.Blue, testGame).getMyPersonalBoard().getMyPossession()));
 	}
 	
 	@Test
@@ -68,7 +69,7 @@ public class EffectTest {
 		Possession rewards = new Possession(1, 1, 1, 1, 1, 1, 1);
 		Effect testEffect = new Effect(rewards, 0, testGame);
 		testEffect.activateEffect(null, null);
-		assertTrue(testPlayer.getMyPersonalBoard().getMyPossession().equals(new Possession(5, 5, 5, 5, 5, 5, 5)));
+		assertTrue(testPlayer.getMyPersonalBoard().getMyPossession().equals(new Player("aaa", Color.Blue, testGame).getMyPersonalBoard().getMyPossession()));
 	}
 	
 }

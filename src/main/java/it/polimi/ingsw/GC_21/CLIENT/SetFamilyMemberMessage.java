@@ -5,6 +5,7 @@ import java.util.Scanner;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
 import it.polimi.ingsw.GC_21.VIEW.SetFamilyMemberInput;
+import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public class SetFamilyMemberMessage extends MessageToClient{
 	private int newFamilyMemberValue;
@@ -22,6 +23,10 @@ public class SetFamilyMemberMessage extends MessageToClient{
 	public InputForm executeCLI(Object lOCK) throws InterruptedException {
 		inputForm = new SetFamilyMemberInput(newFamilyMemberValue, player);
 		return super.executeCLI(lOCK);
+	}
+	
+	public void executeGUI(FXMLGameController gameController) {		
+		gameController.setFamilyMemberLeader(newFamilyMemberValue, player);
 	}
 	
 	

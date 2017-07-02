@@ -3,30 +3,21 @@ package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
 
-import javax.net.ssl.HostnameVerifier;
+
 
 import org.json.simple.parser.ParseException;
-import org.junit.experimental.theories.Theories;
 
-import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.BOARD.Board;
-import it.polimi.ingsw.GC_21.CLIENT.ExcommMessage;
+
 import it.polimi.ingsw.GC_21.CLIENT.GameOverMessage;
-import it.polimi.ingsw.GC_21.CONTROLLER.Controller;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
+
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderDeck;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.MilitaryPoints;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.VictoryPoints;
-import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 import it.polimi.ingsw.GC_21.UTILITIES.Observable;
-import it.polimi.ingsw.GC_21.VIEW.RemoteView;
 
 public class Game extends Observable implements Serializable{
 	
@@ -77,9 +68,6 @@ public class Game extends Observable implements Serializable{
 	public void setVictoryPointsRanking(ArrayList<Player> victoryPointsRanking) {
 		this.victoryPointsRanking = victoryPointsRanking;
 	}
-
-
-
 
 	public ArrayList<Player> getMilitaryPointsRanking() {
 		return militaryPointsRanking;
@@ -140,6 +128,7 @@ public class Game extends Observable implements Serializable{
 	
 	
 	public void executeGame() {
+		//this.assignResources();
 		for(int i = 0; i < players.size(); i++){
 			victoryPointsRanking.add(players.get(i));
 			militaryPointsRanking.add(players.get(i));
@@ -154,6 +143,15 @@ public class Game extends Observable implements Serializable{
 		GameOverMessage gameOverMessage = new GameOverMessage(true, "And the winner is......... " + victoryPointsRanking.get(0).getName() + "!!!\n Congrats!", board, players, victoryPointsRanking);
 		this.notifyBroadcast(gameOverMessage);
 	}
+
+
+	private void assignResources() {
+		for (int i = 0; i < players.size(); i++) {
+			players.get(i).getMyPersonalBoard().setMyPossession(new Possession(5+i, 5+i, 5+i, 5+i, 5+i, 5+i, 5+i));
+		}
+	}
+
+
 
 
 	public int getId() {

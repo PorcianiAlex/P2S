@@ -31,7 +31,7 @@
 	{"ID":"1", "DevType":"Territory","name":"AvampostoCommerciale", "age":"1","craftValue":"5", "Req":[0,0,0,0,0,0,0], "Imm":[0,0,0,0,0,0,0], "Priv":"0", "EffType":"justImm", "SecEffType":"justImm", "Rew":[1,0,0,0,0,0,0], "Priv2":"0"},
 	{"ID":"5", "DevType":"Territory", "name":"Foresta", "age":"1","craftValue":"5", "Req":[0,0,0,0,0,0,0], "Imm":[0,1,0,0,0,0,0], "Priv":"0", "EffType":"justImm", "SecEffType":"justImm", "Rew":[0,3,0,0,0,0,0], "Priv2":"0"},
 	{"ID":"4", "DevType":"Territory", "name":"CavaDiGhiaia", "age":"1","craftValue":"4", "Req":[0,0,0,0,0,0,0], "Imm":[0,0,2,0,0,0,0], "Priv":"0", "EffType":"doPlacementAction", "Discount":[2,0,2,1,0,0,7], "ActionValueInf":"3", "ActionValueBonus":"2", "DevCardType":"Building" , "SecEffType":"justImm", "Rew":[0,0,2,0,0,0,0], "Priv2":"0" },
-	{"ID":"3", "DevType":"Territory", "name":"Borgo", "age":"1","craftValue":"3", "Req":[0,0,0,0,0,0,0], "Imm":[0,0,0,0,0,0,0], "Priv":"0", "EffType":"doPlacementAction", "Discount":[2,0,2,1,0,0,7], "ActionValueInf":"5", "ActionValueBonus":"3", "DevCardType":"Building", "SecEffType":"justImm", "Rew":[1,0,0,1,0,0,0], "Priv2":"0"},
+	{"ID":"3", "DevType":"Territory", "name":"Borgo", "age":"1","craftValue":"3", "Req":[0,0,0,0,0,0,0], "Imm":[0,0,2,0,0,0,0], "Priv":"0", "EffType":"justImm", "SecEffType":"justImm", "Rew":[1,0,0,1,0,0,0], "Priv2":"0"},
 	{"ID":"2", "DevType":"Territory", "name":"Bosco", "age":"1","craftValue":"2", "Req":[0,0,0,0,0,0,0], "Imm":[0,1,0,0,0,0,0], "Priv":"0", "EffType":"justImm", "SecEffType":"justImm", "Rew":[0,1,0,0,0,0,0], "Priv2":"0"},
 
 	{"ID":"33", "DevType":"Building", "name":"Mercato", "age":"2","craftValue":"3", "Req":[0,2,1,0,0,0,0], "Imm":[0,0,0,0,0,0,3], "Priv":"0", "EffType":"justImm", "SecEffType":"No"},

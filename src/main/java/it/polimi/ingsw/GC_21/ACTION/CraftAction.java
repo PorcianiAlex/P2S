@@ -6,24 +6,37 @@ import java.util.ArrayList;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
 
 import it.polimi.ingsw.GC_21.EFFECT.*;
-
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class CraftAction extends Action{
 	private final CraftType craftType;
 	private int actionValue;
+	private int servantsToConvert;
 
+	public CraftAction(Player playerInAction, CraftType craftType, int servantsToConvert, int actionValue) {
+		super(playerInAction);
+		this.craftType = craftType;
+		this.actionValue = actionValue;
+		this.servantsToConvert = servantsToConvert;
+	}
+	
 	public CraftAction(Player playerInAction, CraftType craftType, int actionValue) {
 		super(playerInAction);
 		this.craftType = craftType;
 		this.actionValue = actionValue;
 	}
-
 	
 	@Override
 	public void Execute() {
 		callBeforeCraftEffects();
-		playerInAction.getMyPersonalBoard().activateCraft(craftType, actionValue);
+		if (playerInAction.getMyPersonalBoard().getMyPossession().getServants().getValue()>=servantsToConvert){
+			playerInAction.getMyPersonalBoard().getMyPossession().subtractItemToPossession(new Servants(servantsToConvert));
+			playerInAction.getMyPersonalBoard().activateCraft(craftType, actionValue+servantsToConvert);
+		}
+		else{
+			playerInAction.getMyPersonalBoard().activateCraft(craftType, actionValue);
+		}
 	}
 
 

@@ -15,6 +15,19 @@ public class ConvertInput extends InputForm {
 
 	
 	
+	public ConvertInput( Possession toPay1, Possession toTake1,
+			Possession toPay2, Possession toTake2, Possession toPayChosen, Possession toTakeChosen) {
+		
+		this.toPay1 = toPay1;
+		this.toTake1 = toTake1;
+		this.toPay2 = toPay2;
+		this.toTake2 = toTake2;
+		this.toPayChosen = toPayChosen;
+		this.toTakeChosen = toTakeChosen;
+	}
+
+
+
 	public ConvertInput(Possession toPay1, Possession toTake1, Possession toPay2, Possession toTake2) {
 		this.toPay1 = toPay1;
 		this.toTake1 = toTake1;

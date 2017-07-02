@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_21.VIEW;
 
 import java.util.Scanner;
 
-import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.SetFamilyMemberController;
+import it.polimi.ingsw.GC_21.CONTROLLER.SetFamilyMemberController;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
@@ -11,8 +11,15 @@ public class SetFamilyMemberInput extends InputForm{
 	private Player player;
 	private FamilyMemberColor selectedFamilyMember;
 	
-
 	
+	
+	public SetFamilyMemberInput( int newFamilyMemberValue, Player player,
+			FamilyMemberColor selectedFamilyMember) {
+		this.newFamilyMemberValue = newFamilyMemberValue;
+		this.player = player;
+		this.selectedFamilyMember = selectedFamilyMember;
+	}
+
 	public SetFamilyMemberInput(int newFamilyMemberValue, Player player) {
 		this.newFamilyMemberValue = newFamilyMemberValue;
 		this.player = player;

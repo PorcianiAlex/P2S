@@ -15,7 +15,8 @@ import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 public class PersonalBoard implements Serializable{
 	private Game game;
 	private final OwnedCards[] myOwnedCards;
-	private final Possession craftMinimumReward;
+	private final Effect productionBonusTile;
+	private final Effect harvestBonusTile;
 	private Possession myPossession;
 	private final Player player;
 	private ArrayList<ToCallBeforeCraft> toCallBeforeCraftEffects;
@@ -37,7 +38,8 @@ public class PersonalBoard implements Serializable{
 	public PersonalBoard(Player player, Game game) {
 		this.myOwnedCards = OwnedCards.factoryOwnedCards();
 		this.myPossession = new Possession(0, 0, 0, 0, 0, 0, 0);
-		this.craftMinimumReward = new Possession(1,1,1,1,1,1,1);
+		this.productionBonusTile = new Effect(new Possession(2, 0, 0, 0, 0, 1, 0), 0, game);
+		this.harvestBonusTile = new Effect(new Possession(0, 1, 1, 1, 0, 0, 0), 0, game);
 		this.infinity();
 		this.player = player;
 		this.toCallBeforeCraftEffects= new ArrayList<ToCallBeforeCraft>();
@@ -115,6 +117,7 @@ public class PersonalBoard implements Serializable{
 	}
 	
 	public void earnByCharacters(){
+		if (getSpecificOwnedCards(DevCardType.Character).getOwnedCardsnumber()!=0) {
 		int[] vPoints = new int[6];
 		vPoints[0] = 1;
 		vPoints[1] = 3;
@@ -122,8 +125,8 @@ public class PersonalBoard implements Serializable{
 		vPoints[3] = 10;
 		vPoints[4] = 15;
 		vPoints[5] = 21;
-		int vPointsToTake = vPoints[getSpecificOwnedCards(DevCardType.Character).getOwnedCardsnumber()-1];
-		myPossession.addItemToPossession(new VictoryPoints(vPointsToTake));
+		int vPointsToTake = vPoints[getSpecificOwnedCards(DevCardType.Character).getOwnedCardsnumber()];
+		myPossession.addItemToPossession(new VictoryPoints(vPointsToTake));}
 	}
 	
 	public void earnByTerritories(){
@@ -151,15 +154,19 @@ public class PersonalBoard implements Serializable{
 	}
 	
 	public void earnByVentures(){
-		int finalVP = 0;
-		for (int i = 0; i < getSpecificOwnedCards(DevCardType.Venture).getOwnedCardsnumber(); i++) {
-			finalVP = finalVP + ((Ventures) getSpecificOwnedCards(DevCardType.Venture).getMyDevCards()[i].getCard()).getFinalVictoryPoints().getValue();
+		if (getSpecificOwnedCards(DevCardType.Venture).getOwnedCardsnumber()!=0) {
+			int finalVP = 0;
+			for (int i = 0; i < getSpecificOwnedCards(DevCardType.Venture).getOwnedCardsnumber(); i++) {
+				finalVP = finalVP + ((Ventures) getSpecificOwnedCards(DevCardType.Venture).getOwnedCards()[i].getCard())
+						.getFinalVictoryPoints().getValue();
+			}
+			myPossession.addItemToPossession(new VictoryPoints(finalVP));
 		}
-		myPossession.addItemToPossession(new VictoryPoints(finalVP));
 	}
 
 	public void activateCraft(CraftType craftType, int actionValue) {
 		if(craftType.equals(CraftType.Production)) {
+			productionBonusTile.activateEffect(player, null);
 			OwnedCards ownedBuildingCardsCards = getSpecificOwnedCards(DevCardType.Building);
 			for (int i = 0; i < ownedBuildingCardsCards.getOwnedCardsnumber(); i++) {
 				CraftCard tmp = (CraftCard) ownedBuildingCardsCards.getMyDevCards()[i].getCard();
@@ -168,6 +175,7 @@ public class PersonalBoard implements Serializable{
 				}
 			}
 		} else if (craftType.equals(CraftType.Harvest)) {
+			harvestBonusTile.activateEffect(player, null);
 			OwnedCards ownedTerritoryCards = getSpecificOwnedCards(DevCardType.Territory);
 			for (int i = 0; i < ownedTerritoryCards.getOwnedCardsnumber(); i++) {
 				CraftCard tmp = (CraftCard) ownedTerritoryCards.getMyDevCards()[i].getCard();
@@ -212,9 +220,6 @@ public class PersonalBoard implements Serializable{
 		return myOwnedCards;
 	}
 
-	public Possession getCraftMinimumReward() {
-		return craftMinimumReward;
-	}
 
 	public Possession getMyPossession() {
 		return myPossession;

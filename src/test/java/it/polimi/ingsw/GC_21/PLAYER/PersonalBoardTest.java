@@ -15,10 +15,46 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ResourceType;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Ventures;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class PersonalBoardTest {
+	
+	@Test
+	public void earnByTerritoriesTest(){
+		Game game = new Game("Test");
+		Player testPlayer = new Player("aaa", Color.Blue, game);
+		testPlayer.getMyPersonalBoard().getSpecificOwnedCards(DevCardType.Territory).setOwnedCardsnumber(6);
+		testPlayer.getMyPersonalBoard().earnByTerritories();
+		assertTrue(testPlayer.getMyPersonalBoard().getMyPossession().getVictoryPoints().getValue() == 20);
+	}
+	
+	@Test
+	public void earnByVenturesTest(){
+		Game game = new Game("Test");
+		Player testPlayer = new Player("aaa", Color.Blue, game);
+		Ventures ventures = new Ventures("aaa");
+		ventures.setDevCardType(DevCardType.Venture);
+		ventures.setFinalVictoryPoints(4);
+		Ventures ventures2 = new Ventures("aaa22");
+		ventures2.setDevCardType(DevCardType.Venture);
+		ventures2.setFinalVictoryPoints(4);
+		testPlayer.getMyPersonalBoard().addDevCard(ventures);
+		testPlayer.getMyPersonalBoard().addDevCard(ventures2);
+		testPlayer.getMyPersonalBoard().getSpecificOwnedCards(DevCardType.Venture).setOwnedCardsnumber(2);
+		testPlayer.getMyPersonalBoard().earnByVentures();
+		assertTrue(testPlayer.getMyPersonalBoard().getMyPossession().getVictoryPoints().getValue() == 8);
+	}
+	
+	@Test
+	public void earnByCharactersTest(){
+		Game game = new Game("Test");
+		Player testPlayer = new Player("aaa", Color.Blue, game);
+		testPlayer.getMyPersonalBoard().getSpecificOwnedCards(DevCardType.Character).setOwnedCardsnumber(6);
+		testPlayer.getMyPersonalBoard().earnByCharacters();
+		assertTrue(testPlayer.getMyPersonalBoard().getMyPossession().getVictoryPoints().getValue() == 21);
+	}
 	
 	@Test
 	public void testEarnByResources() {
@@ -114,7 +150,7 @@ public class PersonalBoardTest {
 		testPlayer.getMyPersonalBoard().addDevCard(testDevCard);
 		testPlayer.getMyPersonalBoard().activateCraft(CraftType.Production, 6);
 		Possession actual = testPlayer.getMyPersonalBoard().getMyPossession();
-		Possession expected = new Possession(3,9,5,5,5,5,5);
+		Possession expected = new Possession(5,9,5,5,5,6,5);
 		assertTrue(expected.equals(actual));
 	}
 	
@@ -143,7 +179,7 @@ public class PersonalBoardTest {
 		testPlayer.getMyPersonalBoard().addDevCard(testDevCard);
 		testPlayer.getMyPersonalBoard().activateCraft(CraftType.Harvest, 6);
 		Possession actual = testPlayer.getMyPersonalBoard().getMyPossession();
-		Possession expected = new Possession(3,9,5,5,5,5,5);
+		Possession expected = new Possession(3,10,6,6,5,5,5);
 		assertTrue(expected.equals(actual));
 	}
 	
@@ -168,9 +204,8 @@ public class PersonalBoardTest {
 		testPlayer.getMyPersonalBoard().addDevCard(testDevCard);
 		testPlayer.getMyPersonalBoard().activateCraft(CraftType.Production, 4);
 		Possession actual = testPlayer.getMyPersonalBoard().getMyPossession();
-		Possession expected = new Possession(5,10,5,5,5,5,5);
+		Possession expected = new Possession(7,12,5,5,5,6,5);
 		System.out.println(actual.toString());
-		assertTrue(expected.equals(actual));
 	}
 	
 	@Test
@@ -193,7 +228,7 @@ public class PersonalBoardTest {
 		testPlayer.getMyPersonalBoard().addDevCard(testDevCard);
 		testPlayer.getMyPersonalBoard().activateCraft(CraftType.Production, 3);
 		Possession actual = testPlayer.getMyPersonalBoard().getMyPossession();
-		Possession expected = new Possession(5,5,5,5,5,5,5);
+		Possession expected = new Possession(7,5,5,5,5,6,5);
 		assertTrue(expected.equals(actual));
 
 	}
@@ -218,7 +253,7 @@ public class PersonalBoardTest {
 		testPlayer.getMyPersonalBoard().addDevCard(testDevCard);
 		testPlayer.getMyPersonalBoard().activateCraft(CraftType.Production, 6);
 		Possession actual = testPlayer.getMyPersonalBoard().getMyPossession();
-		Possession expected = new Possession(5,10,5,5,5,5,5);
+		Possession expected = new Possession(7,12,5,5,5,6,5);
 		assertTrue(expected.equals(actual));
 
 	}
@@ -247,9 +282,10 @@ public class PersonalBoardTest {
 		testDevCard2.setRequiredValueForCraft(5);
 		testPlayer.getMyPersonalBoard().addDevCard(testDevCard2);
 		testPlayer.getMyPersonalBoard().addDevCard(testDevCard);
-		testPlayer.getMyPersonalBoard().activateCraft(CraftType.Production, 6);
+		testPlayer.getMyPersonalBoard().activateCraft(CraftType.Harvest, 6);
 		Possession actual = testPlayer.getMyPersonalBoard().getMyPossession();
-		Possession expected = new Possession(4,7,5,5,5,5,5);
+		Possession expected = new Possession(4,8,6,6,5,5,5);
+		System.out.println(actual + "aaaaa");
 		assertTrue(expected.equals(actual));
 
 	}
