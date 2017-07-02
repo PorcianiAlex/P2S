@@ -2,9 +2,10 @@ package it.polimi.ingsw.GC_21.VIEW;
 
 import java.util.Scanner;
 
-import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.CLIENT.CheckColorMessage;
+import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
+import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class CreatePlayerInput extends InputForm {
@@ -35,8 +36,9 @@ public class CreatePlayerInput extends InputForm {
 				 remoteView.inputObject();
 					}
 			 else {
-				 //remoteView.getGame().notifyString(remoteView.getPlayer().getName()+" joins the match! \nActual number of player: " + remoteView.getGame().getPlayers().size());
-				 checkColorMessage = new CheckColorMessage(true, "Waiting for the 'start' by the game host", false);
+				 MessageToClient joinMessage = new MessageToClient(true, remoteView.getPlayer().getName()+" joins the match! \nActual number of player: " + remoteView.getGame().getPlayers().size()); 
+		         remoteView.getGame().notifyBroadcast(joinMessage); 
+		         checkColorMessage = new CheckColorMessage(true, "Waiting for the 'start' by the game host", false);
 				 remoteView.getAdapter().sendObject(checkColorMessage);
 			}
 		}
@@ -49,7 +51,7 @@ public class CreatePlayerInput extends InputForm {
 
 	@Override
 	public void inputFromCli() throws InterruptedException {
-			System.out.println("Choose your color: \n 1: BLUE \n 2: RED \n 3: YELLOW \n 4: GREEN");
+			System.out.println("Choose your color: \n 1: BLUE \n 2: RED \n 3: YELLOW \n 4: GREEN \n 5: BLACK (The conspirator)");
 			String choice = takeInput(this);
 			switch (choice) {
 			case "1":
@@ -63,6 +65,9 @@ public class CreatePlayerInput extends InputForm {
 				break;
 			case "4":
 				color = Color.Green;
+				break;
+			case "5":
+				color = Color.Black;
 				break;
 			default:
 				System.out.println("Invalid color input, try again!");

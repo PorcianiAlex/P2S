@@ -6,11 +6,11 @@ import java.rmi.RemoteException;
 
 import javax.xml.ws.handler.MessageContext;
 
-import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.CLIENT.CheckColorMessage;
 import it.polimi.ingsw.GC_21.CLIENT.ChooseActionMessage;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.CONTROLLER.ControllerForm;
+import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.VIEW.CreatePlayerInput;
 import it.polimi.ingsw.GC_21.VIEW.InitGameInput;
 import javafx.event.ActionEvent;

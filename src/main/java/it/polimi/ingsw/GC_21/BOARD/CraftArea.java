@@ -24,7 +24,7 @@ public class CraftArea implements Serializable{
 
 	public boolean checkCraftFamilyMemberPlayer(Player player) {//return true if there is a family member with the indicated color in the singleActionSpace or in the multiple
 		boolean checkSingle = false;
-		if (singleActionSpace.Busy && !singleActionSpace.getFamilyMemberLocated().getFamilyMemberColor().equals(FamilyMemberColor.Neutral)){
+		if (singleActionSpace.isBusy() && !singleActionSpace.getFamilyMemberLocated().getFamilyMemberColor().equals(FamilyMemberColor.Neutral)){
 				 checkSingle = singleActionSpace.getFamilyMemberLocated().getOwnerPlayer().equals(player);
 		}	
 		  
