@@ -8,6 +8,8 @@ import org.omg.CORBA.PUBLIC_MEMBER;
 import it.polimi.ingsw.GC_21.BOARD.Dice;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
+import it.polimi.ingsw.GC_21.PLAYER.Color;
+import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.VIEW.RemoteView;
 
 public class Round implements Serializable{
@@ -15,10 +17,13 @@ public class Round implements Serializable{
 	private int roundNumber;
 	private Game game;
 	private Turn currentTurn;
+	private Player blackPlayer;
+	private ArrayList<Player> turnOrder;
 	
 	public Round(int roundNumber, Game game) {
 		this.roundNumber = roundNumber;
 		this.game = game;
+		getTurnOrder();
 		game.getBoard().refreshBoard();
 		for (int i = 0; i < game.getPlayers().size(); i++) {
 			game.getPlayers().get(i).refreshPlayer();
@@ -26,10 +31,29 @@ public class Round implements Serializable{
 		this.placeCard();
 		}
 	
+	private void getTurnOrder() {
+		turnOrder = game.getBoard().getCouncilPalace().getTurnOrder();
+		blackPlayer = game.getSpecificPlayer(Color.Black);
+		ArrayList<Player> playersInGame = game.getPlayers();
+		
+		for (int j = 0; j < playersInGame.size(); j++) {
+			if (!turnOrder.contains(playersInGame.get(j))) {
+				turnOrder.add(playersInGame.get(j));
+			}
+		}
+		if (blackPlayer != null) {
+			turnOrder.remove(blackPlayer);//for black player there is a specific notify turn in which he plays all his family members at the beginning 
+		}
+	}
+
 	public void executeRound() {
-		for (int i = 1; i < 5 ; i++) {
+		for (int i = 1; i < 5; i++) {
 			currentTurn = new Turn(i, game);
-			currentTurn.executeView();
+			game.notifyBlackTurn(blackPlayer);
+		}
+		for (int i = 1; i < 5 ; i++) {	
+			currentTurn = new Turn(i, game);
+			currentTurn.executeView(turnOrder);
 		}
 		game.getBoard().setDices(Dice.factoryDices());
 	}
@@ -58,6 +82,13 @@ public class Round implements Serializable{
 		this.currentTurn = currentTurn;
 	}
 
-	
+	public Player getBlackPlayer() {
+		return blackPlayer;
+	}
+
+	public void setBlackPlayer(Player blackPlayer) {
+		this.blackPlayer = blackPlayer;
+	}
+
 	
 }

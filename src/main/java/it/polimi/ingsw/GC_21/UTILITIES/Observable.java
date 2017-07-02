@@ -53,10 +53,8 @@ public abstract class Observable<C> {
 	public void notifyBlackTurn(Player player){
 		for (P2SObserver<C> o : this.observers) {
 			if (player.equals(playerObserver.get(o))) {
-				for (int i = 0; i < 4; i++) {
-					o.updateTurn();
-					detachCurrent();
-				}
+				o.updateTurn();
+				detachCurrent();		
 			}
 		}
 	}
@@ -103,10 +101,7 @@ public abstract class Observable<C> {
 
 
 	
-	public void notifyOrderedTurn(ArrayList<Player> turnOrder, Player blackPlayer) {
-		if (blackPlayer != null) {
-			notifyBlackTurn(blackPlayer);
-		}
+	public void notifyOrderedTurn(ArrayList<Player> turnOrder) {
 		for (int i = 0; i < turnOrder.size(); i++) {
 			for (P2SObserver<C> o : this.observers) {
 				if (turnOrder.get(i).equals(playerObserver.get(o))) {

@@ -132,10 +132,14 @@ public class Controller implements P2SObserver<Action>{
 
 	@Override
 	public void updateBlack() {
-		Player blackPlayer = modelGame.getCurrentAge().getCurrentRound().getCurrentTurn().getBlackPlayer();			Player playerToSwitch = remoteView.getPlayer();
+		Player blackPlayer = modelGame.getCurrentAge().getCurrentRound().getBlackPlayer();
+		Player playerToSwitch = remoteView.getPlayer();
 		modelGame.notifyBlackSwitch(blackPlayer, playerToSwitch);
 		remoteView.setPlayer(blackPlayer);
-		remoteView.getPlayer().setName(remoteView.getUsername());					
+		remoteView.getPlayer().setName(remoteView.getUsername());
+		for (int i = 0; i < modelGame.getPlayers().size(); i++) {
+			modelGame.getPlayers().get(i).setBlackPoint(0);
+		}
 	}
 
 	@Override

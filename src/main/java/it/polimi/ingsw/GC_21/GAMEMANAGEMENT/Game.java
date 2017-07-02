@@ -50,7 +50,6 @@ public class Game extends Observable implements Serializable{
 		}	
 		this.players = new ArrayList<Player>();
 		this.excommHandler = new ExcommHandler(this);
-		this.numberOfPlayers = 1;
 		this.host = host;
 		this.leaderDeck = new LeaderDeck(this);
 		victoryPointsRanking = new ArrayList<Player>();
@@ -201,6 +200,7 @@ public class Game extends Observable implements Serializable{
 
 	public void addPlayers(Player player) {
 		this.players.add(player);
+		numberOfPlayers ++;
 	}
 
 	public Age getCurrentAge() {

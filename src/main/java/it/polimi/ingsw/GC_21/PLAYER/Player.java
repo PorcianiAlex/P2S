@@ -22,12 +22,12 @@ public class Player implements Serializable{
 		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), this);
 		this.name = name;
 		this.game = game;
-		this.game.addPlayers(this);
 		this.playerColor = playerColor;
 		this.myPersonalBoard = new PersonalBoard(this, game);
 		this.familyMembers = FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), this);
 		this.checkOnMP = false;
 		this.overchargeOnBusyTower = false;
+		this.game.addPlayers(this);
 
 	}
 	
