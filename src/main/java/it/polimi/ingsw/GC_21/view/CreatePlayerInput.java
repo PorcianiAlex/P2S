@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_21.VIEW;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.CLIENT.CheckColorMessage;
+import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
@@ -35,8 +36,9 @@ public class CreatePlayerInput extends InputForm {
 				 remoteView.inputObject();
 					}
 			 else {
-				 //remoteView.getGame().notifyString(remoteView.getPlayer().getName()+" joins the match! \nActual number of player: " + remoteView.getGame().getPlayers().size());
-				 checkColorMessage = new CheckColorMessage(true, "Waiting for the 'start' by the game host", false);
+				 MessageToClient joinMessage = new MessageToClient(true, remoteView.getPlayer().getName()+" joins the match! \nActual number of player: " + remoteView.getGame().getPlayers().size()); 
+		         remoteView.getGame().notifyBroadcast(joinMessage); 
+		         checkColorMessage = new CheckColorMessage(true, "Waiting for the 'start' by the game host", false);
 				 remoteView.getAdapter().sendObject(checkColorMessage);
 			}
 		}

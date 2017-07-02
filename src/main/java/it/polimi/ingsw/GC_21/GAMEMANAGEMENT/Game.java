@@ -14,7 +14,9 @@ import it.polimi.ingsw.GC_21.CLIENT.GameOverMessage;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderDeck;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.MilitaryPoints;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.VictoryPoints;
+import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 import it.polimi.ingsw.GC_21.UTILITIES.Observable;

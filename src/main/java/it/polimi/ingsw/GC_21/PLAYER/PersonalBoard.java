@@ -157,7 +157,7 @@ public class PersonalBoard implements Serializable{
 		if (getSpecificOwnedCards(DevCardType.Venture).getOwnedCardsnumber()!=0) {
 			int finalVP = 0;
 			for (int i = 0; i < getSpecificOwnedCards(DevCardType.Venture).getOwnedCardsnumber(); i++) {
-				finalVP = finalVP + ((Ventures) getSpecificOwnedCards(DevCardType.Venture).getOwnedCards()[i].getCard())
+				finalVP = finalVP + ((Ventures) getSpecificOwnedCards(DevCardType.Venture).getMyDevCards()[i].getCard())
 						.getFinalVictoryPoints().getValue();
 			}
 			myPossession.addItemToPossession(new VictoryPoints(finalVP));
