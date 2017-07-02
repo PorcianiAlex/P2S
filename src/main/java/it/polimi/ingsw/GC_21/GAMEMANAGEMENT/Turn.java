@@ -23,15 +23,16 @@ public class Turn implements Serializable{
 		turnOrder = game.getBoard().getCouncilPalace().getTurnOrder();
 		blackPlayer = game.getSpecificPlayer(Color.Black);
 		ArrayList<Player> playersInGame = game.getPlayers();
-		playersInGame.remove(blackPlayer);//for black player there is a specific notify turn in which he plays all his family members at the beginning 
+		if (blackPlayer != null) {
+			playersInGame.remove(blackPlayer);//for black player there is a specific notify turn in which he plays all his family members at the beginning 
+		}
 		for (int j = 0; j < playersInGame.size(); j++) {
 			if (!turnOrder.contains(playersInGame.get(j))) {
 				turnOrder.add(playersInGame.get(j));
 			}
 		}
 		game.resetPlayedLeaders();
-		game.notifyBlackTurn(blackPlayer);
-		game.notifyOrderedTurn(turnOrder);
+		game.notifyOrderedTurn(turnOrder, blackPlayer);
 		game.generateRanking();
 	}
 
