@@ -40,5 +40,5 @@
       <Insets bottom="100.0" />
     </GridPane.margin>
   </Text>
-  <Button mnemonicParsing="false" onAction="#Ready" text="Ready!" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
+  <Button fx:id="ready" mnemonicParsing="false" onAction="#Ready" text="Ready!" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
 </GridPane>

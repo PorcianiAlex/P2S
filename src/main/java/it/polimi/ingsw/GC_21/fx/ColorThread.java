@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 
 import it.polimi.ingsw.GC_21.CLIENT.Connections;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
+import it.polimi.ingsw.GC_21.CLIENT.TurnMessage;
 import javafx.scene.text.Text;
 
 public class ColorThread extends Thread {
@@ -24,14 +25,13 @@ public class ColorThread extends Thread {
 
 	@Override
 	public void run() {
-		/*while(true) {
+		while(true) {
 		System.out.println("thread in attesa");
 		MessageToClient mess;
 		try {
 			mess = client.getReceivedMessage();
-			System.out.println("thread: "+mess.getDescription());
 			texttarget.setText(mess.getDescription());
-		if ("Ready to Play".equals(mess)) {
+		if (mess instanceof TurnMessage) {
 			return;
 			}
 		} catch (ClassNotFoundException | IOException e) {
@@ -39,7 +39,7 @@ public class ColorThread extends Thread {
 		}
 		
 		
-		}*/
+		}
 		
 		
 	}

@@ -37,6 +37,7 @@ public class FXMLColorController extends MetaController {
 	@FXML private ToggleButton red;
 	@FXML private ToggleButton yellow;
 	@FXML private ToggleButton green;
+	@FXML private Button ready;
 	
 	@FXML
     public void initialize() {
@@ -45,9 +46,8 @@ public class FXMLColorController extends MetaController {
         blue.setAccessibleText(Color.Blue.toString());
         yellow.setAccessibleText(Color.Yellow.toString());
         red.setAccessibleText(Color.Red.toString());
+        ready.setVisible(false);
         
-        colorThread = new ColorThread(texttarget, client, this);
-        colorThread.start();
         
     }
 	
@@ -62,11 +62,11 @@ public class FXMLColorController extends MetaController {
 		 host = checkColorMessage.isHost();
 		 if (!checkColorMessage.isResult()) {
 			this.popup();
-		} else if (checkColorMessage.isResult() && checkColorMessage.isHost()) {
-			System.out.println(checkColorMessage.getDescription());
-			colorThread = new ColorThread(texttarget, client, this);
-	        colorThread.start();
-		} 
+		} else if (checkColorMessage.isResult() && host) {
+			ready.setVisible(true);
+		}
+		 colorThread = new ColorThread(texttarget, client, this);
+	     colorThread.start();
 	 }
 	 
 	 @FXML public void Ready(ActionEvent event) throws ClassNotFoundException, IOException {
