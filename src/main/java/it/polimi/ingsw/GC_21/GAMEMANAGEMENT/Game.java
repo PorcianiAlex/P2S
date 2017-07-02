@@ -3,31 +3,20 @@ package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
 
-import javax.net.ssl.HostnameVerifier;
+
 
 import org.json.simple.parser.ParseException;
-import org.junit.experimental.theories.Theories;
 
-import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.BOARD.Board;
-import it.polimi.ingsw.GC_21.BOARD.Color;
-import it.polimi.ingsw.GC_21.CLIENT.ExcommMessage;
+
 import it.polimi.ingsw.GC_21.CLIENT.GameOverMessage;
-import it.polimi.ingsw.GC_21.CONTROLLER.Controller;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
+
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderDeck;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.MilitaryPoints;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.VictoryPoints;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 import it.polimi.ingsw.GC_21.UTILITIES.Observable;
-import it.polimi.ingsw.GC_21.VIEW.RemoteView;
 
 public class Game extends Observable implements Serializable{
 	
