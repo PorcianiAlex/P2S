@@ -44,6 +44,7 @@ public class LeaderDeck extends Deck {
 		OncePerTurnLeaderCard ludovicoIIIGonzaga = new OncePerTurnLeaderCard("09", "Ludovico III Gonzaga", 0, 0, 0, 0, new Possession(0, 0, 0, 15, 0, 0, 0), false, new Effect(new Possession(), 1, game));
 		PermanentLeaderCard picoDellaMirandola = new PermanentLeaderCard("11", "Pico della Mirandola", 4, 0, 2, 0, new Possession(), false, new PlacementInfluencer(0, null, new Possession(3, 0, 0, 0, 0, 0, 0)));
 		cards.add(francescoSforza);		
+		/*cards.add(francescoSforza);
 		cards.add(francescoSforza);
 		cards.add(francescoSforza);
 		cards.add(francescoSforza);
@@ -65,16 +66,51 @@ public class LeaderDeck extends Deck {
 		cards.add(francescoSforza);
 		cards.add(francescoSforza);
 		cards.add(francescoSforza);
-		cards.add(francescoSforza);
-		cards.add(francescoSforza);
+		cards.add(francescoSforza);*/
 
-		/*cards.add(filippoBrunelleschi);
+		cards.add(filippoBrunelleschi);
 		cards.add(sigismondoMaletesta);
 		cards.add(picoDellaMirandola);
 		cards.add(bartolomeoColleoni);
 		cards.add(cosimoDeMedici);
 		cards.add(cesareBorgia);
+		/*cards.add(federicoDaMontefeltro);
 		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);
+		cards.add(federicoDaMontefeltro);*/
+
 		cards.add(lucreziaBorgia);
 		cards.add(sandroBotticelli);
 		cards.add(leonardoDaVinci);
@@ -83,7 +119,7 @@ public class LeaderDeck extends Deck {
 		cards.add(girolamoSavonarola);
 		cards.add(santaRita);
 		cards.add(ludovicoIlMoro);
-		cards.add(ludovicoIIIGonzaga);*/
+		cards.add(ludovicoIIIGonzaga);
 		this.shuffle();
 	}
 	

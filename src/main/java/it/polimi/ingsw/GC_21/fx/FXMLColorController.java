@@ -37,7 +37,7 @@ public class FXMLColorController extends MetaController {
 	@FXML private ToggleButton red;
 	@FXML private ToggleButton yellow;
 	@FXML private ToggleButton green;
-	@FXML private Button ready;
+	@FXML private javafx.scene.control.Button ready;
 	
 	@FXML
     public void initialize() {
@@ -54,7 +54,7 @@ public class FXMLColorController extends MetaController {
 
 	 @FXML protected void Color(ActionEvent event) throws ClassNotFoundException, IOException{
 	   //client.sendGUI("start"); //se sei l'host fa partire effettivamente la partita altrimenti ti fa andare sulla nuova schrmata senza eseguire il gioco	     
-		ToggleButton button = (ToggleButton) place.getSelectedToggle();
+		 ToggleButton button = (ToggleButton) place.getSelectedToggle();
 		 colorplayer = Color.valueOf(button.getAccessibleText());
 		 CreatePlayerInput createPlayerInput = new  CreatePlayerInput(colorplayer);
 		 client.sendInput(createPlayerInput);
@@ -62,16 +62,17 @@ public class FXMLColorController extends MetaController {
 		 host = checkColorMessage.isHost();
 		 if (!checkColorMessage.isResult()) {
 			this.popup();
-		} else if (checkColorMessage.isResult() && host) {
-			ready.setVisible(true);
+		} else {
+			colorThread = new ColorThread(texttarget, client, this);
+			colorThread.start();
+		 if (host) {
+			 ready.setVisible(true);
 		}
-		 colorThread = new ColorThread(texttarget, client, this);
-	     colorThread.start();
 	 }
+	}
 	 
 	 @FXML public void Ready(ActionEvent event) throws ClassNotFoundException, IOException {
 		 if(colorplayer!=null && host) {
-		 //occhio perchè se lo preme prima inizia comunque, c'è da mettere un controllo! LOCK
 		 gameScene();
 		 InitGameInput initGameInput = new InitGameInput(true);
 	        try {
@@ -81,9 +82,7 @@ public class FXMLColorController extends MetaController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		 } else if(colorplayer!=null && !host) {
-			 gameScene();
-		 }
+		 } 
 		 return;
 	}
 	 

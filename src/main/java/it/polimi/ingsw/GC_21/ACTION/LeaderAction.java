@@ -27,9 +27,9 @@ public class LeaderAction extends Action {
 			if (!turningLeaderCard){ //If I choose to play a card already turned
 			String leaderName = leaderChosen.getName();
 			for (int i = 0; i < playerInAction.getMyPersonalBoard().getLeaderCards().size(); i++) {
-				if (playerInAction.getMyPersonalBoard().getLeaderCards().get(i).getName().equals(leaderName)){
-					((OncePerTurnLeaderCard) leaderChosen).callEffect(playerInAction);
-					((OncePerTurnLeaderCard) leaderChosen).setPlayedThisTurn(true);
+				if (playerInAction.getMyPersonalBoard().getLeaderCards().get(i).getName().equals(leaderName)){ 
+					((OncePerTurnLeaderCard) leaderChosen).callEffect(playerInAction); //activate the once per round ability
+					((OncePerTurnLeaderCard) leaderChosen).setPlayedThisTurn(true); //set the leader to played, not to be reactivated in the same turn
 				return;
 				}
 			}
@@ -39,9 +39,9 @@ public class LeaderAction extends Action {
 			
 		else{ //if I have to turn a new leader Card
 			if (leaderChosen.checkRequirements(playerInAction) && !leaderChosen.isPlayed()){
-				leaderChosen.callEffect(playerInAction);
+				leaderChosen.callEffect(playerInAction); //activate the permanent effect of the leader
 				leaderChosen.setPlayed(true);
-				if (leaderChosen instanceof OncePerTurnLeaderCard){
+				if (leaderChosen instanceof OncePerTurnLeaderCard){ //if it's a OncePerRound Leader, I add it to the relative array, so the player can use it every turn
 					playerInAction.getMyPersonalBoard().getPlayedOncePerTurnLeaderCards().add((OncePerTurnLeaderCard) leaderChosen);
 					((OncePerTurnLeaderCard) leaderChosen).setPlayedThisTurn(true);
 				}
