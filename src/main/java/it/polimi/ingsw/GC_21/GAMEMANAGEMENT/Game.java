@@ -14,7 +14,6 @@ import org.junit.experimental.theories.Theories;
 
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.BOARD.Board;
-import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.CLIENT.ExcommMessage;
 import it.polimi.ingsw.GC_21.CLIENT.GameOverMessage;
 import it.polimi.ingsw.GC_21.CONTROLLER.Controller;
@@ -23,6 +22,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderDeck;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.MilitaryPoints;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.VictoryPoints;
+import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 import it.polimi.ingsw.GC_21.UTILITIES.Observable;
@@ -188,6 +188,15 @@ public class Game extends Observable implements Serializable{
 
 	public ArrayList<Player> getPlayers() {
 		return players;
+	}
+	
+	public Player getSpecificPlayer(Color color) {
+		for (int i = 0; i < players.size(); i++) {
+			if (players.get(i).getPlayerColor().equals(color)) {
+				return players.get(i);
+			}
+		}
+		return null;
 	}
 
 	public void addPlayers(Player player) {

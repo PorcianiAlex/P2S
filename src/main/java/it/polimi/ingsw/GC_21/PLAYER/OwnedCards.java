@@ -1,26 +1,25 @@
-package it.polimi.ingsw.GC_21.BOARD;
+package it.polimi.ingsw.GC_21.PLAYER;
 
 import java.io.Serializable;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
-import it.polimi.ingsw.GC_21.PLAYER.PersonalCardPlace;
 
 public class OwnedCards implements Serializable{
-	private PersonalCardPlace[] ownedCards;
-	private final DevCardType ownedCardsType;
+	private PersonalCardPlace[] myDevCards;
+	private final DevCardType ownedDevCardsType;
 	private final int DIMENSION;
-	private int ownedCardsnumber;
+	private int ownedDevCardsNumber;
 	
 	
 	public void setOwnedCards(PersonalCardPlace[] ownedCards) {
-		this.ownedCards = ownedCards;
+		this.myDevCards = ownedCards;
 	}
 
 	public OwnedCards(DevCardType ownedCardsType, int dimension) {
-		this.ownedCardsType = ownedCardsType;
+		this.ownedDevCardsType = ownedCardsType;
 		this.DIMENSION = dimension;
-		this.ownedCards = new PersonalCardPlace[DIMENSION];
+		this.myDevCards = new PersonalCardPlace[DIMENSION];
 	}
 	
 	public static OwnedCards[] factoryOwnedCards() {
@@ -37,41 +36,38 @@ public class OwnedCards implements Serializable{
 	}
 	
 	public void initOwnedCards() {
-		for (int i = 0; i < this.ownedCards.length; i++) {
-			this.ownedCards[i]=new PersonalCardPlace(null, null);
+		for (int i = 0; i < this.myDevCards.length; i++) {
+			this.myDevCards[i]=new PersonalCardPlace(null, null);
 		}
 	}
 
 	public void add(DevelopmentCard devCard){
-		this.ownedCards[ownedCardsnumber].setCard(devCard);
-		ownedCardsnumber++;
+		this.myDevCards[ownedDevCardsNumber].setCard(devCard);
+		ownedDevCardsNumber++;
 	}
 	
 
 
-	public PersonalCardPlace[] getMyOwnedCards() {
-		return ownedCards;
+	public PersonalCardPlace[] getMyDevCards() {
+		return myDevCards;
 	}
 
 
 	public DevCardType getOwnedCardsType() {
-		return ownedCardsType;
+		return ownedDevCardsType;
 	}
 
 
 	public int getOwnedCardsnumber() {
-		return ownedCardsnumber;
+		return ownedDevCardsNumber;
 	}
 
 
 	public void setOwnedCardsnumber(int ownedCardsnumber) {
-		this.ownedCardsnumber = ownedCardsnumber;
+		this.ownedDevCardsNumber = ownedCardsnumber;
 	}
 
 
-	public PersonalCardPlace[] getOwnedCards() {
-		return ownedCards;
-	}
 
 
 	public int getDIMENSION() {

@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
 import it.polimi.ingsw.GC_21.CONTROLLER.ControllerManager;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.PermanentLeaderCard;
@@ -14,6 +13,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ResourceType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.VictoryPoints;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
+import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.VIEW.RemoteView;
 import it.polimi.ingsw.GC_21.VIEW.RmiAdapter;

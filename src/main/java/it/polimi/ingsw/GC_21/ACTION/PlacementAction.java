@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.EFFECT.*;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
+import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
@@ -114,16 +115,20 @@ public class PlacementAction extends Action {
 	}
 	
 	
-
+	@Override
 	public void place() {
 		if (selectedFamilyMember != null){
 			selectedActionSpace.placeFamilyMember(selectedFamilyMember);
 			selectedFamilyMember.setPlaced(true);
-			
-		}
-		
-		
-		
+			if (selectedActionSpace.isBlack() && playerInAction.getPlayerColor() != Color.Black) {
+				playerInAction.guessedPosition();
+			}
+		}	
+	}
+	
+	@Override
+	public boolean checkBlack() {
+		return selectedActionSpace.isBlack();
 	}
 
 	public Possession getDiscount() {

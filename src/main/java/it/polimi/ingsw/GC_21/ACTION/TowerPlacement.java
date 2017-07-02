@@ -3,7 +3,6 @@ package it.polimi.ingsw.GC_21.ACTION;
 
 import it.polimi.ingsw.GC_21.BOARD.Board;
 import it.polimi.ingsw.GC_21.BOARD.Floor;
-import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
 import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
 import it.polimi.ingsw.GC_21.BOARD.Tower;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
@@ -17,6 +16,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
 
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
+import it.polimi.ingsw.GC_21.PLAYER.OwnedCards;
 import it.polimi.ingsw.GC_21.PLAYER.PersonalBoard;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
@@ -115,7 +115,7 @@ public class TowerPlacement extends PlacementAction {
 			OwnedCards ownedTerritoryCards = myPersonalBoard.getSpecificOwnedCards(DevCardType.Territory);
 			if(selectedCardType.equals(DevCardType.Territory) && !playerInAction.isCheckOnMP()
 					&& ownedTerritoryCards.getOwnedCardsnumber() > 2
-					&& !myPersonalBoard.getMyPossession().compare(ownedTerritoryCards.getOwnedCards()[ownedTerritoryCards.getOwnedCardsnumber()].getPossession())){
+					&& !myPersonalBoard.getMyPossession().compare(ownedTerritoryCards.getMyDevCards()[ownedTerritoryCards.getOwnedCardsnumber()].getPossession())){
 				// check on MilitaryPoint Required taking a territoryCard. The requirement is saved in the correct personalCardPlace with the attribute Possession 
 				return false;
 			}		  

@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.EFFECT.Convert;
 import it.polimi.ingsw.GC_21.EFFECT.CraftInfluencer;
@@ -74,7 +73,7 @@ public class PersonalBoardTest {
 		Player testPlayer = new Player("ale", Color.Blue, game);
 		testPlayer.getMyPersonalBoard().setMyPossession(new Possession(5, 5, 5, 5, 5, 5, 5));
 		testPlayer.getMyPersonalBoard().addDevCard(testDevCard);
-		assertTrue(testPlayer.getMyPersonalBoard().getSpecificOwnedCards(DevCardType.Building).getMyOwnedCards()[0].getCard().getName().equals(testDevCard.getName()));
+		assertTrue(testPlayer.getMyPersonalBoard().getSpecificOwnedCards(DevCardType.Building).getMyDevCards()[0].getCard().getName().equals(testDevCard.getName()));
 	}
 
 	@Test

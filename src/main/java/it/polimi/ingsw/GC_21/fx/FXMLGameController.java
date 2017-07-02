@@ -27,9 +27,7 @@ import com.sun.glass.ui.Window;
 import com.sun.media.jfxmedia.events.NewFrameEvent;
 
 import it.polimi.ingsw.GC_21.BOARD.Board;
-import it.polimi.ingsw.GC_21.BOARD.Color;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
-import it.polimi.ingsw.GC_21.BOARD.OwnedCards;
 import it.polimi.ingsw.GC_21.CLIENT.ChooseActionMessage;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.CLIENT.Music;
@@ -40,7 +38,9 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ExcommunicationCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.LeaderCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.OncePerTurnLeaderCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
+import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
+import it.polimi.ingsw.GC_21.PLAYER.OwnedCards;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.VIEW.CouncilPlacementInput;
 import it.polimi.ingsw.GC_21.VIEW.CraftInput;
@@ -460,8 +460,8 @@ public class FXMLGameController extends MetaController implements Initializable{
 				OwnedCards currcards = currPlayer.getMyPersonalBoard().getSpecificOwnedCards(DevCardType.geType(k));
 					for (int j = 0; j < 6; j++) {
 						ToggleButton toggleButton = (ToggleButton) currToggleGroup.getToggles().get(j);
-							if(currcards.getMyOwnedCards()[j].getCard()!=null) {
-							String idmycard = currcards.getMyOwnedCards()[j].getCard().getID();
+							if(currcards.getMyDevCards()[j].getCard()!=null) {
+							String idmycard = currcards.getMyDevCards()[j].getCard().getID();
 							toggleButton.setStyle
 							("-fx-background-image: url('/devcards/devcards_f_en_c_"+idmycard+".png');  -fx-background-size: 70px; -fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-opacity: 1;");
 							} else {

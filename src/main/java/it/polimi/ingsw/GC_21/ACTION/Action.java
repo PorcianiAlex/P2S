@@ -31,4 +31,14 @@ public abstract class Action {
 		return "Check Action=[ " + checkAction() + " ]:";
 	}
 
+	public void place() {
+		
+	}
+
+	public boolean checkBlack() {
+		return false;
+	}
+
+	
+
 }

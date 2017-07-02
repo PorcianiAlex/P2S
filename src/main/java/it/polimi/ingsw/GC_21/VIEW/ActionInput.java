@@ -20,6 +20,7 @@ import it.polimi.ingsw.GC_21.ACTION.Pass;
 import it.polimi.ingsw.GC_21.CLIENT.Connections;
 import it.polimi.ingsw.GC_21.CLIENT.TimerThread;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
+import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 public class ActionInput extends InputForm  {
@@ -53,10 +54,18 @@ public class ActionInput extends InputForm  {
 				passInput.inputFromCli();
 				return passInput;
 			case "6":
+				if (player.getPlayerColor() == Color.Black) {
+					System.out.println("Invalid input, try again!");
+					return this.chooseAction(player, timerThread);
+				}
 				LeaderInput leaderInput = new LeaderInput(this, input, player);
 				leaderInput.inputFromCli();
 				return leaderInput;
 			case "7":
+				if (player.getPlayerColor() == Color.Black) {
+					System.out.println("Invalid input, try again!");
+					return this.chooseAction(player, timerThread);
+				}
 				DiscardInput discardInput = new DiscardInput(this, input, player);
 				discardInput.inputFromCli();
 				return discardInput;
