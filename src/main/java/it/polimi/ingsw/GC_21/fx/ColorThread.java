@@ -32,6 +32,7 @@ public class ColorThread extends Thread {
 			mess = client.getReceivedMessage();
 			texttarget.setText(mess.getDescription());
 		if (mess instanceof TurnMessage) {
+			colorController.gameScene();
 			return;
 			}
 		} catch (ClassNotFoundException | IOException e) {
@@ -40,7 +41,6 @@ public class ColorThread extends Thread {
 		
 		
 		}
-		
 		
 	}
 	

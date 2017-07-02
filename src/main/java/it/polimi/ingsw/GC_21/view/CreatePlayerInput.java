@@ -36,10 +36,10 @@ public class CreatePlayerInput extends InputForm {
 				 remoteView.inputObject();
 					}
 			 else {
-				 MessageToClient joinMessage = new MessageToClient(true, remoteView.getPlayer().getName()+" joins the match! \nActual number of player: " + remoteView.getGame().getPlayers().size()); 
-		         remoteView.getGame().notifyBroadcast(joinMessage); 
 		         checkColorMessage = new CheckColorMessage(true, "Waiting for the 'start' by the game host", false);
 				 remoteView.getAdapter().sendObject(checkColorMessage);
+				 MessageToClient joinMessage = new MessageToClient(true, remoteView.getPlayer().getName()+" joins the match! \nActual number of player: " + remoteView.getGame().getPlayers().size()); 
+		         remoteView.getGame().notifyBroadcast(joinMessage); 
 			}
 		}
 		else {
