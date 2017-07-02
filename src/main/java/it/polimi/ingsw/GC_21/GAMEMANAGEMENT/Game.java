@@ -127,7 +127,7 @@ public class Game extends Observable implements Serializable{
 	
 	
 	public void executeGame() {
-		//this.assignResources();
+		this.assignResources();
 		for(int i = 0; i < players.size(); i++){
 			victoryPointsRanking.add(players.get(i));
 			militaryPointsRanking.add(players.get(i));
@@ -139,14 +139,14 @@ public class Game extends Observable implements Serializable{
 		for (int i = 0; i < players.size(); i++) {
 			players.get(i).getMyPersonalBoard().finalEarning();
 		}
-		GameOverMessage gameOverMessage = new GameOverMessage(true, "And the winner is......... " + victoryPointsRanking.get(0).getName() + "!!!\n Congrats!", board, players, victoryPointsRanking);
+		GameOverMessage gameOverMessage = new GameOverMessage(true, "And the winner is... " + victoryPointsRanking.get(0).getName() + "!!!\n Congrats!", board, players, victoryPointsRanking);
 		this.notifyBroadcast(gameOverMessage);
 	}
 
 
 	private void assignResources() {
 		for (int i = 0; i < players.size(); i++) {
-			players.get(i).getMyPersonalBoard().setMyPossession(new Possession(5+i, 5+i, 5+i, 5+i, 5+i, 5+i, 5+i));
+			players.get(i).getMyPersonalBoard().setMyPossession(new Possession(5+i, 5+i, 5+i, 5+i, 0, 0, 0));
 		}
 	}
 

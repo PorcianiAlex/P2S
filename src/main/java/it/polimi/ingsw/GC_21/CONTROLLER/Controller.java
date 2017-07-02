@@ -24,7 +24,6 @@ public class Controller implements P2SObserver<Action>{
 
 	public Controller(Game modelGame) {
 		this.modelGame = modelGame;
-		
 	}
 	
 	public Controller (RemoteView remoteView, ControllerManager controllerManager) {
@@ -41,10 +40,6 @@ public class Controller implements P2SObserver<Action>{
 	public void setModelGame(Game modelGame) {
 		this.modelGame = modelGame;
 	}
-	
-	
-
-	
 
 	public RemoteView getRemoteView() {
 		return remoteView;
@@ -75,7 +70,6 @@ public class Controller implements P2SObserver<Action>{
 		boolean checkAction = action.checkAction();
 		if (checkAction) {
 			action.Execute();
-			//System.out.println(action.toString());
 			return true;
 		}
 		return false;
@@ -90,7 +84,6 @@ public class Controller implements P2SObserver<Action>{
 	public boolean updateMessage(ControllerForm controllerForm) {
 		controllerForm.setController(this);
 		return controllerForm.executeController();
-		
 	}
 
 	

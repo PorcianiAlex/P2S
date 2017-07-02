@@ -42,7 +42,7 @@ public class Board implements Serializable{
 	}
 
 
-	private void setEffectsOnTower() throws IOException, ParseException {
+	private void setEffectsOnTower() throws IOException, ParseException { //loading spaceEffects from file
 		JSONParser parser = new JSONParser();
 		java.net.URL path = MarketArea.class.getResource("spaceEffects.json");
 		FileReader file = new FileReader(path.getPath());

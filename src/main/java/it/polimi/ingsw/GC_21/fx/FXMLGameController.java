@@ -159,13 +159,17 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 @FXML protected void Craft(ActionEvent event) {
 		 
 		 ToggleButton button = (ToggleButton) place.getSelectedToggle();
-		 CraftType craftType =  CraftType.valueOf(button.getUserData().toString());
-		 int area = Integer.parseInt(button.getText());
-		
-		 System.out.println( craftType );
-		 System.out.println( area);
+		 
+		 CraftType craftType;
+		 int area;
+		 
+		if (button!=null) {
+			craftType = CraftType.valueOf(button.getUserData().toString());
+			area = Integer.parseInt(button.getText());
+			placementinputForm = new CraftPlacementInput(craftType, area);
 
-		 placementinputForm = new CraftPlacementInput(craftType, area);
+		}
+		
 		 }
 	 
 	 	@FXML protected void FamilyMember(ActionEvent event) {  		

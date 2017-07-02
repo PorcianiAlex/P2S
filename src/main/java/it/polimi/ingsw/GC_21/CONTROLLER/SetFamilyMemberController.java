@@ -7,7 +7,7 @@ public class SetFamilyMemberController extends ControllerForm{
 	private int newFamilyMemberValue;
 	private FamilyMemberColor selectedFamilyMember;
 	private Player player;
-	
+
 	public SetFamilyMemberController(int newFamilyMemberValue, Player player, FamilyMemberColor selectedFamilyMember) {
 		this.newFamilyMemberValue = newFamilyMemberValue;
 		this.player = player;

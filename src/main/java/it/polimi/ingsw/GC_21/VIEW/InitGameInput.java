@@ -13,10 +13,9 @@ public InitGameInput(boolean start) {
 		this.start = start;
 	}
 
+
 public InitGameInput() {
 }
-
-
 
 
 @Override

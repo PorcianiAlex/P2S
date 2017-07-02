@@ -41,7 +41,7 @@ public class PersonalBoard implements Serializable{
 		this.myPossession = new Possession(0, 0, 0, 0, 0, 0, 0);
 		this.productionBonusTile = new Effect(new Possession(2, 0, 0, 0, 0, 1, 0), 0, game);
 		this.harvestBonusTile = new Effect(new Possession(0, 1, 1, 1, 0, 0, 0), 0, game);
-		this.infinity();
+		//this.infinity();
 		this.player = player;
 		this.toCallBeforeCraftEffects= new ArrayList<ToCallBeforeCraft>();
 		this.toCallBeforePlacementEffects = new ArrayList<ToCallBeforePlacement>();
@@ -68,10 +68,10 @@ public class PersonalBoard implements Serializable{
 
 	public void infinity(){
 		this.myPossession = new Possession(50, 50, 50, 50, 50, 50, 50);
-		getSpecificOwnedCards(DevCardType.Venture).setOwnedCardsnumber(6);
-		getSpecificOwnedCards(DevCardType.Building).setOwnedCardsnumber(6);
-		getSpecificOwnedCards(DevCardType.Territory).setOwnedCardsnumber(6);
-		getSpecificOwnedCards(DevCardType.Character).setOwnedCardsnumber(6);
+		getSpecificOwnedCards(DevCardType.Venture).setOwnedCardsnumber(5);
+		getSpecificOwnedCards(DevCardType.Building).setOwnedCardsnumber(5);
+		getSpecificOwnedCards(DevCardType.Territory).setOwnedCardsnumber(5);
+		getSpecificOwnedCards(DevCardType.Character).setOwnedCardsnumber(5);
 	}
 	
 	public void addPermanentEffect(Effect effect){
@@ -98,10 +98,20 @@ public class PersonalBoard implements Serializable{
 		earnByVentures();
 		earnByTerritories();
 		earnByResources();
+		earnByMP();
 		this.callAfterFinalCountEffects();
 	}
 	
 	
+	private void earnByMP() {
+		if (this.player.equals(game.getMilitaryPointsRanking().get(0))){
+			myPossession.addItemToPossession(new VictoryPoints(5));
+		}
+		if (this.player.equals(game.getMilitaryPointsRanking().get(1))){
+			myPossession.addItemToPossession(new VictoryPoints(2));
+		}
+	}
+
 	public void payPossession(Possession possession){
 		if (possession!= null){
 			myPossession.subtract(possession);
@@ -119,15 +129,16 @@ public class PersonalBoard implements Serializable{
 	
 	public void earnByCharacters(){
 		if (getSpecificOwnedCards(DevCardType.Character).getOwnedCardsnumber()!=0) {
-		int[] vPoints = new int[6];
-		vPoints[0] = 1;
-		vPoints[1] = 3;
-		vPoints[2] = 6;
-		vPoints[3] = 10;
-		vPoints[4] = 15;
-		vPoints[5] = 21;
-		int vPointsToTake = vPoints[getSpecificOwnedCards(DevCardType.Character).getOwnedCardsnumber()];
-		myPossession.addItemToPossession(new VictoryPoints(vPointsToTake));}
+			int[] vPoints = new int[6];
+			vPoints[0] = 1;
+			vPoints[1] = 3;
+			vPoints[2] = 6;
+			vPoints[3] = 10;
+			vPoints[4] = 15;
+			vPoints[5] = 21;
+			int vPointsToTake = vPoints[getSpecificOwnedCards(DevCardType.Character).getOwnedCardsnumber() - 1];
+			myPossession.addItemToPossession(new VictoryPoints(vPointsToTake));
+		}
 	}
 	
 	public void earnByTerritories(){
