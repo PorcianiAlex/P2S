@@ -59,6 +59,7 @@ import it.polimi.ingsw.GC_21.VIEW.PrivilegeInput;
 import it.polimi.ingsw.GC_21.VIEW.SetFamilyMemberInput;
 import it.polimi.ingsw.GC_21.VIEW.TakeCardInput;
 import it.polimi.ingsw.GC_21.VIEW.TowerPlacementInput;
+import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -93,6 +94,7 @@ import javafx.scene.layout.AnchorPane;
 
 
 import javafx.scene.text.Text;
+import javafx.scene.transform.Transform;
 import javafx.stage.Stage;
 
 public class FXMLGameController extends MetaController implements Initializable{
@@ -115,7 +117,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 
 	//riferimento ad array di carte, dadi, risorse e player
 	@FXML private ToggleGroup cards, place, excomm, family, myterritory, mybuilding, myventure, myleader, mycharacheter, x3,x4,x5,x6,x7,x12,x14,x15,x16,x13,x20,x23,x21,x22,x24;
-	@FXML private Text whitedice, blackdice, orangedice, state, turntext;
+	@FXML private Text whitedice, blackdice, orangedice, state;
 	@FXML private Text servconverting, r1,r2,r3,r4,r5,r6,r7,r8, r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20,r21,r22,r23,r24,r25,r26,r27,r28;
 	@FXML private Tab pl1,pl2,pl3,pl4;
 	@FXML private javafx.scene.control.Button confirmbtn;
@@ -125,14 +127,16 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 @FXML protected void Tower(ActionEvent event) {
 			 
 		 ToggleButton button = (ToggleButton) place.getSelectedToggle();
-		 DevCardType devCardType =  DevCardType.valueOf(button.getUserData().toString());
-		 int floor = Integer.parseInt(button.getText());
-		 System.out.println(button.getId());
-		 System.out.println( devCardType );
-		 System.out.println( floor);
-
-		 //settare la input con il giusto costruttore
-		 placementinputForm = new TowerPlacementInput(devCardType, floor);
+		 
+		 
+		 int floor;
+		 
+		if (button!= null) {
+			DevCardType devCardType = DevCardType.valueOf(button.getUserData().toString());
+			floor = Integer.parseInt(button.getText());
+			placementinputForm = new TowerPlacementInput(devCardType, floor);
+		}
+			
 		 		 
 	 }
 	 
@@ -164,12 +168,12 @@ public class FXMLGameController extends MetaController implements Initializable{
 		 placementinputForm = new CraftPlacementInput(craftType, area);
 		 }
 	 
-	 	@FXML protected void FamilyMember(ActionEvent event) {
-		 	 		
+	 	@FXML protected void FamilyMember(ActionEvent event) {  		
 		 ToggleButton button = (ToggleButton) family.getSelectedToggle();
-		 familyMemberColor = FamilyMemberColor.valueOf(button.getText());
-		 System.out.println( familyMemberColor );
-		 
+		 if(button!=null) {
+			 familyMemberColor = FamilyMemberColor.valueOf(button.getText());
+			 System.out.println( familyMemberColor );
+		 }
 		 }
 	 
 	 @FXML protected void Serv(ActionEvent event) {
@@ -204,7 +208,6 @@ public class FXMLGameController extends MetaController implements Initializable{
 		 PassInput passInput = new PassInput();
 		 try {
 			client.sendInput(passInput);
-			turntext.setText(" ");
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -225,7 +228,6 @@ public class FXMLGameController extends MetaController implements Initializable{
 		placementinputForm.setServantsToConvert(servToConvert);
 		client.sendInput(placementinputForm);
 		System.out.println("action send");
-		turntext.setText(" ");
 		canGo=false;
 		} else if(!canGo){
 			Alert alert = new Alert(AlertType.ERROR);
@@ -329,6 +331,9 @@ public class FXMLGameController extends MetaController implements Initializable{
 					}
 			    	try {
 			    		client.sendInput(inputForm);
+			    		if(timerThread!=null){	
+			   			 timerThread.interrupt();
+			   			 }
 			    	} catch (IOException e) {
 			    		e.printStackTrace();
 			    	}   
@@ -383,7 +388,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 					String famcolor = board.getTowers()[i].getFloors()[j].getSingleActionSpace().getFamilyMemberLocated().getAssociatedDice().getdiceColor().toString();
 					placebutton.setStyle(" -fx-background-image: url('/familymembers/"+color+famcolor+".png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-opacity:1; -fx-background-color: transparent;");
 					} else {
-					placebutton.setStyle(" -fx-background-color: transparent; -fx-opacity:1;");
+					placebutton.setStyle("  -fx-text-fill: transparent; -fx-opacity:0.5; -fx-border-radius: 40; -fx-background-radius: 40;");
 					}
 				}			
 		}
@@ -396,7 +401,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 			String famcolor = board.getMarketArea().getSingleActionSpace()[i].getFamilyMemberLocated().getAssociatedDice().getdiceColor().toString();
 			placebutton.setStyle(" -fx-background-image: url('/familymembers/"+color+famcolor+".png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-opacity:1; -fx-background-color: transparent;");
 			} else {
-				placebutton.setStyle(" -fx-background-color: transparent; -fx-opacity:1;");
+				placebutton.setStyle(" -fx-background-color: transparent; -fx-opacity:0.5; -fx-border-radius: 40; -fx-background-radius: 40;");
 			}
 		}
 		//refresh craft area
@@ -406,7 +411,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 					String famcolor = board.getHarvestArea().getSingleActionSpace().getFamilyMemberLocated().getAssociatedDice().getdiceColor().toString();
 					harvestbtn.setStyle(" -fx-background-image: url('/familymembers/"+color+famcolor+".png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-opacity:1; -fx-background-color: transparent;");
 				}else {
-					harvestbtn.setStyle(" -fx-background-color: transparent; -fx-opacity:1;");
+					harvestbtn.setStyle(" -fx-background-color: transparent; -fx-opacity:0.5; -fx-border-radius: 40; -fx-background-radius: 40;");
 				}
 				ToggleButton prodbtn =  (ToggleButton) place.getToggles().get(18);
 				if(board.getProductionArea().getSingleActionSpace().isBusy()) {
@@ -414,7 +419,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 					String famcolor = board.getProductionArea().getSingleActionSpace().getFamilyMemberLocated().getAssociatedDice().getdiceColor().toString();
 					prodbtn.setStyle(" -fx-background-image: url('/familymembers/"+color+famcolor+".png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-opacity:1; -fx-background-color: transparent;");
 				}else {
-					prodbtn.setStyle(" -fx-background-color: transparent; -fx-opacity:1;");
+					prodbtn.setStyle(" -fx-background-color: transparent; -fx-opacity:0.5; -fx-border-radius: 40; -fx-background-radius: 40;");
 				}
 				
 			
@@ -497,11 +502,14 @@ public class FXMLGameController extends MetaController implements Initializable{
 				}
 	}
 	
+
+	
 	  public void ifChooseAction(boolean firstaction, String description, Player player, TimerThread timerThread) { 
 		myPlayer = player;
 	    this.timerThread=timerThread; 
 
 		//start timer animation
+	   
 		//set family button
 		ToggleButton black = (ToggleButton) family.getToggles().get(0);
         black.setStyle(" -fx-background-image: url('/familymembers/"+myPlayer.getPlayerColor()+"Black.png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-background-color: transparent;");
@@ -517,7 +525,6 @@ public class FXMLGameController extends MetaController implements Initializable{
 		//gli mostro la conferma
 		if(firstaction) {
 		System.out.println("è il tuo turno, sono nella chooseaction");
-		turntext.setText(player.getName()+", it's your turn!");	
 		} else {
 			Platform.runLater(new Runnable() {
 			    @Override
@@ -577,7 +584,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	public void Privilege(PrivilegeInput privilegeInput) {
 		
 		ArrayList<String> choices = new ArrayList<String>();
-		choices.add("1 Wood and 1 stone");
+		choices.add("1 Wood and 1 Stone");
 		choices.add("2 Servants");
 		choices.add("2 Coins");
 		choices.add("2 Military points");
@@ -760,6 +767,21 @@ public class FXMLGameController extends MetaController implements Initializable{
 		    }
 		
 		});
+	}
+
+	public void gameOver(String description) {
+		
+		Platform.runLater(new Runnable() {
+		    @Override
+		    public void run() {
+		    	Alert alert = new Alert(AlertType.ERROR);
+		    	alert.setTitle("End of The Game");
+		    	alert.setHeaderText("Chi vuol esser lieto sia, del doman non c'è certezza");
+		    	alert.setContentText(description);	
+		    	alert.showAndWait();
+		    }
+		});
+		
 	}
 	
 	

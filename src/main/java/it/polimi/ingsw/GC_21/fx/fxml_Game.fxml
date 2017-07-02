@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -22,7 +23,7 @@
                 <Image url="@gameboard_f_c.jpeg" />
               </image>
             </ImageView>
-            <ToggleButton fx:id="T1F1" layoutX="120.0" layoutY="376.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;" text="1" textFill="TRANSPARENT" userData="Territory">
+            <ToggleButton fx:id="T1F1" layoutX="120.0" layoutY="376.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#Tower" opacity="0.5" prefHeight="35.0" prefWidth="35.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10;-fx-background-color: transparent;&#10;" text="1" textFill="TRANSPARENT" userData="Territory">
               <toggleGroup>
                 <ToggleGroup fx:id="place" />
               </toggleGroup>

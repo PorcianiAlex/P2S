@@ -37,7 +37,9 @@ public class MessThread extends Thread{
 			} 
 			messageToClient.executeGUI(gameController);
 			
-			if(messageToClient instanceof GameOverMessage){break;}
+			if(messageToClient instanceof GameOverMessage){
+				break;
+				}
 		}
 	}
 	

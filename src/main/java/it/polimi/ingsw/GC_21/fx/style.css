@@ -29,3 +29,9 @@ The style definition consists of the name of the property
  -fx-vgap: 10;
  -fx-padding: 25 25 25 25;
 }
+.toggle-button {
+    
+}
+
+.toggle-button:selected {
+}

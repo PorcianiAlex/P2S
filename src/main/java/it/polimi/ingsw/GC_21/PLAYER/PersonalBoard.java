@@ -116,6 +116,7 @@ public class PersonalBoard implements Serializable{
 	}
 	
 	public void earnByCharacters(){
+		if (getSpecificOwnedCards(DevCardType.Character).getOwnedCardsnumber()!=0) {
 		int[] vPoints = new int[6];
 		vPoints[0] = 1;
 		vPoints[1] = 3;
@@ -123,8 +124,8 @@ public class PersonalBoard implements Serializable{
 		vPoints[3] = 10;
 		vPoints[4] = 15;
 		vPoints[5] = 21;
-		int vPointsToTake = vPoints[getSpecificOwnedCards(DevCardType.Character).getOwnedCardsnumber()-1];
-		myPossession.addItemToPossession(new VictoryPoints(vPointsToTake));
+		int vPointsToTake = vPoints[getSpecificOwnedCards(DevCardType.Character).getOwnedCardsnumber()];
+		myPossession.addItemToPossession(new VictoryPoints(vPointsToTake));}
 	}
 	
 	public void earnByTerritories(){
@@ -152,11 +153,14 @@ public class PersonalBoard implements Serializable{
 	}
 	
 	public void earnByVentures(){
-		int finalVP = 0;
-		for (int i = 0; i < getSpecificOwnedCards(DevCardType.Venture).getOwnedCardsnumber(); i++) {
-			finalVP = finalVP + ((Ventures) getSpecificOwnedCards(DevCardType.Venture).getOwnedCards()[i].getCard()).getFinalVictoryPoints().getValue();
+		if (getSpecificOwnedCards(DevCardType.Venture).getOwnedCardsnumber()!=0) {
+			int finalVP = 0;
+			for (int i = 0; i < getSpecificOwnedCards(DevCardType.Venture).getOwnedCardsnumber(); i++) {
+				finalVP = finalVP + ((Ventures) getSpecificOwnedCards(DevCardType.Venture).getOwnedCards()[i].getCard())
+						.getFinalVictoryPoints().getValue();
+			}
+			myPossession.addItemToPossession(new VictoryPoints(finalVP));
 		}
-		myPossession.addItemToPossession(new VictoryPoints(finalVP));
 	}
 
 	public void activateCraft(CraftType craftType, int actionValue) {
