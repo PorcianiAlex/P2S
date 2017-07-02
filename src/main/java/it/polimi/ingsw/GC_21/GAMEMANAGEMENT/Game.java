@@ -68,9 +68,6 @@ public class Game extends Observable implements Serializable{
 		this.victoryPointsRanking = victoryPointsRanking;
 	}
 
-
-
-
 	public ArrayList<Player> getMilitaryPointsRanking() {
 		return militaryPointsRanking;
 	}
@@ -130,7 +127,7 @@ public class Game extends Observable implements Serializable{
 	
 	
 	public void executeGame() {
-		this.assignResources();
+		//this.assignResources();
 		for(int i = 0; i < players.size(); i++){
 			victoryPointsRanking.add(players.get(i));
 			militaryPointsRanking.add(players.get(i));
