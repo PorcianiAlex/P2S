@@ -3,17 +3,20 @@ package it.polimi.ingsw.GC_21.CLIENT;
 import sun.audio.*;
 import java.io.*;
 
+import javax.sound.sampled.AudioInputStream;
+
 public class Music {
 
+	private AudioPlayer MGP = AudioPlayer.player;
+    private AudioStream BGM;
+    private AudioData MD;
+	
 	private Boolean ongoing=false;
 	
 	 public void start() 
 	    {   
 		 	ongoing=true;
-	        AudioPlayer MGP = AudioPlayer.player;
-	        AudioStream BGM;
-	        AudioData MD;
-
+		 	
 	        ContinuousAudioDataStream loop = null;
 
 	        try
@@ -37,7 +40,7 @@ public class Music {
 
 	 public void stop() {
 		 ongoing=false;
-		 AudioPlayer.player.stop();
+		 AudioPlayer.player.stop(BGM);
 	}
 	 
 	 public boolean getOnGoing() {

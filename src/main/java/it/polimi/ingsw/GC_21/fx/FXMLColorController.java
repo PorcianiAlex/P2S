@@ -64,14 +64,11 @@ public class FXMLColorController extends MetaController {
 			this.popup();
 			return;
 		} else {
-		 if (host) {
-			 CheckColorMessage checkColorMessage2 = (CheckColorMessage) client.getReceivedMessage();
-			 initialTimerThread = new InitialTimerThread(client);
-			 initialTimerThread.start();
-			 ready.setVisible(true);
-		}
 		 	colorThread = new ColorThread(texttarget, client, this);
 			colorThread.start();
+			if(host) {
+				texttarget.setText("waiting for other players...");
+			}
 	 }
 	}
 	 
@@ -110,6 +107,17 @@ public class FXMLColorController extends MetaController {
 			alert.setContentText(null);
 			alert.showAndWait();
 		
+		
+	}
+
+
+	public void startTimer() {
+		if (host) {
+			System.out.println("timer partito");
+			 initialTimerThread = new InitialTimerThread(client);
+			 initialTimerThread.start();
+			 ready.setVisible(true);
+		}
 		
 	} 
 	
