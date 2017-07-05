@@ -34,22 +34,21 @@ public class Round implements Serializable{
 	private void getTurnOrder() {
 		turnOrder = game.getBoard().getCouncilPalace().getTurnOrder();
 		blackPlayer = game.getSpecificPlayer(Color.Black);
-		ArrayList<Player> playersInGame = game.getPlayers();
-		
+		ArrayList<Player> playersInGame = game.getPlayers();	
 		for (int j = 0; j < playersInGame.size(); j++) {
 			if (!turnOrder.contains(playersInGame.get(j))) {
 				turnOrder.add(playersInGame.get(j));
 			}
 		}
-		if (blackPlayer != null) {
-			turnOrder.remove(blackPlayer);//for black player there is a specific notify turn in which he plays all his family members at the beginning 
-		}
 	}
 
 	public void executeRound() {
-		for (int i = 1; i < 5; i++) {
-			currentTurn = new Turn(i, game);
-			game.notifyBlackTurn(blackPlayer);
+		if (blackPlayer != null) {
+			turnOrder.remove(blackPlayer);//for black player there is a specific notify turn in which he plays all his family members at the beginning 
+			for (int i = 1; i < 5; i++) {
+				currentTurn = new Turn(i, game);
+				game.notifyBlackTurn(blackPlayer);
+			}
 		}
 		for (int i = 1; i < 5 ; i++) {	
 			currentTurn = new Turn(i, game);
