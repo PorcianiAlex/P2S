@@ -36,6 +36,7 @@ public class CreatePlayerInput extends InputForm {
 			remoteView.getGame().attachPlayer(player, remoteView);
 			 if (remoteView.getUsername().equals(remoteView.getGame().getHost())) {//if the remote vie is the host
 				 checkColorMessage = new MessageToClient(true, "Waiting for the players.....");
+				 remoteView.getAdapter().sendObject(checkColorMessage);
 				 checkStartGame(remoteView);		
 					}
 			 else {
@@ -59,7 +60,7 @@ public class CreatePlayerInput extends InputForm {
 		    	CheckColorMessage checkColorMessage = new CheckColorMessage(true, "Write 'start' when you want to start the game! \nYou must be 2 at least", true);
 				remoteView.getAdapter().sendObject(checkColorMessage);
 				remoteView.inputObject();
-		    } else { execute(remoteView); } 
+		    } else { checkStartGame(remoteView); } 
 	}
 
 	@Override
