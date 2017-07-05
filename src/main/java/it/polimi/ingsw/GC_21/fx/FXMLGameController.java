@@ -502,7 +502,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 		//set family member placed
 				for (int i = 0; i < 4; i++) {
 					ToggleButton tButton = (ToggleButton) family.getToggles().get(i);
-					if(myPlayer.getFamilyMembers()[i].isPlaced()) {
+					if(myPlayer!=null && myPlayer.getFamilyMembers()[i].isPlaced()) {
 						tButton.setVisible(false);
 						tButton.setOpacity(0.0);
 					} else {
