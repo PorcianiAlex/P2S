@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_21.fx;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+import it.polimi.ingsw.GC_21.CLIENT.CheckColorMessage;
 import it.polimi.ingsw.GC_21.CLIENT.Connections;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.CLIENT.ReadyMessage;
@@ -32,8 +33,15 @@ public class ColorThread extends Thread {
 		MessageToClient mess;
 		try {
 			mess = client.getReceivedMessage();
-			texttarget.setText(mess.getDescription());
-		if (mess instanceof ReadyMessage) {
+			if (mess instanceof CheckColorMessage) {
+				Platform.runLater(new Runnable() {
+					    @Override
+					    public void run() {
+					    	colorController.startTimer();
+					    }
+					});
+				}
+			else if (mess instanceof ReadyMessage) {
 			Platform.runLater(new Runnable() {
 				    @Override
 				    public void run() {
@@ -41,6 +49,8 @@ public class ColorThread extends Thread {
 				    }
 				});
 			return;
+			} else {
+				texttarget.setText(mess.getDescription());
 			}
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();

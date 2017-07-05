@@ -64,20 +64,17 @@ public class FXMLColorController extends MetaController {
 			this.popup();
 			return;
 		} else {
-		 if (host) {
-			 MessageToClient messageToClient = client.getReceivedMessage();
-			 initialTimerThread = new InitialTimerThread(client);
-			 initialTimerThread.start();
-			 ready.setVisible(true);
-		}
-		 colorThread = new ColorThread(texttarget, client, this);
+		 	colorThread = new ColorThread(texttarget, client, this);
 			colorThread.start();
+			if(host) {
+				texttarget.setText("waiting for other players...");
+			}
 	 }
 	}
 	 
 	 @FXML public void Ready(ActionEvent event) throws ClassNotFoundException, IOException {
 		 if(colorplayer!=null && host) {
-			 
+			 initialTimerThread.interrupt();
 			 InitGameInput initGameInput = new InitGameInput(true);
 	        try {
 				client.sendInput(initGameInput);
@@ -110,6 +107,17 @@ public class FXMLColorController extends MetaController {
 			alert.setContentText(null);
 			alert.showAndWait();
 		
+		
+	}
+
+
+	public void startTimer() {
+		if (host) {
+			System.out.println("timer partito");
+			 initialTimerThread = new InitialTimerThread(client);
+			 initialTimerThread.start();
+			 ready.setVisible(true);
+		}
 		
 	} 
 	

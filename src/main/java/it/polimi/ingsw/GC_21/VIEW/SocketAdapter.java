@@ -5,22 +5,28 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.SocketException;
 
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 
 public class SocketAdapter implements AdapterConnection{
-
+	private RemoteView remoteView;
 	private Socket socket;
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 
         
+	public SocketAdapter(Socket socket, RemoteView remoteView) throws IOException {
+		this.socket = socket;
+		ois = new ObjectInputStream(socket.getInputStream());
+		oos = new ObjectOutputStream(socket.getOutputStream());
+		this.remoteView = remoteView;
+
+	}
+	
 	public SocketAdapter(Socket socket) throws IOException {
 		this.socket = socket;
 		ois = new ObjectInputStream(socket.getInputStream());
 		oos = new ObjectOutputStream(socket.getOutputStream());
-
 
 	}
 	
@@ -52,6 +58,11 @@ public class SocketAdapter implements AdapterConnection{
 			}
 			return inputForm;
 		} catch (ClassNotFoundException | IOException e) {
+			if (!remoteView.isDisconnected()){
+				remoteView.setDisconnected(true);
+				MessageToClient disconnectionMessage = new MessageToClient(true, remoteView.getUsername() + " disconnected!");
+				remoteView.getGame().notifyBroadcast(disconnectionMessage);
+			}
 			return new PassInput();//if client is disconnected, do a default pass action
 		}
 	}
@@ -63,5 +74,15 @@ public class SocketAdapter implements AdapterConnection{
 	public void setSocket(Socket socket) {
 		this.socket = socket;
 	}
+
+	public RemoteView getRemoteView() {
+		return remoteView;
+	}
+
+	public void setRemoteView(RemoteView remoteView) {
+		this.remoteView = remoteView;
+	}
+	
+	
 
 }

@@ -72,6 +72,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface, Seri
         		  Socket socket = serverSocket.accept();
         		  SocketAdapter socketAdapter = new SocketAdapter(socket);
           		  RemoteView remoteView = new RemoteView(socketAdapter, controllerManager);
+          		  socketAdapter.setRemoteView(remoteView);
         		  executor.submit(remoteView);        		  
         	   if(serverSocket.isClosed()) {break;}
         		 
@@ -91,6 +92,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface, Seri
     	RemoteView remoteView;
 		try {
 			remoteView = new RemoteView(rmiAdapter, controllerManager);
+			rmiAdapter.setRemoteView(remoteView);
 			executor.submit(remoteView);
 		} catch (IOException e) {
 			e.printStackTrace();
