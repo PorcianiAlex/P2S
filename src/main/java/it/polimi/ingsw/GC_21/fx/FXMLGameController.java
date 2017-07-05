@@ -148,12 +148,13 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 
 	 @FXML protected void Market(ActionEvent event) {
 		 
+		 
 		 ToggleButton button = (ToggleButton) place.getSelectedToggle();
+		 if (button!= null) {
 		 int area = Integer.parseInt(button.getText());
 		 System.out.println(area);
-		 
-		placementinputForm = new MarketPlacementInput(area);
-
+	   	placementinputForm = new MarketPlacementInput(area);
+		 }
 		 }
 	 
 	 @FXML protected void Craft(ActionEvent event) {

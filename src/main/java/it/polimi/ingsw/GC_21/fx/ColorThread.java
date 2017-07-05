@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 import it.polimi.ingsw.GC_21.CLIENT.Connections;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.CLIENT.TurnMessage;
+import javafx.application.Platform;
 import javafx.scene.text.Text;
 
 public class ColorThread extends Thread {
@@ -32,7 +33,12 @@ public class ColorThread extends Thread {
 			mess = client.getReceivedMessage();
 			texttarget.setText(mess.getDescription());
 		if (mess instanceof TurnMessage) {
-			colorController.gameScene();
+			 Platform.runLater(new Runnable() {
+				    @Override
+				    public void run() {
+				    	colorController.gameScene();
+				    }
+				});
 			return;
 			}
 		} catch (ClassNotFoundException | IOException e) {
