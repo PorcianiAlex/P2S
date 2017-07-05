@@ -100,6 +100,7 @@ import javafx.stage.Stage;
 public class FXMLGameController extends MetaController implements Initializable{
 
 	private FamilyMemberColor familyMemberColor;
+	private Music myMusic;
 	private int servToConvert = 0;
 	private PlacementInput placementinputForm;
 	private InputForm inputForm;
@@ -276,10 +277,10 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 }
 	 
 	@FXML public void Music(ActionEvent event) {
-			if(music.isSelected()) {
-				Music.start();
+			if(myMusic.getOnGoing()) {
+				myMusic.stop();
 			} else {
-				Music.stop();
+				myMusic.start();
 			}
 			
 		}
@@ -566,8 +567,8 @@ public class FXMLGameController extends MetaController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("default initialize!");
-		Music.start();
-		music.setSelected(true);
+		myMusic = new Music();
+		myMusic.start();
 		messThread = new MessThread(client, this);
         messThread.start();
         // need this to receive the first turnMessage!
