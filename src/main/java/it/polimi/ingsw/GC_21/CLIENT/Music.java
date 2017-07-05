@@ -24,8 +24,8 @@ public class Music {
 	            InputStream test = new FileInputStream("Song1.wav");
 	            BGM = new AudioStream(test);
 	            AudioPlayer.player.start(BGM);
-	            //MD = BGM.getData();
-	            //loop = new ContinuousAudioDataStream(MD);
+	            MD = BGM.getData();
+	            loop = new ContinuousAudioDataStream(MD);
 
 	        }
 	        catch(FileNotFoundException e){

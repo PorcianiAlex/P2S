@@ -108,7 +108,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	private ArrayList<Player> classPlayers;
 	private Player myPlayer;
 	private MessThread messThread;
-	private boolean canGo, secondcard = false;
+	private boolean canGo, isBlack, secondcard = false;
 	private Object LOCK = new Object(); // just something to lock on
     private ArrayList<ArrayList<ToggleGroup>> tabs = new ArrayList<ArrayList<ToggleGroup>>();
     private ArrayList<ToggleGroup> leaders = new ArrayList<ToggleGroup>();
