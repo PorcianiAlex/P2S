@@ -16,6 +16,8 @@ public class MessageToClient implements Serializable{
 	protected GameEndState gameEndState = GameEndState.Going;
 	protected boolean waiting; //if the message needs an input from the client!
 	protected InputForm inputForm;
+	protected Connections client;
+
 	
 	public boolean isWaiting() {
 		return waiting;
@@ -89,5 +91,9 @@ public class MessageToClient implements Serializable{
 		this.inputForm = inputForm;
 	}
 
+	public void setClient(Connections client) {
+		this.client = client;
+
+	}
 	
 }

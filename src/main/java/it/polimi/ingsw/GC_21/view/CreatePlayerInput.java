@@ -1,9 +1,13 @@
 package it.polimi.ingsw.GC_21.VIEW;
 
 import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import it.polimi.ingsw.GC_21.CLIENT.CheckColorMessage;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
+import it.polimi.ingsw.GC_21.CLIENT.TimerThread;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
@@ -24,16 +28,15 @@ public class CreatePlayerInput extends InputForm {
 
 	@Override
 	public void execute(RemoteView remoteView) {
-		CheckColorMessage checkColorMessage;
+		MessageToClient checkColorMessage;
 		super.execute(remoteView);
 		if (checkColor(remoteView.getGame())) {
 			Player player = new Player(remoteView.getUsername(), color, remoteView.getGame());
 			remoteView.setPlayer(player);
 			remoteView.getGame().attachPlayer(player, remoteView);
 			 if (remoteView.getUsername().equals(remoteView.getGame().getHost())) {//if the remote vie is the host
-				 checkColorMessage = new CheckColorMessage(true, "Write 'start' when you want to start the game! \nYou must be 2 at least", true);
-				 remoteView.getAdapter().sendObject(checkColorMessage);
-				 remoteView.inputObject();
+				 checkColorMessage = new MessageToClient(true, "Waiting for the players.....");
+				 checkStartGame(remoteView);		
 					}
 			 else {
 		         checkColorMessage = new CheckColorMessage(true, "Waiting for the 'start' by the game host", false);
@@ -47,6 +50,16 @@ public class CreatePlayerInput extends InputForm {
 			remoteView.getAdapter().sendObject(checkColorMessage);
 			remoteView.inputObject();
 		}					
+	}
+	
+	
+	private void checkStartGame(RemoteView remoteView) {
+		  Game game = remoteView.getGame();
+		    if(game.getPlayers().size() >= 2) {
+		    	CheckColorMessage checkColorMessage = new CheckColorMessage(true, "Write 'start' when you want to start the game! \nYou must be 2 at least", true);
+				remoteView.getAdapter().sendObject(checkColorMessage);
+				remoteView.inputObject();
+		    } else { execute(remoteView); } 
 	}
 
 	@Override

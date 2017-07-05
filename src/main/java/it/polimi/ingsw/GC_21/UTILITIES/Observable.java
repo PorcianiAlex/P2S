@@ -93,6 +93,8 @@ public abstract class Observable<C> {
 				o.updateClose();
 			}
 		}
+	
+	
 	public void notifyBlack() {
 		for (P2SObserver<C> o : this.observers) {
 				o.updateBlack();
