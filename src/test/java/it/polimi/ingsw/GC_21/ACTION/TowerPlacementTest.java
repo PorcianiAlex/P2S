@@ -81,5 +81,26 @@ public class TowerPlacementTest {
 		assertTrue(actual.equals(expected));
 	}
 	
+	@Test
+	public void testTowerPlacement(){
+		Game game = new Game("");	
+		Player playerInAction = new Player("Santa", Color.Blue, game);
+		FamilyMemberColor selectedFamilyMemberColor = FamilyMemberColor.Neutral;
+		TowerPlacement towerPlacement = TowerPlacement.factoryTowerPlacement(playerInAction, selectedFamilyMemberColor, DevCardType.Building, 1, 0, game.getBoard());
+		boolean checkAction = towerPlacement.checkAction();
+		assertTrue(!checkAction);
+		assertTrue(!towerPlacement.checkBusyActionSpace());
+		assertTrue(!towerPlacement.checkBlack());
+		assertTrue(!towerPlacement.checkBusyFamilyMember());
+		assertTrue(!towerPlacement.checkDiceRequirement());
+		assertTrue(!towerPlacement.checkOtherFamilyMember());
+		
+
+
+		
+
+	
+	}
+	
 
 }
