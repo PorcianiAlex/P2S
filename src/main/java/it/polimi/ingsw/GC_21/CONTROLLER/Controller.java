@@ -118,6 +118,7 @@ public class Controller implements P2SObserver<Action>{
 
 	@Override
 	public void updateInit() {
+		modelGame.detachCurrent();
 		controllerManager.getGames().remove(modelGame);
 		controllerManager.getActiveGames().add(modelGame);
 		ReadyMessage readyMessage = new ReadyMessage("Let start the game");

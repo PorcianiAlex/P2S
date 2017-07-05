@@ -22,6 +22,11 @@ public class CheckColorMessage extends MessageToClient implements Callable<Input
 		this.host = host;
 	}
 	
+	public CheckColorMessage(boolean result, boolean waiting, String description, boolean host) {
+		super(result, waiting, description);
+		this.host = host;
+	}
+	
 	@Override
 	public InputForm executeCLI(Object LOCK) throws InterruptedException {
 		this.LOCK = LOCK;

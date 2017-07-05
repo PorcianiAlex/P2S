@@ -100,6 +100,7 @@ import javafx.stage.Stage;
 public class FXMLGameController extends MetaController implements Initializable{
 
 	private FamilyMemberColor familyMemberColor;
+	private Music myMusic;
 	private int servToConvert = 0;
 	private PlacementInput placementinputForm;
 	private InputForm inputForm;
@@ -117,12 +118,12 @@ public class FXMLGameController extends MetaController implements Initializable{
     private static String background = new String("-fx-text-fill: transparent; -fx-opacity:0.5; -fx-border-radius: 40; -fx-background-radius: 40;");
 
 	//riferimento ad array di carte, dadi, risorse e player
-	@FXML private ToggleGroup cards, place, excomm, family, myterritory, mybuilding, myventure, myleader, mycharacheter, x3,x4,x5,x6,x7,x12,x14,x15,x16,x13,x20,x23,x21,x22,x24;
+	@FXML private ToggleGroup cards, place, excomm, family, myterritory, mybuilding, myventure, myleader, mycharacheter, x3,x4,x5,x6,x7,x12,x14,x15,x16,x13,x20,x23,x21,x22,x24,x27,x28,x29,x30,x31;
 	@FXML private Text whitedice, blackdice, orangedice, state;
-	@FXML private Text servconverting, r1,r2,r3,r4,r5,r6,r7,r8, r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20,r21,r22,r23,r24,r25,r26,r27,r28;
-	@FXML private Tab pl1,pl2,pl3,pl4;
+	@FXML private Text servconverting, r1,r2,r3,r4,r5,r6,r7,r8, r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20,r21,r22,r23,r24,r25,r26,r27,r28,r29,r30,r31,r32,r33,r34,r35;
+	@FXML private Tab pl1,pl2,pl3,pl4,pl5;
 	@FXML private javafx.scene.control.Button confirmbtn;
-	@FXML private ToggleButton white, black, orange, neutral;
+	@FXML private ToggleButton white, black, orange, neutral, music;
 	@FXML private AnchorPane anchorPane; 
 	
 	 @FXML protected void Tower(ActionEvent event) {
@@ -274,6 +275,16 @@ public class FXMLGameController extends MetaController implements Initializable{
 		 }
 		 
 	 }
+	 
+	@FXML public void Music(ActionEvent event) {
+			if(myMusic.getOnGoing()) {
+				myMusic.stop();
+			} else {
+				myMusic.start();
+			}
+			
+		}
+
 	 
 	 @FXML protected void discardLeader(ActionEvent event) {
 		 	
@@ -556,7 +567,8 @@ public class FXMLGameController extends MetaController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("default initialize!");
-		Music.start();
+		myMusic = new Music();
+		myMusic.start();
 		messThread = new MessThread(client, this);
         messThread.start();
         // need this to receive the first turnMessage!
@@ -573,28 +585,34 @@ public class FXMLGameController extends MetaController implements Initializable{
     	ArrayList<ToggleGroup> tab2 = new ArrayList<>();
     	ArrayList<ToggleGroup> tab3 = new ArrayList<>();
     	ArrayList<ToggleGroup> tab4 = new ArrayList<>();
+    	ArrayList<ToggleGroup> tab5 = new ArrayList<>();
         tab1.addAll(Arrays.asList(myterritory,mycharacheter,mybuilding,myventure));
         tab2.addAll(Arrays.asList(x3,x7,x4,x6));
         tab3.addAll(Arrays.asList(x12,x15,x16,x13));
         tab4.addAll(Arrays.asList(x20,x23,x21,x24));
+        tab5.addAll(Arrays.asList(x27,x30,x28,x31));
         tabs.add(tab1);
         tabs.add(tab2);
         tabs.add(tab3);
         tabs.add(tab4);
+        tabs.add(tab5);
         ArrayList<Text> res1 = new ArrayList<>();
         ArrayList<Text> res2 = new ArrayList<>();
         ArrayList<Text> res3 = new ArrayList<>();
         ArrayList<Text> res4 = new ArrayList<>();
+        ArrayList<Text> res5 = new ArrayList<>();
         res1.addAll(Arrays.asList(r1,r2,r3,r4,r5,r6,r7));
         res2.addAll(Arrays.asList(r8,r9,r10,r11,r12,r13,r14));
         res3.addAll(Arrays.asList(r15,r16,r17,r18,r19,r20,r21));
-        res3.addAll(Arrays.asList(r22,r23,r24,r25,r26,r27,r28));
+        res4.addAll(Arrays.asList(r22,r23,r24,r25,r26,r27,r28));
+        res5.addAll(Arrays.asList(r29,r30,r31,r32,r33,r34,r35));
         ress.add(res1); 
         ress.add(res2);
         ress.add(res3);
         ress.add(res4);
-        leaders.addAll(Arrays.asList(myleader,x5,x14,x22));
-        playerNames.addAll(Arrays.asList(pl1,pl2,pl3,pl4));
+        ress.add(res5);
+        leaders.addAll(Arrays.asList(myleader,x5,x14,x22,x29));
+        playerNames.addAll(Arrays.asList(pl1,pl2,pl3,pl4,pl5));
         
 	}
 
@@ -801,8 +819,6 @@ public class FXMLGameController extends MetaController implements Initializable{
 		});
 		
 	}
-	
-	
 	
 
 	

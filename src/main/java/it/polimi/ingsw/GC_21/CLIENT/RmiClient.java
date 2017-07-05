@@ -76,7 +76,8 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 	
 	public void clientReceive(String string) {
 		if ("music".equals(string)) {
-			Music.start();
+			Music music = new Music();
+			music.start();
 		} 
 		if(view.equals(ViewType.GUI)) {
 			this.stackForClient.push(string);

@@ -5,8 +5,11 @@ import java.io.*;
 
 public class Music {
 
-	 public static void start() 
-	    {       
+	private Boolean ongoing=false;
+	
+	 public void start() 
+	    {   
+		 	ongoing=true;
 	        AudioPlayer MGP = AudioPlayer.player;
 	        AudioStream BGM;
 	        AudioData MD;
@@ -32,8 +35,14 @@ public class Music {
 	        MGP.start(loop);
 	    }
 
-	 public static void stop() {
+	 public void stop() {
+		 ongoing=false;
 		 AudioPlayer.player.stop();
 	}
+	 
+	 public boolean getOnGoing() {
+		return ongoing;
+	}
+	 
 }
 

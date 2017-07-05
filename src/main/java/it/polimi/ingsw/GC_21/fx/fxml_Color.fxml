@@ -31,7 +31,7 @@
       <Font size="30.0" />
     </font>
   </Text>
-  <ToggleButton fx:id="blue" mnemonicParsing="false" onAction="#Color"  text="Blue" textFill="#0066ff" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+  <ToggleButton fx:id="blue" mnemonicParsing="false" onAction="#Color"  text="Blue" textFill="#0066ff" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
     <font>
       <Font size="24.0" fx:id="x1" />
     </font>
@@ -39,7 +39,7 @@
       <ToggleGroup fx:id="place" />
     </toggleGroup>
   </ToggleButton>
-  <ToggleButton fx:id="red" font="$x1" mnemonicParsing="false" onAction="#Color" text="Red" textFill="RED" toggleGroup="$place" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+  <ToggleButton fx:id="red" font="$x1" mnemonicParsing="false" onAction="#Color" text="Red" textFill="RED" toggleGroup="$place" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
   <ToggleButton fx:id="yellow" font="$x1" mnemonicParsing="false" onAction="#Color"  text="Yellow" textFill="#fff500" toggleGroup="$place" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
   <ToggleButton fx:id="green" font="$x1" mnemonicParsing="false" onAction="#Color"  text="Green" textFill="#009918" toggleGroup="$place" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
   <Text fx:id="texttarget" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="3">

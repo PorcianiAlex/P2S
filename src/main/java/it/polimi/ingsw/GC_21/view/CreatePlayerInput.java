@@ -35,16 +35,17 @@ public class CreatePlayerInput extends InputForm {
 			remoteView.setPlayer(player);
 			remoteView.getGame().attachPlayer(player, remoteView);
 			 if (remoteView.getUsername().equals(remoteView.getGame().getHost())) {//if the remote vie is the host
+				 remoteView.getGame().attachCurrent(remoteView);
 				 checkColorMessage = new MessageToClient(true, "Waiting for the players.....");
 				 remoteView.getAdapter().sendObject(checkColorMessage);
-				 checkStartGame(remoteView);		
 					}
 			 else {
 		         checkColorMessage = new CheckColorMessage(true, "Waiting for the 'start' by the game host", false);
 				 remoteView.getAdapter().sendObject(checkColorMessage);
 				 MessageToClient joinMessage = new MessageToClient(true, remoteView.getPlayer().getName()+" joins the match! \nActual number of player: " + remoteView.getGame().getPlayers().size()); 
-		         remoteView.getGame().notifyBroadcast(joinMessage); 
+		         remoteView.getGame().notifyBroadcast(joinMessage); 		         
 			}
+			 checkStartGame(remoteView);		
 		}
 		else {
 			checkColorMessage = new CheckColorMessage(false, "Oh grullo! This color is already in use, choose another one, please!", false);
@@ -56,11 +57,10 @@ public class CreatePlayerInput extends InputForm {
 	
 	private void checkStartGame(RemoteView remoteView) {
 		  Game game = remoteView.getGame();
-		    if(game.getPlayers().size() >= 2) {
-		    	CheckColorMessage checkColorMessage = new CheckColorMessage(true, "Write 'start' when you want to start the game! \nYou must be 2 at least", true);
-				remoteView.getAdapter().sendObject(checkColorMessage);
-				remoteView.inputObject();
-		    } else { checkStartGame(remoteView); } 
+		  if(game.getPlayers().size() >= 2) {
+			  CheckColorMessage checkColorMessage = new CheckColorMessage(true, true, "Write 'start' when you want to start the game! \nYou must be 2 at least", true);
+			  remoteView.getGame().notifyCurrent(checkColorMessage);
+		   }  
 	}
 
 	@Override
