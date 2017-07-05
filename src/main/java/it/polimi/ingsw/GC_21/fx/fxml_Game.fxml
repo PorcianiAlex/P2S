@@ -90,7 +90,7 @@
         </Pane>
         <Pane layoutX="600.0" layoutY="12.0" prefHeight="817.0" prefWidth="713.0" style="">
           <children>
-            <ImageView fitHeight="236.75592041015625" fitWidth="38.672755662506056" focusTraversable="false" layoutX="2.0" layoutY="89.0" pickOnBounds="false" preserveRatio="true" visible="true">
+            <ImageView fitHeight="236.75592041015625" fitWidth="38.672755662506056" focusTraversable="false" layoutX="2.0" layoutY="78.0" pickOnBounds="false" preserveRatio="true" visible="true">
               <image>
                 <Image url="@personalbonustile_1.png" />
               </image>
@@ -100,14 +100,14 @@
                 <Color blue="0.000" green="0.000" red="0.400" fx:id="x25" />
               </stroke>
             </Rectangle>
-            <ToggleButton fx:id="black" layoutX="23.0" layoutY="702.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#FamilyMember" prefHeight="40.0" prefWidth="40.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10; -fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 18px;&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);;" text="Black" textFill="TRANSPARENT">
+            <ToggleButton fx:id="black" layoutX="25.0" layoutY="702.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#FamilyMember" prefHeight="40.0" prefWidth="40.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10; -fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 18px;&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);;" text="Black" textFill="TRANSPARENT">
               <toggleGroup>
                 <ToggleGroup fx:id="family" />
               </toggleGroup>
             </ToggleButton>
             <ToggleButton fx:id="white" layoutX="73.0" layoutY="702.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#FamilyMember" prefHeight="40.0" prefWidth="40.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10; -fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 18px;&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);;" text="White" textFill="TRANSPARENT" toggleGroup="$family" />
-            <ToggleButton fx:id="orange" layoutX="120.0" layoutY="704.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#FamilyMember" prefHeight="40.0" prefWidth="40.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10; -fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 18px;&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);;" text="Orange" textFill="TRANSPARENT" toggleGroup="$family" />
-            <ToggleButton fx:id="neutral" layoutX="165.0" layoutY="703.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#FamilyMember" prefHeight="40.0" prefWidth="40.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10; -fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 18px;&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);;" text="Neutral" textFill="TRANSPARENT" toggleGroup="$family" />
+            <ToggleButton fx:id="orange" layoutX="120.0" layoutY="702.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#FamilyMember" prefHeight="40.0" prefWidth="40.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10; -fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 18px;&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);;" text="Orange" textFill="TRANSPARENT" toggleGroup="$family" />
+            <ToggleButton fx:id="neutral" layoutX="165.0" layoutY="702.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#FamilyMember" prefHeight="40.0" prefWidth="40.0" style="-fx-border-radius: 40;&#10;-fx-background-radius: 40;&#10; -fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 18px;&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);;" text="Neutral" textFill="TRANSPARENT" toggleGroup="$family" />
             <Text fx:id="state" fill="$x25" layoutX="29.0" layoutY="663.0" strokeType="OUTSIDE" strokeWidth="0.0" text="">
               <font>
                 <Font size="20.0" fx:id="x26" />
@@ -206,7 +206,11 @@
                           </fill>
                         </Circle>
                         <Text id="orangedice" fx:id="r4" fill="WHITE" font="$x8" layoutX="250.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="" textAlignment="CENTER" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffd466" height="26.6015625" layoutX="465.0" layoutY="436.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="26.6015625" layoutX="465.0" layoutY="436.0" stroke="BLACK" strokeType="INSIDE" width="61.0">
+                          <fill>
+                            <Color blue="0.400" green="0.831" red="1.000" fx:id="x17" />
+                          </fill>
+                        </Rectangle>
                         <Text fx:id="r5" fill="WHITE" font="$x2" layoutX="468.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#33b6ff" height="26.6015625" layoutX="465.0" layoutY="469.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
                         <Text fx:id="r6" fill="WHITE" font="$x2" layoutX="468.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
@@ -287,11 +291,7 @@
                         <Text id="orangedice" fx:id="r8" fill="WHITE" font="$x8" layoutX="39.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
                         <Circle fill="$x11" layoutX="257.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
                         <Text id="orangedice" fx:id="r11" fill="WHITE" font="$x8" layoutX="250.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="26.6015625" layoutX="465.0" layoutY="436.0" stroke="BLACK" strokeType="INSIDE" width="61.0">
-                          <fill>
-                            <Color blue="0.322" green="0.800" red="0.000" fx:id="x17" />
-                          </fill>
-                        </Rectangle>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x17" height="26.6015625" layoutX="465.0" layoutY="436.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
                         <Text fx:id="r12" fill="WHITE" font="$x2" layoutX="468.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VP: 5" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" height="26.6015625" layoutX="465.0" layoutY="469.0" stroke="BLACK" strokeType="INSIDE" width="61.0">
                           <fill>
@@ -471,6 +471,87 @@
                     </AnchorPane>
                   </content>
                 </Tab>
+                <Tab fx:id="pl5" style="-fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);" text="Player 5">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@personal1.png" />
+                          </image>
+                        </ImageView>
+                        <ImageView fitHeight="312.07728213107777" fitWidth="444.1535339355469" layoutX="7.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@personal2.png" />
+                          </image>
+                        </ImageView>
+                        <ToggleButton layoutX="14.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="x27" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="83.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x27" />
+                        <ToggleButton layoutX="155.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x27" />
+                        <ToggleButton layoutX="227.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x27" />
+                        <ToggleButton layoutX="295.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x27" />
+                        <ToggleButton layoutX="364.0" layoutY="145.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x27" />
+                        <ToggleButton layoutX="14.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="x28" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="83.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x28" />
+                        <ToggleButton layoutX="155.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x28" />
+                        <ToggleButton layoutX="227.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x28" />
+                        <ToggleButton layoutX="295.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x28" />
+                        <ToggleButton layoutX="365.0" layoutY="14.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x28" />
+                        <ToggleButton layoutX="465.0" layoutY="35.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="x29" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="465.0" layoutY="134.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x29" />
+                        <ToggleButton layoutX="465.0" layoutY="234.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x29" />
+                        <ToggleButton layoutX="465.0" layoutY="337.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x29" />
+                        <Text font="$x2" layoutX="469.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leaders" />
+                        <ToggleButton layoutX="15.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="x30" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="84.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x30" />
+                        <ToggleButton layoutX="156.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x30" />
+                        <ToggleButton layoutX="229.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x30" />
+                        <ToggleButton layoutX="296.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x30" />
+                        <ToggleButton layoutX="365.0" layoutY="329.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x30" />
+                        <ToggleButton layoutX="15.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="x31" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton layoutX="83.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x31" />
+                        <ToggleButton layoutX="155.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x31" />
+                        <ToggleButton layoutX="227.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x31" />
+                        <ToggleButton layoutX="295.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x31" />
+                        <ToggleButton layoutX="364.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x31" />
+                        <Circle fill="GREY" layoutX="187.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
+                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="180.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Circle fill="$x9" layoutX="117.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
+                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="110.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Circle fill="$x10" layoutX="46.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
+                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="39.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Circle fill="$x11" layoutX="257.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
+                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="250.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x17" height="26.6015625" layoutX="465.0" layoutY="436.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
+                        <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VP: 5" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x18" height="26.6015625" layoutX="465.0" layoutY="469.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
+                        <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MP: 5" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x19" height="26.6015625" layoutX="465.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
+                        <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FP: 5" />
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
               </tabs>
             </TabPane>
             <Button layoutX="562.0" layoutY="108.0" mnemonicParsing="false" onAction="#discardLeader" prefWidth="159.999755859375" style="-fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 14px;&#10;    -fx-text-fill: #311c09;&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);;" text="Discard Leader" />
@@ -496,6 +577,7 @@
             <Button layoutX="562.0" layoutY="692.0" mnemonicParsing="false" onAction="#Reset" style="-fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 18px;&#10;    -fx-text-fill: #311c09;&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);" text="Reset" />
             <Button layoutX="562.0" layoutY="303.0" mnemonicParsing="false" onAction="#Pass" prefWidth="157.0" style="-fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 14px;&#10;    -fx-text-fill: #311c09;&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);;" text="Pass" />
             <Text fx:id="turntext" fill="#992500" font="$x1" layoutX="562.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
+            <ToggleButton fx:id="music" layoutX="587.0" layoutY="24.0" mnemonicParsing="false" onAction="#Music" style="-fx-background-color: &#10;        #ecebe9,&#10;        rgba(0,0,0,0.05),&#10;        linear-gradient(#dcca8a, #c7a740),&#10;        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),&#10;        linear-gradient(#f6ebbe, #e6c34d);&#10;    -fx-background-insets: 0,9 9 8 9,9,10,11;&#10;    -fx-background-radius: 50;&#10;    -fx-padding: 15 30 15 30;&#10;    -fx-font-family: &quot;Helvetica&quot;;&#10;    -fx-font-size: 18px;&#10;    -fx-text-fill: #311c09;&#10;    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);" text="Music" textAlignment="CENTER" />
           </children>
         </Pane>
       </children>
