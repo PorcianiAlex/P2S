@@ -138,6 +138,7 @@ public class Controller implements P2SObserver<Action>{
 		for (int i = 0; i < modelGame.getPlayers().size(); i++) {
 			modelGame.getPlayers().get(i).setBlackPoint(0);
 		}
+		
 	}
 
 	@Override
