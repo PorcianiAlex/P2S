@@ -116,25 +116,33 @@ public class Board implements Serializable{
 		for (int i = 0; i < towers.length; i++) {
 			for (int j = 0; j < towers[i].getFloors().length; j++) {
 				towers[i].getFloors()[j].getSingleActionSpace().setFamilyMemberLocated(null);
-				towers[i].getFloors()[j].getSingleActionSpace().setBusy(false);
+				towers[i].getFloors()[j].getSingleActionSpace().setBusy(false);				
+				towers[i].getFloors()[j].getSingleActionSpace().setBlack(false);
+
 			}
 		}
 		for (int i = 0; i < productionArea.getMultipleActionSpace().getFamilyMembers().size(); i++) {
 			productionArea.getMultipleActionSpace().getFamilyMembers().remove(i);
+			productionArea.getMultipleActionSpace().setBlack(false);
 		}
 		productionArea.getSingleActionSpace().setFamilyMemberLocated(null);
 		productionArea.getSingleActionSpace().setBusy(false);
+		productionArea.getSingleActionSpace().setBlack(false);
 		for (int i = 0; i < harvestArea.getMultipleActionSpace().getFamilyMembers().size(); i++) {
 			harvestArea.getMultipleActionSpace().getFamilyMembers().remove(i);
+			harvestArea.getMultipleActionSpace().setBlack(false);
 		}
 		harvestArea.getSingleActionSpace().setFamilyMemberLocated(null);
 		harvestArea.getSingleActionSpace().setBusy(false);
+		harvestArea.getSingleActionSpace().setBlack(false);
 		for (int i = 0; i < councilPalace.getMultipleActionSpace().getFamilyMembers().size(); i++) {
 			councilPalace.getMultipleActionSpace().getFamilyMembers().remove(i);
+			councilPalace.getMultipleActionSpace().setBlack(false);
 		}
 		for (int i = 0; i < marketArea.getSingleActionSpace().length; i++) {
 			marketArea.getSingleActionSpace()[i].setFamilyMemberLocated(null);
 			marketArea.getSingleActionSpace()[i].setBusy(false);
+			marketArea.getSingleActionSpace()[i].setBlack(false);
 		}
 	}
 		

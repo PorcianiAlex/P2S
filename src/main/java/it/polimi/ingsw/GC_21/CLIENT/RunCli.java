@@ -27,20 +27,18 @@ public class RunCli implements Runnable {
 				 message = client.getReceivedMessage();
 			}
 			 if (message != null) {
-				if (message instanceof ChooseActionMessage){
-					((ChooseActionMessage) message).setClient(client);
+				message.setClient(client);
+				try {
+					inputFormToSend = message.executeCLI(LOCK);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 					}
-					try {
-						inputFormToSend = message.executeCLI(LOCK);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					synchronized (LOCK) {
-							inputFormToFill = null;
-							}
-					}					 
-				if (inputFormToSend != null) {
-					client.sendInput(inputFormToSend);					
+				synchronized (LOCK) {
+						inputFormToFill = null;
+						}
+				}					 
+			if (inputFormToSend != null) {
+				client.sendInput(inputFormToSend);					
 				}
 			if(message.getGameEndState().equals(GameEndState.Over)) {
 				client.close();

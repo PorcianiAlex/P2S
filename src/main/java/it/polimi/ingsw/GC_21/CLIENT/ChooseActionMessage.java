@@ -17,13 +17,9 @@ import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public class ChooseActionMessage extends MessageToClient implements Callable<InputForm>{
 	private Player player;
-	private Connections client;
 	private TimerThread timerThread;
 	
-	public void setClient(Connections client) {
-		this.client = client;
-
-	}
+	
 
 	public ChooseActionMessage(boolean result, String description, Player player) {
 		super(result, true, description);

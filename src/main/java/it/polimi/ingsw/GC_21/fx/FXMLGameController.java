@@ -218,6 +218,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		 Reset(event);
 		 canGo = false;
 	 }
 	 
@@ -233,7 +234,6 @@ public class FXMLGameController extends MetaController implements Initializable{
 		placementinputForm.setFamilyMemberColor(familyMemberColor);
 		placementinputForm.setServantsToConvert(servToConvert);
 		client.sendInput(placementinputForm);
-		System.out.println("action send");
 		canGo=false;
 		} else if(!canGo){
 			Alert alert = new Alert(AlertType.ERROR);
@@ -245,6 +245,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 		 if(timerThread!=null){	
 			 timerThread.interrupt();
 			 }
+		Reset(event);
 		this.setFamilyButton();
 		return;
 	 }
@@ -368,6 +369,8 @@ public class FXMLGameController extends MetaController implements Initializable{
 		blackdice.setText(String.valueOf(board.getDices()[0].getValue()));
 		whitedice.setText(String.valueOf(board.getDices()[1].getValue()));	
 		orangedice.setText(String.valueOf(board.getDices()[2].getValue()));
+		//familyButton setting
+        this.setFamilyButton();
 		//excomcards
 		for (int i = 0; i < 3; i++) {
 			String exid = board.getExcommunicationCards()[i].getID();
@@ -403,9 +406,10 @@ public class FXMLGameController extends MetaController implements Initializable{
 		for (int i = 0; i < 4; i++) {
 			ToggleButton placebutton =  (ToggleButton) place.getToggles().get(20+i);
 			if(board.getMarketArea().getSingleActionSpace()[i].isBusy()) {
+			System.out.println(i+" is busy");
 			String color = board.getMarketArea().getSingleActionSpace()[i].getFamilyMemberLocated().getOwnerPlayer().getPlayerColor().toString();
 			String famcolor = board.getMarketArea().getSingleActionSpace()[i].getFamilyMemberLocated().getAssociatedDice().getdiceColor().toString();
-			placebutton.setStyle(" -fx-background-image: url('/familymembers/"+color+famcolor+".png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-opacity:1; -fx-background-color: transparent;");
+			placebutton.setStyle(" -fx-background-image: url('/familymembers/"+color+famcolor+".png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-opacity:1;");
 			} else {
 				placebutton.setStyle(background);
 			}
@@ -498,7 +502,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 		//set family member placed
 				for (int i = 0; i < 4; i++) {
 					ToggleButton tButton = (ToggleButton) family.getToggles().get(i);
-					if(myPlayer.getFamilyMembers()[i].isPlaced()) {
+					if(myPlayer!=null && myPlayer.getFamilyMembers()[i].isPlaced()) {
 						tButton.setVisible(false);
 						tButton.setOpacity(0.0);
 					} else {

@@ -2,7 +2,11 @@ package it.polimi.ingsw.GC_21.VIEW;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
+import it.polimi.ingsw.GC_21.CLIENT.TimerThread;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 
 public class InitGameInput extends InputForm{
@@ -18,7 +22,7 @@ public InitGameInput() {
 }
 
 
-@Override
+	@Override
 	public void execute(RemoteView remoteView) {
 	    Game game = remoteView.getGame();
 	    if(start || game.getPlayers().size()==4) {
@@ -26,7 +30,6 @@ public InitGameInput() {
 	    	System.out.println("Waiting for players...");
 			}*/
 	    	remoteView.notifyInit();
-	      game.executeGame(); 
 	      remoteView.notifyClose();
 	    } else { execute(remoteView); } 
 	  } 
