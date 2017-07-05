@@ -65,19 +65,19 @@ public class FXMLColorController extends MetaController {
 			return;
 		} else {
 		 if (host) {
-			 MessageToClient messageToClient = client.getReceivedMessage();
+			 CheckColorMessage checkColorMessage2 = (CheckColorMessage) client.getReceivedMessage();
 			 initialTimerThread = new InitialTimerThread(client);
 			 initialTimerThread.start();
 			 ready.setVisible(true);
 		}
-		 colorThread = new ColorThread(texttarget, client, this);
+		 	colorThread = new ColorThread(texttarget, client, this);
 			colorThread.start();
 	 }
 	}
 	 
 	 @FXML public void Ready(ActionEvent event) throws ClassNotFoundException, IOException {
 		 if(colorplayer!=null && host) {
-			 
+			 initialTimerThread.interrupt();
 			 InitGameInput initGameInput = new InitGameInput(true);
 	        try {
 				client.sendInput(initGameInput);
