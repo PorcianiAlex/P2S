@@ -32,7 +32,7 @@ public class InitialTimerThread extends Thread {
 			FileReader file = new FileReader(path.getPath());
 			JSONObject obj = (JSONObject) parser.parse(file);
            	int toSleep = Integer.parseInt(obj.get("timeout").toString()); 
-			this.sleep(toSleep);
+			this.sleep(10000);
 			InitGameInput initGameInput = new InitGameInput(true);
 			client.sendInput(initGameInput);
 			if (future!= null){
