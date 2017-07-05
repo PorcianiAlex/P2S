@@ -58,7 +58,7 @@ public class CreatePlayerInput extends InputForm {
 	private void checkStartGame(RemoteView remoteView) {
 		  Game game = remoteView.getGame();
 		  if(game.getPlayers().size() >= 2) {
-			  MessageToClient checkColorMessage = new MessageToClient(true, "Write 'start' when you want to start the game! \nYou must be 2 at least");
+			  CheckColorMessage checkColorMessage = new CheckColorMessage(true, true, "Write 'start' when you want to start the game! \nYou must be 2 at least", true);
 			  remoteView.getGame().notifyCurrent(checkColorMessage);//notify the host that he can start the game until the timer permits it
 		   }  
 	}
