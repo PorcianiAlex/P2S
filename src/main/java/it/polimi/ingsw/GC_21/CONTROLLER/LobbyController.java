@@ -30,6 +30,7 @@ public class LobbyController extends ControllerForm {
 			AdapterConnection myAdapterConnection = remoteView.getAdapter();
 			remoteView = controllerManager.getMyActiveRemoteView(username);//reconnecting with the the old remote view
 			remoteView.setAdapter(myAdapterConnection);//change adapter because it is corrupted
+			remoteView.setDisconnected(false);
 			checkLobbyMessage = new MessageToClient(true, "Reconnecting in the game");
 		}
 		else if(create) {
