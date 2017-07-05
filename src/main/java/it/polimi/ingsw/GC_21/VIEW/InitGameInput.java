@@ -24,14 +24,8 @@ public InitGameInput() {
 
 	@Override
 	public void execute(RemoteView remoteView) {
-	    Game game = remoteView.getGame();
-	    if(start || game.getPlayers().size()==4) {
-	    	/*while (game.getPlayers().size() < 2) {
-	    	System.out.println("Waiting for players...");
-			}*/
 	    	remoteView.notifyInit();
 	      remoteView.notifyClose();
-	    } else { execute(remoteView); } 
 	  } 
 	
 
