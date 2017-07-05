@@ -8,6 +8,7 @@ import javax.xml.ws.handler.MessageContext;
 
 import it.polimi.ingsw.GC_21.CLIENT.CheckColorMessage;
 import it.polimi.ingsw.GC_21.CLIENT.ChooseActionMessage;
+import it.polimi.ingsw.GC_21.CLIENT.InitialTimerThread;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.CONTROLLER.ControllerForm;
 import it.polimi.ingsw.GC_21.PLAYER.Color;
@@ -29,6 +30,7 @@ public class FXMLColorController extends MetaController {
 	private boolean start;
 	private ColorThread colorThread;
 	private boolean host = false;
+	InitialTimerThread initialTimerThread;
 	
 	@FXML private Text texttarget;
 	@FXML private Text welcometext;
@@ -60,18 +62,23 @@ public class FXMLColorController extends MetaController {
 		 host = checkColorMessage.isHost();
 		 if (!checkColorMessage.isResult()) {
 			this.popup();
+			return;
 		} else {
-			colorThread = new ColorThread(texttarget, client, this);
-			colorThread.start();
 		 if (host) {
+			 CheckColorMessage checkColorMessage2 = (CheckColorMessage) client.getReceivedMessage();
+			 initialTimerThread = new InitialTimerThread(client);
+			 initialTimerThread.start();
 			 ready.setVisible(true);
 		}
+		 	colorThread = new ColorThread(texttarget, client, this);
+			colorThread.start();
 	 }
 	}
 	 
 	 @FXML public void Ready(ActionEvent event) throws ClassNotFoundException, IOException {
 		 if(colorplayer!=null && host) {
-		 InitGameInput initGameInput = new InitGameInput(true);
+			 initialTimerThread.interrupt();
+			 InitGameInput initGameInput = new InitGameInput(true);
 	        try {
 				client.sendInput(initGameInput);
 			} catch (RemoteException e) {
