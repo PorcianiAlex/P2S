@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 
@@ -38,7 +39,7 @@ public class SocketAdapter implements AdapterConnection{
 			oos.flush();
 			oos.reset();
 		} catch (IOException e) {
-			e.printStackTrace();
+			return;
 		}
 	}
 

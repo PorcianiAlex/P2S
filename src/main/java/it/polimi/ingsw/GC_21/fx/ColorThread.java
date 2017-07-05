@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 
 import it.polimi.ingsw.GC_21.CLIENT.Connections;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
+import it.polimi.ingsw.GC_21.CLIENT.ReadyMessage;
 import it.polimi.ingsw.GC_21.CLIENT.TurnMessage;
 import javafx.application.Platform;
 import javafx.scene.text.Text;
@@ -32,8 +33,8 @@ public class ColorThread extends Thread {
 		try {
 			mess = client.getReceivedMessage();
 			texttarget.setText(mess.getDescription());
-		if (mess instanceof TurnMessage) {
-			 Platform.runLater(new Runnable() {
+		if (mess instanceof ReadyMessage) {
+			Platform.runLater(new Runnable() {
 				    @Override
 				    public void run() {
 				    	colorController.gameScene();
