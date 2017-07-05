@@ -73,7 +73,6 @@ public class FXMLColorController extends MetaController {
 	 
 	 @FXML public void Ready(ActionEvent event) throws ClassNotFoundException, IOException {
 		 if(colorplayer!=null && host) {
-		 gameScene();
 		 InitGameInput initGameInput = new InitGameInput(true);
 	        try {
 				client.sendInput(initGameInput);

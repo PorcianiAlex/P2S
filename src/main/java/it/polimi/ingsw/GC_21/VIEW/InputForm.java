@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_21.VIEW;
 import java.io.Serializable;
 import java.util.Scanner;
 
-public abstract class InputForm implements Serializable {
+public class InputForm implements Serializable {
 	protected AdapterConnection adapterConnection;
 	protected StringBuffer input = new StringBuffer();
 	protected InputForm actionInput;

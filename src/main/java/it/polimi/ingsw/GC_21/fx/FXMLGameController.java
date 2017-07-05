@@ -114,6 +114,7 @@ public class FXMLGameController extends MetaController implements Initializable{
     private ArrayList<ArrayList<Text>> ress = new ArrayList<ArrayList<Text>>();
     private ArrayList<Tab> playerNames = new ArrayList<Tab>();
     private TimerThread timerThread;
+    private static String background = new String("-fx-text-fill: transparent; -fx-opacity:0.5; -fx-border-radius: 40; -fx-background-radius: 40;");
 
 	//riferimento ad array di carte, dadi, risorse e player
 	@FXML private ToggleGroup cards, place, excomm, family, myterritory, mybuilding, myventure, myleader, mycharacheter, x3,x4,x5,x6,x7,x12,x14,x15,x16,x13,x20,x23,x21,x22,x24;
@@ -393,7 +394,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 					String famcolor = board.getTowers()[i].getFloors()[j].getSingleActionSpace().getFamilyMemberLocated().getAssociatedDice().getdiceColor().toString();
 					placebutton.setStyle(" -fx-background-image: url('/familymembers/"+color+famcolor+".png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-opacity:1; -fx-background-color: transparent;");
 					} else {
-					placebutton.setStyle("  -fx-text-fill: transparent; -fx-opacity:0.5; -fx-border-radius: 40; -fx-background-radius: 40;");
+					placebutton.setStyle(background);
 					}
 				}			
 		}
@@ -406,7 +407,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 			String famcolor = board.getMarketArea().getSingleActionSpace()[i].getFamilyMemberLocated().getAssociatedDice().getdiceColor().toString();
 			placebutton.setStyle(" -fx-background-image: url('/familymembers/"+color+famcolor+".png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-opacity:1; -fx-background-color: transparent;");
 			} else {
-				placebutton.setStyle(" -fx-background-color: transparent; -fx-opacity:0.5; -fx-border-radius: 40; -fx-background-radius: 40;");
+				placebutton.setStyle(background);
 			}
 		}
 		//refresh craft area
@@ -416,7 +417,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 					String famcolor = board.getHarvestArea().getSingleActionSpace().getFamilyMemberLocated().getAssociatedDice().getdiceColor().toString();
 					harvestbtn.setStyle(" -fx-background-image: url('/familymembers/"+color+famcolor+".png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-opacity:1; -fx-background-color: transparent;");
 				}else {
-					harvestbtn.setStyle(" -fx-background-color: transparent; -fx-opacity:0.5; -fx-border-radius: 40; -fx-background-radius: 40;");
+					harvestbtn.setStyle(background);
 				}
 				ToggleButton prodbtn =  (ToggleButton) place.getToggles().get(18);
 				if(board.getProductionArea().getSingleActionSpace().isBusy()) {
@@ -424,7 +425,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 					String famcolor = board.getProductionArea().getSingleActionSpace().getFamilyMemberLocated().getAssociatedDice().getdiceColor().toString();
 					prodbtn.setStyle(" -fx-background-image: url('/familymembers/"+color+famcolor+".png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-opacity:1; -fx-background-color: transparent;");
 				}else {
-					prodbtn.setStyle(" -fx-background-color: transparent; -fx-opacity:0.5; -fx-border-radius: 40; -fx-background-radius: 40;");
+					prodbtn.setStyle(background);
 				}
 				
 			
@@ -554,6 +555,15 @@ public class FXMLGameController extends MetaController implements Initializable{
 		Music.start();
 		messThread = new MessThread(client, this);
         messThread.start();
+        // need this to receive the first turnMessage!
+       
+        try {
+        	 InputForm inputForm = new InputForm();
+			client.sendInput(inputForm);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        
         // creazione arraylist di togglegroup per ogni tab del tabPane
         ArrayList<ToggleGroup> tab1 = new ArrayList<>();
     	ArrayList<ToggleGroup> tab2 = new ArrayList<>();

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import it.polimi.ingsw.GC_21.ACTION.Action;
 import it.polimi.ingsw.GC_21.ACTION.PlacementAction;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
+import it.polimi.ingsw.GC_21.CLIENT.ReadyMessage;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallBeforePlacement;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
@@ -119,6 +120,8 @@ public class Controller implements P2SObserver<Action>{
 	public void updateInit() {
 		controllerManager.getGames().remove(modelGame);
 		controllerManager.getActiveGames().add(modelGame);
+		ReadyMessage readyMessage = new ReadyMessage("Let start the game");
+		modelGame.notifyBroadcast(readyMessage);
 	}
 
 	
