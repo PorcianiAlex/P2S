@@ -59,22 +59,6 @@ public abstract class Observable<C> {
 		}
 	}
 	
-	public void notifyBlackSwitch(Player blackPlayer, Player playerToSwitch){
-		for (P2SObserver<C> o : this.observers) {
-			if (blackPlayer.equals(playerObserver.get(o))) {
-					o.updateBlackSwitch(playerToSwitch);
-					playerObserver.put(o, playerToSwitch);
-					for (P2SObserver<C> obs : this.observers) {
-						if (playerToSwitch.equals(playerObserver.get(obs)) && !obs.equals(o)) {
-							playerObserver.put(obs, blackPlayer);
-							return;
-						}
-					}
-				}
-			}
-		}
-	
-	
 	public void notifyTurn() {
 			for (P2SObserver<C> o : this.observers) {
 					o.updateTurn();
@@ -88,6 +72,22 @@ public abstract class Observable<C> {
 			}
 		}
 			
+	public void notifyBlackSwitch(Player blackPlayer, Player playerToSwitch){
+	for (P2SObserver<C> o : this.observers) {
+		if (blackPlayer.equals(playerObserver.get(o))) {
+				o.updateBlackSwitch(playerToSwitch);
+				playerObserver.put(o, playerToSwitch);
+				for (P2SObserver<C> obs : this.observers) {
+					if (playerToSwitch.equals(playerObserver.get(obs)) && !obs.equals(o)) {
+						playerObserver.put(obs, blackPlayer);
+						return;
+					}
+				}
+			}
+		}
+	}
+
+
 	public void notifyClose() {
 		for (P2SObserver<C> o : this.observers) {
 				o.updateClose();
