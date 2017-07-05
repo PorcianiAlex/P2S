@@ -55,7 +55,7 @@ public class ActionSpace implements Serializable {
 	}
 
 	public void setBusy(boolean busy) {
-		busy = busy;
+		this.busy = busy;
 	}
 
 	public Effect getActionSpaceEffect() {

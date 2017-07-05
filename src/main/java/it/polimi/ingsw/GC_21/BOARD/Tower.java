@@ -45,12 +45,12 @@ public class Tower implements Serializable{
 		for (int i = 0; i < floors.length; i++) {
 			if(floors[i].getSingleActionSpace().isBusy()){
 				return true;
-			}
+				}
 			}
 		    return false;
 		}
 	
-	public boolean checkTowerFamilyMemberPlayer(Player player) {	
+	public boolean checkTowerFamilyMemberOfMine(Player player) {	
 		for (int i = 0; i < floors.length; i++) {
 			if(floors[i].getSingleActionSpace().isBusy()){
 				FamilyMember familyMemberInFloor = floors[i].getSingleActionSpace().getFamilyMemberLocated();
