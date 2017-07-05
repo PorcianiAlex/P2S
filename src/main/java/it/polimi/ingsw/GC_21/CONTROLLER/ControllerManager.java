@@ -120,7 +120,7 @@ public class ControllerManager {
 	return false;
 	}
 
-	public RemoteView getMyActiveRemoteView(String username) {
+	public synchronized RemoteView getMyActiveRemoteView(String username) {
 		for (int i = 0; i < remoteViews.size(); i++) {
 			if (remoteViews.get(i).getUsername().equals(username)) {
 				return remoteViews.get(i);
