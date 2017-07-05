@@ -33,10 +33,7 @@ public class FXMLColorController extends MetaController {
 	@FXML private Text texttarget;
 	@FXML private Text welcometext;
 	@FXML private ToggleGroup place;
-	@FXML private ToggleButton blue;
-	@FXML private ToggleButton red;
-	@FXML private ToggleButton yellow;
-	@FXML private ToggleButton green;
+	@FXML private ToggleButton blue, black, red, yellow, green;
 	@FXML private javafx.scene.control.Button ready;
 	
 	@FXML
@@ -46,6 +43,7 @@ public class FXMLColorController extends MetaController {
         blue.setAccessibleText(Color.Blue.toString());
         yellow.setAccessibleText(Color.Yellow.toString());
         red.setAccessibleText(Color.Red.toString());
+        black.setAccessibleText(Color.Black.toString());
         ready.setVisible(false);
         
         
