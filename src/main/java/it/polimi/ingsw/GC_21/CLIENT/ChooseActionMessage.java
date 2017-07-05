@@ -49,7 +49,6 @@ public class ChooseActionMessage extends MessageToClient implements Callable<Inp
 		ExecutorService poolExecutorService = Executors.newFixedThreadPool(1);
 		timerThread = new TimerThread(client);
 		timerThread.start();
-				
 		gameController.ifChooseAction(result, description, player, timerThread);
 		
 	}
