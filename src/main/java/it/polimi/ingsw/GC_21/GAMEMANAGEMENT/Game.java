@@ -146,7 +146,7 @@ public class Game extends Observable implements Serializable{
 	}
 
 
-	private void assignResources() {
+	public void assignResources() {
 		for (int i = 0; i < players.size(); i++) {
 			players.get(i).getMyPersonalBoard().setMyPossession(new Possession(5+i, 5+i, 5+i, 5+i, 0, 0, 0));
 		}
