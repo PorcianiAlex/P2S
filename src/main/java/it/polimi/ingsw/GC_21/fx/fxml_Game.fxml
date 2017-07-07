@@ -51,7 +51,7 @@
             <ToggleButton fx:id="M2" layoutX="366.0" layoutY="640.0" minHeight="31.921875" minWidth="35.0" mnemonicParsing="false" onAction="#Market" opacity="1.0" prefHeight="31.921875" prefWidth="35.0" style="" text="2" textFill="TRANSPARENT" toggleGroup="$place" />
             <ToggleButton fx:id="M3" layoutX="411.0" layoutY="655.0" minHeight="31.921875" minWidth="35.0" mnemonicParsing="false" onAction="#Market" opacity="1.0" prefHeight="31.921875" prefWidth="35.0" style="" text="3" textFill="TRANSPARENT" toggleGroup="$place" />
             <ToggleButton fx:id="M4" layoutX="445.0" layoutY="684.0" minHeight="31.921875" minWidth="37.0" mnemonicParsing="false" onAction="#Market" opacity="1.0" prefHeight="31.921875" prefWidth="37.0" style="" text="4" textFill="TRANSPARENT" toggleGroup="$place" />
-            <ToggleButton contentDisplay="CENTER" graphicTextGap="0.0" layoutX="280.0" layoutY="458.0" mnemonicParsing="false" onAction="#Council" opacity="1.0" prefHeight="50.921875" prefWidth="132.0" style="-fx-text-fill: transparent; -fx-opacity:0.5; -fx-border-radius: 40; -fx-background-radius: 40;" text="council" toggleGroup="$place" />
+            <ToggleButton fx:id="councilbtn" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="280.0" layoutY="458.0" mnemonicParsing="false" onAction="#Council" opacity="1.0" prefHeight="50.921875" prefWidth="132.0" style="-fx-text-fill: transparent; -fx-opacity:0.5; -fx-border-radius: 40; -fx-background-radius: 40;" text="council" toggleGroup="$place" />
             <Text fx:id="whitedice" layoutX="366.0" layoutY="750.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="">
               <font>
                 <Font size="32.0" fx:id="x1" />

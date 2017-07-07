@@ -53,7 +53,6 @@ public class FXMLColorController extends MetaController {
 	
 
 	 @FXML protected void Color(ActionEvent event) throws ClassNotFoundException, IOException{
-	   //client.sendGUI("start"); //se sei l'host fa partire effettivamente la partita altrimenti ti fa andare sulla nuova schrmata senza eseguire il gioco	     
 		 ToggleButton button = (ToggleButton) place.getSelectedToggle();
 		 colorplayer = Color.valueOf(button.getAccessibleText());
 		 CreatePlayerInput createPlayerInput = new  CreatePlayerInput(colorplayer);

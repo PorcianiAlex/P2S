@@ -8,6 +8,7 @@ import java.awt.ScrollPaneAdjustable;
 import java.awt.Scrollbar;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -115,6 +116,8 @@ public class FXMLGameController extends MetaController implements Initializable{
     private ArrayList<ArrayList<Text>> ress = new ArrayList<ArrayList<Text>>();
     private ArrayList<Tab> playerNames = new ArrayList<Tab>();
     private TimerThread timerThread;
+    private ArrayList<ImageView> councilimgview = new ArrayList<ImageView>();
+    private ArrayList<it.polimi.ingsw.GC_21.PLAYER.FamilyMember> councilFM = new ArrayList<it.polimi.ingsw.GC_21.PLAYER.FamilyMember>();
     private static String background = new String("-fx-text-fill: transparent; -fx-opacity:0.5; -fx-border-radius: 40; -fx-background-radius: 40;");
 
 	//riferimento ad array di carte, dadi, risorse e player
@@ -123,7 +126,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	@FXML private Text servconverting, r1,r2,r3,r4,r5,r6,r7,r8, r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20,r21,r22,r23,r24,r25,r26,r27,r28,r29,r30,r31,r32,r33,r34,r35;
 	@FXML private Tab pl1,pl2,pl3,pl4,pl5;
 	@FXML private javafx.scene.control.Button confirmbtn, music;
-	@FXML private ToggleButton white, black, orange, neutral;
+	@FXML private ToggleButton white, black, orange, neutral, councilbtn;
 	@FXML private AnchorPane anchorPane; 
 	
 	 @FXML protected void Tower(ActionEvent event) {
@@ -288,75 +291,77 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 
 	 @FXML protected void discardLeader(ActionEvent event) {
 		 	
-		 	javafx.scene.control.Button button = (javafx.scene.control.Button) event.getSource();
-			ArrayList<String> choices = new ArrayList<String>();
-		
-			if(button.getText().equals("Play Leader")) {
-			for (int j = 0; j < myPlayer.getMyPersonalBoard().getLeaderCards().size(); j++) {
-				if(myPlayer.getMyPersonalBoard().getLeaderCards().get(j).isPlayed() && myPlayer.getMyPersonalBoard().getLeaderCards().get(j) instanceof OncePerTurnLeaderCard) {
-				choices.add(myPlayer.getMyPersonalBoard().getLeaderCards().get(j).getName());
+		 	if (!isBlack) {
+				javafx.scene.control.Button button = (javafx.scene.control.Button) event.getSource();
+				ArrayList<String> choices = new ArrayList<String>();
+				if (button.getText().equals("Play Leader")) {
+					for (int j = 0; j < myPlayer.getMyPersonalBoard().getLeaderCards().size(); j++) {
+						if (myPlayer.getMyPersonalBoard().getLeaderCards().get(j).isPlayed() && myPlayer
+								.getMyPersonalBoard().getLeaderCards().get(j) instanceof OncePerTurnLeaderCard) {
+							choices.add(myPlayer.getMyPersonalBoard().getLeaderCards().get(j).getName());
+						}
+					}
+				} else {
+					for (int j = 0; j < myPlayer.getMyPersonalBoard().getLeaderCards().size(); j++) {
+						if (!myPlayer.getMyPersonalBoard().getLeaderCards().get(j).isPlayed()) {
+							choices.add(myPlayer.getMyPersonalBoard().getLeaderCards().get(j).getName());
+						}
+					}
 				}
-			}
-			} else {
-			for (int j = 0; j < myPlayer.getMyPersonalBoard().getLeaderCards().size(); j++) {
-				if(!myPlayer.getMyPersonalBoard().getLeaderCards().get(j).isPlayed()) {
-				choices.add(myPlayer.getMyPersonalBoard().getLeaderCards().get(j).getName());
+				if (choices.size() == 0) {
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							Alert alert = new Alert(AlertType.ERROR);
+							alert.setTitle("Error");
+							alert.setHeaderText("Invalid Action!");
+							alert.showAndWait();
+						}
+					});
 				}
-			}
-			}
-		
-			if(choices.size()==0) {
 				Platform.runLater(new Runnable() {
-				    @Override
-				    public void run() {
-				    	Alert alert = new Alert(AlertType.ERROR);
-						alert.setTitle("Error");
-						alert.setHeaderText("Invalid Action!");
-						alert.showAndWait();
-				    }
+					@Override
+					public void run() {
+						ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
+						dialog.setTitle("Leaders");
+						dialog.setHeaderText(button.getText());
+						dialog.setContentText("Choose which one: ");
+						Optional<String> result = dialog.showAndWait();
+						int j;
+						if (result.get() == null) {
+							return;
+						}
+						for (j = 0; j < myPlayer.getMyPersonalBoard().getLeaderCards().size(); j++) {
+							if (result.get().equals(myPlayer.getMyPersonalBoard().getLeaderCards().get(j).getName())) {
+								break;
+							}
+						}
+						InputForm inputForm;
+						switch (button.getText()) {
+						case "Discard Leader":
+							inputForm = new DiscardInput(myPlayer, j);
+							break;
+						case "Activate Leader":
+							inputForm = new LeaderInput(myPlayer, String.valueOf(j + 1), true);
+							break;
+						case "Play Leader":
+							inputForm = new LeaderInput(myPlayer, String.valueOf(j + 1), false);
+							break;
+						default:
+							System.out.println("nome del bottone non coincide!");
+							return;
+						}
+						try {
+							client.sendInput(inputForm);
+							if (timerThread != null) {
+								timerThread.interrupt();
+							}
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
 				});
 			}
-			
-			Platform.runLater(new Runnable() {
-			    @Override
-			    public void run() {
-			    	ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
-			    	dialog.setTitle("Leaders");
-			    	dialog.setHeaderText(button.getText());
-			    	dialog.setContentText("Choose which one: ");
-			    	Optional<String> result = dialog.showAndWait();
-			    	int j;
-			    	if(result.get()==null) {
-			    		return;
-			    	}
-			    	for ( j= 0; j < myPlayer.getMyPersonalBoard().getLeaderCards().size(); j++) {
-						if(result.get().equals(myPlayer.getMyPersonalBoard().getLeaderCards().get(j).getName())) 
-						{break;}
-					}
-			    	InputForm inputForm;
-			    	switch (button.getText()) {
-					case "Discard Leader":
-				    	 inputForm = new DiscardInput(myPlayer, j);
-						break;
-					case "Activate Leader":
-				    	 inputForm = new LeaderInput(myPlayer,String.valueOf(j+1),true);
-						break;
-					case "Play Leader":
-				    	 inputForm = new LeaderInput(myPlayer,String.valueOf(j+1),false);
-						break;
-					default: System.out.println("nome del bottone non coincide!");
-						return;
-					}
-			    	try {
-			    		client.sendInput(inputForm);
-			    		if(timerThread!=null){	
-			   			 timerThread.interrupt();
-			   			 }
-			    	} catch (IOException e) {
-			    		e.printStackTrace();
-			    	}   
-			    }
-			});
 			
 		 
 	 }
@@ -368,6 +373,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 		for (int i = 0; i < players.size(); i++) {
 			if(myPlayer!=null && myPlayer.getName().equals(players.get(i).getName())) {
 				myPlayer=players.get(i);
+				
 			}
 		}
 		
@@ -411,6 +417,21 @@ public class FXMLGameController extends MetaController implements Initializable{
 					placebutton.setStyle(background);
 					}
 				}			
+		}
+		// council palace
+		councilimgview.clear();
+		councilFM = board.getCouncilPalace().getMultipleActionSpace().getFamilyMembers();
+		double councilX = councilbtn.getLayoutX()-20;
+		double councilY = confirmbtn.getLayoutY()-20;
+		for(int i=0; i< councilFM.size(); i++) {
+			String famcolor = councilFM.get(i).getAssociatedDice().getdiceColor().toString();
+			String color = councilFM.get(i).getOwnerPlayer().getPlayerColor().toString();
+			ImageView imageView = new ImageView(new Image("/familymembers/"+color+famcolor+".png"));
+			councilimgview.add(imageView);
+			imageView.setVisible(true);
+			imageView.toFront();
+			imageView.setLayoutX(councilX+i*35);
+			imageView.setLayoutY(councilY);
 		}
 		
 		//refresh market
@@ -528,6 +549,12 @@ public class FXMLGameController extends MetaController implements Initializable{
 	  public void ifChooseAction(boolean firstaction, String description, Player player, TimerThread timerThread) { 
 		myPlayer = player;
 	    this.timerThread=timerThread; 
+	    
+	    if(Color.Black == player.getPlayerColor()) {
+	    	isBlack=true;
+	    } else {
+			isBlack=false;
+		}
 
 		//start timer animation
 	   
