@@ -326,26 +326,5 @@ public class CardCreator implements Serializable{
 	        cardcreating.setFinalVictoryPoints(Integer.parseInt(jsonLineItem.get("VicPoint").toString()));
 		
 	}
-
-	public static void main(String[] args) {
-		Game game = new Game("aa");
-		CardCreator cardCreator = new CardCreator(game);
-		cardCreator.devCardsCreate(DevCardType.Building, 1);
-		cardCreator.devCardsCreate(DevCardType.Territory, 1);
-		cardCreator.devCardsCreate(DevCardType.Venture, 1);
-		cardCreator.devCardsCreate(DevCardType.Character, 1);
-		cardCreator.devCardsCreate(DevCardType.Building, 2); //OK
-		cardCreator.devCardsCreate(DevCardType.Territory,2);//OK
-		cardCreator.devCardsCreate(DevCardType.Venture, 2); //OK
-		cardCreator.devCardsCreate(DevCardType.Character,2); //OK
-		cardCreator.devCardsCreate(DevCardType.Building, 3); //OK
-		cardCreator.devCardsCreate(DevCardType.Territory, 3); //OK
-		cardCreator.devCardsCreate(DevCardType.Venture, 3);
-		cardCreator.devCardsCreate(DevCardType.Character, 3);
-		cardCreator.ExCardsCreate(1);
-		cardCreator.ExCardsCreate(2);
-
-		cardCreator.ExCardsCreate(3);
-
-	}
+	
 }
