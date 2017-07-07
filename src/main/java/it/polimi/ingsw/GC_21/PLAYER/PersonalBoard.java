@@ -40,6 +40,7 @@ public class PersonalBoard implements Serializable{
 		this.myPossession = new Possession(0, 0, 0, 0, 0, 0, 0);
 		this.productionBonusTile = new Effect(new Possession(2, 0, 0, 0, 0, 1, 0), 0, game);
 		this.harvestBonusTile = new Effect(new Possession(0, 1, 1, 1, 0, 0, 0), 0, game);
+		this.game=game;
 		//this.infinity();
 		this.player = player;
 		this.toCallBeforeCraftEffects= new ArrayList<ToCallBeforeCraft>();
@@ -168,8 +169,12 @@ public class PersonalBoard implements Serializable{
 		if (getSpecificOwnedCards(DevCardType.Venture).getOwnedCardsnumber()!=0) {
 			int finalVP = 0;
 			for (int i = 0; i < getSpecificOwnedCards(DevCardType.Venture).getOwnedCardsnumber(); i++) {
-				finalVP = finalVP + ((Ventures) getSpecificOwnedCards(DevCardType.Venture).getMyDevCards()[i].getCard())
-						.getFinalVictoryPoints().getValue();
+				Card tmp = getSpecificOwnedCards(DevCardType.Venture).getMyDevCards()[i].getCard();
+				try {
+					finalVP = finalVP + ((Ventures) tmp).getFinalVictoryPoints().getValue();
+				} catch (ClassCastException e) {
+					return;
+				}
 			}
 			myPossession.addItemToPossession(new VictoryPoints(finalVP));
 		}

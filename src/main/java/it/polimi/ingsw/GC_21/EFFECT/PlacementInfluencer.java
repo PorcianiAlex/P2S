@@ -48,7 +48,7 @@ public class PlacementInfluencer extends Effect implements ToCallBeforePlacement
 		boolean isInstanceOfTowerPlacement = false;
 		boolean isRightTower = false;
 		boolean isFamilyMemberInfluenced = true;
-		if(action instanceof TowerPlacement){
+		if(action instanceof TowerPlacement && ((TowerPlacement)action).getSelectedFamilyMember()!=null ){
 			isInstanceOfTowerPlacement = true;
 			TowerPlacement thisAction = (TowerPlacement) action;
 			FamilyMemberColor selectedFamilyMember = thisAction.getSelectedFamilyMember().getFamilyMemberColor();
