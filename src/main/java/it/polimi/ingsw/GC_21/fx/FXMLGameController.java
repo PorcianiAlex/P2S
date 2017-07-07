@@ -90,6 +90,7 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.AnchorPane;
 
@@ -128,6 +129,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	@FXML private javafx.scene.control.Button confirmbtn, music;
 	@FXML private ToggleButton white, black, orange, neutral, councilbtn;
 	@FXML private AnchorPane anchorPane; 
+	@FXML private HBox councilbox; 
 	
 	 @FXML protected void Tower(ActionEvent event) {
 			 
@@ -419,20 +421,26 @@ public class FXMLGameController extends MetaController implements Initializable{
 				}			
 		}
 		// council palace
-		councilimgview.clear();
-		councilFM = board.getCouncilPalace().getMultipleActionSpace().getFamilyMembers();
-		double councilX = councilbtn.getLayoutX()-20;
-		double councilY = confirmbtn.getLayoutY()-20;
-		for(int i=0; i< councilFM.size(); i++) {
-			String famcolor = councilFM.get(i).getAssociatedDice().getdiceColor().toString();
-			String color = councilFM.get(i).getOwnerPlayer().getPlayerColor().toString();
-			ImageView imageView = new ImageView(new Image("/familymembers/"+color+famcolor+".png"));
-			councilimgview.add(imageView);
-			imageView.setVisible(true);
-			imageView.toFront();
-			imageView.setLayoutX(councilX+i*35);
-			imageView.setLayoutY(councilY);
-		}
+		
+		Platform.runLater(new Runnable() {
+		    @Override
+		    public void run() {
+		    	councilimgview.clear();
+				councilbox.getChildren().clear();
+				councilFM = board.getCouncilPalace().getMultipleActionSpace().getFamilyMembers();
+				for(int i=0; i< councilFM.size(); i++) {
+					String famcolor = councilFM.get(i).getAssociatedDice().getdiceColor().toString();
+					String color = councilFM.get(i).getOwnerPlayer().getPlayerColor().toString();
+					ImageView imageView = new ImageView(new Image("/familymembers/"+color+famcolor+".png"));
+					councilimgview.add(imageView);
+					imageView.setFitWidth(35);
+					imageView.setFitHeight(35);
+					councilbox.getChildren().add(imageView);
+					}
+				}
+		    });
+			
+		
 		
 		//refresh market
 		for (int i = 0; i < 4; i++) {
