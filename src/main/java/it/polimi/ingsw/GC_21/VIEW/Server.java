@@ -1,12 +1,17 @@
 package it.polimi.ingsw.GC_21.VIEW;
 
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.*;
 import java.net.UnknownHostException;
 import java.util.concurrent.*;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_21.CLIENT.RmiClientInterface;
 import it.polimi.ingsw.GC_21.CONTROLLER.ControllerManager;
@@ -19,30 +24,34 @@ import java.rmi.server.UnicastRemoteObject;
 public class Server extends UnicastRemoteObject implements ServerInterface, Serializable {
 
     private int port;
+    private int rmiport;
     private ServerSocket serverSocket;
     private ExecutorService executor;
     private ControllerManager controllerManager;
 
-    public  Server(int port) throws RemoteException{
-        this.port=port;
-        
-        String ip;
-		try {
-			ip = InetAddress.getLocalHost().getHostAddress();
-			System.out.println(ip); 
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
-		
-				
-    }
-    
     public  Server() throws RemoteException{
-        
-				
+    	this.loadconnection();
     }
+
     
-    public void startServer() {
+    private void loadconnection() {
+			FileReader file;
+			try {
+				file = new FileReader("Connection.json");
+				JSONParser parser = new JSONParser(); //loading by file 
+				JSONObject obj = (JSONObject) parser.parse(file);
+				port = Integer.parseInt(obj.get("SOCKETPORT").toString());
+				rmiport = Integer.parseInt(obj.get("RMIPORT").toString());
+			} catch (IOException | ParseException e) {
+				e.printStackTrace();
+			}
+			 			
+		
+
+	}
+
+
+	public void startServer() {
     	
     	controllerManager = new ControllerManager();
     	
@@ -53,8 +62,8 @@ public class Server extends UnicastRemoteObject implements ServerInterface, Seri
            serverSocket = new ServerSocket(port);
            System.out.println("Server Socket ready...");
        
-           LocateRegistry.createRegistry(8000);
-           Registry reg = LocateRegistry.getRegistry(8000);
+           LocateRegistry.createRegistry(rmiport);
+           Registry reg = LocateRegistry.getRegistry(rmiport);
            reg.rebind("server", this);
            System.out.println("Server RMI up and running...");
        } catch (IOException e){

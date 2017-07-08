@@ -8,7 +8,7 @@ public class Main {
 	
 	public static void main(String[] args) throws RemoteException {		
 		//Server start!
-		Server server1 = new Server(6620);
+		Server server1 = new Server();
         server1.startServer();
         
         

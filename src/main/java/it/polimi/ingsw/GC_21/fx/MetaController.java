@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_21.fx;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -8,6 +10,10 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_21.CLIENT.Connections;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
@@ -22,24 +28,41 @@ public class MetaController {
 	
 	public static void factorySocket() {
 	    try {
-				String ip = InetAddress.getLocalHost().getHostAddress();
-				SocketClient client1 = new SocketClient(ip, 6620, ViewType.GUI);
+	    	
+				FileReader file = new FileReader("Connection.json");
+				JSONParser parser = new JSONParser(); //loading by file 
+				JSONObject obj = (JSONObject) parser.parse(file);
+				int port = Integer.parseInt(obj.get("SOCKETPORT").toString());
+				String ip = (obj.get("RMIPORT").toString());
+			
+				ip = InetAddress.getLocalHost().getHostAddress();
+				SocketClient client1 = new SocketClient(ip, port, ViewType.GUI);
 				client = client1;
-			} catch (UnknownHostException e) {
-				e.printStackTrace();
-			} catch (IOException e2) {
-	            System.out.println("errore");
-	        }
+	    } catch (IOException | ParseException e) {
+			e.printStackTrace();
+		}
 	    	        
 
 	     }
 	    
 	    public static void factoryRmi() throws RemoteException, NotBoundException {
-	    	Registry reg = LocateRegistry.getRegistry(8000);
-	        ServerInterface srv = (ServerInterface) reg.lookup("server");
-	    	RmiClient client2 = new RmiClient(ViewType.GUI);
-	        srv.join(client2);
-	        client = client2;
+	    	
+	    	FileReader file;
+	    	
+			try {
+				file = new FileReader("Connection.json");
+				JSONParser parser = new JSONParser(); //loading by file 
+				JSONObject obj = (JSONObject) parser.parse(file);
+				int port = Integer.parseInt(obj.get("RMIPORT").toString());
+		    	Registry reg = LocateRegistry.getRegistry(port);
+		        ServerInterface srv = (ServerInterface) reg.lookup("server");
+		    	RmiClient client2 = new RmiClient(ViewType.GUI);
+		        srv.join(client2);
+		        client = client2;
+			} catch (IOException | ParseException e) {
+				e.printStackTrace();
+			}
+			
 		}
 
 
