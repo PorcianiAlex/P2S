@@ -17,7 +17,7 @@ public class MainClient {
 
     System.out.println("Welcome to Lorenzo il Magnifico! \n Choose your connection to start the game! \n 1:RMI \n 2:Socket");
     Scanner scanner = new Scanner(System.in);
-    String choice = scanner.nextLine();
+    String choice = scanner.next();
     switch (choice) {
 	case  "1": try {
 			factoryRmi();
@@ -43,7 +43,7 @@ public class MainClient {
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e2) {
-            System.out.println("IO excption");
+            System.out.println("IO exception");
         } catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
