@@ -24,29 +24,28 @@ public class LoginController extends ControllerForm{
 		try {
 			CheckLoginMessage checkLoginMessage;
 			boolean possibleReconnection = controller.getControllerManager().gameReconnection(username);
+			boolean savedGames = controller.getControllerManager().gameSavedReconnection(username);
 			ok = controller.getControllerManager().Login(username, password, insert);
 			if(ok == false && insert == true) {
-				checkLoginMessage = new CheckLoginMessage(false, "this username already exists!", null);
+				checkLoginMessage = new CheckLoginMessage(false, "this username already exists!");
 			}
 			else if(ok == false && insert == false) {
-				checkLoginMessage = new CheckLoginMessage(false, "these username and password doesn't exist!", null);
+				checkLoginMessage = new CheckLoginMessage(false, "these username and password doesn't exist!");
 
 			}
-			else if(!checkLoggedUsers(username) && insert==false && !possibleReconnection) {
-				 checkLoginMessage = new CheckLoginMessage(false, "Oh grullo! tu sei già loggato!", null);
+			else if(!checkLoggedUsers(username) && insert==false && !possibleReconnection) {//username already logged but with no possible reconnection  
+				 checkLoginMessage = new CheckLoginMessage(false, "Oh grullo! tu sei già loggato!");
 				
 			}
 			else if (ok == false) {
-				 checkLoginMessage = new CheckLoginMessage(false, "Login Error", null);
+				 checkLoginMessage = new CheckLoginMessage(false, "Login Error");
 				
 			}
 			else {
 				ArrayList<String> games = findGames();
 				String lobbyMessage = "Hi, welcome to our Lobby! \nPress 'C' to create a game or enter the number of the match you want to join:\n" + games.toString();
-				 checkLoginMessage = new CheckLoginMessage(true, lobbyMessage, games);
-				 if (possibleReconnection){
-						checkLoginMessage.setPossibleReconnection(true);
-					}
+				 checkLoginMessage = new CheckLoginMessage(true, lobbyMessage, games, possibleReconnection, savedGames);
+				 
 
 			}
 			controller.getRemoteView().getAdapter().sendObject(checkLoginMessage);

@@ -1,12 +1,17 @@
 package it.polimi.ingsw.GC_21.CONTROLLER;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -25,6 +30,7 @@ public class ControllerManager {
 	private ArrayList<RemoteView> remoteViews;
 	private ArrayList<Game> gamesInLobby;
 	private ArrayList<Game> activeGames;
+	private ArrayList<Game> savedGames;
 	private JSONParser parser = new JSONParser();
 
 	
@@ -33,9 +39,25 @@ public class ControllerManager {
 		gamesInLobby = new ArrayList<Game>();
 		remoteViews = new ArrayList<RemoteView>();
 		activeGames = new ArrayList<Game>();
-
+		savedGames = new ArrayList<Game>();
+		loadSavedGames();
 	}
 	
+	private void loadSavedGames() {
+ 	    try {
+		File[] files = new File("C:\\Davide\\Poli\\P2S\\src\\main\\java\\it\\polimi\\ingsw\\GC_21\\GAMEMANAGEMENT\\SavedGames").listFiles();
+	    for (File file : files) {
+	 	    	ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+	 	    	Game game = (Game) ois.readObject();
+	 	    	savedGames.add(game);
+	 	    	ois.close();
+	    	}
+ 	    } 
+ 	   catch (IOException | ClassNotFoundException e) {
+	    	e.printStackTrace();
+	    }
+	}
+
 	public ArrayList<Controller> getControllers() {
 		return controllers;
 	}
@@ -73,8 +95,40 @@ public class ControllerManager {
 		return false;
 	}
 	
-	public synchronized boolean Login(String user, String psw, Boolean insert) throws FileNotFoundException, IOException, ParseException {
+	
+	public synchronized boolean gameSavedReconnection(String user) {
+		for (int i = 0; i < savedGames.size(); i++) {
+			if (!activeGames.contains(savedGames.get(i))) {//I cannot load a game which is already active
+				ArrayList<Player> players = savedGames.get(i).getPlayers();
+				for (int j = 0; j < players.size(); j++) {
+					if (user.equals(players.get(j).getName())) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	public synchronized void saveGame(Game game) {
+		game.setNumberOfPlayersActuallyPresent(0);
+		savedGames.add(game);
+		try {
+		Random random = new Random();
+		int gameNumber = random.nextInt(100000);
+		File file = new File("C:\\Davide\\Poli\\P2S\\src\\main\\java\\it\\polimi\\ingsw\\GC_21\\GAMEMANAGEMENT\\SavedGames\\" + gameNumber + game.getHost() + ".ser");
+		FileOutputStream fileOutputStream;
+		fileOutputStream = new FileOutputStream(file);
+		ObjectOutputStream oos = new ObjectOutputStream(fileOutputStream);
+		oos.writeObject(game);
+		oos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
+	}
+	
+	public synchronized boolean Login(String user, String psw, Boolean insert) throws FileNotFoundException, IOException, ParseException {	
 		Object obj = parser.parse(new FileReader("Users.json"));
 	    JSONObject users = (JSONObject) obj;
 	    JSONArray usersarray= (JSONArray) users.get("users");
@@ -139,6 +193,26 @@ public class ControllerManager {
 
 	public void setActiveGames(ArrayList<Game> activeGames) {
 		this.activeGames = activeGames;
+	}
+
+	public ArrayList<Game> getSavedGames() {
+		return savedGames;
+	}
+
+	public void setSavedGames(ArrayList<Game> savedGames) {
+		this.savedGames = savedGames;
+	}
+
+	public synchronized Game getMySavedGame(String username) {
+		for (int i = 0; i < savedGames.size(); i++) {
+			ArrayList<Player> players = savedGames.get(i).getPlayers();
+			for (int j = 0; j < players.size(); j++) {
+				if (username.equals(players.get(j).getName())) {
+					return savedGames.get(i);
+				}
+			}
+		}
+		return null;//if I return null here there are some problems before
 	}
 	
 	

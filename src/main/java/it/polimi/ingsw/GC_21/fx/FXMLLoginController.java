@@ -102,7 +102,7 @@ public class FXMLLoginController extends MetaController {
 
     				Optional<ButtonType> result = alert.showAndWait();
     				if (result.get() == buttonTypeOne){
-    				    LobbyInput lobbyInput = new LobbyInput(true);
+    				    LobbyInput lobbyInput = new LobbyInput(true, false);
     				    try {
 							client.sendInput(lobbyInput);
 							reconnect();

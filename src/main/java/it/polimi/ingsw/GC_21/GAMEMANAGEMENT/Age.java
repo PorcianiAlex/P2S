@@ -12,20 +12,20 @@ public class Age implements Serializable{
 	DevDeck characterDeck;
 	DevDeck ventureDeck;
 	private Game game;
-	private Round currentRound;
 	private ExcommHandler excommHandler;
 	
 	
 	public Age(int ageNumber, Game game) {
 		this.ageNumber = ageNumber;
 		this.game = game;
-		this.CreateDeck();	
-		this.excommHandler = game.getExcommHandler();
 	}
 	
 	public void executeAge() {
-		for (int i = 1; i < 3; i++) {
-			currentRound = new Round(i, game);
+		this.excommHandler = game.getExcommHandler();
+		this.CreateDeck();	
+		for (int i = game.getCurrentRound().getRoundNumber(); i < 3; i++) {
+			Round currentRound = new Round(i, game);
+			game.setCurrentRound(currentRound);
 			currentRound.executeRound();
 		}
 		excommHandler.executeExcomm();
@@ -42,13 +42,7 @@ public class Age implements Serializable{
 		ventureDeck.shuffle();
 	}
 
-	public Round getCurrentRound() {
-		return currentRound;
-	}
-
-	public void setCurrentRound(Round currentRound) {
-		this.currentRound = currentRound;
-	}
+	
 
 	public int getAgeNumber() {
 		return ageNumber;

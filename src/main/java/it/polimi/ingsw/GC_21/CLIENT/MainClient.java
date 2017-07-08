@@ -2,13 +2,17 @@ package it.polimi.ingsw.GC_21.CLIENT;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.Vector;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -24,20 +28,22 @@ public class MainClient {
     Scanner scanner = new Scanner(System.in);
     String choice = scanner.next();
     switch (choice) {
-	case  "1": try {
+	case  "1": 
+		try {
 			factoryRmi();
-		} catch (RemoteException | NotBoundException e) {
-			e.printStackTrace();
+		} catch (RemoteException | NotBoundException e1) {
+			e1.printStackTrace();
 		}
 
 		break;
 	case "2" : factorySocket();
-	break;
-	default: ; factorySocket();
 		break;
+	default:  factorySocket();
+		break;
+    	}
 	}
         
-   }
+   
     	
     public static void factorySocket() {
     	

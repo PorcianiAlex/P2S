@@ -75,16 +75,14 @@ public class PlacementAction extends Action {
 
 	@Override
 	public boolean checkAction() {
-		return checkPlaceRequirement();
+		 return checkDiceRequirement() &&
+				 !checkBusyActionSpace() &&
+				 !checkBusyFamilyMember() &&
+				 !checkOtherFamilyMember();
+				   
 	}
 	
-	public boolean checkPlaceRequirement(){
-		return checkDiceRequirement() &&
-			   !checkBusyActionSpace() &&
-			   !checkBusyFamilyMember() &&
-			   !checkOtherFamilyMember();
-			   
-	}
+	
 	
 	public boolean checkOtherFamilyMember() {
 		return false;

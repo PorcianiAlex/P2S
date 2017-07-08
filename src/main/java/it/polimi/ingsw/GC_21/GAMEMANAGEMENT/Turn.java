@@ -20,7 +20,7 @@ public class Turn implements Serializable{
 	
 	public void executeView(ArrayList<Player> turnOrder) {
 		game.resetPlayedLeaders();
-		game.notifyOrderedTurn(turnOrder);
+		game.notifyOrderedTurn(turnOrder, game.getCurrentPlayerNumber());
 		game.generateRanking();
 	}
 

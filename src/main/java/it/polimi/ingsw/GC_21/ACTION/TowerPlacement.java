@@ -61,11 +61,9 @@ public class TowerPlacement extends PlacementAction {
 		return towerPlacement;
 	}
 	
-	
-	
 	@Override
-	public boolean checkPlaceRequirement() {
-		if (super.checkPlaceRequirement()) {
+	public boolean checkAction() {
+		if (super.checkAction()) {
 			if(selectedActionSpace.getActionSpaceEffect()!=null) {
 				discount.add(selectedActionSpace.getActionSpaceEffect().getRewards());//if the Space requirement is satisfied I can use the eventual SpaceBonus to get the card
 			}
@@ -79,8 +77,10 @@ public class TowerPlacement extends PlacementAction {
 					checkCardRequirements(playerInAction.getMyPersonalBoard());
 		}
 		return false;
-				
 	}
+	
+	
+	
 	
 	@Override
 	public void Execute() {

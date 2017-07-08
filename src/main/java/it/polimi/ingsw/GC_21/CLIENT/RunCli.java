@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.GameEndState;
 import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.VIEW.SaveInput;
 
 public class RunCli implements Runnable {
 
@@ -55,25 +56,33 @@ public class RunCli implements Runnable {
 	public void run() {
 		Scanner keyboard = new Scanner(System.in);
 		while(true){
+			try {
 			String choice = keyboard.next();
+			if (choice.equals("save")) {
+				client.sendInput(new SaveInput());
+				client.close();
+				break;
+			}
+			if (choice.equals("Disconnect")) {
+				client.close();
+				break;
+			}
 			synchronized (LOCK) {
 			if (message != null) {
 				inputFormToFill = message.getInputForm();
 				}
-			try {
+			
 				while (inputFormToFill == null) {
 					LOCK.wait();
 					inputFormToFill = message.getInputForm();
 				}
-			} catch (InterruptedException e) {
+				inputFormToFill.fill(choice);
+			}		
+			} catch (InterruptedException | IOException e) {
 					e.printStackTrace();
 					}
-			inputFormToFill.fill(choice);
-			}			
-			if (choice.equals("Sadegh")) {
-				keyboard.close();
-				break;
-			}
+				
+			
 		}
 		
 	}

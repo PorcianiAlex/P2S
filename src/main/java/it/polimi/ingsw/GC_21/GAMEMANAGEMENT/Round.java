@@ -16,22 +16,16 @@ public class Round implements Serializable{
 
 	private int roundNumber;
 	private Game game;
-	private Turn currentTurn;
 	private Player blackPlayer;
-	private ArrayList<Player> turnOrder;
+	private ArrayList<Player> turnOrder = new ArrayList<Player>();
 	
 	public Round(int roundNumber, Game game) {
 		this.roundNumber = roundNumber;
 		this.game = game;
-		getTurnOrder();
-		game.getBoard().refreshBoard();
-		for (int i = 0; i < game.getPlayers().size(); i++) {
-			game.getPlayers().get(i).refreshPlayer();
-		}
-		this.placeCard();
+		
 		}
 	
-	private void getTurnOrder() {
+	private void setTurnOrder() {
 		turnOrder = game.getBoard().getCouncilPalace().getTurnOrder();
 		blackPlayer = game.getSpecificPlayer(Color.Black);
 		ArrayList<Player> playersInGame = game.getPlayers();	
@@ -43,17 +37,28 @@ public class Round implements Serializable{
 	}
 
 	public void executeRound() {
-		if (blackPlayer != null) {
+		setTurnOrder();
+		game.getBoard().refreshBoard();
+		for (int i = 0; i < game.getPlayers().size(); i++) {
+			game.getPlayers().get(i).refreshPlayer();
+		}
+		this.placeCard();
+		if (blackPlayer != null && game.isBlackTurn()) {
 			turnOrder.remove(blackPlayer);//for black player there is a specific notify turn in which he plays all his family members at the beginning 
-			for (int i = 1; i < 5; i++) {
-				currentTurn = new Turn(i, game);
+			for (int i = game.getCurrentTurn().getTurnNumber(); i < 5; i++) {
+				Turn currentTurn = new Turn(i, game);
+				game.setCurrentTurn(currentTurn);
 				game.notifyBlackTurn(blackPlayer);
 			}
+			game.setBlackTurn(false);
 		}
-		for (int i = 1; i < 5 ; i++) {	
-			currentTurn = new Turn(i, game);
+		for (int i = game.getCurrentTurn().getTurnNumber(); i < 5 ; i++) {
+			Turn currentTurn = new Turn(i, game);
+			game.setCurrentTurn(currentTurn);
 			currentTurn.executeView(turnOrder);
 		}
+		game.setBlackTurn(true);
+		game.setCurrentTurn(new Turn(1, game));
 		game.getBoard().setDices(Dice.factoryDices());
 	}
 	
@@ -73,14 +78,7 @@ public class Round implements Serializable{
 		this.roundNumber = roundNumber;
 	}
 
-	public Turn getCurrentTurn() {
-		return currentTurn;
-	}
-
-	public void setCurrentTurn(Turn currentTurn) {
-		this.currentTurn = currentTurn;
-	}
-
+	
 	public Player getBlackPlayer() {
 		return blackPlayer;
 	}
@@ -89,5 +87,16 @@ public class Round implements Serializable{
 		this.blackPlayer = blackPlayer;
 	}
 
+	
+
+	public void setThisTurnOrder(ArrayList<Player> turnOrder) {
+		this.turnOrder = turnOrder;
+	}
+	
+	public ArrayList<Player> getTurnOrder() {
+		return turnOrder;
+	}
+	
+	
 	
 }

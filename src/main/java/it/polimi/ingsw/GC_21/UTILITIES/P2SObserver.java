@@ -18,6 +18,7 @@ public interface P2SObserver<C> {
 	public void updateBroadcast(MessageToClient message);
 	public void updateClose();
 	public void updateInit();
+	public void updateSave(String string);
 	public void updateBlack();
 	public void updateBlackSwitch(Player playerToSwitch);
 

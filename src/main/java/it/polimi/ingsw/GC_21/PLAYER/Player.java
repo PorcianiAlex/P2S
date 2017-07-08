@@ -28,7 +28,6 @@ public class Player implements Serializable{
 		this.checkOnMP = false;
 		this.overchargeOnBusyTower = false;
 		this.game.addPlayers(this);
-
 	}
 	
 	public void guessedPosition() {

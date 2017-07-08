@@ -41,10 +41,7 @@ public class CraftPlacement extends PlacementAction {
 		return super.checkAction();
 	}
 	
-	@Override
-	public boolean checkPlaceRequirement() {
-		return super.checkPlaceRequirement();
-	}
+	
 
 	
 	@Override
