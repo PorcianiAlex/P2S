@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
+package it.polimi.ingsw.GC_21.UTILITIES;
 
 import java.io.FileReader;
 import java.io.Serializable;
@@ -21,6 +21,14 @@ import it.polimi.ingsw.GC_21.EFFECT.ForEachGet;
 import it.polimi.ingsw.GC_21.EFFECT.LoseYourDevCardType;
 import it.polimi.ingsw.GC_21.EFFECT.PlacementInfluencer;
 import it.polimi.ingsw.GC_21.EFFECT.VictoryPointsInfluencer;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.CraftCard;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ExcommunicationCard;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ResourceType;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Ventures;
 
 public class CardCreator implements Serializable{
 	private Game game;
@@ -319,26 +327,5 @@ public class CardCreator implements Serializable{
 	        cardcreating.setFinalVictoryPoints(Integer.parseInt(jsonLineItem.get("VicPoint").toString()));
 		
 	}
-
-	public static void main(String[] args) {
-		Game game = new Game("aa");
-		CardCreator cardCreator = new CardCreator(game);
-		cardCreator.devCardsCreate(DevCardType.Building, 1);
-		cardCreator.devCardsCreate(DevCardType.Territory, 1);
-		cardCreator.devCardsCreate(DevCardType.Venture, 1);
-		cardCreator.devCardsCreate(DevCardType.Character, 1);
-		cardCreator.devCardsCreate(DevCardType.Building, 2); //OK
-		cardCreator.devCardsCreate(DevCardType.Territory,2);//OK
-		cardCreator.devCardsCreate(DevCardType.Venture, 2); //OK
-		cardCreator.devCardsCreate(DevCardType.Character,2); //OK
-		cardCreator.devCardsCreate(DevCardType.Building, 3); //OK
-		cardCreator.devCardsCreate(DevCardType.Territory, 3); //OK
-		cardCreator.devCardsCreate(DevCardType.Venture, 3);
-		cardCreator.devCardsCreate(DevCardType.Character, 3);
-		cardCreator.ExCardsCreate(1);
-		cardCreator.ExCardsCreate(2);
-
-		cardCreator.ExCardsCreate(3);
-
-	}
+	
 }

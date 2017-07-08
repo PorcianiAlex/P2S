@@ -11,17 +11,17 @@
 
 <GridPane id="grid" prefHeight="536.0000558593674" prefWidth="776.9999000000025" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.ingsw.GC_21.fx.FXMLColorController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.0" minWidth="10.0" prefWidth="93.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" minWidth="10.0" prefWidth="172.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="366.0" minWidth="10.0" prefWidth="149.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="273.0" minWidth="10.0" prefWidth="222.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="51.0" minWidth="10.0" prefWidth="51.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.0" minWidth="10.0" prefWidth="110.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" minWidth="10.0" prefWidth="122.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="366.0" minWidth="10.0" prefWidth="123.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.0" minWidth="10.0" prefWidth="217.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="115.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="102.0" minHeight="10.0" prefHeight="101.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="147.0" minHeight="0.0" prefHeight="129.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="207.0" minHeight="10.0" prefHeight="95.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="142.0" minHeight="10.0" prefHeight="131.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="147.0" minHeight="0.0" prefHeight="105.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="207.0" minHeight="10.0" prefHeight="88.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="175.0" minHeight="10.0" prefHeight="162.0" vgrow="SOMETIMES" />
   </rowConstraints>
   <stylesheets>
     <URL value="@style.css" />
@@ -31,36 +31,32 @@
       <Font size="30.0" />
     </font>
   </Text>
-  <ToggleButton fx:id="blue" mnemonicParsing="false" onAction="#Color"  text="Blue" textFill="#0066ff" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+  <ToggleButton fx:id="blue" maxHeight="30.0" maxWidth="60.0" minHeight="30.0" minWidth="60.0" mnemonicParsing="false" onAction="#Color" prefHeight="30.0" prefWidth="60.0" text="Blue" textFill="#0066ff" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
     <font>
-      <Font size="24.0" fx:id="x1" />
+      <Font size="14.0" fx:id="x1" />
     </font>
     <toggleGroup>
       <ToggleGroup fx:id="place" />
     </toggleGroup>
   </ToggleButton>
-  <ToggleButton fx:id="red" font="$x1" mnemonicParsing="false" onAction="#Color" text="Red" textFill="RED" toggleGroup="$place" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-  <ToggleButton fx:id="yellow" font="$x1" mnemonicParsing="false" onAction="#Color"  text="Yellow" textFill="#fff500" toggleGroup="$place" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-  <ToggleButton fx:id="green" font="$x1" mnemonicParsing="false" onAction="#Color"  text="Green" textFill="#009918" toggleGroup="$place" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-  <Text fx:id="texttarget" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="3">
-    <GridPane.margin>
-      <Insets bottom="100.0" />
-    </GridPane.margin>
-  </Text>
-  <Button fx:id="ready" mnemonicParsing="false" onAction="#Ready" text="Ready!" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
-  <ToggleButton fx:id="black" mnemonicParsing="false" onAction="#Color" text="Black" textAlignment="CENTER" textFill="#202020" toggleGroup="$place" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+  <ToggleButton fx:id="red" font="$x1" mnemonicParsing="false" onAction="#Color" prefHeight="30.0" prefWidth="60.0" text="Red" textFill="RED" toggleGroup="$place" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+  <ToggleButton fx:id="yellow" font="$x1" maxHeight="30.0" maxWidth="60.0" minHeight="30.0" minWidth="60.0" mnemonicParsing="false" onAction="#Color" prefHeight="30.0" prefWidth="60.0" text="Yellow" textFill="#fff500" toggleGroup="$place" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+  <ToggleButton fx:id="green" font="$x1" maxHeight="30.0" maxWidth="60.0" minHeight="30.0" minWidth="60.0" mnemonicParsing="false" onAction="#Color" prefHeight="30.0" prefWidth="60.0" text="Green" textFill="#009918" toggleGroup="$place" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+  <Text fx:id="texttarget" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+  <Button fx:id="ready" mnemonicParsing="false" onAction="#Ready" text="Ready!" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+  <ToggleButton fx:id="black" maxHeight="30.0" maxWidth="60.0" minHeight="30.0" minWidth="60.0" mnemonicParsing="false" onAction="#Color" prefHeight="30.0" prefWidth="60.0" text="Black" textAlignment="CENTER" textFill="#202020" toggleGroup="$place" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
     <font>
-      <Font name="System Bold Italic" size="24.0" />
+      <Font name="System Bold Italic" size="14.0" />
     </font>
   </ToggleButton>
-  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The Consipirator" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+  <Text strokeType="OUTSIDE"  strokeWidth="0.0" text="The Consipirator" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
     <font>
-      <Font name="System Italic" size="20.0" />
+      <Font name="System Italic" size="14.0" />
     </font>
   </Text>
   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="New Feature:" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
     <font>
-      <Font size="22.0" />
+      <Font size="12.0" />
     </font>
   </Text>
 </GridPane>

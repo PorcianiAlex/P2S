@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
+import it.polimi.ingsw.GC_21.UTILITIES.CardCreator;
 
 public class Deck implements Serializable{
 	private Game game;
