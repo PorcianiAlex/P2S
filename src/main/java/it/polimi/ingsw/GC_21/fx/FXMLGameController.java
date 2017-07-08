@@ -763,8 +763,6 @@ public class FXMLGameController extends MetaController implements Initializable{
 		alert.setHeaderText(description);
 		alert.setContentText("Choose your destiny:");
 		ImageView imageView = new ImageView(new Image("/components/papaa.png"));
-    	//imageView.setFitHeight(400);
-    	//imageView.setFitWidth(250);
     	alert.setGraphic(imageView);
     	
 		ButtonType buttonTypeOne = new ButtonType("Yes");
@@ -880,7 +878,13 @@ public class FXMLGameController extends MetaController implements Initializable{
 		});
 	}
 
-	public void gameOver(String description) {
+	public void gameOver(String description, ArrayList<Player> victoryPointsRanking) {
+		StringBuilder stringBuilder = new StringBuilder();
+		
+		for (int i = 0; i < victoryPointsRanking.size(); i++) {
+			int position = i+1;
+			stringBuilder.append(position+". "+victoryPointsRanking.get(i).getName()+" VP: "+victoryPointsRanking.get(i).getMyPersonalBoard().getMyPossession().getVictoryPoints().getValue()+"\n");
+		}
 		
 		Platform.runLater(new Runnable() {
 		    @Override
@@ -888,7 +892,9 @@ public class FXMLGameController extends MetaController implements Initializable{
 		    	Alert alert = new Alert(AlertType.ERROR);
 		    	alert.setTitle("End of The Game");
 		    	alert.setHeaderText("Chi vuol esser lieto sia, del doman non c'è certezza");
-		    	alert.setContentText(description);	
+		    	alert.setContentText(description+"\n\n"+stringBuilder);	
+		    	ImageView imageView = new ImageView(new Image("/leadercards/leaders_b_c_00.jpg"));
+		    	alert.setGraphic(imageView);
 		    	alert.showAndWait();
 		    }
 		});
