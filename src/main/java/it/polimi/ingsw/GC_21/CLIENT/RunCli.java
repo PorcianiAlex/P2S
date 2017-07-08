@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.GameEndState;
-import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InputForm;
 
 public class RunCli implements Runnable {
 

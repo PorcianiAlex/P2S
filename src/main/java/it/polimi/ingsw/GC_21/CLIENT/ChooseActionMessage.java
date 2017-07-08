@@ -11,8 +11,8 @@ import java.util.concurrent.Future;
 
 
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.VIEW.ActionInput;
-import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.ActionInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InputForm;
 import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public class ChooseActionMessage extends MessageToClient implements Callable<InputForm>{

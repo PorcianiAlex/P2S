@@ -5,8 +5,8 @@ import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.CLIENT.PrivilegeMessage;
 import it.polimi.ingsw.GC_21.CONTROLLER.ControllerForm;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.VIEW.ExcommInput;
-import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.ExcommInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InputForm;
 
 public interface P2SObserver<C> {
 	

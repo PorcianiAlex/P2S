@@ -2,8 +2,8 @@ package it.polimi.ingsw.GC_21.CLIENT;
 
 import java.util.Scanner;
 
-import it.polimi.ingsw.GC_21.VIEW.ExcommInput;
-import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.ExcommInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InputForm;
 import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public class ExcommMessage extends MessageToClient {

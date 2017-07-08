@@ -3,8 +3,8 @@ package it.polimi.ingsw.GC_21.CONTROLLER;
 import it.polimi.ingsw.GC_21.CLIENT.CheckLobbyMessage;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
-import it.polimi.ingsw.GC_21.VIEW.AdapterConnection;
-import it.polimi.ingsw.GC_21.VIEW.RemoteView;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.AdapterConnection;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.RemoteView;
 
 public class LobbyController extends ControllerForm {
 	private ControllerManager controllerManager;

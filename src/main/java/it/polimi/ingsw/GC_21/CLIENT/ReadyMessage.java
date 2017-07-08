@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_21.CLIENT;
 
-import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InputForm;
 
 public class ReadyMessage extends MessageToClient{
 

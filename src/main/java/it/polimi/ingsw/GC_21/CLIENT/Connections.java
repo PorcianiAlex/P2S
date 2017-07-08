@@ -5,7 +5,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Scanner;
 
-import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InputForm;
 
 public interface Connections extends Remote{
 public MessageToClient getReceivedMessage() throws ClassNotFoundException, RemoteException, IOException;

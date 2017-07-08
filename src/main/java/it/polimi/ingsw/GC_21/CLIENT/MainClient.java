@@ -9,7 +9,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
 
-import it.polimi.ingsw.GC_21.VIEW.ServerInterface;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.ServerInterface;
 import it.polimi.ingsw.GC_21.fx.ViewType;
 
 public class MainClient {

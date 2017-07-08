@@ -8,8 +8,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import it.polimi.ingsw.GC_21.VIEW.InitGameInput;
-import it.polimi.ingsw.GC_21.VIEW.PassInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InitGameInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.PassInput;
 
 public class InitialTimerThread extends Thread {
 	private Connections client;

@@ -44,22 +44,22 @@ import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.OwnedCards;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.VIEW.ConvertInput;
-import it.polimi.ingsw.GC_21.VIEW.CouncilPlacementInput;
-import it.polimi.ingsw.GC_21.VIEW.CraftInput;
-import it.polimi.ingsw.GC_21.VIEW.CraftPlacementInput;
-import it.polimi.ingsw.GC_21.VIEW.DiscardInput;
-import it.polimi.ingsw.GC_21.VIEW.ExcommInput;
-import it.polimi.ingsw.GC_21.VIEW.InitGameInput;
-import it.polimi.ingsw.GC_21.VIEW.InputForm;
-import it.polimi.ingsw.GC_21.VIEW.LeaderInput;
-import it.polimi.ingsw.GC_21.VIEW.MarketPlacementInput;
-import it.polimi.ingsw.GC_21.VIEW.PassInput;
-import it.polimi.ingsw.GC_21.VIEW.PlacementInput;
-import it.polimi.ingsw.GC_21.VIEW.PrivilegeInput;
-import it.polimi.ingsw.GC_21.VIEW.SetFamilyMemberInput;
-import it.polimi.ingsw.GC_21.VIEW.TakeCardInput;
-import it.polimi.ingsw.GC_21.VIEW.TowerPlacementInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.ConvertInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.CouncilPlacementInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.CraftInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.CraftPlacementInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.DiscardInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.ExcommInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InitGameInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InputForm;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.LeaderInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.MarketPlacementInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.PassInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.PlacementInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.PrivilegeInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.SetFamilyMemberInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.TakeCardInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.TowerPlacementInput;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -184,12 +184,12 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 	@FXML protected void FamilyMember(ActionEvent event) {  		
 		 if (canGo) {
 			ToggleButton button = (ToggleButton) family.getSelectedToggle();
-			//setFamilyButton();
+			setFamilyButton();
 			if (button != null) {
 				familyMemberColor = FamilyMemberColor.valueOf(button.getText());
 				System.out.println(familyMemberColor);
-				((Node) family.getSelectedToggle()).setVisible(false);
-				((Node) family.getSelectedToggle()).setOpacity(0.0);
+				button.setVisible(false);
+				button.setOpacity(0.0);
 			} 
 		}
 		 }

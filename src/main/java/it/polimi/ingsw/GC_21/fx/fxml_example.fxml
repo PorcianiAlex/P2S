@@ -4,6 +4,7 @@
 <?import java.net.*?>
 <?import java.net.URL?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.text.Text?>
@@ -18,10 +19,9 @@
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="141.0" minHeight="10.0" prefHeight="141.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="92.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES" />
   </rowConstraints>
@@ -30,23 +30,23 @@
   </stylesheets>
   <TextField fx:id="user" onAction="#handleSignInAction" prefWidth="222.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
   <PasswordField fx:id="passwordField" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-  <HBox prefHeight="54.0" prefWidth="303.0" spacing="10.0" styleClass="bottom-right" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="5">
+  <HBox prefHeight="54.0" prefWidth="303.0" spacing="10.0" styleClass="bottom-right" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4">
     <Text fx:id="actiontarget" />
     <Button onAction="#handleSignInAction" text="Sign In" />
     <Button onAction="#handleSignUpAction" text="Sign Up" />
   </HBox>
-  <Label text="Connection:" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+  <Label text="Connection:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
   <Label text="User Name:" textAlignment="LEFT" GridPane.columnIndex="2" GridPane.rowIndex="1" />
   <Label text="Password:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-  <RadioButton fx:id="RMI" mnemonicParsing="false" selected="false" text="RMI" GridPane.columnIndex="3" GridPane.rowIndex="4">
+  <RadioButton fx:id="RMI" mnemonicParsing="false" selected="false" text="RMI" GridPane.columnIndex="3" GridPane.rowIndex="3">
     <toggleGroup>
       <ToggleGroup fx:id="connect" />
     </toggleGroup>
   </RadioButton>
-  <RadioButton fx:id="SOCKET" mnemonicParsing="false" text="Socket" toggleGroup="$connect" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-  <Text fx:id="welcometext" fontSmoothingType="LCD" text="Welcome to Lorenzo il Magnifico" GridPane.columnIndex="1" GridPane.rowIndex="0">
-    <font>
-      <Font name="Castellar" size="18.0" />
-    </font>
-  </Text>
+  <RadioButton fx:id="SOCKET" mnemonicParsing="false" text="Socket" toggleGroup="$connect" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+  <ImageView fitHeight="93.44447442573338" fitWidth="420.5001220703125" pickOnBounds="true" preserveRatio="true" smooth="false" GridPane.columnIndex="0" GridPane.rowIndex="0">
+    <image>
+      <Image url="@loginscritta.png" />
+    </image>
+  </ImageView>
 </GridPane>

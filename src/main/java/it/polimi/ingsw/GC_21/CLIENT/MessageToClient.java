@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.GameEndState;
-import it.polimi.ingsw.GC_21.VIEW.InputForm;
-import it.polimi.ingsw.GC_21.VIEW.LobbyInput;
-import it.polimi.ingsw.GC_21.VIEW.PassInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InputForm;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.LobbyInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.PassInput;
 import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public class MessageToClient implements Serializable{

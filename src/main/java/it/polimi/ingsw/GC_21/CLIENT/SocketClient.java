@@ -8,7 +8,7 @@ import java.io.ObjectOutputStream;
 import java.net.*;
 import java.rmi.RemoteException;
 
-import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InputForm;
 import it.polimi.ingsw.GC_21.fx.ViewType;
 
 import java.util.*;

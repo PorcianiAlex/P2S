@@ -3,8 +3,8 @@ package it.polimi.ingsw.GC_21.CLIENT;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.VIEW.InputForm;
-import it.polimi.ingsw.GC_21.VIEW.SetFamilyMemberInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InputForm;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.SetFamilyMemberInput;
 import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public class SetFamilyMemberMessage extends MessageToClient{

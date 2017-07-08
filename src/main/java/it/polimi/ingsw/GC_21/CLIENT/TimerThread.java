@@ -10,7 +10,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_21.ACTION.ExcommAction;
-import it.polimi.ingsw.GC_21.VIEW.PassInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.PassInput;
 
 public class TimerThread extends Thread {
 	private Connections client;

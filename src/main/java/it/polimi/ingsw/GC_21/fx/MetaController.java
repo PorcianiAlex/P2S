@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import it.polimi.ingsw.GC_21.CLIENT.Connections;
 import it.polimi.ingsw.GC_21.CLIENT.RmiClient;
 import it.polimi.ingsw.GC_21.CLIENT.SocketClient;
-import it.polimi.ingsw.GC_21.VIEW.ServerInterface;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.ServerInterface;
 
 public class MetaController {
 	

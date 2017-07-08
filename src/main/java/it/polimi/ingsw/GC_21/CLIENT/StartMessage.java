@@ -2,9 +2,8 @@ package it.polimi.ingsw.GC_21.CLIENT;
 
 import java.util.Scanner;
 
-
-import it.polimi.ingsw.GC_21.VIEW.InputForm;
-import it.polimi.ingsw.GC_21.VIEW.LoginInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InputForm;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.LoginInput;
 
 public class StartMessage extends MessageToClient{
 	MessageToClient callMessage;

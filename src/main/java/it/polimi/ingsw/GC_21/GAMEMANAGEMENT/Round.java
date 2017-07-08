@@ -10,7 +10,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.VIEW.RemoteView;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.RemoteView;
 
 public class Round implements Serializable{
 

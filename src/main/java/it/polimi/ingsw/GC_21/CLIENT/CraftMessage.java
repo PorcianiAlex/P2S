@@ -3,8 +3,8 @@ package it.polimi.ingsw.GC_21.CLIENT;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
-import it.polimi.ingsw.GC_21.VIEW.CraftInput;
-import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.CraftInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InputForm;
 import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public class CraftMessage extends MessageToClient {

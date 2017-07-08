@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
-import it.polimi.ingsw.GC_21.VIEW.InputForm;
-import it.polimi.ingsw.GC_21.VIEW.TakeCardInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InputForm;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.TakeCardInput;
 import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public class TakeCardMessage extends MessageToClient{

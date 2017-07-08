@@ -6,7 +6,7 @@ import java.util.Scanner;
 import it.polimi.ingsw.GC_21.BOARD.Board;
 
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InputForm;
 import it.polimi.ingsw.GC_21.fx.FXMLGameController;
 
 public class TurnMessage extends MessageToClient{

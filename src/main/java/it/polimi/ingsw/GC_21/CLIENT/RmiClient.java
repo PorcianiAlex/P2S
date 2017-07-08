@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
 
-import it.polimi.ingsw.GC_21.VIEW.InputForm;
-
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InputForm;
 import it.polimi.ingsw.GC_21.fx.ViewType;
 
 

@@ -17,7 +17,7 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.VIEW.RemoteView;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.RemoteView;
 
 public class ControllerManager {
 

@@ -4,9 +4,9 @@ package it.polimi.ingsw.GC_21.CLIENT;
 import java.util.ArrayList; 
 import java.util.Scanner; 
  
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession; 
-import it.polimi.ingsw.GC_21.VIEW.InputForm; 
-import it.polimi.ingsw.GC_21.VIEW.PrivilegeInput; 
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InputForm;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.PrivilegeInput;
 import it.polimi.ingsw.GC_21.fx.FXMLGameController; 
  
 public class PrivilegeMessage extends MessageToClient{ 

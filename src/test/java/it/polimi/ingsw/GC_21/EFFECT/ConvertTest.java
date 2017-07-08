@@ -20,11 +20,11 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
-import it.polimi.ingsw.GC_21.VIEW.AdapterConnection;
-import it.polimi.ingsw.GC_21.VIEW.InputForm;
-import it.polimi.ingsw.GC_21.VIEW.RemoteView;
-import it.polimi.ingsw.GC_21.VIEW.RmiAdapter;
-import it.polimi.ingsw.GC_21.VIEW.Server;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.AdapterConnection;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InputForm;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.RemoteView;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.RmiAdapter;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.Server;
 import it.polimi.ingsw.GC_21.fx.ViewType;
 
 public class ConvertTest {

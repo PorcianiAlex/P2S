@@ -8,9 +8,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import it.polimi.ingsw.GC_21.VIEW.ActionInput;
-import it.polimi.ingsw.GC_21.VIEW.InitGameInput;
-import it.polimi.ingsw.GC_21.VIEW.InputForm;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.ActionInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InitGameInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InputForm;
 
 public class CheckColorMessage extends MessageToClient implements Callable<InputForm> {
 	private boolean host;

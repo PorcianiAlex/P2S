@@ -3,9 +3,9 @@ package it.polimi.ingsw.GC_21.CLIENT;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import it.polimi.ingsw.GC_21.VIEW.CreatePlayerInput;
-import it.polimi.ingsw.GC_21.VIEW.InputForm;
-import it.polimi.ingsw.GC_21.VIEW.LobbyInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.CreatePlayerInput;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.InputForm;
+import it.polimi.ingsw.GC_21.REMOTEVIEW.LobbyInput;
 
 public class CheckLoginMessage extends MessageToClient {
 	private ArrayList<String> games;
