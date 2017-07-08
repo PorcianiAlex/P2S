@@ -43,8 +43,8 @@ public class CardCreator implements Serializable{
 	    	if(Integer.parseInt(jsonLineItem.get("age").toString())==age && devCardType.equals(DevCardType.valueOf(jsonLineItem.get("DevType").toString()))){              	
            	DevelopmentCard devCardCreating;
 	    	if (devCardType.equals(DevCardType.Venture)) {
-				devCardCreating = new Ventures((String) jsonLineItem.get("name"));
-				this.addSecondReq((Ventures) devCardCreating, jsonLineItem);
+				devCardCreating = new DevelopmentCard((String) jsonLineItem.get("name"));
+				this.addFinalVP(devCardCreating, jsonLineItem);
 			}
 	    	if (devCardType.equals(DevCardType.Building) || devCardType.equals(DevCardType.Territory)) {
 				devCardCreating = new CraftCard((String) jsonLineItem.get("name"));
@@ -314,15 +314,8 @@ public class CardCreator implements Serializable{
         cardcreating.setRequirements(Req);  
 	}
 	
-	private void addSecondReq(Ventures cardcreating, JSONObject jsonLineItem) {
-		 
-		JSONArray reqarray= (JSONArray) jsonLineItem.get("SecReq");
-        
-	        Possession Req = new Possession(Integer.parseInt(reqarray.get(0).toString()),Integer.parseInt(reqarray.get(1).toString()),
-	        		Integer.parseInt(reqarray.get(2).toString()), Integer.parseInt(reqarray.get(3).toString()),
-	        		Integer.parseInt(reqarray.get(4).toString()), Integer.parseInt(reqarray.get(5).toString()), 
-	        	    Integer.parseInt(reqarray.get(6).toString()));
-	        cardcreating.setSecondRequirement(Req);  
+	private void addFinalVP(DevelopmentCard cardcreating, JSONObject jsonLineItem) {
+
 	        cardcreating.setFinalVictoryPoints(Integer.parseInt(jsonLineItem.get("VicPoint").toString()));
 		
 	}

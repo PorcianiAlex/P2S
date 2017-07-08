@@ -15,7 +15,6 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ResourceType;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Ventures;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
@@ -34,10 +33,10 @@ public class PersonalBoardTest {
 	public void earnByVenturesTest(){
 		Game game = new Game("Test");
 		Player testPlayer = new Player("aaa", Color.Blue, game);
-		Ventures ventures = new Ventures("aaa");
+		DevelopmentCard ventures = new DevelopmentCard("aaa");
 		ventures.setDevCardType(DevCardType.Venture);
 		ventures.setFinalVictoryPoints(4);
-		Ventures ventures2 = new Ventures("aaa22");
+		DevelopmentCard ventures2 = new DevelopmentCard("aaa22");
 		ventures2.setDevCardType(DevCardType.Venture);
 		ventures2.setFinalVictoryPoints(4);
 		testPlayer.getMyPersonalBoard().addDevCard(ventures);

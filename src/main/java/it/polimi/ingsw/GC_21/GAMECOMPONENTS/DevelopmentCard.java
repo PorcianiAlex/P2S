@@ -5,7 +5,7 @@ public class DevelopmentCard extends Card {
 	
 	private int age;
 	private DevCardType devCardType;
-
+	private VictoryPoints finalVictoryPoints;
 	
 	public DevelopmentCard(String name) {
 		super(name);
@@ -32,6 +32,16 @@ public class DevelopmentCard extends Card {
 		this.devCardType = devCardType;
 	}
 
+	public VictoryPoints getFinalVictoryPoints() {
+		return finalVictoryPoints;
+	}
+
+
+	public void setFinalVictoryPoints(int finalVictoryPoints) {
+		this.finalVictoryPoints = new VictoryPoints(finalVictoryPoints);
+	}
+	
+	
 
 
 	@Override
