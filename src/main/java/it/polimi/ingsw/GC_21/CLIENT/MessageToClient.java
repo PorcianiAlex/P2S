@@ -80,7 +80,7 @@ public class MessageToClient implements Serializable{
 	}
 	
 	public void executeGUI(FXMLGameController gameController) {		
-		
+		gameController.printMessDescription(description);
 	}
 
 	public InputForm getInputForm() {

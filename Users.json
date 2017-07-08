@@ -1,1 +1,8 @@
-{"users":[{"psw":"prova","name":"alex"},{"psw":"prova","name":"ale"},{"psw":"prova","name":"santa"},{"psw":"prova","name":"popoio"},{"psw":"prova","name":"puffo"},{"psw":"paperina","name":"paperino"},{"psw":"miriam","name":"gigi"},{"psw":"zita","name":"carlo"},{"psw":"prova","name":"C"},{"psw":"mc","name":"puce"},{"psw":"123","name":"ciccio"}]}
+{"users":[{"psw":"prova","name":"alex","VictoryPoints":"0", "numberOfWins":"0"},
+{"psw":"prova","name":"ale","VictoryPoints":10, "numberOfWins":"0"},
+{"psw":"prova","name":"santa","VictoryPoints":10, "numberOfWins":"0"},
+{"psw":"prova","name":"popoio","VictoryPoints":"0", "numberOfWins":"0"},
+{"psw":"prova","name":"puffo","VictoryPoints":"0", "numberOfWins":"0"},
+{"psw":"paperina","name":"paperino","VictoryPoints":"0", "numberOfWins":"0"},
+{"psw":"miriam","name":"gigi","VictoryPoints":"0", "numberOfWins":"0"},
+{"psw":"zita","name":"carlo","VictoryPoints":"0", "numberOfWins":"0"}]}

@@ -69,7 +69,9 @@ public class TowerPlacement extends PlacementAction {
 			}
 		    if (checkBusyTower() && !playerInAction.isOverchargeOnBusyTower()) {
 		    	Coins moneyToPay = new Coins(3);
-				overcharge.addItemToPossession(moneyToPay);
+				if (overcharge!=null) {
+					overcharge.addItemToPossession(moneyToPay);
+				}
 			}
 			return checkTakeabilityCard(playerInAction.getMyPersonalBoard(), selectedCard.getDevCardType()) &&
 					checkCardRequirements(playerInAction.getMyPersonalBoard());

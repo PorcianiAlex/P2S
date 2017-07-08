@@ -91,9 +91,6 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 		
 	}
 	
-	
-
-
 
 	@Override
 	public InputForm sendObjectToServer() throws RemoteException {

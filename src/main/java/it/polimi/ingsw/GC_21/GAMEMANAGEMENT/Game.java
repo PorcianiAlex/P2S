@@ -1,11 +1,15 @@
 package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-
-
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_21.BOARD.Board;
@@ -156,13 +160,58 @@ public class Game extends Observable implements Serializable{
 		}
 		GameOverMessage gameOverMessage = new GameOverMessage(true, "And the winner is... " + victoryPointsRanking.get(0).getName() + "!!!\n Congrats!", board, players, victoryPointsRanking);
 		this.notifyBroadcast(gameOverMessage);
+		this.saveStatistics();
+
 	}
+
+
+	private void saveStatistics() {
+		JSONParser parser = new JSONParser();
+		Object obj = new Object();
+			try {
+				obj = parser.parse(new FileReader("Users.json"));
+			} catch (IOException | ParseException e1) {
+				e1.printStackTrace();
+			}
+		    JSONObject users = (JSONObject) obj;
+		    JSONArray usersarray= (JSONArray) users.get("users");
+		for (int i = 0; i < players.size(); i++) {
+		    int victoryPointEarned = 0;
+	    	for (Object o : usersarray) {
+	    		JSONObject jsonLineItem = (JSONObject) o;
+	    		if(players.get(i).getName().equals(jsonLineItem.get("name").toString())){
+	    			victoryPointEarned = Integer.parseInt(jsonLineItem.get("VictoryPoints").toString());
+	    			int toSaveVictoryPoint = players.get(i).getMyPersonalBoard().getMyPossession().getVictoryPoints().getValue() + victoryPointEarned;
+	    			jsonLineItem.put("VictoryPoints", toSaveVictoryPoint);
+	    			} 
+	    		if(this.getVictoryPointsRanking().get(0).getName().equals(jsonLineItem.get("name").toString())){
+	    			int numberOfWins = Integer.parseInt(jsonLineItem.get("numberOfWins").toString());
+	    			numberOfWins++;
+	    			jsonLineItem.put("numberOfWins", numberOfWins);
+	    		}
+	    		}
+	    		
+	    	}
+		File file = new File("Users.json");
+		try {
+			file.createNewFile();
+			FileWriter filewriter = new FileWriter(file);
+			filewriter.write(users.toJSONString());
+			filewriter.flush();
+			filewriter.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+   	
+	}
+
+
 
 
 	public void assignResources() {
 		for (int i = 0; i < players.size(); i++) {
 			if (!players.get(i).getPlayerColor().equals(Color.Black)){
-				players.get(i).getMyPersonalBoard().setMyPossession(new Possession(5+i, 5+i, 5+i, 5+i, 0, 0, 0));
+				players.get(i).getMyPersonalBoard().setMyPossession(new Possession(5+i, 5+i, 5+i, 5+i, 0, 0, 5));
 			}
 		}
 		

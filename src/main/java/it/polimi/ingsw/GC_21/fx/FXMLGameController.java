@@ -8,6 +8,7 @@ import java.awt.ScrollPaneAdjustable;
 import java.awt.Scrollbar;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -89,6 +90,7 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.AnchorPane;
 
@@ -108,23 +110,27 @@ public class FXMLGameController extends MetaController implements Initializable{
 	private ArrayList<Player> classPlayers;
 	private Player myPlayer;
 	private MessThread messThread;
-	private boolean canGo, secondcard = false;
+	private boolean canGo, isBlack, secondcard = false;
 	private Object LOCK = new Object(); // just something to lock on
     private ArrayList<ArrayList<ToggleGroup>> tabs = new ArrayList<ArrayList<ToggleGroup>>();
     private ArrayList<ToggleGroup> leaders = new ArrayList<ToggleGroup>();
     private ArrayList<ArrayList<Text>> ress = new ArrayList<ArrayList<Text>>();
     private ArrayList<Tab> playerNames = new ArrayList<Tab>();
     private TimerThread timerThread;
+    private ArrayList<it.polimi.ingsw.GC_21.PLAYER.FamilyMember> councilFM = new ArrayList<it.polimi.ingsw.GC_21.PLAYER.FamilyMember>();
+    private ArrayList<it.polimi.ingsw.GC_21.PLAYER.FamilyMember> productionFM = new ArrayList<it.polimi.ingsw.GC_21.PLAYER.FamilyMember>();
+    private ArrayList<it.polimi.ingsw.GC_21.PLAYER.FamilyMember> harvestFM = new ArrayList<it.polimi.ingsw.GC_21.PLAYER.FamilyMember>();
     private static String background = new String("-fx-text-fill: transparent; -fx-opacity:0.5; -fx-border-radius: 40; -fx-background-radius: 40;");
 
 	//riferimento ad array di carte, dadi, risorse e player
 	@FXML private ToggleGroup cards, place, excomm, family, myterritory, mybuilding, myventure, myleader, mycharacheter, x3,x4,x5,x6,x7,x12,x14,x15,x16,x13,x20,x23,x21,x22,x24,x27,x28,x29,x30,x31;
-	@FXML private Text whitedice, blackdice, orangedice, state;
+	@FXML private Text whitedice, blackdice, orangedice, state, eventlog;
 	@FXML private Text servconverting, r1,r2,r3,r4,r5,r6,r7,r8, r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20,r21,r22,r23,r24,r25,r26,r27,r28,r29,r30,r31,r32,r33,r34,r35;
 	@FXML private Tab pl1,pl2,pl3,pl4,pl5;
 	@FXML private javafx.scene.control.Button confirmbtn, music;
-	@FXML private ToggleButton white, black, orange, neutral;
+	@FXML private ToggleButton white, black, orange, neutral, councilbtn;
 	@FXML private AnchorPane anchorPane; 
+	@FXML private HBox councilbox, productionbox, harvestbox; //Hbox to create dinamicly Family Members images on multiple action spaces
 	
 	 @FXML protected void Tower(ActionEvent event) {
 			 
@@ -176,11 +182,16 @@ public class FXMLGameController extends MetaController implements Initializable{
 		 }
 	 
 	 	@FXML protected void FamilyMember(ActionEvent event) {  		
-		 ToggleButton button = (ToggleButton) family.getSelectedToggle();
-		 if(button!=null) {
-			 familyMemberColor = FamilyMemberColor.valueOf(button.getText());
-			 System.out.println( familyMemberColor );
-		 }
+		 if (canGo) {
+			ToggleButton button = (ToggleButton) family.getSelectedToggle();
+			//setFamilyButton();
+			if (button != null) {
+				familyMemberColor = FamilyMemberColor.valueOf(button.getText());
+				System.out.println(familyMemberColor);
+				((Node) family.getSelectedToggle()).setVisible(false);
+				((Node) family.getSelectedToggle()).setOpacity(0.0);
+			} 
+		}
 		 }
 	 
 	 @FXML protected void Serv(ActionEvent event) {
@@ -199,6 +210,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 			servToConvert=0;
 			servconverting.setText(String.valueOf(servToConvert));
 			placementinputForm=null;
+			this.setFamilyButton();
 			for (int i = 0; i < family.getToggles().size(); i++) {
 				family.getToggles().get(i).setSelected(false);
 			}
@@ -209,18 +221,20 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 }
 	 
 	 @FXML protected void Pass(ActionEvent event) {
-		 if(timerThread!=null){	
-			 timerThread.interrupt();
-			 }
-		 PassInput passInput = new PassInput();
-		 try {
-			client.sendInput(passInput);
+		 if (canGo) {
+			if (timerThread != null) {
+				timerThread.interrupt();
+			}
+			PassInput passInput = new PassInput();
+			try {
+				client.sendInput(passInput);
 
-		} catch (IOException e) {
-			e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Reset(event);
+			canGo = false;
 		}
-		 Reset(event);
-		 canGo = false;
 	 }
 	 
 	 @FXML protected void Confirm(ActionEvent event) throws RemoteException, IOException {
@@ -288,75 +302,77 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 
 	 @FXML protected void discardLeader(ActionEvent event) {
 		 	
-		 	javafx.scene.control.Button button = (javafx.scene.control.Button) event.getSource();
-			ArrayList<String> choices = new ArrayList<String>();
-		
-			if(button.getText().equals("Play Leader")) {
-			for (int j = 0; j < myPlayer.getMyPersonalBoard().getLeaderCards().size(); j++) {
-				if(myPlayer.getMyPersonalBoard().getLeaderCards().get(j).isPlayed() && myPlayer.getMyPersonalBoard().getLeaderCards().get(j) instanceof OncePerTurnLeaderCard) {
-				choices.add(myPlayer.getMyPersonalBoard().getLeaderCards().get(j).getName());
+		 	if (!isBlack && canGo) {
+				javafx.scene.control.Button button = (javafx.scene.control.Button) event.getSource();
+				ArrayList<String> choices = new ArrayList<String>();
+				if (button.getText().equals("Play Leader")) {
+					for (int j = 0; j < myPlayer.getMyPersonalBoard().getLeaderCards().size(); j++) {
+						if (myPlayer.getMyPersonalBoard().getLeaderCards().get(j).isPlayed() && myPlayer
+								.getMyPersonalBoard().getLeaderCards().get(j) instanceof OncePerTurnLeaderCard) {
+							choices.add(myPlayer.getMyPersonalBoard().getLeaderCards().get(j).getName());
+						}
+					}
+				} else {
+					for (int j = 0; j < myPlayer.getMyPersonalBoard().getLeaderCards().size(); j++) {
+						if (!myPlayer.getMyPersonalBoard().getLeaderCards().get(j).isPlayed()) {
+							choices.add(myPlayer.getMyPersonalBoard().getLeaderCards().get(j).getName());
+						}
+					}
 				}
-			}
-			} else {
-			for (int j = 0; j < myPlayer.getMyPersonalBoard().getLeaderCards().size(); j++) {
-				if(!myPlayer.getMyPersonalBoard().getLeaderCards().get(j).isPlayed()) {
-				choices.add(myPlayer.getMyPersonalBoard().getLeaderCards().get(j).getName());
+				if (choices.size() == 0) {
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							Alert alert = new Alert(AlertType.ERROR);
+							alert.setTitle("Error");
+							alert.setHeaderText("Invalid Action!");
+							alert.showAndWait();
+						}
+					});
 				}
-			}
-			}
-		
-			if(choices.size()==0) {
 				Platform.runLater(new Runnable() {
-				    @Override
-				    public void run() {
-				    	Alert alert = new Alert(AlertType.ERROR);
-						alert.setTitle("Error");
-						alert.setHeaderText("Invalid Action!");
-						alert.showAndWait();
-				    }
+					@Override
+					public void run() {
+						ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
+						dialog.setTitle("Leaders");
+						dialog.setHeaderText(button.getText());
+						dialog.setContentText("Choose which one: ");
+						Optional<String> result = dialog.showAndWait();
+						int j;
+						if (dialog.getResult()==null) {
+							return;
+						}
+						for (j = 0; j < myPlayer.getMyPersonalBoard().getLeaderCards().size(); j++) {
+							if (result.get().equals(myPlayer.getMyPersonalBoard().getLeaderCards().get(j).getName())) {
+								break;
+							}
+						}
+						InputForm inputForm;
+						switch (button.getText()) {
+						case "Discard Leader":
+							inputForm = new DiscardInput(myPlayer, j);
+							break;
+						case "Activate Leader":
+							inputForm = new LeaderInput(myPlayer, String.valueOf(j + 1), true);
+							break;
+						case "Play Leader":
+							inputForm = new LeaderInput(myPlayer, String.valueOf(j + 1), false);
+							break;
+						default:
+							System.out.println("nome del bottone non coincide!");
+							return;
+						}
+						try {
+							client.sendInput(inputForm);
+							if (timerThread != null) {
+								timerThread.interrupt();
+							}
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
 				});
 			}
-			
-			Platform.runLater(new Runnable() {
-			    @Override
-			    public void run() {
-			    	ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
-			    	dialog.setTitle("Leaders");
-			    	dialog.setHeaderText(button.getText());
-			    	dialog.setContentText("Choose which one: ");
-			    	Optional<String> result = dialog.showAndWait();
-			    	int j;
-			    	if(result.get()==null) {
-			    		return;
-			    	}
-			    	for ( j= 0; j < myPlayer.getMyPersonalBoard().getLeaderCards().size(); j++) {
-						if(result.get().equals(myPlayer.getMyPersonalBoard().getLeaderCards().get(j).getName())) 
-						{break;}
-					}
-			    	InputForm inputForm;
-			    	switch (button.getText()) {
-					case "Discard Leader":
-				    	 inputForm = new DiscardInput(myPlayer, j);
-						break;
-					case "Activate Leader":
-				    	 inputForm = new LeaderInput(myPlayer,String.valueOf(j+1),true);
-						break;
-					case "Play Leader":
-				    	 inputForm = new LeaderInput(myPlayer,String.valueOf(j+1),false);
-						break;
-					default: System.out.println("nome del bottone non coincide!");
-						return;
-					}
-			    	try {
-			    		client.sendInput(inputForm);
-			    		if(timerThread!=null){	
-			   			 timerThread.interrupt();
-			   			 }
-			    	} catch (IOException e) {
-			    		e.printStackTrace();
-			    	}   
-			    }
-			});
 			
 		 
 	 }
@@ -368,6 +384,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 		for (int i = 0; i < players.size(); i++) {
 			if(myPlayer!=null && myPlayer.getName().equals(players.get(i).getName())) {
 				myPlayer=players.get(i);
+				
 			}
 		}
 		
@@ -412,6 +429,45 @@ public class FXMLGameController extends MetaController implements Initializable{
 					}
 				}			
 		}
+		//  multiple action space palacement
+		
+		Platform.runLater(new Runnable() {
+		    @Override
+		    public void run() {
+				councilbox.getChildren().clear();
+				productionbox.getChildren().clear();
+				harvestbox.getChildren().clear();
+				councilFM = board.getCouncilPalace().getMultipleActionSpace().getFamilyMembers();
+				productionFM = board.getProductionArea().getMultipleActionSpace().getFamilyMembers();
+				harvestFM = board.getHarvestArea().getMultipleActionSpace().getFamilyMembers();
+				for(int i=0; i< councilFM.size(); i++) {
+					String famcolor = councilFM.get(i).getAssociatedDice().getdiceColor().toString();
+					String color = councilFM.get(i).getOwnerPlayer().getPlayerColor().toString();
+					ImageView imageView = new ImageView(new Image("/familymembers/"+color+famcolor+".png"));
+					imageView.setFitWidth(35);
+					imageView.setFitHeight(35);
+					councilbox.getChildren().add(imageView);
+					}
+				for(int i=0; i< productionFM.size(); i++) {
+					String famcolor = productionFM.get(i).getAssociatedDice().getdiceColor().toString();
+					String color = productionFM.get(i).getOwnerPlayer().getPlayerColor().toString();
+					ImageView imageView = new ImageView(new Image("/familymembers/"+color+famcolor+".png"));
+					imageView.setFitWidth(35);
+					imageView.setFitHeight(35);
+					productionbox.getChildren().add(imageView);
+					}
+				for(int i=0; i< harvestFM.size(); i++) {
+					String famcolor = harvestFM.get(i).getAssociatedDice().getdiceColor().toString();
+					String color = harvestFM.get(i).getOwnerPlayer().getPlayerColor().toString();
+					ImageView imageView = new ImageView(new Image("/familymembers/"+color+famcolor+".png"));
+					imageView.setFitWidth(35);
+					imageView.setFitHeight(35);
+					harvestbox.getChildren().add(imageView);
+					}
+				}
+		    });
+			
+		
 		
 		//refresh market
 		for (int i = 0; i < 4; i++) {
@@ -420,7 +476,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 			System.out.println(i+" is busy");
 			String color = board.getMarketArea().getSingleActionSpace()[i].getFamilyMemberLocated().getOwnerPlayer().getPlayerColor().toString();
 			String famcolor = board.getMarketArea().getSingleActionSpace()[i].getFamilyMemberLocated().getAssociatedDice().getdiceColor().toString();
-			placebutton.setStyle(" -fx-background-image: url('/familymembers/"+color+famcolor+".png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-opacity:1;");
+			placebutton.setStyle(" -fx-background-image: url('/familymembers/"+color+famcolor+".png'); -fx-background-size: 35px; -fx-background-repeat: no-repeat; -fx-background-position: 100%; -fx-opacity:1; -fx-background-color: transparent;");
 			} else {
 				placebutton.setStyle(background);
 			}
@@ -528,6 +584,12 @@ public class FXMLGameController extends MetaController implements Initializable{
 	  public void ifChooseAction(boolean firstaction, String description, Player player, TimerThread timerThread) { 
 		myPlayer = player;
 	    this.timerThread=timerThread; 
+	    
+	    if(Color.Black == player.getPlayerColor()) {
+	    	isBlack=true;
+	    } else {
+			isBlack=false;
+		}
 
 		//start timer animation
 	   
@@ -636,6 +698,9 @@ public class FXMLGameController extends MetaController implements Initializable{
 		    	dialog.setHeaderText("Oh ciccio! You have a new Council Privilege!");
 		    	dialog.setContentText("Choose your reward:");
 		    	Optional<String> result = dialog.showAndWait();
+		    	if (dialog.getResult()==null) {
+					return;
+				}
 		    	result.ifPresent(letter -> privilegeInput.setChoice(result.get()));
 		    	try {
 		    		client.sendInput(privilegeInput);
@@ -697,10 +762,11 @@ public class FXMLGameController extends MetaController implements Initializable{
 
 		ButtonType buttonTypeOne = new ButtonType("Yes");
 		ButtonType buttonTypeTwo = new ButtonType("No");
-
 		alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
-
 		Optional<ButtonType> result = alert.showAndWait();
+		if (alert.getResult()==null) {
+			return;
+		}
 		if (result.get() == buttonTypeOne){
 		    excommInput = new ExcommInput("Y");
 		} else {
@@ -732,9 +798,9 @@ public class FXMLGameController extends MetaController implements Initializable{
 		    	dialog.setContentText("Choose your convert combination:");
 		    	Optional<String> result = dialog.showAndWait();
 		    	int j;
-		    	if(result.get()==null) {
-		    		return;
-		    	}
+		    	if (dialog.getResult()==null) {
+					return;
+				}
 		    	for ( j= 0; j < 2; j++) {
 					if(result.get().equals(choices.get(j))){
 					break;
@@ -772,7 +838,9 @@ public class FXMLGameController extends MetaController implements Initializable{
 						+ newFamilyMemberValue);
 		    	dialog.setContentText("Choose which one:");
 		    	Optional<String> result = dialog.showAndWait();
-		    	
+		    	if (dialog.getResult()==null) {
+					return;
+				}
 		    	try {
 		    		client.sendInput(new SetFamilyMemberInput(newFamilyMemberValue, player, FamilyMemberColor.valueOf(result.get())));
 		    	} catch (IOException e) {
@@ -790,7 +858,9 @@ public class FXMLGameController extends MetaController implements Initializable{
 		    	dialog.setTitle("you can add servants");
 		    	dialog.setHeaderText("You can make a craft with value " + actionValue + ", how many servant do you want to convert?");
 		    	Optional<String> result = dialog.showAndWait();
-			    	
+		    	if (dialog.getResult()==null) {
+					return;
+				}	
 		    	try {
 		    		if(result.isPresent()) {
 		    			client.sendInput(new CraftInput(craftType, actionValue, Integer.valueOf(result.get())));
@@ -818,6 +888,11 @@ public class FXMLGameController extends MetaController implements Initializable{
 		    }
 		});
 		
+	}
+
+	public void printMessDescription(String description) {
+		System.out.println("eventlog: "+description);
+		eventlog.setText(description);		
 	}
 	
 

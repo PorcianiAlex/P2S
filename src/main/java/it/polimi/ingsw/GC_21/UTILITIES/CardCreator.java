@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_21.GAMECOMPONENTS;
+package it.polimi.ingsw.GC_21.UTILITIES;
 
 import java.io.FileReader;
 import java.io.Serializable;
@@ -21,6 +21,13 @@ import it.polimi.ingsw.GC_21.EFFECT.ForEachGet;
 import it.polimi.ingsw.GC_21.EFFECT.LoseYourDevCardType;
 import it.polimi.ingsw.GC_21.EFFECT.PlacementInfluencer;
 import it.polimi.ingsw.GC_21.EFFECT.VictoryPointsInfluencer;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.CraftCard;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ExcommunicationCard;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ResourceType;
 
 public class CardCreator implements Serializable{
 	private Game game;
@@ -43,8 +50,8 @@ public class CardCreator implements Serializable{
 	    	if(Integer.parseInt(jsonLineItem.get("age").toString())==age && devCardType.equals(DevCardType.valueOf(jsonLineItem.get("DevType").toString()))){              	
            	DevelopmentCard devCardCreating;
 	    	if (devCardType.equals(DevCardType.Venture)) {
-				devCardCreating = new Ventures((String) jsonLineItem.get("name"));
-				this.addSecondReq((Ventures) devCardCreating, jsonLineItem);
+				devCardCreating = new DevelopmentCard((String) jsonLineItem.get("name"));
+				this.addFinalVP(devCardCreating, jsonLineItem);
 			}
 	    	if (devCardType.equals(DevCardType.Building) || devCardType.equals(DevCardType.Territory)) {
 				devCardCreating = new CraftCard((String) jsonLineItem.get("name"));
@@ -314,38 +321,10 @@ public class CardCreator implements Serializable{
         cardcreating.setRequirements(Req);  
 	}
 	
-	private void addSecondReq(Ventures cardcreating, JSONObject jsonLineItem) {
-		 
-		JSONArray reqarray= (JSONArray) jsonLineItem.get("SecReq");
-        
-	        Possession Req = new Possession(Integer.parseInt(reqarray.get(0).toString()),Integer.parseInt(reqarray.get(1).toString()),
-	        		Integer.parseInt(reqarray.get(2).toString()), Integer.parseInt(reqarray.get(3).toString()),
-	        		Integer.parseInt(reqarray.get(4).toString()), Integer.parseInt(reqarray.get(5).toString()), 
-	        	    Integer.parseInt(reqarray.get(6).toString()));
-	        cardcreating.setSecondRequirement(Req);  
+	private void addFinalVP(DevelopmentCard cardcreating, JSONObject jsonLineItem) {
+
 	        cardcreating.setFinalVictoryPoints(Integer.parseInt(jsonLineItem.get("VicPoint").toString()));
 		
 	}
-
-	public static void main(String[] args) {
-		Game game = new Game("aa");
-		CardCreator cardCreator = new CardCreator(game);
-		cardCreator.devCardsCreate(DevCardType.Building, 1);
-		cardCreator.devCardsCreate(DevCardType.Territory, 1);
-		cardCreator.devCardsCreate(DevCardType.Venture, 1);
-		cardCreator.devCardsCreate(DevCardType.Character, 1);
-		cardCreator.devCardsCreate(DevCardType.Building, 2); //OK
-		cardCreator.devCardsCreate(DevCardType.Territory,2);//OK
-		cardCreator.devCardsCreate(DevCardType.Venture, 2); //OK
-		cardCreator.devCardsCreate(DevCardType.Character,2); //OK
-		cardCreator.devCardsCreate(DevCardType.Building, 3); //OK
-		cardCreator.devCardsCreate(DevCardType.Territory, 3); //OK
-		cardCreator.devCardsCreate(DevCardType.Venture, 3);
-		cardCreator.devCardsCreate(DevCardType.Character, 3);
-		cardCreator.ExCardsCreate(1);
-		cardCreator.ExCardsCreate(2);
-
-		cardCreator.ExCardsCreate(3);
-
-	}
+	
 }
