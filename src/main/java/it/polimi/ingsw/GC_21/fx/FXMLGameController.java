@@ -182,11 +182,16 @@ public class FXMLGameController extends MetaController implements Initializable{
 		 }
 	 
 	 	@FXML protected void FamilyMember(ActionEvent event) {  		
-		 ToggleButton button = (ToggleButton) family.getSelectedToggle();
-		 if(button!=null) {
-			 familyMemberColor = FamilyMemberColor.valueOf(button.getText());
-			 System.out.println( familyMemberColor );
-		 }
+		 if (canGo) {
+			ToggleButton button = (ToggleButton) family.getSelectedToggle();
+			//setFamilyButton();
+			if (button != null) {
+				familyMemberColor = FamilyMemberColor.valueOf(button.getText());
+				System.out.println(familyMemberColor);
+				((Node) family.getSelectedToggle()).setVisible(false);
+				((Node) family.getSelectedToggle()).setOpacity(0.0);
+			} 
+		}
 		 }
 	 
 	 @FXML protected void Serv(ActionEvent event) {
@@ -205,6 +210,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 			servToConvert=0;
 			servconverting.setText(String.valueOf(servToConvert));
 			placementinputForm=null;
+			this.setFamilyButton();
 			for (int i = 0; i < family.getToggles().size(); i++) {
 				family.getToggles().get(i).setSelected(false);
 			}
@@ -215,18 +221,20 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 }
 	 
 	 @FXML protected void Pass(ActionEvent event) {
-		 if(timerThread!=null){	
-			 timerThread.interrupt();
-			 }
-		 PassInput passInput = new PassInput();
-		 try {
-			client.sendInput(passInput);
+		 if (canGo) {
+			if (timerThread != null) {
+				timerThread.interrupt();
+			}
+			PassInput passInput = new PassInput();
+			try {
+				client.sendInput(passInput);
 
-		} catch (IOException e) {
-			e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Reset(event);
+			canGo = false;
 		}
-		 Reset(event);
-		 canGo = false;
 	 }
 	 
 	 @FXML protected void Confirm(ActionEvent event) throws RemoteException, IOException {
@@ -294,7 +302,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 
 	 @FXML protected void discardLeader(ActionEvent event) {
 		 	
-		 	if (!isBlack) {
+		 	if (!isBlack && canGo) {
 				javafx.scene.control.Button button = (javafx.scene.control.Button) event.getSource();
 				ArrayList<String> choices = new ArrayList<String>();
 				if (button.getText().equals("Play Leader")) {

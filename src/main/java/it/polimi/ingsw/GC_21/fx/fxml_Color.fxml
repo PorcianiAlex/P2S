@@ -31,7 +31,7 @@
       <Font size="30.0" />
     </font>
   </Text>
-  <ToggleButton fx:id="blue" maxHeight="30.0" maxWidth="60.0" minHeight="30.0" minWidth="60.0" mnemonicParsing="false" onAction="#Color" prefHeight="30.0" prefWidth="60.0" text="Blue" textFill="#0066ff" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+  <ToggleButton fx:id="blue" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onAction="#Color" prefHeight="30.0" prefWidth="80.0" text="Blue" textFill="#0066ff" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
     <font>
       <Font size="14.0" fx:id="x1" />
     </font>
@@ -39,17 +39,17 @@
       <ToggleGroup fx:id="place" />
     </toggleGroup>
   </ToggleButton>
-  <ToggleButton fx:id="red" font="$x1" mnemonicParsing="false" onAction="#Color" prefHeight="30.0" prefWidth="60.0" text="Red" textFill="RED" toggleGroup="$place" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-  <ToggleButton fx:id="yellow" font="$x1" maxHeight="30.0" maxWidth="60.0" minHeight="30.0" minWidth="60.0" mnemonicParsing="false" onAction="#Color" prefHeight="30.0" prefWidth="60.0" text="Yellow" textFill="#fff500" toggleGroup="$place" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-  <ToggleButton fx:id="green" font="$x1" maxHeight="30.0" maxWidth="60.0" minHeight="30.0" minWidth="60.0" mnemonicParsing="false" onAction="#Color" prefHeight="30.0" prefWidth="60.0" text="Green" textFill="#009918" toggleGroup="$place" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+  <ToggleButton fx:id="red" font="$x1" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onAction="#Color" prefHeight="30.0" prefWidth="80.0" text="Red" textFill="RED" toggleGroup="$place" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+  <ToggleButton fx:id="yellow" font="$x1" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onAction="#Color" prefHeight="30.0" prefWidth="80.0" text="Yellow" textFill="#fff500" toggleGroup="$place" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+  <ToggleButton fx:id="green" font="$x1" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onAction="#Color" prefHeight="30.0" prefWidth="80.0" text="Green" textFill="#009918" toggleGroup="$place" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
   <Text fx:id="texttarget" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
   <Button fx:id="ready" mnemonicParsing="false" onAction="#Ready" text="Ready!" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-  <ToggleButton fx:id="black" maxHeight="30.0" maxWidth="60.0" minHeight="30.0" minWidth="60.0" mnemonicParsing="false" onAction="#Color" prefHeight="30.0" prefWidth="60.0" text="Black" textAlignment="CENTER" textFill="#202020" toggleGroup="$place" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+  <ToggleButton fx:id="black" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onAction="#Color" prefHeight="30.0" prefWidth="80.0" text="Black" textAlignment="CENTER" textFill="#202020" toggleGroup="$place" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
     <font>
       <Font name="System Bold Italic" size="14.0" />
     </font>
   </ToggleButton>
-  <Text strokeType="OUTSIDE"  strokeWidth="0.0" text="The Consipirator" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The Consipirator" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
     <font>
       <Font name="System Italic" size="14.0" />
     </font>
