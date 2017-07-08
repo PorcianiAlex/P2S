@@ -95,6 +95,10 @@ public class ControllerManager {
 			  JSONObject jsonObj = new JSONObject();
 	    	  jsonObj.put("name", user.toString());
 	    	  jsonObj.put("psw", psw.toString());
+	    	  jsonObj.put("VictoryPoints", 0);
+	    	  jsonObj.put("numberOfWins", 0);
+	    	  
+
 	    	  usersarray.add(jsonObj);
 	    	 		       
 		      objec.put("users", usersarray);
