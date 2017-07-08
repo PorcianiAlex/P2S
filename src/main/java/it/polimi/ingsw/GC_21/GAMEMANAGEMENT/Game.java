@@ -1,9 +1,11 @@
 package it.polimi.ingsw.GC_21.GAMEMANAGEMENT;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -43,6 +45,7 @@ public class Game extends Observable implements Serializable{
 	private ArrayList<Player> militaryPointsRanking;
 	private int currentPlayerNumber;
 	private boolean blackTurn = true;
+	private File associatedFile;
 	
 
 	
@@ -161,7 +164,7 @@ public class Game extends Observable implements Serializable{
 		GameOverMessage gameOverMessage = new GameOverMessage(true, "And the winner is... " + victoryPointsRanking.get(0).getName() + "!!!\n Congrats!", board, players, victoryPointsRanking);
 		this.notifyBroadcast(gameOverMessage);
 		this.saveStatistics();
-
+		
 	}
 
 
@@ -385,5 +388,20 @@ public class Game extends Observable implements Serializable{
 	public void setBlackTurn(boolean blackTurn) {
 		this.blackTurn = blackTurn;
 	}
+
+
+
+
+	public File getAssociatedFile() {
+		return associatedFile;
+	}
+
+
+
+
+	public void setAssociatedFile(File associatedFile) {
+		this.associatedFile = associatedFile;
+	}
+	
 
 }

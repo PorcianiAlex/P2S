@@ -13,6 +13,8 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.annotation.Resource;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -45,7 +47,7 @@ public class ControllerManager {
 	
 	private void loadSavedGames() {
  	    try {
-		File[] files = new File("C:\\Davide\\Poli\\P2S\\src\\main\\java\\it\\polimi\\ingsw\\GC_21\\GAMEMANAGEMENT\\SavedGames").listFiles();
+		File[] files = new File("src/main/resources/savedgames").listFiles();
 	    for (File file : files) {
 	 	    	ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
 	 	    	Game game = (Game) ois.readObject();
@@ -116,7 +118,8 @@ public class ControllerManager {
 		try {
 		Random random = new Random();
 		int gameNumber = random.nextInt(100000);
-		File file = new File("C:\\Davide\\Poli\\P2S\\src\\main\\java\\it\\polimi\\ingsw\\GC_21\\GAMEMANAGEMENT\\SavedGames\\" + gameNumber + game.getHost() + ".ser");
+		File file = new File("src/main/resources/savedgames/" + gameNumber + game.getHost() + ".ser");
+		game.setAssociatedFile(file);
 		FileOutputStream fileOutputStream;
 		fileOutputStream = new FileOutputStream(file);
 		ObjectOutputStream oos = new ObjectOutputStream(fileOutputStream);
@@ -204,10 +207,17 @@ public class ControllerManager {
 	}
 
 	public synchronized Game getMySavedGame(String username) {
+		
 		for (int i = 0; i < savedGames.size(); i++) {
 			ArrayList<Player> players = savedGames.get(i).getPlayers();
 			for (int j = 0; j < players.size(); j++) {
 				if (username.equals(players.get(j).getName())) {
+					File[] files = new File("src/main/resources/savedgames").listFiles();
+				    for (File file : files) {
+				 	    	if(file.getName().equals(savedGames.get(i).getAssociatedFile().getName())) {
+				 	    		file.delete();
+				 	    	}
+				    	}
 					return savedGames.get(i);
 				}
 			}

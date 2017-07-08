@@ -64,8 +64,16 @@ public class CheckLoginMessage extends MessageToClient {
 		this.possibleReconnection = possibleReconnection;
 	}
 
-	
+	public boolean isSavedGames() {
+		return savedGames;
+	}
 
+	public void setSavedGames(boolean savedGames) {
+		this.savedGames = savedGames;
+	}
+
+	
+	
 	
 
 	

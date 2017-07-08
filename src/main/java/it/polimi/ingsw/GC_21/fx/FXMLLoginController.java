@@ -33,6 +33,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.GridPane;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
@@ -49,6 +50,8 @@ public class FXMLLoginController extends MetaController {
 	@FXML private RadioButton RMI;
 	@FXML private RadioButton SOCKET;
 	@FXML private ToggleGroup connect;
+	@FXML private GridPane grid;
+
     
 	
     @FXML protected void handleSignInAction(ActionEvent event) throws Exception {
@@ -80,6 +83,7 @@ public class FXMLLoginController extends MetaController {
     	String pass = passwordField.getText();
        	
     	// crea e manda loginInput con username, pass, inorup
+    	
     	StartMessage logmess = (StartMessage) client.getReceivedMessage();
     	LoginInput loginInput = new LoginInput(username, pass, insert);
     	client.sendInput(loginInput);
@@ -106,20 +110,48 @@ public class FXMLLoginController extends MetaController {
     				    try {
 							client.sendInput(lobbyInput);
 							reconnect();
+							return;
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
-    				} else {
-    					newLobby(inputmessage);
-    					 } 
-    				}
+    				} 
+    			}
 
     			});	
-    	} else {
-			newLobby(inputmessage);
+    	} 
+    	if(inputmessage.isSavedGames()) {
+    			Platform.runLater(new Runnable(){ 
+        			@Override
+        			public void run() {
+        				
+        			   	Alert alert = new Alert(AlertType.CONFIRMATION);
+        				alert.setTitle("You have a saved match!");
+        				alert.setHeaderText("You can reload your saved match or start a new game");
+        				alert.setContentText("Do you want to reload it?");
+
+        				ButtonType buttonTypeOne = new ButtonType("Yes");
+        				ButtonType buttonTypeTwo = new ButtonType("No");
+
+        				alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+
+        				Optional<ButtonType> result = alert.showAndWait();
+        				if (result.get() == buttonTypeOne){
+        				    LobbyInput lobbyInput = new LobbyInput(false, true);
+        				    try {
+    							client.sendInput(lobbyInput);
+    							reconnect();
+    							return;
+    						} catch (IOException e) {
+    							e.printStackTrace();
+    						}
+        				} 
+        			}
+
+        			});	
+    		
+			
 		}
-    	
-    
+    	newLobby(inputmessage);
     }
     
     
@@ -145,13 +177,18 @@ public class FXMLLoginController extends MetaController {
     		 }
 	}
 
-    public void reconnect() {
-    	Stage stage = (Stage) welcometext.getScene().getWindow();
-        FXMLGame fxmlGame = new FXMLGame();
-        try {
-			fxmlGame.start(stage);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    public void reconnect() {	
+				Stage stage = (Stage) grid.getScene().getWindow();
+				
+				FXMLGame fxmlGame = new FXMLGame();
+				try {
+					fxmlGame.start(stage);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+		
+    }
+ 
+	
 }

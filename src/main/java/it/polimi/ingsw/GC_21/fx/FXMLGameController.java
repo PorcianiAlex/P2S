@@ -57,6 +57,7 @@ import it.polimi.ingsw.GC_21.VIEW.MarketPlacementInput;
 import it.polimi.ingsw.GC_21.VIEW.PassInput;
 import it.polimi.ingsw.GC_21.VIEW.PlacementInput;
 import it.polimi.ingsw.GC_21.VIEW.PrivilegeInput;
+import it.polimi.ingsw.GC_21.VIEW.SaveInput;
 import it.polimi.ingsw.GC_21.VIEW.SetFamilyMemberInput;
 import it.polimi.ingsw.GC_21.VIEW.TakeCardInput;
 import it.polimi.ingsw.GC_21.VIEW.TowerPlacementInput;
@@ -864,9 +865,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 		    	try {
 		    		if(result.isPresent()) {
 		    			client.sendInput(new CraftInput(craftType, actionValue, Integer.valueOf(result.get())));
-		    		} else {
-		    			client.sendInput(new CraftInput(craftType, actionValue, Integer.valueOf(result.get())));
-					}
+		    		}
 		    	} catch (IOException e) {
 		    		e.printStackTrace();
 		    	}
@@ -895,6 +894,12 @@ public class FXMLGameController extends MetaController implements Initializable{
 		eventlog.setText(description);		
 	}
 	
-
-	
+	 @FXML protected void saveGame(ActionEvent event) {
+		 try {
+			 SaveInput saveInput = new SaveInput();
+			 client.sendInput(saveInput);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	 }
 }
