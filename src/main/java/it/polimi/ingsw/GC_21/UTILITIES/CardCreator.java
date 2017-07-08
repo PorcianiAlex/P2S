@@ -28,7 +28,6 @@ import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ExcommunicationCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.ResourceType;
-import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Ventures;
 
 public class CardCreator implements Serializable{
 	private Game game;
