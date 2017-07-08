@@ -129,7 +129,6 @@ public class RmiClient extends UnicastRemoteObject implements Serializable, RmiC
 
 	@Override
 	public void close() throws IOException {
-		
 	}
 
 	

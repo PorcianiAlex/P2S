@@ -38,9 +38,9 @@ public class SocketClient implements Connections {
     }
 @Override
     public void close() throws IOException{
-    	socketclient.close();
     	oosClient.close();
     	oisClient.close();
+    	socketclient.close();
     }
 
 

@@ -131,7 +131,7 @@ public class Controller implements P2SObserver<Action>{
 
 	@Override
 	public void updateBlack() {
-		Player blackPlayer = modelGame.getCurrentAge().getCurrentRound().getBlackPlayer();
+		Player blackPlayer = modelGame.getCurrentRound().getBlackPlayer();
 		Player playerToSwitch = remoteView.getPlayer();
 		modelGame.notifyBlackSwitch(blackPlayer, playerToSwitch);
 		remoteView.setPlayer(blackPlayer);
@@ -139,13 +139,21 @@ public class Controller implements P2SObserver<Action>{
 		for (int i = 0; i < modelGame.getPlayers().size(); i++) {
 			modelGame.getPlayers().get(i).setBlackPoint(0);
 		}
-		
+		MessageToClient blackSwitch = new MessageToClient(true, "Maremma buhaiola!!! There was a conspiration: " + blackPlayer.getName() + " has taken " + playerToSwitch.getName() + "'s place "
+				+ "\nNow " + blackPlayer.getName() + " is " + playerToSwitch.getPlayerColor() + " and " + playerToSwitch.getName() + " is Black");
+		modelGame.notifyBroadcast(blackSwitch);
 	}
 
 	@Override
 	public void updateBlackSwitch(Player playerToSwitch) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void updateSave(String userWhoSaved) {
+		controllerManager.saveGame(modelGame);
+		modelGame.notifySave(userWhoSaved);
 	}
 
 

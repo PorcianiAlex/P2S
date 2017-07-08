@@ -11,11 +11,12 @@ public class LobbyInput extends InputForm{
 	private int joined;
 	private ControllerManager controllerManager;
 	private boolean reconnection;
+	private boolean savedGames;
 	
 	
-	
-	public LobbyInput(boolean reconnection) {
+	public LobbyInput(boolean reconnection, boolean savedGames) {
 		this.reconnection = reconnection;
+		this.savedGames = savedGames;
 	}
 
 	public LobbyInput(boolean created, int joined) {
@@ -49,14 +50,14 @@ public class LobbyInput extends InputForm{
 	
 	@Override
 	public void execute(RemoteView remoteView) {		
-			LobbyController checkLobbyMessage = new LobbyController(created, joined, reconnection);
+			LobbyController checkLobbyMessage = new LobbyController(created, joined, reconnection, savedGames);
 			remoteView.notifyController(checkLobbyMessage);
 	}
 	
 	@Override
 	public void inputFromCli() throws InterruptedException {
 			if (reconnection) {
-				System.out.println("You are  already in an active game. Do you want to continue this game? \n(Y) or (N)?");
+				System.out.println("You are  already in an active game. Do you want to reconnect in this game? \n(Y) or (N)?");
 				String answer = takeInput(this);
 				switch (answer) {
 				case "Y": reconnection = true;			
@@ -64,6 +65,27 @@ public class LobbyInput extends InputForm{
 				case "N": reconnection = false;
 					chooseOrCreate();
 				default: reconnection = false;
+					possibleSavedGames();
+					break;
+				}
+			}
+			else {
+				possibleSavedGames();
+			}
+		
+		}
+		
+	
+		private void possibleSavedGames() throws InterruptedException {
+			if (savedGames) {
+				System.out.println("You have some saved games. Do you want to continue this game? \n(Y) or (N)?");
+				String answer = takeInput(this);
+				switch (answer) {
+				case "Y": savedGames = true;			
+					break;
+				case "N": savedGames = false;
+					chooseOrCreate();
+				default: savedGames = false;
 					chooseOrCreate();
 					break;
 				}
@@ -71,10 +93,8 @@ public class LobbyInput extends InputForm{
 			else {
 				chooseOrCreate();
 			}
-		
-		}
-		
-	
+	}
+
 		public void chooseOrCreate() throws InterruptedException {
 			try{
 			String choice = takeInput(this);
@@ -86,7 +106,7 @@ public class LobbyInput extends InputForm{
 		} catch (NumberFormatException e) {
 			System.out.println("Invalid input, choose C or a game number");
 			chooseOrCreate();
-		}
+			}
 		}
 			  
 	

@@ -20,6 +20,14 @@ public abstract class Observable<C> {
 	private ArrayList<P2SObserver<C>> observers;
 	private CurrentObserver currentObserver;
 	private HashMap<P2SObserver<C>, Player> playerObserver = new HashMap<P2SObserver<C>, Player>();
+	
+	
+	public void clear() {
+		observers.clear();
+		currentObserver = null;
+		playerObserver.clear();
+
+	}
 			
 	public void attachCurrent(CurrentObserver currentObserver){
 		this.currentObserver=currentObserver;
@@ -71,6 +79,12 @@ public abstract class Observable<C> {
 				o.updateInit();
 			}
 		}
+	
+	public void notifySave(String string) {
+		for (P2SObserver<C> o : this.observers) {
+				o.updateSave(string);
+			}
+		}
 			
 	public void notifyBlackSwitch(Player blackPlayer, Player playerToSwitch){
 	for (P2SObserver<C> o : this.observers) {
@@ -103,12 +117,17 @@ public abstract class Observable<C> {
 
 
 	
-	public void notifyOrderedTurn(ArrayList<Player> turnOrder) {
+	public void notifyOrderedTurn(ArrayList<Player> turnOrder, int currentPlayerNumber) {
 		for (int i = 0; i < turnOrder.size(); i++) {
 			for (P2SObserver<C> o : this.observers) {
 				if (turnOrder.get(i).equals(playerObserver.get(o))) {
-					o.updateTurn();
-					detachCurrent();
+					if (currentPlayerNumber == 0) {
+						o.updateTurn();
+						detachCurrent();
+					}
+					else {
+						currentPlayerNumber --;
+					}
 				}
 			}
 			

@@ -25,7 +25,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface, Seri
 
     public  Server(int port) throws RemoteException{
         this.port=port;
-        
         String ip;
 		try {
 			ip = InetAddress.getLocalHost().getHostAddress();

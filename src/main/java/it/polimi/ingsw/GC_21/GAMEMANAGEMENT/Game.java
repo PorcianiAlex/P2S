@@ -27,13 +27,20 @@ public class Game extends Observable implements Serializable{
 	private int id;
 	private String host;
 	private int numberOfPlayers;
+	private int numberOfPlayersActuallyPresent;
 	private Board board;
 	private ArrayList<Player> players;
 	private Age currentAge;
+	private Round currentRound;
+	private Turn currentTurn;
 	private ExcommHandler excommHandler;
 	private LeaderDeck leaderDeck;
 	private ArrayList<Player> victoryPointsRanking;
 	private ArrayList<Player> militaryPointsRanking;
+	private int currentPlayerNumber;
+	private boolean blackTurn = true;
+	
+
 	
 	
 	public Game(String host) {
@@ -54,6 +61,11 @@ public class Game extends Observable implements Serializable{
 		this.leaderDeck = new LeaderDeck(this);
 		victoryPointsRanking = new ArrayList<Player>();
 		militaryPointsRanking = new ArrayList<Player>();
+		this.currentAge = new Age(1, this);
+		this.currentRound = new Round(1, this);
+		this.currentTurn = new Turn(1, this);
+
+
 		}
 	
 	
@@ -129,12 +141,13 @@ public class Game extends Observable implements Serializable{
 	
 	
 	public void executeGame() {
+		numberOfPlayersActuallyPresent = Integer.valueOf(numberOfPlayers);
 		this.assignResources();
 		for(int i = 0; i < players.size(); i++){
 			victoryPointsRanking.add(players.get(i));
 			militaryPointsRanking.add(players.get(i));
 		}
-		for (int i = 1; i < 4; i++) {
+		for (int i = currentAge.getAgeNumber(); i < 4; i++) {
 			currentAge = new Age(i, this);
 			currentAge.executeAge();
 		}
@@ -268,5 +281,60 @@ public class Game extends Observable implements Serializable{
 	}
 
 
+
+
+	public int getCurrentPlayerNumber() {
+		return currentPlayerNumber;
+	}
+
+
+
+
+	public void setCurrentPlayer(Player currentPlayer) {
+		this.currentPlayerNumber = getCurrentRound().getTurnOrder().indexOf(currentPlayer);
+	}
+	
+	public void setCurrentPlayerNumber(int currentPlayerNumber) {
+		this.currentPlayerNumber = currentPlayerNumber;
+	}
+
+
+
+
+	public int getNumberOfPlayersActuallyPresent() {
+		return numberOfPlayersActuallyPresent;
+	}
+
+
+
+
+	public void setNumberOfPlayersActuallyPresent(int numberOfPlayersActuallyPresent) {
+		this.numberOfPlayersActuallyPresent = numberOfPlayersActuallyPresent;
+	}
+
+	
+	public Round getCurrentRound() {
+		return currentRound;
+	}
+
+	public void setCurrentRound(Round currentRound) {
+		this.currentRound = currentRound;
+	}
+	
+	public Turn getCurrentTurn() {
+		return currentTurn;
+	}
+
+	public void setCurrentTurn(Turn currentTurn) {
+		this.currentTurn = currentTurn;
+	}
+
+	public boolean isBlackTurn() {
+		return blackTurn;
+	}
+
+	public void setBlackTurn(boolean blackTurn) {
+		this.blackTurn = blackTurn;
+	}
 
 }

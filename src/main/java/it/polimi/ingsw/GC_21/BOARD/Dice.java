@@ -13,7 +13,7 @@ public class Dice implements Serializable {
 	
 	private Dice(FamilyMemberColor familyMemberColor) {
 		this.diceColor = familyMemberColor;
-		random=new Random();
+		random = new Random();
 		this.value = random.nextInt(6)+1;
 	}
 	

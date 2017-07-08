@@ -25,7 +25,7 @@ public InitGameInput() {
 	@Override
 	public void execute(RemoteView remoteView) {
 	    remoteView.notifyInit();
-	    remoteView.notifyClose();
+	    remoteView.getGame().notifyClose();
 	  } 
 	
 
