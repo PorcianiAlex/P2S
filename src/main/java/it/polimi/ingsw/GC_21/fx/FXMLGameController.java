@@ -381,6 +381,8 @@ public class FXMLGameController extends MetaController implements Initializable{
 	
 
 	public void refreshBoard(Board board, ArrayList<Player> players, String dString) {
+		//refreshlog
+		eventlog.setText(" ");
 		//update my player
 		for (int i = 0; i < players.size(); i++) {
 			if(myPlayer!=null && myPlayer.getName().equals(players.get(i).getName())) {
@@ -760,7 +762,11 @@ public class FXMLGameController extends MetaController implements Initializable{
 		alert.setTitle("Excommunication time");
 		alert.setHeaderText(description);
 		alert.setContentText("Choose your destiny:");
-
+		ImageView imageView = new ImageView(new Image("/components/papaa.png"));
+    	//imageView.setFitHeight(400);
+    	//imageView.setFitWidth(250);
+    	alert.setGraphic(imageView);
+    	
 		ButtonType buttonTypeOne = new ButtonType("Yes");
 		ButtonType buttonTypeTwo = new ButtonType("No");
 		alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);

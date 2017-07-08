@@ -118,6 +118,7 @@ public class FXMLLoginController extends MetaController {
     			}
 
     			});	
+    		return;
     	} 
     	if(inputmessage.isSavedGames()) {
     			Platform.runLater(new Runnable(){ 
@@ -148,7 +149,7 @@ public class FXMLLoginController extends MetaController {
         			}
 
         			});	
-    		
+    		return;
 			
 		}
     	newLobby(inputmessage);
@@ -167,7 +168,7 @@ public class FXMLLoginController extends MetaController {
     			return;
     		}
     		 else {
-    	Stage stage = (Stage) welcometext.getScene().getWindow();
+    	Stage stage = (Stage) grid.getScene().getWindow();
         FXMLLobby fxmlLobby = new FXMLLobby();
         try {
 			fxmlLobby.start(stage);
