@@ -56,10 +56,8 @@ public class Game extends Observable implements Serializable{
 		try {
 			this.board = new Board(this);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 		this.players = new ArrayList<Player>();
@@ -71,18 +69,11 @@ public class Game extends Observable implements Serializable{
 		this.currentAge = new Age(1, this);
 		this.currentRound = new Round(1, this);
 		this.currentTurn = new Turn(1, this);
-
-
 		}
 	
-	
-
-
 	public ArrayList<Player> getVictoryPointsRanking() {
 		return victoryPointsRanking;
 	}
-
-
 
 
 	public void setVictoryPointsRanking(ArrayList<Player> victoryPointsRanking) {
@@ -164,7 +155,6 @@ public class Game extends Observable implements Serializable{
 		GameOverMessage gameOverMessage = new GameOverMessage(true, "And the winner is... " + victoryPointsRanking.get(0).getName() + "!!!\n Congrats!", board, players, victoryPointsRanking);
 		this.notifyBroadcast(gameOverMessage);
 		this.saveStatistics();
-		
 	}
 
 
