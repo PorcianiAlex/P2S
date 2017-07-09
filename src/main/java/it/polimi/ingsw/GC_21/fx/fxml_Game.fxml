@@ -379,19 +379,19 @@
                         <ToggleButton layoutX="295.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x16" />
                         <ToggleButton layoutX="364.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x16" />
                         <Circle fill="GREY" layoutX="187.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="180.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Text id="orangedice" fx:id="r17" fill="WHITE" font="$x8" layoutX="180.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
                         <Circle fill="$x9" layoutX="117.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="110.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Text id="orangedice" fx:id="r16" fill="WHITE" font="$x8" layoutX="110.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
                         <Circle fill="$x10" layoutX="46.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="39.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Text id="orangedice" fx:id="r15" fill="WHITE" font="$x8" layoutX="39.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
                         <Circle fill="$x11" layoutX="257.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="250.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Text id="orangedice" fx:id="r18" fill="WHITE" font="$x8" layoutX="250.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x17" height="26.6015625" layoutX="465.0" layoutY="436.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
-                        <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VP: 5" />
+                        <Text fx:id="r19" fill="WHITE" font="$x2" layoutX="468.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VP: 5" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x18" height="26.6015625" layoutX="465.0" layoutY="469.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
-                        <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MP: 5" />
+                        <Text fx:id="r20" fill="WHITE" font="$x2" layoutX="468.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MP: 5" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x19" height="26.6015625" layoutX="465.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
-                        <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FP: 5" />
+                        <Text fx:id="r21" fill="WHITE" font="$x2" layoutX="468.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FP: 5" />
                       </children>
                     </AnchorPane>
                   </content>
@@ -460,19 +460,19 @@
                         <ToggleButton layoutX="295.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x24" />
                         <ToggleButton layoutX="364.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x24" />
                         <Circle fill="GREY" layoutX="187.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="180.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Text id="orangedice" fx:id="r24" fill="WHITE" font="$x8" layoutX="180.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
                         <Circle fill="$x9" layoutX="117.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="110.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Text id="orangedice" fx:id="r23" fill="WHITE" font="$x8" layoutX="110.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
                         <Circle fill="$x10" layoutX="46.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="39.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Text id="orangedice" fx:id="r22" fill="WHITE" font="$x8" layoutX="39.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
                         <Circle fill="$x11" layoutX="257.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="250.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Text id="orangedice" fx:id="r25" fill="WHITE" font="$x8" layoutX="250.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x17" height="26.6015625" layoutX="465.0" layoutY="436.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
-                        <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VP: 5" />
+                        <Text fx:id="r26" fill="WHITE" font="$x2" layoutX="468.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VP: 5" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x18" height="26.6015625" layoutX="465.0" layoutY="469.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
-                        <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MP: 5" />
+                        <Text id="r26" fx:id="r27" fill="WHITE" font="$x2" layoutX="468.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MP: 5" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x19" height="26.6015625" layoutX="465.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
-                        <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FP: 5" />
+                        <Text fx:id="r28" fill="WHITE" font="$x2" layoutX="468.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FP: 5" />
                       </children>
                     </AnchorPane>
                   </content>
@@ -541,19 +541,19 @@
                         <ToggleButton layoutX="295.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x31" />
                         <ToggleButton layoutX="364.0" layoutY="430.0" minWidth="54.0" mnemonicParsing="false" onAction="#Card" opacity="1.0" prefHeight="91.0" prefWidth="61.0" text="" toggleGroup="$x31" />
                         <Circle fill="GREY" layoutX="187.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="180.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Text id="orangedice" fx:id="r31" fill="WHITE" font="$x8" layoutX="180.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
                         <Circle fill="$x9" layoutX="117.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="110.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Text id="orangedice" fx:id="r30" fill="WHITE" font="$x8" layoutX="110.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
                         <Circle fill="$x10" layoutX="46.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="39.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Text id="orangedice" fx:id="r29" fill="WHITE" font="$x8" layoutX="39.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
                         <Circle fill="$x11" layoutX="257.0" layoutY="297.0" radius="20.9609375" stroke="BLACK" strokeType="INSIDE" />
-                        <Text id="orangedice" fill="WHITE" font="$x8" layoutX="250.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
+                        <Text id="orangedice" fx:id="r32" fill="WHITE" font="$x8" layoutX="250.0" layoutY="305.0" scaleX="1.0000057971013028" scaleY="0.998345149596182" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-size: 32pt;&#10;-fx-background-color: white;" text="5" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x17" height="26.6015625" layoutX="465.0" layoutY="436.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
-                        <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VP: 5" />
+                        <Text fx:id="r33" fill="WHITE" font="$x2" layoutX="468.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VP: 5" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x18" height="26.6015625" layoutX="465.0" layoutY="469.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
-                        <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MP: 5" />
+                        <Text fx:id="r34" fill="WHITE" font="$x2" layoutX="468.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MP: 5" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x19" height="26.6015625" layoutX="465.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
-                        <Text fill="WHITE" font="$x2" layoutX="468.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FP: 5" />
+                        <Text fx:id="r35" fill="WHITE" font="$x2" layoutX="468.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FP: 5" />
                       </children>
                     </AnchorPane>
                   </content>
