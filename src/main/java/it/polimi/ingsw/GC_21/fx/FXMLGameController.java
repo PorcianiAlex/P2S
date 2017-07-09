@@ -206,7 +206,9 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 }
 	 
 	 @FXML protected void Reset(ActionEvent event) {
-		
+		 	
+			eventlog.setText(" ");
+
 		 	familyMemberColor=null;
 			servToConvert=0;
 			servconverting.setText(String.valueOf(servToConvert));
@@ -585,7 +587,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	  public void ifChooseAction(boolean firstaction, String description, Player player, TimerThread timerThread) { 
 		myPlayer = player;
 	    this.timerThread=timerThread; 
-	    
+		eventlog.setText("It's your Turn!");
 	    if(Color.Black == player.getPlayerColor()) {
 	    	isBlack=true;
 	    } else {
@@ -722,7 +724,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 				alert.setTitle("Take new card");
 				alert.setHeaderText("You can take another card!");
 				alert.setContentText("Hey sgangherato, you can take another Card!!!\n"
-						+ " Check your Card, you may have some restriction on Card Type and a discount\nJust choose your space on tower and press confirm\n"
+						+ "Check your Card, you may have some restriction on Card Type and a discount\nJust choose your space on tower and press confirm\n"
 						+ "Your new action value is: " + actionValueInfluencer);
 				alert.showAndWait();
 		    }    

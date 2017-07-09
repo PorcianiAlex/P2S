@@ -91,6 +91,7 @@ public class FXMLLoginController extends MetaController {
     	CheckLoginMessage inputmessage = (CheckLoginMessage) client.getReceivedMessage();
     	//for reconnecting users..
     	if(inputmessage.isPossibleReconnection()) {
+    		go=false;
     		Platform.runLater(new Runnable(){ 
     			@Override
     			public void run() {
@@ -111,17 +112,19 @@ public class FXMLLoginController extends MetaController {
     				    try {
 							client.sendInput(lobbyInput);
 							reconnect();
-							go=false;
 							return;
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
-    				} 
+    				} else{
+						go=true;
+    				}
     			}
 
     			});	
     	} 
     	if(inputmessage.isSavedGames()) {
+			go=false;
     			Platform.runLater(new Runnable(){ 
         			@Override
         			public void run() {
@@ -142,12 +145,13 @@ public class FXMLLoginController extends MetaController {
         				    try {
     							client.sendInput(lobbyInput);
     							reconnect();
-    							go=false;
     							return;
     						} catch (IOException e) {
     							e.printStackTrace();
     						}
-        				} 
+        				} else{
+							go=true;
+        				}
         			}
 
         			});	
@@ -182,7 +186,7 @@ public class FXMLLoginController extends MetaController {
     		 }
 	}
 
-    public void reconnect() {	
+    public synchronized void reconnect() {	
 				Stage stage = (Stage) grid.getScene().getWindow();
 				
 				FXMLGame fxmlGame = new FXMLGame();

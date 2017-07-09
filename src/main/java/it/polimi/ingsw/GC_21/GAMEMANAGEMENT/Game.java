@@ -204,7 +204,7 @@ public class Game extends Observable implements Serializable{
 	public void assignResources() {
 		for (int i = 0; i < players.size(); i++) {
 			if (!players.get(i).getPlayerColor().equals(Color.Black)){
-				players.get(i).getMyPersonalBoard().setMyPossession(new Possession(5+i, 5+i, 5+i, 5+i, 0, 0, 5));
+				players.get(i).getMyPersonalBoard().setMyPossession(new Possession(5+i, 5+i, 5+i, 5+i, 0, 0, 0));
 			}
 		}
 		
