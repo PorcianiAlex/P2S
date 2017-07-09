@@ -147,7 +147,7 @@ public class Controller implements P2SObserver<Action>{
 		
 	}
 
-	@Override<>
+	@Override
 	public void updateBlackSwitch(Player playerToSwitch) {
 		// TODO Auto-generated method stub
 		
