@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 
 public class OwnedCards implements Serializable{
 	private PersonalCardPlace[] myDevCards;
@@ -32,9 +33,18 @@ public class OwnedCards implements Serializable{
 		ownedCards[2].initOwnedCards();
 		ownedCards[3] = new OwnedCards(DevCardType.Territory, 6);
 		ownedCards[3].initOwnedCards();
+		ownedCards[3].setRequiredMP();
 		return ownedCards;
 	}
 	
+	private void setRequiredMP() {
+			this.myDevCards[2].setPossession(new Possession(0, 0, 0, 0, 0, 3, 0));
+			this.myDevCards[3].setPossession(new Possession(0, 0, 0, 0, 0, 7, 0));
+			this.myDevCards[4].setPossession(new Possession(0, 0, 0, 0, 0, 12, 0));
+			this.myDevCards[5].setPossession(new Possession(0, 0, 0, 0, 0, 18, 0));
+
+	}
+
 	public void initOwnedCards() {
 		for (int i = 0; i < this.myDevCards.length; i++) {
 			this.myDevCards[i]=new PersonalCardPlace(null, null);
