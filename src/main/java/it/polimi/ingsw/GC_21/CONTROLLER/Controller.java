@@ -122,7 +122,7 @@ public class Controller implements P2SObserver<Action>{
 		modelGame.detachCurrent();
 		controllerManager.getGames().remove(modelGame);
 		controllerManager.getActiveGames().add(modelGame);
-		ReadyMessage readyMessage = new ReadyMessage("Let start the game");
+		ReadyMessage readyMessage = new ReadyMessage("Let's start the game");
 		modelGame.notifyBroadcast(readyMessage);
 	    modelGame.executeGame(); 
 	}

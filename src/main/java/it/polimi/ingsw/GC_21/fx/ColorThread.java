@@ -29,31 +29,30 @@ public class ColorThread extends Thread {
 	@Override
 	public void run() {
 		while(true) {
-		System.out.println("thread in attesa");
 		MessageToClient mess;
 		try {
 			mess = client.getReceivedMessage();
-			if (mess instanceof CheckColorMessage) {
-				Platform.runLater(new Runnable() {
-					    @Override
-					    public void run() {
-					    	colorController.startTimer();
-					    }
-					});
-				}
-			else if (mess instanceof ReadyMessage) {
+		} catch (Exception e) {
+			return;
+		}
+		if (mess instanceof CheckColorMessage && ((CheckColorMessage) mess).isHost()) {
 			Platform.runLater(new Runnable() {
 				    @Override
 				    public void run() {
-				    	colorController.gameScene();
+				    	colorController.startTimer();
 				    }
 				});
-			return;
-			} else {
-				texttarget.setText(mess.getDescription());
 			}
-		} catch (ClassNotFoundException | IOException e) {
-			e.printStackTrace();
+		else if (mess instanceof ReadyMessage) {
+		Platform.runLater(new Runnable() {
+			    @Override
+			    public void run() {
+			    	colorController.gameScene();
+			    }
+			});
+		return;
+		} else {
+			texttarget.setText(mess.getDescription());
 		}
 		
 		
