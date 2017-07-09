@@ -76,11 +76,11 @@ public class OwnedCards implements Serializable{
 	
 	@Override
 	public String toString() {
-		String ownedCardString = "";
-		/*for (int i = 0; i < ownedCardsnumber; i++) {
-			ownedCardString = ownedCardString + ownedCards[i].getCard().toString() + " ";
-		}*/
-		return ownedCardString;
+		String ownedCardString = ownedDevCardsType.toString() + ":[";
+		for (int i = 0; i < ownedDevCardsNumber; i++) {
+			ownedCardString = ownedCardString + myDevCards[i].getCard().toString() + " ";
+		}
+		return ownedCardString + "]";
 	}
 	
 

@@ -33,9 +33,8 @@ public class MetaController {
 				JSONParser parser = new JSONParser(); //loading by file 
 				JSONObject obj = (JSONObject) parser.parse(file);
 				int port = Integer.parseInt(obj.get("SOCKETPORT").toString());
-				String ip = (obj.get("RMIPORT").toString());
+				String ip = (obj.get("IP").toString());
 			
-				ip = InetAddress.getLocalHost().getHostAddress();
 				SocketClient client1 = new SocketClient(ip, port, ViewType.GUI);
 				client = client1;
 	    } catch (IOException | ParseException e) {

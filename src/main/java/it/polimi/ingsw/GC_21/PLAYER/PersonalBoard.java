@@ -60,7 +60,9 @@ public class PersonalBoard implements Serializable{
 		this.toCallBeforeFinalCountEffects = new ArrayList<ToCallBeforeFinalCount>();
 		this.leaderCards = new ArrayList<LeaderCard>();
 		this.playedOncePerTurnLeaderCards = new ArrayList<OncePerTurnLeaderCard>();
-		this.pickLeaderCards(game.getLeaderDeck());
+		if(player.getPlayerColor()!=Color.Black) {
+			this.pickLeaderCards(game.getLeaderDeck());
+		}
 	}
 	
 	public void addDevCard(DevelopmentCard devCard) {

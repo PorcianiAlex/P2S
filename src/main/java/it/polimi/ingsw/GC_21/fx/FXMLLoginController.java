@@ -148,6 +148,7 @@ public class FXMLLoginController extends MetaController {
         			}
 
         			});	
+    		return;
 			
 		}
     		newLobby(inputmessage);
