@@ -892,9 +892,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 		    	Alert alert = new Alert(AlertType.ERROR);
 		    	alert.setTitle("End of The Game");
 		    	alert.setHeaderText("Chi vuol esser lieto sia, del doman non c'è certezza");
-		    	alert.setContentText(description+"\n\n"+stringBuilder);	
-		    	ImageView imageView = new ImageView(new Image("/leadercards/leaders_b_c_00.jpg"));
-		    	alert.setGraphic(imageView);
+		    	alert.setContentText(description+"\n\n"+stringBuilder.toString());	
 		    	alert.showAndWait();
 		    }
 		});
