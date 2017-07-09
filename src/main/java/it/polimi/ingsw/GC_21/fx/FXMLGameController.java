@@ -382,7 +382,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 
 	public void refreshBoard(Board board, ArrayList<Player> players, String dString) {
 		//refreshlog
-		eventlog.setText(" ");
+		//eventlog.setText(" ");
 		//update my player
 		for (int i = 0; i < players.size(); i++) {
 			if(myPlayer!=null && myPlayer.getName().equals(players.get(i).getName())) {
