@@ -272,7 +272,6 @@ public class FXMLGameController extends MetaController implements Initializable{
 		 if(button.getBackground()!=null) {
 		 BackgroundImage imageView = button.getBackground().getImages().get(0);
 		 Image image = imageView.getImage();
-		 
 		 Platform.runLater(new Runnable() {
 			    @Override
 			    public void run() {
@@ -302,7 +301,6 @@ public class FXMLGameController extends MetaController implements Initializable{
 
 	 
 	 @FXML protected void discardLeader(ActionEvent event) {
-		 	
 		 	if (!isBlack && canGo) {
 				javafx.scene.control.Button button = (javafx.scene.control.Button) event.getSource();
 				ArrayList<String> choices = new ArrayList<String>();
@@ -381,7 +379,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	
 
 	public void refreshBoard(Board board, ArrayList<Player> players, String dString) {
-		//refreshlog
+		//refresh log
 		//eventlog.setText(" ");
 		//update my player
 		for (int i = 0; i < players.size(); i++) {
@@ -432,7 +430,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 					}
 				}			
 		}
-		//  multiple action space palacement
+		//  multiple action space placement
 		
 		Platform.runLater(new Runnable() {
 		    @Override
