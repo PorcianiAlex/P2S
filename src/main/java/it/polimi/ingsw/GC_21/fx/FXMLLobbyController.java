@@ -49,12 +49,13 @@ public class FXMLLobbyController extends MetaController {
 	  
 	  @FXML protected void Join(ActionEvent event) throws IOException  {
 	    	
-	    
+	    try {
 		  	int num = Integer.parseInt(numberofmatch.getText());
-	    		
-	    	try {
-				this.openColorScene(false, num);
-			} catch (ClassNotFoundException e) {
+		  	this.openColorScene(false, num);
+		} catch (NumberFormatException e) {
+			error("invalid Input, plese insert a number!");
+			return;
+		} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
 	    }
@@ -67,11 +68,7 @@ public class FXMLLobbyController extends MetaController {
 		  	System.out.println(inputmessage.getDescription());
 		  	
 		  	if(!inputmessage.isResult()) {
-	    		Alert alert = new Alert(AlertType.ERROR);
-    			alert.setTitle("Error");
-    			alert.setHeaderText(inputmessage.getDescription());
-    			alert.setContentText(null);
-    			alert.showAndWait();
+	    		error(inputmessage.getDescription());
 	    		return;
 		  	} 
 	    	
@@ -82,6 +79,15 @@ public class FXMLLobbyController extends MetaController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+	}
+	  
+	  public void error(String string) {
+		  Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText(string);
+			alert.setContentText(null);
+			alert.showAndWait();
+  		
 	}
 
 
