@@ -116,7 +116,7 @@ public class TowerPlacement extends PlacementAction {
 		    }
 			OwnedCards ownedTerritoryCards = myPersonalBoard.getSpecificOwnedCards(DevCardType.Territory);
 			if(selectedCardType.equals(DevCardType.Territory) && !playerInAction.isCheckOnMP()
-					&& ownedTerritoryCards.getOwnedCardsnumber() > 2
+					&& ownedTerritoryCards.getOwnedCardsnumber() >= 2
 					&& !myPersonalBoard.getMyPossession().compare(ownedTerritoryCards.getMyDevCards()[ownedTerritoryCards.getOwnedCardsnumber()].getPossession())){
 				// check on MilitaryPoint Required taking a territoryCard. The requirement is saved in the correct personalCardPlace with the attribute Possession 
 				return false;
