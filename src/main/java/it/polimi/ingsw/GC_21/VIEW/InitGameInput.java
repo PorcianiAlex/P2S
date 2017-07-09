@@ -24,8 +24,9 @@ public InitGameInput() {
 
 	@Override
 	public void execute(RemoteView remoteView) {
-	    remoteView.notifyInit();
-	    remoteView.getGame().notifyClose();
+		if (remoteView.getGame().getNumberOfPlayers() != 5) { 
+		      remoteView.notifyInit(); 
+		    } 
 	  } 
 	
 
