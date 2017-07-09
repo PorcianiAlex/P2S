@@ -21,7 +21,6 @@ public class ExcommInput extends InputForm {
 	@Override
 	public void execute(RemoteView remoteView) {
 		super.execute(remoteView);
-		System.out.println("Do you want to be excommunicated? \n(Y) or (N)");
 		switch (choice) {
 		case "Y" : try {
 				remoteView.notifyObservers(new ExcommAction(remoteView.getPlayer(), remoteView.getGame(), true));
@@ -43,13 +42,13 @@ public class ExcommInput extends InputForm {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-					break;
-		}		
+		}
 	}
 
 
 @Override
 public void inputFromCli() throws InterruptedException {
+	System.out.println("Do you want to be excommunicated? \n(Y) or (N)");
 	choice = takeInput(this);
 }
 }
