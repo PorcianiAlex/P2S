@@ -149,7 +149,6 @@ public class Game extends Observable implements Serializable{
 	
 	public void executeGame() {
 		numberOfPlayersActuallyPresent = Integer.valueOf(numberOfPlayers);
-		this.assignResources();//only with create new game
 		for(int i = 0; i < players.size(); i++){
 			victoryPointsRanking.add(players.get(i));
 			militaryPointsRanking.add(players.get(i));

@@ -120,6 +120,7 @@ public class Controller implements P2SObserver<Action>{
 	@Override
 	public void updateInit() {
 		modelGame.detachCurrent();
+		modelGame.assignResources();//only with create new game
 		controllerManager.getGames().remove(modelGame);
 		controllerManager.getActiveGames().add(modelGame);
 		ReadyMessage readyMessage = new ReadyMessage("Let's start the game");
@@ -134,18 +135,19 @@ public class Controller implements P2SObserver<Action>{
 	public void updateBlack() {
 		Player blackPlayer = modelGame.getCurrentRound().getBlackPlayer();
 		Player playerToSwitch = remoteView.getPlayer();
+		MessageToClient blackSwitch = new MessageToClient(true, "Maremma buhaiola!!! There was a conspiration: " + blackPlayer.getName() + " has taken " + playerToSwitch.getName() + "'s place "
+				+ "\nNow " + blackPlayer.getName() + " is " + playerToSwitch.getPlayerColor() + " and " + playerToSwitch.getName() + " is Black");
+		modelGame.notifyBroadcast(blackSwitch);
 		modelGame.notifyBlackSwitch(blackPlayer, playerToSwitch);
 		remoteView.setPlayer(blackPlayer);
 		remoteView.getPlayer().setName(remoteView.getUsername());
 		for (int i = 0; i < modelGame.getPlayers().size(); i++) {
 			modelGame.getPlayers().get(i).setBlackPoint(0);
 		}
-		MessageToClient blackSwitch = new MessageToClient(true, "Maremma buhaiola!!! There was a conspiration: " + blackPlayer.getName() + " has taken " + playerToSwitch.getName() + "'s place "
-				+ "\nNow " + blackPlayer.getName() + " is " + playerToSwitch.getPlayerColor() + " and " + playerToSwitch.getName() + " is Black");
-		modelGame.notifyBroadcast(blackSwitch);
+		
 	}
 
-	@Override
+	@Override<>
 	public void updateBlackSwitch(Player playerToSwitch) {
 		// TODO Auto-generated method stub
 		
