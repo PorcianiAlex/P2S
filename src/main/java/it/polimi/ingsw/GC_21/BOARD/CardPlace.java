@@ -23,7 +23,7 @@ public class CardPlace implements Serializable {
 
 	@Override
 	public String toString() {
-		return "[card=" + card + "]";
+		return "[card=" + card.toString() + "]";
 	}
 	
 	
