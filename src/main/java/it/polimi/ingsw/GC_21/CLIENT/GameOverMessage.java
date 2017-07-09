@@ -22,7 +22,7 @@ public class GameOverMessage extends MessageToClient{
 	}
 	
 	public void executeGUI(FXMLGameController gameController) {		
-		gameController.gameOver(description);
+		gameController.gameOver(description, victoryPointsRanking);
 	}
 
 

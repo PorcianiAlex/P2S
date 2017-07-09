@@ -4,49 +4,50 @@
 <?import java.net.*?>
 <?import java.net.URL?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.text.Text?>
 
-<GridPane fx:id="grid" id="grid" prefHeight="536.0000558593674" prefWidth="776.9999000000025" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.ingsw.GC_21.fx.FXMLLoginController">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="70.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" minWidth="10.0" prefWidth="95.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" minWidth="10.0" prefWidth="139.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="366.0" minWidth="10.0" prefWidth="219.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="75.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="92.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES" />
-  </rowConstraints>
-  <stylesheets>
-    <URL value="@style.css" />
-  </stylesheets>
-  <TextField fx:id="user" onAction="#handleSignInAction" prefWidth="222.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-  <PasswordField fx:id="passwordField" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+<GridPane fx:id="grid" prefHeight="536.0000558593674" prefWidth="776.9999000000025" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.ingsw.GC_21.fx.FXMLLoginController">
+  <TextField fx:id="user" onAction="#handleSignInAction" prefWidth="222.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+  <PasswordField fx:id="passwordField" GridPane.columnIndex="3" GridPane.rowIndex="3" />
   <HBox prefHeight="54.0" prefWidth="303.0" spacing="10.0" styleClass="bottom-right" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="5">
     <Text fx:id="actiontarget" />
     <Button onAction="#handleSignInAction" text="Sign In" />
     <Button onAction="#handleSignUpAction" text="Sign Up" />
   </HBox>
   <Label text="Connection:" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-  <Label text="User Name:" textAlignment="LEFT" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-  <Label text="Password:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+  <Label text="User Name:" textAlignment="LEFT" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+  <Label text="Password:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
   <RadioButton fx:id="RMI" mnemonicParsing="false" selected="false" text="RMI" GridPane.columnIndex="3" GridPane.rowIndex="4">
     <toggleGroup>
       <ToggleGroup fx:id="connect" />
     </toggleGroup>
   </RadioButton>
   <RadioButton fx:id="SOCKET" mnemonicParsing="false" text="Socket" toggleGroup="$connect" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-  <Text fx:id="welcometext" fontSmoothingType="LCD" text="Welcome to Lorenzo il Magnifico" GridPane.columnIndex="1" GridPane.rowIndex="0">
-    <font>
-      <Font name="Castellar" size="18.0" />
-    </font>
-  </Text>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="84.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" minWidth="10.0" prefWidth="109.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" minWidth="10.0" prefWidth="153.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="366.0" minWidth="10.0" prefWidth="233.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="89.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="88.0" minHeight="10.0" prefHeight="77.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="78.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="92.0" minHeight="10.0" prefHeight="88.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+  <stylesheets>
+    <URL value="@style.css" />
+  </stylesheets>
+  <ImageView fitHeight="105.00004577636719" fitWidth="472.5001798712705" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.valignment="BASELINE">
+    <image>
+      <Image url="@startscritta.png" />
+    </image>
+  </ImageView>
 </GridPane>
