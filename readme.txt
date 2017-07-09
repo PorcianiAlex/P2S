@@ -17,7 +17,11 @@ TO RUN:
 	username: santa, password: prova;
 4. Once you logged, choose your color and create the game.
 5. Launch another Main(CLI or GUI), and sign in (or sign up). Now you can see all the on-going games, you can:
-	- join one of them;
+	- join one of them, by inserting the sequential number of the games that appear.
+		(Ex. if it appears: game: 1 players: 2 host: ale
+				game: 2 players: 2 host: ale
+				game: 5 players: 2 host: ale
+		Type 1 for game 1, 2 for game 2, 3 for game 5)
 	- create another game;
 6. When the second user joins the game, a timer of 90 seconds will start.
 7. The game starts if:
@@ -93,3 +97,17 @@ following what is written in the InputForm.
 
 Everytime a player joins or disconnects from the game, the other players are notificated.
 If a player is disconnected, he will automatically pass its turn.
+
+TO SAVE THE GAME:
+In our GUI you can find a "SAVE" button on the top-right (by CLI you have to write the command "save").
+Every player can save in any moment of the game, going on with the match.
+That's how it works:
+It saves a file .ser that contains the instance of the game in that moment, with all its stats.
+If the server goes down or the players leaves, the file stays on the disk.
+Once a player who is already in a saved game logs in again, he's asked if he wants to load the saved gamed, but
+only if all the other players left that or it ended.
+If he answer YES, then he has to wait for the other players of that game to log in.
+(After the loading of the game, the file .ser is deleted, so you cannot reload it again unless you don't save it another time)
+Once every players of that game is in, the game goes on.
+If he answer NO, then he goes in the lobby.
+
