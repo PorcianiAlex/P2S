@@ -42,6 +42,7 @@ import javafx.stage.Stage;
  
 public class FXMLLoginController extends MetaController {
 
+	private boolean go =true;
 	
 	@FXML private Text welcometext;
 	@FXML private Text actiontarget;
@@ -110,6 +111,7 @@ public class FXMLLoginController extends MetaController {
     				    try {
 							client.sendInput(lobbyInput);
 							reconnect();
+							go=false;
 							return;
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -140,6 +142,7 @@ public class FXMLLoginController extends MetaController {
         				    try {
     							client.sendInput(lobbyInput);
     							reconnect();
+    							go=false;
     							return;
     						} catch (IOException e) {
     							e.printStackTrace();
@@ -148,10 +151,11 @@ public class FXMLLoginController extends MetaController {
         			}
 
         			});	
-    		return;
 			
 		}
-    		newLobby(inputmessage);
+    		if (go) {
+				newLobby(inputmessage);
+			}
     	
     }
     

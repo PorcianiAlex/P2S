@@ -30,6 +30,7 @@ public class MessThread extends Thread{
 		while(true) {
 			System.out.println("attendo un nuovo messaggio dal thread!");
 			MessageToClient messageToClient = client.getReceivedMessage();
+			System.out.println(messageToClient.toString());
 			if (messageToClient instanceof ChooseActionMessage){
 				((ChooseActionMessage) messageToClient).setClient(client);
 			} 
