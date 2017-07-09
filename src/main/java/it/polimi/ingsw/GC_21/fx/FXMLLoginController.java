@@ -118,7 +118,7 @@ public class FXMLLoginController extends MetaController {
     			}
 
     			});	
-    		return;
+    		
     	} 
     	if(inputmessage.isSavedGames()) {
     			Platform.runLater(new Runnable(){ 
@@ -149,7 +149,7 @@ public class FXMLLoginController extends MetaController {
         			}
 
         			});	
-    		return;
+    		
 			
 		}
     	newLobby(inputmessage);
