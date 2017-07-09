@@ -273,7 +273,6 @@ public class FXMLGameController extends MetaController implements Initializable{
 		 if(button.getBackground()!=null) {
 		 BackgroundImage imageView = button.getBackground().getImages().get(0);
 		 Image image = imageView.getImage();
-		 
 		 Platform.runLater(new Runnable() {
 			    @Override
 			    public void run() {
@@ -303,7 +302,6 @@ public class FXMLGameController extends MetaController implements Initializable{
 
 	 
 	 @FXML protected void discardLeader(ActionEvent event) {
-		 	
 		 	if (!isBlack && canGo) {
 				javafx.scene.control.Button button = (javafx.scene.control.Button) event.getSource();
 				ArrayList<String> choices = new ArrayList<String>();
@@ -382,7 +380,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	
 
 	public void refreshBoard(Board board, ArrayList<Player> players, String dString) {
-		//refreshlog
+		//refresh log
 		//eventlog.setText(" ");
 		//update my player
 		for (int i = 0; i < players.size(); i++) {
@@ -433,7 +431,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 					}
 				}			
 		}
-		//  multiple action space palacement
+		//  multiple action space placement
 		
 		Platform.runLater(new Runnable() {
 		    @Override
@@ -590,7 +588,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	  public void ifChooseAction(boolean firstaction, String description, Player player, TimerThread timerThread) { 
 		myPlayer = player;
 	    this.timerThread=timerThread; 
-	    eventlog.setText("It's your turn!");
+	    
 	    if(Color.Black == player.getPlayerColor()) {
 	    	isBlack=true;
 	    } else {
@@ -726,7 +724,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 				alert.setTitle("Take new card");
 				alert.setHeaderText("You can take another card!");
 				alert.setContentText("Hey sgangherato, you can take another Card!!!\n"
-						+ " Check your Card, you may have some restriction on Card Type and a discount\nJust choose your space on tower and press confirm\n"
+						+ "Check your Card, you may have some restriction on Card Type and a discount\nJust choose your space on tower and press confirm\n"
 						+ "Your new action value is: " + actionValueInfluencer);
 				alert.showAndWait();
 		    }    
