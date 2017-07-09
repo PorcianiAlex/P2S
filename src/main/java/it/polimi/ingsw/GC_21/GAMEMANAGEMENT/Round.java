@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_21.BOARD.Dice;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevDeck;
 import it.polimi.ingsw.GC_21.PLAYER.Color;
+import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.VIEW.RemoteView;
 
@@ -61,6 +62,9 @@ public class Round implements Serializable{
 		game.setBlackTurn(true);
 		game.setCurrentTurn(new Turn(1, game));
 		game.getBoard().setDices(Dice.factoryDices());
+		for (int i = 0; i < game.getNumberOfPlayers(); i++) {
+			game.getPlayers().get(i).setFamilyMembers(FamilyMember.factoryFamilyMembers(game.getBoard().getDices(), game.getPlayers().get(i)));
+		}
 	}
 	
 	public void placeCard() {
