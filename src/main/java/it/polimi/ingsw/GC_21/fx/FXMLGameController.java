@@ -206,7 +206,8 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 }
 	 
 	 @FXML protected void Reset(ActionEvent event) {
-		
+		 
+		 	eventlog.setText(" ");
 		 	familyMemberColor=null;
 			servToConvert=0;
 			servconverting.setText(String.valueOf(servToConvert));
@@ -503,15 +504,17 @@ public class FXMLGameController extends MetaController implements Initializable{
 				}
 				
 			
-				
+		//name refresh in the tab pane		
 		
 		for (int i = 0; i < players.size(); i++) {
+			String colorcurrent = players.get(i).getPlayerColor().toString();
 			String name = players.get(i).getName();
 			Tab currtab = playerNames.get(i);
 			Platform.runLater(new Runnable() {
 			    @Override
 			    public void run() {
 			    	currtab.setText(name);
+			    	currtab.setStyle("-fx-text-fill: "+colorcurrent+";");
 			    }
 			   });
 		}
@@ -587,7 +590,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	  public void ifChooseAction(boolean firstaction, String description, Player player, TimerThread timerThread) { 
 		myPlayer = player;
 	    this.timerThread=timerThread; 
-	    
+	    eventlog.setText("It's your turn!");
 	    if(Color.Black == player.getPlayerColor()) {
 	    	isBlack=true;
 	    } else {
@@ -610,7 +613,6 @@ public class FXMLGameController extends MetaController implements Initializable{
         
 		//gli mostro la conferma
 		if(firstaction) {
-		System.out.println("è il tuo turno, sono nella chooseaction");
 		} else {
 			Platform.runLater(new Runnable() {
 			    @Override
