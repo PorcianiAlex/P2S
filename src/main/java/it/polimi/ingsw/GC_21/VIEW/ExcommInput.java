@@ -21,7 +21,7 @@ public class ExcommInput extends InputForm {
 	@Override
 	public void execute(RemoteView remoteView) {
 		super.execute(remoteView);
-
+		System.out.println("Do you want to be excommunicated? \n(Y) or (N)");
 		switch (choice) {
 		case "Y" : try {
 				remoteView.notifyObservers(new ExcommAction(remoteView.getPlayer(), remoteView.getGame(), true));

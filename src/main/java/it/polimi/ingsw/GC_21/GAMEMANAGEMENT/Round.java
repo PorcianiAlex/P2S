@@ -51,8 +51,7 @@ public class Round implements Serializable{
 				game.notifyBlackTurn(blackPlayer);
 			}
 			game.setBlackTurn(false);
-		}
-		for (int i = game.getCurrentTurn().getTurnNumber(); i < 5 ; i++) {
+		}		for (int i = game.getCurrentTurn().getTurnNumber(); i < 5 ; i++) {
 			Turn currentTurn = new Turn(i, game);
 			game.setCurrentTurn(currentTurn);
 			currentTurn.executeView(turnOrder);

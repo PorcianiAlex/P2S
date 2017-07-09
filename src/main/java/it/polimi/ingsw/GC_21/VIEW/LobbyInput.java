@@ -64,6 +64,7 @@ public class LobbyInput extends InputForm{
 					break;
 				case "N": reconnection = false;
 					chooseOrCreate();
+					break;
 				default: reconnection = false;
 					possibleSavedGames();
 					break;
@@ -84,8 +85,11 @@ public class LobbyInput extends InputForm{
 				case "Y": savedGames = true;			
 					break;
 				case "N": savedGames = false;
+					System.out.println("Look at the game you can choose or create (C) a new one");
 					chooseOrCreate();
+					break;
 				default: savedGames = false;
+				    System.out.println("Look at the game you can choose or create (C) a new one");
 					chooseOrCreate();
 					break;
 				}

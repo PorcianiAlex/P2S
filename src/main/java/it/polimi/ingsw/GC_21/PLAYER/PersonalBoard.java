@@ -1,7 +1,17 @@
 package it.polimi.ingsw.GC_21.PLAYER;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import it.polimi.ingsw.GC_21.ACTION.ExcommAction;
 import it.polimi.ingsw.GC_21.BOARD.CraftType;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.ToCallAfterFinalCount;
@@ -130,12 +140,19 @@ public class PersonalBoard implements Serializable{
 	public void earnByCharacters(){
 		if (getSpecificOwnedCards(DevCardType.Character).getOwnedCardsnumber()!=0) {
 			int[] vPoints = new int[6];
-			vPoints[0] = 1;
-			vPoints[1] = 3;
-			vPoints[2] = 6;
-			vPoints[3] = 10;
-			vPoints[4] = 15;
-			vPoints[5] = 21;
+			JSONParser parser = new JSONParser(); //loading by file faithPointsTracking
+			java.net.URL path = PersonalBoard.class.getResource("personalBoardBonus.json");
+			JSONObject obj;
+			try {
+				FileReader file = new FileReader(path.getPath());
+				obj = (JSONObject) parser.parse(file);
+			    JSONArray victoryPoints= (JSONArray) obj.get("bonusByChar");
+			    for (int i = 0; i < vPoints.length; i++) {
+					vPoints[i]=Integer.parseInt(victoryPoints.get(i).toString());
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
 			int vPointsToTake = vPoints[getSpecificOwnedCards(DevCardType.Character).getOwnedCardsnumber() - 1];
 			myPossession.addItemToPossession(new VictoryPoints(vPointsToTake));
 		}
@@ -143,10 +160,19 @@ public class PersonalBoard implements Serializable{
 	
 	public void earnByTerritories(){
 		int[] vPoints = new int[4];
-		vPoints[0] = 1;
-		vPoints[1] = 4;
-		vPoints[2] = 10;
-		vPoints[3] = 20;
+		JSONParser parser = new JSONParser(); //loading by file faithPointsTracking
+		java.net.URL path = PersonalBoard.class.getResource("personalBoardBonus.json");
+		JSONObject obj;
+		try {
+			FileReader file = new FileReader(path.getPath());
+			obj = (JSONObject) parser.parse(file);
+		    JSONArray victoryPoints= (JSONArray) obj.get("bonusByTerritories");
+		    for (int i = 0; i < vPoints.length; i++) {
+				vPoints[i]=Integer.parseInt(victoryPoints.get(i).toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
 		if (getSpecificOwnedCards(DevCardType.Territory).getOwnedCardsnumber() >= 3){
 			int finalVP = vPoints[getSpecificOwnedCards(DevCardType.Territory).getOwnedCardsnumber() - 3];
 			myPossession.addItemToPossession(new VictoryPoints(finalVP));
