@@ -876,7 +876,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 		});
 	}
 
-	public void gameOver(String description, ArrayList<Player> victoryPointsRanking) {
+	public void gameOver(String description, StringBuilder totalRanking, ArrayList<Player> victoryPointsRanking) {
 		StringBuilder stringBuilder = new StringBuilder();
 		
 		for (int i = 0; i < victoryPointsRanking.size(); i++) {
@@ -888,9 +888,9 @@ public class FXMLGameController extends MetaController implements Initializable{
 		    @Override
 		    public void run() {
 		    	Alert alert = new Alert(AlertType.ERROR);
-		    	alert.setTitle("End of The Game");
-		    	alert.setHeaderText("Chi vuol esser lieto sia, del doman non c'è certezza");
-		    	alert.setContentText(description+"\n\n"+stringBuilder.toString());	
+		    	alert.setTitle("End of the Game");
+		    	alert.setHeaderText("Chi vuol esser lieto sia, del doman non v'è certezza");
+		    	alert.setContentText(description+"\n\n"+stringBuilder.toString()+"\n\n"+totalRanking.toString());	
 		    	alert.showAndWait();
 		    }
 		});
