@@ -38,7 +38,7 @@ public class Floor implements Serializable{
 
 	@Override
 	public String toString() {
-		return "[Floor=" + floorNumber + singleActionSpace.toString() + devCardPlace.toString() + "]";
+		return "\n[Floor=" + floorNumber + singleActionSpace.toString() + devCardPlace.toString() + "]";
 	}
 	
 	
