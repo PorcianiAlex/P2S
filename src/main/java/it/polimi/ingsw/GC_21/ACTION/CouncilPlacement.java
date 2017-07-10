@@ -50,39 +50,6 @@ public class CouncilPlacement extends PlacementAction {
 		return super.checkToString();
 	}
 	
-	public static void main(String[] args) {
-		Scanner tastiera = new Scanner(System.in);
-		Game game = new Game("santa");	
-		Board board = game.getBoard();
-		Player playerInAction = new Player("Santa", Color.Blue, game);
-		Player playerInAction2 = new Player("Alex", Color.Green, game);
-		FamilyMemberColor selectedFamilyMemberColor = FamilyMemberColor.Orange;
-		FamilyMemberColor selectedFamilyMemberColor2 = FamilyMemberColor.Black;
-		System.out.println("Insert Servants");
-		int servantsNumber = tastiera.nextInt();
-		System.out.println("Insert Servants");
-		int servantsNumber2 = tastiera.nextInt();
-		CouncilPlacement councilPlacement = factoryCouncilPlacement(playerInAction, selectedFamilyMemberColor, board, servantsNumber);
-		CouncilPlacement councilPlacement2 = factoryCouncilPlacement(playerInAction2, selectedFamilyMemberColor2, board, servantsNumber2);
-		boolean checkAction = councilPlacement.checkAction();
-		System.out.println("Before:\n" + councilPlacement.toString());
-		System.out.println("Check Action [ " + checkAction + " ]");
-		System.out.println(councilPlacement.checkToString());
-		if (checkAction) {
-			councilPlacement.Execute();
-		}
-		System.out.println("After:\n" + councilPlacement.toString());
-		boolean checkAction2 = councilPlacement2.checkAction();
-		System.out.println("Before:\n" + councilPlacement2.toString());
-		System.out.println("Check Action [ " + checkAction2 + " ]");
-		System.out.println(councilPlacement2.checkToString());
-		if (checkAction2) {
-			councilPlacement2.Execute();
-		}
-		System.out.println("After:\n" + councilPlacement2.toString());
-		System.out.println(board.toString());
-
-	}
 	
 	
 	

@@ -4,11 +4,15 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import it.polimi.ingsw.GC_21.BOARD.Dice;
+import it.polimi.ingsw.GC_21.BOARD.SingleActionSpace;
 import it.polimi.ingsw.GC_21.EFFECT.PlacementInfluencer;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Servants;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Color;
+import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
@@ -72,4 +76,21 @@ public class PlacementActionTest {
 		assertTrue(ActualActionValue==ExpectedActionValue);
 	}
 
+	
+	@Test
+	public void testTowerPlacement(){
+		Game game = new Game("");	
+		Player playerInAction = new Player("Santa", Color.Blue, game);
+		Dice dice = new Dice();
+		FamilyMember selectedFamilyMember = new FamilyMember(dice, playerInAction);
+		SingleActionSpace singleActionSpace = new SingleActionSpace(selectedFamilyMember.getActionValue(), null, game);
+		PlacementAction placementAction = new PlacementAction(playerInAction, selectedFamilyMember.getActionValue(), selectedFamilyMember, singleActionSpace, null, null, new Servants(0), game.getBoard());
+		boolean checkAction = placementAction.checkAction();
+		assertTrue(checkAction);
+		assertTrue(!placementAction.checkBusyActionSpace());
+		assertTrue(!placementAction.checkBlack());
+		assertTrue(!placementAction.checkBusyFamilyMember());
+		assertTrue(placementAction.checkDiceRequirement());
+		assertTrue(!placementAction.checkOtherFamilyMember());
+	}
 }
