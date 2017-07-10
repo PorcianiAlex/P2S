@@ -380,8 +380,6 @@ public class FXMLGameController extends MetaController implements Initializable{
 	
 
 	public void refreshBoard(Board board, ArrayList<Player> players, String dString) {
-		//refresh log
-		//eventlog.setText(" ");
 		//update my player
 		for (int i = 0; i < players.size(); i++) {
 			if(myPlayer!=null && myPlayer.getName().equals(players.get(i).getName())) {
@@ -512,7 +510,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 			    @Override
 			    public void run() {
 			    	currtab.setText(name);
-			    	currtab.setStyle("-fx-text-fill: "+colorcurrent+";");
+			    	currtab.setStyle("-fx-border-color: "+colorcurrent+"; -fx-border-width: 3; ");
 			    }
 			   });
 		}
@@ -588,7 +586,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	  public void ifChooseAction(boolean firstaction, String description, Player player, TimerThread timerThread) { 
 		myPlayer = player;
 	    this.timerThread=timerThread; 
-	    
+	    eventlog.setText("It's your turn!");
 	    if(Color.Black == player.getPlayerColor()) {
 	    	isBlack=true;
 	    } else {

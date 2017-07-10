@@ -63,12 +63,15 @@ public class Controller implements P2SObserver<Action>{
 
 	@Override
 	public boolean update(Action action) {
-		if (remoteView.getPlayer().getPlayerColor() == Color.Black) {
-			if (!action.checkBlack()) {
-				action.place();
-				return true;
+		try {
+			if (remoteView.getPlayer().getPlayerColor() == Color.Black) {
+				if (!action.checkBlack()) {
+					action.place();
+					return true;
+				}
+				return false;
 			}
-			return false;
+		} catch (NullPointerException e) {
 		}
 		if (action instanceof PlacementAction){
 		int indexOfToCallBeforePlacementArray = action.getPlayerInAction().getMyPersonalBoard().getToCallBeforePlacementEffects().size();
