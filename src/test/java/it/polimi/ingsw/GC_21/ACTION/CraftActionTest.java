@@ -66,6 +66,8 @@ public class CraftActionTest {
 		testAction.callBeforeCraftEffects();
 		int expectedActionValue = 6;
 		int actualActionValue = testAction.getActionValue();
+		testAction.Execute();
+
 		assertTrue(expectedActionValue==actualActionValue);
 	}
 

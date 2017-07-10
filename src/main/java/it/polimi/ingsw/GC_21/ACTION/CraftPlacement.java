@@ -36,12 +36,6 @@ public class CraftPlacement extends PlacementAction {
 		return craftPlacement;
 	}
 	
-	@Override
-	public boolean checkAction() {
-		return super.checkAction();
-	}
-	
-	
 
 	
 	@Override
@@ -66,16 +60,6 @@ public class CraftPlacement extends PlacementAction {
 		}
 		craftAction.Execute();
 	}
-	
-	@Override
-	public String toString() {
-		return super.toString();
-	}
-	
-	@Override
-	public String checkToString() {
-		return super.checkToString();
-	}
-	
+
 	
 }

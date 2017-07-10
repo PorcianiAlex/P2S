@@ -30,25 +30,6 @@ public class CouncilPlacement extends PlacementAction {
 	        return councilPlacement;
 	}
 	
-	@Override
-	public void Execute() {
-		super.Execute();
-	}
-	
-	@Override
-	public boolean checkAction() {
-		return super.checkAction();
-	}
-	
-	@Override
-	public String toString() {
-		return super.toString();
-	}
-	
-	@Override
-	public String checkToString() {
-		return super.checkToString();
-	}
 	
 	
 	

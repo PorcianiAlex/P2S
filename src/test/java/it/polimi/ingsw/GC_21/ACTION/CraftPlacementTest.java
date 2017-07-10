@@ -31,13 +31,8 @@ public class CraftPlacementTest {
 		assertTrue(!craftPlacement.checkBusyFamilyMember());
 		assertTrue(craftPlacement.checkDiceRequirement());
 		assertTrue(!craftPlacement.checkOtherFamilyMember());
+		craftPlacement.Execute();
 
 	}
 	
-	@Test
-	public void executeTest() {
-		
-
-	}
-
 }
