@@ -107,6 +107,10 @@ If he answer NO, he goes in the lobby.
 If he answer YES, then he has to wait for ALL the other players of that game to log in.
 (After the loading of the game, the file .ser is deleted, but you can save it another time during the game)
 Once every players of that game is in, the game goes on.
+If you want to try this feature, try to log in with these credentials:
+username: paperino, psw: paperina;
+username: topolina, psw: topolina;
+(Or try with your own accounts)
 
 Regarding the stats of each player we record it on the Users.json file toghether with username and password. At the end of every match we display, for every player, the local ranking based on Victory Points, and the global one based on number of victories.
 
