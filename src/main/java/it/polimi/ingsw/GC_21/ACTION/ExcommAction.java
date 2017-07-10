@@ -41,7 +41,7 @@ public class ExcommAction extends Action {
 		int threshold = game.getExcommHandler().getExcommThresholds()[age-1]; //take the faithPoints required not to be excommunicated
 		if (this.choice || playerInAction.getMyPersonalBoard().getMyPossession().getFaithPoints().getValue()<threshold) { //if I choose to be excomm or I just don't have enough faith points
 			playerInAction.getMyPersonalBoard().addPermanentEffect(game.getExcommHandler().getExcommunicationCards()[age-1].getSecondaryEffect()); //I get the malus!
-			MessageToClient notifyExcommMessage = new MessageToClient(true, "Mmmh.. Bergoglio is upset! You are going to be excommunicated!!");
+			MessageToClient notifyExcommMessage = new MessageToClient(true, "Mmmh.. Bergoglio is upset! " + playerInAction.getName() + " is going to be excommunicated!!");
 			game.notifyBroadcast(notifyExcommMessage);
 		}
 		else {

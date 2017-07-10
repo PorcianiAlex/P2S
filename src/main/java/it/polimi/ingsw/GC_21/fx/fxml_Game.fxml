@@ -593,7 +593,7 @@
               </font>
             </Text>
             <Rectangle arcHeight="36.0" arcWidth="46.0" fill="$x33" height="172.0" layoutX="576.0" layoutY="441.0" smooth="true" stroke="$x25" strokeLineCap="SQUARE" strokeLineJoin="BEVEL" strokeType="INSIDE" strokeWidth="2.2" style="" width="129.0" />
-            <Text fx:id="eventlog" fill="$x25" layoutX="587.0" layoutY="479.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="100.0">
+            <Text fx:id="eventlog" fill="$x25" layoutX="587.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="100.0">
               <font>
                 <Font size="12.0" />
               </font>

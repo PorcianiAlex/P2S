@@ -384,7 +384,6 @@ public class FXMLGameController extends MetaController implements Initializable{
 		for (int i = 0; i < players.size(); i++) {
 			if(myPlayer!=null && myPlayer.getName().equals(players.get(i).getName())) {
 				myPlayer=players.get(i);
-				
 			}
 		}
 		
@@ -889,8 +888,10 @@ public class FXMLGameController extends MetaController implements Initializable{
 		    public void run() {
 		    	Alert alert = new Alert(AlertType.ERROR);
 		    	alert.setTitle("End of the Game");
-		    	alert.setHeaderText("Chi vuol esser lieto sia, del doman non v'è certezza");
+		    	alert.setHeaderText("'Chi vuol esser lieto sia, del doman non v'è certezza'");
 		    	alert.setContentText(description+"\n\n"+stringBuilder.toString()+"\n\n"+totalRanking.toString());	
+		    	ImageView imageView = new ImageView(new Image("/components/final.png"));
+		    	alert.setGraphic(imageView);
 		    	alert.showAndWait();
 		    }
 		});
