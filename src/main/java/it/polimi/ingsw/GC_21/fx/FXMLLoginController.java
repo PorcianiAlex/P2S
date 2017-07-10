@@ -42,7 +42,7 @@ import javafx.stage.Stage;
  
 public class FXMLLoginController extends MetaController {
 
-	private boolean go =true;
+	private static boolean go = true;
 	
 	@FXML private Text welcometext;
 	@FXML private Text actiontarget;
@@ -91,75 +91,17 @@ public class FXMLLoginController extends MetaController {
     	CheckLoginMessage inputmessage = (CheckLoginMessage) client.getReceivedMessage();
     	//for reconnecting users..
     	if(inputmessage.isPossibleReconnection()) {
-    		go=false;
-    		Platform.runLater(new Runnable(){ 
-    			@Override
-    			public void run() {
-    				
-    			   	Alert alert = new Alert(AlertType.CONFIRMATION);
-    				alert.setTitle("You have a standby match!");
-    				alert.setHeaderText("You can reconnect to previous match or start a new game");
-    				alert.setContentText("Do you want to reconnect?");
-
-    				ButtonType buttonTypeOne = new ButtonType("Yes");
-    				ButtonType buttonTypeTwo = new ButtonType("No");
-
-    				alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
-
-    				Optional<ButtonType> result = alert.showAndWait();
-    				if (result.get() == buttonTypeOne){
-    				    LobbyInput lobbyInput = new LobbyInput(true, false);
-    				    try {
-							client.sendInput(lobbyInput);
-							reconnect();
-							return;
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-    				} else{
-						go=true;
-    				}
-    			}
-
-    			});	
+    		this.ReconnectUser(inputmessage);
+    		return;
     	} 
-    	if(inputmessage.isSavedGames()) {
-			go=false;
-    			Platform.runLater(new Runnable(){ 
-        			@Override
-        			public void run() {
-        				
-        			   	Alert alert = new Alert(AlertType.CONFIRMATION);
-        				alert.setTitle("You have a saved match!");
-        				alert.setHeaderText("You can reload your saved match or start a new game");
-        				alert.setContentText("Do you want to reload it?");
-
-        				ButtonType buttonTypeOne = new ButtonType("Yes");
-        				ButtonType buttonTypeTwo = new ButtonType("No");
-
-        				alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
-
-        				Optional<ButtonType> result = alert.showAndWait();
-        				if (result.get() == buttonTypeOne){
-        				    LobbyInput lobbyInput = new LobbyInput(false, true);
-        				    try {
-    							client.sendInput(lobbyInput);
-    							reconnect();
-    							return;
-    						} catch (IOException e) {
-    							e.printStackTrace();
-    						}
-        				} else{
-							go=true;
-        				}
-        			}
-
-        			});	
-			
+    	//for saved games..
+    	else if(inputmessage.isSavedGames()) {
+    		this.SaveReconnection(inputmessage);
+    		return;
 		}
-    		if (go) {
-				newLobby(inputmessage);
-			}
+		
+    	newLobby(inputmessage);
+    	
     	
     }
     
@@ -186,7 +128,7 @@ public class FXMLLoginController extends MetaController {
     		 }
 	}
 
-    public synchronized void reconnect() {	
+    public  void reconnect() {	
 				Stage stage = (Stage) grid.getScene().getWindow();
 				
 				FXMLGame fxmlGame = new FXMLGame();
@@ -198,6 +140,80 @@ public class FXMLLoginController extends MetaController {
 				
 		
     }
- 
+    
+    public void ReconnectUser(CheckLoginMessage inputmessage) {
+
+		Platform.runLater(new Runnable(){ 
+			@Override
+			public void run() {
+				
+			   	Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("You have a standby match!");
+				alert.setHeaderText("You can reconnect to previous match or start a new game");
+				alert.setContentText("Do you want to reconnect?");
+
+				ButtonType buttonTypeOne = new ButtonType("Yes");
+				ButtonType buttonTypeTwo = new ButtonType("No");
+
+				alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+
+				Optional<ButtonType> result = alert.showAndWait();
+				if (result.get() == buttonTypeOne){
+				    LobbyInput lobbyInput = new LobbyInput(true, false);
+				    try {
+						client.sendInput(lobbyInput);
+						reconnect();
+						return;
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				} else{
+					if(inputmessage.isSavedGames())
+					{
+						SaveReconnection(inputmessage);
+						return;
+					} else {
+				    	newLobby(inputmessage);
+					}
+				}
+			}
+
+			});	
+    	
+    }
+
+   public void SaveReconnection(CheckLoginMessage inputmessage){
+    	Platform.runLater(new Runnable(){ 
+			@Override
+			public void run() {
+				
+			   	Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("You have a saved match!");
+				alert.setHeaderText("You can reload your saved match or start a new game");
+				alert.setContentText("Do you want to reload it?");
+
+				ButtonType buttonTypeOne = new ButtonType("Yes");
+				ButtonType buttonTypeTwo = new ButtonType("No");
+
+				alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+
+				Optional<ButtonType> result = alert.showAndWait();
+				if (result.get() == buttonTypeOne){
+				    LobbyInput lobbyInput = new LobbyInput(false, true);
+				    try {
+						client.sendInput(lobbyInput);
+						reconnect();
+						return;
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				} else{ 
+			    	newLobby(inputmessage);
+				}
+			}
+
+			});	
+	
+    }
 	
 }
