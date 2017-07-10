@@ -19,8 +19,8 @@ public class CraftPlacementInput extends PlacementInput {
 	
 
 
-	public CraftPlacementInput(ActionInput actionInput, StringBuffer input) {
-		super(actionInput, input);
+	public CraftPlacementInput(ActionInput actionInput, StringBuffer input, boolean blackPlayer) {
+		super(actionInput, input, blackPlayer);
 	}
 
 	@Override

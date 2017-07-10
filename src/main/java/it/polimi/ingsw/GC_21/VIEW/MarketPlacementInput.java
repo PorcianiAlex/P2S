@@ -14,8 +14,8 @@ public class MarketPlacementInput extends PlacementInput {
 	public MarketPlacementInput() {	
 	}
 
-	public MarketPlacementInput(ActionInput actionInput, StringBuffer input) {
-		super(actionInput, input);
+	public MarketPlacementInput(ActionInput actionInput, StringBuffer input, boolean blackPlayer) {
+		super(actionInput, input, blackPlayer);
 	}
 
 	@Override

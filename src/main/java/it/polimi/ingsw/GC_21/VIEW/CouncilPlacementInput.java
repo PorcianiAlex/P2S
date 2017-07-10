@@ -5,8 +5,8 @@ import it.polimi.ingsw.GC_21.ACTION.CouncilPlacement;
 
 public class CouncilPlacementInput extends PlacementInput{
 	
-	public CouncilPlacementInput(ActionInput actionInput, StringBuffer input) {
-		super(actionInput, input);
+	public CouncilPlacementInput(ActionInput actionInput, StringBuffer input, boolean blackPlayer) {
+		super(actionInput, input, blackPlayer);
 	}
 
 	public CouncilPlacementInput() {

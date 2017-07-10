@@ -79,7 +79,7 @@ public class Tower implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Tower [" + devCardType + ", floors=" + Arrays.toString(floors) + "]";
+		return "Tower [" + devCardType + ", floors{" + Arrays.toString(floors) + "}";
 	}
 	
 }
