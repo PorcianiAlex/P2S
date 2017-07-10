@@ -1,3 +1,5 @@
+/* WARNING: if folder "savedgames" is not in src/main/resources then create it by your own */
+
 Hello, we are Alessandro, Alex and Santa and this is our Software Engineering project!
 Here it's how we worked and how it works:
 
