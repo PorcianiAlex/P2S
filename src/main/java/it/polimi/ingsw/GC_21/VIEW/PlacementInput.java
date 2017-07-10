@@ -9,11 +9,13 @@ public class PlacementInput extends ActionInput{
 	protected ActionInput actionInput;
 	protected FamilyMemberColor familyMemberColor; 
 	protected int servantsToConvert;
+	protected boolean blackPlayer;
 	
 
-	public PlacementInput(ActionInput actionInput, StringBuffer input) {
+	public PlacementInput(ActionInput actionInput, StringBuffer input, boolean blackPlayer) {
 		this.actionInput = actionInput;
 		this.input = input;
+		this.blackPlayer = blackPlayer;
 	}
 
 	public PlacementInput() {
@@ -37,8 +39,10 @@ public class PlacementInput extends ActionInput{
 	
 	@Override
 	public void inputFromCli() throws InterruptedException {
-		familyMemberColor = this.chooseFamilyMember(actionInput); 
-	    servantsToConvert = this.chooseHowManyServants(actionInput); 
+		familyMemberColor = this.chooseFamilyMember(actionInput);
+		if (!blackPlayer) {
+		    servantsToConvert = this.chooseHowManyServants(actionInput); 
+		}
 	}
 	
 	

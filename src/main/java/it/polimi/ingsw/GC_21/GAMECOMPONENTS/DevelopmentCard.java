@@ -46,7 +46,7 @@ public class DevelopmentCard extends Card {
 
 	@Override
 	public String toString() {
-		return "DevC [ " + this.getName() + " ]";
+		return "DevC [ " + this.getName()  + getRequirements().toString() + " ]";
 	}
 	
 

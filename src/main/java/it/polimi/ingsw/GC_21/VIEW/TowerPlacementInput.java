@@ -4,11 +4,13 @@ import java.util.Scanner;
 
 import it.polimi.ingsw.GC_21.ACTION.TowerPlacement;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
+import it.polimi.ingsw.GC_21.PLAYER.Player;
 
 
 public class TowerPlacementInput extends PlacementInput {
 	private DevCardType selectedTower; 
     private int floor;
+    
      
 	
 	public TowerPlacementInput(DevCardType selectedTower, int floor) {
@@ -17,8 +19,9 @@ public class TowerPlacementInput extends PlacementInput {
 		this.floor = floor;
 	}
 	
-	public TowerPlacementInput(ActionInput actionInput, StringBuffer input) {
-		super(actionInput, input);
+	public TowerPlacementInput(ActionInput actionInput, StringBuffer input, boolean blackPlayer) {
+		super(actionInput, input, blackPlayer);
+		
 	}
 
 	@Override

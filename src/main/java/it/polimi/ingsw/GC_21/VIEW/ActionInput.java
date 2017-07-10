@@ -31,22 +31,26 @@ public class ActionInput extends InputForm  {
 	public InputForm chooseAction(Player player, TimerThread timerThread) throws ExecutionException, InterruptedException {
 		System.out.println("Choose your action: " + "\n 1: Tower placement" + "\n 2: Craft placement "
 				+ "\n 3: Market placement " + "\n 4: Council placement" + "\n 5: Pass" + "\n 6: Play Leader Card" + "\n 7: Discard Leader Card");
+		boolean blackPlayer = false;
+		if (player.getPlayerColor() == Color.Black) {
+			blackPlayer = true;
+		}
 		String choice = takeInput(this);
 			switch (choice) {
 			case "1":
-				TowerPlacementInput towerPlacementInput = new TowerPlacementInput(this, input);
+				TowerPlacementInput towerPlacementInput = new TowerPlacementInput(this, input, blackPlayer);
 				towerPlacementInput.inputFromCli();
 				return towerPlacementInput;
 			case "2":
-				CraftPlacementInput craftPlacementInput = new CraftPlacementInput(this, input);
+				CraftPlacementInput craftPlacementInput = new CraftPlacementInput(this, input, blackPlayer);
 				craftPlacementInput.inputFromCli();
 				return craftPlacementInput;
 			case "3":
-				MarketPlacementInput marketPlacementInput = new MarketPlacementInput(this, input);
+				MarketPlacementInput marketPlacementInput = new MarketPlacementInput(this, input,blackPlayer);
 				marketPlacementInput.inputFromCli();
 				return marketPlacementInput;
 			case "4":
-				CouncilPlacementInput councilPlacementInput = new CouncilPlacementInput(this, input);
+				CouncilPlacementInput councilPlacementInput = new CouncilPlacementInput(this, input, blackPlayer);
 				councilPlacementInput.inputFromCli();
 				return councilPlacementInput;
 			case "5":

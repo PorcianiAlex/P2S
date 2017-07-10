@@ -38,7 +38,7 @@ public class TakeCardInput extends ActionInput{
 	
 	@Override
 	public void inputFromCli() throws InterruptedException {
-		TowerPlacementInput towerPlacementInput = new TowerPlacementInput(this, input);
+		TowerPlacementInput towerPlacementInput = new TowerPlacementInput(this, input, false);
 		if (devCardType == null) {//TODO set a jolly devCardType
 			devCardType = towerPlacementInput.selectTower();
 		}
