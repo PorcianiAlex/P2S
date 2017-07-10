@@ -9,9 +9,4 @@ public class Pass extends Action {
 		
 	}
 	
-	@Override
-	public void Execute() {
-		super.Execute();
-	}
-	
 }
