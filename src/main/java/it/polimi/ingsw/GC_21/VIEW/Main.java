@@ -13,8 +13,6 @@ public class Main {
 		System.out.println(InetAddress.getLocalHost().getHostAddress());
 		Server server1 = new Server();
         server1.startServer();
-        
-        
-        
+
 	}
 }

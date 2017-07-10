@@ -28,6 +28,7 @@ public class PrivilegeInput extends InputForm {
 		if (!remoteView.notifyController(privilegeController)){
 			PrivilegeMessage privilegeMessage = new PrivilegeMessage(rewards, privilegesNumber, earnedRewards);
 			remoteView.getAdapter().sendObject(privilegeMessage);
+			remoteView.inputObject();
 			}
 		}
 	

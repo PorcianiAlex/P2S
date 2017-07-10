@@ -28,8 +28,8 @@ public class PrivilegeMessage extends MessageToClient{
     this.privilegesNumber = privilegesNumber; 
     this.earnedRewards = earnedRewards; 
   } 
- 
-   
+  
+
   @Override 
   public InputForm executeCLI(Object lOCK) throws InterruptedException { 
     inputForm = new PrivilegeInput(rewards, privilegesNumber, earnedRewards); 
