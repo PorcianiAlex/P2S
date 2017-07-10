@@ -8,11 +8,13 @@ import it.polimi.ingsw.GC_21.BOARD.Tower;
 import it.polimi.ingsw.GC_21.EFFECT.CraftInfluencer;
 import it.polimi.ingsw.GC_21.EFFECT.Effect;
 import it.polimi.ingsw.GC_21.EFFECT.PlacementInfluencer;
+import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Card;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevCardType;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.DevelopmentCard;
 import it.polimi.ingsw.GC_21.GAMECOMPONENTS.Possession;
 import it.polimi.ingsw.GC_21.GAMEMANAGEMENT.Game;
 import it.polimi.ingsw.GC_21.PLAYER.Color;
+import it.polimi.ingsw.GC_21.PLAYER.FamilyMember;
 import it.polimi.ingsw.GC_21.PLAYER.FamilyMemberColor;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 
@@ -142,6 +144,42 @@ public class TowerPlacementTest {
 		TowerPlacement test = TowerPlacement.factoryTakeCard(playerInAction, DevCardType.Building, 1, 1, new Possession(), new Possession(), game.getBoard());
 		test.Execute();
 		assertTrue(playerInAction.getMyPersonalBoard().getMyPossession().equals(new Possession()));
+	}
+
+	@Test
+	public void test4(){
+		Game game = new Game("");	
+		Player playerInAction = new Player("Santa", Color.Blue, game);
+		game.getBoard().getSpecificTower(DevCardType.Building).getFloors()[2].getSingleActionSpace().setFamilyMemberLocated(new FamilyMember(playerInAction));
+		game.getBoard().getSpecificTower(DevCardType.Building).getFloors()[2].getSingleActionSpace().setBusy(true);
+		DevelopmentCard developmentCard = new DevelopmentCard("");
+		developmentCard.setRequirements(new Possession());
+		developmentCard.setDevCardType(DevCardType.Building);
+		game.getBoard().getSpecificTower(DevCardType.Building).getFloors()[0].getDevCardPlace().setCard(developmentCard);
+		TowerPlacement test = TowerPlacement.factoryTakeCard(playerInAction, DevCardType.Building, 1, 1, new Possession(), new Possession(), game.getBoard());
+		assertTrue((test.getSelectedActionSpace().getActionSpaceEffect()==null));
+		assertTrue(test.checkTakeabilityCard(playerInAction.getMyPersonalBoard(), test.getSelectedCard().getDevCardType()));
+		assertTrue(test.checkCardRequirements(playerInAction.getMyPersonalBoard()));
+
+		
+
+	}
+	
+
+	@Test
+	public void testTakeCard2(){
+		Game game = new Game("");	
+		Player playerInAction = new Player("Santa", Color.Blue, game);
+		DevelopmentCard developmentCard = new DevelopmentCard("");
+		developmentCard.setRequirements(new Possession());
+		developmentCard.setDevCardType(DevCardType.Building);
+		game.getBoard().getSpecificTower(DevCardType.Building).getFloors()[0].getDevCardPlace().setCard(developmentCard);
+		TowerPlacement test = TowerPlacement.factoryTakeCard(playerInAction, DevCardType.Building, 1, 1, new Possession(), new Possession(), game.getBoard());
+		test.takeCard();
+		test.playerInAction.getMyPersonalBoard().addDevCard(test.getSelectedCard());
+		test.getSelectedFloor().getDevCardPlace().setCard(null);
+
+		assertTrue(test.checkAction());
 	}
 
 }
