@@ -20,6 +20,7 @@ public class Turn implements Serializable{
 	
 	public void executeView(ArrayList<Player> turnOrder) {
 		game.resetPlayedLeaders();
+		game.attachBlack();//now the black player could not play his turn even if there's a player switch (he has to wait the next Turn)
 		game.notifyOrderedTurn(turnOrder, game.getCurrentPlayerNumber());
 		game.generateRanking();
 	}

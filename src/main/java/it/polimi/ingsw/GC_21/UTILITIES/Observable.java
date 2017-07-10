@@ -5,6 +5,7 @@ import java.awt.List;
 import it.polimi.ingsw.GC_21.CLIENT.MessageToClient;
 import it.polimi.ingsw.GC_21.CLIENT.PrivilegeMessage;
 import it.polimi.ingsw.GC_21.CONTROLLER.ControllerForm;
+import it.polimi.ingsw.GC_21.PLAYER.Color;
 import it.polimi.ingsw.GC_21.PLAYER.Player;
 import it.polimi.ingsw.GC_21.UTILITIES.*;
 import it.polimi.ingsw.GC_21.VIEW.ExcommInput;
@@ -19,6 +20,7 @@ import javax.sound.sampled.LineListener;
 public abstract class Observable<C> {
 	private ArrayList<P2SObserver<C>> observers;
 	private CurrentObserver currentObserver;
+	private P2SObserver<C> blackObserver;
 	private HashMap<P2SObserver<C>, Player> playerObserver = new HashMap<P2SObserver<C>, Player>();
 	
 	
@@ -27,6 +29,19 @@ public abstract class Observable<C> {
 		currentObserver = null;
 		playerObserver.clear();
 
+	}
+	
+	public void attachBlack(){
+		for (P2SObserver<C> o : this.observers) {
+			if (playerObserver.get(o).getPlayerColor() == Color.Black) {
+				blackObserver = o;
+			}
+		}
+	}
+	
+
+	public void detachBlack(){
+		this.blackObserver = null;
 	}
 			
 	public void attachCurrent(CurrentObserver currentObserver){
@@ -120,13 +135,13 @@ public abstract class Observable<C> {
 	public void notifyOrderedTurn(ArrayList<Player> turnOrder, int currentPlayerNumber) {
 		for (int i = 0; i < turnOrder.size(); i++) {
 			for (P2SObserver<C> o : this.observers) {
-				if (turnOrder.get(i).equals(playerObserver.get(o))) {
+				if (turnOrder.get(i).equals(playerObserver.get(o)) && !o.equals(blackObserver)) {
 					if (currentPlayerNumber == 0) {
 						o.updateTurn();
 						detachCurrent();
 					}
 					else {
-						currentPlayerNumber --;
+						currentPlayerNumber --;//go to the current Player in the saved game
 					}
 				}
 			}
