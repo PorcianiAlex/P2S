@@ -61,16 +61,19 @@ public class SocketAdapter implements AdapterConnection{
 				return receiveObject();
 			}
 			return inputForm;
-		} catch (ClassNotFoundException | IOException | ClassCastException e) {
+		} catch (IOException | ClassNotFoundException e) {
 			if (!remoteView.isDisconnected()){
 				remoteView.setDisconnected(true);
 				MessageToClient disconnectionMessage = new MessageToClient(true, remoteView.getUsername() + " disconnected!");
-				try {
-					remoteView.getGame().notifyBroadcast(disconnectionMessage);
-				} catch (NullPointerException e1) {
-				}
+				
+					if (remoteView.getGame()!=null) {
+						remoteView.getGame().notifyBroadcast(disconnectionMessage);
+					}
+				
 			}
 			return new PassInput();//if client is disconnected, do a default pass action
+		} catch (Exception e2) {
+			return new InputForm();
 		}
 	}
 	

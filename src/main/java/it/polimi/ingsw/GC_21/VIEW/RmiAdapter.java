@@ -53,11 +53,15 @@ public class RmiAdapter implements AdapterConnection{
 	public InputForm receiveObject() {
 		try {
 			return rmiClient.sendObjectToServer();
-		} catch (Exception e) {
+		} catch (IOException e) {
 			if (!remoteView.isDisconnected()){
 				remoteView.setDisconnected(true);
 				MessageToClient disconnectionMessage = new MessageToClient(true, remoteView.getUsername() + " disconnected!");
-				remoteView.getGame().notifyBroadcast(disconnectionMessage);
+				try {
+					remoteView.getGame().notifyBroadcast(disconnectionMessage);
+				} catch (Exception e1) {
+					return new InputForm();
+				}
 			}
 			return new PassInput();//if client is disconnected, do a default pass action
 		}	
