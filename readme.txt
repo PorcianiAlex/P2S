@@ -68,6 +68,7 @@ Obviously, if you play one of your leader card, then you can play your turn.
 You can pass your turn (by clicking on PASS), zoom on every card (by clicking on it), 
 see the personal board of every player in game with the menu on top-right.
 You have 60 seconds to play, then you will automatically pass.
+At the end of the game, a popup shows you all the stats of the match and of the previous matches.
 
 FIFTH PLAYER:
 We tried to introduce a fifth player, called The Conspirator, with 0 resources. That's how it works:
