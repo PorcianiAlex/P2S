@@ -39,9 +39,7 @@ public class TimerThread extends Thread {
 				future.cancel(true);
 			}
 		} catch (InterruptedException | IOException e) {
-			System.out.println("Bravo, my dear");
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
