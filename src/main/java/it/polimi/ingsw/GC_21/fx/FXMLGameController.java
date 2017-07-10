@@ -125,7 +125,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 
 	//riferimento ad array di carte, dadi, risorse e player
 	@FXML private ToggleGroup cards, place, excomm, family, myterritory, mybuilding, myventure, myleader, mycharacheter, x3,x4,x5,x6,x7,x12,x14,x15,x16,x13,x20,x23,x21,x22,x24,x27,x28,x29,x30,x31;
-	@FXML private Text whitedice, blackdice, orangedice, state, eventlog;
+	@FXML private Text whitedice, blackdice, orangedice, state, eventlog, turnmess;
 	@FXML private Text servconverting, r1,r2,r3,r4,r5,r6,r7,r8, r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20,r21,r22,r23,r24,r25,r26,r27,r28,r29,r30,r31,r32,r33,r34,r35;
 	@FXML private Tab pl1,pl2,pl3,pl4,pl5;
 	@FXML private javafx.scene.control.Button confirmbtn, music;
@@ -207,7 +207,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	 
 	 @FXML protected void Reset(ActionEvent event) {
 		 
-		 	eventlog.setText(" ");
+		 	turnmess.setText(" ");
 		 	familyMemberColor=null;
 			servToConvert=0;
 			servconverting.setText(String.valueOf(servToConvert));
@@ -510,7 +510,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 			    @Override
 			    public void run() {
 			    	currtab.setText(name);
-			    	currtab.setStyle("-fx-border-color: "+colorcurrent+"; -fx-border-width: 3; ");
+			    	currtab.setStyle("-fx-background-color:  #ecebe9, rgba(0,0,0,0.05), linear-gradient(#dcca8a, #c7a740),  linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),linear-gradient(#f6ebbe, #e6c34d);-fx-border-color: "+colorcurrent+"; -fx-border-width: 3; ");
 			    }
 			   });
 		}
@@ -586,7 +586,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	  public void ifChooseAction(boolean firstaction, String description, Player player, TimerThread timerThread) { 
 		myPlayer = player;
 	    this.timerThread=timerThread; 
-	    eventlog.setText("It's your turn!");
+	    turnmess.setText("It's your turn!");
 	    if(Color.Black == player.getPlayerColor()) {
 	    	isBlack=true;
 	    } else {
