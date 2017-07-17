@@ -194,46 +194,6 @@ public class TowerPlacement extends PlacementAction {
 				"\nCheck Card Requirement=" + checkCardRequirements(playerInAction.getMyPersonalBoard());
 	}
 	
-	/*public static void main(String[] args) {
-		Scanner tastiera = new Scanner(System.in);
-		Game game = new Game();	
-		Board board = game.getBoard();
-		Player playerInAction = new Player("Santa", Color.Blue, game);
-		Player playerInAction2 = new Player("Alex", Color.Green, game);
-		FamilyMemberColor selectedFamilyMemberColor = FamilyMemberColor.Neutral;
-		FamilyMemberColor selectedFamilyMemberColor2 = FamilyMemberColor.Black;
-		DevCardType towerType = DevCardType.Building;
-		DevDeck towerTypeDeck  = new DevDeck(towerType, 1);
-		board.getSpecificTower(towerType).pickCards(towerTypeDeck);
-		System.out.println("Insert Floor");
-		int floorNumber = tastiera.nextInt();
-		System.out.println("Insert Servants");
-		int servantsNumber = tastiera.nextInt();
-		System.out.println("Insert Floor");
-		int floorNumber2 = tastiera.nextInt();
-		System.out.println("Insert Servants");
-		int servantsNumber2 = tastiera.nextInt();
-		TowerPlacement towerPlacement = factoryTowerPlacement(playerInAction, selectedFamilyMemberColor, towerType, floorNumber, servantsNumber, board);
-		TowerPlacement towerPlacement2 = factoryTowerPlacement(playerInAction, selectedFamilyMemberColor2, towerType, floorNumber2, servantsNumber2, board);
-		boolean checkAction = towerPlacement.checkAction();
-		System.out.println("Before:\n" + towerPlacement.toString());
-		System.out.println("Check Action [ " + checkAction + " ]");
-		System.out.println(towerPlacement.checkToString());
-		if (checkAction) {
-			towerPlacement.Execute();
-		}
-		System.out.println("After:\n" + towerPlacement.toString());
-		boolean checkAction2 = towerPlacement2.checkAction();
-		System.out.println("Before:\n" + towerPlacement2.toString());
-		System.out.println("Check Action [ " + checkAction + " ]");
-		System.out.println(towerPlacement2.checkToString());
-		if (checkAction2) {
-			towerPlacement2.Execute();
-		}
-		System.out.println("After:\n" + towerPlacement2.toString());
-		System.out.println(board.toString());
-
-	}
-	*/
+	
 
 }

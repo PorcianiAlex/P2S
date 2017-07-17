@@ -758,7 +758,7 @@ public class FXMLGameController extends MetaController implements Initializable{
 	   	Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Excommunication time");
 		alert.setHeaderText(description);
-		alert.setContentText("Choose your destiny:");
+		alert.setContentText("Choose your destiny, do you want to be excommunicated?");
 		ImageView imageView = new ImageView(new Image("/components/papaa.png"));
     	alert.setGraphic(imageView);
     	

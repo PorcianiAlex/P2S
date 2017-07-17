@@ -33,7 +33,8 @@ public class TakeCardInput extends ActionInput{
 	public void execute(RemoteView remoteView) {
 		super.setAdapter(remoteView);
 		TowerPlacement takeCardAction = TowerPlacement.factoryTakeCard(remoteView.getPlayer(), devCardType, selectedFloor, actionValueInfluencer, discount, null, remoteView.getGame().getBoard());
-		remoteView.response(takeCardAction);
+		//remoteView.response(takeCardAction);
+		remoteView.notifyObservers(takeCardAction);
 	}
 	
 	@Override
