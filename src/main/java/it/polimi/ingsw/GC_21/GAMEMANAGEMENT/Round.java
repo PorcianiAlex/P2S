@@ -18,7 +18,6 @@ public class Round implements Serializable{
 	private int roundNumber;
 	private Game game;
 	private Player blackPlayer;
-	private ArrayList<Player> turnOrder = new ArrayList<Player>();
 	
 	public Round(int roundNumber, Game game) {
 		this.roundNumber = roundNumber;
@@ -27,7 +26,8 @@ public class Round implements Serializable{
 		}
 	
 	private void setTurnOrder() {
-		turnOrder = game.getBoard().getCouncilPalace().getTurnOrder();
+		ArrayList<Player> turnOrder = game.getBoard().getCouncilPalace().getTurnOrder();
+		game.setThisTurnOrder(turnOrder);
 		blackPlayer = game.getSpecificPlayer(Color.Black);
 		ArrayList<Player> playersInGame = game.getPlayers();	
 		for (int j = 0; j < playersInGame.size(); j++) {
@@ -38,14 +38,19 @@ public class Round implements Serializable{
 	}
 
 	public void executeRound() {
-		setTurnOrder();
-		game.getBoard().refreshBoard();
-		for (int i = 0; i < game.getPlayers().size(); i++) {
-			game.getPlayers().get(i).refreshPlayer();
+		if (!game.isSavedGame()) {
+			setTurnOrder();
+			game.getBoard().refreshBoard();
+			for (int i = 0; i < game.getPlayers().size(); i++) {
+				game.getPlayers().get(i).refreshPlayer();
+			}
+			this.placeCard();
 		}
-		this.placeCard();
+		else {
+			game.setSavedGame(false);
+		}
 		if (blackPlayer != null && game.isBlackTurn()) {
-			turnOrder.remove(blackPlayer);//for black player there is a specific notify turn in which he plays all his family members at the beginning 
+			game.getTurnOrder().remove(blackPlayer);//for black player there is a specific notify turn in which he plays all his family members at the beginning 
 			for (int i = game.getCurrentTurn().getTurnNumber(); i < 5; i++) {
 				Turn currentTurn = new Turn(i, game);
 				game.setCurrentTurn(currentTurn);
@@ -57,7 +62,7 @@ public class Round implements Serializable{
 		for (int i = game.getCurrentTurn().getTurnNumber(); i < 5 ; i++) {
 			Turn currentTurn = new Turn(i, game);
 			game.setCurrentTurn(currentTurn);
-			currentTurn.executeView(turnOrder);
+			currentTurn.executeView(game.getTurnOrder());
 		}
 		game.setBlackTurn(true);
 		game.setCurrentTurn(new Turn(1, game));
@@ -94,13 +99,7 @@ public class Round implements Serializable{
 
 	
 
-	public void setThisTurnOrder(ArrayList<Player> turnOrder) {
-		this.turnOrder = turnOrder;
-	}
 	
-	public ArrayList<Player> getTurnOrder() {
-		return turnOrder;
-	}
 	
 	
 	

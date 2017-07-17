@@ -32,10 +32,12 @@ public class Game extends Observable implements Serializable{
 	private static int currentNumberOfGame = 0; 
 	private int id;
 	private String host;
+	private boolean savedGame = false;
 	private int numberOfPlayers;
 	private int numberOfPlayersActuallyPresent;
 	private Board board;
 	private ArrayList<Player> players;
+	private ArrayList<Player> turnOrder;
 	private Age currentAge;
 	private Round currentRound;
 	private Turn currentTurn;
@@ -69,6 +71,7 @@ public class Game extends Observable implements Serializable{
 		this.currentAge = new Age(1, this);
 		this.currentRound = new Round(1, this);
 		this.currentTurn = new Turn(1, this);
+		this.turnOrder = new ArrayList<Player>();
 		}
 	
 	public ArrayList<Player> getVictoryPointsRanking() {
@@ -140,9 +143,11 @@ public class Game extends Observable implements Serializable{
 	
 	public void executeGame() {
 		numberOfPlayersActuallyPresent = Integer.valueOf(numberOfPlayers);
-		for(int i = 0; i < players.size(); i++){
-			victoryPointsRanking.add(players.get(i));
-			militaryPointsRanking.add(players.get(i));
+		if (!savedGame) {
+			for(int i = 0; i < players.size(); i++){
+				victoryPointsRanking.add(players.get(i));
+				militaryPointsRanking.add(players.get(i));
+			}
 		}
 		for (int i = currentAge.getAgeNumber(); i < 4; i++) {
 			currentAge = new Age(i, this);
@@ -333,7 +338,7 @@ public class Game extends Observable implements Serializable{
 
 
 	public void setCurrentPlayer(Player currentPlayer) {
-		this.currentPlayerNumber = getCurrentRound().getTurnOrder().indexOf(currentPlayer);
+		this.currentPlayerNumber = getTurnOrder().indexOf(currentPlayer);
 	}
 	
 	public void setCurrentPlayerNumber(int currentPlayerNumber) {
@@ -392,6 +397,21 @@ public class Game extends Observable implements Serializable{
 	public void setAssociatedFile(File associatedFile) {
 		this.associatedFile = associatedFile;
 	}
+
+	public boolean isSavedGame() {
+		return savedGame;
+	}
+
+	public void setSavedGame(boolean savedGame) {
+		this.savedGame = savedGame;
+	}
 	
+	public void setThisTurnOrder(ArrayList<Player> turnOrder) {
+		this.turnOrder = turnOrder;
+	}
+	
+	public ArrayList<Player> getTurnOrder() {
+		return turnOrder;
+	}
 
 }

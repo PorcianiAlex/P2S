@@ -34,7 +34,7 @@ public class LobbyController extends ControllerForm {
 			controllerManager.addRemoteView(remoteView);
 			modelGame = controllerManager.getMySavedGame(remoteView.getUsername());
 			if (modelGame.getNumberOfPlayersActuallyPresent() == 0) {
-				modelGame.clear();
+				modelGame.clear();//remove all the old observers in each entity of the match (remote view and model)
 			}
 			gameConnection();
 			Player player = getMyPlayer();
@@ -44,7 +44,7 @@ public class LobbyController extends ControllerForm {
 			remoteView.setPlayer(player);
 			modelGame.attachPlayer(player, remoteView);
 			if (modelGame.getNumberOfPlayersActuallyPresent() == modelGame.getNumberOfPlayers()) {
-				modelGame.executeGame();
+				modelGame.setSavedGame(true);
 				checkLobbyMessage = new MessageToClient(true, "Connecting to the saved game");
 				modelGame.executeGame();
 			}

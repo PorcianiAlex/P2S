@@ -56,7 +56,7 @@ public class CraftPlacement extends PlacementAction {
 		int indexOfToCallBeforeCraftArray = this.playerInAction.getMyPersonalBoard().getToCallBeforeCraftEffects().size();
 		ArrayList<ToCallBeforeCraft> effectsOnTheGo = this.playerInAction.getMyPersonalBoard().getToCallBeforeCraftEffects();
 		for (int i = 0; i < indexOfToCallBeforeCraftArray; i++) {
-			((Effect) effectsOnTheGo.get(indexOfToCallBeforeCraftArray)).activateEffect(playerInAction, craftAction);
+			((Effect) effectsOnTheGo.get(i)).activateEffect(playerInAction, craftAction);
 		}
 		craftAction.Execute();
 	}
